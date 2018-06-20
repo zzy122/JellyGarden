@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="StepView" customModule="JellyGarden" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vRS-o2-2hv">
+                    <rect key="frame" x="0.0" y="14" width="20" height="20"/>
+                    <color key="backgroundColor" red="0.0" green="0.16862745098039217" blue="0.53333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="20" id="10E-b4-WAB"/>
+                        <constraint firstAttribute="height" constant="20" id="Jek-OZ-fHR"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Rd-Cq-7U1">
+                    <rect key="frame" x="177.5" y="14" width="20" height="20"/>
+                    <color key="backgroundColor" red="0.0" green="0.16862745100000001" blue="0.53333333329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="20" id="7rh-mQ-AP5"/>
+                        <constraint firstAttribute="height" constant="20" id="EYQ-NC-5Db"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="70I-uO-a7e">
+                    <rect key="frame" x="355" y="14" width="20" height="20"/>
+                    <color key="backgroundColor" red="0.0" green="0.16862745100000001" blue="0.53333333329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="hzA-MA-U9t"/>
+                        <constraint firstAttribute="width" constant="20" id="tCd-gl-N0k"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Af7-w4-fAQ" customClass="LineView" customModule="JellyGarden" customModuleProvider="target">
+                    <rect key="frame" x="35" y="14" width="127.5" height="20"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="9c0-ff-Ws5"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FT4-OM-bse" customClass="LineView" customModule="JellyGarden" customModuleProvider="target">
+                    <rect key="frame" x="212.5" y="14" width="127.5" height="20"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="WtH-Ry-ywn"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Af7-w4-fAQ" firstAttribute="leading" secondItem="vRS-o2-2hv" secondAttribute="trailing" constant="15" id="0dv-XE-uLj"/>
+                <constraint firstItem="FT4-OM-bse" firstAttribute="leading" secondItem="5Rd-Cq-7U1" secondAttribute="trailing" constant="15" id="2k5-Ny-sr2"/>
+                <constraint firstAttribute="trailing" secondItem="70I-uO-a7e" secondAttribute="trailing" id="9WZ-Yw-Aor"/>
+                <constraint firstItem="70I-uO-a7e" firstAttribute="leading" secondItem="FT4-OM-bse" secondAttribute="trailing" constant="15" id="Bfa-94-bdc"/>
+                <constraint firstItem="vRS-o2-2hv" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="HZh-KZ-1Lf"/>
+                <constraint firstItem="5Rd-Cq-7U1" firstAttribute="leading" secondItem="Af7-w4-fAQ" secondAttribute="trailing" constant="15" id="J8h-Fa-FuJ"/>
+                <constraint firstItem="5Rd-Cq-7U1" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="JMB-N2-Ne0"/>
+                <constraint firstItem="5Rd-Cq-7U1" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="KUe-WO-W3F"/>
+                <constraint firstItem="70I-uO-a7e" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="QKC-Uz-f7D"/>
+                <constraint firstItem="FT4-OM-bse" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="kaO-KT-ElU"/>
+                <constraint firstItem="vRS-o2-2hv" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="oKF-k8-tMv"/>
+                <constraint firstItem="Af7-w4-fAQ" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="xJn-nz-YQs"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="oneStep" destination="vRS-o2-2hv" id="ej9-ux-9bV"/>
+                <outlet property="threeStep" destination="70I-uO-a7e" id="rfV-ne-tJ4"/>
+                <outlet property="twoStep" destination="5Rd-Cq-7U1" id="1Xb-5O-X14"/>
+            </connections>
+            <point key="canvasLocation" x="35.5" y="-256"/>
+        </view>
+    </objects>
+</document>

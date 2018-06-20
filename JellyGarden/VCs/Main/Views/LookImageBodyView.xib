@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="LookImageBodyView" customModule="JellyGarden" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="401"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="Z54-eO-yVb">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="401"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="照片已焚毁" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ow0-GW-zVF">
+                    <rect key="frame" x="144" y="235.5" width="87" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.98431372549999996" green="0.98823529409999999" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FcB-1E-5Xp">
+                    <rect key="frame" x="157.5" y="160.5" width="60" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="34C-2N-6hH"/>
+                        <constraint firstAttribute="height" constant="60" id="WsH-i3-g8l"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="按住屏幕查看" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cAX-1L-wEh">
+                    <rect key="frame" x="147.5" y="261.5" width="80" height="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Z54-eO-yVb" secondAttribute="trailing" id="1q9-jq-NFa"/>
+                <constraint firstItem="Z54-eO-yVb" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="6fB-Ws-cgO"/>
+                <constraint firstItem="ow0-GW-zVF" firstAttribute="top" secondItem="FcB-1E-5Xp" secondAttribute="bottom" constant="15" id="GBb-Zv-QaZ"/>
+                <constraint firstItem="ow0-GW-zVF" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="JxX-c7-TuE"/>
+                <constraint firstItem="cAX-1L-wEh" firstAttribute="top" secondItem="ow0-GW-zVF" secondAttribute="bottom" constant="5" id="QqC-ZO-y3b"/>
+                <constraint firstItem="FcB-1E-5Xp" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-10" id="TWc-OF-hhe"/>
+                <constraint firstAttribute="bottom" secondItem="Z54-eO-yVb" secondAttribute="bottom" id="X8a-4e-x3l"/>
+                <constraint firstItem="cAX-1L-wEh" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="cWf-P3-IOk"/>
+                <constraint firstItem="FcB-1E-5Xp" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="lTr-rs-i2Q"/>
+                <constraint firstItem="Z54-eO-yVb" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="nYP-mU-UBd"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="imageBack" destination="Z54-eO-yVb" id="DHo-kA-bq2"/>
+                <outlet property="imageShow" destination="FcB-1E-5Xp" id="YmY-Wv-ns7"/>
+                <outlet property="subWarmLab" destination="cAX-1L-wEh" id="R7l-Iv-O5z"/>
+                <outlet property="warmTitleLab" destination="ow0-GW-zVF" id="oXz-qK-8T3"/>
+            </connections>
+            <point key="canvasLocation" x="33.5" y="-53.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="bg" width="187" height="104"/>
+    </resources>
+</document>

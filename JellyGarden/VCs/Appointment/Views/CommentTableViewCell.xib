@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="CommentTableViewCell" customModule="JellyGarden" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="93L-oz-HXU">
+                        <rect key="frame" x="10" y="5" width="42" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="42" id="WVp-Bp-sKh"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tc2-z7-cuC">
+                        <rect key="frame" x="57" y="5.5" width="237" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="93L-oz-HXU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="LvU-4U-hOH"/>
+                    <constraint firstItem="Tc2-z7-cuC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="Niq-KV-CdH"/>
+                    <constraint firstItem="Tc2-z7-cuC" firstAttribute="leading" secondItem="93L-oz-HXU" secondAttribute="trailing" constant="5" id="PeG-cC-PnG"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Tc2-z7-cuC" secondAttribute="trailing" constant="10" id="YEd-gG-Yrn"/>
+                    <constraint firstItem="93L-oz-HXU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="k1N-Eu-gFg"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="commentLab" destination="Tc2-z7-cuC" id="38i-Wu-wAZ"/>
+                <outlet property="nickNameLab" destination="93L-oz-HXU" id="wIc-h5-5Pb"/>
+                <outlet property="titleWidth" destination="WVp-Bp-sKh" id="cNe-eN-lmp"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

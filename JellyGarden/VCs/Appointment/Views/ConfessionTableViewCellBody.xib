@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ConfessionTableViewCellBody" customModule="JellyGarden" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="272"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WcP-sD-k6A">
+                    <rect key="frame" x="10" y="10" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.48627450980392156" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LLP-DY-GYX">
+                    <rect key="frame" x="10" y="34" width="355" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="0.21176470588235294" green="0.4823529411764706" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nm4-8G-CKH">
+                    <rect key="frame" x="0.0" y="52" width="375" height="220"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Agi-jt-BcD">
+                    <rect key="frame" x="285" y="7.5" width="100" height="26"/>
+                    <color key="backgroundColor" red="0.91226416830000001" green="0.31919541950000002" blue="0.60110467670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="26" id="Jw8-fC-uol"/>
+                        <constraint firstAttribute="width" constant="100" id="KO6-wU-roX"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <state key="normal" title="收取定金:300">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.92941176470588238" green="0.95294117647058818" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Nm4-8G-CKH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="DoQ-Tt-VyE"/>
+                <constraint firstItem="Nm4-8G-CKH" firstAttribute="top" secondItem="LLP-DY-GYX" secondAttribute="bottom" id="UvD-Yz-osE"/>
+                <constraint firstItem="Agi-jt-BcD" firstAttribute="centerY" secondItem="WcP-sD-k6A" secondAttribute="centerY" id="bE6-CR-Je1"/>
+                <constraint firstAttribute="trailing" secondItem="LLP-DY-GYX" secondAttribute="trailing" constant="10" id="bKN-Mk-c5u"/>
+                <constraint firstItem="WcP-sD-k6A" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="ha5-7u-VnR"/>
+                <constraint firstAttribute="trailing" secondItem="Nm4-8G-CKH" secondAttribute="trailing" id="mWs-OP-Twe"/>
+                <constraint firstAttribute="bottom" secondItem="Nm4-8G-CKH" secondAttribute="bottom" id="nHq-Yx-fE2"/>
+                <constraint firstItem="LLP-DY-GYX" firstAttribute="top" secondItem="WcP-sD-k6A" secondAttribute="bottom" constant="3" id="p3K-jY-n7B"/>
+                <constraint firstItem="LLP-DY-GYX" firstAttribute="leading" secondItem="WcP-sD-k6A" secondAttribute="leading" id="uCd-ue-csM"/>
+                <constraint firstItem="WcP-sD-k6A" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="wDz-Aj-j7B"/>
+                <constraint firstAttribute="trailing" secondItem="Agi-jt-BcD" secondAttribute="trailing" constant="-10" id="xH2-8Q-ux9"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="describtionLab" destination="LLP-DY-GYX" id="Mxk-o5-7UC"/>
+                <outlet property="dingJinBtn" destination="Agi-jt-BcD" id="vK4-Do-he9"/>
+                <outlet property="imageContentView" destination="Nm4-8G-CKH" id="FrP-6U-G8m"/>
+                <outlet property="timeLocalLab" destination="WcP-sD-k6A" id="gTO-OZ-jMy"/>
+            </connections>
+            <point key="canvasLocation" x="33.5" y="-118"/>
+        </view>
+    </objects>
+</document>
