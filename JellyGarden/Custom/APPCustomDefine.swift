@@ -43,6 +43,30 @@ let UserPlist:String = {
     }
     return path
 }()
+let LocalCitys:String = {
+    let path:String = "\(UserPath)/citys.plist"
+    
+    if (!FileManager.default.fileExists(atPath: path))
+    {
+        if !FileManager.default.createFile(atPath: path, contents: nil, attributes: nil) {
+            DebugLog(message: "创建用户文件失败")
+        }
+    }
+    return path
+    
+}()
+var currentCitys:[PikerModel]?
+{
+    get{
+        let dic = NSArray.init(contentsOfFile: LocalCitys)
+        if let user = dic {
+            
+            return  JSONDeserializer<PikerModel>.deserializeModelArrayFrom(array: user) as? [PikerModel]
+        }
+        return nil
+    }
+}
+
 var CurrentUserInfo:UserModel? {
     get{
         let dic = NSDictionary.init(contentsOfFile: UserPlist)
@@ -76,7 +100,7 @@ let JPushAppKey = "8cc1244924af16e493b9d08f"
 //友盟key
 let UMengKey = "5b2347a2f43e4806580000c9"
 //微信分享
-let WeiChatShareKey = ""
+let WeiChatShareKey = "wxd2e1aa0feed6b934"
 let WeiChatShareScrete = ""
 //QQ分享
 let QQShareKey = "1106901221"

@@ -105,7 +105,8 @@ enum DateFormatterType{
 }
 func timeStampToDate(time:Int , backType:DateFormatterType) -> String{
     //转换为时间
-    let timeInterval:TimeInterval = TimeInterval.init(time)
+    let timeSecond = time / 1000
+    let timeInterval:TimeInterval = TimeInterval.init(timeSecond)
     let date = Date.init(timeIntervalSince1970:timeInterval)
     
     //格式话输出
@@ -131,6 +132,46 @@ func stringToTimeStamp(dateStr:String?) -> Int{
     let date = dateFormatter.date(from: str)
     return getTimeStamp(date: date ?? Date())
 }
+//反地理编码
+func reverseGeocode(latitude:Double, longitude: Double) -> String?{
+    let geocoder = CLGeocoder()
+    var cityName:String? = ""
+    let currentLocation = CLLocation(latitude: latitude, longitude: longitude)
+    geocoder.reverseGeocodeLocation(currentLocation) { (placemarks, error) in
+        guard error == nil else {
+            return print(error!.localizedDescription)
+        }
+        
+        guard let p = placemarks?[0] else {
+            return print("没有找到一个地址")
+        }
+        cityName = p.name
+    }
+    
+    return cityName
+}
+//地理编码
+func locationEncode(cityName:String)  -> CLLocation? {
+    let geocoder = CLGeocoder()
+    var location:CLLocation?
+    
+    geocoder.geocodeAddressString(cityName) { (placemarks, error) in
+        guard error == nil else {
+            return print(error!.localizedDescription)
+        }
+        
+        guard let p = placemarks?[0] else {
+            return print("没有找到一个地址")
+        }
+        location = p.location
+        let longitude = p.location?.coordinate.longitude
+        let latitude = p.location?.coordinate.latitude
+        print("经度：\(longitude),维度：\(latitude)")
+    }
+    return location
+}
+
+
 
 
 

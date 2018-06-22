@@ -24,10 +24,11 @@
 #import "ZZYFrameParser.h"
 
 #import <AliyunOSSiOS/OSSService.h>
-#import "AliyunManager.h"
+#import "AliyunUpload.h"
 #import "AliyunUploadModel.h"
 #import <Pingpp/Pingpp.h>
 #import "WCLRecordVideoVC.h"
 #import <Kingfisher/Kingfisher.h>
+#import <IQKeyboardManagerSwift/IQKeyboardManagerSwift-Swift.h>
 
 

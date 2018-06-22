@@ -29,6 +29,7 @@ class MainUserListTableViewCell: UITableViewCell {
     }
     var model:MainListmodel? {
         didSet{
+            self.userHeaderImage.sd_DownLoadImage(url: model?.avatar ?? "")
             self.userNameLab.text = model?.nickname
             self.siteLab.text = model?.city
             self.ageLab.text = "\(model?.age ?? 0)岁"

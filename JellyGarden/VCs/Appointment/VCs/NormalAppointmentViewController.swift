@@ -33,10 +33,15 @@ class NormalAppointmentViewController: BaseMainViewController,UICollectionViewDe
         return pickerView
         
     }()
-    var images:[QPPhotoImageModel] = []
+    var images:[String] = []
     var dateStr:String = ""
     var timeStr:String = ""
-    
+    var cityStr:String = LocalCityName
+    {
+        didSet{
+            self.appiontCity.text = cityStr
+        }
+    }
     
     @IBOutlet weak var centerrView: UIView!
     @IBOutlet weak var collectionTagLab: UILabel!
@@ -96,6 +101,11 @@ class NormalAppointmentViewController: BaseMainViewController,UICollectionViewDe
         }
     }
     @IBAction func clickAppiontCityBtn(_ sender: UIButton) {
+         contentStr.resignFirstResponder()
+        AlertAction.share.showbottomPicker(title: self.cityStr, maxCount: 1, dataAry: currentCitys, currentData: [self.cityStr]) { (result) in
+            self.cityStr = result.last ?? self.cityStr
+            
+        }
     }
     @IBAction func clickIdentificationBtn(_ sender: UIButton) {
     }
@@ -120,7 +130,7 @@ class NormalAppointmentViewController: BaseMainViewController,UICollectionViewDe
 //    }
     func reloadMyView() {
         var newImages = images
-        newImages.append(QPPhotoImageModel())
+        newImages.append(" ")
 
         let height = getImageViewHeight(imageAry: newImages)
         
@@ -134,12 +144,14 @@ class NormalAppointmentViewController: BaseMainViewController,UICollectionViewDe
         self.collectionView.reloadData()
         self.scrollView.contentSize = CGSize.init(width: ScreenWidth, height: self.bottomView.frame.maxY)
         
-//        self.view.setNeedsLayout()
-        
     }
     override func clickRightBtn() {
         if contentStr.text.count == 0 {
             alertHud(title: "请输入约会要求")
+            return
+        }
+        if cityStr.count == 0 {
+            alertHud(title: "请输入约会城市")
             return
         }
         if dateStr.count == 0 {
@@ -152,7 +164,7 @@ class NormalAppointmentViewController: BaseMainViewController,UICollectionViewDe
         }
         let timeStamp = stringToTimeStamp(dateStr: dateStr)
         let url = continueString(strAry: urlPaths,separetStr:",")
-        let params:[String:Any] = ["poster_id":CurrentUserInfo?.data?.user_id ?? "","time":timeStamp,"city":appiontCity.text ?? "","requirement":contentStr.text,"attachment":url,"deposit": Int(dingJinFiled.text ?? "0") ?? 0]
+        let params:[String:Any] = ["poster_id":CurrentUserInfo?.data?.user_id ?? "","time":timeStamp,"city":appiontCity.text ?? "","requirement":contentStr.text,"attachment":url,"deposit": Int(dingJinFiled.text ?? "0") ?? 0,"need_signup":false]
         
         TargetManager.share.issueAppiont(params: params) { (success, error) in
             if success {
@@ -194,9 +206,7 @@ extension NormalAppointmentViewController
         }
         else
         {
-            let model = images[indexPath.row]
-            cell.model = model
-            
+            cell.imageStr = images[indexPath.row]
             cell.deletBtn.isHidden = false
         }
         cell.tag = indexPath.row
@@ -237,18 +247,16 @@ extension NormalAppointmentViewController
             models.append(model)
             
         }
-        
-        AliyunManager.share().uploadImage(toAliyun: models, isAsync: true, completion: { (urls, state) in
-            self.urlPaths = urls!
-            if state == UploadImageState.success{
-                for model in photos{
-                    self.images.append(model)
+        AliyunManager.share.uploadImagesToAliyun(imageModels: models, complection: { (urls, succecCount, failCount, state) in
+            if state == UploadImageState.success
+            {
+                guard let imageUrls = urls else{
+                    return
                 }
-                DispatchQueue.main.async {
-                   self.reloadMyView()
+                for str in imageUrls{
+                    self.images.append(str)
                 }
-                DebugLog(message: "上传成功\(String(describing: urls?.last))")
-                
+                self.reloadMyView()
             }
             else
             {

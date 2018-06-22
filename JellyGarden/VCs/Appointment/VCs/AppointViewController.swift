@@ -7,9 +7,12 @@
 //
 
 import UIKit
-
-class AppointViewController: BaseMainTableViewController,ResponderRouter {
+import MJRefresh
+import Photos
+class AppointViewController: BaseMainTableViewController,ResponderRouter,PhotoPickerControllerDelegate {
     var commentViews:[ZZYDisplayView] = []
+    // 底部刷新
+    let headerFresh = MJRefreshNormalHeader()
     lazy var conditionView:FiltrateCondition = {
         let view1 = FiltrateCondition.init(frame: CGRect.init(x: 0, y: -250, width: ScreenWidth, height: 250))
         
@@ -32,6 +35,11 @@ class AppointViewController: BaseMainTableViewController,ResponderRouter {
     }
     
     var appiontModels:[lonelySpeechDetaileModel]?
+    {
+        get{
+           return AppiontDataManager.share.commentModels
+        }
+    }
     
     
     
@@ -64,20 +72,34 @@ class AppointViewController: BaseMainTableViewController,ResponderRouter {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        AppiontDataManager.share.clearData()
         self.title = "寂寞告白"
         self.cityName = LocalCityName
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
         self.tableView.register(UINib.init(nibName: "ConfessionTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "ConfessionTableViewCell")
         self.params = ["sort":"near"]
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        headerFresh.setRefreshingTarget(self, refreshingAction: #selector(self.refresh))
+       
+        self.tableView.mj_header = headerFresh
         // Do any additional setup after loading the view.
+    }
+    @objc func refresh()
+    {
+        self.getAppiontData(param: self.params!) { (result) in
+            if result
+            {
+                self.tableView.reloadData()
+            }
+            self.headerFresh.endRefreshing()
+        }
     }
     func getAppiontData(param:[String:Any] ,complection:@escaping (Bool) -> Void) {
         var params = param
         params["user_id"] = CurrentUserInfo?.data?.user_id ?? ""
         TargetManager.share.getLonelySpeechList(params: params) { (models, error) in
             guard error != nil else{
-               self.appiontModels = models
+//               self.appiontModels = models
                 complection(true)
                 return
             }
@@ -89,10 +111,16 @@ class AppointViewController: BaseMainTableViewController,ResponderRouter {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        IQKeyboardManager.sharedManager().enableAutoToolbar = false
+        IQKeyboardManager.sharedManager().enable = false
         RootViewController?.showTheTabbar()
         self.rightBtn.isHidden = false
         self.rightBtn.setImage(imageName(name: "筛选"), for: UIControlState.normal)
         self.addAppiont.isHidden = false
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        IQKeyboardManager.sharedManager().enableAutoToolbar = true
+        IQKeyboardManager.sharedManager().enable = true
     }
     override func clickRightBtn() {
         guard self.conditionView.isselect else {
@@ -153,7 +181,6 @@ class AppointViewController: BaseMainTableViewController,ResponderRouter {
         let model = appiontModels![indexPath.section]
         
         let height = caculateCellHeight(type: .mainList,model: model)
-        DebugLog(message: "cell\(indexPath.section)的高度\(height)")
         return height
 
         
@@ -192,6 +219,7 @@ extension AppointViewController
 {
     func interceptRoute(name: String, objc: UIResponder?, info: Any?) {
         if name == ClickReportName {//点击产看报名
+            
             guard let index = info as? Int else{
                 return
             }
@@ -199,42 +227,104 @@ extension AppointViewController
             vc.detaileModel = appiontModels?[index]
             RootNav().pushViewController(vc, animated: true)
         }
-        if name == ClickLikeBtn  {//点赞
-            guard let index = info as? Int else{
-                return
-            }
-            let indexPath = IndexPath.init(row: 0, section: index)
-            let appointment_id = self.appiontModels![index].poster?.user_id
-            TargetManager.share.likeAppiont(appointment_id: appointment_id, complection: { (complection, error) in
-                if complection//请求数据刷新
-                {
-                   self.reloadMyTableView(index: indexPath)
-                }
-            })
+        if ClickReportName == name {//我要报名
+            let vc = QPPhotoPickerViewController(type: PageType.AllAlbum)
+            vc.imageSelectDelegate = self
+            //最大照片数量
+            vc.imageMaxSelectedNum = 1
+            self.present(vc, animated: true, completion: nil)
         }
-        if name == ClickCancelLikeBtn {//取消点赞
+        if name == ClickLikeChangeBtn  {//点赞
             guard let index = info as? Int else{
                 return
             }
-            let indexPath = IndexPath.init(row: 0, section: index)
-            let appointment_id = self.appiontModels![index].poster?.user_id
-            TargetManager.share.cancelLikeAppiont(appointment_id: appointment_id, complection: { (result, error) in
-                if result//请求数据刷新
-                {
-                    self.reloadMyTableView(index: indexPath)
+            let model:lonelySpeechDetaileModel = appiontModels![index]
+            let appointment_id = model.poster?.user_id
+            if let like = model.is_like,like//取消赞
+            {
+                TargetManager.share.cancelLikeAppiont(appointment_id: appointment_id, complection: { (result, error) in
+                    if result//请求数据刷新
+                    {
+                        AppiontDataManager.share.modifyLikes(index: index, type: .subtract)
+                        self.reloadMyTableView(index: index)
+                    }
+                })
+            }
+            else//点赞
+            {
+                TargetManager.share.likeAppiont(appointment_id: appointment_id, complection: { (complection, error) in
+                    if complection//请求数据刷新
+                    {
+                        AppiontDataManager.share.modifyLikes(index: index, type: .add)
+                        self.reloadMyTableView(index: index)
+                    }
+                })
+            }
+        }
+        if name == ClickCommentBtn {//评论
+            AlertAction.share.showCommentView(clickType: { (type, str) in
+                guard let text = str else{
+                    return
                 }
+                if type == .publish{
+                    guard let index = info as? Int else{
+                        return
+                    }
+                    let model:lonelySpeechDetaileModel = self.appiontModels![index]
+                    let date = getTimeStamp(date: Date())
+                    let params = ["publisher_id":CurrentUserInfo?.data?.user_id ?? "","content":text]
+                    TargetManager.share.issueComment(appointment_id:model.appointment_id ?? "" ,params: params, complection: { (reslt, error) in
+                        if reslt {
+                            AppiontDataManager.share.insertComment(content: text, create_at: getTimeStamp(date: Date()), index: index)
+                           self.reloadMyTableView(index: index)
+                        }
+                    })
+                    
+                }
+                
             })
         }
         
     }
-    func reloadMyTableView(index:IndexPath)
+    func reloadMyTableView(index:Int)
     {
-        self.getAppiontData(param: self.params!, complection: { (result) in
-            if result
+        let indexPath = IndexPath.init(row: 0, section: index)
+        self.tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+        
+    }
+    
+}
+extension AppointViewController
+{
+    //添加照片的协议方法
+    func onImageSelectFinished(images: [PHAsset]) {
+        QPPhotoDataAndImage.getImagesAndDatas(photos: images) { (array) in
+            self.uploadImage(sender: array)
+        }
+    }
+    func uploadImage(sender:[QPPhotoImageModel]?)
+    {
+        guard let photos = sender ,photos.count > 0 else {
+            return
+        }
+        var models:[AliyunUploadModel] = []
+        for imageModel in photos
+        {
+            let model = AliyunUploadModel()
+            model.image = imageModel.smallImage
+            model.fileName = getImageName()
+            models.append(model)
+            
+        }
+        AliyunManager.share.uploadImagesToAliyun(imageModels: models, complection: { (urls, succecCount, failCount, state) in
+            if state == UploadImageState.success
+            {//报名
+                
+            }
+            else
             {
-                self.tableView.reloadRows(at: [index], with: UITableViewRowAnimation.automatic)
+                DebugLog(message: "上传失败")
             }
         })
     }
-    
 }

@@ -39,15 +39,19 @@ class PersonalInfoHeader: UIView {
     }
     var userModel:userInfo?{
         didSet{
-            self.headerImage.kf.setImage(with: ImageResource.init(downloadURL: URL.init(string: userModel?.avatar ?? "http://test")!), placeholder: placeImage, options: [KingfisherOptionsInfoItem.transition(ImageTransition.fade(1)), KingfisherOptionsInfoItem.forceRefresh], progressBlock: nil, completionHandler: nil)
-            attestationDetailLab.text = "字段没有"
-            if let has_authentication = userModel?.has_authentication ,has_authentication {
+            self.headerImage.sd_DownLoadImage(url: userModel?.avatar ?? "")
+           self.nikeNameLab.text = userModel?.nickname
+            if let has_authentication =
+                userModel?.has_authentication ,has_authentication {
+                 attestationDetailLab.text = "通过了面具公园的安全审核"
                 attestationLab.text = "可靠"
             }
             else
             {
+                attestationDetailLab.text = ""
                 attestationLab.text = "未认证"
                 attestationLab.backgroundColor = UIColor.gray
+                attestationDetailLab.isHidden = true
             }
             detailLab.text = continueString(strAry: [userModel?.city ?? "", "\(String.init(format: "%d", userModel?.age ?? 0))岁",userModel?.identity ?? ""],separetStr:"  ")
             let distance = getDistance(lat1: UserLocation.coordinate.latitude, lng1: UserLocation.coordinate.longitude, lat2: userModel?.lat ?? 0, lng2: userModel?.lon ?? 0)

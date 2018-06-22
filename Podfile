@@ -12,8 +12,9 @@ target 'JellyGarden' do
 	pod 'Kingfisher', '~> 4.6.1’#图片缓存
 	pod 'IQKeyboardManagerSwift', '~> 5.0.7'
 	pod 'SnapKit', '~> 4.0.0'
-    pod 'RxSwift',    '~> 4.0'
-    pod 'RxCocoa',    '~> 4.0'
+#    pod 'RxSwift',    '~> 4.0'
+#    pod 'RxCocoa',    '~> 4.0'
+#    pod 'SQLite.swift'
     pod 'Pingpp'
     #友盟
     pod 'UMCCommon'

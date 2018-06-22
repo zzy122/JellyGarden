@@ -44,7 +44,7 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zR4-L9-rAP">
                     <rect key="frame" x="0.0" y="0.0" width="187.5" height="74"/>
                     <state key="normal" title="查看报名">
-                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="clickLookBtn:" destination="iN0-l3-epB" eventType="touchUpInside" id="CIE-59-aHh"/>

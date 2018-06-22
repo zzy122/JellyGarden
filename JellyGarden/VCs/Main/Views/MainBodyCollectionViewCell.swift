@@ -21,6 +21,7 @@ class MainBodyCollectionViewCell: UICollectionViewCell,UITableViewDataSource,UIT
     var currentPage:Int = 0
     
     // 底部刷新
+    
     let footer = MJRefreshAutoNormalFooter()
 
     var userType:SearchType? {

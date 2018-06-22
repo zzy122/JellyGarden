@@ -40,7 +40,10 @@
 		5A0455D320CD68200041D309 /* ConfessionTableViewCellHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A0455D220CD68200041D309 /* ConfessionTableViewCellHeader.xib */; };
 		5A0455D520CD68310041D309 /* ConfessionTableViewCellBody.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A0455D420CD68310041D309 /* ConfessionTableViewCellBody.xib */; };
 		5A0455D720CD683E0041D309 /* ConfessionTableViewCellBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0455D620CD683E0041D309 /* ConfessionTableViewCellBody.swift */; };
-		5A0507AF20D931CB00782AFB /* AppiontDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0507AE20D931CB00782AFB /* AppiontDataManager.swift */; };
+		5A120C3F20DB70EF004A9DCF /* AliyunManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A120C3E20DB70EF004A9DCF /* AliyunManager.swift */; };
+		5A120C4120DB875E004A9DCF /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A120C4020DB875E004A9DCF /* CommentView.swift */; };
+		5A120C4320DB8771004A9DCF /* CommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A120C4220DB8771004A9DCF /* CommentView.xib */; };
+		5A120C4B20DC1074004A9DCF /* AppiontDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A120C4A20DC1074004A9DCF /* AppiontDataManager.swift */; };
 		5A196AD220C6B5B6002EC0EE /* APPTextfiled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A196AD120C6B5B6002EC0EE /* APPTextfiled.swift */; };
 		5A196AD420C6BB96002EC0EE /* BottomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A196AD320C6BB96002EC0EE /* BottomAlert.swift */; };
 		5A196AD720C6C1ED002EC0EE /* PickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A196AD520C6C1ED002EC0EE /* PickerTableViewCell.swift */; };
@@ -69,7 +72,7 @@
 		5A459AE320D235FD00C0A6FA /* UploadToAliyun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A459AE220D235FD00C0A6FA /* UploadToAliyun.swift */; };
 		5A459AE620D278FD00C0A6FA /* MainListmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A459AE520D278FD00C0A6FA /* MainListmodel.swift */; };
 		5A459AE820D27D2600C0A6FA /* MianUserListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A459AE720D27D2600C0A6FA /* MianUserListRequest.swift */; };
-		5A459AEB20D3640900C0A6FA /* AliyunManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A459AEA20D3640900C0A6FA /* AliyunManager.m */; };
+		5A459AEB20D3640900C0A6FA /* AliyunUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A459AEA20D3640900C0A6FA /* AliyunUpload.m */; };
 		5A459AED20D3B1D400C0A6FA /* WomanBroadcastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A459AEC20D3B1D400C0A6FA /* WomanBroadcastViewController.swift */; };
 		5A459AEF20D3B60400C0A6FA /* ManPersonInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A459AEE20D3B60400C0A6FA /* ManPersonInfoViewController.swift */; };
 		5A459AF120D3E9F500C0A6FA /* ManpersonInfoHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A459AF020D3E9F500C0A6FA /* ManpersonInfoHeader.swift */; };
@@ -263,7 +266,10 @@
 		5A0455D220CD68200041D309 /* ConfessionTableViewCellHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfessionTableViewCellHeader.xib; sourceTree = "<group>"; };
 		5A0455D420CD68310041D309 /* ConfessionTableViewCellBody.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfessionTableViewCellBody.xib; sourceTree = "<group>"; };
 		5A0455D620CD683E0041D309 /* ConfessionTableViewCellBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfessionTableViewCellBody.swift; sourceTree = "<group>"; };
-		5A0507AE20D931CB00782AFB /* AppiontDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppiontDataManager.swift; sourceTree = "<group>"; };
+		5A120C3E20DB70EF004A9DCF /* AliyunManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliyunManager.swift; sourceTree = "<group>"; };
+		5A120C4020DB875E004A9DCF /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
+		5A120C4220DB8771004A9DCF /* CommentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentView.xib; sourceTree = "<group>"; };
+		5A120C4A20DC1074004A9DCF /* AppiontDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppiontDataManager.swift; sourceTree = "<group>"; };
 		5A196AD120C6B5B6002EC0EE /* APPTextfiled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APPTextfiled.swift; sourceTree = "<group>"; };
 		5A196AD320C6BB96002EC0EE /* BottomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomAlert.swift; sourceTree = "<group>"; };
 		5A196AD520C6C1ED002EC0EE /* PickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTableViewCell.swift; sourceTree = "<group>"; };
@@ -302,8 +308,8 @@
 		5A459AE220D235FD00C0A6FA /* UploadToAliyun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadToAliyun.swift; sourceTree = "<group>"; };
 		5A459AE520D278FD00C0A6FA /* MainListmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListmodel.swift; sourceTree = "<group>"; };
 		5A459AE720D27D2600C0A6FA /* MianUserListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MianUserListRequest.swift; sourceTree = "<group>"; };
-		5A459AE920D3640900C0A6FA /* AliyunManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AliyunManager.h; sourceTree = "<group>"; };
-		5A459AEA20D3640900C0A6FA /* AliyunManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AliyunManager.m; sourceTree = "<group>"; };
+		5A459AE920D3640900C0A6FA /* AliyunUpload.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AliyunUpload.h; sourceTree = "<group>"; };
+		5A459AEA20D3640900C0A6FA /* AliyunUpload.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AliyunUpload.m; sourceTree = "<group>"; };
 		5A459AEC20D3B1D400C0A6FA /* WomanBroadcastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WomanBroadcastViewController.swift; sourceTree = "<group>"; };
 		5A459AEE20D3B60400C0A6FA /* ManPersonInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManPersonInfoViewController.swift; sourceTree = "<group>"; };
 		5A459AF020D3E9F500C0A6FA /* ManpersonInfoHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManpersonInfoHeader.swift; sourceTree = "<group>"; };
@@ -463,6 +469,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A80C4F820BFFA270033CAF8 /* libsqlite3.tbd in Frameworks */,
 				5A016B8E20C0DDA8001E62F1 /* UserNotifications.framework in Frameworks */,
 				5A016B8C20C0DD99001E62F1 /* libsqlite3.0.tbd in Frameworks */,
 				5A80C50A20C018600033CAF8 /* CoreMotion.framework in Frameworks */,
@@ -476,7 +483,6 @@
 				5A80C50020C018060033CAF8 /* libc++.tbd in Frameworks */,
 				5A80C4FE20BFFA4D0033CAF8 /* libz.tbd in Frameworks */,
 				5A80C4FC20BFFA460033CAF8 /* libstdc++.tbd in Frameworks */,
-				5A80C4F820BFFA270033CAF8 /* libsqlite3.tbd in Frameworks */,
 				5A80C4F220BFF9F80033CAF8 /* libiconv.tbd in Frameworks */,
 				5A80C4F020BFF9EA0033CAF8 /* Security.framework in Frameworks */,
 				88FEDB44FBED3A54B24186CB /* Pods_JellyGarden.framework in Frameworks */,
@@ -578,8 +584,9 @@
 				5AE9CC9620C8E3A10057CFF3 /* ITemScrollView.swift */,
 				5A0455C920CD5BCE0041D309 /* ZZYdatepicker.h */,
 				5A0455CA20CD5BCF0041D309 /* ZZYdatepicker.m */,
-				5A459AE920D3640900C0A6FA /* AliyunManager.h */,
-				5A459AEA20D3640900C0A6FA /* AliyunManager.m */,
+				5A459AE920D3640900C0A6FA /* AliyunUpload.h */,
+				5A459AEA20D3640900C0A6FA /* AliyunUpload.m */,
+				5A120C3E20DB70EF004A9DCF /* AliyunManager.swift */,
 				5A459AE220D235FD00C0A6FA /* UploadToAliyun.swift */,
 			);
 			path = Tools;
@@ -821,11 +828,11 @@
 		5AE9CC8520C8C68C0057CFF3 /* Appointment */ = {
 			isa = PBXGroup;
 			children = (
+				5A120C4A20DC1074004A9DCF /* AppiontDataManager.swift */,
 				5AEB823E20D8BFCE002A7E69 /* Models */,
 				5A7CEC2520D52F8300B7A7C9 /* 相册 */,
 				5AEC519820C9105E00DD0099 /* VCs */,
 				5AEC519B20C9105E00DD0099 /* Views */,
-				5A0507AE20D931CB00782AFB /* AppiontDataManager.swift */,
 			);
 			path = Appointment;
 			sourceTree = "<group>";
@@ -896,6 +903,8 @@
 			children = (
 				5A0455CC20CD67580041D309 /* ConfessionTableViewCell.swift */,
 				5A0455CD20CD67580041D309 /* ConfessionTableViewCell.xib */,
+				5A120C4020DB875E004A9DCF /* CommentView.swift */,
+				5A120C4220DB8771004A9DCF /* CommentView.xib */,
 				5A0455D020CD680E0041D309 /* ConfessionTableViewCellHeader.swift */,
 				5A0455D220CD68200041D309 /* ConfessionTableViewCellHeader.xib */,
 				5A0455D420CD68310041D309 /* ConfessionTableViewCellBody.xib */,
@@ -1170,6 +1179,7 @@
 				5A4E326920C7B6650051FE00 /* XIeyiWarmView.xib in Resources */,
 				5A0455C620CD2DE60041D309 /* RelationTypeAlert.xib in Resources */,
 				5A015ED320C6353D00EC8A96 /* APPCustomAlertView.xib in Resources */,
+				5A120C4320DB8771004A9DCF /* CommentView.xib in Resources */,
 				5A196AD820C6C1ED002EC0EE /* PickerTableViewCell.xib in Resources */,
 				5A196ADF20C6C704002EC0EE /* BottomPickerCell.xib in Resources */,
 				5A459AB220D1617000C0A6FA /* ApplyOperationView.xib in Resources */,
@@ -1366,10 +1376,11 @@
 				5A574BEF20C961D400C59276 /* PersonInfoViewController.swift in Sources */,
 				5A459ADD20D2095B00C0A6FA /* UserLoginAction.swift in Sources */,
 				5A015E2620C251FA00EC8A96 /* DepositView.swift in Sources */,
-				5A459AEB20D3640900C0A6FA /* AliyunManager.m in Sources */,
+				5A459AEB20D3640900C0A6FA /* AliyunUpload.m in Sources */,
 				5A015E9720C50C1100EC8A96 /* UMengAcion.swift in Sources */,
 				5A7CEC7720D5337F00B7A7C9 /* QPPhotoPreviewCell.swift in Sources */,
 				5A015ED720C647BF00EC8A96 /* AlertAction.swift in Sources */,
+				5A120C3F20DB70EF004A9DCF /* AliyunManager.swift in Sources */,
 				5A80C4EE20BFF8130033CAF8 /* obj.m in Sources */,
 				5A459ADB20D1753900C0A6FA /* CommentGetHeight.swift in Sources */,
 				5A015EC120C57A2600EC8A96 /* TimingButton.m in Sources */,
@@ -1411,13 +1422,13 @@
 				5AEC51A920C9228300DD0099 /* MainBodyView.swift in Sources */,
 				5A015E9B20C5121000EC8A96 /* LoginVIewController.swift in Sources */,
 				5AE9CC9520C8DF0E0057CFF3 /* BaseMainTableViewController.swift in Sources */,
+				5A120C4120DB875E004A9DCF /* CommentView.swift in Sources */,
 				5A80C4D020BFE1050033CAF8 /* CustomFunc.swift in Sources */,
 				5A7CEC6B20D5321300B7A7C9 /* QPPhotoCell.swift in Sources */,
 				5A4E326120C7B6650051FE00 /* PackageView.swift in Sources */,
 				5A015EC820C5834D00EC8A96 /* SexViewController.swift in Sources */,
 				5A459ACB20D166A400C0A6FA /* ZZYCoreTextImageData.m in Sources */,
 				5A4E322A20C792540051FE00 /* ApplayForCodeViewController.swift in Sources */,
-				5A0507AF20D931CB00782AFB /* AppiontDataManager.swift in Sources */,
 				5A574BF920CA1DC200C59276 /* LookImageViewController.swift in Sources */,
 				5A80C4CB20BFE1050033CAF8 /* AlertViewCoustom.swift in Sources */,
 				5A459AB420D1617E00C0A6FA /* ApplyOperationView.swift in Sources */,
@@ -1475,6 +1486,7 @@
 				5A7CEC7D20D53BF300B7A7C9 /* QPPhotoDataAndImage.swift in Sources */,
 				5A0455CB20CD5BCF0041D309 /* ZZYdatepicker.m in Sources */,
 				5A80C4D620BFE1620033CAF8 /* APPCustomFunc.swift in Sources */,
+				5A120C4B20DC1074004A9DCF /* AppiontDataManager.swift in Sources */,
 				5A4E322620C782E60051FE00 /* InvitationCodeViewController.swift in Sources */,
 				5AC3FCE720DA29E000226946 /* PersonInfoImageView.swift in Sources */,
 				5AF4A74F20D564D800CFDDD6 /* VoidKeyWordView.swift in Sources */,
@@ -1679,6 +1691,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
 		};
@@ -1714,6 +1727,7 @@
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
 		};

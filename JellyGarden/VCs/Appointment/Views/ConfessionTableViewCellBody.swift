@@ -41,9 +41,12 @@ class ConfessionTableViewCellBody: UIView,UICollectionViewDelegate,UICollectionV
     
     
     var tagFrame:CGRect = CGRect.zero
-    override func draw(_ rect: CGRect) {
+//    override func draw(_ rect: CGRect) {
+//        self.frame = self.tagFrame
+////        self.collectonView.isHidden = false
+//    }
+    override func layoutSubviews() {
         self.frame = self.tagFrame
-//        self.collectonView.isHidden = false
     }
     class func createConfessionTableViewCellBody(frame:CGRect) -> ConfessionTableViewCellBody? {
         let nibView = CustomCreateNib<ConfessionTableViewCellBody>().createXibView()

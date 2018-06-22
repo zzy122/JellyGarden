@@ -20,9 +20,9 @@ class EnlistDetailTableViewCell: UITableViewCell {
     }
     var model:commentsModel? {
         didSet{
-            self.headerBtn.imageView?.kf.setImage(with: ImageResource.init(downloadURL: URL.init(string: model?.publisher_avatar ?? "http://test")!), placeholder: placeImage, options: [KingfisherOptionsInfoItem.transition(ImageTransition.fade(1)), KingfisherOptionsInfoItem.forceRefresh], progressBlock: nil, completionHandler: nil)
-            self.nikeNameLab.text = model?.publisher_name
-            self.commentTimeLab.text = timeStampToDate(time: model?.create_at ?? 0, backType: .second)
+            
+            self.headerBtn.imageView?.sd_DownLoadImage(url: (model?.publisher_avatar)!)
+
             
         }
     }
