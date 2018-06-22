@@ -7,17 +7,18 @@ target 'JellyGarden' do
 
   # Pods for JellyGarden
 	pod 'Alamofire', '~> 4.6.0’#类似于afnetworking
-	pod 'HandyJSON', '~> 4.0.0-beta.1’#json转model
+	pod 'HandyJSON' #json转model
 	pod 'PKHUD', '~> 5.0.0’#遮罩
 	pod 'Kingfisher', '~> 4.6.1’#图片缓存
 	pod 'IQKeyboardManagerSwift', '~> 5.0.7'
 	pod 'SnapKit', '~> 4.0.0'
     pod 'RxSwift',    '~> 4.0'
     pod 'RxCocoa',    '~> 4.0'
-    pod 'Pingpp'
+
+    pod 'Pingpp/Alipay'
     #友盟
     pod 'UMCCommon'
-    pod 'UMCSecurityPlugins'
+    #pod 'UMCSecurityPlugins'
     # U-Share SDK UI模块（分享面板，建议添加）
     pod 'UMCShare/UI'
     # 集成微信(完整版14.4M)
@@ -26,7 +27,7 @@ target 'JellyGarden' do
     pod 'UMCShare/Social/QQ'
     # 集成新浪微博(完整版25.3M)
     pod 'UMCShare/Social/Sina'
-    pod 'UMCAnalytics'
+    #pod 'UMCAnalytics'
 
     pod 'RongCloudIM/IMLib', '~> 2.8.3'
     pod 'RongCloudIM/IMKit', '~> 2.8.3'
