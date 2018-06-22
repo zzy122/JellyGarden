@@ -13,6 +13,10 @@ class AlertAction: NSObject {
     private override init() {
         
     }
+    
+    let commentHeight:CGFloat = 70.0
+    var isGetBordHeight:CGFloat = 0.0
+    
     let backView:UIView = {
        let view = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight))
         view.backgroundColor = UIColor.black
@@ -20,6 +24,11 @@ class AlertAction: NSObject {
         
         return view
     }()
+    lazy var comment:CommentView = {
+        let view = CommentView.createCommentView()
+        return view!
+    }()
+    
     var contactAlert:RelationTypeAlert?
     
     var bottomPicker:BottomAlert?
@@ -118,6 +127,79 @@ class AlertAction: NSObject {
         self.showTheView(View: contactAlert)
         UIApplication.shared.keyWindow?.addSubview(contactAlert!)
     }
+    func showCommentView(clickType:@escaping ClickTextFiledChange)
+    {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(note:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHidden(note:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        comment.clickChange {[weak self] (type, str) in
+            self?.comment.commentTextFiled.resignFirstResponder()
+            DebugLog(message: "\(String(describing: str))")
+            clickType(type,str)
+        }
+       
+        comment.commentTextFiled.text = ""
+        UIApplication.shared.keyWindow?.addSubview(self.backView)
+        self.showBackView()
+        comment.tagFrame = CGRect.init(x: 0, y: ScreenHeight, width: ScreenWidth, height: commentHeight)
+        comment.setNeedsLayout()
+        UIApplication.shared.keyWindow?.addSubview(comment)
+        comment.commentTextFiled.becomeFirstResponder()
+        
+    }
+    @objc func keyboardWillShow(note: NSNotification) {
+        let userInfo = note.userInfo!
+        let  keyBoardBounds = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let duration = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
+        let deltaY = keyBoardBounds.size.height
+        let animations:(() -> Void) = {
+            self.comment.frame = CGRect.init(x: 0, y:ScreenHeight - deltaY - self.commentHeight, width: ScreenWidth, height: self.commentHeight)
+            self.comment.setNeedsLayout()
+            DebugLog(message: "键盘高度:\(deltaY)")
+        }
+        if duration > 0 {
+            if isGetBordHeight != deltaY{
+                let options = UIViewAnimationOptions(rawValue: UInt((userInfo[UIKeyboardAnimationCurveUserInfoKey] as! NSNumber).intValue << 16))
+                
+                UIView.animate(withDuration: duration, delay: 0, options:options, animations: animations, completion: nil)
+            }
+            isGetBordHeight = deltaY
+        }else{
+            animations()
+        }
+    }
+    @objc func keyboardWillHidden(note: NSNotification) {
+        let userInfo  = note.userInfo!
+        self.backView.alpha = 0.0
+        let duration = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
+        
+        
+        let animations:(() -> Void) = {
+            self.comment.frame = CGRect.init(x: 0, y:ScreenHeight, width: ScreenWidth, height: self.commentHeight)
+            DebugLog(message: "键盘高度:\(duration)")
+        }
+        if duration > 0 {
+            if isGetBordHeight != 0.0 {
+                let options = UIViewAnimationOptions(rawValue: UInt((userInfo[UIKeyboardAnimationCurveUserInfoKey] as! NSNumber).intValue << 16))
+                
+                UIView.animate(withDuration: duration, delay: 0, options:options, animations: animations, completion: {(complection) in
+                    if complection
+                    {
+                        DebugLog(message: "移除")
+                        self.backView.removeFromSuperview()
+                        self.comment.removeFromSuperview()
+                        NotificationCenter.default.removeObserver(self)
+                    }
+                    
+                })
+            }
+            isGetBordHeight = 0.0
+        }else{
+        }
+        
+    }
+    
+    
     
     
 }

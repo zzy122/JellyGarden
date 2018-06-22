@@ -24,9 +24,9 @@ class AddImageCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-    var model:QPPhotoImageModel? {
+    var imageStr:String = "" {
         didSet{
-            self.imageV.image = model?.smallImage
+            self.imageV.sd_DownLoadImage(url: imageStr)
             self.imageV.contentMode = UIViewContentMode.scaleToFill
         }
     }

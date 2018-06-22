@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import RxSwift
+
 class FillInformationThirdViewController: BaseViewController,UITextViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     var dataAry:[String] = []
     var fillInfo:[String:Any] = [:]

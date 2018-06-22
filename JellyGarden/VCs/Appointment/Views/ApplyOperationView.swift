@@ -8,12 +8,15 @@
 
 import UIKit
 let ClickReportName = "ClickReportName"
-
+let ClickEnlistBtn = "ClickEnlistBtn"
 class ApplyOperationView: UIView {
 
     
     var tagFrame:CGRect = CGRect.zero
-    override func draw(_ rect: CGRect) {
+//    override func draw(_ rect: CGRect) {
+//        self.frame = self.tagFrame
+//    }
+    override func layoutSubviews() {
         self.frame = self.tagFrame
     }
 
@@ -26,7 +29,7 @@ class ApplyOperationView: UIView {
     }
     @IBOutlet weak var bottomView: UIView!
     @IBAction func clickStatusBtn(_ sender: UIButton) {
-        
+      zzy.router(name: ClickReportName, object: nil, info: self.tag)
         
     }
     @IBOutlet weak var ApplyStatus: UIButton!

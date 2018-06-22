@@ -26,6 +26,9 @@
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="昵称" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FAy-84-Uui">
                             <rect key="frame" x="0.0" y="43" width="355" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="whc-hg-P6c"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -37,7 +40,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未认证" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RDF-Cd-tb3">
-                            <rect key="frame" x="126" y="111" width="40" height="16"/>
+                            <rect key="frame" x="136" y="111" width="40" height="16"/>
                             <color key="backgroundColor" red="0.91226416830000001" green="0.31919541950000002" blue="0.60110467670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="16" id="32u-Zt-Zec"/>
@@ -52,7 +55,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DRi-EY-0cV">
-                            <rect key="frame" x="171" y="111" width="33" height="16"/>
+                            <rect key="frame" x="181" y="111" width="33" height="16"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -89,7 +92,7 @@
                         <constraint firstItem="1Xh-Ds-c2n" firstAttribute="leading" secondItem="sZF-hN-Krq" secondAttribute="leading" id="4Me-19-9XD"/>
                         <constraint firstItem="675-fr-WLa" firstAttribute="centerY" secondItem="GYF-zN-CZy" secondAttribute="centerY" id="4nO-uh-4Xq"/>
                         <constraint firstAttribute="height" constant="150" id="GCW-ir-9WY"/>
-                        <constraint firstItem="DRi-EY-0cV" firstAttribute="centerX" secondItem="sZF-hN-Krq" secondAttribute="centerX" constant="10" id="H9S-UH-lDt"/>
+                        <constraint firstItem="DRi-EY-0cV" firstAttribute="centerX" secondItem="sZF-hN-Krq" secondAttribute="centerX" constant="20" id="H9S-UH-lDt"/>
                         <constraint firstItem="Q5M-Do-hci" firstAttribute="centerY" secondItem="pQb-fP-Bop" secondAttribute="centerY" id="Xcj-JX-1w7"/>
                         <constraint firstAttribute="trailing" secondItem="FAy-84-Uui" secondAttribute="trailing" id="YKl-Wb-pf9"/>
                         <constraint firstAttribute="trailing" secondItem="1Xh-Ds-c2n" secondAttribute="trailing" id="YNl-V1-fs2"/>

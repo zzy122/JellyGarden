@@ -9,10 +9,17 @@
 import UIKit
 var UserLocation:CLLocation = CLLocation.init(latitude: 39.388927371772, longitude: 116.1234221765776)
 var LocalCityName:String = "北京"
+{
+    didSet{
+        UserLocation = locationEncode(cityName: LocalCityName) ?? CLLocation.init(latitude: 39.388927371772, longitude: 116.1234221765776)
+    }
+}
 class MainViewController: BaseMainViewController,UISearchBarDelegate,ResponderRouter {
     
     var cityStr:String = LocalCityName {
         didSet{
+            LocalCityName = cityStr
+            
             self.leftBtn.isHidden = false
             self.leftBtn.setTitle(cityStr, for: UIControlState.normal)
             self.leftBtn.setTitleColor(UIColor.gray, for: UIControlState.normal)
@@ -81,7 +88,7 @@ class MainViewController: BaseMainViewController,UISearchBarDelegate,ResponderRo
         
     }
     override func clickLeftBtn() {
-        AlertAction.share.showbottomPicker(title: self.cityStr, maxCount: 1, dataAry: nil, currentData: [self.cityStr]) { (result) in
+        AlertAction.share.showbottomPicker(title: self.cityStr, maxCount: 1, dataAry: currentCitys, currentData: [self.cityStr]) { (result) in
             self.cityStr = result.last ?? self.cityStr
             
         }
@@ -130,7 +137,7 @@ class MainViewController: BaseMainViewController,UISearchBarDelegate,ResponderRo
                     return
                 }
                 vc.userInfoModel = user
-                RootNav().pushViewController(PersonInfoViewController(), animated: true)
+                RootNav().pushViewController(vc, animated: true)
             })
             
             

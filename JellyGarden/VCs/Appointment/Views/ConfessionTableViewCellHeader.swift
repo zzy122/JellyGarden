@@ -7,16 +7,18 @@
 //
 
 import UIKit
-let ClickLikeBtn = "ClickLikeBtn"
-let ClickCancelLikeBtn = "ClickCancelLikeBtn"
+let ClickLikeChangeBtn = "ClickLikeChangeBtn"
 
-
+let ClickCommentBtn = "ClickCommentBtn"
 class ConfessionTableViewCellHeader: UIView {
     var tagFrame:CGRect = CGRect.zero
-    override func draw(_ rect: CGRect) {
+//    override func draw(_ rect: CGRect) {
+//        self.frame = self.tagFrame
+//        
+//        DebugLog(message: "cell header的draw被调用")
+//    }
+    override func layoutSubviews() {
         self.frame = self.tagFrame
-        self.layer.frame = self.frame
-        DebugLog(message: "cell header的draw被调用")
     }
 
     @IBOutlet weak var LikeBtn: UIButton!
@@ -36,11 +38,13 @@ class ConfessionTableViewCellHeader: UIView {
     }
     @IBAction func clickLikeBtn(_ sender: UIButton) {
         
-        zzy.router(name: ClickLikeBtn, object: nil, info: self.tag)
+        zzy.router(name: ClickLikeChangeBtn, object: nil, info: self.tag)
+        
+        
     }
     
     @IBAction func clickCommentBtn(_ sender: UIButton) {
-        zzy.router(name: ClickCancelLikeBtn, object: nil, info: self.tag)
+        zzy.router(name: ClickCommentBtn, object: nil, info: self.tag)
     }
     
     /*

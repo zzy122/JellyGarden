@@ -26,6 +26,12 @@ class FinishViewController: BaseViewController {
                 loginActionParams(params: ["phone":user.data?.phone ?? "","password":user.data?.password ?? ""], nav: self.navigationController)
             }
         }
+        
+        if currentCitys == nil {
+            TargetManager.share.getCitysModel(complection: { (models, error) in
+                
+            })
+        }
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

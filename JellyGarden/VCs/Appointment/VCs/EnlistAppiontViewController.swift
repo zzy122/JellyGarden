@@ -9,7 +9,7 @@
 import UIKit
 import Photos
 class EnlistAppiontViewController: BaseMainViewController,UICollectionViewDelegate,UICollectionViewDataSource,PhotoPickerControllerDelegate,ResponderRouter,UITextViewDelegate {
-    var images:[QPPhotoImageModel] = []
+    var images:[String] = []
     @IBOutlet weak var collectionTagLab: UILabel!
     @IBOutlet weak var dingjinBackView: UIView!
     @IBOutlet weak var dingjinFiled: APPTextfiled!
@@ -25,6 +25,11 @@ class EnlistAppiontViewController: BaseMainViewController,UICollectionViewDelega
     
     var dateStr:String = ""
     var timeStr:String = ""
+    var cityStr:String = LocalCityName {
+        didSet{
+            self.appiontLab.text = cityStr
+        }
+    }
     
     lazy var picker:ZZYdatepicker = {
         let pickerView = ZZYdatepicker()
@@ -60,6 +65,7 @@ class EnlistAppiontViewController: BaseMainViewController,UICollectionViewDelega
         super.viewDidLoad()
         contentTextview.delegate = self
         self.title = "发布报名约会广播"
+        appiontLab.text = LocalCityName
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -75,6 +81,7 @@ class EnlistAppiontViewController: BaseMainViewController,UICollectionViewDelega
         self.reloadMyView()
     }
     @IBAction func clickTimeBtn(_ sender: UIButton) {
+         contentTextview.resignFirstResponder()
         AlertAction.share.showbottomPicker(title: "约会时间", maxCount: 1, dataAry: appiontTimeAry, currentData: [self.appiontTime.text ?? ""]) { (result) in
             self.appiontDate.text = result.last
         }
@@ -84,15 +91,21 @@ class EnlistAppiontViewController: BaseMainViewController,UICollectionViewDelega
         self.picker.showPickerView()
     }
     @IBAction func clickAppiontBtn(_ sender: UIButton) {
-        contentTextview.resignFirstResponder()
-        AlertAction.share.showbottomPicker(title: "选择时间", maxCount: 1, dataAry: appiontTimeAry, currentData: [appiontTime.text ?? ""]) { (result) in
-            self.timeStr = result.last ?? ""
-            self.appiontTime.text = result.last
+         contentTextview.resignFirstResponder()
+        
+        AlertAction.share.showbottomPicker(title: self.cityStr, maxCount: 1, dataAry: currentCitys, currentData: [self.cityStr]) { (result) in
+            self.cityStr = result.last ?? self.cityStr
+            
         }
+       
     }
     @IBAction func clickIdentificationBtn(_ sender: UIButton) {
     }
     override func clickRightBtn() {
+        if cityStr.count == 0 {
+            alertHud(title: "请输入约会城市")
+            return
+        }
         if dateStr.count == 0 {
             alertHud(title: "请输入约会日期")
             return
@@ -108,24 +121,23 @@ class EnlistAppiontViewController: BaseMainViewController,UICollectionViewDelega
         
         let timeStamp = stringToTimeStamp(dateStr: dateStr)
         let url = continueString(strAry: urlPaths,separetStr:",")
-        let params:[String:Any] = ["poster_id":CurrentUserInfo?.data?.user_id ?? "","time":timeStamp,"city":appiontLab.text ?? "","requirement":contentTextview.text,"attachment":url,"deposit": Int(dingjinFiled.text ?? "0") ?? 0]
-        
-//        TargetManager.share.issueAppiont(params: params) { (success, error) in
-//            if success {
-//                DebugLog(message: "发布成功")
-//                self.clickLeftBtn()
-//            }
-//
-//        }
+        let params:[String:Any] = ["poster_id":CurrentUserInfo?.data?.user_id ?? "","time":timeStamp,"city":appiontLab.text ?? "","requirement":contentTextview.text,"attachment":url,"deposit": Int(dingjinFiled.text ?? "0") ?? 0,"need_signup":true]
+        TargetManager.share.issueAppiont(params: params) { (success, error) in
+            if success {
+                DebugLog(message: "发布成功")
+                self.clickLeftBtn()
+            }
+
+        }
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        // Dispose of any resources that can be recreat ed.
     }
     func reloadMyView() {
         var newImages = images
-        newImages.append(QPPhotoImageModel())
+        newImages.append(" ")
         
         let height = getImageViewHeight(imageAry: newImages)
         
@@ -171,8 +183,7 @@ extension EnlistAppiontViewController
         }
         else
         {
-            let model = images[indexPath.row]
-            cell.model = model
+            cell.imageStr = images[indexPath.row]
             
             cell.deletBtn.isHidden = false
         }
@@ -215,18 +226,16 @@ extension EnlistAppiontViewController
             models.append(model)
             
         }
-        
-        AliyunManager.share().uploadImage(toAliyun: models, isAsync: true, completion: { (urls, state) in
-            self.urlPaths = urls!
-            if state == UploadImageState.success{
-                for model in photos{
-                    self.images.append(model)
+        AliyunManager.share.uploadImagesToAliyun(imageModels: models, complection: { (urls, succecCount, failCount, state) in
+            if state == UploadImageState.success
+            {
+                guard let imageUrls = urls else{
+                    return
                 }
-                DispatchQueue.main.async {
-                    self.reloadMyView()
+                for str in imageUrls{
+                    self.images.append(str)
                 }
-                DebugLog(message: "上传成功\(String(describing: urls?.last))")
-                
+                self.reloadMyView()
             }
             else
             {

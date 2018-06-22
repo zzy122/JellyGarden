@@ -141,7 +141,7 @@ class BottomAlert: UIView,UITableViewDelegate,UITableViewDataSource,UICollection
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:PickerTableViewCell = tableView.dequeueReusableCell(withIdentifier: "PickerTableViewCell", for: indexPath) as! PickerTableViewCell
-        let str = currentDataAry?[indexPath.row].title
+        let str = currentDataAry?[indexPath.row].citysName
         cell.contentLab.text = str
         cell.contentLab?.textColor = UIColor.lightGray
         for exiStr in collectionDataAry {
@@ -157,14 +157,14 @@ class BottomAlert: UIView,UITableViewDelegate,UITableViewDataSource,UICollection
         tableView.deselectRow(at: indexPath, animated: true)
         let cell = tableView.cellForRow(at: indexPath) as? PickerTableViewCell
         let model:PikerModel = self.currentDataAry![indexPath.row]
-        if let nextDataAry = model.subdData {
+        if let nextDataAry = model.citys {
             backDataAry.append(currentDataAry!)
             leftBtn.setTitle("返回", for: UIControlState.normal)
             currentDataAry = nextDataAry
             tableView.reloadData()
             return
         }
-        let str:String = self.currentDataAry![indexPath.row].title ?? ""
+        let str:String = self.currentDataAry![indexPath.row].citysName ?? ""
         
         for i in 0 ..< collectionDataAry.count  {
             let exiStr:String = collectionDataAry[i]

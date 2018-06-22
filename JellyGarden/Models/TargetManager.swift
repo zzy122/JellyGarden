@@ -93,6 +93,10 @@ class TargetManager: NSObject {
         NetCostom.shared.request(method: .get, wengen: "appointment", params: params, success: { (result) in
             if let jsonStr = result as? [String:Any]
             {
+                let ary:[Any] = jsonStr["data"] as! [Any]
+                AppiontDataManager.share.writeData(param: ary as! [[String : Any]])
+//                NSArray.init(array: ary).write(toFile: CommentPath, atomically: true)
+                
                 let model = BaseModel<lonelySpeechModel,lonelySpeechModel>.init(resultData: jsonStr)
                 complection(model.resultData?.data,nil)
             }
@@ -130,8 +134,8 @@ class TargetManager: NSObject {
         }
     }
     //发布评论
-    func issueComment(params:[String:Any],complection:@escaping (Bool,Error?) -> Void) {
-        NetCostom.shared.request(method:.post ,wengen: "appointment/\(CurrentUserInfo?.data?.user_id ?? "")/comments", params: params, success: { (result) in
+    func issueComment(appointment_id:String, params:[String:Any],complection:@escaping (Bool,Error?) -> Void) {
+        NetCostom.shared.request(method:.post ,wengen: "appointment/\(appointment_id)/comments", params: params, success: { (result) in
             complection(true,nil)
         }) { (error) in
             complection(false,error)
@@ -181,6 +185,23 @@ class TargetManager: NSObject {
             complection(true,nil)
         }) { (error) in
             complection(false,error)
+        }
+    }
+    func getCitysModel(complection:@escaping ([PikerModel]?,Error?) -> Void) {
+        NetCostom.shared.request(method: .get, wengen: "config/city", params: nil, success: { (result) in
+            if let jsonStr = result as? [String:Any]
+            {
+                let ary:[Any] = jsonStr["data"] as! [Any]
+                NSArray.init(array: ary).write(toFile: LocalCitys, atomically: true)
+                let model = BaseModel<PikerModel,[PikerModel]>.init(resultData: jsonStr["data"] ?? "")
+                complection(model.resultData,nil)
+            }
+            else
+            {
+                alertHud(title: "数据返回错误")
+            }
+        }) { (error) in
+            complection(nil,error)
         }
     }
 }

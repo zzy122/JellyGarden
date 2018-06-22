@@ -148,19 +148,17 @@ class FillInformationFirstViewController: BaseViewController,ResponderRouter,UII
             let model = AliyunUploadModel()
             model.image = image
             model.fileName = imageStr
-            
-            AliyunManager.share().uploadImage(toAliyun: [model], isAsync: true, completion: { (urls, state) in
-                if state == UploadImageState.success{
+            AliyunManager.share.uploadImagesToAliyun(imageModels: [model], complection: { (urls, succecCount, failCount, state) in
+                if state == UploadImageState.success
+                {
                     DebugLog(message: "上传成功\(String(describing: urls?.last))")
                     self.imagePath = urls?.last
-                    DispatchQueue.main.async {
-                       self.headerImage = image
-                    }
+                    self.headerImage = image
                     
                 }
                 else
                 {
-                   DebugLog(message: "上传失败")
+                    DebugLog(message: "上传失败")
                 }
             })
         }

@@ -7,11 +7,16 @@
 //
 
 import UIKit
-
-struct PikerModel: JSON {
-    var title:String?
-    var subdData:[PikerModel]?
-    
-    
-    
+import HandyJSON
+class PikerModel: JSON {
+    var citysName:String?
+    var citys:[PikerModel]?
+    required init() {
+        
+    }
+    func mapping(mapper: HelpingMapper) {
+        
+        mapper.specify(property: &citysName, name: "provinceName")
+        mapper.specify(property: &citysName, name: "citysName")
+    }
 }

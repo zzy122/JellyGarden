@@ -17,8 +17,6 @@ class ConfessionTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDa
         view.isScrollEnabled = false
         view.separatorStyle = UITableViewCellSeparatorStyle.none
         view.register(UINib.init(nibName: "CommentTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "CommentTableViewCell")
-//        forBaselineLayout()
-//       self.setTableViewFrame(view: view)
         
         self.contentView.addSubview(view)
         return view
@@ -40,7 +38,7 @@ class ConfessionTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDa
         didSet{
             self.headerView.headerImage.image = imageName(name: detailModel?.poster?.avatar ?? "")
             let sexStr = (detailModel?.poster?.sex! == 0) ? "男1" : "女1"
-            
+            self.headerView.nikeName.text = detailModel?.poster?.nickname
             self.headerView.sexImage.image = imageName(name: sexStr)
             self.headerView.authTrueLab.backgroundColor = APPCustomRedColor
             if let has_authentication = detailModel?.poster?.has_authentication ,has_authentication
@@ -63,6 +61,16 @@ class ConfessionTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDa
             let countStr = ((detailModel?.likes_count ?? 0) > 0) ? String.init(format: "%d", (detailModel?.likes_count)!) : ""
             self.headerView.LikeBtn.setTitle("\(countStr)", for: UIControlState.normal)
             self.commentAry = detailModel?.comments ?? []
+            self.applyView.lookApplayBtn.setTitle(String.init(format: "查看报名(%d)", detailModel?.sign_up_count ?? 0), for: UIControlState.normal)
+            guard let isend = detailModel?.is_overdue,isend else {
+                self.applyView.ApplyStatus.setTitle("我要报名", for: UIControlState.normal)
+                self.applyView.ApplyStatus.setTitleColor(APPCustomRedColor, for: UIControlState.normal)
+                self.applyView.ApplyStatus.isUserInteractionEnabled = true
+                return
+            }
+            self.applyView.ApplyStatus.isUserInteractionEnabled = false
+            self.applyView.ApplyStatus.setTitle("已结束", for: UIControlState.normal)
+            self.applyView.ApplyStatus.setTitleColor(UIColor.gray, for: UIControlState.normal)
             
         }
     }
@@ -92,13 +100,13 @@ class ConfessionTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDa
         let view = ConfessionTableViewCellHeader.createConfessionTableViewCellHeader()
         view?.tagFrame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 50)
         self.contentView.addSubview(view!)
-        view?.tag = self.tag
+        
         return view!
     }()
     lazy var applyView:ApplyOperationView = {
         let view = ApplyOperationView.createApplyOperationView()
         view?.tagFrame = CGRect.init(x: 0, y: self.bodyView.tagFrame.maxY, width: ScreenWidth, height: 45)
-        view?.tag = self.tag
+        
         self.contentView.addSubview(view!)
         return view!
     }()
@@ -125,24 +133,24 @@ class ConfessionTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDa
         self.bodyView.isHidden = false
         self.bodyView.setDatasource(model: model)
         self.applyView.isHidden = false
+        self.applyView.tag = self.tag
+        self.headerView.tag = self.tag
         self.type = type
         self.detailModel = model
         
         
 
     }
-//    override func draw(_ rect: CGRect) {
-//        self.setOrigiY()
-//    }
     override func layoutSubviews() {
         self.setOrigiY()
     }
     func setOrigiY()  {
         self.applyView.tagFrame = CGRect.init(x: 0, y: self.bodyView.tagFrame.maxY, width: ScreenWidth, height: 45)
+        
+        self.headerView.setNeedsLayout()//重新布局
+        self.bodyView.setNeedsLayout()//重新布局
+        self.applyView.setNeedsLayout()//重新布局
         self.setTableViewFrame(view: self.tableView)
-        self.headerView.setNeedsDisplay()//重新布局
-        self.bodyView.setNeedsDisplay()//重新布局
-        self.applyView.setNeedsDisplay()//重新布局
     }
     func getCellHeight() -> CGFloat {
         let topHeight:CGFloat = 50

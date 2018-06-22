@@ -176,7 +176,7 @@ func getPikerModels(data:[Any]?) ->[PikerModel]?
             return nil
         }
         for ident in dataStrAry {
-            let dic = ["title":ident]
+            let dic = ["citysName":ident]
             ary.append(dic)
         }
         return JSONDeserializer<PikerModel>.deserializeModelArrayFrom(array: ary) as? [PikerModel]
@@ -184,10 +184,11 @@ func getPikerModels(data:[Any]?) ->[PikerModel]?
     return nil
 }
 
+
 func getImageName() -> String
 {
     let time = getTimeStamp(date: Date())
-    return String.init(format: "%@%d", CurrentUserInfo?.data?.phone ?? "",time)
+    return String.init(format: "%@%d.png", CurrentUserInfo?.data?.phone ?? "",time)
     
 }
 
