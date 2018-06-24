@@ -30,6 +30,14 @@
 #import "WCLRecordVideoVC.h"
 #import <Kingfisher/Kingfisher.h>
 #import <IQKeyboardManagerSwift/IQKeyboardManagerSwift-Swift.h>
+
 #import "DepositMessage.h"
 #import "DepositMessageCell.h"
+#import "TagStatueMessage.h"
+#import "TagStatueCell.h"
+#import "RealTimeLocationStartCell.h"
+
+#import "RealTimeLocationViewController.h"
+#import "RealTimeLocationEndCell.h"
+
 

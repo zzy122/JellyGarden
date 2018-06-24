@@ -51,6 +51,17 @@
 		5A196ADA20C6C481002EC0EE /* PikerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A196AD920C6C481002EC0EE /* PikerModel.swift */; };
 		5A196ADE20C6C704002EC0EE /* BottomPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A196ADC20C6C704002EC0EE /* BottomPickerCell.swift */; };
 		5A196ADF20C6C704002EC0EE /* BottomPickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A196ADD20C6C704002EC0EE /* BottomPickerCell.xib */; };
+		5A1F3AA020DF35E600CB98CD /* TagStatueCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F3A9F20DF35E600CB98CD /* TagStatueCell.m */; };
+		5A1F3AA320DF374800CB98CD /* TagStatueMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F3AA220DF374800CB98CD /* TagStatueMessage.m */; };
+		5A1F3AB820DF6CA700CB98CD /* HeadCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F3AA620DF6CA600CB98CD /* HeadCollectionView.m */; };
+		5A1F3AB920DF6CA700CB98CD /* RCAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F3AA920DF6CA600CB98CD /* RCAnnotation.m */; };
+		5A1F3ABA20DF6CA700CB98CD /* RCAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F3AAB20DF6CA600CB98CD /* RCAnnotationView.m */; };
+		5A1F3ABB20DF6CA700CB98CD /* RCLocationConvert.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F3AAD20DF6CA700CB98CD /* RCLocationConvert.m */; };
+		5A1F3ABC20DF6CA700CB98CD /* RCLocationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F3AAF20DF6CA700CB98CD /* RCLocationView.m */; };
+		5A1F3ABD20DF6CA700CB98CD /* RealTimeLocationEndCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F3AB120DF6CA700CB98CD /* RealTimeLocationEndCell.m */; };
+		5A1F3ABE20DF6CA700CB98CD /* RealTimeLocationStartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F3AB320DF6CA700CB98CD /* RealTimeLocationStartCell.m */; };
+		5A1F3ABF20DF6CA700CB98CD /* RealTimeLocationStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F3AB520DF6CA700CB98CD /* RealTimeLocationStatusView.m */; };
+		5A1F3AC020DF6CA700CB98CD /* RealTimeLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F3AB720DF6CA700CB98CD /* RealTimeLocationViewController.m */; };
 		5A380F6520DE88E400CC4152 /* DepositView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A380F6420DE88E400CC4152 /* DepositView.m */; };
 		5A380F6820DE8E6D00CC4152 /* RedPacketCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A380F6720DE8E6D00CC4152 /* RedPacketCell.m */; };
 		5A380F6B20DE91DE00CC4152 /* ReadDestroyMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A380F6A20DE91DE00CC4152 /* ReadDestroyMessage.m */; };
@@ -280,6 +291,28 @@
 		5A196AD920C6C481002EC0EE /* PikerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PikerModel.swift; sourceTree = "<group>"; };
 		5A196ADC20C6C704002EC0EE /* BottomPickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomPickerCell.swift; sourceTree = "<group>"; };
 		5A196ADD20C6C704002EC0EE /* BottomPickerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BottomPickerCell.xib; sourceTree = "<group>"; };
+		5A1F3A9E20DF35E600CB98CD /* TagStatueCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TagStatueCell.h; sourceTree = "<group>"; };
+		5A1F3A9F20DF35E600CB98CD /* TagStatueCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TagStatueCell.m; sourceTree = "<group>"; };
+		5A1F3AA120DF374800CB98CD /* TagStatueMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TagStatueMessage.h; sourceTree = "<group>"; };
+		5A1F3AA220DF374800CB98CD /* TagStatueMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TagStatueMessage.m; sourceTree = "<group>"; };
+		5A1F3AA520DF6CA600CB98CD /* HeadCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeadCollectionView.h; sourceTree = "<group>"; };
+		5A1F3AA620DF6CA600CB98CD /* HeadCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeadCollectionView.m; sourceTree = "<group>"; };
+		5A1F3AA820DF6CA600CB98CD /* RCAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCAnnotation.h; sourceTree = "<group>"; };
+		5A1F3AA920DF6CA600CB98CD /* RCAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCAnnotation.m; sourceTree = "<group>"; };
+		5A1F3AAA20DF6CA600CB98CD /* RCAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCAnnotationView.h; sourceTree = "<group>"; };
+		5A1F3AAB20DF6CA600CB98CD /* RCAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCAnnotationView.m; sourceTree = "<group>"; };
+		5A1F3AAC20DF6CA700CB98CD /* RCLocationConvert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCLocationConvert.h; sourceTree = "<group>"; };
+		5A1F3AAD20DF6CA700CB98CD /* RCLocationConvert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCLocationConvert.m; sourceTree = "<group>"; };
+		5A1F3AAE20DF6CA700CB98CD /* RCLocationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCLocationView.h; sourceTree = "<group>"; };
+		5A1F3AAF20DF6CA700CB98CD /* RCLocationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCLocationView.m; sourceTree = "<group>"; };
+		5A1F3AB020DF6CA700CB98CD /* RealTimeLocationEndCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealTimeLocationEndCell.h; sourceTree = "<group>"; };
+		5A1F3AB120DF6CA700CB98CD /* RealTimeLocationEndCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealTimeLocationEndCell.m; sourceTree = "<group>"; };
+		5A1F3AB220DF6CA700CB98CD /* RealTimeLocationStartCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealTimeLocationStartCell.h; sourceTree = "<group>"; };
+		5A1F3AB320DF6CA700CB98CD /* RealTimeLocationStartCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealTimeLocationStartCell.m; sourceTree = "<group>"; };
+		5A1F3AB420DF6CA700CB98CD /* RealTimeLocationStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealTimeLocationStatusView.h; sourceTree = "<group>"; };
+		5A1F3AB520DF6CA700CB98CD /* RealTimeLocationStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealTimeLocationStatusView.m; sourceTree = "<group>"; };
+		5A1F3AB620DF6CA700CB98CD /* RealTimeLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealTimeLocationViewController.h; sourceTree = "<group>"; };
+		5A1F3AB720DF6CA700CB98CD /* RealTimeLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealTimeLocationViewController.m; sourceTree = "<group>"; };
 		5A380F6320DE88E400CC4152 /* DepositView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DepositView.h; sourceTree = "<group>"; };
 		5A380F6420DE88E400CC4152 /* DepositView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DepositView.m; sourceTree = "<group>"; };
 		5A380F6620DE8E6D00CC4152 /* RedPacketCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RedPacketCell.h; sourceTree = "<group>"; };
@@ -520,14 +553,19 @@
 		5A015E1B20C2355D00EC8A96 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				5A1F3AA420DF6CA600CB98CD /* RealTimeLocation */,
 				5A015E2220C2477E00EC8A96 /* DepositMessage.h */,
 				5A015E2320C2477E00EC8A96 /* DepositMessage.m */,
+				5A1F3AA120DF374800CB98CD /* TagStatueMessage.h */,
+				5A1F3AA220DF374800CB98CD /* TagStatueMessage.m */,
 				5A380F6920DE91DE00CC4152 /* ReadDestroyMessage.h */,
 				5A380F6A20DE91DE00CC4152 /* ReadDestroyMessage.m */,
 				5AE9CC9020C8D9AE0057CFF3 /* ChatListViewController.swift */,
 				5A120C4E20DD3CDD004A9DCF /* ChatRoomViewController.swift */,
 				5A120C5320DE869A004A9DCF /* DepositMessageCell.h */,
 				5A120C5220DE869A004A9DCF /* DepositMessageCell.m */,
+				5A1F3A9E20DF35E600CB98CD /* TagStatueCell.h */,
+				5A1F3A9F20DF35E600CB98CD /* TagStatueCell.m */,
 				5A380F6620DE8E6D00CC4152 /* RedPacketCell.h */,
 				5A380F6720DE8E6D00CC4152 /* RedPacketCell.m */,
 				5A380F6320DE88E400CC4152 /* DepositView.h */,
@@ -539,6 +577,7 @@
 		5A015E9120C4FAEC00EC8A96 /* VCs */ = {
 			isa = PBXGroup;
 			children = (
+				5A015E1B20C2355D00EC8A96 /* Chat */,
 				5AE9CC8520C8C68C0057CFF3 /* Appointment */,
 				5AE9CC8420C8C68C0057CFF3 /* Main */,
 				5AE9CC8220C8C6820057CFF3 /* UserInfo */,
@@ -617,6 +656,39 @@
 				5A196AD620C6C1ED002EC0EE /* PickerTableViewCell.xib */,
 			);
 			path = BottomPicker;
+			sourceTree = "<group>";
+		};
+		5A1F3AA420DF6CA600CB98CD /* RealTimeLocation */ = {
+			isa = PBXGroup;
+			children = (
+				5A1F3AA520DF6CA600CB98CD /* HeadCollectionView.h */,
+				5A1F3AA620DF6CA600CB98CD /* HeadCollectionView.m */,
+				5A1F3AA720DF6CA600CB98CD /* RCAnnotation */,
+				5A1F3AB020DF6CA700CB98CD /* RealTimeLocationEndCell.h */,
+				5A1F3AB120DF6CA700CB98CD /* RealTimeLocationEndCell.m */,
+				5A1F3AB220DF6CA700CB98CD /* RealTimeLocationStartCell.h */,
+				5A1F3AB320DF6CA700CB98CD /* RealTimeLocationStartCell.m */,
+				5A1F3AB420DF6CA700CB98CD /* RealTimeLocationStatusView.h */,
+				5A1F3AB520DF6CA700CB98CD /* RealTimeLocationStatusView.m */,
+				5A1F3AB620DF6CA700CB98CD /* RealTimeLocationViewController.h */,
+				5A1F3AB720DF6CA700CB98CD /* RealTimeLocationViewController.m */,
+			);
+			path = RealTimeLocation;
+			sourceTree = "<group>";
+		};
+		5A1F3AA720DF6CA600CB98CD /* RCAnnotation */ = {
+			isa = PBXGroup;
+			children = (
+				5A1F3AA820DF6CA600CB98CD /* RCAnnotation.h */,
+				5A1F3AA920DF6CA600CB98CD /* RCAnnotation.m */,
+				5A1F3AAA20DF6CA600CB98CD /* RCAnnotationView.h */,
+				5A1F3AAB20DF6CA600CB98CD /* RCAnnotationView.m */,
+				5A1F3AAC20DF6CA700CB98CD /* RCLocationConvert.h */,
+				5A1F3AAD20DF6CA700CB98CD /* RCLocationConvert.m */,
+				5A1F3AAE20DF6CA700CB98CD /* RCLocationView.h */,
+				5A1F3AAF20DF6CA700CB98CD /* RCLocationView.m */,
+			);
+			path = RCAnnotation;
 			sourceTree = "<group>";
 		};
 		5A459AB520D1666A00C0A6FA /* CommentViewTools */ = {
@@ -736,7 +808,6 @@
 				5A80C4ED20BFF8130033CAF8 /* obj.m */,
 				5A80C49420BFDB150033CAF8 /* ViewController.swift */,
 				5A015E9120C4FAEC00EC8A96 /* VCs */,
-				5A015E1B20C2355D00EC8A96 /* Chat */,
 				5AFA3B6020D78A920052FC42 /* 录像 */,
 				5A80C50B20C0194D0033CAF8 /* Library */,
 				5A015EC220C57AA300EC8A96 /* Tools */,
@@ -1453,6 +1524,8 @@
 				5A015E2420C2477E00EC8A96 /* DepositMessage.m in Sources */,
 				5A7CEC7920D5339500B7A7C9 /* PhotoPreviewBottomBarView.swift in Sources */,
 				5A120C5420DE869A004A9DCF /* DepositMessageCell.m in Sources */,
+				5A1F3AA320DF374800CB98CD /* TagStatueMessage.m in Sources */,
+				5A1F3AB820DF6CA700CB98CD /* HeadCollectionView.m in Sources */,
 				5A015E9420C4FDBF00EC8A96 /* FinishViewController.swift in Sources */,
 				5A015ECD20C62BBC00EC8A96 /* FillInformationFirstViewController.swift in Sources */,
 				5A459AEF20D3B60400C0A6FA /* ManPersonInfoViewController.swift in Sources */,
@@ -1464,6 +1537,7 @@
 				5AF4A75220D6260100CFDDD6 /* EnlistAppiontViewController.swift in Sources */,
 				5A80C4CE20BFE1050033CAF8 /* NetCostom.swift in Sources */,
 				5AE9CC8720C8C8D70057CFF3 /* LocationCitys.swift in Sources */,
+				5A1F3ABC20DF6CA700CB98CD /* RCLocationView.m in Sources */,
 				5A80C4D520BFE1620033CAF8 /* APPCustomDefine.swift in Sources */,
 				5A7CEC6720D531DC00B7A7C9 /* QPPhotoFetchOptions.swift in Sources */,
 				5A015EBD20C577F200EC8A96 /* RegisterViewController.swift in Sources */,
@@ -1480,6 +1554,7 @@
 				5A80C49520BFDB150033CAF8 /* ViewController.swift in Sources */,
 				5A459ACE20D166A400C0A6FA /* TextStyleModel.m in Sources */,
 				5A80C4CF20BFE1050033CAF8 /* CustomProtocol.swift in Sources */,
+				5A1F3AB920DF6CA700CB98CD /* RCAnnotation.m in Sources */,
 				5A459AD320D166A400C0A6FA /* TextStyle.m in Sources */,
 				5A7CEC7320D5331100B7A7C9 /* QPPhotoModel.swift in Sources */,
 				5A0455C820CD2DF80041D309 /* RelationTypeAlert.swift in Sources */,
@@ -1499,7 +1574,9 @@
 				5A80C4CB20BFE1050033CAF8 /* AlertViewCoustom.swift in Sources */,
 				5A459AB420D1617E00C0A6FA /* ApplyOperationView.swift in Sources */,
 				5A80C4DD20BFE5780033CAF8 /* CustomNavigationViewController.swift in Sources */,
+				5A1F3ABF20DF6CA700CB98CD /* RealTimeLocationStatusView.m in Sources */,
 				5A459AD420D166A400C0A6FA /* ZZYFrameParser.m in Sources */,
+				5A1F3AA020DF35E600CB98CD /* TagStatueCell.m in Sources */,
 				5A015ECB20C5864700EC8A96 /* FillInformationViewController.swift in Sources */,
 				5A80C4EA20BFF6ED0033CAF8 /* OtherApplication.swift in Sources */,
 				5A4E325D20C7B6650051FE00 /* FillInfoView.swift in Sources */,
@@ -1514,6 +1591,7 @@
 				5A459AF120D3E9F500C0A6FA /* ManpersonInfoHeader.swift in Sources */,
 				5AFA3B6F20D78AE40052FC42 /* WCLRecordEngine.m in Sources */,
 				5AEB824220D8E857002A7E69 /* FiltrateCondition.swift in Sources */,
+				5A1F3ABB20DF6CA700CB98CD /* RCLocationConvert.m in Sources */,
 				5A459AD120D166A400C0A6FA /* UIResponder+Router.m in Sources */,
 				5A459AE620D278FD00C0A6FA /* MainListmodel.swift in Sources */,
 				5A80C4DC20BFE5780033CAF8 /* BaseTabBarViewController.swift in Sources */,
@@ -1526,6 +1604,7 @@
 				5A7CEC7F20D53C4800B7A7C9 /* QPPhotoImageModel.swift in Sources */,
 				5A80C4DE20BFE5780033CAF8 /* BaseTableViewController.swift in Sources */,
 				5A459AD820D1721D00C0A6FA /* CommentTableViewCell.swift in Sources */,
+				5A1F3ABD20DF6CA700CB98CD /* RealTimeLocationEndCell.m in Sources */,
 				5AFA3B6D20D78AE40052FC42 /* WCLRecordProgressView.m in Sources */,
 				5A4E326820C7B6650051FE00 /* XIeyiWarmView.swift in Sources */,
 				5A574BF320C97FCD00C59276 /* UserInfoTabbar.swift in Sources */,
@@ -1541,12 +1620,15 @@
 				5A015ED520C6392A00EC8A96 /* APPCustomAlertView.swift in Sources */,
 				5A380F6B20DE91DE00CC4152 /* ReadDestroyMessage.m in Sources */,
 				5A7CEC8120D53D1600B7A7C9 /* PhotoImageManager.swift in Sources */,
+				5A1F3ABA20DF6CA700CB98CD /* RCAnnotationView.m in Sources */,
 				5A7CEC7B20D533AE00B7A7C9 /* PhotoPreviewToolbarView.swift in Sources */,
 				5A4E326720C7B6650051FE00 /* VipCenterView.swift in Sources */,
+				5A1F3AC020DF6CA700CB98CD /* RealTimeLocationViewController.m in Sources */,
 				5A7CEC8420D53EBB00B7A7C9 /* AddImageCollectionViewCell.swift in Sources */,
 				5AEB824020D8BFFA002A7E69 /* LonelySpeechModel.swift in Sources */,
 				5A80C4E320BFE7B90033CAF8 /* TargetManager.swift in Sources */,
 				5A459ADF20D218C200C0A6FA /* ConditionModel.swift in Sources */,
+				5A1F3ABE20DF6CA700CB98CD /* RealTimeLocationStartCell.m in Sources */,
 				5A4E326520C7B6650051FE00 /* VipBodyViewCell.swift in Sources */,
 				5A459AED20D3B1D400C0A6FA /* WomanBroadcastViewController.swift in Sources */,
 				5A80C4D220BFE1050033CAF8 /* CustomExtension.swift in Sources */,

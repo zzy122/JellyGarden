@@ -146,22 +146,24 @@ extension NetCostom {
         }
         if resultDic[Defult_jsonError] == nil && resultDic["errors"] == nil {
             success(value)
+            if let message = resultDic[Defult_exceptionMessage] as? String
+            {
+                 alertHud(title: message)
+            }
             return
         }
         if let errorStr = resultDic[Defult_jsonError] as? String {
             let errorMessage = NSError.init(domain: "NSApplicationErrorDomain", code: 1, userInfo: [Defult_errorReson:errorStr])
             self.showErrorMessg(error: errorMessage, backError: error)
+            return
         }
         if let errorStr = resultDic["errors"] as? [String:Any] {
             let str:String = errorStr.description
             let errorMessage = NSError.init(domain: "NSApplicationErrorDomain", code: 1, userInfo: [Defult_errorReson:str])
             self.showErrorMessg(error: errorMessage, backError: error)
+            return
         }
-        else if let message = resultDic[Defult_exceptionMessage] as? [String:Any]
-            {
-                let errorMessage = NSError.init(domain: "NSApplicationErrorDomain", code: 1, userInfo: message)
-                self.showErrorMessg(error: errorMessage, backError: error)
-            }
+        
     }
     func showErrorMessg(error:Any, backError:@escaping BackRequestError) {
         var message:String?
@@ -174,12 +176,15 @@ extension NetCostom {
         {
             message = err.localizedDescription
             backError(NSError.init(domain: "NSApplicationErrorDomain", code: 1, userInfo: ["_exceptionMessage":message ?? ""]))
+            
            
         }
+        alertHud(title: message!)
         
-        AlertViewCoustom().showalertView(style: .alert, title: alertTitle, message: message, cancelBtnTitle: alertConfirm, touchIndex: { (index) in
-            
-        }, otherButtonTitles: "")
+        
+//        AlertViewCoustom().showalertView(style: .alert, title: alertTitle, message: message, cancelBtnTitle: alertConfirm, touchIndex: { (index) in
+//
+//        }, otherButtonTitles: "")
        
         
     }

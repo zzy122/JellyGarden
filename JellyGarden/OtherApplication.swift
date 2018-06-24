@@ -35,6 +35,7 @@ class OtherApplication: NSObject,WXApiDelegate,JPUSHRegisterDelegate,RCIMUserInf
         RCIM.shared().connectionStatusDelegate = self
         RCIM.shared().initWithAppKey(RongIMKey)
         RCIM.shared().registerMessageType(DepositMessage.self)
+        RCIM.shared().registerMessageType(TagStatueMessage.self)
         //开启发送已读回执
         RCIM.shared().enabledReadReceiptConversationTypeList = [NSNumber.init(value: UInt8(RCConversationType.ConversationType_PRIVATE.rawValue)),NSNumber.init(value: UInt8(RCConversationType.ConversationType_DISCUSSION.rawValue)),NSNumber.init(value: UInt8(RCConversationType.ConversationType_GROUP.rawValue))]
         //链接融云
@@ -51,7 +52,7 @@ class OtherApplication: NSObject,WXApiDelegate,JPUSHRegisterDelegate,RCIMUserInf
         //开启消息撤回功能
         RCIM.shared().enableMessageRecall = true
 //        "http:ggdhah"
-        let tocken = "HlMfHYJvmEo44W/F61LuabRpUvcyPvtcBAE1MtjZHcdpH5OG47jQeT0W+LiJ7xaXIo0E1Fqz0Ymon0nAvrYU9OIT31DubvNL"//这个值从后台获取/BXSBnDD+hltcIS814LpyrRpUvcyPvtcBAE1MtjZHcdpH5OG47jQef897cW8KqvRjWjSrSRDTIWon0nAvrYU9GXAL9HR+6f1
+        let tocken = "HlMfHYJvmEo44W/F61LuabRpUvcyPvtcBAE1MtjZHcdpH5OG47jQeT0W+LiJ7xaXIo0E1Fqz0Ymon0nAvrYU9OIT31DubvNL"//这个值从后台获取/BXSBnDD+hltcIS814LpyrRpUvcyPvtcBAE1MtjZHcdpH5OG47jQef897cW8KqvRjWjSrSRDTIWon0nAvrYU9GXAL9HR+6f1  HlMfHYJvmEo44W/F61LuabRpUvcyPvtcBAE1MtjZHcdpH5OG47jQeT0W+LiJ7xaXIo0E1Fqz0Ymon0nAvrYU9OIT31DubvNL
         RCIM.shared().connect(withToken: tocken, success: { (resultInfo) in
             DebugLog(message: "登录融云成功");
             DispatchQueue.main.async {//回主线程操作

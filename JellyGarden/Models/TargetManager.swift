@@ -48,15 +48,12 @@ class TargetManager: NSObject {
     //登录
     func loginAction(params:[String:Any],complection:@escaping (UserModel?,Error?) -> Void)  {
         NetCostom.shared.request(method:.post ,wengen: "users/login", params: params, success: { (result) in
-            
-            if let user = result as? [String:Any]//存储plist文件
-            {
-                
-                NSDictionary.init(dictionary: user).write(toFile: UserPlist, atomically: true)
-                
+            guard let user = result as? [String:Any] else {
+                return
             }
+            NSDictionary.init(dictionary: user).write(toFile: UserPlist, atomically: true)
             
-            let model = BaseModel<UserModel,UserModel>.init(resultData: result)
+            let model = BaseModel<UserModel,UserModel>.init(resultData: user)
             complection(model.resultData,nil)
         }) { (error) in
             complection(nil,error)

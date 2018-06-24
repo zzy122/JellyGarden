@@ -22,9 +22,9 @@ class LoginVIewController: BaseViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     @IBAction func clickLogin(_ sender: UIButton) {
-        let tabbarVC = BaseTabBarViewController()
-        let delegate = UIApplication.shared.delegate as? AppDelegate
-        delegate?.setRootViewController(vc: tabbarVC)
+//        let tabbarVC = BaseTabBarViewController()
+//        let delegate = UIApplication.shared.delegate as? AppDelegate
+//        delegate?.setRootViewController(vc: tabbarVC)
         
         return
             loginActionParams(params: ["phone":self.userPhone.text!,"password":self.userPassword.text!.zzy.md5()], nav: self.navigationController)

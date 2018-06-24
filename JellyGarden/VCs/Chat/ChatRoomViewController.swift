@@ -12,8 +12,9 @@ let PLUGIN_BOARD_GIFT_FILE_TAG = 2005//礼物
 let PLUGIN_BOARD_VIDEO_FILE_TAG = 2001//视频通话
 let PLUGIN_BOARD_READ_FILE_TAG = 2002//阅后即焚
 let PLUGIN_BOARD_REDBAG_FILE_TAG = 2003//红包
-class ChatRoomViewController: RCConversationViewController {
-
+class ChatRoomViewController: RCConversationViewController,RCRealTimeLocationObserver {
+    var realTimeLocation:RCRealTimeLocationProxy?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //增加收取定金功能和礼物打赏功能
@@ -38,7 +39,22 @@ class ChatRoomViewController: RCConversationViewController {
             plugin?.updateItem(at: 1, image: imageName(name: "拍摄"), title: "拍摄")
             
         }
+        /*******************实时地理位置共享***************/
+
+        self.register(RealTimeLocationStartCell.self, forMessageClass: RCRealTimeLocationStartMessage.self)
+        self.register(RealTimeLocationStartCell.self, forMessageClass: RCRealTimeLocationEndMessage.self)
+        RCRealTimeLocationManager.shared().getRealTimeLocationProxy(self.conversationType, targetId: self.targetId, success: { [weak self](location) in
+            self?.realTimeLocation = location
+            self?.realTimeLocation?.add(self)
+            
+        }) { (code) in
+            
+        }
+        self.register(RealTimeLocationEndCell.self, forMessageClass: RCRealTimeLocationEndMessage.self)
+//        [self registerClass:[RealTimeLocationEndCell class] forMessageClass:[RCRealTimeLocationEndMessage class]];
+        
         self.register(DepositMessageCell.self, forMessageClass: DepositMessage.self)//自定义收取定金消息
+        self.register(TagStatueCell.self, forMessageClass: TagStatueMessage.self)
         // Do any additional setup after loading the view.
     }
     override func pluginBoardView(_ pluginBoardView: RCPluginBoardView!, clickedItemWithTag tag: Int) {
@@ -52,9 +68,8 @@ class ChatRoomViewController: RCConversationViewController {
         case PLUGIN_BOARD_GIFT_FILE_TAG://礼物
             break
         case PLUGIN_BOARD_DEPOSIT_FILE_TAG://收定金
-            let mess = DepositMessage.init(content: "[红包]")
-            mess?.isPay = NSNumber.init(value: 0)
-            mess?.amotStr = "200"
+            let mess = TagStatueMessage.init(content: "")
+            mess?.senderUserInfo = RCIM.shared().currentUserInfo
             RCIM.shared().sendMessage(RCConversationType.ConversationType_PRIVATE, targetId: self.targetId, content: mess, pushContent: "测试", pushData: "yiha", success: { (resunt) in
                  DebugLog(message: "发送成功\(resunt)")
             }, error: { (code, errcod) in
@@ -65,6 +80,19 @@ class ChatRoomViewController: RCConversationViewController {
             
             break
         case 1003://位置
+            AlertViewCoustom().showalertView(style: .actionSheet, title: nil, message: nil, cancelBtnTitle: alertCancel, touchIndex: { (index) in
+                if index == 1
+                {
+                    super.pluginBoardView(self.chatSessionInputBarControl.pluginBoardView, clickedItemWithTag: 1003)
+                }
+                else if index == 2 {
+                    
+                    self.showRealTimeLocationViewController()
+                    
+                }
+                
+                
+            }, otherButtonTitles: "发送位置", "位置实时共享")
             break
         default:
              super.pluginBoardView(pluginBoardView, clickedItemWithTag: tag)
@@ -74,6 +102,30 @@ class ChatRoomViewController: RCConversationViewController {
         }
     
         
+    }
+    func popupChatViewController()
+    {
+        super.leftBarButtonItemPressed(nil)
+        self.realTimeLocation?.remove(self)
+        
+        
+    }
+    func showRealTimeLocationViewController()
+    {
+        let vc = RealTimeLocationViewController()
+        vc.realTimeLocationProxy = self.realTimeLocation
+        if self.realTimeLocation?.getStatus() == RCRealTimeLocationStatus.REAL_TIME_LOCATION_STATUS_CONNECTED
+        {
+           self.realTimeLocation?.joinRealTimeLocation()
+        }
+        else if self.realTimeLocation?.getStatus() == RCRealTimeLocationStatus.REAL_TIME_LOCATION_STATUS_IDLE
+        {
+           self.realTimeLocation?.startRealTimeLocation()
+        }
+        
+        self.navigationController?.present(vc, animated: true, completion: {
+            
+        })
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -85,6 +137,9 @@ class ChatRoomViewController: RCConversationViewController {
         if content != nil && model.messageDirection == RCMessageDirection.MessageDirection_RECEIVE
         {
             DebugLog(message: "点击了红包 怎么刷新")
+        }
+        if (model.content as? RCRealTimeLocationStartMessage) != nil  {
+            self.showRealTimeLocationViewController()
         }
         
     }

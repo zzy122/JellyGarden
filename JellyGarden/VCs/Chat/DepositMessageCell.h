@@ -10,5 +10,5 @@
 #import "DepositView.h"
 @interface DepositMessageCell : RCMessageCell<RCMessageCellDelegate>
 @property(nonatomic,strong)DepositView* posView;
-@property(nonatomic,strong)UILabel* StautLable;
+//@property(nonatomic,strong)UILabel* StautLable;
 @end

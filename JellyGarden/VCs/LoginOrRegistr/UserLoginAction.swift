@@ -22,6 +22,7 @@ func dealWithLoginUser(model:UserModel,nav:UINavigationController?)
 {
     if let nickName = model.data?.nickname,nickName.count > 0//
     {
+        DebugLog(message: "进入首页");
         let delegate = UIApplication.shared.delegate as! AppDelegate
         delegate.setRootViewController(vc: BaseTabBarViewController())
     }

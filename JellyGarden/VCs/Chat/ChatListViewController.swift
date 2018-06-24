@@ -34,7 +34,7 @@ class ChatListViewController: RCConversationListViewController {
         let vc = ChatRoomViewController()
         vc.conversationType = model.conversationType
         vc.targetId = model.targetId
-        vc.title = model.senderUserId
+        vc.title = model.conversationTitle
         
         self.navigationController?.pushViewController(vc, animated: true)
         
