@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserInfoViewController" customModule="JellyGarden" customModuleProvider="target">
             <connections>
+                <outlet property="tableView" destination="UdV-Aa-6iz" id="XPX-Tj-9Wc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -18,7 +19,46 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="UdV-Aa-6iz">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="1LF-mI-I9x"/>
+                        <outlet property="delegate" destination="-1" id="iBi-eG-YZD"/>
+                    </connections>
+                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n5T-q3-XzK">
+                    <rect key="frame" x="10" y="30" width="22" height="22"/>
+                    <state key="normal" image="设置"/>
+                    <connections>
+                        <action selector="touchSetting" destination="-1" eventType="touchUpInside" id="mQf-37-ydK"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jTn-Yn-pgt">
+                    <rect key="frame" x="343" y="30" width="22" height="22"/>
+                    <state key="normal" image="分享"/>
+                    <connections>
+                        <action selector="touchShare" destination="-1" eventType="touchUpInside" id="ciM-fP-ZrZ"/>
+                    </connections>
+                </button>
+            </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="UdV-Aa-6iz" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="43z-Ys-8BR"/>
+                <constraint firstItem="n5T-q3-XzK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="5RY-Fh-ZZT"/>
+                <constraint firstAttribute="trailing" secondItem="jTn-Yn-pgt" secondAttribute="trailing" constant="10" id="7BJ-In-mp9"/>
+                <constraint firstAttribute="bottom" secondItem="UdV-Aa-6iz" secondAttribute="bottom" id="8BV-ko-UqJ"/>
+                <constraint firstItem="n5T-q3-XzK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="30" id="O9d-x9-84i"/>
+                <constraint firstItem="jTn-Yn-pgt" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="30" id="i5t-9T-QOf"/>
+                <constraint firstItem="UdV-Aa-6iz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="j9q-0z-nwI"/>
+                <constraint firstAttribute="trailing" secondItem="UdV-Aa-6iz" secondAttribute="trailing" id="kKf-FL-JxZ"/>
+            </constraints>
+            <point key="canvasLocation" x="33.5" y="53.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="分享" width="22" height="22"/>
+        <image name="设置" width="22" height="22"/>
+    </resources>
 </document>

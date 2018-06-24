@@ -77,10 +77,6 @@ class OtherApplication: NSObject,WXApiDelegate,JPUSHRegisterDelegate,RCIMUserInf
 //        {
 //
 //        }
-        
-        
-        
-        
     }
    
     

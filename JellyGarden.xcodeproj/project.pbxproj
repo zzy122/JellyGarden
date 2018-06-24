@@ -219,6 +219,15 @@
 		5AFA3B6D20D78AE40052FC42 /* WCLRecordProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AFA3B6320D78AE30052FC42 /* WCLRecordProgressView.m */; };
 		5AFA3B6E20D78AE40052FC42 /* WCLRecordEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AFA3B6720D78AE30052FC42 /* WCLRecordEncoder.m */; };
 		5AFA3B6F20D78AE40052FC42 /* WCLRecordEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AFA3B6A20D78AE30052FC42 /* WCLRecordEngine.m */; };
+		5E6AE15C20DF2E7B00901D43 /* MineInfoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AE15B20DF2E7B00901D43 /* MineInfoHeaderView.swift */; };
+		5E6AE15E20DF2E8700901D43 /* MineInfoHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E6AE15D20DF2E8700901D43 /* MineInfoHeaderView.xib */; };
+		5E6AE16120DF3BC400901D43 /* MineRedPhoneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AE15F20DF3BC400901D43 /* MineRedPhoneCell.swift */; };
+		5E6AE16220DF3BC400901D43 /* MineRedPhoneCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E6AE16020DF3BC400901D43 /* MineRedPhoneCell.xib */; };
+		5E6AE16520DF962900901D43 /* MineInfoEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AE16320DF962900901D43 /* MineInfoEditViewController.swift */; };
+		5E6AE16620DF962900901D43 /* MineInfoEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E6AE16420DF962900901D43 /* MineInfoEditViewController.xib */; };
+		5E6AE16D20DF972C00901D43 /* AlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AE16A20DF972C00901D43 /* AlignedCollectionViewFlowLayout.swift */; };
+		5E6AE16E20DF972C00901D43 /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AE16B20DF972C00901D43 /* TagCell.swift */; };
+		5E6AE16F20DF972C00901D43 /* TagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AE16C20DF972C00901D43 /* TagsView.swift */; };
 		88FEDB44FBED3A54B24186CB /* Pods_JellyGarden.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BE12B8F4D85F2B12027DF1 /* Pods_JellyGarden.framework */; };
 		D7D95118EA173C975FF3B6E4 /* Pods_JellyGardenUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31D576D9311CB97643CD0783 /* Pods_JellyGardenUITests.framework */; };
 /* End PBXBuildFile section */
@@ -498,6 +507,15 @@
 		5AFA3B6720D78AE30052FC42 /* WCLRecordEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCLRecordEncoder.m; sourceTree = "<group>"; };
 		5AFA3B6920D78AE30052FC42 /* WCLRecordEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCLRecordEngine.h; sourceTree = "<group>"; };
 		5AFA3B6A20D78AE30052FC42 /* WCLRecordEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCLRecordEngine.m; sourceTree = "<group>"; };
+		5E6AE15B20DF2E7B00901D43 /* MineInfoHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineInfoHeaderView.swift; sourceTree = "<group>"; };
+		5E6AE15D20DF2E8700901D43 /* MineInfoHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MineInfoHeaderView.xib; sourceTree = "<group>"; };
+		5E6AE15F20DF3BC400901D43 /* MineRedPhoneCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineRedPhoneCell.swift; sourceTree = "<group>"; };
+		5E6AE16020DF3BC400901D43 /* MineRedPhoneCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MineRedPhoneCell.xib; sourceTree = "<group>"; };
+		5E6AE16320DF962900901D43 /* MineInfoEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineInfoEditViewController.swift; sourceTree = "<group>"; };
+		5E6AE16420DF962900901D43 /* MineInfoEditViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MineInfoEditViewController.xib; sourceTree = "<group>"; };
+		5E6AE16A20DF972C00901D43 /* AlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		5E6AE16B20DF972C00901D43 /* TagCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
+		5E6AE16C20DF972C00901D43 /* TagsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsView.swift; sourceTree = "<group>"; };
 		67BE12B8F4D85F2B12027DF1 /* Pods_JellyGarden.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JellyGarden.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		77888FFA9BABA5F9CDF63CB2 /* Pods-JellyGardenUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JellyGardenUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JellyGardenUITests/Pods-JellyGardenUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		7921C1A58403A96B2525A62E /* Pods-JellyGardenTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JellyGardenTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-JellyGardenTests/Pods-JellyGardenTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -844,6 +862,7 @@
 		5A80C4C220BFE0F70033CAF8 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				5E6AE16920DF972C00901D43 /* TagsView */,
 				5A80C4C320BFE1040033CAF8 /* AlertViewCoustom.swift */,
 				5A80C4C420BFE1040033CAF8 /* CustomDefine.swift */,
 				5A80C4CA20BFE1050033CAF8 /* CustomExtension.swift */,
@@ -1015,6 +1034,10 @@
 		5AEC519E20C9108800DD0099 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5E6AE15B20DF2E7B00901D43 /* MineInfoHeaderView.swift */,
+				5E6AE15D20DF2E8700901D43 /* MineInfoHeaderView.xib */,
+				5E6AE15F20DF3BC400901D43 /* MineRedPhoneCell.swift */,
+				5E6AE16020DF3BC400901D43 /* MineRedPhoneCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1024,6 +1047,8 @@
 			children = (
 				5AE9CC8C20C8D9100057CFF3 /* UserInfoViewController.swift */,
 				5AE9CC8D20C8D9100057CFF3 /* UserInfoViewController.xib */,
+				5E6AE16320DF962900901D43 /* MineInfoEditViewController.swift */,
+				5E6AE16420DF962900901D43 /* MineInfoEditViewController.xib */,
 			);
 			path = VCs;
 			sourceTree = "<group>";
@@ -1074,6 +1099,16 @@
 				5AFA3B6A20D78AE30052FC42 /* WCLRecordEngine.m */,
 			);
 			path = WCLRecordEngine;
+			sourceTree = "<group>";
+		};
+		5E6AE16920DF972C00901D43 /* TagsView */ = {
+			isa = PBXGroup;
+			children = (
+				5E6AE16A20DF972C00901D43 /* AlignedCollectionViewFlowLayout.swift */,
+				5E6AE16B20DF972C00901D43 /* TagCell.swift */,
+				5E6AE16C20DF972C00901D43 /* TagsView.swift */,
+			);
+			path = TagsView;
 			sourceTree = "<group>";
 		};
 		BCC68F88665C3CD9F0B83FAA /* Pods */ = {
@@ -1193,7 +1228,7 @@
 					5A80C48E20BFDB150033CAF8 = {
 						CreatedOnToolsVersion = 9.1;
 						LastSwiftMigration = 0910;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 1;
@@ -1260,6 +1295,7 @@
 				5ADD1A3220C9530E004504B3 /* PersonalInfoHeader.xib in Resources */,
 				5A4E326220C7B6650051FE00 /* PackageView.xib in Resources */,
 				5A574BED20C95FE300C59276 /* BodyImageCollectionViewCell.xib in Resources */,
+				5E6AE15E20DF2E8700901D43 /* MineInfoHeaderView.xib in Resources */,
 				5AE9CC8F20C8D9100057CFF3 /* UserInfoViewController.xib in Resources */,
 				5A4E326620C7B6650051FE00 /* VipBodyViewCell.xib in Resources */,
 				5A4E326920C7B6650051FE00 /* XIeyiWarmView.xib in Resources */,
@@ -1269,6 +1305,7 @@
 				5A196AD820C6C1ED002EC0EE /* PickerTableViewCell.xib in Resources */,
 				5A196ADF20C6C704002EC0EE /* BottomPickerCell.xib in Resources */,
 				5A459AB220D1617000C0A6FA /* ApplyOperationView.xib in Resources */,
+				5E6AE16220DF3BC400901D43 /* MineRedPhoneCell.xib in Resources */,
 				5AEC51A720C910EF00DD0099 /* MainUserListTableViewCell.xib in Resources */,
 				5A4E326420C7B6650051FE00 /* UserInfoHeaderView.xib in Resources */,
 				5AF4A75920D64E5E00CFDDD6 /* EnlistDetailTableViewCell.xib in Resources */,
@@ -1277,6 +1314,7 @@
 				5A0455D320CD68200041D309 /* ConfessionTableViewCellHeader.xib in Resources */,
 				5A7CEC8520D53EBB00B7A7C9 /* AddImageCollectionViewCell.xib in Resources */,
 				5A015E9C20C5121000EC8A96 /* LoginVIewController.xib in Resources */,
+				5E6AE16620DF962900901D43 /* MineInfoEditViewController.xib in Resources */,
 				5AF4A75320D6260100CFDDD6 /* EnlistAppiontViewController.xib in Resources */,
 				5A574C0B20CA397A00C59276 /* LookImageBodyView.xib in Resources */,
 				5A80C49A20BFDB150033CAF8 /* Assets.xcassets in Resources */,
@@ -1507,6 +1545,7 @@
 				5A0455D720CD683E0041D309 /* ConfessionTableViewCellBody.swift in Sources */,
 				5A459ACF20D166A400C0A6FA /* ZZYLinkTextData.m in Sources */,
 				5A459AD520D166A400C0A6FA /* ZZYCoreTextData.m in Sources */,
+				5E6AE16120DF3BC400901D43 /* MineRedPhoneCell.swift in Sources */,
 				5A7CEC6120D5316900B7A7C9 /* QPPhotoCollectionViewController.swift in Sources */,
 				5AFA3B6E20D78AE40052FC42 /* WCLRecordEncoder.m in Sources */,
 				5A0455D120CD680E0041D309 /* ConfessionTableViewCellHeader.swift in Sources */,
@@ -1532,6 +1571,7 @@
 				5A196ADE20C6C704002EC0EE /* BottomPickerCell.swift in Sources */,
 				5A015EC520C57AC600EC8A96 /* ZZYTimerTarget.m in Sources */,
 				5A7CEC7120D532D600B7A7C9 /* QPPhotoListCell.swift in Sources */,
+				5E6AE16F20DF972C00901D43 /* TagsView.swift in Sources */,
 				5A80C4D120BFE1050033CAF8 /* ShowShadow.swift in Sources */,
 				5ADD1A3020C952FB004504B3 /* PersonalInfoHeader.swift in Sources */,
 				5AF4A75220D6260100CFDDD6 /* EnlistAppiontViewController.swift in Sources */,
@@ -1569,6 +1609,7 @@
 				5A120C4F20DD3CDD004A9DCF /* ChatRoomViewController.swift in Sources */,
 				5A015EC820C5834D00EC8A96 /* SexViewController.swift in Sources */,
 				5A459ACB20D166A400C0A6FA /* ZZYCoreTextImageData.m in Sources */,
+				5E6AE16520DF962900901D43 /* MineInfoEditViewController.swift in Sources */,
 				5A4E322A20C792540051FE00 /* ApplayForCodeViewController.swift in Sources */,
 				5A574BF920CA1DC200C59276 /* LookImageViewController.swift in Sources */,
 				5A80C4CB20BFE1050033CAF8 /* AlertViewCoustom.swift in Sources */,
@@ -1594,11 +1635,13 @@
 				5A1F3ABB20DF6CA700CB98CD /* RCLocationConvert.m in Sources */,
 				5A459AD120D166A400C0A6FA /* UIResponder+Router.m in Sources */,
 				5A459AE620D278FD00C0A6FA /* MainListmodel.swift in Sources */,
+				5E6AE16D20DF972C00901D43 /* AlignedCollectionViewFlowLayout.swift in Sources */,
 				5A80C4DC20BFE5780033CAF8 /* BaseTabBarViewController.swift in Sources */,
 				5A459AE320D235FD00C0A6FA /* UploadToAliyun.swift in Sources */,
 				5A380F6820DE8E6D00CC4152 /* RedPacketCell.m in Sources */,
 				5A459AD220D166A400C0A6FA /* ImageStyle.m in Sources */,
 				5ACEFC8120D4F6E000BE5241 /* NormalAppointmentViewController.swift in Sources */,
+				5E6AE16E20DF972C00901D43 /* TagCell.swift in Sources */,
 				5A80C49320BFDB150033CAF8 /* AppDelegate.swift in Sources */,
 				5A380F6520DE88E400CC4152 /* DepositView.m in Sources */,
 				5A7CEC7F20D53C4800B7A7C9 /* QPPhotoImageModel.swift in Sources */,
@@ -1614,6 +1657,7 @@
 				5AC3FCE520DA01DF00226946 /* LineView.swift in Sources */,
 				5AEC51AC20C9238F00DD0099 /* MainBodyCollectionViewCell.swift in Sources */,
 				5A4E325F20C7B6650051FE00 /* InvitationCodeView.swift in Sources */,
+				5E6AE15C20DF2E7B00901D43 /* MineInfoHeaderView.swift in Sources */,
 				5A196AD220C6B5B6002EC0EE /* APPTextfiled.swift in Sources */,
 				5A80C4DF20BFE5780033CAF8 /* BaseViewController.swift in Sources */,
 				5A459AE120D2202900C0A6FA /* FillCondition.swift in Sources */,
@@ -1817,8 +1861,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = JellyGarden/JellyGarden.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 3W4VK75454;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = V7993MA8C9;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1834,10 +1878,10 @@
 					"$(PROJECT_DIR)/JellyGarden/Library/XGPUSH",
 					"$(PROJECT_DIR)/JellyGarden/Library/JsmsSDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cn.com.JellyGarden;
+				PRODUCT_BUNDLE_IDENTIFIER = "cn.com.JellyGarden-test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7c09b77d-7d26-41ae-b8fb-2e68837b1acd";
-				PROVISIONING_PROFILE_SPECIFIER = JellyGardenDevelpmentProfile;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "JellyGarden/JellyGarden-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1855,8 +1899,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = JellyGarden/JellyGarden.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 3W4VK75454;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = V7993MA8C9;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1872,10 +1916,10 @@
 					"$(PROJECT_DIR)/JellyGarden/Library/XGPUSH",
 					"$(PROJECT_DIR)/JellyGarden/Library/JsmsSDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cn.com.JellyGarden;
+				PRODUCT_BUNDLE_IDENTIFIER = "cn.com.JellyGarden-test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7c09b77d-7d26-41ae-b8fb-2e68837b1acd";
-				PROVISIONING_PROFILE_SPECIFIER = JellyGardenDevelpmentProfile;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "JellyGarden/JellyGarden-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
 				SWIFT_VERSION = 4.0;
