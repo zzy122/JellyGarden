@@ -205,6 +205,8 @@
 		5AFA3B6D20D78AE40052FC42 /* WCLRecordProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AFA3B6320D78AE30052FC42 /* WCLRecordProgressView.m */; };
 		5AFA3B6E20D78AE40052FC42 /* WCLRecordEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AFA3B6720D78AE30052FC42 /* WCLRecordEncoder.m */; };
 		5AFA3B6F20D78AE40052FC42 /* WCLRecordEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AFA3B6A20D78AE30052FC42 /* WCLRecordEngine.m */; };
+		5E6AE15C20DF2E7B00901D43 /* MineInfoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AE15B20DF2E7B00901D43 /* MineInfoHeaderView.swift */; };
+		5E6AE15E20DF2E8700901D43 /* MineInfoHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E6AE15D20DF2E8700901D43 /* MineInfoHeaderView.xib */; };
 		88FEDB44FBED3A54B24186CB /* Pods_JellyGarden.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BE12B8F4D85F2B12027DF1 /* Pods_JellyGarden.framework */; };
 		D7D95118EA173C975FF3B6E4 /* Pods_JellyGardenUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31D576D9311CB97643CD0783 /* Pods_JellyGardenUITests.framework */; };
 /* End PBXBuildFile section */
@@ -456,6 +458,8 @@
 		5AFA3B6720D78AE30052FC42 /* WCLRecordEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCLRecordEncoder.m; sourceTree = "<group>"; };
 		5AFA3B6920D78AE30052FC42 /* WCLRecordEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCLRecordEngine.h; sourceTree = "<group>"; };
 		5AFA3B6A20D78AE30052FC42 /* WCLRecordEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCLRecordEngine.m; sourceTree = "<group>"; };
+		5E6AE15B20DF2E7B00901D43 /* MineInfoHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineInfoHeaderView.swift; sourceTree = "<group>"; };
+		5E6AE15D20DF2E8700901D43 /* MineInfoHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MineInfoHeaderView.xib; sourceTree = "<group>"; };
 		67BE12B8F4D85F2B12027DF1 /* Pods_JellyGarden.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JellyGarden.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		77888FFA9BABA5F9CDF63CB2 /* Pods-JellyGardenUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JellyGardenUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JellyGardenUITests/Pods-JellyGardenUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		7921C1A58403A96B2525A62E /* Pods-JellyGardenTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JellyGardenTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-JellyGardenTests/Pods-JellyGardenTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -929,6 +933,8 @@
 		5AEC519E20C9108800DD0099 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5E6AE15B20DF2E7B00901D43 /* MineInfoHeaderView.swift */,
+				5E6AE15D20DF2E8700901D43 /* MineInfoHeaderView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1170,6 +1176,7 @@
 				5ADD1A3220C9530E004504B3 /* PersonalInfoHeader.xib in Resources */,
 				5A4E326220C7B6650051FE00 /* PackageView.xib in Resources */,
 				5A574BED20C95FE300C59276 /* BodyImageCollectionViewCell.xib in Resources */,
+				5E6AE15E20DF2E8700901D43 /* MineInfoHeaderView.xib in Resources */,
 				5AE9CC8F20C8D9100057CFF3 /* UserInfoViewController.xib in Resources */,
 				5A4E326620C7B6650051FE00 /* VipBodyViewCell.xib in Resources */,
 				5A4E326920C7B6650051FE00 /* XIeyiWarmView.xib in Resources */,
@@ -1454,6 +1461,7 @@
 				5AC3FCE520DA01DF00226946 /* LineView.swift in Sources */,
 				5AEC51AC20C9238F00DD0099 /* MainBodyCollectionViewCell.swift in Sources */,
 				5A4E325F20C7B6650051FE00 /* InvitationCodeView.swift in Sources */,
+				5E6AE15C20DF2E7B00901D43 /* MineInfoHeaderView.swift in Sources */,
 				5A196AD220C6B5B6002EC0EE /* APPTextfiled.swift in Sources */,
 				5A80C4DF20BFE5780033CAF8 /* BaseViewController.swift in Sources */,
 				5A459AE120D2202900C0A6FA /* FillCondition.swift in Sources */,
