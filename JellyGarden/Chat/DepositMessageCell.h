@@ -7,8 +7,8 @@
 //
 
 #import <RongIMKit/RongIMKit.h>
-#import "JellyGarden-Swift.h"
-@interface DepositMessageCell : RCMessageBaseCell
+#import "DepositView.h"
+@interface DepositMessageCell : RCMessageCell<RCMessageCellDelegate>
 @property(nonatomic,strong)DepositView* posView;
 @property(nonatomic,strong)UILabel* StautLable;
 @end

@@ -55,6 +55,7 @@ extension EnlistDetailViewController
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ConfessionTableViewCell", for: indexPath) as! ConfessionTableViewCell
             cell.setDatasource(type: .detail,model: detaileModel ?? lonelySpeechDetaileModel())
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
             return cell
             
         }

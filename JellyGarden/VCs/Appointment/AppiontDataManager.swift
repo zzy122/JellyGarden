@@ -66,13 +66,13 @@ class AppiontDataManager: NSObject {
         var count:Int = dic["likes_count"] as? Int ?? 0
         if  type == .add {
             count += 1
-            dic["is_like"] = true
+            dic["is_like"] = 1
         }
         else
         {
             if count > 0{
                 count -= 1
-                dic["is_like"] = false
+                dic["is_like"] = 0
             }
         }
         dic["likes_count"] = count

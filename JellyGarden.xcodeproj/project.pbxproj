@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		1C66F87A6C4F4CFF22A5D512 /* Pods_JellyGardenTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8E661A584C435F1250DC814 /* Pods_JellyGardenTests.framework */; };
 		5A015E2420C2477E00EC8A96 /* DepositMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A015E2320C2477E00EC8A96 /* DepositMessage.m */; };
-		5A015E2620C251FA00EC8A96 /* DepositView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A015E2520C251FA00EC8A96 /* DepositView.swift */; };
-		5A015E2B20C263B700EC8A96 /* DepositMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A015E2A20C263B700EC8A96 /* DepositMessageCell.m */; };
 		5A015E9420C4FDBF00EC8A96 /* FinishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A015E9220C4FDBF00EC8A96 /* FinishViewController.swift */; };
 		5A015E9520C4FDBF00EC8A96 /* FinishViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A015E9320C4FDBF00EC8A96 /* FinishViewController.xib */; };
 		5A015E9720C50C1100EC8A96 /* UMengAcion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A015E9620C50C1100EC8A96 /* UMengAcion.swift */; };
@@ -44,6 +42,8 @@
 		5A120C4120DB875E004A9DCF /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A120C4020DB875E004A9DCF /* CommentView.swift */; };
 		5A120C4320DB8771004A9DCF /* CommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A120C4220DB8771004A9DCF /* CommentView.xib */; };
 		5A120C4B20DC1074004A9DCF /* AppiontDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A120C4A20DC1074004A9DCF /* AppiontDataManager.swift */; };
+		5A120C4F20DD3CDD004A9DCF /* ChatRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A120C4E20DD3CDD004A9DCF /* ChatRoomViewController.swift */; };
+		5A120C5420DE869A004A9DCF /* DepositMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A120C5220DE869A004A9DCF /* DepositMessageCell.m */; };
 		5A196AD220C6B5B6002EC0EE /* APPTextfiled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A196AD120C6B5B6002EC0EE /* APPTextfiled.swift */; };
 		5A196AD420C6BB96002EC0EE /* BottomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A196AD320C6BB96002EC0EE /* BottomAlert.swift */; };
 		5A196AD720C6C1ED002EC0EE /* PickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A196AD520C6C1ED002EC0EE /* PickerTableViewCell.swift */; };
@@ -51,6 +51,9 @@
 		5A196ADA20C6C481002EC0EE /* PikerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A196AD920C6C481002EC0EE /* PikerModel.swift */; };
 		5A196ADE20C6C704002EC0EE /* BottomPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A196ADC20C6C704002EC0EE /* BottomPickerCell.swift */; };
 		5A196ADF20C6C704002EC0EE /* BottomPickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A196ADD20C6C704002EC0EE /* BottomPickerCell.xib */; };
+		5A380F6520DE88E400CC4152 /* DepositView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A380F6420DE88E400CC4152 /* DepositView.m */; };
+		5A380F6820DE8E6D00CC4152 /* RedPacketCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A380F6720DE8E6D00CC4152 /* RedPacketCell.m */; };
+		5A380F6B20DE91DE00CC4152 /* ReadDestroyMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A380F6A20DE91DE00CC4152 /* ReadDestroyMessage.m */; };
 		5A459AB220D1617000C0A6FA /* ApplyOperationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A459AB120D1617000C0A6FA /* ApplyOperationView.xib */; };
 		5A459AB420D1617E00C0A6FA /* ApplyOperationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A459AB320D1617E00C0A6FA /* ApplyOperationView.swift */; };
 		5A459ACB20D166A400C0A6FA /* ZZYCoreTextImageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A459AB620D166A100C0A6FA /* ZZYCoreTextImageData.m */; };
@@ -232,9 +235,6 @@
 		568F63E8F12BDE3170383E20 /* Pods-JellyGarden.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JellyGarden.release.xcconfig"; path = "Pods/Target Support Files/Pods-JellyGarden/Pods-JellyGarden.release.xcconfig"; sourceTree = "<group>"; };
 		5A015E2220C2477E00EC8A96 /* DepositMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DepositMessage.h; sourceTree = "<group>"; };
 		5A015E2320C2477E00EC8A96 /* DepositMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DepositMessage.m; sourceTree = "<group>"; };
-		5A015E2520C251FA00EC8A96 /* DepositView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositView.swift; sourceTree = "<group>"; };
-		5A015E2920C263B700EC8A96 /* DepositMessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DepositMessageCell.h; sourceTree = "<group>"; };
-		5A015E2A20C263B700EC8A96 /* DepositMessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DepositMessageCell.m; sourceTree = "<group>"; };
 		5A015E9220C4FDBF00EC8A96 /* FinishViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishViewController.swift; sourceTree = "<group>"; };
 		5A015E9320C4FDBF00EC8A96 /* FinishViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FinishViewController.xib; sourceTree = "<group>"; };
 		5A015E9620C50C1100EC8A96 /* UMengAcion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UMengAcion.swift; sourceTree = "<group>"; };
@@ -270,6 +270,9 @@
 		5A120C4020DB875E004A9DCF /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
 		5A120C4220DB8771004A9DCF /* CommentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentView.xib; sourceTree = "<group>"; };
 		5A120C4A20DC1074004A9DCF /* AppiontDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppiontDataManager.swift; sourceTree = "<group>"; };
+		5A120C4E20DD3CDD004A9DCF /* ChatRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomViewController.swift; sourceTree = "<group>"; };
+		5A120C5220DE869A004A9DCF /* DepositMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DepositMessageCell.m; sourceTree = "<group>"; };
+		5A120C5320DE869A004A9DCF /* DepositMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DepositMessageCell.h; sourceTree = "<group>"; };
 		5A196AD120C6B5B6002EC0EE /* APPTextfiled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APPTextfiled.swift; sourceTree = "<group>"; };
 		5A196AD320C6BB96002EC0EE /* BottomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomAlert.swift; sourceTree = "<group>"; };
 		5A196AD520C6C1ED002EC0EE /* PickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTableViewCell.swift; sourceTree = "<group>"; };
@@ -277,6 +280,12 @@
 		5A196AD920C6C481002EC0EE /* PikerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PikerModel.swift; sourceTree = "<group>"; };
 		5A196ADC20C6C704002EC0EE /* BottomPickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomPickerCell.swift; sourceTree = "<group>"; };
 		5A196ADD20C6C704002EC0EE /* BottomPickerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BottomPickerCell.xib; sourceTree = "<group>"; };
+		5A380F6320DE88E400CC4152 /* DepositView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DepositView.h; sourceTree = "<group>"; };
+		5A380F6420DE88E400CC4152 /* DepositView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DepositView.m; sourceTree = "<group>"; };
+		5A380F6620DE8E6D00CC4152 /* RedPacketCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RedPacketCell.h; sourceTree = "<group>"; };
+		5A380F6720DE8E6D00CC4152 /* RedPacketCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RedPacketCell.m; sourceTree = "<group>"; };
+		5A380F6920DE91DE00CC4152 /* ReadDestroyMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReadDestroyMessage.h; sourceTree = "<group>"; };
+		5A380F6A20DE91DE00CC4152 /* ReadDestroyMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReadDestroyMessage.m; sourceTree = "<group>"; };
 		5A459AB120D1617000C0A6FA /* ApplyOperationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApplyOperationView.xib; sourceTree = "<group>"; };
 		5A459AB320D1617E00C0A6FA /* ApplyOperationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyOperationView.swift; sourceTree = "<group>"; };
 		5A459AB620D166A100C0A6FA /* ZZYCoreTextImageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZYCoreTextImageData.m; sourceTree = "<group>"; };
@@ -513,10 +522,16 @@
 			children = (
 				5A015E2220C2477E00EC8A96 /* DepositMessage.h */,
 				5A015E2320C2477E00EC8A96 /* DepositMessage.m */,
+				5A380F6920DE91DE00CC4152 /* ReadDestroyMessage.h */,
+				5A380F6A20DE91DE00CC4152 /* ReadDestroyMessage.m */,
 				5AE9CC9020C8D9AE0057CFF3 /* ChatListViewController.swift */,
-				5A015E2920C263B700EC8A96 /* DepositMessageCell.h */,
-				5A015E2A20C263B700EC8A96 /* DepositMessageCell.m */,
-				5A015E2520C251FA00EC8A96 /* DepositView.swift */,
+				5A120C4E20DD3CDD004A9DCF /* ChatRoomViewController.swift */,
+				5A120C5320DE869A004A9DCF /* DepositMessageCell.h */,
+				5A120C5220DE869A004A9DCF /* DepositMessageCell.m */,
+				5A380F6620DE8E6D00CC4152 /* RedPacketCell.h */,
+				5A380F6720DE8E6D00CC4152 /* RedPacketCell.m */,
+				5A380F6320DE88E400CC4152 /* DepositView.h */,
+				5A380F6420DE88E400CC4152 /* DepositView.m */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -1060,6 +1075,8 @@
 				5A80C49F20BFDB150033CAF8 /* Sources */,
 				5A80C4A020BFDB150033CAF8 /* Frameworks */,
 				5A80C4A120BFDB150033CAF8 /* Resources */,
+				72BF02A140322A8CAE856836 /* [CP] Embed Pods Frameworks */,
+				5252A06BEAF880CC855FC0D1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1079,6 +1096,8 @@
 				5A80C4AA20BFDB150033CAF8 /* Sources */,
 				5A80C4AB20BFDB150033CAF8 /* Frameworks */,
 				5A80C4AC20BFDB150033CAF8 /* Resources */,
+				28E5B0C841C1BDA46F1217B9 /* [CP] Embed Pods Frameworks */,
+				43CA6B7D08DB8F15FA8123C7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1103,7 +1122,7 @@
 					5A80C48E20BFDB150033CAF8 = {
 						CreatedOnToolsVersion = 9.1;
 						LastSwiftMigration = 0910;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 1;
@@ -1213,6 +1232,36 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		28E5B0C841C1BDA46F1217B9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JellyGardenUITests/Pods-JellyGardenUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		43CA6B7D08DB8F15FA8123C7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JellyGardenUITests/Pods-JellyGardenUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		493273D5C99B6C2C5D320673 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1228,7 +1277,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		5252A06BEAF880CC855FC0D1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JellyGardenTests/Pods-JellyGardenTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		53AA25C2AA958247A383079B /* [CP] Copy Pods Resources */ = {
@@ -1303,6 +1367,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JellyGarden/Pods-JellyGarden-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		72BF02A140322A8CAE856836 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JellyGardenTests/Pods-JellyGardenTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		8ED77E3B466DF954BFBB03FF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1318,7 +1397,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		FA86ECE1BCFC7E04BDECFE71 /* [CP] Check Pods Manifest.lock */ = {
@@ -1336,7 +1415,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1362,7 +1441,6 @@
 				5A0455D120CD680E0041D309 /* ConfessionTableViewCellHeader.swift in Sources */,
 				5A574BEF20C961D400C59276 /* PersonInfoViewController.swift in Sources */,
 				5A459ADD20D2095B00C0A6FA /* UserLoginAction.swift in Sources */,
-				5A015E2620C251FA00EC8A96 /* DepositView.swift in Sources */,
 				5A459AEB20D3640900C0A6FA /* AliyunUpload.m in Sources */,
 				5A015E9720C50C1100EC8A96 /* UMengAcion.swift in Sources */,
 				5A7CEC7720D5337F00B7A7C9 /* QPPhotoPreviewCell.swift in Sources */,
@@ -1374,6 +1452,7 @@
 				5AC3FCDF20D9E86800226946 /* StepView.swift in Sources */,
 				5A015E2420C2477E00EC8A96 /* DepositMessage.m in Sources */,
 				5A7CEC7920D5339500B7A7C9 /* PhotoPreviewBottomBarView.swift in Sources */,
+				5A120C5420DE869A004A9DCF /* DepositMessageCell.m in Sources */,
 				5A015E9420C4FDBF00EC8A96 /* FinishViewController.swift in Sources */,
 				5A015ECD20C62BBC00EC8A96 /* FillInformationFirstViewController.swift in Sources */,
 				5A459AEF20D3B60400C0A6FA /* ManPersonInfoViewController.swift in Sources */,
@@ -1389,7 +1468,6 @@
 				5A7CEC6720D531DC00B7A7C9 /* QPPhotoFetchOptions.swift in Sources */,
 				5A015EBD20C577F200EC8A96 /* RegisterViewController.swift in Sources */,
 				5A459ACD20D166A400C0A6FA /* ZZYFramParserConfig.m in Sources */,
-				5A015E2B20C263B700EC8A96 /* DepositMessageCell.m in Sources */,
 				5AEC51A620C910EF00DD0099 /* MainUserListTableViewCell.swift in Sources */,
 				5AEC519520C907A100DD0099 /* SearchUserViewController.swift in Sources */,
 				5AF4A75820D64E5E00CFDDD6 /* EnlistDetailTableViewCell.swift in Sources */,
@@ -1413,6 +1491,7 @@
 				5A80C4D020BFE1050033CAF8 /* CustomFunc.swift in Sources */,
 				5A7CEC6B20D5321300B7A7C9 /* QPPhotoCell.swift in Sources */,
 				5A4E326120C7B6650051FE00 /* PackageView.swift in Sources */,
+				5A120C4F20DD3CDD004A9DCF /* ChatRoomViewController.swift in Sources */,
 				5A015EC820C5834D00EC8A96 /* SexViewController.swift in Sources */,
 				5A459ACB20D166A400C0A6FA /* ZZYCoreTextImageData.m in Sources */,
 				5A4E322A20C792540051FE00 /* ApplayForCodeViewController.swift in Sources */,
@@ -1439,9 +1518,11 @@
 				5A459AE620D278FD00C0A6FA /* MainListmodel.swift in Sources */,
 				5A80C4DC20BFE5780033CAF8 /* BaseTabBarViewController.swift in Sources */,
 				5A459AE320D235FD00C0A6FA /* UploadToAliyun.swift in Sources */,
+				5A380F6820DE8E6D00CC4152 /* RedPacketCell.m in Sources */,
 				5A459AD220D166A400C0A6FA /* ImageStyle.m in Sources */,
 				5ACEFC8120D4F6E000BE5241 /* NormalAppointmentViewController.swift in Sources */,
 				5A80C49320BFDB150033CAF8 /* AppDelegate.swift in Sources */,
+				5A380F6520DE88E400CC4152 /* DepositView.m in Sources */,
 				5A7CEC7F20D53C4800B7A7C9 /* QPPhotoImageModel.swift in Sources */,
 				5A80C4DE20BFE5780033CAF8 /* BaseTableViewController.swift in Sources */,
 				5A459AD820D1721D00C0A6FA /* CommentTableViewCell.swift in Sources */,
@@ -1458,6 +1539,7 @@
 				5A80C4DF20BFE5780033CAF8 /* BaseViewController.swift in Sources */,
 				5A459AE120D2202900C0A6FA /* FillCondition.swift in Sources */,
 				5A015ED520C6392A00EC8A96 /* APPCustomAlertView.swift in Sources */,
+				5A380F6B20DE91DE00CC4152 /* ReadDestroyMessage.m in Sources */,
 				5A7CEC8120D53D1600B7A7C9 /* PhotoImageManager.swift in Sources */,
 				5A7CEC7B20D533AE00B7A7C9 /* PhotoPreviewToolbarView.swift in Sources */,
 				5A4E326720C7B6650051FE00 /* VipCenterView.swift in Sources */,
@@ -1653,8 +1735,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = JellyGarden/JellyGarden.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = V7993MA8C9;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 3W4VK75454;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1670,10 +1752,10 @@
 					"$(PROJECT_DIR)/JellyGarden/Library/XGPUSH",
 					"$(PROJECT_DIR)/JellyGarden/Library/JsmsSDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "cn.com.JellyGarden-my";
+				PRODUCT_BUNDLE_IDENTIFIER = cn.com.JellyGarden;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "7c09b77d-7d26-41ae-b8fb-2e68837b1acd";
+				PROVISIONING_PROFILE_SPECIFIER = JellyGardenDevelpmentProfile;
 				SWIFT_OBJC_BRIDGING_HEADER = "JellyGarden/JellyGarden-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1691,8 +1773,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = JellyGarden/JellyGarden.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = V7993MA8C9;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 3W4VK75454;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1708,10 +1790,10 @@
 					"$(PROJECT_DIR)/JellyGarden/Library/XGPUSH",
 					"$(PROJECT_DIR)/JellyGarden/Library/JsmsSDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "cn.com.JellyGarden-my";
+				PRODUCT_BUNDLE_IDENTIFIER = cn.com.JellyGarden;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "7c09b77d-7d26-41ae-b8fb-2e68837b1acd";
+				PROVISIONING_PROFILE_SPECIFIER = JellyGardenDevelpmentProfile;
 				SWIFT_OBJC_BRIDGING_HEADER = "JellyGarden/JellyGarden-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
 				SWIFT_VERSION = 4.0;

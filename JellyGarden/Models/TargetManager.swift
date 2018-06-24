@@ -153,7 +153,7 @@ class TargetManager: NSObject {
     //取消点赞/
     func cancelLikeAppiont(appointment_id:String?,complection:@escaping (Bool,Error?) -> Void) {
         
-        NetCostom.shared.request(method:.delete ,wengen: "appointment/\(appointment_id ?? "")/likes\(CurrentUserInfo?.data?.user_id ?? "")", params: nil, success: { (result) in
+        NetCostom.shared.request(method:.delete ,wengen: "appointment/\(appointment_id ?? "")/likes/\(CurrentUserInfo?.data?.user_id ?? "")", params: nil, success: { (result) in
             complection(true,nil)
         }) { (error) in
             complection(false,error)

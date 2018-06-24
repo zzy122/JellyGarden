@@ -247,17 +247,17 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kio-Uq-hmJ">
-                            <rect key="frame" x="78.5" y="521" width="300" height="40"/>
+                            <rect key="frame" x="103.5" y="521" width="250" height="40"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VWy-pj-P4B">
-                                    <rect key="frame" x="13.5" y="11" width="213" height="17"/>
+                                    <rect key="frame" x="-11.5" y="11" width="213" height="17"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <state key="normal" title="已认证女士免费否则需支付5元," image="提示">
                                         <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="efE-vn-yLl">
-                                    <rect key="frame" x="226.5" y="-1" width="60" height="40"/>
+                                    <rect key="frame" x="201.5" y="-1" width="60" height="40"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="K3v-2L-3PB"/>
                                         <constraint firstAttribute="width" constant="60" id="oAk-QD-a2h"/>
@@ -274,7 +274,7 @@
                                 <constraint firstItem="efE-vn-yLl" firstAttribute="leading" secondItem="VWy-pj-P4B" secondAttribute="trailing" id="5Qg-Rm-3O5"/>
                                 <constraint firstItem="efE-vn-yLl" firstAttribute="centerY" secondItem="VWy-pj-P4B" secondAttribute="centerY" id="Abn-X1-Mcv"/>
                                 <constraint firstAttribute="height" constant="40" id="WEa-ue-E7H"/>
-                                <constraint firstAttribute="width" constant="300" id="pc0-5M-4SM"/>
+                                <constraint firstAttribute="width" constant="250" id="pc0-5M-4SM"/>
                                 <constraint firstItem="VWy-pj-P4B" firstAttribute="centerX" secondItem="Kio-Uq-hmJ" secondAttribute="centerX" constant="-30" id="qVA-L6-He4"/>
                                 <constraint firstItem="VWy-pj-P4B" firstAttribute="centerY" secondItem="Kio-Uq-hmJ" secondAttribute="centerY" id="vfP-Rg-i4u"/>
                             </constraints>
