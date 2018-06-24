@@ -12,6 +12,5 @@
 -(void)routerWithName:(NSString *)name withObjt:(id)obj
 {
     [self.nextResponder routerWithName:name withObjt:obj];
-    
 }
 @end
