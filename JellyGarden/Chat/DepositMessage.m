@@ -8,13 +8,15 @@
 
 #import "DepositMessage.h"
 
+
 @implementation DepositMessage
 
 ///初始化
 + (instancetype)messageWithContent:(NSString *)content {
     DepositMessage *text = [[DepositMessage alloc] init];
     if (text) {
-        text.amotStr = content;
+        
+//        text.amotStr = content;
     }
     
     return text;
@@ -43,7 +45,8 @@
 - (NSData *)encode {
     NSMutableDictionary *dataDict = [NSMutableDictionary dictionary];
     [dataDict setObject:self.amotStr forKey:@"amotStr"];
-
+    [dataDict setObject:self.isPay forKey:@"isPay"];
+    
 
     if (self.senderUserInfo) {
         NSMutableDictionary *userInfoDic = [[NSMutableDictionary alloc] init];
@@ -71,7 +74,7 @@
 
         if (dictionary) {
             self.amotStr = dictionary[@"amotStr"];
-
+            self.isPay = dictionary[@"isPay"];
             NSDictionary *userinfoDic = dictionary[@"user"];
             [self decodeUserInfo:userinfoDic];
         }
@@ -80,7 +83,7 @@
 
 /// 会话列表中显示的摘要
 - (NSString *)conversationDigest {
-    return self.amotStr;
+    return @"[红包]";
 }
 
 ///消息的类型名

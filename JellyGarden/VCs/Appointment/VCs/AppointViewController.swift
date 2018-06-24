@@ -227,7 +227,7 @@ extension AppointViewController
             vc.detaileModel = appiontModels?[index]
             RootNav().pushViewController(vc, animated: true)
         }
-        if ClickReportName == name {//我要报名
+        if ClickEnlistBtn == name {//我要报名
             let vc = QPPhotoPickerViewController(type: PageType.AllAlbum)
             vc.imageSelectDelegate = self
             //最大照片数量
@@ -275,7 +275,7 @@ extension AppointViewController
                     let params = ["publisher_id":CurrentUserInfo?.data?.user_id ?? "","content":text]
                     TargetManager.share.issueComment(appointment_id:model.appointment_id ?? "" ,params: params, complection: { (reslt, error) in
                         if reslt {
-                            AppiontDataManager.share.insertComment(content: text, create_at: getTimeStamp(date: Date()), index: index)
+                            AppiontDataManager.share.insertComment(content: text, create_at: date, index: index)
                            self.reloadMyTableView(index: index)
                         }
                     })

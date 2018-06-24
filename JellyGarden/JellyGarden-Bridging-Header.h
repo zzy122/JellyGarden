@@ -30,5 +30,6 @@
 #import "WCLRecordVideoVC.h"
 #import <Kingfisher/Kingfisher.h>
 #import <IQKeyboardManagerSwift/IQKeyboardManagerSwift-Swift.h>
-
+#import "DepositMessage.h"
+#import "DepositMessageCell.h"
 

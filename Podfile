@@ -7,7 +7,7 @@ target 'JellyGarden' do
 
   # Pods for JellyGarden
 	pod 'Alamofire', '~> 4.6.0’#类似于afnetworking
-	pod 'HandyJSON' #json转model
+	pod 'HandyJSON', '~> 4.1.1'#json转model
 	pod 'PKHUD', '~> 5.0.0’#遮罩
 	pod 'Kingfisher', '~> 4.6.1’#图片缓存
 	pod 'IQKeyboardManagerSwift', '~> 5.0.7'
@@ -30,7 +30,7 @@ target 'JellyGarden' do
     pod 'UMCShare/Social/Sina'
     #pod 'UMCAnalytics'
 
-    pod 'RongCloudIM/IMLib', '~> 2.8.3'
+#    pod 'RongCloudIM/IMLib', '~> 2.8.3'
     pod 'RongCloudIM/IMKit', '~> 2.8.3'
     #极光
     pod 'JPush', '~> 3.0.7'

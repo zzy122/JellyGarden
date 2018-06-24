@@ -8,7 +8,7 @@
 
 import UIKit
 import UserNotifications
-class OtherApplication: NSObject,WXApiDelegate,JPUSHRegisterDelegate,RCIMUserInfoDataSource,RCIMGroupMemberDataSource {
+class OtherApplication: NSObject,WXApiDelegate,JPUSHRegisterDelegate,RCIMUserInfoDataSource,RCIMGroupMemberDataSource,RCIMConnectionStatusDelegate,RCIMReceiveMessageDelegate {
     static var share = OtherApplication()
     private override init() {
         
@@ -28,14 +28,36 @@ class OtherApplication: NSObject,WXApiDelegate,JPUSHRegisterDelegate,RCIMUserInf
         //设置appkey
         RCIM.shared().enablePersistentUserInfoCache = true
         RCIM.shared().userInfoDataSource = self
+//        RCIM.shared().groupInfoDataSource = self
         RCIM.shared().groupMemberDataSource = self
+        RCIM.shared().receiveMessageDelegate = self
+        RCIM.shared().enableTypingStatus = true
+        RCIM.shared().connectionStatusDelegate = self
         RCIM.shared().initWithAppKey(RongIMKey)
-        
+        RCIM.shared().registerMessageType(DepositMessage.self)
+        //开启发送已读回执
+        RCIM.shared().enabledReadReceiptConversationTypeList = [NSNumber.init(value: UInt8(RCConversationType.ConversationType_PRIVATE.rawValue)),NSNumber.init(value: UInt8(RCConversationType.ConversationType_DISCUSSION.rawValue)),NSNumber.init(value: UInt8(RCConversationType.ConversationType_GROUP.rawValue))]
         //链接融云
-        let tocken = ""//这个值从后台获取
+        //开启多端未读状态同步
+        RCIM.shared().enableSyncReadStatus = true
+        //设置显示未注册的消息
+        //如：新版本增加了某种自定义消息，但是老版本不能识别，开发者可以在旧版本中预先自定义这种未识别的消息的显示
+        RCIM.shared().showUnkownMessage = true
+        RCIM.shared().showUnkownMessageNotificaiton = true
+        //群成员数据源
+        RCIM.shared().groupMemberDataSource = self
+        //开启消息@功能（只支持群聊和讨论组, App需要实现群成员数据源groupMemberDataSource）
+        RCIM.shared().enableMessageMentioned = true
+        //开启消息撤回功能
+        RCIM.shared().enableMessageRecall = true
+//        "http:ggdhah"
+        let tocken = "HlMfHYJvmEo44W/F61LuabRpUvcyPvtcBAE1MtjZHcdpH5OG47jQeT0W+LiJ7xaXIo0E1Fqz0Ymon0nAvrYU9OIT31DubvNL"//这个值从后台获取/BXSBnDD+hltcIS814LpyrRpUvcyPvtcBAE1MtjZHcdpH5OG47jQef897cW8KqvRjWjSrSRDTIWon0nAvrYU9GXAL9HR+6f1
         RCIM.shared().connect(withToken: tocken, success: { (resultInfo) in
             DebugLog(message: "登录融云成功");
             DispatchQueue.main.async {//回主线程操作
+                RCIM.shared().userInfoDataSource = self
+                let model = RCUserInfo.init(userId: "18980898159", name: "zzy123", portrait: "ggggg");
+                RCIM.shared().currentUserInfo = model
                 
             }
             
@@ -101,5 +123,27 @@ class OtherApplication: NSObject,WXApiDelegate,JPUSHRegisterDelegate,RCIMUserInf
             complection(true)
         }
     }
-    
+
+}
+
+extension OtherApplication//RCIMConnectionStatusDelegate
+{
+    func onRCIMConnectionStatusChanged(_ status: RCConnectionStatus) {
+        print("与融云连接状态发生改变")
+    }
+//    func getGroupInfo(withGroupId groupId: String!, completion: ((RCGroup?) -> Void)!) {
+//        if (groupId.count == 0) { return}
+//
+//        //请求自己的服务器得到group的信息
+//        completion(RCDGroupInfo())
+//    }
+    func onRCIMReceive(_ message: RCMessage!, left: Int32) {
+        if message.content.isMember(of: RCInformationNotificationMessage.self) {
+            let msg:RCInformationNotificationMessage =  RCInformationNotificationMessage.notification(withMessage: message.content.conversationDigest(), extra: message.extra)
+            print("appdelegate中接收到消息通知\(msg.message)")
+        }
+        
+        //        RCInformationNotificationMessage *msg = (RCInformationNotificationMessage *)message.content;
+        
+    }
 }

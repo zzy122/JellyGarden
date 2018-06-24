@@ -29,7 +29,7 @@ class ApplyOperationView: UIView {
     }
     @IBOutlet weak var bottomView: UIView!
     @IBAction func clickStatusBtn(_ sender: UIButton) {
-      zzy.router(name: ClickReportName, object: nil, info: self.tag)
+      zzy.router(name: ClickEnlistBtn, object: nil, info: self.tag)
         
     }
     @IBOutlet weak var ApplyStatus: UIButton!

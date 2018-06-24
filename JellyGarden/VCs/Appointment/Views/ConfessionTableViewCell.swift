@@ -36,6 +36,7 @@ class ConfessionTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDa
     
     var detailModel:lonelySpeechDetaileModel? {
         didSet{
+            self.headerView.headerImage.sd_DownLoadImage(url: detailModel?.poster?.avatar ?? "")
             self.headerView.headerImage.image = imageName(name: detailModel?.poster?.avatar ?? "")
             let sexStr = (detailModel?.poster?.sex! == 0) ? "男1" : "女1"
             self.headerView.nikeName.text = detailModel?.poster?.nickname

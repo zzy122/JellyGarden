@@ -87,7 +87,7 @@ let APPCustomGrayColor = UIColor.init(red: 238.0 / 255.0, green: 238.0 / 255.0, 
 let APPCustomBtnColor = UIColor.init(red: 84.0 / 255.0, green: 131.0 / 255.0, blue: 204.0 / 255.0, alpha: 1.0)
 let customBackViewColor = k_CustomColor(red: 243, green: 245, blue: 249)
 let RongIMKey = "ik1qhw09ip0hp"//融云key
-var RongIMToken = ""//融云token
+
 
 
 let JPushNOtification = "JPushNOtification"//收到信鸽推送发送通知

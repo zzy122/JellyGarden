@@ -31,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         OtherApplication.share.setYumeng()
+        OtherApplication.share.setRongIM()
 //        OtherApplication.share.setWeiChatPay()
         // Override point for customization after application launch.
         return true

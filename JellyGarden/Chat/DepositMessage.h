@@ -25,6 +25,8 @@
  */
 @property(nonatomic, strong) NSString *amotStr;
 
+@property(nonatomic,strong) NSNumber* isPay;
+
 
 /*!
  初始化测试消息
