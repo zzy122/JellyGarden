@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RedPacketCell : UIView
+@interface RedPacketCell : RCMessageCell
 
 @end

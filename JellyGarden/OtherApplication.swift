@@ -36,6 +36,7 @@ class OtherApplication: NSObject,WXApiDelegate,JPUSHRegisterDelegate,RCIMUserInf
         RCIM.shared().initWithAppKey(RongIMKey)
         RCIM.shared().registerMessageType(DepositMessage.self)
         RCIM.shared().registerMessageType(TagStatueMessage.self)
+        RCIM.shared().registerMessageType(ReadDestroyMessage.self)
         //开启发送已读回执
         RCIM.shared().enabledReadReceiptConversationTypeList = [NSNumber.init(value: UInt8(RCConversationType.ConversationType_PRIVATE.rawValue)),NSNumber.init(value: UInt8(RCConversationType.ConversationType_DISCUSSION.rawValue)),NSNumber.init(value: UInt8(RCConversationType.ConversationType_GROUP.rawValue))]
         //链接融云
@@ -73,6 +74,7 @@ class OtherApplication: NSObject,WXApiDelegate,JPUSHRegisterDelegate,RCIMUserInf
         entity.types = Int(UInt8(JPAuthorizationOptions.alert.rawValue) | UInt8(JPAuthorizationOptions.badge.rawValue) | UInt8(JPAuthorizationOptions.sound.rawValue))
         
         JPUSHService.register(forRemoteNotificationConfig: entity, delegate: self)
+        
 //        if ( @available(iOS 8.0,*))
 //        {
 //

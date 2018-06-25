@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import Photos
 let PLUGIN_BOARD_DEPOSIT_FILE_TAG = 2004//定金
 let PLUGIN_BOARD_GIFT_FILE_TAG = 2005//礼物
 let PLUGIN_BOARD_VIDEO_FILE_TAG = 2001//视频通话
 let PLUGIN_BOARD_READ_FILE_TAG = 2002//阅后即焚
 let PLUGIN_BOARD_REDBAG_FILE_TAG = 2003//红包
-class ChatRoomViewController: RCConversationViewController,RCRealTimeLocationObserver {
+class ChatRoomViewController: RCConversationViewController,RCRealTimeLocationObserver,PhotoPickerControllerDelegate {
     var realTimeLocation:RCRealTimeLocationProxy?
     
     override func viewDidLoad() {
@@ -55,6 +56,7 @@ class ChatRoomViewController: RCConversationViewController,RCRealTimeLocationObs
         
         self.register(DepositMessageCell.self, forMessageClass: DepositMessage.self)//自定义收取定金消息
         self.register(TagStatueCell.self, forMessageClass: TagStatueMessage.self)
+        self.register(ReadDestroyCell.self, forMessageClass: ReadDestroyMessage.self)
         // Do any additional setup after loading the view.
     }
     override func pluginBoardView(_ pluginBoardView: RCPluginBoardView!, clickedItemWithTag tag: Int) {
@@ -62,10 +64,17 @@ class ChatRoomViewController: RCConversationViewController,RCRealTimeLocationObs
         case PLUGIN_BOARD_REDBAG_FILE_TAG://红包
             break
         case PLUGIN_BOARD_READ_FILE_TAG://阅后即焚
+            let vc = QPPhotoPickerViewController(type: PageType.AllAlbum)
+            vc.imageSelectDelegate = self
+            //最大照片数量
+            vc.imageMaxSelectedNum = 1
+            self.present(vc, animated: true, completion: nil)
             break
         case PLUGIN_BOARD_VIDEO_FILE_TAG://视频
+            alertHud(title: "收费项目");
             break
         case PLUGIN_BOARD_GIFT_FILE_TAG://礼物
+            alertHud(title: "待定功能")
             break
         case PLUGIN_BOARD_DEPOSIT_FILE_TAG://收定金
             let mess = TagStatueMessage.init(content: "")
@@ -143,6 +152,11 @@ class ChatRoomViewController: RCConversationViewController,RCRealTimeLocationObs
         }
         
     }
+    override func didLongTouchMessageCell(_ model: RCMessageModel!, in view: UIView!) {//长按
+        super.didLongTouchMessageCell(model, in: view)
+        
+        
+    }
 
     /*
     // MARK: - Navigation
@@ -154,4 +168,16 @@ class ChatRoomViewController: RCConversationViewController,RCRealTimeLocationObs
     }
     */
 
+}
+extension ChatRoomViewController
+{
+    //添加照片的协议方法
+    func onImageSelectFinished(images: [PHAsset]) {
+        QPPhotoDataAndImage.getImagesAndDatas(photos: images) { (array) in
+            //发送阅后即焚消息
+            MM_WARNING
+            
+        }
+    }
+    
 }

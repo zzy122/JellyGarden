@@ -39,6 +39,9 @@
 
 #import "RealTimeLocationViewController.h"
 #import "RealTimeLocationEndCell.h"
+//阅后即焚model
+#import "ReadDestroyMessage.h"
+#import "ReadDestroyCell.h"
 
 #import "UIResponder+Router.h"
 

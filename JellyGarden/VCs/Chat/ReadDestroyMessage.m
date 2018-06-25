@@ -10,14 +10,6 @@
 
 @implementation ReadDestroyMessage
 
-+ (instancetype)messageWithContent:(NSString *)content {
-    ReadDestroyMessage *text = [[ReadDestroyMessage alloc] init];
-//    if (text) {
-//        text.amotStr = content;
-//    }
-    
-    return text;
-}
 
 ///消息是否存储，是否计入未读数
 + (RCMessagePersistent)persistentFlag {
@@ -28,22 +20,22 @@
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super init];
     if (self) {
-//        self.amotStr = [aDecoder decodeObjectForKey:@"amotStr"];
+        self.isRead = [aDecoder decodeObjectForKey:@"isRead"];
     }
     return self;
 }
 
 /// NSCoding
 - (void)encodeWithCoder:(NSCoder *)aCoder {
-//    [aCoder encodeObject:self.amotStr forKey:@"amotStr"];
+    [aCoder encodeObject:self.isRead forKey:@"isRead"];
+
 }
 
 ///将消息内容编码成json
 - (NSData *)encode {
     NSMutableDictionary *dataDict = [NSMutableDictionary dictionary];
-//    [dataDict setObject:self.amotStr forKey:@"amotStr"];
-//    [dataDict setObject:self.isPay forKey:@"isPay"];
-//
+
+    [dataDict setObject:self.isRead forKey:@"isRead"];
     
     if (self.senderUserInfo) {
         NSMutableDictionary *userInfoDic = [[NSMutableDictionary alloc] init];
@@ -70,8 +62,7 @@
         NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
         
         if (dictionary) {
-//            self.amotStr = dictionary[@"amotStr"];
-//            self.isPay = dictionary[@"isPay"];
+            self.isRead = dictionary[@"isRead"];
             NSDictionary *userinfoDic = dictionary[@"user"];
             [self decodeUserInfo:userinfoDic];
         }
@@ -80,13 +71,12 @@
 
 /// 会话列表中显示的摘要
 - (NSString *)conversationDigest {
-//    return self.amotStr;
-    return @"";
+
+    return @"图片";
 }
 
 ///消息的类型名
 + (NSString *)getObjectName {
-//    return RCDTestMessageTypeIdentifier;
     return @"";
 }
 /*

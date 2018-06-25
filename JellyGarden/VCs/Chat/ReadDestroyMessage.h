@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 #import <RongIMLib/RongIMLib.h>
 @interface ReadDestroyMessage : RCMessageContent
-
+@property(nonatomic,strong) NSNumber* isRead; //是否已读照片 0 未读 1已读
 @end
