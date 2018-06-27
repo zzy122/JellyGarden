@@ -28,6 +28,14 @@ class PackageView: UIView {
         view.layer.borderWidth = 3.0
         return view
     }
+    var model:VipPageModel?{
+        didSet{
+            self.origPriceLab.attributedText = getDeleteStr(str: String.init(format: "%d", model?.package_original_price ?? 0))
+            self.priceLab.attributedText = getPriceStr(str: String.init(format: "¥%d", model?.package_discount_price ?? 0)) 
+            self.descriptionLab.text = model?.package_name
+        }
+    }
+    
    
     func getPriceStr(str:String) -> NSMutableAttributedString {
         let aStr = NSMutableAttributedString.init(string: str)

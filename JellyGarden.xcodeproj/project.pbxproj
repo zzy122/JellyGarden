@@ -94,6 +94,7 @@
 		5A459AEF20D3B60400C0A6FA /* ManPersonInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A459AEE20D3B60400C0A6FA /* ManPersonInfoViewController.swift */; };
 		5A459AF120D3E9F500C0A6FA /* ManpersonInfoHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A459AF020D3E9F500C0A6FA /* ManpersonInfoHeader.swift */; };
 		5A459AF320D3EA2D00C0A6FA /* ManpersonInfoHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A459AF220D3EA2D00C0A6FA /* ManpersonInfoHeader.xib */; };
+		5A45D9D720E27A0800D2B4CE /* VipPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A45D9D620E27A0800D2B4CE /* VipPageModel.swift */; };
 		5A4E322620C782E60051FE00 /* InvitationCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4E322420C782E60051FE00 /* InvitationCodeViewController.swift */; };
 		5A4E322720C782E60051FE00 /* InvitationCodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A4E322520C782E60051FE00 /* InvitationCodeViewController.xib */; };
 		5A4E322A20C792540051FE00 /* ApplayForCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4E322820C792540051FE00 /* ApplayForCodeViewController.swift */; };
@@ -183,6 +184,11 @@
 		5A80C50A20C018600033CAF8 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A80C50920C018600033CAF8 /* CoreMotion.framework */; };
 		5A99B66920D7C67100371B6F /* WCLRecordVideoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A99B66720D7C67100371B6F /* WCLRecordVideoVC.m */; };
 		5A99B66A20D7C67100371B6F /* WCLRecordVideoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A99B66820D7C67100371B6F /* WCLRecordVideoVC.xib */; };
+		5AB8F47620E1F45100429108 /* LookDestoryImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB8F47520E1F45000429108 /* LookDestoryImage.swift */; };
+		5AB8F47820E2136800429108 /* MessgeCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB8F47720E2136800429108 /* MessgeCenterViewController.swift */; };
+		5AB8F47F20E221FA00429108 /* SystemMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB8F47D20E221FA00429108 /* SystemMessageTableViewCell.swift */; };
+		5AB8F48020E221FA00429108 /* SystemMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AB8F47E20E221FA00429108 /* SystemMessageTableViewCell.xib */; };
+		5AB8F48220E22F2200429108 /* SystemMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB8F48120E22F2200429108 /* SystemMessageViewController.swift */; };
 		5AC3FCDF20D9E86800226946 /* StepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC3FCDE20D9E86700226946 /* StepView.swift */; };
 		5AC3FCE320D9E8A400226946 /* StepView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AC3FCE220D9E8A400226946 /* StepView.xib */; };
 		5AC3FCE520DA01DF00226946 /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC3FCE420DA01DF00226946 /* LineView.swift */; };
@@ -373,6 +379,7 @@
 		5A459AEE20D3B60400C0A6FA /* ManPersonInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManPersonInfoViewController.swift; sourceTree = "<group>"; };
 		5A459AF020D3E9F500C0A6FA /* ManpersonInfoHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManpersonInfoHeader.swift; sourceTree = "<group>"; };
 		5A459AF220D3EA2D00C0A6FA /* ManpersonInfoHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ManpersonInfoHeader.xib; sourceTree = "<group>"; };
+		5A45D9D620E27A0800D2B4CE /* VipPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VipPageModel.swift; sourceTree = "<group>"; };
 		5A4E322420C782E60051FE00 /* InvitationCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationCodeViewController.swift; sourceTree = "<group>"; };
 		5A4E322520C782E60051FE00 /* InvitationCodeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InvitationCodeViewController.xib; sourceTree = "<group>"; };
 		5A4E322820C792540051FE00 /* ApplayForCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplayForCodeViewController.swift; sourceTree = "<group>"; };
@@ -472,6 +479,11 @@
 		5A99B66620D7C67100371B6F /* WCLRecordVideoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCLRecordVideoVC.h; sourceTree = "<group>"; };
 		5A99B66720D7C67100371B6F /* WCLRecordVideoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCLRecordVideoVC.m; sourceTree = "<group>"; };
 		5A99B66820D7C67100371B6F /* WCLRecordVideoVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WCLRecordVideoVC.xib; sourceTree = "<group>"; };
+		5AB8F47520E1F45000429108 /* LookDestoryImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookDestoryImage.swift; sourceTree = "<group>"; };
+		5AB8F47720E2136800429108 /* MessgeCenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessgeCenterViewController.swift; sourceTree = "<group>"; };
+		5AB8F47D20E221FA00429108 /* SystemMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMessageTableViewCell.swift; sourceTree = "<group>"; };
+		5AB8F47E20E221FA00429108 /* SystemMessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SystemMessageTableViewCell.xib; sourceTree = "<group>"; };
+		5AB8F48120E22F2200429108 /* SystemMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMessageViewController.swift; sourceTree = "<group>"; };
 		5AC3FCDE20D9E86700226946 /* StepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepView.swift; sourceTree = "<group>"; };
 		5AC3FCE220D9E8A400226946 /* StepView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StepView.xib; sourceTree = "<group>"; };
 		5AC3FCE420DA01DF00226946 /* LineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
@@ -608,6 +620,7 @@
 		5A015E9820C511C500EC8A96 /* LoginOrRegistr */ = {
 			isa = PBXGroup;
 			children = (
+				5A45D9D520E279EC00D2B4CE /* Models */,
 				5A4E324F20C7B6640051FE00 /* Views */,
 				5A015E9D20C5173E00EC8A96 /* VCs */,
 				5A459ADC20D2095B00C0A6FA /* UserLoginAction.swift */,
@@ -733,6 +746,9 @@
 				5A1F3ACC20E0EA2A00CB98CD /* ReadDestroryView.h */,
 				5A1F3ACD20E0EA2A00CB98CD /* ReadDestroryView.m */,
 				5A1F3ACF20E0EA3C00CB98CD /* ReadDestroryView.xib */,
+				5AB8F47520E1F45000429108 /* LookDestoryImage.swift */,
+				5AB8F47D20E221FA00429108 /* SystemMessageTableViewCell.swift */,
+				5AB8F47E20E221FA00429108 /* SystemMessageTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -742,6 +758,8 @@
 			children = (
 				5AE9CC9020C8D9AE0057CFF3 /* ChatListViewController.swift */,
 				5A120C4E20DD3CDD004A9DCF /* ChatRoomViewController.swift */,
+				5AB8F47720E2136800429108 /* MessgeCenterViewController.swift */,
+				5AB8F48120E22F2200429108 /* SystemMessageViewController.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -777,6 +795,14 @@
 			isa = PBXGroup;
 			children = (
 				5A459AE520D278FD00C0A6FA /* MainListmodel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		5A45D9D520E279EC00D2B4CE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5A45D9D620E27A0800D2B4CE /* VipPageModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1265,7 +1291,7 @@
 					5A80C48E20BFDB150033CAF8 = {
 						CreatedOnToolsVersion = 9.1;
 						LastSwiftMigration = 0910;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 1;
@@ -1356,6 +1382,7 @@
 				5AF4A75320D6260100CFDDD6 /* EnlistAppiontViewController.xib in Resources */,
 				5A574C0B20CA397A00C59276 /* LookImageBodyView.xib in Resources */,
 				5A80C49A20BFDB150033CAF8 /* Assets.xcassets in Resources */,
+				5AB8F48020E221FA00429108 /* SystemMessageTableViewCell.xib in Resources */,
 				5ACEFC8220D4F6E000BE5241 /* NormalAppointmentViewController.xib in Resources */,
 				5A015EC920C5834D00EC8A96 /* SexViewController.xib in Resources */,
 				5A80C49820BFDB150033CAF8 /* Main.storyboard in Resources */,
@@ -1614,12 +1641,14 @@
 				5A80C4D120BFE1050033CAF8 /* ShowShadow.swift in Sources */,
 				5ADD1A3020C952FB004504B3 /* PersonalInfoHeader.swift in Sources */,
 				5AF4A75220D6260100CFDDD6 /* EnlistAppiontViewController.swift in Sources */,
+				5A45D9D720E27A0800D2B4CE /* VipPageModel.swift in Sources */,
 				5A80C4CE20BFE1050033CAF8 /* NetCostom.swift in Sources */,
 				5AE9CC8720C8C8D70057CFF3 /* LocationCitys.swift in Sources */,
 				5A1F3ABC20DF6CA700CB98CD /* RCLocationView.m in Sources */,
 				5A80C4D520BFE1620033CAF8 /* APPCustomDefine.swift in Sources */,
 				5A7CEC6720D531DC00B7A7C9 /* QPPhotoFetchOptions.swift in Sources */,
 				5A015EBD20C577F200EC8A96 /* RegisterViewController.swift in Sources */,
+				5AB8F47F20E221FA00429108 /* SystemMessageTableViewCell.swift in Sources */,
 				5A459ACD20D166A400C0A6FA /* ZZYFramParserConfig.m in Sources */,
 				5AEC51A620C910EF00DD0099 /* MainUserListTableViewCell.swift in Sources */,
 				5AEC519520C907A100DD0099 /* SearchUserViewController.swift in Sources */,
@@ -1635,6 +1664,7 @@
 				5A80C4CF20BFE1050033CAF8 /* CustomProtocol.swift in Sources */,
 				5A1F3AB920DF6CA700CB98CD /* RCAnnotation.m in Sources */,
 				5A459AD320D166A400C0A6FA /* TextStyle.m in Sources */,
+				5AB8F48220E22F2200429108 /* SystemMessageViewController.swift in Sources */,
 				5A7CEC7320D5331100B7A7C9 /* QPPhotoModel.swift in Sources */,
 				5A0455C820CD2DF80041D309 /* RelationTypeAlert.swift in Sources */,
 				5AEC519320C902C300DD0099 /* ImageRightBtn.swift in Sources */,
@@ -1655,6 +1685,7 @@
 				5A459AB420D1617E00C0A6FA /* ApplyOperationView.swift in Sources */,
 				5A80C4DD20BFE5780033CAF8 /* CustomNavigationViewController.swift in Sources */,
 				5A1F3ABF20DF6CA700CB98CD /* RealTimeLocationStatusView.m in Sources */,
+				5AB8F47820E2136800429108 /* MessgeCenterViewController.swift in Sources */,
 				5A459AD420D166A400C0A6FA /* ZZYFrameParser.m in Sources */,
 				5A1F3AA020DF35E600CB98CD /* TagStatueCell.m in Sources */,
 				5A015ECB20C5864700EC8A96 /* FillInformationViewController.swift in Sources */,
@@ -1691,6 +1722,7 @@
 				5AFA3B6D20D78AE40052FC42 /* WCLRecordProgressView.m in Sources */,
 				5A4E326820C7B6650051FE00 /* XIeyiWarmView.swift in Sources */,
 				5A574BF320C97FCD00C59276 /* UserInfoTabbar.swift in Sources */,
+				5AB8F47620E1F45100429108 /* LookDestoryImage.swift in Sources */,
 				5A7CEC6D20D5324400B7A7C9 /* AlbumToolbarView.swift in Sources */,
 				5AE9CC9320C8DEEF0057CFF3 /* BaseMainViewController.swift in Sources */,
 				5A4E322D20C7A1FB0051FE00 /* FillInformationThirdViewController.swift in Sources */,
@@ -1901,8 +1933,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = JellyGarden/JellyGarden.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = V7993MA8C9;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 3W4VK75454;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1918,10 +1950,10 @@
 					"$(PROJECT_DIR)/JellyGarden/Library/XGPUSH",
 					"$(PROJECT_DIR)/JellyGarden/Library/JsmsSDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "cn.com.JellyGarden-test";
+				PRODUCT_BUNDLE_IDENTIFIER = cn.com.JellyGarden;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "7c09b77d-7d26-41ae-b8fb-2e68837b1acd";
+				PROVISIONING_PROFILE_SPECIFIER = JellyGardenDevelpmentProfile;
 				SWIFT_OBJC_BRIDGING_HEADER = "JellyGarden/JellyGarden-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1939,8 +1971,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = JellyGarden/JellyGarden.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = V7993MA8C9;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 3W4VK75454;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1956,10 +1988,10 @@
 					"$(PROJECT_DIR)/JellyGarden/Library/XGPUSH",
 					"$(PROJECT_DIR)/JellyGarden/Library/JsmsSDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "cn.com.JellyGarden-test";
+				PRODUCT_BUNDLE_IDENTIFIER = cn.com.JellyGarden;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "7c09b77d-7d26-41ae-b8fb-2e68837b1acd";
+				PROVISIONING_PROFILE_SPECIFIER = JellyGardenDevelpmentProfile;
 				SWIFT_OBJC_BRIDGING_HEADER = "JellyGarden/JellyGarden-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
 				SWIFT_VERSION = 4.0;

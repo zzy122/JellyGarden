@@ -12,6 +12,7 @@ let BodyImageHeight = 90 * SCALE
 class PersonalInfoHeader: UIView {
     
     
+    @IBOutlet weak var VipLabl: UILabel!
     @IBOutlet weak var userInfoContentView: UIView!
     @IBOutlet weak var centerContentView: UIView!
     
@@ -64,6 +65,9 @@ class PersonalInfoHeader: UIView {
             hostLab.text = "\(hostStr)CM"
             bodyWeightLab.text = "\(bodyWeightStr)KG"
             bodyHeightLab.text = "\(bodyHeightStr)CM"
+            if let vip = userModel?.vip_level,vip > 0 {
+                self.VipLabl.isHidden = false
+            }
         }
     }
     
@@ -80,6 +84,9 @@ class PersonalInfoHeader: UIView {
         }
         //        view.backgroundColor = UIColor.clear
         view.headerImage.layer.cornerRadius = 35
+        view.VipLabl.layer.cornerRadius = 9
+        view.VipLabl.clipsToBounds = true
+        view.VipLabl.isHidden = true
         view.headerImage.clipsToBounds = true
         view.centerContentView.layer.cornerRadius = 8
         view.centerContentView.clipsToBounds = true

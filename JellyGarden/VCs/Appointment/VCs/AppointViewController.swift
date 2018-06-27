@@ -239,7 +239,7 @@ extension AppointViewController
                 return
             }
             let model:lonelySpeechDetaileModel = appiontModels![index]
-            let appointment_id = model.poster?.user_id
+            let appointment_id = model.appointment_id
             if let like = model.is_like,like//取消赞
             {
                 TargetManager.share.cancelLikeAppiont(appointment_id: appointment_id, complection: { (result, error) in

@@ -24,6 +24,7 @@ class TargetManager: NSObject {
                 complection(model.resultData,nil)
             }) { (error) in
                 complection(nil,error)
+                
             }
     }
     //获取用户config信息
@@ -201,5 +202,75 @@ class TargetManager: NSObject {
             complection(nil,error)
         }
     }
+    //转账
+    func transfer(params:[String:Any]?,complection:@escaping (Bool,Error?) -> Void)
+    {
+        NetCostom.shared.request(method: .post, wengen: "transfer", params: params, success: { (result) in
+            complection(true,nil)
+        }) { (error) in
+            complection(false,error)
+        }
+    }
+    //钱包充值
+    func wallatRecharge(params:[String:Any]?,complection:@escaping (Bool,Error?) -> Void)
+    {
+        NetCostom.shared.request(method: .post, wengen: "recharge", params: params, success: { (result) in
+            complection(true,nil)
+        }) { (error) in
+            complection(false,error)
+        }
+    }
+    func withdrawal(params:[String:Any]?,complection:@escaping (Bool,Error?) -> Void) {
+        NetCostom.shared.request(method: .post, wengen: "withdrawal", params: params, success: { (result) in
+            complection(true,nil)
+        }) { (error) in
+            complection(false,error)
+        }
+    }
+    //vip套餐
+    func getVipPackages(complection:@escaping ([VipPageModel]?,Error?) -> Void)
+    {
+        NetCostom.shared.request(method: .get, wengen: "vip/packages", params: nil, success: { (result) in
+            if let jsonStr = result as? [String:Any]
+            {
+                let model = BaseModel<VipPageModel,[VipPageModel]>.init(resultData: jsonStr["data"] ?? "")
+                complection(model.resultData,nil)
+            }
+            else
+            {
+                alertHud(title: "数据返回错误")
+            }
+        }) { (error) in
+            
+        }
+    }
+    //购买套餐
+    func vipBuy(params:[String:Any]?,complection:@escaping (Bool,Error?) -> Void)
+    {
+        NetCostom.shared.request(method: .post, wengen: "vip/buy", params: params, success: { (result) in
+            complection(true,nil)
+        }) { (error) in
+            complection(false,error)
+        }
+    }
+    //邀请码
+    func inviteCode(params:[String:Any]?,complection:@escaping (Bool,Error?) -> Void)
+    {
+        NetCostom.shared.request(method: .post, wengen: "inviteCode", params: params, success: { (result) in
+            complection(true,nil)
+        }) { (error) in
+            complection(false,error)
+        }
+    }
+    //验证邀请码
+    func inviteCodeBind(params:[String:Any]?,complection:@escaping (Bool,Error?) -> Void)
+    {
+        NetCostom.shared.request(method: .post, wengen: "inviteCode/bind", params: params, success: { (result) in
+            complection(true,nil)
+        }) { (error) in
+            complection(false,error)
+        }
+    }
+
 }
 

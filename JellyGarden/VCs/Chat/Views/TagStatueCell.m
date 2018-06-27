@@ -11,7 +11,7 @@
 @implementation TagStatueCell
 + (CGSize)sizeForMessageModel:(RCMessageModel *)model withCollectionViewWidth:(CGFloat)collectionViewWidth referenceExtraHeight:(CGFloat)extraHeight
 {
-    return CGSizeMake(collectionViewWidth, 60);
+    return CGSizeMake(collectionViewWidth, 21 + extraHeight);
 
 }
 - (instancetype)initWithFrame:(CGRect)frame
@@ -29,7 +29,7 @@
         _StautLable.textColor = [UIColor whiteColor];
         _StautLable.layer.cornerRadius = 9.0;
         _StautLable.textAlignment = NSTextAlignmentCenter;
-        [self.messageContentView addSubview:self.StautLable];
+        [self.baseContentView addSubview:self.StautLable];
         
       
     }
@@ -38,35 +38,36 @@
 - (void)setDataModel:(RCMessageModel *)model
 {
     model.conversationType = RC_CONVERSATION_MODEL_TYPE_CUSTOMIZATION;
-    model.isDisplayMessageTime = YES;
+    model.isDisplayMessageTime = NO;
     model.isDisplayNickname = false;
     model.readReceiptInfo.isReceiptRequestMessage = YES;//消息回执
     
     [super setDataModel:model];
     
-    self.nicknameLabel.hidden = YES;
+//    self.nicknameLabel.hidden = YES;
     
     if ([model.content isKindOfClass:[TagStatueMessage class]]) {
         [self setAutoLayout];
-        UIView* view = (UIView*)self.portraitImageView;
-        view.hidden = YES;
+//        UIView* view = (UIView*)self.portraitImageView;
+//        view.hidden = YES;
         
     }
     
 }
 - (void)setAutoLayout {
+//     CGFloat maxMessageLabelWidth = self.baseContentView.bounds.size.width - 30 * 2;
     
     CGRect statusLabFrame = self.StautLable.frame;
     NSString * str = self.getStuateStr;
-    
     self.StautLable.hidden = YES;
     //拉伸图片
-    self.messageContentView.frame = self.bounds;
+    self.baseContentView.frame = self.bounds;
     self.StautLable.hidden = NO;
     CGFloat width =   [self getStuateWidthStr:str withFont:[UIFont systemFontOfSize:13]];
     statusLabFrame = CGRectMake((CGRectGetWidth(self.contentView.bounds) - width) / 2.0, statusLabFrame.origin.y, width, statusLabFrame.size.height);
     self.StautLable.frame = statusLabFrame;
     self.StautLable.text = str;
+    
 }
 - (void)didTapMessageCell:(RCMessageModel *)model
 {
@@ -76,15 +77,22 @@
 - (NSString*)getStuateStr
 {
     NSString * str = nil;
-    if (self.model.messageDirection == MessageDirection_RECEIVE)
-    {
-        str = [NSString stringWithFormat:@"%@支付了你发起的定金",self.model.content.senderUserInfo.name];
+//    if (self.model.messageDirection == MessageDirection_RECEIVE)
+//    {
+//        str = [NSString stringWithFormat:@"%@支付了你发起的定金",self.model.content.senderUserInfo.name];
+//    }
+//    else
+//    {
+//        str = [NSString stringWithFormat:@"你支付了%@发起的定金",self.model.userInfo.name];
+//    }
+    
+    if ([self.model.content.senderUserInfo.name isEqualToString:[RCIM sharedRCIM].currentUserInfo.name]) {
+        return [NSString stringWithFormat:@"你支付了%@发起的定金",self.model.content.senderUserInfo.name];
     }
     else
     {
-        str = [NSString stringWithFormat:@"你支付了%@发起的定金",self.model.userInfo.name];
+        return  [NSString stringWithFormat:@"%@支付了你发起的定金",self.model.content.senderUserInfo.name];
     }
-    
     return str;
 }
 

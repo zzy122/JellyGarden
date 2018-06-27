@@ -21,6 +21,24 @@ class ApplayForCodeViewController: BaseViewController {
     }
 
     @IBAction func clickAplayBtn(_ sender: UIButton) {
+        guard let localStr = localCityTextfiled.text,localStr.count > 0 else {
+           alertHud(title: "请输入所在地")
+            return
+        }
+        guard let channal = messageFiled.text,channal.count > 0 else {
+            alertHud(title: "请输入信息渠道")
+            return
+        }
+        guard let wxStr = wechatAccountFiled.text,wxStr.count > 0 else {
+            alertHud(title: "请输入微信号")
+            return
+        }
+        
+        let params:[String:Any] = ["":"","":"","":""]
+        
+        if let sugesStr = suggestPersonFiled.text,sugesStr.count > 0 {
+            
+        }
         self.navigationController?.pushViewController(FillInformationThirdViewController(), animated: true)
     }
     override func didReceiveMemoryWarning() {

@@ -35,6 +35,12 @@ struct userInfo:JSON {
      var weight:Int?
      var sex:Int?// 0 男 1女
      var appointment_place:[String]?//约会范围
+    var vip_expire_time:Int?
+    var vip_level:Int?
+    var balance:Int?
+    
+    
+    
 }
 
 struct UserModel:JSON {

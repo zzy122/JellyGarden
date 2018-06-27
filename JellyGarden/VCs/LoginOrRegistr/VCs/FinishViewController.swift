@@ -17,6 +17,7 @@ class FinishViewController: BaseViewController {
         super.viewDidLoad()
         self.registerBtn.layer.borderWidth = 1.0
         registerBtn.layer.borderColor = APPCustomBtnColor.cgColor
+        clearUserInfo()
         self.autoLogin()
         // Do any additional setup after loading the view.
     }
@@ -72,7 +73,10 @@ class FinishViewController: BaseViewController {
         self.navigationController?.pushViewController(RegisterViewController(), animated: true)
     }
     @IBAction func loginBtn(_ sender: UIButton) {
-        self.navigationController?.pushViewController(LoginVIewController(), animated: true)
+        let vc = VipCenterViewController()
+        vc.isHaveUserHeader = false
+        self.navigationController?.pushViewController(vc, animated: true)
+//        self.navigationController?.pushViewController(LoginVIewController(), animated: true)
         
     }
     override func didReceiveMemoryWarning() {

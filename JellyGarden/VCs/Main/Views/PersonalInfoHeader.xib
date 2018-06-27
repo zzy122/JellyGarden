@@ -25,7 +25,7 @@
                     <rect key="frame" x="10" y="90" width="355" height="150"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="昵称" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FAy-84-Uui">
-                            <rect key="frame" x="0.0" y="43" width="355" height="21"/>
+                            <rect key="frame" x="160" y="43" width="35" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="whc-hg-P6c"/>
                             </constraints>
@@ -85,6 +85,17 @@
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VIP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MLV-Lr-MI1">
+                            <rect key="frame" x="205" y="44.5" width="42" height="18"/>
+                            <color key="backgroundColor" red="1" green="0.5490196078431373" blue="0.19215686274509802" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="42" id="2Q5-dI-IuQ"/>
+                                <constraint firstAttribute="height" constant="18" id="gdV-mV-7vD"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -94,16 +105,16 @@
                         <constraint firstAttribute="height" constant="150" id="GCW-ir-9WY"/>
                         <constraint firstItem="DRi-EY-0cV" firstAttribute="centerX" secondItem="sZF-hN-Krq" secondAttribute="centerX" constant="20" id="H9S-UH-lDt"/>
                         <constraint firstItem="Q5M-Do-hci" firstAttribute="centerY" secondItem="pQb-fP-Bop" secondAttribute="centerY" id="Xcj-JX-1w7"/>
-                        <constraint firstAttribute="trailing" secondItem="FAy-84-Uui" secondAttribute="trailing" id="YKl-Wb-pf9"/>
                         <constraint firstAttribute="trailing" secondItem="1Xh-Ds-c2n" secondAttribute="trailing" id="YNl-V1-fs2"/>
                         <constraint firstItem="Q5M-Do-hci" firstAttribute="leading" secondItem="pQb-fP-Bop" secondAttribute="trailing" constant="5" id="YQv-A4-wBG"/>
                         <constraint firstItem="DRi-EY-0cV" firstAttribute="top" secondItem="GYF-zN-CZy" secondAttribute="bottom" constant="10" id="YWo-s0-Oml"/>
                         <constraint firstItem="GYF-zN-CZy" firstAttribute="centerX" secondItem="sZF-hN-Krq" secondAttribute="centerX" id="Z9O-kV-IMu"/>
                         <constraint firstItem="FAy-84-Uui" firstAttribute="top" secondItem="sZF-hN-Krq" secondAttribute="top" constant="43" id="Zy9-gg-gL3"/>
                         <constraint firstItem="1Xh-Ds-c2n" firstAttribute="top" secondItem="FAy-84-Uui" secondAttribute="bottom" constant="5" id="bqI-en-pAf"/>
+                        <constraint firstItem="MLV-Lr-MI1" firstAttribute="leading" secondItem="FAy-84-Uui" secondAttribute="trailing" constant="10" id="csj-nt-9Xr"/>
                         <constraint firstItem="GYF-zN-CZy" firstAttribute="centerY" secondItem="Q5M-Do-hci" secondAttribute="centerY" id="e90-S1-lfh"/>
+                        <constraint firstItem="MLV-Lr-MI1" firstAttribute="centerY" secondItem="FAy-84-Uui" secondAttribute="centerY" id="eHt-lY-mwD"/>
                         <constraint firstItem="DRi-EY-0cV" firstAttribute="centerY" secondItem="RDF-Cd-tb3" secondAttribute="centerY" id="hBj-eA-QQd"/>
-                        <constraint firstItem="FAy-84-Uui" firstAttribute="leading" secondItem="sZF-hN-Krq" secondAttribute="leading" id="iuO-FD-JDW"/>
                         <constraint firstItem="FAy-84-Uui" firstAttribute="centerX" secondItem="sZF-hN-Krq" secondAttribute="centerX" id="ms9-JJ-s0I"/>
                         <constraint firstItem="675-fr-WLa" firstAttribute="leading" secondItem="GYF-zN-CZy" secondAttribute="trailing" constant="5" id="nHs-74-IaQ"/>
                         <constraint firstItem="GYF-zN-CZy" firstAttribute="leading" secondItem="Q5M-Do-hci" secondAttribute="trailing" constant="10" id="neh-4z-bpU"/>
@@ -254,6 +265,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="ImageContentView" destination="YTz-Aq-zbU" id="zy8-Hr-962"/>
+                <outlet property="VipLabl" destination="MLV-Lr-MI1" id="PDw-dt-Niv"/>
                 <outlet property="attestationDetailLab" destination="DRi-EY-0cV" id="M0F-hj-axs"/>
                 <outlet property="attestationLab" destination="RDF-Cd-tb3" id="uyL-ZJ-6Wj"/>
                 <outlet property="bodyHeightLab" destination="xZZ-wS-a8O" id="h2S-IN-4hE"/>

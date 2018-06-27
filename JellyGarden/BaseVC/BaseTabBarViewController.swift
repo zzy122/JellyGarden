@@ -38,7 +38,7 @@ class BaseTabBarViewController: UITabBarController ,UITabBarControllerDelegate{
         item2.title = "寂寞告白"
         test2Nv.tabBarItem = item2
         
-        let test3 = ChatListViewController()
+        let test3 = MessgeCenterViewController()
         let test3Nv = CustomNavigationViewController.init(rootViewController: test3)
         let item3 = UITabBarItem()
         item3.image = imageName(name: "消息")

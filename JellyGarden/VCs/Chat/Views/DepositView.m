@@ -18,7 +18,7 @@
 }
 - (void)createView{
     self.backgroundColor = [UIColor colorWithRed:1.0 green:151 / 255.0 blue:0 alpha:1];
-    UIImageView* imv = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"订金-1"]];
+    UIImageView* imv = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"订金"]];
     imv.frame = CGRectMake(15, 10, 34, 34);
     imv.layer.cornerRadius = 15;
     [self addSubview:imv];

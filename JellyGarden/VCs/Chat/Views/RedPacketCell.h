@@ -6,7 +6,7 @@
 //  Copyright © 2018年 zzy. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <RongIMKit/RongIMKit.h>
 
 @interface RedPacketCell : RCMessageCell
 

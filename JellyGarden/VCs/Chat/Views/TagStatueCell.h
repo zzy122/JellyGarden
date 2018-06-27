@@ -8,6 +8,6 @@
 #import <RongIMKit/RongIMKit.h>
 #import <UIKit/UIKit.h>
 
-@interface TagStatueCell : RCMessageCell
+@interface TagStatueCell : RCMessageBaseCell
 @property(nonatomic,strong)UILabel* StautLable;
 @end

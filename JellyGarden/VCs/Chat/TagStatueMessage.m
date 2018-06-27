@@ -12,7 +12,7 @@
 ///初始化
 + (instancetype)messageWithContent:(NSString *)content {
     TagStatueMessage *text = [[TagStatueMessage alloc] init];
-    
+//    text.amountStr = content;
     return text;
 }
 ///消息是否存储，是否计入未读数
@@ -24,19 +24,20 @@
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super init];
     if (self) {
+//        self.amountStr = [aDecoder decodeObjectForKey:@"amountStr"];
     }
     return self;
 }
 
 /// NSCoding
 - (void)encodeWithCoder:(NSCoder *)aCoder {
-
+//    [aCoder encodeObject:self.amountStr forKey:@"amountStr"];
 }
 
 ///将消息内容编码成json
 - (NSData *)encode {
     NSMutableDictionary *dataDict = [NSMutableDictionary dictionary];
-    
+//    [dataDict setObject:self.amountStr forKey:@"amountStr"];
     
     if (self.senderUserInfo) {
         NSMutableDictionary *userInfoDic = [[NSMutableDictionary alloc] init];
@@ -63,8 +64,10 @@
         NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
         
         if (dictionary) {
+//            self.amountStr = dictionary[@"amountStr"];
             NSDictionary *userinfoDic = dictionary[@"user"];
             [self decodeUserInfo:userinfoDic];
+            
         }
     }
 }
@@ -79,14 +82,7 @@
     {
        return  [NSString stringWithFormat:@"%@支付了你发起的定金",self.senderUserInfo.name];
     }
-//    if (self.payTag == 0) {
-//       return  [NSString stringWithFormat:@"%@支付了你发起的定金",self.senderUserInfo.name];
-//    }
-//    else
-//    {
-//
-//        return [NSString stringWithFormat:@"你支付了%@发起的定金",self.senderUserInfo.name];
-//    }
+
 }
 
 /*

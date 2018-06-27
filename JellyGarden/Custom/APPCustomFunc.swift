@@ -82,6 +82,17 @@ func continueString(strAry:[String]?,separetStr:String) -> String {
     }
     return str
 }
+//清除用户信息
+func clearUserInfo()
+{
+   try? FileManager.default.removeItem(atPath: UserPlist)
+}
+//添加照片的协议方法
+var UnreadCount:Int {
+    get {
+        return Int(RCIMClient.shared().getUnreadCount([NSNumber.init(value: UInt8(RCConversationType.ConversationType_PRIVATE.rawValue)),NSNumber.init(value: UInt8(RCConversationType.ConversationType_DISCUSSION.rawValue)),NSNumber.init(value: UInt8(RCConversationType.ConversationType_GROUP.rawValue)),NSNumber.init(value: UInt8(RCConversationType.ConversationType_APPSERVICE.rawValue)),NSNumber.init(value: UInt8(RCConversationType.ConversationType_SYSTEM.rawValue))]))
+    }
+}
 //手机号验证
 func verifyPhoneStr(phone:String?) -> Bool
 {

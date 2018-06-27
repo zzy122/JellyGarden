@@ -27,16 +27,16 @@
 
 /// NSCoding
 - (void)encodeWithCoder:(NSCoder *)aCoder {
+    [super encodeWithCoder:aCoder];
     [aCoder encodeObject:self.isRead forKey:@"isRead"];
-
 }
 
 ///将消息内容编码成json
 - (NSData *)encode {
+    [super encode];
     NSMutableDictionary *dataDict = [NSMutableDictionary dictionary];
 
     [dataDict setObject:self.isRead forKey:@"isRead"];
-    
     if (self.senderUserInfo) {
         NSMutableDictionary *userInfoDic = [[NSMutableDictionary alloc] init];
         if (self.senderUserInfo.name) {
@@ -56,6 +56,7 @@
 
 ///将json解码生成消息内容
 - (void)decodeWithData:(NSData *)data {
+    [super decodeWithData:data];
     if (data) {
         __autoreleasing NSError *error = nil;
         
@@ -63,21 +64,21 @@
         
         if (dictionary) {
             self.isRead = dictionary[@"isRead"];
+
             NSDictionary *userinfoDic = dictionary[@"user"];
             [self decodeUserInfo:userinfoDic];
         }
     }
 }
 
-/// 会话列表中显示的摘要
 - (NSString *)conversationDigest {
 
-    return @"图片";
+    return @"阅后即焚图片";
 }
 
 ///消息的类型名
 + (NSString *)getObjectName {
-    return @"";
+    return RCDestroyImageMessageTypeIdentifier;
 }
 /*
 // Only override drawRect: if you perform custom drawing.

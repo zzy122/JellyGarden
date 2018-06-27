@@ -18,6 +18,10 @@ class VipCenterViewController: BaseViewController,ResponderRouter {
         self.view.addSubview(scroll)
         return scroll
     }()
+    var pageModels:[VipPageModel]?
+    var currentModel:VipPageModel?
+    var autoPayBtn:UIButton = UIButton()
+    
     let selectedPayView = PaySelectView.createPaySelectView()!
     
     lazy var backView:UIView = {
@@ -26,6 +30,9 @@ class VipCenterViewController: BaseViewController,ResponderRouter {
         view1.backgroundColor = UIColor.clear
         return view1
     }()
+    override func viewWillLayoutSubviews() {
+        self.scrollView.frame = CGRect.init(x: 0, y: -64, width: ScreenWidth, height: ScreenHeight + 64)
+    }
     
     lazy var itemAry:[PackageView] = {
         let distance:CGFloat = 15.0
@@ -55,15 +62,33 @@ class VipCenterViewController: BaseViewController,ResponderRouter {
         super.viewDidLoad()
         self.title = "会员中心"
         self.createView()
-        
+        self.getPageData()
         // Do any additional setup after loading the view.
     }
+    func getPageData() {
+        TargetManager.share.getVipPackages { (models, erorr) in
+            guard let modeAry = models else
+            {
+                return
+            }
+            self.pageModels = modeAry
+            self.currentModel = modeAry.first
+            for i:Int in 0 ..< modeAry.count
+            {
+                let view1 = self.itemAry[i]
+                view1.model = modeAry[i]
+               
+            }
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white,NSAttributedStringKey.font:kFont_system20]
     }
     func createView() {
         topView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 200)
+        topView.backgroundColor = k_CustomColor(red: 18, green: 38, blue: 74)
         
         backView.insertSubview(topView, at: 0)
         let selectLable = creatLable(frame: CGRect.init(x: 20, y: 70, width: 200, height: 20), title: "选择套餐", font: kFont_SmallNormal, textColor: UIColor.white)
@@ -103,7 +128,7 @@ class VipCenterViewController: BaseViewController,ResponderRouter {
         backView.addSubview(selectedPayView)
         
         
-        let autoPayBtn:UIButton = UIButton.init(frame: CGRect.init(x: (ScreenWidth - 160) / 2.0, y: selectedPayView.tagFrame!.maxY + 20, width: 160, height: 30))
+        autoPayBtn.frame = CGRect.init(x: (ScreenWidth - 160) / 2.0, y: selectedPayView.tagFrame!.maxY + 20, width: 160, height: 30)
         autoPayBtn .setImage(imageName(name: "选中-方"), for: UIControlState.selected)
         autoPayBtn.setImage(imageName(name: "未选中-方"), for: UIControlState.normal)
         autoPayBtn.setTitle("自动续费会员7折", for: UIControlState.normal)
@@ -130,7 +155,28 @@ class VipCenterViewController: BaseViewController,ResponderRouter {
     }
     @objc func clickOpenBtn(sender:UIButton)
     {
-       self.navigationController?.pushViewController(RegisterViewController(), animated: true)
+        var param:[String:Any] = ["user_id":CurrentUserInfo?.data?.user_id ?? "","package_id":currentModel?.package_id ?? ""]
+        
+        if selectedPayView.aliPayBtn.isSelected {
+            param["channel"] = "alipay"
+        }
+        else
+        {
+            param["channel"] = "wx"
+        }
+        if autoPayBtn.isSelected {
+            param["is_discount"] = true
+        }
+        else
+        {
+            param["is_discount"] = false
+        }
+        TargetManager.share.vipBuy(params: param) { (result, error) in
+            if result {
+                alertHud(title: "购买成功")
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
     }
     @objc func clickAutoPayBtn(sender:UIButton)
     {
@@ -142,6 +188,10 @@ class VipCenterViewController: BaseViewController,ResponderRouter {
             {
                 item.isSelected = false
             }
+            guard let count = info as? Int else{
+                return
+            }
+            self.currentModel = self.pageModels?[count]
             return
         }
         

@@ -8,6 +8,10 @@
 
 #import "DepositMessageCell.h"
 #import "DepositMessage.h"
+@interface DepositMessageCell()
+@property(nonatomic,strong)UITapGestureRecognizer* pictureTap;
+@end
+
 @implementation DepositMessageCell
 
 + (CGSize)sizeForMessageModel:(RCMessageModel *)model withCollectionViewWidth:(CGFloat)collectionViewWidth referenceExtraHeight:(CGFloat)extraHeight
@@ -22,9 +26,16 @@
         self.delegate = self;
         self.posView = [[DepositView alloc]initWithFrame:CGRectMake(0, 0, 180*[UIScreen mainScreen].bounds.size.width / 320.0, 80)];
         
+
+        self.posView.userInteractionEnabled = YES;
         [self.messageContentView addSubview:self.posView];
     }
     return self;
+}
+- (void)tapPicture:(UIGestureRecognizer *)gestureRecognizer {
+    if ([self.delegate respondsToSelector:@selector(didTapMessageCell:)]) {
+        [self.delegate didTapMessageCell:self.model];
+    }
 }
 - (void)setDataModel:(RCMessageModel *)model
 {
@@ -38,6 +49,15 @@
         
     }
 }
+- (UITapGestureRecognizer *)pictureTap
+{
+    if (_pictureTap == nil) {
+        _pictureTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapPicture:)];
+        _pictureTap.numberOfTapsRequired = 1;
+        _pictureTap.numberOfTouchesRequired = 1;
+    }
+    return _pictureTap;
+}
 - (void)setAutoLayout {
     DepositMessage *testMessage = (DepositMessage *)self.model.content;
     if (testMessage) {
@@ -48,10 +68,13 @@
   
     //拉伸图片
     if (MessageDirection_RECEIVE == self.messageDirection) {//接收方 不用改变frame
+        if ([testMessage.isPay isEqualToNumber:@(0)]) {
+            [self.posView addGestureRecognizer:self.pictureTap];
+        }
         
         
     } else {
-        
+        [self.posView removeGestureRecognizer:self.pictureTap];
         messageContentViewRect.origin.x =
         self.baseContentView.bounds.size.width - (self.posView.frame.size.width + HeadAndContentSpacing +
                                                   [RCIM sharedRCIM].globalMessagePortraitSize.width + 10);

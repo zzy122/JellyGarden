@@ -9,11 +9,7 @@
 //#import <RongIMLib/RongIMLib.h>
 
 @interface TagStatueMessage : RCMessageContent <NSCoding>
-/*!
- 初始化测试消息
- 
- @param content 文本内容
- @return        测试消息对象
- */
+
+//@property(nonatomic,strong)NSString* amountStr;
 + (instancetype)messageWithContent:(NSString *)content;
 @end

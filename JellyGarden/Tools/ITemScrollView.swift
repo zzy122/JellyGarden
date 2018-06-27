@@ -39,6 +39,8 @@ class ITemScrollView: UIView {
     var titleAry:[String]
     var lastBtn:UIButton = UIButton()
     var targetBtns:[UIButton] = []
+    var tagCoenerts:[UIView] = []
+    
     
     lazy var allWidth:CGFloat = {
         var contentWidth:CGFloat = 0.0
@@ -87,6 +89,14 @@ class ITemScrollView: UIView {
             btn.backgroundColor = UIColor.white
             btn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
             btn.tag = i
+            let view = UIView.init(frame: CGRect.init(x: btn.frame.maxX + 2, y: btn.frame.minY, width: 4, height: 4))
+            view.layer.cornerRadius = 2
+            view.backgroundColor = APPCustomRedColor
+            view.isHidden = true
+            self.backView.addSubview(view)
+            view.tag = i
+            
+
             if i == 0 {
                 btn.isSelected = true
                 self.lastBtn = btn
@@ -94,10 +104,22 @@ class ITemScrollView: UIView {
             oringX = oringX + self.widths[i] + self.lineSpace
             self.backView.addSubview(btn)
             self.targetBtns.append(btn)
+            self.tagCoenerts.append(view)
         }
         return view
         
     }()
+    func showrightTageView(tags:[Int]) {
+        for i:Int in 0 ..< self.tagCoenerts.count
+        {
+            let view = self.tagCoenerts[i]
+            view.isHidden = true;
+        }
+        for i in tags {
+            let view = self.tagCoenerts[i]
+            view.isHidden = false;
+        }
+    }
     func setItemtarget(index:Int) {
         guard index < self.targetBtns.count else {
             return

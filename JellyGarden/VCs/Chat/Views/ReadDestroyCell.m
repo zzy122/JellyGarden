@@ -11,16 +11,28 @@
 @interface ReadDestroyCell()
 @property(nonatomic,strong)ReadDestroryView* view;
 @property(nonatomic,strong)UILongPressGestureRecognizer* gester;
+@property(nonatomic,strong)UITapGestureRecognizer* pictureTap;
 @end
 @implementation ReadDestroyCell
 + (CGSize)sizeForMessageModel:(RCMessageModel *)model withCollectionViewWidth:(CGFloat)collectionViewWidth referenceExtraHeight:(CGFloat)extraHeight
 {
-    return CGSizeMake(collectionViewWidth, 80*[UIScreen mainScreen].bounds.size.width / 320.0);
+    return CGSizeMake(collectionViewWidth, 100*[UIScreen mainScreen].bounds.size.width / 320.0 + extraHeight + 20);
     
 }
 
 - (void)longGester:(UILongPressGestureRecognizer*)gester
 {
+    if (gester.state == UIGestureRecognizerStateBegan) {
+        if ([self.delegate respondsToSelector:@selector(didLongTouchMessageCell:inView:)]) {
+            [self.delegate didLongTouchMessageCell:self.model inView:self.view];
+        }
+    }
+    else if (gester.state == UIGestureRecognizerStateFailed || gester.state == UIGestureRecognizerStateCancelled || gester.state == UIGestureRecognizerStateEnded)
+    {
+        if ([self.delegate respondsToSelector:@selector(didTapMessageCell:)]) {
+            [self.delegate didTapMessageCell:self.model];
+        }
+    }
     
 }
 - (instancetype)initWithFrame:(CGRect)frame
@@ -28,33 +40,54 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.view = [ReadDestroryView getReadDestroryView];
-        self.view.tagRect = CGRectMake(0, 0, 70 * [UIScreen mainScreen].bounds.size.width / 320.0, 70 * [UIScreen mainScreen].bounds.size.width / 320.0);
+        self.view.tagRect = CGRectMake(0, 0, 100 * [UIScreen mainScreen].bounds.size.width / 320.0, 100 * [UIScreen mainScreen].bounds.size.width / 320.0);
         
         [self.messageContentView addSubview:self.view];
-        
+        [self.view addGestureRecognizer:self.pictureTap];
         
     }
     return self;
 }
 - (void)setDataModel:(RCMessageModel *)model
 {
-    ReadDestroyMessage* mes = (ReadDestroyMessage*)model.content;
     model.conversationType = RC_CONVERSATION_MODEL_TYPE_CUSTOMIZATION;
     model.isDisplayMessageTime = YES;
     model.isDisplayNickname = false;
     model.readReceiptInfo.isReceiptRequestMessage = YES;//消息回执
     [super setDataModel:model];
+    ReadDestroyMessage* mes = (ReadDestroyMessage*)model.content;
     self.view.mess = mes;
     
-    self.nicknameLabel.hidden = YES;
-    
-    if ([model.content isKindOfClass:[ReadDestroyMessage class]]) {
-        [self setAutoLayout];
-        UIView* view = (UIView*)self.portraitImageView;
-        view.hidden = YES;
-        
+    if ([mes.isRead isEqualToNumber:@(0)]) {
+        [self.view addGestureRecognizer:self.gester];
     }
+    else
+    {
+        [self.view removeGestureRecognizer:self.gester];
+       
+    }
+    self.nicknameLabel.hidden = YES;
+    [self setAutoLayout];
     
+}
+- (void)tapPicture:(UIGestureRecognizer *)gestureRecognizer {
+    if ([self.delegate respondsToSelector:@selector(didTapMessageCell:)]) {
+        [self.delegate didTapMessageCell:self.model];
+    }
+}
+- (UITapGestureRecognizer *)pictureTap
+{
+    if (_pictureTap == nil) {
+        _pictureTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapPicture:)];
+        _pictureTap.numberOfTapsRequired = 1;
+        _pictureTap.numberOfTouchesRequired = 1;
+    }
+    return _pictureTap;
+}
+- (UILongPressGestureRecognizer *)gester
+{
+    UILongPressGestureRecognizer* ge = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longGester:)];
+    return ge;
 }
 - (void)setAutoLayout {
     
