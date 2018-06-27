@@ -120,7 +120,9 @@ extension NetCostom {
                 DispatchQueue.main.async {
                     HUD.hide(animated: false)
                     DebugLogLine(message: "\nRequestResultError:<-<-<-\n\(error.localizedDescription)")
-                    self.showErrorMessg(error: error as NSError, backError: failture)
+                    alertHud(title: "网络连接失败")
+                    failture(error as NSError)
+
                 }
                 
                 break

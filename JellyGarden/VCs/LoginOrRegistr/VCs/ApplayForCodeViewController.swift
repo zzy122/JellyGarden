@@ -34,12 +34,18 @@ class ApplayForCodeViewController: BaseViewController {
             return
         }
         
-        let params:[String:Any] = ["":"","":"","":""]
+        var params:[String:Any] = ["city":localStr,"info_channel":channal,"wx":wxStr]
         
         if let sugesStr = suggestPersonFiled.text,sugesStr.count > 0 {
+            params["referrer"] = sugesStr
+        }
+        TargetManager.share.inviteCode(params: params) { (result, error) in
+            if (result)
+            {
+                self.navigationController?.popViewController(animated: true)
+            }
             
         }
-        self.navigationController?.pushViewController(FillInformationThirdViewController(), animated: true)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -101,13 +101,13 @@ let JPushAppKey = "8cc1244924af16e493b9d08f"
 let UMengKey = "5b2347a2f43e4806580000c9"
 //微信分享
 let WeiChatShareKey = "wxd2e1aa0feed6b934"
-let WeiChatShareScrete = ""
+let WeiChatShareScrete = "4b89be2b0c428ff608a18e98f5140b1e"
 //QQ分享
 let QQShareKey = "1106901221"
 let QQShareSecrete = "xzTU3KHfggSizZyA"
 //微博分享
-let WeiBoShareKey = ""
-let weiBoShareSecret = ""
+let WeiBoShareKey = "80911205"
+let weiBoShareSecret = "e51e50df15da143941ad1271a61ba156"
 let scale = UIScreen.main.scale
 let placeImage = imageName(name: "loginicon")
 

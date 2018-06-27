@@ -132,7 +132,7 @@ class MainViewController: BaseMainViewController,UISearchBarDelegate,ResponderRo
 //            return
             let vc = PersonInfoViewController()
             
-            TargetManager.share.getDetailUserInfo(userid: model.user_id ?? "", complection: { (userinfo, error) in
+            TargetManager.share.getDetailUserInfo(userid: model.user_id ?? "",isUpdateUser:false, complection: { (userinfo, error) in
                 guard let user = userinfo else{
                     return
                 }

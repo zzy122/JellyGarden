@@ -18,10 +18,12 @@ class FillInfoView: UIView,UITableViewDataSource,UITableViewDelegate {
     var bodyHeight:String?//身高
     var bodyWeight:String?//体重
     var bodyChest:String?//胸围
+    var imageUrlStr:String?//头像地址
+    
     let ageList:[PikerModel] = {
         var dicAry:[[String:Any]] = []
         for i in 15 ..< 46 {
-            let dic:[String:Any] = ["title":i]
+            let dic:[String:Any] = ["citysName":i]
             dicAry.append(dic)
         }
         return JSONDeserializer<PikerModel>.deserializeModelArrayFrom(array: dicAry) as! [PikerModel]
@@ -35,8 +37,8 @@ class FillInfoView: UIView,UITableViewDataSource,UITableViewDelegate {
         self.zzy.router(name: ClickFillInfoViewHeader, object: nil, info: nil)
     }
     let titleAry:[String] = ["昵称","约会范围","年龄","身份","身高","体重","胸围"]
-    var subTitle:[String] = ["","自贡","","","CM","KG","CM"];
-
+    var subTitle:[String] = [CurrentUserInfo?.data?.nickname ?? "","","","","CM","KG","CM"];
+    
     
     lazy var tableView:UITableView = {
         let table = UITableView()
@@ -66,6 +68,9 @@ class FillInfoView: UIView,UITableViewDataSource,UITableViewDelegate {
         view.headerImageBtn.clipsToBounds = true
         view.contentVIew.layer.cornerRadius = 5.0
         view.contentVIew.clipsToBounds = true
+        if let imageUrl = CurrentUserInfo?.data?.avatar,imageUrl.count > 0 {
+            view.headerImageBtn.imageView?.sd_DownLoadImage(url: imageUrl)
+        }
         
         return view
     }
@@ -116,7 +121,7 @@ class FillInfoView: UIView,UITableViewDataSource,UITableViewDelegate {
             })
             break
         case 1://约会范围
-            AlertAction.share.showbottomPicker(title: titleStr, maxCount: 4, dataAry: nil, currentData: self.oppintRange, backData: { (result) in
+            AlertAction.share.showbottomPicker(title: titleStr, maxCount: 4, dataAry: currentCitys, currentData: self.oppintRange, backData: { (result) in
                 self.oppintRange = result
                 self.replaceStr(str: continueString(strAry: result,separetStr:"  "), index: indexPath.row)
             })
@@ -158,7 +163,7 @@ class FillInfoView: UIView,UITableViewDataSource,UITableViewDelegate {
             AlertAction.share.showAlertView(type: UIKeyboardType.numberPad,title: titleStr, placeHodel: "请输入体重KG", detailTitle: nil, detailImage: nil, click: { (sure, result) in
                 if sure {
                     self.bodyWeight = result
-                    let str = result?.appending("CM")
+                    let str = result?.appending("KG")
                     self.replaceStr(str: str, index: indexPath.row)
                 }
             })

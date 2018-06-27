@@ -43,16 +43,51 @@ class UMengAcion: NSObject {
         })
     }
     //三方登录
-    class func uMengLogin(type:UMSocialPlatformType, loginSuccess:@escaping (Bool) -> Void) {
+    class func uMengLogin(type:UMSocialPlatformType,nav:UINavigationController?, loginSuccess:@escaping (Bool) -> Void) {
         UMSocialDataManager.default().clearAllAuthorUserInfo()
         UMSocialManager.default().getUserInfo(with: type, currentViewController: TopViewContoller()) { (result, error) in
             
             
             guard let userResult = result as? UMSocialUserInfoResponse else {
-                DebugLog(message: error?.localizedDescription)
+               
+                alertHud(title: "\(String(describing: error?.localizedDescription))")
                 return
             }
+            DispatchQueue.main.async {
+                 loginSuccess(true)
+                var params:[String:Any] = ["open_id":userResult.openid,"avatar":userResult.iconurl,"nickname":userResult.name]
+                switch type
+                {
+                    
+                case .unKnown:
+                    
+                    break
+                case .QQ:
+                    params["platform"] = "qq"
+                    break
+                case .sina:
+                    params["platform"] = "weibo"
+                    break
+                case .wechatSession:
+                    params["platform"] = "wx"
+                    break
+                case .wechatTimeLine:
+                    params["platform"] = "wx"
+                    break
+                case .wechatFavorite:
+                    params["platform"] = "wx"
+                    break
+                case .qzone:
+                    params["platform"] = "qq"
+                    break
+                default:
+                    break
+               
+                }
+                thirdLoginParams(params: params,  nav: nav)
+            }
             
+           
             //使用userResult登录
             
         }

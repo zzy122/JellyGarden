@@ -194,7 +194,13 @@ func getPikerModels(data:[Any]?) ->[PikerModel]?
     }
     return nil
 }
-
+//更新用户信息
+func updateUserInfo()
+{
+    TargetManager.share.getDetailUserInfo(userid: CurrentUserInfo?.data?.user_id ?? "", isUpdateUser: true) { (model, error) in
+        
+    }
+}
 
 func getImageName() -> String
 {

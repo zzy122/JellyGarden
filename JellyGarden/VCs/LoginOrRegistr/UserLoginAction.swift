@@ -18,17 +18,45 @@ func loginActionParams(params:[String:Any],nav:UINavigationController?) {
         }
     }
 }
+func thirdLoginParams(params:[String:Any],nav:UINavigationController?)
+{
+    TargetManager.share.thirdLoginAction(params: params) { (model, error) in
+        if let user = model {//这里判断需不需要判断补填信息 gotoSex
+            dealWithLoginUser(model: user, nav: nav)
+        }
+    }
+}
 func dealWithLoginUser(model:UserModel,nav:UINavigationController?)
 {
-    if let nickName = model.data?.nickname,nickName.count > 0//
+    if let nickName = model.data?.appointment_place,nickName.count > 0//
     {
-        DebugLog(message: "进入首页");
-        let delegate = UIApplication.shared.delegate as! AppDelegate
-        delegate.setRootViewController(vc: BaseTabBarViewController())
+        //请求token 进入主页
+        judgeGotoMainVC()
+        
     }
     else
     {
         nav?.pushViewController(SexViewController(), animated: true)
     }
 }
+func judgeGotoMainVC()
+{
+    TargetManager.share.rongcloudToken { (model) in
+        guard let tokenModel = model else{
+            return
+        }
+        OtherApplication.share.connectRongyun(token: tokenModel.userId ?? "", complectiom: { (success) in
+            if success
+            {
+                let delegate = UIApplication.shared.delegate as! AppDelegate
+                delegate.setRootViewController(vc: BaseTabBarViewController())
+            }
+            else
+            {
+                alertHud(title: "用户聊天登录失败")
+            }
+        })
+    }
+}
+
 

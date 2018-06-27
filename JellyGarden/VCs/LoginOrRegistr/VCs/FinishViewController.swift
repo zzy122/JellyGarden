@@ -18,6 +18,7 @@ class FinishViewController: BaseViewController {
         self.registerBtn.layer.borderWidth = 1.0
         registerBtn.layer.borderColor = APPCustomBtnColor.cgColor
         clearUserInfo()
+        FillCondition.share.getConditions()
         self.autoLogin()
         // Do any additional setup after loading the view.
     }
@@ -44,19 +45,23 @@ class FinishViewController: BaseViewController {
         
     }
     @IBAction func clickWeiBoBtn(_ sender: UIButton) {
-        UMengAcion.uMengLogin(type: UMSocialPlatformType.sina) { (sucess) in
-            
+        UMengAcion.uMengLogin(type: UMSocialPlatformType.sina,nav:self.navigationController) { (sucess) in
+           
         }
     }
     @IBAction func clickQQBtn(_ sender: UIButton) {
-        UMengAcion.uMengLogin(type: UMSocialPlatformType.QQ) { (success) in
+        UMengAcion.uMengLogin(type: UMSocialPlatformType.QQ,nav:self.navigationController) { (success) in
             
         }
     }
     @IBAction func clickWeiXinBtn(_ sender: UIButton) {
-        UMengAcion.uMengLogin(type: UMSocialPlatformType.wechatSession) { (success) in
-            
+        UMengAcion.uMengLogin(type: UMSocialPlatformType.wechatSession,nav:self.navigationController) { (success) in
+           
         }
+    }
+    func gotoManVC() {
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        delegate.setRootViewController(vc: BaseTabBarViewController())
     }
     @IBAction func registerBtn(_ sender: UIButton) {
        
@@ -73,10 +78,7 @@ class FinishViewController: BaseViewController {
         self.navigationController?.pushViewController(RegisterViewController(), animated: true)
     }
     @IBAction func loginBtn(_ sender: UIButton) {
-        let vc = VipCenterViewController()
-        vc.isHaveUserHeader = false
-        self.navigationController?.pushViewController(vc, animated: true)
-//        self.navigationController?.pushViewController(LoginVIewController(), animated: true)
+        self.navigationController?.pushViewController(LoginVIewController(), animated: true)
         
     }
     override func didReceiveMemoryWarning() {

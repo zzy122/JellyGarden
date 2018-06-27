@@ -172,11 +172,28 @@ class VipCenterViewController: BaseViewController,ResponderRouter {
             param["is_discount"] = false
         }
         TargetManager.share.vipBuy(params: param) { (result, error) in
-            if result {
-                alertHud(title: "购买成功")
-                self.navigationController?.popViewController(animated: true)
+            
+            if let dic = result as? [String:Any] {
+                if let payDic = dic["data"] as? [String:Any]
+                {
+                    //发起支付
+                    OtherApplication.share.pay(charge: payDic, complection: { (result) in
+                        alertHud(title: "购买成功")
+                        self.gotoMainVC()
+                    })
+                }
+                
+               
             }
         }
+    }
+    
+    func gotoMainVC()
+    {
+        updateUserInfo()
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        delegate.setRootViewController(vc: BaseTabBarViewController())
+        
     }
     @objc func clickAutoPayBtn(sender:UIButton)
     {

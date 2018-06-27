@@ -20,9 +20,9 @@ class OtherApplication: NSObject,WXApiDelegate,JPUSHRegisterDelegate,RCIMUserInf
         
         UMSocialManager.default().setPlaform(.wechatSession, appKey: WeiChatShareKey, appSecret: WeiChatShareScrete, redirectURL: "")
         
-        UMSocialManager.default().setPlaform(.QQ, appKey: QQShareKey, appSecret: QQShareSecrete, redirectURL: "")
+        UMSocialManager.default().setPlaform(.QQ, appKey: QQShareKey, appSecret: QQShareSecrete, redirectURL: "http://www.qq.com/music.html")
         
-        UMSocialManager.default().setPlaform(.sina, appKey: WeiBoShareKey, appSecret: weiBoShareSecret, redirectURL: "必须要和你在新浪微博后台设置的回调地址一致")
+        UMSocialManager.default().setPlaform(.sina, appKey: WeiBoShareKey, appSecret: weiBoShareSecret, redirectURL: "http://open.weibo.com/apps/80911205/privilege/oauth")
     }
     func setRongIM () {
         //设置appkey
@@ -54,18 +54,7 @@ class OtherApplication: NSObject,WXApiDelegate,JPUSHRegisterDelegate,RCIMUserInf
         RCIM.shared().enableMessageRecall = true
 //        "http:ggdhah"
         let tocken = "HlMfHYJvmEo44W/F61LuabRpUvcyPvtcBAE1MtjZHcdpH5OG47jQeT0W+LiJ7xaXIo0E1Fqz0Ymon0nAvrYU9OIT31DubvNL"//这个值从后台获取/BXSBnDD+hltcIS814LpyrRpUvcyPvtcBAE1MtjZHcdpH5OG47jQef897cW8KqvRjWjSrSRDTIWon0nAvrYU9GXAL9HR+6f1  HlMfHYJvmEo44W/F61LuabRpUvcyPvtcBAE1MtjZHcdpH5OG47jQeT0W+LiJ7xaXIo0E1Fqz0Ymon0nAvrYU9OIT31DubvNL
-        RCIM.shared().connect(withToken: tocken, success: { (resultInfo) in
-            DebugLog(message: "登录融云成功");
-            DispatchQueue.main.async {//回主线程操作
-                RCIM.shared().userInfoDataSource = self
-                let model = RCUserInfo.init(userId: "18980898159", name: "zzy123", portrait: "ggggg");
-                RCIM.shared().currentUserInfo = model
-                
-            }
-            
-        }, error: { (code) in
-            
-        }) {
+        self.connectRongyun(token: tocken) { (success) in
             
         }
     }
@@ -75,10 +64,28 @@ class OtherApplication: NSObject,WXApiDelegate,JPUSHRegisterDelegate,RCIMUserInf
         
         JPUSHService.register(forRemoteNotificationConfig: entity, delegate: self)
         
-//        if ( @available(iOS 8.0,*))
-//        {
-//
-//        }
+
+    }
+    func connectRongyun(token:String,complectiom:@escaping (Bool) -> Void) {
+        RCIM.shared().connect(withToken: token, success: { (resultInfo) in
+            DebugLog(message: "登录融云成功");
+            DispatchQueue.main.async {//回主线程操作
+                
+                
+                RCIM.shared().userInfoDataSource = self
+                let model = RCUserInfo.init(userId: CurrentUserInfo?.data?.user_id ?? "", name: CurrentUserInfo?.data?.nickname, portrait: CurrentUserInfo?.data?.avatar);
+                RCIM.shared().currentUserInfo = model
+                
+                complectiom(true)
+                
+            }
+            
+        }, error: { (code) in
+            complectiom(false)
+            
+        }) {
+            complectiom(false)
+        }
     }
    
     
@@ -102,16 +109,9 @@ class OtherApplication: NSObject,WXApiDelegate,JPUSHRegisterDelegate,RCIMUserInf
     }
     
     
-    //RCIMUserInfoDataSource
-    //获取用户信息
-    func getUserInfo(withUserId userId: String!, completion: ((RCUserInfo?) -> Void)!) {
-        //此处查询用户信息 请求自己的后.co台
-        let userInfo = RCUserInfo.init(userId: userId, name: "", portrait: "")
-        completion(userInfo)
-  
-    }
+    
     //支付  charge是后台请求的数据
-    func pay(charge:String,complection:@escaping (Bool) ->Void) {
+    func pay(charge:[String:Any],complection:@escaping (Bool) ->Void) {
         Pingpp.createPayment(charge as NSObject, viewController: RootNav().topViewController, appURLScheme: "JellyGarden") { (result, error) in
             guard error == nil else {
                 AlertViewCoustom().showalertView(style: .alert, title: alertTitle, message: "\(error.debugDescription)", cancelBtnTitle: alertConfirm, touchIndex: { (index) in
@@ -130,12 +130,20 @@ extension OtherApplication//RCIMConnectionStatusDelegate
     func onRCIMConnectionStatusChanged(_ status: RCConnectionStatus) {
         print("与融云连接状态发生改变")
     }
-//    func getGroupInfo(withGroupId groupId: String!, completion: ((RCGroup?) -> Void)!) {
-//        if (groupId.count == 0) { return}
-//
-//        //请求自己的服务器得到group的信息
-//        completion(RCDGroupInfo())
-//    }
+    //RCIMUserInfoDataSource
+    //获取用户信息
+    func getUserInfo(withUserId userId: String!, completion: ((RCUserInfo?) -> Void)!) {
+        //此处查询用户信息 请求自己的后.co台
+        TargetManager.share.getDetailUserInfo(userid: userId, isUpdateUser: false) { (model, error) in
+            guard let userModel = model else{
+                completion(nil)
+                return
+            }
+            let userInfo = RCUserInfo.init(userId: userModel.data?.user_id, name: userModel.data?.nickname , portrait: userModel.data?.avatar)
+            completion(userInfo)
+        }
+    }
+
     func onRCIMReceive(_ message: RCMessage!, left: Int32) {
         if message.content.isMember(of: RCInformationNotificationMessage.self) {
             let msg:RCInformationNotificationMessage =  RCInformationNotificationMessage.notification(withMessage: message.content.conversationDigest(), extra: message.extra)

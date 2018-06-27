@@ -33,10 +33,26 @@ class InvitationCodeViewController: BaseViewController {
         
     }
     @IBAction func applyForCode(_ sender: UIButton) {//申请
+        
         self.navigationController?.pushViewController(ApplayForCodeViewController(), animated: true)
     }
     @IBAction func clickSure(_ sender: UIButton) {
+        guard let codeStr = self.codeTextFiled.text,codeStr.count > 0 else{
+            
+            alertHud(title: "请输入邀请码")
+            return
+        }
+        let params:[String:Any] = ["user_id":CurrentUserInfo?.data?.user_id ?? "","code":codeStr]
         
+        TargetManager.share.inviteCodeBind(params: params) { (result, error) in
+            if result{
+                //更新用户数据
+                self.navigationController?.pushViewController(ManFillInformationViewController(), animated: true)
+                
+
+                
+            }
+        }
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

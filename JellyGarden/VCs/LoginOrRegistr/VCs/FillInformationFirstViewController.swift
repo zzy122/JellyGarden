@@ -44,7 +44,7 @@ class FillInformationFirstViewController: BaseViewController,ResponderRouter,UII
         super.viewDidLoad()
         self.title = "完善资料"
         self.createMianView()
-        FillCondition.share.getConditions()
+        
         // Do any additional setup after loading the view.
     }
     func createMianView() {
@@ -64,9 +64,7 @@ class FillInformationFirstViewController: BaseViewController,ResponderRouter,UII
     }
     @objc func clickNextBtn(sender:UIButton)
     {
-        
-        
-        guard let imageStr = imagePath else {
+        guard let imageStr = (imagePath == nil ) ? bodyView.imageUrlStr : imagePath else {
             alertHud(title: "请选择头像")
             return
         }

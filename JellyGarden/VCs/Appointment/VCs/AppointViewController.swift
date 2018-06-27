@@ -80,7 +80,10 @@ class AppointViewController: BaseMainTableViewController,ResponderRouter,PhotoPi
         self.params = ["sort":"near"]
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
         headerFresh.setRefreshingTarget(self, refreshingAction: #selector(self.refresh))
-       
+        //防止刷新cell的时候跳动
+        self.tableView.estimatedRowHeight = 0
+        tableView.estimatedSectionFooterHeight = 0
+        tableView.estimatedSectionHeaderHeight = 0
         self.tableView.mj_header = headerFresh
         // Do any additional setup after loading the view.
     }

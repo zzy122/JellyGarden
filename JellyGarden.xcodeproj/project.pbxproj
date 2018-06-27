@@ -65,6 +65,7 @@
 		5A1F3AC820E0DDC900CB98CD /* ReadDestroyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F3AC720E0DDC900CB98CD /* ReadDestroyCell.m */; };
 		5A1F3ACE20E0EA2A00CB98CD /* ReadDestroryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F3ACD20E0EA2A00CB98CD /* ReadDestroryView.m */; };
 		5A1F3AD020E0EA3C00CB98CD /* ReadDestroryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A1F3ACF20E0EA3C00CB98CD /* ReadDestroryView.xib */; };
+		5A24A7AC20E3E964007B9C76 /* RCTokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A24A7AB20E3E964007B9C76 /* RCTokenModel.swift */; };
 		5A380F6520DE88E400CC4152 /* DepositView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A380F6420DE88E400CC4152 /* DepositView.m */; };
 		5A380F6820DE8E6D00CC4152 /* RedPacketCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A380F6720DE8E6D00CC4152 /* RedPacketCell.m */; };
 		5A380F6B20DE91DE00CC4152 /* ReadDestroyMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A380F6A20DE91DE00CC4152 /* ReadDestroyMessage.m */; };
@@ -95,6 +96,8 @@
 		5A459AF120D3E9F500C0A6FA /* ManpersonInfoHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A459AF020D3E9F500C0A6FA /* ManpersonInfoHeader.swift */; };
 		5A459AF320D3EA2D00C0A6FA /* ManpersonInfoHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A459AF220D3EA2D00C0A6FA /* ManpersonInfoHeader.xib */; };
 		5A45D9D720E27A0800D2B4CE /* VipPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A45D9D620E27A0800D2B4CE /* VipPageModel.swift */; };
+		5A45D9DA20E33AA600D2B4CE /* ManFillInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A45D9D820E33AA600D2B4CE /* ManFillInformationViewController.swift */; };
+		5A45D9DB20E33AA600D2B4CE /* ManFillInformationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A45D9D920E33AA600D2B4CE /* ManFillInformationViewController.xib */; };
 		5A4E322620C782E60051FE00 /* InvitationCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4E322420C782E60051FE00 /* InvitationCodeViewController.swift */; };
 		5A4E322720C782E60051FE00 /* InvitationCodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A4E322520C782E60051FE00 /* InvitationCodeViewController.xib */; };
 		5A4E322A20C792540051FE00 /* ApplayForCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4E322820C792540051FE00 /* ApplayForCodeViewController.swift */; };
@@ -336,6 +339,7 @@
 		5A1F3ACC20E0EA2A00CB98CD /* ReadDestroryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReadDestroryView.h; sourceTree = "<group>"; };
 		5A1F3ACD20E0EA2A00CB98CD /* ReadDestroryView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReadDestroryView.m; sourceTree = "<group>"; };
 		5A1F3ACF20E0EA3C00CB98CD /* ReadDestroryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReadDestroryView.xib; sourceTree = "<group>"; };
+		5A24A7AB20E3E964007B9C76 /* RCTokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCTokenModel.swift; sourceTree = "<group>"; };
 		5A380F6320DE88E400CC4152 /* DepositView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DepositView.h; sourceTree = "<group>"; };
 		5A380F6420DE88E400CC4152 /* DepositView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DepositView.m; sourceTree = "<group>"; };
 		5A380F6620DE8E6D00CC4152 /* RedPacketCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RedPacketCell.h; sourceTree = "<group>"; };
@@ -380,6 +384,8 @@
 		5A459AF020D3E9F500C0A6FA /* ManpersonInfoHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManpersonInfoHeader.swift; sourceTree = "<group>"; };
 		5A459AF220D3EA2D00C0A6FA /* ManpersonInfoHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ManpersonInfoHeader.xib; sourceTree = "<group>"; };
 		5A45D9D620E27A0800D2B4CE /* VipPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VipPageModel.swift; sourceTree = "<group>"; };
+		5A45D9D820E33AA600D2B4CE /* ManFillInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManFillInformationViewController.swift; sourceTree = "<group>"; };
+		5A45D9D920E33AA600D2B4CE /* ManFillInformationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ManFillInformationViewController.xib; sourceTree = "<group>"; };
 		5A4E322420C782E60051FE00 /* InvitationCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationCodeViewController.swift; sourceTree = "<group>"; };
 		5A4E322520C782E60051FE00 /* InvitationCodeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InvitationCodeViewController.xib; sourceTree = "<group>"; };
 		5A4E322820C792540051FE00 /* ApplayForCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplayForCodeViewController.swift; sourceTree = "<group>"; };
@@ -644,6 +650,8 @@
 				5A015ECA20C5864700EC8A96 /* FillInformationViewController.swift */,
 				5A015ECC20C62BBC00EC8A96 /* FillInformationFirstViewController.swift */,
 				5A4E322C20C7A1FB0051FE00 /* FillInformationThirdViewController.swift */,
+				5A45D9D820E33AA600D2B4CE /* ManFillInformationViewController.swift */,
+				5A45D9D920E33AA600D2B4CE /* ManFillInformationViewController.xib */,
 				5A4E322420C782E60051FE00 /* InvitationCodeViewController.swift */,
 				5A4E322520C782E60051FE00 /* InvitationCodeViewController.xib */,
 				5A4E322820C792540051FE00 /* ApplayForCodeViewController.swift */,
@@ -803,6 +811,7 @@
 			isa = PBXGroup;
 			children = (
 				5A45D9D620E27A0800D2B4CE /* VipPageModel.swift */,
+				5A24A7AB20E3E964007B9C76 /* RCTokenModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1356,6 +1365,7 @@
 				5A7CEC6A20D5321300B7A7C9 /* QPPhotoCell.xib in Resources */,
 				5A459AD920D1721D00C0A6FA /* CommentTableViewCell.xib in Resources */,
 				5ADD1A3220C9530E004504B3 /* PersonalInfoHeader.xib in Resources */,
+				5A45D9DB20E33AA600D2B4CE /* ManFillInformationViewController.xib in Resources */,
 				5A4E326220C7B6650051FE00 /* PackageView.xib in Resources */,
 				5A574BED20C95FE300C59276 /* BodyImageCollectionViewCell.xib in Resources */,
 				5E6AE15E20DF2E8700901D43 /* MineInfoHeaderView.xib in Resources */,
@@ -1636,6 +1646,7 @@
 				5A459AEF20D3B60400C0A6FA /* ManPersonInfoViewController.swift in Sources */,
 				5A196ADE20C6C704002EC0EE /* BottomPickerCell.swift in Sources */,
 				5A015EC520C57AC600EC8A96 /* ZZYTimerTarget.m in Sources */,
+				5A45D9DA20E33AA600D2B4CE /* ManFillInformationViewController.swift in Sources */,
 				5A7CEC7120D532D600B7A7C9 /* QPPhotoListCell.swift in Sources */,
 				5E6AE16F20DF972C00901D43 /* TagsView.swift in Sources */,
 				5A80C4D120BFE1050033CAF8 /* ShowShadow.swift in Sources */,
@@ -1682,6 +1693,7 @@
 				5A4E322A20C792540051FE00 /* ApplayForCodeViewController.swift in Sources */,
 				5A574BF920CA1DC200C59276 /* LookImageViewController.swift in Sources */,
 				5A80C4CB20BFE1050033CAF8 /* AlertViewCoustom.swift in Sources */,
+				5A24A7AC20E3E964007B9C76 /* RCTokenModel.swift in Sources */,
 				5A459AB420D1617E00C0A6FA /* ApplyOperationView.swift in Sources */,
 				5A80C4DD20BFE5780033CAF8 /* CustomNavigationViewController.swift in Sources */,
 				5A1F3ABF20DF6CA700CB98CD /* RealTimeLocationStatusView.m in Sources */,

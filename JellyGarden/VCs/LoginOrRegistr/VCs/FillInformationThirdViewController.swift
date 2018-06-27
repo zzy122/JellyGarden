@@ -95,6 +95,7 @@ class FillInformationThirdViewController: BaseViewController,UITextViewDelegate,
         let param:[String:Any] = ["user_json":getJSONStringFromObject(dictionary: fillInfo)]
         TargetManager.share.fillUserInfo(params: param) { (result, error) in
             if error == nil {
+                updateUserInfo()
                 let delegate = UIApplication.shared.delegate as! AppDelegate
                 delegate.setRootViewController(vc: BaseTabBarViewController())
             }

@@ -17,9 +17,18 @@ class TargetManager: NSObject {
     
     
     //获取用户信息
-    func getDetailUserInfo(userid:String,complection:@escaping (UserModel?,Error?) -> Void)  {
+    func getDetailUserInfo(userid:String,isUpdateUser:Bool, complection:@escaping (UserModel?,Error?) -> Void)  {
         
             NetCostom.shared.request(method:.get ,wengen: "gardens/\(userid)", params: nil, success: { (result) in
+                if isUpdateUser
+                {
+                    guard let user = result as? [String:Any] else {
+                        return
+                    }
+                    NSDictionary.init(dictionary: user).write(toFile: UserPlist, atomically: true)
+                }
+                
+                
                 let model = BaseModel<UserModel,UserModel>.init(resultData: result)
                 complection(model.resultData,nil)
             }) { (error) in
@@ -60,6 +69,21 @@ class TargetManager: NSObject {
             complection(nil,error)
         }
     }
+    func thirdLoginAction(params:[String:Any],complection:@escaping (UserModel?,Error?) -> Void)
+    {
+        NetCostom.shared.request(method:.post ,wengen: "users/thirdlogin", params: params, success: { (result) in
+            guard let user = result as? [String:Any] else {
+                return
+            }
+            NSDictionary.init(dictionary: user).write(toFile: UserPlist, atomically: true)
+            
+            let model = BaseModel<UserModel,UserModel>.init(resultData: user)
+            complection(model.resultData,nil)
+        }) { (error) in
+            complection(nil,error)
+        }
+    }
+    
     //注册
     func registerUser(params:[String:Any]?,complection:@escaping ([String:Any]?,Error?) -> Void)
     {
@@ -245,12 +269,12 @@ class TargetManager: NSObject {
         }
     }
     //购买套餐
-    func vipBuy(params:[String:Any]?,complection:@escaping (Bool,Error?) -> Void)
+    func vipBuy(params:[String:Any]?,complection:@escaping (Any?,Error?) -> Void)
     {
         NetCostom.shared.request(method: .post, wengen: "vip/buy", params: params, success: { (result) in
-            complection(true,nil)
+            complection(result,nil)
         }) { (error) in
-            complection(false,error)
+            complection(nil,error)
         }
     }
     //邀请码
@@ -271,6 +295,24 @@ class TargetManager: NSObject {
             complection(false,error)
         }
     }
-
+    //请求融云token
+    func rongcloudToken(complection:@escaping (RCTokenModel?) -> Void) {
+        let param = ["user_id":CurrentUserInfo?.data?.user_id ?? "","nickname":CurrentUserInfo?.data?.nickname ?? "","avatar":CurrentUserInfo?.data?.avatar ?? ""]
+        NetCostom.shared.request(method: .post, wengen: "rongcloud/toke", params: param, success: { (result) in
+            if let jsonStr = result as? [String:Any]
+            {
+                let model = BaseModel<RCTokenModel,RCTokenModel>.init(resultData: jsonStr["data"] ?? "")
+                complection(model.resultData)
+            }
+            else
+            {
+                complection(nil)
+                alertHud(title: "数据返回错误")
+            }
+        }) { (error) in
+            complection(nil)
+        }
+        
+    }
 }
 

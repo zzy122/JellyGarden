@@ -9,9 +9,9 @@
 #import "AliyunUpload.h"
 NSString * const AliyunAccessKey = @"qkREjtYFlBHTTwxD";
 NSString * const AliyunSecretKey = @"VoMOWGTfejU1iaM05vEfpOw1WWwpae";
-NSString * const endPoint = @"oss-cn-beijing.aliyuncs.com";
+NSString * const endPoint = @"http://oss-cn-beijing.aliyuncs.com";
 NSString * const SERVER_HOST = @"http://39.105.9.66/mask/app/api/";
-NSString * const BucketName = @"jellyGarden";
+NSString * const BucketName = @"jellygarden";
 #import "JellyGarden-Swift.h"
 @interface AliyunUpload()
 @property(nonatomic,strong)OSSClient* client;
@@ -102,6 +102,7 @@ NSString * const BucketName = @"jellyGarden";
     id<OSSCredentialProvider> credential = [[OSSPlainTextAKSKPairCredentialProvider alloc] initWithPlainTextAccessKey:AliyunAccessKey
                                                                                                             secretKey:AliyunSecretKey];
     
+    isEnable = YES ;
     OSSClientConfiguration * conf = [OSSClientConfiguration new];
     conf.maxRetryCount = 2;
     conf.timeoutIntervalForRequest = 30;
