@@ -20,6 +20,7 @@ class UserInfoTabbar: UIView {
     override func draw(_ rect: CGRect) {
         self.frame = self.tagFrame!
     }
+    @IBOutlet weak var collectionImage: UIImageView!
     class func createUserInfoTabbar() -> UserInfoTabbar?{
         let nibView = CustomCreateNib<UserInfoTabbar>().createXibView()
         guard let view = nibView else {

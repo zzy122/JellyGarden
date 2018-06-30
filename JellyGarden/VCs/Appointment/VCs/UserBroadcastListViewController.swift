@@ -1,91 +1,44 @@
 //
-//  AppointViewController.swift
+//  UserBroadcastListViewController.swift
 //  JellyGarden
 //
-//  Created by zzy on 2018/6/7.
+//  Created by zzy on 2018/6/28.
 //  Copyright © 2018年 zzy. All rights reserved.
 //
 
 import UIKit
 import MJRefresh
 import Photos
-class AppointViewController: BaseMainTableViewController,ResponderRouter,PhotoPickerControllerDelegate {
+class UserBroadcastListViewController: BaseMainTableViewController,PhotoPickerControllerDelegate,ResponderRouter {
+    var userid:String = ""
     
     var appiontOpration:AppiontDataManager = {
         let manager = AppiontDataManager.share
-        manager.conmentPath = CommentPath
+        manager.conmentPath = UserCommentListPath
         return manager
         
     }()
     
-//    var commentViews:[ZZYDisplayView] = []
+    
     // 底部刷新
     let headerFresh = MJRefreshNormalHeader()
-    lazy var conditionView:FiltrateCondition = {
-        let view1 = FiltrateCondition.init(frame: CGRect.init(x: 0, y: -250, width: ScreenWidth, height: 250))
-        
-        self.view.addSubview(view1)
-        view1.backParam(backParam: {[weak self] (param) in
-            self?.params = param
-        })
-        return view1
-    }()
-    var params:[String:Any]? {
-        didSet{
-            self.closeConditionView()
-            self.getAppiontData(param: params!) { (result) in
-                if result
-                {
-                    self.tableView.reloadData()
-                }
-            }
-        }
-    }
     
     var appiontModels:[lonelySpeechDetaileModel]?
     {
         get{
-           return appiontOpration.commentModels
+            return appiontOpration.commentModels
         }
     }
     
-    
-    
-    lazy var addAppiont:UIButton = {
-        let btn = UIButton.init(frame: CGRect.init(x: ScreenWidth - 80, y: self.view.frame.height - 80, width: 50, height: 50))
-        btn.setImage(imageName(name: "添加"), for: UIControlState.normal)
-        btn.addTarget(self, action: #selector(clickAdd), for: UIControlEvents.touchUpInside)
-        btn.backgroundColor = UIColor.clear
-        self.view.addSubview(btn)
-        return btn
-    }()
-    var cityName:String = LocalCityName{
-        didSet{
-            self.leftBtn.isHidden = false
-            self.leftBtn.setTitle(cityName, for: UIControlState.normal)
-            self.leftBtn.setTitleColor(UIColor.gray, for: UIControlState.normal)
-            self.leftBtn.setImage(imageName(name: "选中"), for: UIControlState.normal)
-            self.leftBtn.sizeToFit()
-        }
-    }
-    override func clickLeftBtn() {
-        AlertAction.share.showbottomPicker(title: self.cityName, maxCount: 1, dataAry: nil, currentData: [self.cityName]) { (result) in
-            self.cityName = result.last ?? self.cityName
-            
-        }
-    }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.addAppiont.frame = CGRect.init(x: ScreenWidth - 80, y: self.view.frame.height - 80, width: 50, height: 50)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         appiontOpration.clearData()
-        self.title = "寂寞告白"
-        self.cityName = LocalCityName
+        self.title = "她的广播"
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
         self.tableView.register(UINib.init(nibName: "ConfessionTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "ConfessionTableViewCell")
-        self.params = ["sort":"near"]
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
         headerFresh.setRefreshingTarget(self, refreshingAction: #selector(self.refresh))
         //防止刷新cell的时候跳动
@@ -93,30 +46,31 @@ class AppointViewController: BaseMainTableViewController,ResponderRouter,PhotoPi
         tableView.estimatedSectionFooterHeight = 0
         tableView.estimatedSectionHeaderHeight = 0
         self.tableView.mj_header = headerFresh
-        // Do any additional setup after loading the view.
-    }
-    @objc func refresh()
-    {
-        self.getAppiontData(param: self.params!) { (result) in
+        self.getAppiontData() { (result) in
             if result
             {
                 self.tableView.reloadData()
             }
-            self.headerFresh.endRefreshing()
         }
+        // Do any additional setup after loading the view.
     }
-    func getAppiontData(param:[String:Any] ,complection:@escaping (Bool) -> Void) {
-        var params = param
-        params["user_id"] = CurrentUserInfo?.data?.user_id ?? ""
-        TargetManager.share.getLonelySpeechList(params: params) { (models, error) in
+    @objc func refresh()
+    {
+        
+            self.tableView.reloadData()
+            self.headerFresh.endRefreshing()
+    }
+    func getAppiontData(complection:@escaping (Bool) -> Void) {
+        TargetManager.share.requestUserAllBroadcast(userid: userid) { (models, error) in
             guard error != nil else{
-//               self.appiontModels = models
+                
                 complection(true)
                 return
             }
             complection(false)
-            
         }
+
+       
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -125,41 +79,12 @@ class AppointViewController: BaseMainTableViewController,ResponderRouter,PhotoPi
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
         IQKeyboardManager.sharedManager().enable = false
         RootViewController?.showTheTabbar()
-        self.rightBtn.isHidden = false
-        self.rightBtn.setImage(imageName(name: "筛选"), for: UIControlState.normal)
-        self.addAppiont.isHidden = false
     }
     override func viewDidDisappear(_ animated: Bool) {
         IQKeyboardManager.sharedManager().enableAutoToolbar = true
         IQKeyboardManager.sharedManager().enable = true
     }
-    override func clickRightBtn() {
-        guard self.conditionView.isselect else {
-            self.showConditionView()
-            self.conditionView.isselect = true
-            return
-        }
-//        self.conditionView.isselect = false
-//        self.closeConditionView()
-    }
-    func closeConditionView() {
-        UIView.animate(withDuration: 0.3, animations: {
-            self.conditionView.frame = CGRect.init(x: 0, y: -250, width: ScreenWidth, height: 250)
-        }) { (complect) in
-            self.conditionView.isselect = false
-        }
-    }
-    func showConditionView() {
-        UIView.animate(withDuration: 0.3, animations: {
-            self.conditionView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 250)
-        }) { (complect) in
-            
-        }
-    }
-    
-    
-    
-    
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return self.appiontModels?.count ?? 0
     }
@@ -174,26 +99,13 @@ class AppointViewController: BaseMainTableViewController,ResponderRouter,PhotoPi
         cell.setDatasource(model: appiontModels![indexPath.section])
         return cell
     }
-    @objc func clickAdd(){
-        AlertViewCoustom().showalertView(style: .actionSheet, title: "广播", message: nil, cancelBtnTitle: "取消", touchIndex: { (index) in
-            if index == 1
-            {
-              RootNav().pushViewController(NormalAppointmentViewController(), animated: true)
-            }
-            else if index == 2
-            {
-                RootNav().pushViewController(EnlistAppiontViewController(), animated: true)
-            }
-            DebugLog(message: "\(index)")
-            
-        }, otherButtonTitles: "普通约会广播", "报名约会广播")
-    }
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let model = appiontModels![indexPath.section]
         
         let height = caculateCellHeight(model: model)
         return height
-
+        
         
     }
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -214,19 +126,19 @@ class AppointViewController: BaseMainTableViewController,ResponderRouter,PhotoPi
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
-extension AppointViewController
+extension UserBroadcastListViewController
 {
     func interceptRoute(name: String, objc: UIResponder?, info: Any?) {
         if name == ClickReportName {//点击产看报名
@@ -287,7 +199,7 @@ extension AppointViewController
                     TargetManager.share.issueComment(appointment_id:model.appointment_id ?? "" ,params: params, complection: { (reslt, error) in
                         if reslt {
                             self.appiontOpration.insertComment(content: text, create_at: date, index: index)
-                           self.reloadMyTableView(index: index)
+                            self.reloadMyTableView(index: index)
                         }
                     })
                     
@@ -305,7 +217,7 @@ extension AppointViewController
     }
     
 }
-extension AppointViewController
+extension UserBroadcastListViewController
 {
     //添加照片的协议方法
     func onImageSelectFinished(images: [PHAsset]) {
@@ -339,3 +251,16 @@ extension AppointViewController
         })
     }
 }
+
+    
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+

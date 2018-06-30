@@ -38,8 +38,7 @@ struct userInfo:JSON {
     var vip_expire_time:Int?
     var vip_level:Int?
     var balance:Int?
-    
-    
+    var likes:[String]?
     
 }
 

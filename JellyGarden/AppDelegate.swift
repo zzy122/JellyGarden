@@ -45,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     //ios9之前
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        if (Pingpp.handleOpen(url, withCompletion: nil)) {
+        if (Pingpp.handleOpen(url, withCompletion: nil)) {//收到支付结果通知
             return true;
         }
         let  result = UMSocialManager.default().handleOpen(url)
@@ -54,7 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     //ios9之后
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        if (Pingpp.handleOpen(url, withCompletion: nil)) {
+        if (Pingpp.handleOpen(url, withCompletion: nil)) {////要跳转支付宝或者微信的通知
             return true;
         }
         

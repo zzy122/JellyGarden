@@ -14,11 +14,19 @@ class PersonInfoViewController: BaseTableViewController,ResponderRouter {
     
     
     lazy var bottomView:UserInfoTabbar = {
-        let bottom = UserInfoTabbar.createUserInfoTabbar()
-        bottom?.tagFrame = CGRect.init(x: 0, y: ScreenHeight - 55, width: ScreenWidth, height: 55)
-        self.view.addSubview(bottom!)
-        return bottom!
+        let bottom:UserInfoTabbar = UserInfoTabbar.createUserInfoTabbar()!
+        bottom.tagFrame = CGRect.init(x: 0, y: ScreenHeight - 55, width: ScreenWidth, height: 55)
+        
+        self.view.addSubview(bottom)
+        return bottom
     }()
+    var collectionImageStr:String = ""
+    {
+        didSet{
+           self.bottomView.collectionImage.image = imageName(name: collectionImageStr)
+        }
+    }
+    
     var userInfoModel:UserModel? {
         didSet{
             var contact:String?
@@ -37,21 +45,37 @@ class PersonInfoViewController: BaseTableViewController,ResponderRouter {
                 self.rightTitles.append(continueString(strAry: troduces,separetStr:"  "))
             }
             self.tableView.reloadData()
+            if userInfoModel?.data?.likes?.contains((CurrentUserInfo?.data?.user_id)!) == true
+            {
+               self.collectionImageStr = "赞-实"
+            }
         }
     }
-    
+    override func viewDidLayoutSubviews() {
+
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+    }
     lazy var headerView:PersonalInfoHeader = {
         var intege = getLines(ary: self.userInfoModel?.data?.photos, veryCount: 4)
         let view1 = PersonalInfoHeader.createPersonalInfoHeader()
+        let backView = UIView()
+        backView.backgroundColor = UIColor.clear
+        backView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 320 + CGFloat(intege) * (BodyImageHeight + 8))
+        view1?.frame = backView.bounds
+        backView.addSubview(view1!)
         view1?.userModel = self.userInfoModel?.data
-        view1?.tagFrame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 320 + CGFloat(intege) * (BodyImageHeight + 8))
+        self.tableView.tableHeaderView = backView
+        
         return view1!
     }()
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.headerView.isHidden = false
-        self.tableView.tableHeaderView = self.headerView
+        
         self.bottomView.isHidden = false
         // Do any additional setup after loading the view.
     }
@@ -61,12 +85,19 @@ class PersonInfoViewController: BaseTableViewController,ResponderRouter {
             else{return}
             switch btnTag {
             case .collection://点击收藏
-            showContactAlert()
+                let params = ["like_garden_user_id":self.userInfoModel?.data?.user_id ?? "", "user_id":CurrentUserInfo?.data?.user_id ?? ""]
+                TargetManager.share.gardensUserLikes(params: params, complection: { (success) in
+                    if success {
+                        self.collectionImageStr = (self.collectionImageStr == "赞-实") ? "收藏" : "赞-实"
+                    }
+                })
                 break
             case .chat://点击 私聊
-                
-                break
+                self.gotoChatVC()
             case .prase://点击评价
+                AlertAction.share.showCommentStarView(imageUrl: userInfoModel?.data?.avatar, nikeStr: userInfoModel?.data?.nickname) { (poCount, playCount, tasteCount, cleanCount, agliCount, mothCount) in
+                    DebugLog(message: "poCount:\(poCount)playCount:\(playCount)tasteCount:\(tasteCount)cleanCount:\(cleanCount)agliCount:\(agliCount)mothCount:\(mothCount)")
+                }
                 
                 break
             case .money://点击定金
@@ -76,6 +107,11 @@ class PersonInfoViewController: BaseTableViewController,ResponderRouter {
             }
         }
     }
+    func gotoChatVC() {
+        let vc = ChatRoomViewController.init(conversationType: RCConversationType.ConversationType_PRIVATE, targetId: userInfoModel?.data?.user_id)
+//        vc?.targetId = "5b2f539af0fae056967dc6fb"
+        self.navigationController?.pushViewController(vc!, animated: true)
+    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -83,11 +119,19 @@ class PersonInfoViewController: BaseTableViewController,ResponderRouter {
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     func showContactAlert() {
-        AlertAction.share.showContactAlert(title: "她的联系方式", contactTypeStr: "微信", contactText: "testjjjj", introduceStr: "好吃懒做") { (type) in
-            
+        AlertAction.share.showContactAlert(title: "她的联系方式", contactTypeStr: leftTitles[4], contactText: rightTitles[4], introduceStr: rightTitles[1]) { (type) in
+            switch type {
+            case .close:
+                break
+            case .sure:
+                self.gotoChatVC()
+                break
+            case .report:
+                break
+                
+            }
         }
     }
     func showSubscriptionAlert() {//发送订金
@@ -155,7 +199,9 @@ extension PersonInfoViewController
         tableView.deselectRow(at: indexPath, animated: true)
         switch indexPath.row {
         case 0:
-            RootNav().pushViewController(WomanBroadcastViewController(), animated: true)
+            let vc = UserBroadcastListViewController()
+            vc.userid = userInfoModel?.data?.user_id ?? ""
+            RootNav().pushViewController(vc, animated: true)
             
             break
         case 1:
@@ -176,6 +222,7 @@ extension PersonInfoViewController
         case 3:
             break
         case 4:
+            showContactAlert()
             break
         case 5:
             break

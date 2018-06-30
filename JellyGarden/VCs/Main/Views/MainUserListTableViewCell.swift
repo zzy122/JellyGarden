@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+let ClickLikeHeart = "ClickLikeHeart"
 class MainUserListTableViewCell: UITableViewCell {
 
     @IBOutlet weak var userHeaderImage: UIImageView!//头像
@@ -45,10 +45,16 @@ class MainUserListTableViewCell: UITableViewCell {
                 realityLab.backgroundColor = UIColor.gray
                 realityLab.text = "未认证"
             }
+            heartImage.image = imageName(name: "赞-空")
+            if let isLike = model?.is_like ,isLike{
+                heartImage.image = imageName(name: "赞-实")
+            }
         }
     }
     
     @IBAction func clickHeart(_ sender: UIButton) {//点击心形Btn
+        zzy.router(name: ClickLikeHeart, object: nil, info: self.tag)
+        
         
     }
     override func setSelected(_ selected: Bool, animated: Bool) {

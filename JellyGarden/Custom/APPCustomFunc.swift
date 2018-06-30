@@ -8,10 +8,10 @@
 
 import UIKit
 import HandyJSON
-enum AppiontCellType {
-    case detail;
-    case mainList;
-}
+//enum AppiontCellType {
+//    case detail;
+//    case mainList;
+//}
 
 typealias loginFinish = (Bool) -> Void
 class APPCustomFunc: NSObject {
@@ -137,13 +137,14 @@ func angle(r:Double) -> Double {
     return r * 180/Double.pi
 }
 
-func caculateCellHeight(type:AppiontCellType,model:lonelySpeechDetaileModel) -> CGFloat//计算高度 type : detail就没有查看报名
+func caculateCellHeight(model:lonelySpeechDetaileModel) -> CGFloat//计算高度 type : detail就没有查看报名
 {
     let str = model.requirement ?? ""
     let textHeight = str.zzy.caculateHeight(font: kFont_system15, width: ScreenWidth - 40, lineSpace: 8.0)
-    var oringinTopX:CGFloat = textHeight + 135 + 18
-    if type == .detail {
-        oringinTopX -= 45
+    var oringinTopX:CGFloat = textHeight + 108
+    
+    if model.need_signup == true {
+        oringinTopX += 45
     }
     let inageAry:[String] = model.attachment ?? []//图片资源
     if inageAry.count == 0 {

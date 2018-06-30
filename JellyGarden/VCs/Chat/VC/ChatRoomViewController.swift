@@ -219,8 +219,19 @@ class ChatRoomViewController: RCConversationViewController,RCRealTimeLocationObs
             super.didLongTouchMessageCell(model, in: view)
             return
         }
-    self.lookDestoryView.imageView.imageBack.sd_DownLoadImage(url: destroy.imageUrl ?? "")
-        self.showDestroyImage()
+        let param:[String:Any] = ["user_id":RCIM.shared().currentUserInfo.userId,"url":destroy.imageUrl]
+        TargetManager.share.readImageForUserid(params: param) { (readModel, error) in
+            guard let tagsuc = readModel?.has_viewed,tagsuc == false else {
+                if error == nil
+                {
+                   alertHud(title: "照片已焚毁")
+                }
+                return;
+            }
+        self.lookDestoryView.imageView.imageBack.sd_DownLoadImage(url: destroy.imageUrl ?? "")
+            self.showDestroyImage()
+        }
+    
     }
     func hiddenDestroyImage() {
         self.lookDestoryView.removeFromSuperview()
@@ -247,28 +258,35 @@ extension ChatRoomViewController
     func onImageSelectFinished(images: [PHAsset]) {
         
         QPPhotoDataAndImage.getImagesAndDatas(photos: images) { (array) in
-            
             let model:QPPhotoImageModel? = array?.last
-            let mes:ReadDestroyMessage  = ReadDestroyMessage.init()
-            mes.originalImage = model?.bigImage!
-            mes.isRead = NSNumber.init(value: 0)
-            mes.senderUserInfo = RCIM.shared().currentUserInfo
-            RCIM.shared().sendMediaMessage(RCConversationType.ConversationType_PRIVATE, targetId: self.targetId, content: mes, pushContent: "阅后即焚", pushData: "图片", progress: { (gress, messageId) in
-                DebugLog(message: "进度:\(gress)userid:\(messageId)")
-                
-            }, success: { (code) in
-                DebugLog(message: "发送图片成功")
-            }, error: { (errorCode, code) in
-                
-            }, cancel: { (tag) in
-                
+            let yunmodel:AliyunUploadModel = AliyunUploadModel()
+            yunmodel.image = model?.bigImage
+            yunmodel.fileName = "\(getImageName()).png"
+            AliyunUpload.share().uploadImage(toAliyun: [yunmodel], isAsync: true, completion: { (urls, failCount, successCount, state) in
+                if state == UploadImageState.success
+                {
+                    self.sendImage(url: urls?.last ?? "")
+                }
             })
             
-            
-            //发送阅后即焚消息
-            MM_WARNING
-            
         }
+    }
+    func sendImage(url:String)
+    {
+        let mes:ReadDestroyMessage  = ReadDestroyMessage.init()
+        mes.imageUrl = url
+        mes.isRead = NSNumber.init(value: 0)
+        mes.senderUserInfo = RCIM.shared().currentUserInfo
+        RCIM.shared().sendMediaMessage(RCConversationType.ConversationType_PRIVATE, targetId: self.targetId, content: mes, pushContent: "阅后即焚", pushData: "图片", progress: { (gress, messageId) in
+            DebugLog(message: "进度:\(gress)userid:\(messageId)")
+            
+        }, success: { (code) in
+            DebugLog(message: "发送图片成功")
+        }, error: { (errorCode, code) in
+            
+        }, cancel: { (tag) in
+            
+        })
     }
     
 }

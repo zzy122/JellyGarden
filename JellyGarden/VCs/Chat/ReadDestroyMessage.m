@@ -21,22 +21,24 @@
     self = [super init];
     if (self) {
         self.isRead = [aDecoder decodeObjectForKey:@"isRead"];
+        self.imageUrl = [aDecoder decodeObjectForKey:@"imageUrl"];
     }
     return self;
 }
 
 /// NSCoding
 - (void)encodeWithCoder:(NSCoder *)aCoder {
-    [super encodeWithCoder:aCoder];
+    
     [aCoder encodeObject:self.isRead forKey:@"isRead"];
+    [aCoder encodeObject:self.imageUrl forKey:@"imageUrl"];
 }
 
 ///将消息内容编码成json
 - (NSData *)encode {
-    [super encode];
     NSMutableDictionary *dataDict = [NSMutableDictionary dictionary];
 
     [dataDict setObject:self.isRead forKey:@"isRead"];
+    [dataDict setObject:self.imageUrl forKey:@"imageUrl"];
     if (self.senderUserInfo) {
         NSMutableDictionary *userInfoDic = [[NSMutableDictionary alloc] init];
         if (self.senderUserInfo.name) {
@@ -64,7 +66,7 @@
         
         if (dictionary) {
             self.isRead = dictionary[@"isRead"];
-
+            self.imageUrl = dictionary[@"imageUrl"];
             NSDictionary *userinfoDic = dictionary[@"user"];
             [self decodeUserInfo:userinfoDic];
         }

@@ -201,7 +201,7 @@ extension NormalAppointmentViewController
         
         let  cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AddImageCollectionViewCell", for: indexPath) as! AddImageCollectionViewCell
         if indexPath.row == images.count {
-            cell.imageV.image = imageName(name: "添加照片1")
+            cell.imageV.image = imageName(name: "添加照片-1")
             cell.deletBtn.isHidden = true
         }
         else

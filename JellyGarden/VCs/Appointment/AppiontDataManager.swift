@@ -22,43 +22,52 @@ let CommentPath:String = {
     }
     return path
 }()
-
+let UserCommentListPath:String = {//用户的广播
+    let path = "\(UserPath)/userAppiont.plist"
+    if (!FileManager.default.fileExists(atPath: path))
+    {
+        if !FileManager.default.createFile(atPath: path, contents: nil, attributes: nil) {
+            DebugLog(message: "创建用户文件失败")
+        }
+    }
+    return path
+}()
 class AppiontDataManager: NSObject {
-    static let share = AppiontDataManager()
+    static let share = AppiontDataManager.init()
     private override init() {
         super.init()
-        self.createPath()
     }
     private func createPath()
     {
-        self.conmentPath = CommentPath
-        if (!FileManager.default.fileExists(atPath: self.conmentPath!))
+        
+        if (!FileManager.default.fileExists(atPath: self.conmentPath))
         {
-            if !FileManager.default.createFile(atPath: self.conmentPath!, contents: nil, attributes: nil) {
+            if !FileManager.default.createFile(atPath: self.conmentPath, contents: nil, attributes: nil) {
                 DebugLog(message: "创建用户文件失败")
             }
         }
     }
-    var conmentPath:String?
-    func clearData(){
-        guard let path = self.conmentPath else {
-            return
+    var conmentPath:String = ""
+    {
+        didSet {
+            self.createPath()
         }
+    }
+    func clearData(){
         do {
             
-            try FileManager.default.removeItem(atPath: path)
+            try FileManager.default.removeItem(atPath: CommentPath)
         } catch let error {
             DebugLog(message: "\(String.init(describing: error))")
         }
     }
     func writeData(param:[[String:Any]]) {
-        if conmentPath == nil {
-            self.createPath()
-        }
-        NSArray.init(array: param).write(toFile: self.conmentPath!, atomically: true)
-        self.appiontAry = NSArray.init(contentsOfFile: self.conmentPath!) as? [[String : Any]]
+        NSArray.init(array: param).write(toFile: self.conmentPath, atomically: true)
+        self.appiontAry = NSArray.init(contentsOfFile: self.conmentPath) as? [[String : Any]]
     }
+    
     var appiontAry:[[String:Any]]?
+    
     
     func modifyLikes(index:Int,type:ModifyLikeType)//修改点赞数
     {

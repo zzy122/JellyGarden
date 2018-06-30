@@ -13,10 +13,13 @@ class WomanBroadcastViewController: BaseMainTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "她的广播"
+        self.edgesForExtendedLayout = UIRectEdge.bottom
         self.tableView.register(UINib.init(nibName: "ConfessionTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "ConfessionTableViewCell")
         // Do any additional setup after loading the view.
     }
-    
+    override func viewWillLayoutSubviews() {
+        
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -47,7 +50,7 @@ extension WomanBroadcastViewController
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return caculateCellHeight(type: .mainList,model: lonelySpeechDetaileModel())
+        return caculateCellHeight(model: lonelySpeechDetaileModel())
     }
     
 }

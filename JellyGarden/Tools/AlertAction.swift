@@ -13,9 +13,17 @@ class AlertAction: NSObject {
     private override init() {
         
     }
-    
+    typealias clickCommentStarView = (_ polite:Int,_ play:Int,_ taste:Int,_ clean:Int,_ agile:Int,_ mouth:Int) -> Void
     let commentHeight:CGFloat = 70.0
     var isGetBordHeight:CGFloat = 0.0
+    var commentViewHeight:CGFloat = 350 * SCALE
+    lazy var commentView:CommentStarView = {
+        let view:CommentStarView = CommentStarView.createCommentStarView()!
+        view.frame = CGRect.init(x: 0, y: ScreenHeight, width: ScreenWidth, height: commentViewHeight)
+        
+        
+        return view
+    }()
     
     let backView:UIView = {
        let view = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight))
@@ -26,6 +34,7 @@ class AlertAction: NSObject {
     }()
     lazy var comment:CommentView = {
         let view = CommentView.createCommentView()
+
         return view!
     }()
     
@@ -113,6 +122,7 @@ class AlertAction: NSObject {
                 self.backView.removeFromSuperview()
             }
         }
+        
     }
     
     //
@@ -141,12 +151,51 @@ class AlertAction: NSObject {
         comment.commentTextFiled.text = ""
         UIApplication.shared.keyWindow?.addSubview(self.backView)
         self.showBackView()
-        comment.tagFrame = CGRect.init(x: 0, y: ScreenHeight, width: ScreenWidth, height: commentHeight)
+        comment.frame = CGRect.init(x: 0, y: ScreenHeight, width: ScreenWidth, height: commentHeight)
         comment.setNeedsLayout()
         UIApplication.shared.keyWindow?.addSubview(comment)
         comment.commentTextFiled.becomeFirstResponder()
         
     }
+    func showCommentStarView(imageUrl:String?,nikeStr:String?, complectiom:@escaping clickCommentStarView) {
+         UIApplication.shared.keyWindow?.addSubview(self.backView)
+        
+        self.showBottom()
+        self.commentView.isHidden = false
+        self.commentView.politeView.reloadData()
+        self.commentView.playView.reloadData()
+        self.commentView.tasteView.reloadData()
+        self.commentView.cleanView.reloadData()
+        self.commentView.agileView.reloadData()
+        self.commentView.mouthView.reloadData()
+        self.commentView.headerImage.sd_DownLoadImage(url: imageUrl ?? "")
+        self.commentView.nikeNameLable.text = nikeStr
+        self.commentView.clickClose = {[weak self] sure in
+            UIView.animate(withDuration: 0.3, animations: {
+                self?.commentView.frame = CGRect.init(x: 0, y: ScreenHeight, width: ScreenWidth, height: self?.commentViewHeight ?? 0)
+            }, completion: { (complection) in
+                if complection {
+                    if (sure)
+                    {
+                    complectiom(self?.commentView.politeView.star ?? 0,self?.commentView.playView.star ?? 0,self?.commentView.tasteView.star ?? 0,self?.commentView.cleanView.star ?? 0,self?.commentView.agileView.star ?? 0,self?.commentView.mouthView.star ?? 0)
+                    }
+                    
+                    
+                    self?.commentView.removeFromSuperview()
+                    self?.backView.removeFromSuperview()
+                }
+                
+            })
+        }
+        UIApplication.shared.keyWindow?.addSubview(self.commentView)
+        comment.setNeedsLayout()
+        UIView.animate(withDuration: 0.5, animations: {
+            self.commentView.frame = CGRect.init(x: 0, y: ScreenHeight - self.commentViewHeight, width: ScreenWidth, height: self.commentViewHeight)
+        }) { (complection) in
+            
+        }
+    }
+    
     @objc func keyboardWillShow(note: NSNotification) {
         let userInfo = note.userInfo!
         let  keyBoardBounds = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue

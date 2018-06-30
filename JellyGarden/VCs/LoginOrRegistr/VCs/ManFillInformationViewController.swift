@@ -166,16 +166,21 @@ class ManFillInformationViewController: BaseViewController,UIImagePickerControll
             alertHud(title: "请填写昵称")
             return
         }
-        guard let ageStr = oppintRange,ageStr.count > 0 else {
+        guard let cityStr = oppintRange,cityStr.count > 0 else {
             alertHud(title: "请选择约会范围")
+            return
+        }
+        guard let ageStr = self.ageLab.text,ageStr.count > 0 else {
+            alertHud(title: "请选择年龄")
             return
         }
         guard let professionStr = self.professionalLab.text,professionStr.count > 0 else {
             alertHud(title: "请选择职业")
             return
         }
-        var fillInfo:[String:Any] = ["nickname":nikeStr,"avatar":url,"appointment_place":ageStr,"":"","identity":professionStr,"sex":"0"]
-        fillInfo["tags"] = ""
+        var fillInfo:[String:Any] = ["nickname":nikeStr,"avatar":url,"appointment_place":cityStr,"age":(ageStr as NSString).floatValue,"identity":professionStr,"sex":"0","language":[],"bust":0,"contact_wechat":"","contact_qq":"","dress_style":[],"appointment_program":[],"emotion_status":"","stature":0,"weight":0,"appointment_condition":[],"self_introduction":"",]
+        
+        fillInfo["tags"] = []
         if contentTextView.text.count > 0 {
             fillInfo["tags"] = currentData
             fillInfo["self_introduction"] = contentTextView.text

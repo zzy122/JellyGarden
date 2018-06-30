@@ -27,17 +27,17 @@ class PersonalInfoHeader: UIView {
     @IBOutlet weak var detailLab: UILabel!//地址所在地 年龄 职业
     @IBOutlet weak var nikeNameLab: UILabel!//昵称
     @IBOutlet weak var headerImage: UIImageView!
-    var tagFrame:CGRect? {
-        didSet{
-            self.frame = tagFrame!
-            guard let ary = userModel?.photos,ary.count > 0 else {
-                self.imageBodyView.isHidden = true
-                return
-            }
-            self.imageBodyView.isHidden = false
-            
-        }
-    }
+//    var tagFrame:CGRect? {
+//        didSet{
+//            self.frame = tagFrame!
+//            guard let ary = userModel?.photos,ary.count > 0 else {
+//                self.imageBodyView.isHidden = true
+//                return
+//            }
+//            self.imageBodyView.isHidden = false
+//
+//        }
+//    }
     var userModel:userInfo?{
         didSet{
             self.headerImage.sd_DownLoadImage(url: userModel?.avatar ?? "")
@@ -66,15 +66,23 @@ class PersonalInfoHeader: UIView {
             bodyWeightLab.text = "\(bodyWeightStr)KG"
             bodyHeightLab.text = "\(bodyHeightStr)CM"
             if let vip = userModel?.vip_level,vip > 0 {
-                self.VipLabl.isHidden = false
+                if let time = userModel?.vip_expire_time, time > 0
+                {
+                    self.VipLabl.isHidden = false
+                }
             }
+            guard let ary = userModel?.photos,ary.count > 0 else {
+                self.imageBodyView.isHidden = true
+                return
+            }
+            self.imageBodyView.isHidden = false
         }
     }
     
     lazy var imageBodyView:PersonInfoImageView = { 
-        let view = PersonInfoImageView.init(frame:  CGRect.init(x: 0, y: 0, width: (self.tagFrame?.width)!, height: (self.tagFrame?.height)! - self.ImageContentView.frame.minY))
+        let view = PersonInfoImageView.init(frame:  CGRect.init(x: 0, y: 0, width: (self.frame.width), height: (self.frame.height) - self.ImageContentView.frame.minY))
         view.userModel = self.userModel
-        self.ImageContentView.addSubview(view)
+        self.addSubview(view)
         return view
     }()
     class func createPersonalInfoHeader() -> PersonalInfoHeader?{
@@ -82,7 +90,6 @@ class PersonalInfoHeader: UIView {
         guard let view = nibView else {
             return nil
         }
-        //        view.backgroundColor = UIColor.clear
         view.headerImage.layer.cornerRadius = 35
         view.VipLabl.layer.cornerRadius = 9
         view.VipLabl.clipsToBounds = true
@@ -94,14 +101,13 @@ class PersonalInfoHeader: UIView {
         view.userInfoContentView.layer.cornerRadius = 8
         view.attestationLab.layer.cornerRadius = 8.0
         view.attestationLab.clipsToBounds = true
-        
         return view
         
     }
     
-    override func draw(_ rect: CGRect) {
-        self.frame = tagFrame!
-    }
+//    override func draw(_ rect: CGRect) {
+//        self.frame = tagFrame!
+//    }
     override func layoutSubviews() {//视图没加载出来的时候gaibianframe不会调用
         
     }

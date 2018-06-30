@@ -7,7 +7,7 @@
 //
 
 import UIKit
-struct MainListmodel:JSON {
+class MainListmodel:JSON {
     var nickname:String?
     var a2:String?
     var avatar:String?
@@ -19,7 +19,10 @@ struct MainListmodel:JSON {
     var user_id:String?
     var photo_count:Int?
     var lon:Double?
-    
-    
+    var sex:Int?
+    var is_like:Bool?
+    required init() {
+        
+    }
 }
 

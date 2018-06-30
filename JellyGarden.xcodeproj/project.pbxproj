@@ -66,6 +66,13 @@
 		5A1F3ACE20E0EA2A00CB98CD /* ReadDestroryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F3ACD20E0EA2A00CB98CD /* ReadDestroryView.m */; };
 		5A1F3AD020E0EA3C00CB98CD /* ReadDestroryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A1F3ACF20E0EA3C00CB98CD /* ReadDestroryView.xib */; };
 		5A24A7AC20E3E964007B9C76 /* RCTokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A24A7AB20E3E964007B9C76 /* RCTokenModel.swift */; };
+		5A27B37D20E4DCFA0028D5FF /* ReadImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A27B37C20E4DCFA0028D5FF /* ReadImageModel.swift */; };
+		5A27B37F20E5062E0028D5FF /* UserBroadcastListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A27B37E20E5062E0028D5FF /* UserBroadcastListViewController.swift */; };
+		5A27B38120E527180028D5FF /* ManUserInfoTabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A27B38020E527180028D5FF /* ManUserInfoTabbar.swift */; };
+		5A27B38320E5272A0028D5FF /* ManUserInfoTabbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A27B38220E5272A0028D5FF /* ManUserInfoTabbar.xib */; };
+		5A27B38520E52F540028D5FF /* GFStarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A27B38420E52F530028D5FF /* GFStarView.swift */; };
+		5A27B38720E530460028D5FF /* CommentStarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A27B38620E530460028D5FF /* CommentStarView.xib */; };
+		5A27B38920E530510028D5FF /* CommentStarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A27B38820E530510028D5FF /* CommentStarView.swift */; };
 		5A380F6520DE88E400CC4152 /* DepositView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A380F6420DE88E400CC4152 /* DepositView.m */; };
 		5A380F6820DE8E6D00CC4152 /* RedPacketCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A380F6720DE8E6D00CC4152 /* RedPacketCell.m */; };
 		5A380F6B20DE91DE00CC4152 /* ReadDestroyMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A380F6A20DE91DE00CC4152 /* ReadDestroyMessage.m */; };
@@ -340,6 +347,13 @@
 		5A1F3ACD20E0EA2A00CB98CD /* ReadDestroryView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReadDestroryView.m; sourceTree = "<group>"; };
 		5A1F3ACF20E0EA3C00CB98CD /* ReadDestroryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReadDestroryView.xib; sourceTree = "<group>"; };
 		5A24A7AB20E3E964007B9C76 /* RCTokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCTokenModel.swift; sourceTree = "<group>"; };
+		5A27B37C20E4DCFA0028D5FF /* ReadImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadImageModel.swift; sourceTree = "<group>"; };
+		5A27B37E20E5062E0028D5FF /* UserBroadcastListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBroadcastListViewController.swift; sourceTree = "<group>"; };
+		5A27B38020E527180028D5FF /* ManUserInfoTabbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManUserInfoTabbar.swift; sourceTree = "<group>"; };
+		5A27B38220E5272A0028D5FF /* ManUserInfoTabbar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ManUserInfoTabbar.xib; sourceTree = "<group>"; };
+		5A27B38420E52F530028D5FF /* GFStarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GFStarView.swift; sourceTree = "<group>"; };
+		5A27B38620E530460028D5FF /* CommentStarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentStarView.xib; sourceTree = "<group>"; };
+		5A27B38820E530510028D5FF /* CommentStarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentStarView.swift; sourceTree = "<group>"; };
 		5A380F6320DE88E400CC4152 /* DepositView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DepositView.h; sourceTree = "<group>"; };
 		5A380F6420DE88E400CC4152 /* DepositView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DepositView.m; sourceTree = "<group>"; };
 		5A380F6620DE8E6D00CC4152 /* RedPacketCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RedPacketCell.h; sourceTree = "<group>"; };
@@ -966,6 +980,7 @@
 			isa = PBXGroup;
 			children = (
 				5A80C4E220BFE7B90033CAF8 /* BaseModel.swift */,
+				5A27B37C20E4DCFA0028D5FF /* ReadImageModel.swift */,
 				5AF4A75A20D6655500CFDDD6 /* AliyunUploadModel.h */,
 				5AF4A75B20D6655500CFDDD6 /* AliyunUploadModel.m */,
 				5A80C4E120BFE7B90033CAF8 /* TargetManager.swift */,
@@ -1038,6 +1053,9 @@
 		5AEC519720C9104A00DD0099 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5A27B38420E52F530028D5FF /* GFStarView.swift */,
+				5A27B38620E530460028D5FF /* CommentStarView.xib */,
+				5A27B38820E530510028D5FF /* CommentStarView.swift */,
 				5AEC51A420C910EF00DD0099 /* MainUserListTableViewCell.swift */,
 				5AEC51A520C910EF00DD0099 /* MainUserListTableViewCell.xib */,
 				5AEC51A820C9228300DD0099 /* MainBodyView.swift */,
@@ -1052,6 +1070,8 @@
 				5A574BEB20C95FE200C59276 /* BodyImageCollectionViewCell.xib */,
 				5A574BF020C97CCD00C59276 /* UserInfoTabbar.xib */,
 				5A574BF220C97FCD00C59276 /* UserInfoTabbar.swift */,
+				5A27B38020E527180028D5FF /* ManUserInfoTabbar.swift */,
+				5A27B38220E5272A0028D5FF /* ManUserInfoTabbar.xib */,
 				5A574BFA20CA204A00C59276 /* ReckonTimeView.swift */,
 				5A574C0A20CA397A00C59276 /* LookImageBodyView.xib */,
 				5A574C0820CA396800C59276 /* LookImageBodyView.swift */,
@@ -1066,6 +1086,7 @@
 			isa = PBXGroup;
 			children = (
 				5AE9CC8A20C8D83E0057CFF3 /* AppointViewController.swift */,
+				5A27B37E20E5062E0028D5FF /* UserBroadcastListViewController.swift */,
 				5ACEFC7F20D4F6E000BE5241 /* NormalAppointmentViewController.swift */,
 				5ACEFC8020D4F6E000BE5241 /* NormalAppointmentViewController.xib */,
 				5AF4A75020D6260100CFDDD6 /* EnlistAppiontViewController.swift */,
@@ -1352,6 +1373,7 @@
 				5A015EBE20C577F200EC8A96 /* RegisterViewController.xib in Resources */,
 				5A459AF320D3EA2D00C0A6FA /* ManpersonInfoHeader.xib in Resources */,
 				5A0455D520CD68310041D309 /* ConfessionTableViewCellBody.xib in Resources */,
+				5A27B38320E5272A0028D5FF /* ManUserInfoTabbar.xib in Resources */,
 				5A7CEC7020D532D600B7A7C9 /* QPPhotoListCell.xib in Resources */,
 				5A4E325E20C7B6650051FE00 /* FillInfoView.xib in Resources */,
 				5A80C49D20BFDB150033CAF8 /* LaunchScreen.storyboard in Resources */,
@@ -1364,6 +1386,7 @@
 				5A4E326020C7B6650051FE00 /* InvitationCodeView.xib in Resources */,
 				5A7CEC6A20D5321300B7A7C9 /* QPPhotoCell.xib in Resources */,
 				5A459AD920D1721D00C0A6FA /* CommentTableViewCell.xib in Resources */,
+				5A27B38720E530460028D5FF /* CommentStarView.xib in Resources */,
 				5ADD1A3220C9530E004504B3 /* PersonalInfoHeader.xib in Resources */,
 				5A45D9DB20E33AA600D2B4CE /* ManFillInformationViewController.xib in Resources */,
 				5A4E326220C7B6650051FE00 /* PackageView.xib in Resources */,
@@ -1641,6 +1664,7 @@
 				5A1F3AA320DF374800CB98CD /* TagStatueMessage.m in Sources */,
 				5A1F3AB820DF6CA700CB98CD /* HeadCollectionView.m in Sources */,
 				5A015E9420C4FDBF00EC8A96 /* FinishViewController.swift in Sources */,
+				5A27B38120E527180028D5FF /* ManUserInfoTabbar.swift in Sources */,
 				5A1F3ACE20E0EA2A00CB98CD /* ReadDestroryView.m in Sources */,
 				5A015ECD20C62BBC00EC8A96 /* FillInformationFirstViewController.swift in Sources */,
 				5A459AEF20D3B60400C0A6FA /* ManPersonInfoViewController.swift in Sources */,
@@ -1655,6 +1679,7 @@
 				5A45D9D720E27A0800D2B4CE /* VipPageModel.swift in Sources */,
 				5A80C4CE20BFE1050033CAF8 /* NetCostom.swift in Sources */,
 				5AE9CC8720C8C8D70057CFF3 /* LocationCitys.swift in Sources */,
+				5A27B38920E530510028D5FF /* CommentStarView.swift in Sources */,
 				5A1F3ABC20DF6CA700CB98CD /* RCLocationView.m in Sources */,
 				5A80C4D520BFE1620033CAF8 /* APPCustomDefine.swift in Sources */,
 				5A7CEC6720D531DC00B7A7C9 /* QPPhotoFetchOptions.swift in Sources */,
@@ -1685,6 +1710,7 @@
 				5A120C4120DB875E004A9DCF /* CommentView.swift in Sources */,
 				5A80C4D020BFE1050033CAF8 /* CustomFunc.swift in Sources */,
 				5A7CEC6B20D5321300B7A7C9 /* QPPhotoCell.swift in Sources */,
+				5A27B37D20E4DCFA0028D5FF /* ReadImageModel.swift in Sources */,
 				5A4E326120C7B6650051FE00 /* PackageView.swift in Sources */,
 				5A120C4F20DD3CDD004A9DCF /* ChatRoomViewController.swift in Sources */,
 				5A015EC820C5834D00EC8A96 /* SexViewController.swift in Sources */,
@@ -1699,6 +1725,7 @@
 				5A1F3ABF20DF6CA700CB98CD /* RealTimeLocationStatusView.m in Sources */,
 				5AB8F47820E2136800429108 /* MessgeCenterViewController.swift in Sources */,
 				5A459AD420D166A400C0A6FA /* ZZYFrameParser.m in Sources */,
+				5A27B37F20E5062E0028D5FF /* UserBroadcastListViewController.swift in Sources */,
 				5A1F3AA020DF35E600CB98CD /* TagStatueCell.m in Sources */,
 				5A015ECB20C5864700EC8A96 /* FillInformationViewController.swift in Sources */,
 				5A80C4EA20BFF6ED0033CAF8 /* OtherApplication.swift in Sources */,
@@ -1715,6 +1742,7 @@
 				5AFA3B6F20D78AE40052FC42 /* WCLRecordEngine.m in Sources */,
 				5AEB824220D8E857002A7E69 /* FiltrateCondition.swift in Sources */,
 				5A1F3ABB20DF6CA700CB98CD /* RCLocationConvert.m in Sources */,
+				5A27B38520E52F540028D5FF /* GFStarView.swift in Sources */,
 				5A459AD120D166A400C0A6FA /* UIResponder+Router.m in Sources */,
 				5A459AE620D278FD00C0A6FA /* MainListmodel.swift in Sources */,
 				5E6AE16D20DF972C00901D43 /* AlignedCollectionViewFlowLayout.swift in Sources */,

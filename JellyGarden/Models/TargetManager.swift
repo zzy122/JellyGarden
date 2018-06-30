@@ -115,9 +115,10 @@ class TargetManager: NSObject {
         NetCostom.shared.request(method: .get, wengen: "appointment", params: params, success: { (result) in
             if let jsonStr = result as? [String:Any]
             {
-                let ary:[Any] = jsonStr["data"] as! [Any]
+                let ary:[Any]? = jsonStr["data"] as? [Any]
+                AppiontDataManager.share.conmentPath =  CommentPath
                 AppiontDataManager.share.writeData(param: ary as! [[String : Any]])
-//                NSArray.init(array: ary).write(toFile: CommentPath, atomically: true)
+                
                 
                 let model = BaseModel<lonelySpeechModel,lonelySpeechModel>.init(resultData: jsonStr)
                 complection(model.resultData?.data,nil)
@@ -296,9 +297,14 @@ class TargetManager: NSObject {
         }
     }
     //请求融云token
-    func rongcloudToken(complection:@escaping (RCTokenModel?) -> Void) {
+    func rongcloudToken(isRefresh:Bool, complection:@escaping (RCTokenModel?) -> Void) {
         let param = ["user_id":CurrentUserInfo?.data?.user_id ?? "","nickname":CurrentUserInfo?.data?.nickname ?? "","avatar":CurrentUserInfo?.data?.avatar ?? ""]
-        NetCostom.shared.request(method: .post, wengen: "rongcloud/toke", params: param, success: { (result) in
+        var wengen = "rongcloud/token"
+        if isRefresh
+        {
+            wengen = "rongcloud/token/refresh"
+        }
+        NetCostom.shared.request(method: .post, wengen: wengen, params: param, success: { (result) in
             if let jsonStr = result as? [String:Any]
             {
                 let model = BaseModel<RCTokenModel,RCTokenModel>.init(resultData: jsonStr["data"] ?? "")
@@ -313,6 +319,85 @@ class TargetManager: NSObject {
             complection(nil)
         }
         
+    }
+    //点赞用户
+    func gardensUserLikes(params:[String:Any],complection:@escaping (Bool) -> Void)
+    {
+        NetCostom.shared.request(method: .post, wengen: "gardens/likes", params: params, success: { (result) in
+            complection(true)
+        }) { (error) in
+            complection(false)
+        }
+    }
+    //请求首页单独某个列表
+    func getMainListUserInfo(userId:String,complection:@escaping (MainListmodel?,Error?) -> Void)
+    {
+        NetCostom.shared.request(method:.get ,wengen: "gardens/\(userId)", params: nil, success: { (result) in
+            guard let resultDic = result as? [String:Any] else
+            {
+                alertHud(title: "返回错误")
+                return
+            }
+            guard let dic = resultDic["data"] as? [String:Any] else
+            {
+                alertHud(title: "返回错误")
+                return
+            }
+            let model = BaseModel<MainListmodel,MainListmodel>.init(resultData: dic)
+            complection(model.resultData,nil)
+        }) { (error) in
+            complection(nil,error)
+            
+        }
+    }
+    //添加照片  或者红包照片
+    func addImageToServer(params:[String:Any],complection:@escaping (Bool) -> Void)
+    {
+        NetCostom.shared.request(method: .post, wengen: "custom_photos", params: params, success: { (result) in
+            complection(true)
+        }) { (error) in
+            complection(false)
+        }
+    }
+    
+    func readImageForUserid(params:[String:Any], complection:@escaping (ReadImageModel?,Error?) -> Void)
+    {
+        NetCostom.shared.request(method: .post, wengen: "custom_photos/view", params: params, success: { (result) in
+            guard let resultDic = result as? [String:Any] else
+            {
+                alertHud(title: "返回错误")
+                return
+            }
+            guard let dic = resultDic["data"] as? [String:Any] else
+            {
+                alertHud(title: "返回错误")
+                return
+            }
+            let model = BaseModel<ReadImageModel,ReadImageModel>.init(resultData: dic)
+            complection(model.resultData,nil)
+        }) { (error) in
+            complection(nil,error)
+        }
+    }
+    func requestUserAllBroadcast(userid:String,complection:@escaping ([lonelySpeechDetaileModel]?,Error?) -> Void)
+    {
+        NetCostom.shared.request(method: .get, wengen: "users/\(userid)/appointments", params: nil, success: { (result) in
+            if let jsonStr = result as? [String:Any]
+            {
+                let ary:[Any]? = jsonStr["data"] as? [Any]
+                AppiontDataManager.share.conmentPath = UserCommentListPath
+                AppiontDataManager.share.writeData(param: ary as! [[String : Any]])
+
+                let model = BaseModel<lonelySpeechModel,lonelySpeechModel>.init(resultData: jsonStr)
+                complection(model.resultData?.data,nil)
+            }
+            else
+            {
+                alertHud(title: "数据返回错误")
+            }
+        }) { (error) in
+            complection(nil,error)
+        }
     }
 }
 

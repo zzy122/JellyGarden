@@ -20,8 +20,8 @@ class BodyImageCollectionViewCell: UICollectionViewCell {
     
     func setImage(image:UIImage?,isImplement:LookImageType)
     {
-        self.imageV.image = image
         
+        self.imageV.image = image
         switch isImplement {
         case .clearness:
             self.implementView.isHidden = true

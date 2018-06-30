@@ -12,7 +12,18 @@ let MainBodyViewScrollPage = "MainBodyViewScrollPage"
 class MainBodyView: UIView,UICollectionViewDelegate,UICollectionViewDataSource {
     
     var typeAry:[SearchType] = []
-   
+    var tagLocalCity:String?{
+        didSet{
+            self.collectionView.reloadData()
+        }
+    }//设置当前的筛选地址
+    
+    var tagSex:sexType?
+    {
+        didSet{
+            self.collectionView.reloadData()
+        }
+    }//设置当前的性别
     
     
     lazy var collectionView:UICollectionView = {
@@ -59,6 +70,8 @@ class MainBodyView: UIView,UICollectionViewDelegate,UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MainBodyCollectionViewCell", for: indexPath) as? MainBodyCollectionViewCell
+        cell?.tagLocalCity = self.tagLocalCity
+        cell?.tagSex = self.tagSex
         cell?.userType = self.typeAry[indexPath.row]
         return cell!
         

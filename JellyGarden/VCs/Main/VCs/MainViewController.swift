@@ -24,6 +24,7 @@ class MainViewController: BaseMainViewController,UISearchBarDelegate,ResponderRo
             self.leftBtn.setTitle(cityStr, for: UIControlState.normal)
             self.leftBtn.setTitleColor(UIColor.gray, for: UIControlState.normal)
             self.leftBtn.setImage(imageName(name: "选中"), for: UIControlState.normal)
+            self.bodyView.tagLocalCity = cityStr
             self.leftBtn.sizeToFit()
         }
     }
@@ -50,6 +51,8 @@ class MainViewController: BaseMainViewController,UISearchBarDelegate,ResponderRo
     lazy var bodyView:MainBodyView = {
         let body = MainBodyView.init(frame: CGRect.init(x: 0, y: self.scrollItemView.frame.maxY, width: ScreenWidth, height: self.view.frame.height - self.scrollItemView.frame.maxY))
         body.typeAry = [SearchType.hot,SearchType.new,SearchType.attestation]
+        body.tagLocalCity = LocalCityName
+        body.tagSex = (CurrentUserInfo?.data?.sex == 0) ? .woman : .man
         return body
     }()
     lazy var searchBarBtn:UIButton = {
@@ -87,15 +90,15 @@ class MainViewController: BaseMainViewController,UISearchBarDelegate,ResponderRo
         self.rightBtn.setImage(imageName(name: "切换"), for: UIControlState.normal)
         
     }
-    override func clickLeftBtn() {
+    override func clickLeftBtn() { 
         AlertAction.share.showbottomPicker(title: self.cityStr, maxCount: 1, dataAry: currentCitys, currentData: [self.cityStr]) { (result) in
             self.cityStr = result.last ?? self.cityStr
-            
+
         }
         
     }
     override func clickRightBtn() {
-        
+        self.bodyView.tagSex = (bodyView.tagSex == .woman) ? .man : .woman
     }
     @objc func clickSearch(){
         self.navigationController?.pushViewController(SearchUserViewController(), animated: true)
@@ -123,26 +126,43 @@ class MainViewController: BaseMainViewController,UISearchBarDelegate,ResponderRo
         if name == ClickMainUserCell {
             let model:MainListmodel = info as! MainListmodel
             //男士无法查看男士
-            
-//            RootNav().pushViewController(PersonInfoViewController(), animated: true)
+            let userSex = CurrentUserInfo?.data?.sex
+            if userSex == 0,userSex == model.sex
+            {
+                alertHud(title: "男士不能查看男士列表哦~")
+                return
+            }
+            if userSex == 1,userSex == model.sex
+            {
+                alertHud(title: "女士不能查看女士列表哦~")
+                return
+            }
             RootViewController?.hideTheTabbar()
-//            RootNav().pushViewController(ManPersonInfoViewController(), animated: true)
-            MM_WARNING
-            alertHud(title: "男士不能查看男士列表哦~")
-//            return
-            let vc = PersonInfoViewController()
-            
-            TargetManager.share.getDetailUserInfo(userid: model.user_id ?? "",isUpdateUser:false, complection: { (userinfo, error) in
-                guard let user = userinfo else{
-                    return
-                }
-                vc.userInfoModel = user
-                RootNav().pushViewController(vc, animated: true)
-            })
-            
-            
-            
-            
+            if model.sex == 1
+            {
+                
+                let vc = PersonInfoViewController()
+                
+                TargetManager.share.getDetailUserInfo(userid: model.user_id ?? "",isUpdateUser:false, complection: { (userinfo, error) in
+                    guard let user = userinfo else{
+                        return
+                    }
+                    vc.userInfoModel = user
+                    RootNav().pushViewController(vc, animated: true)
+                })
+            }
+            else
+            {
+                let vc = ManPersonInfoViewController()
+                
+                TargetManager.share.getDetailUserInfo(userid: model.user_id ?? "",isUpdateUser:false, complection: { (userinfo, error) in
+                    guard let user = userinfo else{
+                        return
+                    }
+                    vc.userInfoModel = user
+                    RootNav().pushViewController(vc, animated: true)
+                })
+            }
            
         }
     }

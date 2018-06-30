@@ -15,13 +15,13 @@ typealias ClickTextFiledChange = (CLickCommentType,String?) ->Void
 class CommentView: UIView {
     var clickType:ClickTextFiledChange?
     
-    var tagFrame:CGRect?
+//    var tagFrame:CGRect?
 //    override func layoutSubviews() {
 //        self.frame = tagFrame!
 //    }
-    override func draw(_ rect: CGRect) {
-        self.frame = tagFrame!
-    }
+//    override func draw(_ rect: CGRect) {
+//        self.frame = tagFrame!
+//    }
     func clickChange(type:@escaping ClickTextFiledChange) {
         self.clickType = type
     }

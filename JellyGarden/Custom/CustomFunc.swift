@@ -90,8 +90,12 @@ func getJSONStringFromObject(dictionary:Any) -> String {
         return ""
     }
     let data : NSData! = try? JSONSerialization.data(withJSONObject: dictionary, options: []) as NSData!
-    let JSONString = NSString(data:data as Data,encoding: String.Encoding.utf8.rawValue)
-    return JSONString! as String
+    let JSONString: String = NSString(data:data as Data,encoding: String.Encoding.utf8.rawValue)! as String
+    
+    let str1 = JSONString.replacingOccurrences(of: "\\", with: "")
+    let str = str1.replacingOccurrences(of: "\n", with: "")
+    
+    return str
     
 }
 func getTimeStamp(date:Date) -> Int{

@@ -36,7 +36,8 @@ class SexViewController: BaseViewController {
     override func clickLeftBtn() {
         AlertViewCoustom().showalertView(style: .alert, title: "确定退出么", message: "您还未完善个人信息,现在退出下次进入果冻花园请用已注册的账号直接登录", cancelBtnTitle: "确定退出", touchIndex: { (index) in
             if index == 0{
-                exit(0)
+                clearUserInfo()
+                self.navigationController?.popToRootViewController(animated: true)
             }
             
         }, otherButtonTitles: "继续完善")

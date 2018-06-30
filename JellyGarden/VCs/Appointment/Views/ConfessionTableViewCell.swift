@@ -21,18 +21,7 @@ class ConfessionTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDa
         self.contentView.addSubview(view)
         return view
     }()
-    var type:AppiontCellType = .mainList {
-        didSet{
-            if type == .mainList {
-               self.applyView.isHidden = false
-                
-            }
-            else
-            {
-                self.applyView.isHidden = true
-            }
-        }
-    }
+    
     
     var detailModel:lonelySpeechDetaileModel? {
         didSet{
@@ -72,6 +61,8 @@ class ConfessionTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDa
             self.applyView.ApplyStatus.isUserInteractionEnabled = false
             self.applyView.ApplyStatus.setTitle("已结束", for: UIControlState.normal)
             self.applyView.ApplyStatus.setTitleColor(UIColor.gray, for: UIControlState.normal)
+            self.applyView.isHidden = !(detailModel?.need_signup ?? false)
+            
             
         }
     }
@@ -118,7 +109,7 @@ class ConfessionTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDa
         {
             height = height + CommentGetHeight.getHeightCell(title: model.publisher_name ?? "", commentStr: model.content ?? "") + 5
         }
-        if self.type == .mainList
+        if detailModel?.need_signup == true
         {
             view.frame = CGRect.init(x: 0, y: self.applyView.tagFrame.maxY, width: ScreenWidth, height: height)
         }
@@ -128,7 +119,7 @@ class ConfessionTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDa
         }
     }
     
-    func setDatasource(type:AppiontCellType,model:lonelySpeechDetaileModel) {
+    func setDatasource(model:lonelySpeechDetaileModel) {
         
         self.headerView.isHidden = false
         self.bodyView.isHidden = false
@@ -136,7 +127,6 @@ class ConfessionTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDa
         self.applyView.isHidden = false
         self.applyView.tag = self.tag
         self.headerView.tag = self.tag
-        self.type = type
         self.detailModel = model
         
         

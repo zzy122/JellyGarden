@@ -41,11 +41,11 @@ func dealWithLoginUser(model:UserModel,nav:UINavigationController?)
 }
 func judgeGotoMainVC()
 {
-    TargetManager.share.rongcloudToken { (model) in
+    TargetManager.share.rongcloudToken(isRefresh:false) { (model) in
         guard let tokenModel = model else{
             return
         }
-        OtherApplication.share.connectRongyun(token: tokenModel.userId ?? "", complectiom: { (success) in
+        OtherApplication.share.connectRongyun(token: tokenModel.token ?? "", complectiom: { (success) in
             if success
             {
                 let delegate = UIApplication.shared.delegate as! AppDelegate

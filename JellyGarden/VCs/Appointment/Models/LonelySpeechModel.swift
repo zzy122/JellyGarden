@@ -38,6 +38,7 @@ struct lonelySpeechDetaileModel:JSON {
     var likes_count:Int?//点赞人数
     var distance:Int?//距离
     var city:String?//城市
+    var need_signup:Bool?
 }
 struct lonelySpeechModel:JSON {
     var data:[lonelySpeechDetaileModel]?

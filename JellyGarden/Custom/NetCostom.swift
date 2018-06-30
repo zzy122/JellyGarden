@@ -139,7 +139,9 @@ extension NetCostom {
         return str
     }
     func dealWithRequestResult(value:Any,success:@escaping BackRequestSuccess,error:@escaping BackRequestError) -> Void {//处理服务器返回信息
-        guard let resultDic = value as? [String:Any] else {//不是字典 就是返回错误
+        
+        
+        guard let resultDic = value as? [String:Any],resultDic["data"] != nil else {//不是字典 就是返回错误
             
             let errorMessage = NSError.init(domain: "NSApplicationErrorDomain", code: 1, userInfo: [Defult_errorReson:"请求地址错误"])
             self.showErrorMessg(error: errorMessage, backError: error)

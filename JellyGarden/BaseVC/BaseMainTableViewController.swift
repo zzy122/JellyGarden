@@ -24,7 +24,7 @@ class BaseMainTableViewController: BaseTableViewController {
     }
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-//        self.tableView.frame = self.view.bounds
+        self.tableView.frame = self.view.bounds
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()

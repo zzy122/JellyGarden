@@ -176,6 +176,9 @@
                 <constraint firstAttribute="trailing" secondItem="MiM-pU-Zhf" secondAttribute="trailing" id="xxh-x0-C0k"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="collectionImage" destination="vh3-aY-k3C" id="Pqn-m4-4AT"/>
+            </connections>
             <point key="canvasLocation" x="34.5" y="-228.5"/>
         </view>
     </objects>

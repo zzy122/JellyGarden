@@ -54,7 +54,7 @@ extension EnlistDetailViewController
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ConfessionTableViewCell", for: indexPath) as! ConfessionTableViewCell
-            cell.setDatasource(type: .detail,model: detaileModel ?? lonelySpeechDetaileModel())
+            cell.setDatasource(model: detaileModel ?? lonelySpeechDetaileModel())
             cell.selectionStyle = UITableViewCellSelectionStyle.none
             return cell
             
@@ -93,7 +93,7 @@ extension EnlistDetailViewController
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return caculateCellHeight(type: .detail,model: detaileModel!)
+            return caculateCellHeight(model: detaileModel!)
         }
         return 110
     }
