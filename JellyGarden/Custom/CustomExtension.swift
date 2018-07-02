@@ -146,7 +146,7 @@ extension GeneralExt where DT == String
         return ceil(rect.width)
     }
     //md5加密
-    func md5() ->String!{
+    func md5() ->String{
         let str =
             v.cString(using: String.Encoding.utf8)
   

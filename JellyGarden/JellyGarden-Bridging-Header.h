@@ -12,7 +12,7 @@
 #import "TimingButton.h"
 #import <CommonCrypto/CommonDigest.h>
 
-#import <JPush/JPUSHService.h>
+//#import <JPush/JPUSHService.h>
 
 #import <PKHUD/PKHUD.h>
 #import "ZZYTimerTarget.h"
