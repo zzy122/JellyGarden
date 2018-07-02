@@ -11,15 +11,14 @@ import MJRefresh
 import Photos
 class AppointViewController: BaseMainTableViewController,ResponderRouter,PhotoPickerControllerDelegate {
     
-    var appiontOpration:AppiontDataManager = {
-        let manager = AppiontDataManager.share
-        manager.conmentPath = CommentPath
-        return manager
-        
-    }()
+//    var appiontOpration:AppiontDataManager = {
+//        let manager = AppiontDataManager.share
+//        manager.conmentPath = CommentPath
+//        return manager
+//
+//    }()
     
-//    var commentViews:[ZZYDisplayView] = []
-    // 底部刷新
+    var reportTag:Int = 0
     let headerFresh = MJRefreshNormalHeader()
     lazy var conditionView:FiltrateCondition = {
         let view1 = FiltrateCondition.init(frame: CGRect.init(x: 0, y: -250, width: ScreenWidth, height: 250))
@@ -43,11 +42,6 @@ class AppointViewController: BaseMainTableViewController,ResponderRouter,PhotoPi
     }
     
     var appiontModels:[lonelySpeechDetaileModel]?
-    {
-        get{
-           return appiontOpration.commentModels
-        }
-    }
     
     
     
@@ -80,7 +74,6 @@ class AppointViewController: BaseMainTableViewController,ResponderRouter,PhotoPi
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        appiontOpration.clearData()
         self.title = "寂寞告白"
         self.cityName = LocalCityName
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
@@ -110,7 +103,7 @@ class AppointViewController: BaseMainTableViewController,ResponderRouter,PhotoPi
         params["user_id"] = CurrentUserInfo?.data?.user_id ?? ""
         TargetManager.share.getLonelySpeechList(params: params) { (models, error) in
             guard error != nil else{
-//               self.appiontModels = models
+               self.appiontModels = models
                 complection(true)
                 return
             }
@@ -189,9 +182,9 @@ class AppointViewController: BaseMainTableViewController,ResponderRouter,PhotoPi
         }, otherButtonTitles: "普通约会广播", "报名约会广播")
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let model = appiontModels![indexPath.section]
+        let model = appiontModels?[indexPath.section]
         
-        let height = caculateCellHeight(model: model)
+        let height = caculateCellHeight(model: model!)
         return height
 
         
@@ -229,26 +222,30 @@ class AppointViewController: BaseMainTableViewController,ResponderRouter,PhotoPi
 extension AppointViewController
 {
     func interceptRoute(name: String, objc: UIResponder?, info: Any?) {
-        if name == ClickReportName {//点击产看报名
-            
-            guard let index = info as? Int else{
-                return
-            }
-            let vc = EnlistDetailViewController()
-            vc.detaileModel = appiontModels?[index]
-            RootNav().pushViewController(vc, animated: true)
+        guard let index = info as? Int else{
+            return
         }
-        if ClickEnlistBtn == name {//我要报名
+        if name == ClickReportName {//点击产看报名
             let vc = QPPhotoPickerViewController(type: PageType.AllAlbum)
             vc.imageSelectDelegate = self
             //最大照片数量
             vc.imageMaxSelectedNum = 1
             self.present(vc, animated: true, completion: nil)
+            self.reportTag = index
         }
-        if name == ClickLikeChangeBtn  {//点赞
-            guard let index = info as? Int else{
+        if ClickEnlistBtn == name {//我要报名
+            guard let model = appiontModels?[index],model.poster?.user_id == CurrentUserInfo?.data?.user_id else
+            {
+                alertHud(title: "只有本人才能查看报名哦")
                 return
             }
+            
+            let vc = EnlistDetailViewController()
+            vc.detaileModel = model
+            
+            RootNav().pushViewController(vc, animated: true)
+        }
+        if name == ClickLikeChangeBtn  {//点赞
             let model:lonelySpeechDetaileModel = appiontModels![index]
             let appointment_id = model.appointment_id
             if let like = model.is_like,like//取消赞
@@ -256,8 +253,9 @@ extension AppointViewController
                 TargetManager.share.cancelLikeAppiont(appointment_id: appointment_id, complection: { (result, error) in
                     if result//请求数据刷新
                     {
-                        self.appiontOpration.modifyLikes(index: index, type: .subtract)
-                        self.reloadMyTableView(index: index)
+                         model.likes_count  =  model.likes_count! - 1
+                        model.is_like = false
+                        self.reloadMyTableView(index: index, model: model)
                     }
                 })
             }
@@ -266,8 +264,9 @@ extension AppointViewController
                 TargetManager.share.likeAppiont(appointment_id: appointment_id, complection: { (complection, error) in
                     if complection//请求数据刷新
                     {
-                        self.appiontOpration.modifyLikes(index: index, type: .add)
-                        self.reloadMyTableView(index: index)
+                        model.is_like = true
+                         model.likes_count  =  model.likes_count ?? 0 + 1
+                        self.reloadMyTableView(index: index, model: model)
                     }
                 })
             }
@@ -278,17 +277,15 @@ extension AppointViewController
                     return
                 }
                 if type == .publish{
-                    guard let index = info as? Int else{
-                        return
-                    }
+                   
                     let model:lonelySpeechDetaileModel = self.appiontModels![index]
-                    let date = getTimeStamp(date: Date())
                     let params = ["publisher_id":CurrentUserInfo?.data?.user_id ?? "","content":text]
-                    TargetManager.share.issueComment(appointment_id:model.appointment_id ?? "" ,params: params, complection: { (reslt, error) in
-                        if reslt {
-                            self.appiontOpration.insertComment(content: text, create_at: date, index: index)
-                           self.reloadMyTableView(index: index)
+                    TargetManager.share.issueComment(appointment_id: model.appointment_id ?? "", params: params, complection: { (commentmodel, error) in
+                        guard let comment = commentmodel else{
+                            return
                         }
+                        model.comments?.append(comment)
+                        self.reloadMyTableView(index: index, model: model)
                     })
                     
                 }
@@ -297,12 +294,15 @@ extension AppointViewController
         }
         
     }
-    func reloadMyTableView(index:Int)
+    func reloadMyTableView(index:Int, model:lonelySpeechDetaileModel)
     {
+        self.appiontModels?.remove(at: index)
+        self.appiontModels?.insert(model, at: index)
         let indexPath = IndexPath.init(row: 0, section: index)
         self.tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
         
     }
+   
     
 }
 extension AppointViewController
@@ -330,7 +330,15 @@ extension AppointViewController
         AliyunManager.share.uploadImagesToAliyun(imageModels: models, complection: { (urls, succecCount, failCount, state) in
             if state == UploadImageState.success
             {//报名
-                
+                let params = ["user_id":CurrentUserInfo?.data?.user_id ?? "","attachment":urls?.last ?? ""]
+                let model:lonelySpeechDetaileModel = self.appiontModels![self.reportTag]
+                TargetManager.share.signUp(params: params, appointment_id: model.poster?.user_id ?? "", complection: { (success) in
+                    if success
+                    {
+                        model.sign_up_count  = (model.sign_up_count ?? 0) + 1
+                        self.reloadMyTableView(index: self.reportTag, model: model)
+                    }
+                })
             }
             else
             {

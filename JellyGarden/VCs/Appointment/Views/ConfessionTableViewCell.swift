@@ -22,7 +22,7 @@ class ConfessionTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDa
         return view
     }()
     
-    
+    var isEnableDelete:Bool = false
     var detailModel:lonelySpeechDetaileModel? {
         didSet{
             self.headerView.headerImage.sd_DownLoadImage(url: detailModel?.poster?.avatar ?? "")
@@ -47,6 +47,8 @@ class ConfessionTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDa
             if let taglike = detailModel?.is_like,taglike == true  {
                 self.headerView.LikeBtn.setImage(imageName(name: "赞-press"), for: UIControlState.normal)
             }
+            
+           
             
             let countStr = ((detailModel?.likes_count ?? 0) > 0) ? String.init(format: "%d", (detailModel?.likes_count)!) : ""
             self.headerView.LikeBtn.setTitle("\(countStr)", for: UIControlState.normal)
@@ -137,7 +139,10 @@ class ConfessionTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDa
     }
     func setOrigiY()  {
         self.applyView.tagFrame = CGRect.init(x: 0, y: self.bodyView.tagFrame.maxY, width: ScreenWidth, height: 45)
-        
+        if (detailModel?.poster?.user_id != CurrentUserInfo?.data?.user_id) || !isEnableDelete  {
+            self.headerView.deleteBtn.isHidden = true
+            self.headerView.leftMargin.constant = 10
+        }
         self.headerView.setNeedsLayout()//重新布局
         self.bodyView.setNeedsLayout()//重新布局
         self.applyView.setNeedsLayout()//重新布局

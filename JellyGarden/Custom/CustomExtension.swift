@@ -188,7 +188,7 @@ extension GeneralExt where DT == UIResponder
 extension UIImageView
 {
     func sd_DownLoadImage(url:String){
-        self.kf.setImage(with: URL.init(string: url) ?? URL.init(fileURLWithPath: "loginicon"), placeholder: placeImage, options: [KingfisherOptionsInfoItem.transition(ImageTransition.fade(1)), KingfisherOptionsInfoItem.forceRefresh], progressBlock: nil, completionHandler: nil)
+        self.kf.setImage(with: URL.init(string: url) ?? URL.init(fileURLWithPath: "loginicon"), placeholder: placeImage, options: [KingfisherOptionsInfoItem.transition(ImageTransition.fade(1)), KingfisherOptionsInfoItem.fromMemoryCacheOrRefresh], progressBlock: nil, completionHandler: nil)
     }
 }
 

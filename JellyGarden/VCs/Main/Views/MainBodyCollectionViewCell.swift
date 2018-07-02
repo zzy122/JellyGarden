@@ -18,7 +18,7 @@ enum SearchType {
 class MainBodyCollectionViewCell: UICollectionViewCell,UITableViewDataSource,UITableViewDelegate,ResponderRouter {
     var userInfoModels:[MainListmodel] = []
     private var currentType:SearchType?
-    var currentPage:Int = 0
+    var currentPage:Int = 1
     
     // 底部刷新
     
@@ -41,7 +41,7 @@ class MainBodyCollectionViewCell: UICollectionViewCell,UITableViewDataSource,UIT
             }
             self.userInfoModels.removeAll()
             self.currentType = userType
-            self.currentPage = 0
+            self.currentPage = 1
             self.refreshFooter()
             self.currentLocalCity = self.tagLocalCity
             self.currentSex = self.tagSex
@@ -89,10 +89,8 @@ class MainBodyCollectionViewCell: UICollectionViewCell,UITableViewDataSource,UIT
                 return
             }
             if countModels.count == 0{
-                
                 self.tableView.mj_footer.state = MJRefreshState.noMoreData
                 alertHud(title: "没有更多数据了~")
-//                return
             }
             self.currentPage += 1
             for i in 0 ..< countModels.count {
@@ -147,7 +145,6 @@ class MainBodyCollectionViewCell: UICollectionViewCell,UITableViewDataSource,UIT
             TargetManager.share.gardensUserLikes(params: params, complection: { (success) in
                 if success {
                     userInfo.is_like = (userInfo.is_like == true) ? false : true
-                   userInfo.is_like = true
                     self.userInfoModels.remove(at: indexTag)
                     self.userInfoModels.insert(userInfo, at: indexTag)
                     self.tableView.reloadData()

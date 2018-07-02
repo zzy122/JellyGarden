@@ -166,6 +166,7 @@ class MainViewController: BaseMainViewController,UISearchBarDelegate,ResponderRo
            
         }
     }
+
     override func viewDidLayoutSubviews() {
         self.bodyView.frame = CGRect.init(x: 0, y: self.scrollItemView.frame.maxY, width: ScreenWidth, height: self.view.frame.height - self.scrollItemView.frame.maxY)
     }

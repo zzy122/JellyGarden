@@ -36,6 +36,7 @@ class ApplyOperationView: UIView {
     @IBOutlet weak var lookApplayBtn: UIButton!
     
      @IBAction func clickLookBtn(_ sender: UIButton) {
+        
         zzy.router(name: ClickReportName, object: nil, info: self.tag)
      }
     /*

@@ -8,6 +8,7 @@
 
 import UIKit
 let ClickLikeChangeBtn = "ClickLikeChangeBtn"
+let ClickDeleteBtn = "ClickDeleteBtn"
 
 let ClickCommentBtn = "ClickCommentBtn"
 class ConfessionTableViewCellHeader: UIView {
@@ -21,6 +22,8 @@ class ConfessionTableViewCellHeader: UIView {
         self.frame = self.tagFrame
     }
 
+    @IBOutlet weak var leftMargin: NSLayoutConstraint!
+    @IBOutlet weak var deleteBtn: UIButton!
     @IBOutlet weak var LikeBtn: UIButton!
     @IBOutlet weak var publishLab: UILabel!
     @IBOutlet weak var sexImage: UIImageView!
@@ -47,6 +50,9 @@ class ConfessionTableViewCellHeader: UIView {
         zzy.router(name: ClickCommentBtn, object: nil, info: self.tag)
     }
     
+    @IBAction func clickDeletBtn(_ sender: UIButton) {
+        zzy.router(name: ClickDeleteBtn, object: nil, info: self.tag)
+    }
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.

@@ -115,10 +115,6 @@ class TargetManager: NSObject {
         NetCostom.shared.request(method: .get, wengen: "appointment", params: params, success: { (result) in
             if let jsonStr = result as? [String:Any]
             {
-                let ary:[Any]? = jsonStr["data"] as? [Any]
-                AppiontDataManager.share.conmentPath =  CommentPath
-                AppiontDataManager.share.writeData(param: ary as! [[String : Any]])
-                
                 
                 let model = BaseModel<lonelySpeechModel,lonelySpeechModel>.init(resultData: jsonStr)
                 complection(model.resultData?.data,nil)
@@ -157,11 +153,20 @@ class TargetManager: NSObject {
         }
     }
     //发布评论
-    func issueComment(appointment_id:String, params:[String:Any],complection:@escaping (Bool,Error?) -> Void) {
+    func issueComment(appointment_id:String, params:[String:Any],complection:@escaping (commentsModel?,Error?) -> Void) {
         NetCostom.shared.request(method:.post ,wengen: "appointment/\(appointment_id)/comments", params: params, success: { (result) in
-            complection(true,nil)
+            if let jsonStr = result as? [String:Any]
+            {
+                
+                let model = BaseModel<commentsModel,commentsModel>.init(resultData: jsonStr["data"] ?? "")
+                complection(model.resultData,nil)
+            }
+            else
+            {
+                alertHud(title: "数据返回错误")
+            }
         }) { (error) in
-            complection(false,error)
+            complection(nil,error)
         }
     }
     //点赞
@@ -384,9 +389,6 @@ class TargetManager: NSObject {
         NetCostom.shared.request(method: .get, wengen: "users/\(userid)/appointments", params: nil, success: { (result) in
             if let jsonStr = result as? [String:Any]
             {
-                let ary:[Any]? = jsonStr["data"] as? [Any]
-                AppiontDataManager.share.conmentPath = UserCommentListPath
-                AppiontDataManager.share.writeData(param: ary as! [[String : Any]])
 
                 let model = BaseModel<lonelySpeechModel,lonelySpeechModel>.init(resultData: jsonStr)
                 complection(model.resultData?.data,nil)
@@ -397,6 +399,50 @@ class TargetManager: NSObject {
             }
         }) { (error) in
             complection(nil,error)
+        }
+    }
+    //删除某条约会
+    func deleteUserBrocast(appointment_id:String,complection:@escaping (Bool) -> Void)
+    {
+        NetCostom.shared.request(method: .delete, wengen: "\(CurrentUserInfo?.data?.user_id ?? "")/appointments/\(appointment_id)", params: nil, success: { (resulet) in
+            complection(true)
+        }) { (error) in
+            complection(false)
+        }
+    }
+    func signUp(params:[String:Any],appointment_id:String,complection:@escaping (Bool) -> Void)
+    {
+        NetCostom.shared.request(method: .post, wengen: "appointment/\(appointment_id)/signup", params: params, success: { (result) in
+            complection(true)
+        }) { (error) in
+            complection(false)
+        }
+    }
+    func getAllComments(user_id:String,complection:@escaping([commentsModel]?,Error?) -> Void)
+    {
+        NetCostom.shared.request(method: .get, wengen: "gardens/comments?user_id=\(user_id)", params: nil, success: { (result) in
+            if let jsonStr = result as? [String:Any]
+            {
+                let ary:[Any]? = jsonStr["data"] as? [Any]
+                let model = BaseModel<commentsModel,[commentsModel]>.init(resultData: ary ?? "")
+                complection(model.resultData,nil)
+            }
+            else
+            {
+                alertHud(title: "数据返回错误")
+            }
+            
+        }) { (error) in
+            complection(nil,error)
+        }
+    }
+    //对用户进行评价
+    func commentUser(params:[String:Any],complection:@escaping(Bool) ->Void)
+    {
+        NetCostom.shared.request(method: .post, wengen: "gardens/comments", params: params, success: { (result) in
+            complection(true)
+        }) { (error) in
+            complection(false)
         }
     }
 }

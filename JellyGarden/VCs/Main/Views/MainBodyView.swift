@@ -9,7 +9,7 @@
 import UIKit
 let MainBodyViewScrollPage = "MainBodyViewScrollPage"
 
-class MainBodyView: UIView,UICollectionViewDelegate,UICollectionViewDataSource {
+class MainBodyView: UIView,UICollectionViewDelegate,UICollectionViewDataSource ,UICollectionViewDelegateFlowLayout{
     
     var typeAry:[SearchType] = []
     var tagLocalCity:String?{
@@ -28,7 +28,8 @@ class MainBodyView: UIView,UICollectionViewDelegate,UICollectionViewDataSource {
     
     lazy var collectionView:UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize.init(width: self.frame.width, height: self.frame.height)
+//        layout.itemSize = CGSize.init(width: self.frame.width, height: self.frame.height)
+        
         layout.scrollDirection = UICollectionViewScrollDirection.horizontal//横向滑动
         layout.minimumLineSpacing = 0.0
         layout.minimumInteritemSpacing = 0.0
@@ -46,6 +47,7 @@ class MainBodyView: UIView,UICollectionViewDelegate,UICollectionViewDataSource {
     }()
     override func layoutSubviews() {
         super.layoutSubviews()
+        self.collectionView.frame = self.bounds
         self.collectionView.isHidden = false//解决由控制器的frame变化带来的frame.height偏高的问题
     }
     
@@ -77,6 +79,9 @@ class MainBodyView: UIView,UICollectionViewDelegate,UICollectionViewDataSource {
         
         
     }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize.init(width: self.frame.width, height: self.frame.height)
+    }
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         self.zzy.router(name: MainBodyViewScrollPage, object: nil, info: self.getCurrentPage(scrollView: scrollView))
     }
@@ -96,7 +101,7 @@ class MainBodyView: UIView,UICollectionViewDelegate,UICollectionViewDataSource {
         self.collectionView.setContentOffset(CGPoint.init(x: CGFloat(index) * self.frame.width, y: 00), animated: true)
         
     }
-    
+
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.

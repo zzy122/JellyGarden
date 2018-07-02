@@ -24,7 +24,7 @@ struct commentsModel:JSON {
 }
 
 
-struct lonelySpeechDetaileModel:JSON {
+class lonelySpeechDetaileModel:JSON {
     var time:Int?
     var sign_up_count:Int?//报名人数
     var requirement:String?//发布的内容
@@ -39,6 +39,9 @@ struct lonelySpeechDetaileModel:JSON {
     var distance:Int?//距离
     var city:String?//城市
     var need_signup:Bool?
+    required init() {
+        
+    }
 }
 struct lonelySpeechModel:JSON {
     var data:[lonelySpeechDetaileModel]?
