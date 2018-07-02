@@ -143,7 +143,35 @@ extension MineInfoEditViewController: UITableViewDataSource {
         cell?.accessoryType = .none
         cell?.accessoryView = nil
         
-        
+        if 0 == indexPath.row {
+            cell?.textLabel?.text = "头像"
+            cell?.detailTextLabel?.text = ""
+            let imageView = UIImageView()
+            imageView.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+            imageView.layer.cornerRadius = 20
+            imageView.clipsToBounds = true
+            cell?.accessoryView = imageView
+        }
+        else if 1 == indexPath.row {
+            cell?.textLabel?.text = "昵称"
+            cell?.detailTextLabel?.text = "KK"
+        }
+        else if 2 == indexPath.row {
+            cell?.textLabel?.text = "约会范围"
+            cell?.detailTextLabel?.text = "北京市"
+        }
+        else if 3 == indexPath.row {
+            cell?.textLabel?.text = "年龄"
+            cell?.detailTextLabel?.text = "18岁"
+        }
+        else if 4 == indexPath.row {
+            cell?.textLabel?.text = "身份"
+            cell?.detailTextLabel?.text = "模特"
+        }
+        else if 5 == indexPath.row {
+            cell?.textLabel?.text = "身高"
+            cell?.detailTextLabel?.text = "173CM"
+        }
         return cell!
     }
 }
