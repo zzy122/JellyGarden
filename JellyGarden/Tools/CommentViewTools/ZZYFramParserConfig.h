@@ -12,5 +12,6 @@
 @property(nonatomic,assign)CGFloat width;
 //@property(nonatomic,assign)CGFloat fontSize;
 @property(nonatomic,assign)CGFloat lineSpace;
+@property(nonatomic,assign)BOOL isCenter;
 //@property(nonatomic,strong)UIColor *textColor;
 @end

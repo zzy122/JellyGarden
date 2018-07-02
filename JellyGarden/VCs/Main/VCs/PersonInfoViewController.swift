@@ -207,17 +207,7 @@ extension PersonInfoViewController
             
             break
         case 1:
-            let vc = WCLRecordVideoVC()
-            vc.recordVideoResult({ (path) in
-                guard let vidioStr = path, vidioStr.count > 0 else{
-                    return
-                }
-                DebugLog(message: "\(vidioStr)")
-            })
             
-            RootNav().present(vc, animated: true, completion: {
-                
-            })
             break
         case 2:
             break

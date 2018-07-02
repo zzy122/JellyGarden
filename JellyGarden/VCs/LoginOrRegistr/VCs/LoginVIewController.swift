@@ -25,9 +25,19 @@ class LoginVIewController: BaseViewController {
 //        let tabbarVC = BaseTabBarViewController()
 //        let delegate = UIApplication.shared.delegate as? AppDelegate
 //        delegate?.setRootViewController(vc: tabbarVC)
+        guard let username = self.userPhone.text,username.count > 0 else{
+            alertHud(title: "请输入手机号")
+            return
+        }
+        guard let password = self.userPassword.text,password.count > 0 else{
+            alertHud(title: "请输入密码")
+            return
+        }
+        
+        
         
         return
-            loginActionParams(params: ["phone":self.userPhone.text!,"password":self.userPassword.text!.zzy.md5()], nav: self.navigationController)
+            loginActionParams(params: ["phone":username,"password":password.zzy.md5()], nav: self.navigationController)
         
     }
     override func didReceiveMemoryWarning() {

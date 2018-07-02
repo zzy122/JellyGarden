@@ -98,7 +98,10 @@ class MainViewController: BaseMainViewController,UISearchBarDelegate,ResponderRo
         
     }
     override func clickRightBtn() {
-        self.bodyView.tagSex = (bodyView.tagSex == .woman) ? .man : .woman
+       RootViewController?.hideTheTabbar()
+        self.navigationController?.pushViewController(IdentityAuthenticationViewController(), animated: true)
+        
+//        self.bodyView.tagSex = (bodyView.tagSex == .woman) ? .man : .woman
     }
     @objc func clickSearch(){
         self.navigationController?.pushViewController(SearchUserViewController(), animated: true)

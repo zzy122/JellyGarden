@@ -72,6 +72,8 @@
 		5A27B38520E52F540028D5FF /* GFStarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A27B38420E52F530028D5FF /* GFStarView.swift */; };
 		5A27B38720E530460028D5FF /* CommentStarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A27B38620E530460028D5FF /* CommentStarView.xib */; };
 		5A27B38920E530510028D5FF /* CommentStarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A27B38820E530510028D5FF /* CommentStarView.swift */; };
+		5A27B38C20E9D52D0028D5FF /* IdentityAuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A27B38A20E9D52D0028D5FF /* IdentityAuthenticationViewController.swift */; };
+		5A27B38D20E9D52D0028D5FF /* IdentityAuthenticationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A27B38B20E9D52D0028D5FF /* IdentityAuthenticationViewController.xib */; };
 		5A380F6520DE88E400CC4152 /* DepositView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A380F6420DE88E400CC4152 /* DepositView.m */; };
 		5A380F6820DE8E6D00CC4152 /* RedPacketCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A380F6720DE8E6D00CC4152 /* RedPacketCell.m */; };
 		5A380F6B20DE91DE00CC4152 /* ReadDestroyMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A380F6A20DE91DE00CC4152 /* ReadDestroyMessage.m */; };
@@ -352,6 +354,8 @@
 		5A27B38420E52F530028D5FF /* GFStarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GFStarView.swift; sourceTree = "<group>"; };
 		5A27B38620E530460028D5FF /* CommentStarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentStarView.xib; sourceTree = "<group>"; };
 		5A27B38820E530510028D5FF /* CommentStarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentStarView.swift; sourceTree = "<group>"; };
+		5A27B38A20E9D52D0028D5FF /* IdentityAuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityAuthenticationViewController.swift; sourceTree = "<group>"; };
+		5A27B38B20E9D52D0028D5FF /* IdentityAuthenticationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IdentityAuthenticationViewController.xib; sourceTree = "<group>"; };
 		5A380F6320DE88E400CC4152 /* DepositView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DepositView.h; sourceTree = "<group>"; };
 		5A380F6420DE88E400CC4152 /* DepositView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DepositView.m; sourceTree = "<group>"; };
 		5A380F6620DE8E6D00CC4152 /* RedPacketCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RedPacketCell.h; sourceTree = "<group>"; };
@@ -1139,6 +1143,8 @@
 				5AE9CC8D20C8D9100057CFF3 /* UserInfoViewController.xib */,
 				5E6AE16320DF962900901D43 /* MineInfoEditViewController.swift */,
 				5E6AE16420DF962900901D43 /* MineInfoEditViewController.xib */,
+				5A27B38A20E9D52D0028D5FF /* IdentityAuthenticationViewController.swift */,
+				5A27B38B20E9D52D0028D5FF /* IdentityAuthenticationViewController.xib */,
 			);
 			path = VCs;
 			sourceTree = "<group>";
@@ -1415,6 +1421,7 @@
 				5AB8F48020E221FA00429108 /* SystemMessageTableViewCell.xib in Resources */,
 				5ACEFC8220D4F6E000BE5241 /* NormalAppointmentViewController.xib in Resources */,
 				5A015EC920C5834D00EC8A96 /* SexViewController.xib in Resources */,
+				5A27B38D20E9D52D0028D5FF /* IdentityAuthenticationViewController.xib in Resources */,
 				5A80C49820BFDB150033CAF8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1668,6 +1675,7 @@
 				5A196ADE20C6C704002EC0EE /* BottomPickerCell.swift in Sources */,
 				5A015EC520C57AC600EC8A96 /* ZZYTimerTarget.m in Sources */,
 				5A45D9DA20E33AA600D2B4CE /* ManFillInformationViewController.swift in Sources */,
+				5A27B38C20E9D52D0028D5FF /* IdentityAuthenticationViewController.swift in Sources */,
 				5A7CEC7120D532D600B7A7C9 /* QPPhotoListCell.swift in Sources */,
 				5E6AE16F20DF972C00901D43 /* TagsView.swift in Sources */,
 				5A80C4D120BFE1050033CAF8 /* ShowShadow.swift in Sources */,

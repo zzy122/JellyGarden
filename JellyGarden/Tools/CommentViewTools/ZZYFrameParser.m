@@ -142,19 +142,34 @@ config
 //    CGFloat fontSize = config.fontSize;
 //    CTFontRef fontref = CTFontCreateWithName((CFStringRef)@"ArialMT", fontSize, NULL);
     CGFloat lineSpace = config.lineSpace;
-    const CFIndex kNumberOfSetting = 3;
-    CTParagraphStyleSetting theSetting[kNumberOfSetting] = {{kCTParagraphStyleSpecifierLineSpacingAdjustment, sizeof(CGFloat),&lineSpace},{kCTParagraphStyleSpecifierMaximumLineSpacing,sizeof(CGFloat),&lineSpace},{kCTParagraphStyleSpecifierMinimumLineSpacing,sizeof(CGFloat),&lineSpace}};
-    CTParagraphStyleRef paragraphRef = CTParagraphStyleCreate(theSetting, kNumberOfSetting);
+    const CFIndex kNumberOfSetting = 4;
+    CTTextAlignment textAlignment = kCTTextAlignmentCenter;
     
-//    UIColor* color = config.textColor;
     
-    NSMutableDictionary* dict = [NSMutableDictionary dictionary];
-//    dict[(id)kCTForegroundColorAttributeName] = (__bridge id _Nullable)(color.CGColor);
-//    dict[(id)kCTFontAttributeName] = (__bridge id _Nullable)(fontref);
-    dict[(id)kCTParagraphStyleAttributeName] = (__bridge id _Nullable)(paragraphRef);
-    CFRelease(paragraphRef);
-//    CFRelease(fontref);
-    return dict;
+    if (config.isCenter == YES) {
+       CTParagraphStyleSetting theSetting[kNumberOfSetting] =
+        {{kCTParagraphStyleSpecifierLineSpacingAdjustment, sizeof(CGFloat),&lineSpace},{kCTParagraphStyleSpecifierMaximumLineSpacing,sizeof(CGFloat),&lineSpace},{kCTParagraphStyleSpecifierMinimumLineSpacing,sizeof(CGFloat),&lineSpace},{kCTParagraphStyleSpecifierAlignment,sizeof(textAlignment),&textAlignment}};
+        CTParagraphStyleRef paragraphRef = CTParagraphStyleCreate(theSetting, kNumberOfSetting);
+        
+        NSMutableDictionary* dict = [NSMutableDictionary dictionary];
+
+        dict[(id)kCTParagraphStyleAttributeName] = (__bridge id _Nullable)(paragraphRef);
+        CFRelease(paragraphRef);
+        return dict;
+    }
+    else
+    {
+        CTParagraphStyleSetting theSetting[kNumberOfSetting] =
+        {{kCTParagraphStyleSpecifierLineSpacingAdjustment, sizeof(CGFloat),&lineSpace},{kCTParagraphStyleSpecifierMaximumLineSpacing,sizeof(CGFloat),&lineSpace},{kCTParagraphStyleSpecifierMinimumLineSpacing,sizeof(CGFloat),&lineSpace}};
+        CTParagraphStyleRef paragraphRef = CTParagraphStyleCreate(theSetting, kNumberOfSetting);
+        
+        NSMutableDictionary* dict = [NSMutableDictionary dictionary];
+        
+        dict[(id)kCTParagraphStyleAttributeName] = (__bridge id _Nullable)(paragraphRef);
+        CFRelease(paragraphRef);
+        return dict;
+    }
+
 }
 + (UIColor*)colorFromTemPlate:(NSString*)name
 {
