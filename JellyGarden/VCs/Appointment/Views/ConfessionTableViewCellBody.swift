@@ -32,7 +32,7 @@ class ConfessionTableViewCellBody: UIView,UICollectionViewDelegate,UICollectionV
         view.register(UINib.init(nibName: "BodyImageCollectionViewCell", bundle: Bundle.main), forCellWithReuseIdentifier: "BodyImageCollectionViewCell")
         view.delegate = self;
         view.contentInset = UIEdgeInsets.init(top: 10, left: 10, bottom: 10, right: 10)
-//        view.isScrollEnabled = false
+        view.isScrollEnabled = false
         view.bounces = false
         view.dataSource = self
         self.imageContentView.addSubview(view)

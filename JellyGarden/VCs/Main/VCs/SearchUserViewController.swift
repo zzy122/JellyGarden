@@ -68,9 +68,12 @@ class SearchUserViewController: BaseMainTableViewController,UISearchBarDelegate,
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        searchTextField?.becomeFirstResponder()
         self.searchBar.isHidden = false
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.searchBar.endEditing(true)
+        navigationController?.navigationBar.endEditing(true)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

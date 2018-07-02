@@ -11,11 +11,16 @@ import MJRefresh
 import Photos
 class UserBroadcastListViewController: BaseMainTableViewController,PhotoPickerControllerDelegate,ResponderRouter {
     var userid:String = ""
-    
-    var appiontOpration:AppiontDataManager = {
-        let manager = AppiontDataManager.share
-        manager.conmentPath = UserCommentListPath
-        return manager
+    var reportTag:Int = 0
+    var isSelfBroadcast:Bool = false
+    lazy var clickPublishCast:UIButton = {
+        let btn = UIButton.init(frame: CGRect.init(x: 0, y: self.view.frame.height - 44, width: ScreenWidth, height: 44))
+        btn.backgroundColor = APPCustomBtnColor
+        btn.setTitle("发布约会", for: UIControlState.normal)
+        btn.setTitleColor(UIColor.white, for: UIControlState.normal)
+        self.view.addSubview(btn)
+        btn.addTarget(self, action: #selector(clickPublishBtn), for: UIControlEvents.touchUpInside)
+        return btn
         
     }()
     
@@ -24,19 +29,32 @@ class UserBroadcastListViewController: BaseMainTableViewController,PhotoPickerCo
     let headerFresh = MJRefreshNormalHeader()
     
     var appiontModels:[lonelySpeechDetaileModel]?
-    {
-        get{
-            return appiontOpration.commentModels
-        }
-    }
+    
+    
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
     }
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        if  isSelfBroadcast {
+            self.tableView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: self.view.frame.height - self.clickPublishCast.frame.height)
+            self.clickPublishCast.isHidden = false
+        }
+        else
+        {
+            self.clickPublishCast.isHidden = true
+        }
+    }
+    @objc func clickPublishBtn()
+    {
+        RootNav().pushViewController(NormalAppointmentViewController(), animated: true)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        appiontOpration.clearData()
-        self.title = "她的广播"
+        
+        self.isSelfBroadcast = (self.userid == CurrentUserInfo?.data?.user_id)
+        self.title = self.isSelfBroadcast ? "我的广播" : "她的广播"
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
         self.tableView.register(UINib.init(nibName: "ConfessionTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "ConfessionTableViewCell")
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
@@ -52,6 +70,7 @@ class UserBroadcastListViewController: BaseMainTableViewController,PhotoPickerCo
                 self.tableView.reloadData()
             }
         }
+        self.clickPublishCast.isHidden = false
         // Do any additional setup after loading the view.
     }
     @objc func refresh()
@@ -63,7 +82,7 @@ class UserBroadcastListViewController: BaseMainTableViewController,PhotoPickerCo
     func getAppiontData(complection:@escaping (Bool) -> Void) {
         TargetManager.share.requestUserAllBroadcast(userid: userid) { (models, error) in
             guard error != nil else{
-                
+                self.appiontModels = models
                 complection(true)
                 return
             }
@@ -78,7 +97,7 @@ class UserBroadcastListViewController: BaseMainTableViewController,PhotoPickerCo
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
         IQKeyboardManager.sharedManager().enable = false
-        RootViewController?.showTheTabbar()
+//        RootViewController?.showTheTabbar()
     }
     override func viewDidDisappear(_ animated: Bool) {
         IQKeyboardManager.sharedManager().enableAutoToolbar = true
@@ -95,7 +114,7 @@ class UserBroadcastListViewController: BaseMainTableViewController,PhotoPickerCo
         let cell:ConfessionTableViewCell = tableView.dequeueReusableCell(withIdentifier: "ConfessionTableViewCell", for: indexPath) as! ConfessionTableViewCell
         cell.selectionStyle = UITableViewCellSelectionStyle.none
         cell.tag = indexPath.section
-        
+        cell.isEnableDelete = true
         cell.setDatasource(model: appiontModels![indexPath.section])
         return cell
     }
@@ -141,21 +160,27 @@ class UserBroadcastListViewController: BaseMainTableViewController,PhotoPickerCo
 extension UserBroadcastListViewController
 {
     func interceptRoute(name: String, objc: UIResponder?, info: Any?) {
-        if name == ClickReportName {//点击产看报名
-            
-            guard let index = info as? Int else{
-                return
-            }
-            let vc = EnlistDetailViewController()
-            vc.detaileModel = appiontModels?[index]
-            RootNav().pushViewController(vc, animated: true)
+        guard let index = info as? Int else{
+            return
         }
-        if ClickEnlistBtn == name {//我要报名
+        if name == ClickReportName {//点击产看报名
             let vc = QPPhotoPickerViewController(type: PageType.AllAlbum)
             vc.imageSelectDelegate = self
             //最大照片数量
             vc.imageMaxSelectedNum = 1
             self.present(vc, animated: true, completion: nil)
+            self.reportTag = index
+        }
+        if ClickEnlistBtn == name {//我要报名
+            guard let model = appiontModels?[index],model.poster?.user_id == CurrentUserInfo?.data?.user_id else
+            {
+                alertHud(title: "只有本人才能查看报名哦")
+                return
+            }
+            
+            let vc = EnlistDetailViewController()
+            vc.detaileModel = model
+            RootNav().pushViewController(vc, animated: true)
         }
         if name == ClickLikeChangeBtn  {//点赞
             guard let index = info as? Int else{
@@ -168,8 +193,10 @@ extension UserBroadcastListViewController
                 TargetManager.share.cancelLikeAppiont(appointment_id: appointment_id, complection: { (result, error) in
                     if result//请求数据刷新
                     {
-                        self.appiontOpration.modifyLikes(index: index, type: .subtract)
-                        self.reloadMyTableView(index: index)
+                        model.is_like = false
+                        
+                        model.likes_count  =  model.likes_count! - 1
+                        self.reloadMyTableView(index: index, model: model)
                     }
                 })
             }
@@ -178,8 +205,9 @@ extension UserBroadcastListViewController
                 TargetManager.share.likeAppiont(appointment_id: appointment_id, complection: { (complection, error) in
                     if complection//请求数据刷新
                     {
-                        self.appiontOpration.modifyLikes(index: index, type: .add)
-                        self.reloadMyTableView(index: index)
+                        model.likes_count  =  model.likes_count ?? 0 + 1
+                        model.is_like = true
+                        self.reloadMyTableView(index: index, model: model)
                     }
                 })
             }
@@ -194,23 +222,44 @@ extension UserBroadcastListViewController
                         return
                     }
                     let model:lonelySpeechDetaileModel = self.appiontModels![index]
-                    let date = getTimeStamp(date: Date())
                     let params = ["publisher_id":CurrentUserInfo?.data?.user_id ?? "","content":text]
-                    TargetManager.share.issueComment(appointment_id:model.appointment_id ?? "" ,params: params, complection: { (reslt, error) in
-                        if reslt {
-                            self.appiontOpration.insertComment(content: text, create_at: date, index: index)
-                            self.reloadMyTableView(index: index)
+                    TargetManager.share.issueComment(appointment_id: model.appointment_id ?? "", params: params, complection: { (commentmodel, error) in
+                        guard let comment = commentmodel else{
+                            return
                         }
+                        model.comments?.append(comment)
+                        self.reloadMyTableView(index: index, model: model)
                     })
                     
                 }
                 
             })
         }
+        if name == ClickDeleteBtn
+        {
+            guard let index = info as? Int else{
+                return
+            }
+            let model:lonelySpeechDetaileModel = appiontModels![index]
+            let appointment_id = model.appointment_id
+            AlertViewCoustom().showalertView(style: .alert, title: alertTitle, message: "确定删除这条约会吗", cancelBtnTitle: alertCancel, touchIndex: { (index) in
+                if index == 1
+                {
+                    TargetManager.share.deleteUserBrocast(appointment_id: appointment_id ?? "", complection: { (result) in
+                        if result {
+                            self.appiontModels?.remove(at: index)
+                            self.tableView.reloadData()
+                        }
+                    })
+                }
+            }, otherButtonTitles: alertConfirm)
+        }
         
     }
-    func reloadMyTableView(index:Int)
+    func reloadMyTableView(index:Int, model:lonelySpeechDetaileModel)
     {
+        self.appiontModels?.remove(at: index)
+        self.appiontModels?.insert(model, at: index)
         let indexPath = IndexPath.init(row: 0, section: index)
         self.tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
         
@@ -242,7 +291,15 @@ extension UserBroadcastListViewController
         AliyunManager.share.uploadImagesToAliyun(imageModels: models, complection: { (urls, succecCount, failCount, state) in
             if state == UploadImageState.success
             {//报名
-                
+                let params = ["user_id":CurrentUserInfo?.data?.user_id ?? "","attachment":urls?.last ?? ""]
+                let model:lonelySpeechDetaileModel = self.appiontModels![self.reportTag]
+                TargetManager.share.signUp(params: params, appointment_id: model.poster?.user_id ?? "", complection: { (success) in
+                    if success
+                    {
+                        model.sign_up_count  = (model.sign_up_count ?? 0) + 1
+                        self.reloadMyTableView(index: self.reportTag, model: model)
+                    }
+                })
             }
             else
             {

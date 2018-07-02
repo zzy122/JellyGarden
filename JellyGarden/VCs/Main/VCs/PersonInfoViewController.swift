@@ -79,6 +79,7 @@ class PersonInfoViewController: BaseTableViewController,ResponderRouter {
         self.bottomView.isHidden = false
         // Do any additional setup after loading the view.
     }
+    
     func interceptRoute(name: String, objc: UIResponder?, info: Any?) {
         if name == ClickUserInfoTabbar {
             guard let btnTag = info as? ClickUserInfoTabbarBtntype
@@ -201,6 +202,7 @@ extension PersonInfoViewController
         case 0:
             let vc = UserBroadcastListViewController()
             vc.userid = userInfoModel?.data?.user_id ?? ""
+            
             RootNav().pushViewController(vc, animated: true)
             
             break

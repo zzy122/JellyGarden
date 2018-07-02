@@ -16,7 +16,7 @@ class BaseTabBarViewController: UITabBarController ,UITabBarControllerDelegate{
         super.viewDidLoad()
         self.delegate = self
         self.tabbarView()
-        
+        self.hidesBottomBarWhenPushed = true
         // Do any additional setup after loading the view.
     }
     func tabbarView() {

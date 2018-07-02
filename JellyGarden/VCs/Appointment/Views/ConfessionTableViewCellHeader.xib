@@ -60,7 +60,7 @@
                     </userDefinedRuntimeAttributes>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ePC-mf-fBE">
-                    <rect key="frame" x="251" y="17.5" width="60" height="46"/>
+                    <rect key="frame" x="201" y="17.5" width="60" height="46"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="60" id="fbj-ba-CqB"/>
@@ -73,8 +73,22 @@
                         <action selector="clickLikeBtn:" destination="iN0-l3-epB" eventType="touchUpInside" id="LU9-Tj-2cT"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VIf-8j-852">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EhA-dL-a38">
                     <rect key="frame" x="319" y="17.5" width="46" height="46"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="46" id="71K-hl-Ple"/>
+                        <constraint firstAttribute="width" constant="46" id="83r-jb-K5R"/>
+                        <constraint firstAttribute="height" constant="46" id="auW-2Z-Z46"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="46" id="gq7-Gm-e3X"/>
+                    </constraints>
+                    <state key="normal" image="删除"/>
+                    <connections>
+                        <action selector="clickDeletBtn:" destination="iN0-l3-epB" eventType="touchUpInside" id="Leg-ep-goZ"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VIf-8j-852">
+                    <rect key="frame" x="269" y="17.5" width="46" height="46"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="46" id="PG0-RZ-nRv"/>
@@ -88,11 +102,13 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="VIf-8j-852" secondAttribute="trailing" constant="10" id="0VX-CF-IvV"/>
                 <constraint firstItem="mAC-HR-jIk" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="2Jk-yd-gJB"/>
                 <constraint firstItem="mAC-HR-jIk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="8JH-S0-3VN"/>
+                <constraint firstItem="EhA-dL-a38" firstAttribute="centerY" secondItem="VIf-8j-852" secondAttribute="centerY" id="9aC-KA-kzQ"/>
                 <constraint firstItem="VIf-8j-852" firstAttribute="height" secondItem="ePC-mf-fBE" secondAttribute="height" id="BQO-qV-6Da"/>
+                <constraint firstAttribute="trailing" secondItem="EhA-dL-a38" secondAttribute="trailing" constant="10" id="Cmz-6S-X5U"/>
                 <constraint firstItem="2Qm-BX-9dP" firstAttribute="centerY" secondItem="682-Ns-zNx" secondAttribute="centerY" id="FPt-db-SJl"/>
+                <constraint firstAttribute="trailing" secondItem="VIf-8j-852" secondAttribute="trailing" constant="60" id="L3P-RC-4U7"/>
                 <constraint firstItem="VIf-8j-852" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="LIq-6X-SY3"/>
                 <constraint firstItem="a3F-Fh-GNU" firstAttribute="leading" secondItem="2Qm-BX-9dP" secondAttribute="trailing" constant="8" id="Mxb-KA-F24"/>
                 <constraint firstItem="a3F-Fh-GNU" firstAttribute="centerY" secondItem="682-Ns-zNx" secondAttribute="centerY" id="R0W-U3-Szc"/>
@@ -108,7 +124,9 @@
             <connections>
                 <outlet property="LikeBtn" destination="ePC-mf-fBE" id="csU-aW-urJ"/>
                 <outlet property="authTrueLab" destination="a3F-Fh-GNU" id="P4n-D4-0mz"/>
+                <outlet property="deleteBtn" destination="EhA-dL-a38" id="siQ-4O-gnJ"/>
                 <outlet property="headerImage" destination="mAC-HR-jIk" id="a6b-hS-rQW"/>
+                <outlet property="leftMargin" destination="L3P-RC-4U7" id="pMo-kT-hb6"/>
                 <outlet property="nikeName" destination="682-Ns-zNx" id="q0H-39-mZX"/>
                 <outlet property="publishLab" destination="gNG-32-eLq" id="hgQ-Jl-An9"/>
                 <outlet property="sexImage" destination="2Qm-BX-9dP" id="WVZ-Df-qNR"/>
@@ -117,6 +135,7 @@
         </view>
     </objects>
     <resources>
+        <image name="删除" width="23" height="21"/>
         <image name="评论" width="23" height="21"/>
         <image name="赞" width="23" height="21"/>
     </resources>

@@ -16,6 +16,12 @@ class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
 
         }
     }
+    var collectionImageStr:String = ""
+    {
+        didSet{
+            self.bottomView.collectionImage.image = imageName(name: collectionImageStr)
+        }
+    }
     lazy var bottomView:ManUserInfoTabbar = {
         let bottom = ManUserInfoTabbar.createManUserInfoTabbar()
         bottom?.tagFrame = CGRect.init(x: 0, y: ScreenHeight - 55, width: ScreenWidth, height: 55)
@@ -84,6 +90,12 @@ class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
                 else{return}
             switch btnTag {
             case .collection://点击收藏
+                let params = ["like_garden_user_id":self.userInfoModel?.data?.user_id ?? "", "user_id":CurrentUserInfo?.data?.user_id ?? ""]
+                TargetManager.share.gardensUserLikes(params: params, complection: { (success) in
+                    if success {
+                        self.collectionImageStr = (self.collectionImageStr == "赞-实") ? "收藏" : "赞-实"
+                    }
+                })
                 
                 break
             case .chat://点击 私聊
@@ -94,7 +106,13 @@ class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
                 break
             case .prase://点击评价
                 AlertAction.share.showCommentStarView(imageUrl: userInfoModel?.data?.avatar, nikeStr: userInfoModel?.data?.nickname) { (poCount, playCount, tasteCount, cleanCount, agliCount, mothCount) in
-                    DebugLog(message: "poCount:\(poCount)playCount:\(playCount)tasteCount:\(tasteCount)cleanCount:\(cleanCount)agliCount:\(agliCount)mothCount:\(mothCount)")
+                    
+                    let param:[String:Any] = ["comment_user_id":self.userInfoModel?.data?.user_id ?? "","publisher_user_id":CurrentUserInfo?.data?.user_id ?? "","politeness":playCount,"funny":playCount,"generous":tasteCount,"tidy":cleanCount,"decisive":agliCount,"harassment":mothCount]
+                    TargetManager.share.commentUser(params: param, complection: { (success) in
+
+                    })
+                    
+                    
                 }
                 
                 break
