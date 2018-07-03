@@ -31,21 +31,18 @@ struct userInfo:JSON {
     var identity:String?//身份
     var tags:[String]?//标签
     var emotion_status:String?//情感状态
-     var city:String?
-     var weight:Int?
-     var sex:Int?// 0 男 1女
-     var appointment_place:[String]?//约会范围
+    var city:String?
+    var weight:Int?
+    var sex:Int?// 0 男 1女
+    var appointment_place:[String]?//约会范围
     var vip_expire_time:Int?
     var vip_level:Int?
     var balance:Int?
     var likes:[String]?
-    
 }
 
 struct UserModel:JSON {
     var code:Int?
     var data:userInfo?
     var msg:String?
-    
-    
 }

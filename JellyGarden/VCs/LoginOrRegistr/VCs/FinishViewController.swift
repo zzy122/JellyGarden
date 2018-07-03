@@ -17,11 +17,12 @@ class FinishViewController: BaseViewController {
         super.viewDidLoad()
         self.registerBtn.layer.borderWidth = 1.0
         registerBtn.layer.borderColor = APPCustomBtnColor.cgColor
-        clearUserInfo()
+//        clearUserInfo()
         FillCondition.share.getConditions()
         self.autoLogin()
         // Do any additional setup after loading the view.
     }
+    
     func autoLogin() {//自动登录
         if let user = CurrentUserInfo {
             if let nickName = user.data?.nickname, nickName.count > 0  {
@@ -34,15 +35,14 @@ class FinishViewController: BaseViewController {
             })
         }
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         imageView.layer.cornerRadius = 10
         self.view.backgroundColor = UIColor.white
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
-        
-        
-        
     }
+    
     @IBAction func clickWeiBoBtn(_ sender: UIButton) {
         UMengAcion.uMengLogin(type: UMSocialPlatformType.sina,nav:self.navigationController) { (sucess) in
            

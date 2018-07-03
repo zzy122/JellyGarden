@@ -11,6 +11,7 @@ import UIKit
 class UserLoginAction: NSObject {
 
 }
+
 func loginActionParams(params:[String:Any],nav:UINavigationController?) {
     TargetManager.share.loginAction(params: params) { (model, error) in
         if let user = model {//这里判断需不需要判断补填信息 gotoSex
@@ -18,6 +19,7 @@ func loginActionParams(params:[String:Any],nav:UINavigationController?) {
         }
     }
 }
+
 func thirdLoginParams(params:[String:Any],nav:UINavigationController?)
 {
     TargetManager.share.thirdLoginAction(params: params) { (model, error) in
@@ -32,7 +34,6 @@ func dealWithLoginUser(model:UserModel,nav:UINavigationController?)
     {
         //请求token 进入主页
         judgeGotoMainVC()
-        
     }
     else
     {

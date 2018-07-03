@@ -67,15 +67,14 @@ var currentCitys:[PikerModel]?
     }
 }
 
-var CurrentUserInfo:UserModel? {
+var CurrentUserInfo: UserModel? {
     get{
         let dic = NSDictionary.init(contentsOfFile: UserPlist)
         if let user = dic {
-           return  JSONDeserializer<UserModel>.deserializeFrom(dict: user)
+           return  UserModel.deserialize(from: user)
         }
         return nil
     }
-    
 }//当前用户信息
 
 let RegisterSexMan = "RegisterSexMan"

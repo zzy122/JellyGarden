@@ -47,6 +47,20 @@ class TagsView: UICollectionView {
         }
     }
     
+    struct TagStyle {
+        let backgroundColor: UIColor
+        let textColor: UIColor
+        let font: UIFont
+    }
+    
+    var selectedStyle: TagStyle = TagStyle(backgroundColor: UIColor.white,
+                                           textColor: UIColor.black,
+                                           font: UIFont.systemFont(ofSize: 14))
+    
+    var normalStyle: TagStyle = TagStyle(backgroundColor: UIColor.white,
+                                         textColor: UIColor.black,
+                                         font: UIFont.systemFont(ofSize: 14))
+    
     weak var tagDelegate: TagsViewDelegate?
     
     init(_ type: TagsType = .text) {
@@ -68,7 +82,6 @@ class TagsView: UICollectionView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
 }
 
 // MARK: - UICollectionViewDataSource, UICollectionViewDelegate
@@ -87,6 +100,8 @@ extension TagsView: UICollectionViewDataSource, UICollectionViewDelegate {
         cell.padding = padding
         cell.type = tagType
         cell.delegate = self
+        cell.selectedStyle = selectedStyle
+        cell.normalStyle = normalStyle
         
         if indexPath.item < titles!.count {
             cell.title = titles?[indexPath.row]
@@ -109,7 +124,6 @@ extension TagsView: UICollectionViewDelegateFlowLayout {
             guard let text = titles?[indexPath.row] else { return .zero }
         
             let size = (text as NSString).size(withAttributes: [.font: UIFont.systemFont(ofSize: 14)])
-            print(text, size)
             
             switch tagType {
             case .text:
