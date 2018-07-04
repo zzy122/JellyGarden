@@ -9,13 +9,36 @@
 import UIKit
 
 class ADDPayCountViewController: BaseMainTableViewController {
-
+    lazy var rightControls:[UITextField] = {
+        var ary:[UITextField] = []
+        let text = self.createTextFiled()
+        text.placeholder = "输入支付宝账号"
+        let text2 = self.createTextFiled()
+        text2.placeholder = "输入姓名"
+        ary.append(text)
+        ary.append(text2)
+        return ary
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.title = "添加支付宝账号"
         // Do any additional setup after loading the view.
     }
-
+    func createTextFiled() -> UITextField {
+        let text = UITextField.init(frame: CGRect.init(x: ScreenWidth - 160, y: 10, width: 150, height: 30))
+        text.borderStyle = .none
+        text.font = kFont_Normal
+        text.backgroundColor = UIColor.clear
+        return text
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        rightBtn.setTitle("确定", for: UIControlState.normal)
+        rightBtn.setTitleColor(APPCustomBtnColor, for: UIControlState.normal)
+    }
+    override func clickRightBtn() {
+        
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -46,16 +69,18 @@ extension ADDPayCountViewController
         if cell == nil {
             cell = UITableViewCell.init(style: UITableViewCellStyle.value1, reuseIdentifier: "ADDPayCountViewController")
             if indexPath.row == 0
-            {}
+            {
+                cell?.textLabel?.text = "支付宝账号"
+            }
+            else {
+                cell?.textLabel?.text = "姓名(保密内容,防止汇错)"
+            }
+            cell?.contentView.addSubview(rightControls[indexPath.row])
             
         }
+        return cell!
     }
-    func createTextFiled() -> UITextField {
-        let text = UITextField.init(frame: CGRect.init(x: ScreenWidth - 160, y: 10, width: 150, height: 30))
-        text.borderStyle = .none
-        text.font = kFont_Normal
-        text.backgroundColor = UIColor.clear
-    }
+   
     
 }
 
