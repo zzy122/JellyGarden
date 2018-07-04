@@ -247,6 +247,7 @@
 		5AFA3B6D20D78AE40052FC42 /* WCLRecordProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AFA3B6320D78AE30052FC42 /* WCLRecordProgressView.m */; };
 		5AFA3B6E20D78AE40052FC42 /* WCLRecordEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AFA3B6720D78AE30052FC42 /* WCLRecordEncoder.m */; };
 		5AFA3B6F20D78AE40052FC42 /* WCLRecordEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AFA3B6A20D78AE30052FC42 /* WCLRecordEngine.m */; };
+		5E2D207320ECCD6D00FD1B01 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2D207220ECCD6D00FD1B01 /* Extension.swift */; };
 		5E6AE15C20DF2E7B00901D43 /* MineInfoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AE15B20DF2E7B00901D43 /* MineInfoHeaderView.swift */; };
 		5E6AE15E20DF2E8700901D43 /* MineInfoHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E6AE15D20DF2E8700901D43 /* MineInfoHeaderView.xib */; };
 		5E6AE16120DF3BC400901D43 /* MineRedPhoneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AE15F20DF3BC400901D43 /* MineRedPhoneCell.swift */; };
@@ -565,6 +566,7 @@
 		5AFA3B6720D78AE30052FC42 /* WCLRecordEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCLRecordEncoder.m; sourceTree = "<group>"; };
 		5AFA3B6920D78AE30052FC42 /* WCLRecordEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCLRecordEngine.h; sourceTree = "<group>"; };
 		5AFA3B6A20D78AE30052FC42 /* WCLRecordEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCLRecordEngine.m; sourceTree = "<group>"; };
+		5E2D207220ECCD6D00FD1B01 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		5E6AE15B20DF2E7B00901D43 /* MineInfoHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineInfoHeaderView.swift; sourceTree = "<group>"; };
 		5E6AE15D20DF2E8700901D43 /* MineInfoHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MineInfoHeaderView.xib; sourceTree = "<group>"; };
 		5E6AE15F20DF3BC400901D43 /* MineRedPhoneCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineRedPhoneCell.swift; sourceTree = "<group>"; };
@@ -714,6 +716,7 @@
 				5A459AEA20D3640900C0A6FA /* AliyunUpload.m */,
 				5A120C3E20DB70EF004A9DCF /* AliyunManager.swift */,
 				5A459AE220D235FD00C0A6FA /* UploadToAliyun.swift */,
+				5E2D207220ECCD6D00FD1B01 /* Extension.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -931,7 +934,6 @@
 				5A80C49420BFDB150033CAF8 /* ViewController.swift */,
 				5A015E9120C4FAEC00EC8A96 /* VCs */,
 				5AFA3B6020D78A920052FC42 /* 录像 */,
-				5A80C50B20C0194D0033CAF8 /* Library */,
 				5A015EC220C57AA300EC8A96 /* Tools */,
 				5A80C4E020BFE7AF0033CAF8 /* Models */,
 				5A80C4D720BFE5690033CAF8 /* BaseVC */,
@@ -1007,13 +1009,6 @@
 				5A459ADE20D218C200C0A6FA /* ConditionModel.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		5A80C50B20C0194D0033CAF8 /* Library */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Library;
 			sourceTree = "<group>";
 		};
 		5AE9CC8220C8C6820057CFF3 /* UserInfo */ = {
@@ -1757,6 +1752,7 @@
 				5A459AD420D166A400C0A6FA /* ZZYFrameParser.m in Sources */,
 				5A7FC43620EB181000D7E137 /* PermissionLookView.swift in Sources */,
 				5A27B37F20E5062E0028D5FF /* UserBroadcastListViewController.swift in Sources */,
+				5E2D207320ECCD6D00FD1B01 /* Extension.swift in Sources */,
 				5A1F3AA020DF35E600CB98CD /* TagStatueCell.m in Sources */,
 				5A015ECB20C5864700EC8A96 /* FillInformationViewController.swift in Sources */,
 				5A80C4EA20BFF6ED0033CAF8 /* OtherApplication.swift in Sources */,
