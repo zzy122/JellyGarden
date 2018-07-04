@@ -39,6 +39,16 @@ class TagCell: UICollectionViewCell {
     var title: String? {
         didSet {
             label.text = title
+            if isSelected {
+                backgroundColor = selectedStyle!.backgroundColor
+                label.textColor = selectedStyle!.textColor
+                label.font = selectedStyle!.font
+            }
+            else {
+                backgroundColor = normalStyle!.backgroundColor
+                label.textColor = normalStyle!.textColor
+                label.font = normalStyle!.font
+            }
         }
     }
     /// 标签左边的图片
@@ -54,9 +64,11 @@ class TagCell: UICollectionViewCell {
         }
     }
     
+    var selectedStyle: TagsView.TagStyle?
+    var normalStyle: TagsView.TagStyle?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         backgroundColor = UIColor(red:0.97, green:0.97, blue:0.97, alpha:1.00)
     }
     
@@ -65,11 +77,25 @@ class TagCell: UICollectionViewCell {
         // 圆角
         layer.cornerRadius = frame.size.height / 2
         layer.masksToBounds = true
-
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override var isSelected: Bool {
+        didSet {
+            if isSelected {
+                contentView.backgroundColor = selectedStyle!.backgroundColor
+                label.textColor = selectedStyle!.textColor
+                label.font = selectedStyle!.font
+            }
+            else {
+                contentView.backgroundColor = normalStyle!.backgroundColor
+                label.textColor = normalStyle!.textColor
+                label.font = normalStyle!.font
+            }
+        }
     }
     
     /// 按钮点击事件

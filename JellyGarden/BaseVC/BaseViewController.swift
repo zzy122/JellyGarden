@@ -17,6 +17,7 @@ class BaseViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = barbutton
         return btn
     }()
+    
     lazy var rightBtn:UIButton = {
         let btn = UIButton()
         btn.addTarget(self, action: #selector(clickRightBtn), for: UIControlEvents.touchUpInside)
@@ -25,6 +26,7 @@ class BaseViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = barbutton
         return btn
     }()
+    
     var logoTopBackView:UIImageView = UIImageView()
     override func viewDidLoad() {
         super.viewDidLoad()

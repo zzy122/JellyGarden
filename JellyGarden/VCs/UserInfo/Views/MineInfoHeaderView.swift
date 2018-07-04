@@ -23,6 +23,25 @@ class MineInfoHeaderView: UIView {
     @IBOutlet weak var appointmentLabel: UILabel!
     @IBOutlet weak var renzhenButton: UIButton!
     
+    var userInfo: UserModel? {
+        didSet {
+            headerButton.kf.setImage(with: URL(string: userInfo?.data?.avatar ?? ""), for: UIControlState.normal)
+            nameLabel.text = userInfo?.data?.nickname
+            var info = ""
+            if let city = userInfo?.data?.city {
+                info += city
+            }
+            if let age = userInfo?.data?.age {
+                info += " \(age)岁"
+            }
+            if let identify = userInfo?.data?.identity {
+                info += identify
+            }
+            nameInfoLabel.text = info
+            appointmentLabel.text = "约会范围：\(userInfo?.data?.appointment_place?.joined(separator: " ") ?? "")"
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         

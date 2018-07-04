@@ -1348,7 +1348,7 @@
 					5A80C48E20BFDB150033CAF8 = {
 						CreatedOnToolsVersion = 9.1;
 						LastSwiftMigration = 0910;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 1;
@@ -2005,8 +2005,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = JellyGarden/JellyGarden.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 3W4VK75454;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = V7993MA8C9;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2022,15 +2022,15 @@
 					"$(PROJECT_DIR)/JellyGarden/Library/XGPUSH",
 					"$(PROJECT_DIR)/JellyGarden/Library/JsmsSDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cn.com.JellyGarden;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.com.JellyGarden.myTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7c09b77d-7d26-41ae-b8fb-2e68837b1acd";
-				PROVISIONING_PROFILE_SPECIFIER = JellyGardenDevelpmentProfile;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "JellyGarden/JellyGarden-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -2043,8 +2043,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = JellyGarden/JellyGarden.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 3W4VK75454;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = V7993MA8C9;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2060,14 +2060,14 @@
 					"$(PROJECT_DIR)/JellyGarden/Library/XGPUSH",
 					"$(PROJECT_DIR)/JellyGarden/Library/JsmsSDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cn.com.JellyGarden;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.com.JellyGarden.myTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7c09b77d-7d26-41ae-b8fb-2e68837b1acd";
-				PROVISIONING_PROFILE_SPECIFIER = JellyGardenDevelpmentProfile;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "JellyGarden/JellyGarden-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;

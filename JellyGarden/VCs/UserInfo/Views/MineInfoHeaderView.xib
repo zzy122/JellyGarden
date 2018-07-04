@@ -24,20 +24,20 @@
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tXH-UA-cbJ">
                     <rect key="frame" x="10" y="70" width="355" height="240"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="小栗子" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TXf-Sg-G9S">
-                            <rect key="frame" x="151" y="40" width="52" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="小栗子" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TXf-Sg-G9S">
+                            <rect key="frame" x="10" y="40" width="335" height="21"/>
                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="黑龙江省 哈尔滨市 23岁 模特" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pO5-k0-Q0e">
-                            <rect key="frame" x="98" y="71" width="160" height="14.5"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="黑龙江省 哈尔滨市 23岁 模特" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pO5-k0-Q0e">
+                            <rect key="frame" x="10" y="71" width="335" height="14.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="约会范围：北京市" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kKI-AT-jsb">
-                            <rect key="frame" x="128" y="95.5" width="98.5" height="14.5"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="约会范围：北京市" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kKI-AT-jsb">
+                            <rect key="frame" x="10" y="95.5" width="335" height="14.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -215,7 +215,9 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstAttribute="trailing" secondItem="kKI-AT-jsb" secondAttribute="trailing" constant="10" id="0HG-17-Nwu"/>
                         <constraint firstItem="TXf-Sg-G9S" firstAttribute="centerX" secondItem="tXH-UA-cbJ" secondAttribute="centerX" id="9IU-34-gmB"/>
+                        <constraint firstAttribute="trailing" secondItem="pO5-k0-Q0e" secondAttribute="trailing" constant="10" id="A5H-1D-ZKq"/>
                         <constraint firstItem="PcT-qI-s4L" firstAttribute="leading" secondItem="tXH-UA-cbJ" secondAttribute="leading" id="BEj-UC-Vsj"/>
                         <constraint firstAttribute="height" constant="240" id="Gqj-Lz-4tb"/>
                         <constraint firstItem="PcT-qI-s4L" firstAttribute="top" secondItem="wG3-yg-A1R" secondAttribute="bottom" constant="10" id="NiN-zF-bpn"/>
@@ -226,8 +228,12 @@
                         <constraint firstAttribute="trailing" secondItem="PcT-qI-s4L" secondAttribute="trailing" id="eRl-Hv-Kdt"/>
                         <constraint firstItem="wG3-yg-A1R" firstAttribute="centerX" secondItem="tXH-UA-cbJ" secondAttribute="centerX" id="eg9-Oe-9mS"/>
                         <constraint firstItem="pO5-k0-Q0e" firstAttribute="top" secondItem="TXf-Sg-G9S" secondAttribute="bottom" constant="10" id="fPV-GV-xXN"/>
+                        <constraint firstItem="TXf-Sg-G9S" firstAttribute="leading" secondItem="tXH-UA-cbJ" secondAttribute="leading" constant="10" id="g98-hR-heC"/>
                         <constraint firstItem="TXf-Sg-G9S" firstAttribute="top" secondItem="tXH-UA-cbJ" secondAttribute="top" constant="40" id="hMh-21-5SK"/>
+                        <constraint firstItem="pO5-k0-Q0e" firstAttribute="leading" secondItem="tXH-UA-cbJ" secondAttribute="leading" constant="10" id="l2L-95-DBa"/>
                         <constraint firstItem="kKI-AT-jsb" firstAttribute="centerX" secondItem="tXH-UA-cbJ" secondAttribute="centerX" id="n71-pz-pqA"/>
+                        <constraint firstAttribute="trailing" secondItem="TXf-Sg-G9S" secondAttribute="trailing" constant="10" id="qKW-Df-1q8"/>
+                        <constraint firstItem="kKI-AT-jsb" firstAttribute="leading" secondItem="tXH-UA-cbJ" secondAttribute="leading" constant="10" id="war-tn-c26"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">

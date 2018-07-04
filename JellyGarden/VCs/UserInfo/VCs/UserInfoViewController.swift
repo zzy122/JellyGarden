@@ -10,6 +10,8 @@ import UIKit
 
 class UserInfoViewController: BaseMainViewController {
 
+    var userInfo: UserModel = CurrentUserInfo!
+    
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             let tableHeaderView: UIView = {
@@ -19,6 +21,7 @@ class UserInfoViewController: BaseMainViewController {
                 
                 headerView.frame = CGRect(x: 0, y: 0, width: ScreenWidth, height: 310)
                 _headerView.addSubview(headerView)
+                
                 return _headerView
             }()
             
@@ -63,7 +66,8 @@ class UserInfoViewController: BaseMainViewController {
         }
     }
     
-    let headerView: MineInfoHeaderView = UINib(nibName: "MineInfoHeaderView", bundle: nil).instantiate(withOwner: nil, options: nil).first as! MineInfoHeaderView
+    let headerView: MineInfoHeaderView = UINib(nibName: "MineInfoHeaderView", bundle: nil)
+        .instantiate(withOwner: nil, options: nil).first as! MineInfoHeaderView
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,6 +77,7 @@ class UserInfoViewController: BaseMainViewController {
         extendedLayoutIncludesOpaqueBars = true
         edgesForExtendedLayout = .top
         
+        headerView.userInfo = userInfo
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -89,7 +94,6 @@ class UserInfoViewController: BaseMainViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
 }
 
 @objc
@@ -113,6 +117,30 @@ extension UserInfoViewController {
     
     func touchLogout() {
         
+    }
+}
+
+extension UserInfoViewController: ResponderRouter {
+
+    func interceptRoute(name: String, objc: UIResponder?, info: Any?) {
+        switch name {
+        case Mine_Info_Like: // 喜欢
+            break
+        case Mine_Info_Wallet: // 钱包
+            break
+        case Mine_Info_Guangbo: // 广播
+            break
+        case Mine_Info_Renzhen: // 认真
+            break
+        case Mine_Info_Dingjing: // 定金
+            break
+        case Mine_Info_HeaderInfo: // 个人信息
+            let vc = MineInfoEditViewController()
+            vc.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(vc, animated: true)
+        default:
+            break
+        }
     }
 }
 
@@ -181,7 +209,7 @@ extension UserInfoViewController: UITableViewDataSource {
             cell?.accessoryType = .disclosureIndicator
             if 1 == indexPath.section && 0 == indexPath.row {
                 cell?.textLabel?.text = "绑定手机"
-                cell?.detailTextLabel?.text = "13730639424"
+                cell?.detailTextLabel?.text = userInfo.data?.phone
             }
             else if 1 == indexPath.section && 1 == indexPath.row {
                 cell?.textLabel?.text = "查看权限"
@@ -189,11 +217,11 @@ extension UserInfoViewController: UITableViewDataSource {
             }
             else if 1 == indexPath.section && 2 == indexPath.row {
                 cell?.textLabel?.text = "个人介绍"
-                cell?.detailTextLabel?.text = "女神、电影"
+                cell?.detailTextLabel?.text = userInfo.data?.self_introduction
             }
             else if 1 == indexPath.section && 3 == indexPath.row {
                 cell?.textLabel?.text = "约会条件"
-                cell?.detailTextLabel?.text = "跟钱没关系"
+                cell?.detailTextLabel?.text = userInfo.data?.appointment_condition?.joined(separator: "、")
             }
             else if 1 == indexPath.section && 4 == indexPath.row {
                 cell?.textLabel?.text = "分享果冻花园"
