@@ -77,11 +77,24 @@ class IdentityAuthenticationViewController: BaseViewController ,UIImagePickerCon
         self.scrollView.contentSize = CGSize.init(width: ScreenWidth, height: thirdWarmView.frame.maxY + 70)
     }
     @IBAction func clickVideoBtn(_ sender: UIButton) {
+        
         let vc = WCLRecordVideoVC()
         vc.recordVideoResult({ (path) in
             guard let vidioStr = path, vidioStr.count > 0 else{
                 return
             }
+            let filePath = self.getPathStr()
+            try? FileManager.default.moveItem(atPath: vidioStr, toPath: filePath)
+            HUD.flash(.labeledProgress(title: nil, subtitle: "视频上传中..."))
+            AliyunUpload.share().upLoadVedio(toAliyun: filePath, name: "\(CurrentUserInfo?.data?.user_id ?? "renzheng").mp4", complection: { (backStr, state) in
+                if state == UploadImageState.success
+                {
+                    HUD.hide(animated: true)
+                    try? FileManager.default.removeItem(atPath: filePath)
+                    DebugLog(message: "上传成功\(backStr ?? "没有")")
+                }
+            })
+            
             DebugLog(message: "\(vidioStr)")
         })
         
@@ -89,6 +102,30 @@ class IdentityAuthenticationViewController: BaseViewController ,UIImagePickerCon
             
         })
        
+        
+    }
+    func getPathStr() ->String
+    {
+        
+        let path = "\(documentPath)/videos"
+        if !FileManager.default.fileExists(atPath: path)
+        {
+            do {
+                 try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
+            }
+            catch let error
+            {
+               DebugLog(message: error.localizedDescription)
+            }
+           
+        }
+        let filePath = "\(path)/\(CurrentUserInfo?.data?.user_id ?? "renzheng").mp4"
+        if !FileManager.default.fileExists(atPath: path)
+        {
+            FileManager.default.createFile(atPath: filePath, contents: nil, attributes: nil)
+            
+        }
+        return filePath
         
     }
     @IBAction func clickImageBtn(_ sender: UIButton) {

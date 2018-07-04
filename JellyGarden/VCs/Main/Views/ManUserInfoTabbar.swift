@@ -11,10 +11,7 @@ import UIKit
 class ManUserInfoTabbar: UIView {
 
     @IBOutlet weak var collectionImage: UIImageView!
-    var tagFrame:CGRect?
-    override func draw(_ rect: CGRect) {
-        self.frame = self.tagFrame!
-    }
+    
     class func createManUserInfoTabbar() -> ManUserInfoTabbar?{
         let nibView = CustomCreateNib<ManUserInfoTabbar>().createXibView()
         guard let view = nibView else {

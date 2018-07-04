@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="NOCastView" customModule="JellyGarden" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="320"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="广播" translatesAutoresizingMaskIntoConstraints="NO" id="86q-fT-ek5">
+                    <rect key="frame" x="131.5" y="90.5" width="112" height="59"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="112" id="UbQ-58-XZx"/>
+                        <constraint firstAttribute="height" constant="59" id="dve-oJ-M0E"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="你还没有发布广播" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ebR-7E-nx5">
+                    <rect key="frame" x="135" y="179.5" width="106.5" height="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="ebR-7E-nx5" firstAttribute="top" secondItem="86q-fT-ek5" secondAttribute="bottom" constant="30" id="8as-AW-jbF"/>
+                <constraint firstItem="86q-fT-ek5" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-40" id="Uke-cD-KII"/>
+                <constraint firstItem="86q-fT-ek5" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Xbj-PQ-SaG"/>
+                <constraint firstItem="ebR-7E-nx5" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="xHv-Q9-2gr"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="warmLab" destination="ebR-7E-nx5" id="kNI-6c-Bfj"/>
+            </connections>
+            <point key="canvasLocation" x="33.5" y="-119"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="广播" width="112" height="59"/>
+    </resources>
+</document>

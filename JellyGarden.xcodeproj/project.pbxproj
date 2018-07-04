@@ -155,6 +155,14 @@
 		5A7CEC8120D53D1600B7A7C9 /* PhotoImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7CEC8020D53D1500B7A7C9 /* PhotoImageManager.swift */; };
 		5A7CEC8420D53EBB00B7A7C9 /* AddImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7CEC8220D53EBB00B7A7C9 /* AddImageCollectionViewCell.swift */; };
 		5A7CEC8520D53EBB00B7A7C9 /* AddImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A7CEC8320D53EBB00B7A7C9 /* AddImageCollectionViewCell.xib */; };
+		5A7FC43620EB181000D7E137 /* PermissionLookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7FC43520EB181000D7E137 /* PermissionLookView.swift */; };
+		5A7FC43820EB181D00D7E137 /* PermissionLookView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A7FC43720EB181D00D7E137 /* PermissionLookView.xib */; };
+		5A7FC43A20EB5A2D00D7E137 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7FC43920EB5A2D00D7E137 /* SettingViewController.swift */; };
+		5A7FC43D20EB684E00D7E137 /* XiugaiPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7FC43B20EB684E00D7E137 /* XiugaiPasswordViewController.swift */; };
+		5A7FC43E20EB684E00D7E137 /* XiugaiPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A7FC43C20EB684E00D7E137 /* XiugaiPasswordViewController.xib */; };
+		5A7FC44020EB6D1D00D7E137 /* NOCastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7FC43F20EB6D1D00D7E137 /* NOCastView.swift */; };
+		5A7FC44220EB6D3200D7E137 /* NOCastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A7FC44120EB6D3200D7E137 /* NOCastView.xib */; };
+		5A7FC44420EB7FF300D7E137 /* ADDPayCountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7FC44320EB7FF300D7E137 /* ADDPayCountViewController.swift */; };
 		5A80C49320BFDB150033CAF8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A80C49220BFDB150033CAF8 /* AppDelegate.swift */; };
 		5A80C49520BFDB150033CAF8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A80C49420BFDB150033CAF8 /* ViewController.swift */; };
 		5A80C49820BFDB150033CAF8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A80C49620BFDB150033CAF8 /* Main.storyboard */; };
@@ -453,6 +461,14 @@
 		5A7CEC8020D53D1500B7A7C9 /* PhotoImageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoImageManager.swift; sourceTree = "<group>"; };
 		5A7CEC8220D53EBB00B7A7C9 /* AddImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		5A7CEC8320D53EBB00B7A7C9 /* AddImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddImageCollectionViewCell.xib; sourceTree = "<group>"; };
+		5A7FC43520EB181000D7E137 /* PermissionLookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionLookView.swift; sourceTree = "<group>"; };
+		5A7FC43720EB181D00D7E137 /* PermissionLookView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PermissionLookView.xib; sourceTree = "<group>"; };
+		5A7FC43920EB5A2D00D7E137 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		5A7FC43B20EB684E00D7E137 /* XiugaiPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XiugaiPasswordViewController.swift; sourceTree = "<group>"; };
+		5A7FC43C20EB684E00D7E137 /* XiugaiPasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = XiugaiPasswordViewController.xib; sourceTree = "<group>"; };
+		5A7FC43F20EB6D1D00D7E137 /* NOCastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NOCastView.swift; sourceTree = "<group>"; };
+		5A7FC44120EB6D3200D7E137 /* NOCastView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NOCastView.xib; sourceTree = "<group>"; };
+		5A7FC44320EB7FF300D7E137 /* ADDPayCountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADDPayCountViewController.swift; sourceTree = "<group>"; };
 		5A80C48F20BFDB150033CAF8 /* JellyGarden.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JellyGarden.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A80C49220BFDB150033CAF8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5A80C49420BFDB150033CAF8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -1042,6 +1058,7 @@
 				5A459AEE20D3B60400C0A6FA /* ManPersonInfoViewController.swift */,
 				5A459AEC20D3B1D400C0A6FA /* WomanBroadcastViewController.swift */,
 				5A574BF820CA1DC200C59276 /* LookImageViewController.swift */,
+				5A7FC43920EB5A2D00D7E137 /* SettingViewController.swift */,
 			);
 			path = VCs;
 			sourceTree = "<group>";
@@ -1052,6 +1069,8 @@
 				5A27B38420E52F530028D5FF /* GFStarView.swift */,
 				5A27B38620E530460028D5FF /* CommentStarView.xib */,
 				5A27B38820E530510028D5FF /* CommentStarView.swift */,
+				5A7FC43520EB181000D7E137 /* PermissionLookView.swift */,
+				5A7FC43720EB181D00D7E137 /* PermissionLookView.xib */,
 				5AEC51A420C910EF00DD0099 /* MainUserListTableViewCell.swift */,
 				5AEC51A520C910EF00DD0099 /* MainUserListTableViewCell.xib */,
 				5AEC51A820C9228300DD0099 /* MainBodyView.swift */,
@@ -1099,6 +1118,8 @@
 				5A0455CD20CD67580041D309 /* ConfessionTableViewCell.xib */,
 				5A120C4020DB875E004A9DCF /* CommentView.swift */,
 				5A120C4220DB8771004A9DCF /* CommentView.xib */,
+				5A7FC43F20EB6D1D00D7E137 /* NOCastView.swift */,
+				5A7FC44120EB6D3200D7E137 /* NOCastView.xib */,
 				5A0455D020CD680E0041D309 /* ConfessionTableViewCellHeader.swift */,
 				5A0455D220CD68200041D309 /* ConfessionTableViewCellHeader.xib */,
 				5A0455D420CD68310041D309 /* ConfessionTableViewCellBody.xib */,
@@ -1134,12 +1155,15 @@
 		5AEC519F20C9108800DD0099 /* VCs */ = {
 			isa = PBXGroup;
 			children = (
+				5A7FC43B20EB684E00D7E137 /* XiugaiPasswordViewController.swift */,
+				5A7FC43C20EB684E00D7E137 /* XiugaiPasswordViewController.xib */,
 				5AE9CC8C20C8D9100057CFF3 /* UserInfoViewController.swift */,
 				5AE9CC8D20C8D9100057CFF3 /* UserInfoViewController.xib */,
 				5E6AE16320DF962900901D43 /* MineInfoEditViewController.swift */,
 				5E6AE16420DF962900901D43 /* MineInfoEditViewController.xib */,
 				5A27B38A20E9D52D0028D5FF /* IdentityAuthenticationViewController.swift */,
 				5A27B38B20E9D52D0028D5FF /* IdentityAuthenticationViewController.xib */,
+				5A7FC44320EB7FF300D7E137 /* ADDPayCountViewController.swift */,
 			);
 			path = VCs;
 			sourceTree = "<group>";
@@ -1379,6 +1403,7 @@
 				5A4E322B20C792540051FE00 /* ApplayForCodeViewController.xib in Resources */,
 				5AC3FCE320D9E8A400226946 /* StepView.xib in Resources */,
 				5A015E9520C4FDBF00EC8A96 /* FinishViewController.xib in Resources */,
+				5A7FC43820EB181D00D7E137 /* PermissionLookView.xib in Resources */,
 				5A4E322720C782E60051FE00 /* InvitationCodeViewController.xib in Resources */,
 				5A0455CF20CD67580041D309 /* ConfessionTableViewCell.xib in Resources */,
 				5A4E326020C7B6650051FE00 /* InvitationCodeView.xib in Resources */,
@@ -1399,8 +1424,10 @@
 				5A120C4320DB8771004A9DCF /* CommentView.xib in Resources */,
 				5A196AD820C6C1ED002EC0EE /* PickerTableViewCell.xib in Resources */,
 				5A196ADF20C6C704002EC0EE /* BottomPickerCell.xib in Resources */,
+				5A7FC43E20EB684E00D7E137 /* XiugaiPasswordViewController.xib in Resources */,
 				5A459AB220D1617000C0A6FA /* ApplyOperationView.xib in Resources */,
 				5E6AE16220DF3BC400901D43 /* MineRedPhoneCell.xib in Resources */,
+				5A7FC44220EB6D3200D7E137 /* NOCastView.xib in Resources */,
 				5AEC51A720C910EF00DD0099 /* MainUserListTableViewCell.xib in Resources */,
 				5A4E326420C7B6650051FE00 /* UserInfoHeaderView.xib in Resources */,
 				5AF4A75920D64E5E00CFDDD6 /* EnlistDetailTableViewCell.xib in Resources */,
@@ -1483,7 +1510,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		5252A06BEAF880CC855FC0D1 /* [CP] Copy Pods Resources */ = {
@@ -1599,7 +1626,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		FA86ECE1BCFC7E04BDECFE71 /* [CP] Check Pods Manifest.lock */ = {
@@ -1617,7 +1644,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1680,6 +1707,7 @@
 				5A80C4D520BFE1620033CAF8 /* APPCustomDefine.swift in Sources */,
 				5A7CEC6720D531DC00B7A7C9 /* QPPhotoFetchOptions.swift in Sources */,
 				5A015EBD20C577F200EC8A96 /* RegisterViewController.swift in Sources */,
+				5A7FC44420EB7FF300D7E137 /* ADDPayCountViewController.swift in Sources */,
 				5AB8F47F20E221FA00429108 /* SystemMessageTableViewCell.swift in Sources */,
 				5A459ACD20D166A400C0A6FA /* ZZYFramParserConfig.m in Sources */,
 				5AEC51A620C910EF00DD0099 /* MainUserListTableViewCell.swift in Sources */,
@@ -1700,6 +1728,7 @@
 				5A7CEC7320D5331100B7A7C9 /* QPPhotoModel.swift in Sources */,
 				5A0455C820CD2DF80041D309 /* RelationTypeAlert.swift in Sources */,
 				5AEC519320C902C300DD0099 /* ImageRightBtn.swift in Sources */,
+				5A7FC44020EB6D1D00D7E137 /* NOCastView.swift in Sources */,
 				5AEC51A920C9228300DD0099 /* MainBodyView.swift in Sources */,
 				5A015E9B20C5121000EC8A96 /* LoginVIewController.swift in Sources */,
 				5AE9CC9520C8DF0E0057CFF3 /* BaseMainTableViewController.swift in Sources */,
@@ -1721,6 +1750,7 @@
 				5A1F3ABF20DF6CA700CB98CD /* RealTimeLocationStatusView.m in Sources */,
 				5AB8F47820E2136800429108 /* MessgeCenterViewController.swift in Sources */,
 				5A459AD420D166A400C0A6FA /* ZZYFrameParser.m in Sources */,
+				5A7FC43620EB181000D7E137 /* PermissionLookView.swift in Sources */,
 				5A27B37F20E5062E0028D5FF /* UserBroadcastListViewController.swift in Sources */,
 				5E2D207320ECCD6D00FD1B01 /* Extension.swift in Sources */,
 				5A1F3AA020DF35E600CB98CD /* TagStatueCell.m in Sources */,
@@ -1776,6 +1806,7 @@
 				5A1F3ABA20DF6CA700CB98CD /* RCAnnotationView.m in Sources */,
 				5A7CEC7B20D533AE00B7A7C9 /* PhotoPreviewToolbarView.swift in Sources */,
 				5A4E326720C7B6650051FE00 /* VipCenterView.swift in Sources */,
+				5A7FC43A20EB5A2D00D7E137 /* SettingViewController.swift in Sources */,
 				5A1F3AC020DF6CA700CB98CD /* RealTimeLocationViewController.m in Sources */,
 				5A7CEC8420D53EBB00B7A7C9 /* AddImageCollectionViewCell.swift in Sources */,
 				5AEB824020D8BFFA002A7E69 /* LonelySpeechModel.swift in Sources */,
@@ -1796,6 +1827,7 @@
 				5AE9CC8B20C8D83E0057CFF3 /* AppointViewController.swift in Sources */,
 				5AE9CC8920C8CCB30057CFF3 /* MainViewController.swift in Sources */,
 				5A196AD420C6BB96002EC0EE /* BottomAlert.swift in Sources */,
+				5A7FC43D20EB684E00D7E137 /* XiugaiPasswordViewController.swift in Sources */,
 				5A4E326B20C7BD950051FE00 /* UserInfoHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

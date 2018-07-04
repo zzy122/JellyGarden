@@ -99,7 +99,13 @@ class MainViewController: BaseMainViewController,UISearchBarDelegate,ResponderRo
     }
     override func clickRightBtn() {
        RootViewController?.hideTheTabbar()
-        self.navigationController?.pushViewController(IdentityAuthenticationViewController(), animated: true)
+        let vc = UserBroadcastListViewController()
+//        vc.appiontModels = models ?? []
+        //                vc.isSelfBroadcast = (userInfoModel?.data?.user_id == CurrentUserInfo?.data?.user_id)
+        RootNav().pushViewController(vc, animated: true)
+        
+// self.navigationController?.pushViewController(SettingViewController(), animated: true)
+//        self.navigationController?.pushViewController(IdentityAuthenticationViewController(), animated: true)
         
 //        self.bodyView.tagSex = (bodyView.tagSex == .woman) ? .man : .woman
     }
@@ -113,7 +119,7 @@ class MainViewController: BaseMainViewController,UISearchBarDelegate,ResponderRo
         self.view.addSubview(self.scrollItemView)
         self.view.addSubview(self.bodyView)
         
-        
+        self.navigationController?.hidesBottomBarWhenPushed = true 
         // Do any additional setup after loading the view.
     }
     func interceptRoute(name: String, objc: UIResponder?, info: Any?) {
@@ -145,7 +151,7 @@ class MainViewController: BaseMainViewController,UISearchBarDelegate,ResponderRo
             {
                 
                 let vc = PersonInfoViewController()
-                
+                vc.showType = .validation//查看权限
                 TargetManager.share.getDetailUserInfo(userid: model.user_id ?? "",isUpdateUser:false, complection: { (userinfo, error) in
                     guard let user = userinfo else{
                         return
@@ -157,7 +163,7 @@ class MainViewController: BaseMainViewController,UISearchBarDelegate,ResponderRo
             else
             {
                 let vc = ManPersonInfoViewController()
-                
+                vc.showType = .validation
                 TargetManager.share.getDetailUserInfo(userid: model.user_id ?? "",isUpdateUser:false, complection: { (userinfo, error) in
                     guard let user = userinfo else{
                         return

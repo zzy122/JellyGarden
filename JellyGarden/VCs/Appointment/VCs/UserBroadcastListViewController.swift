@@ -13,8 +13,9 @@ class UserBroadcastListViewController: BaseMainTableViewController,PhotoPickerCo
     var userid:String = ""
     var reportTag:Int = 0
     var isSelfBroadcast:Bool = false
+    
     lazy var clickPublishCast:UIButton = {
-        let btn = UIButton.init(frame: CGRect.init(x: 0, y: self.view.frame.height - 44, width: ScreenWidth, height: 44))
+        let btn = UIButton()
         btn.backgroundColor = APPCustomBtnColor
         btn.setTitle("发布约会", for: UIControlState.normal)
         btn.setTitleColor(UIColor.white, for: UIControlState.normal)
@@ -23,12 +24,19 @@ class UserBroadcastListViewController: BaseMainTableViewController,PhotoPickerCo
         return btn
         
     }()
+    private var noCastBackView = UIView()
+    
+    lazy var noCastView:NOCastView = {
+        let view1 = NOCastView.createNOCastView()!
+        self.noCastBackView.backgroundColor = UIColor.clear
+        view1.frame = self.noCastBackView.bounds
+        self.noCastBackView.addSubview(view1)
+        self.view.addSubview(self.noCastBackView)
+        return view1
+    }()
     
     
-    // 底部刷新
-    let headerFresh = MJRefreshNormalHeader()
-    
-    var appiontModels:[lonelySpeechDetaileModel]?
+    var appiontModels:[lonelySpeechDetaileModel] = []
     
     
     
@@ -38,11 +46,18 @@ class UserBroadcastListViewController: BaseMainTableViewController,PhotoPickerCo
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         if  isSelfBroadcast {
-            self.tableView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: self.view.frame.height - self.clickPublishCast.frame.height)
+            self.clickPublishCast.frame = CGRect.init(x: 0, y: self.view.frame.height - 44, width: ScreenWidth, height: 44)
+            
+            let frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: self.view.frame.height - self.clickPublishCast.frame.height)
+            self.tableView.frame = frame
+            self.noCastBackView.frame = frame
+            
             self.clickPublishCast.isHidden = false
         }
         else
         {
+            self.tableView.frame = self.view.bounds
+            self.noCastBackView.frame = self.view.bounds
             self.clickPublishCast.isHidden = true
         }
     }
@@ -52,60 +67,59 @@ class UserBroadcastListViewController: BaseMainTableViewController,PhotoPickerCo
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.isSelfBroadcast = (self.userid == CurrentUserInfo?.data?.user_id)
+        self.isSelfBroadcast = (userid == CurrentUserInfo?.data?.user_id)
+        self.edgesForExtendedLayout = UIRectEdge.bottom
         self.title = self.isSelfBroadcast ? "我的广播" : "她的广播"
+        if appiontModels.count == 0 {
+            self.noCastView.warmLab.text = self.isSelfBroadcast ? "你还没有发布广播" : "他还没有发布广播";
+            self.noCastView.isHidden = false
+        }
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
         self.tableView.register(UINib.init(nibName: "ConfessionTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "ConfessionTableViewCell")
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
-        headerFresh.setRefreshingTarget(self, refreshingAction: #selector(self.refresh))
-        //防止刷新cell的时候跳动
+        
         self.tableView.estimatedRowHeight = 0
         tableView.estimatedSectionFooterHeight = 0
         tableView.estimatedSectionHeaderHeight = 0
-        self.tableView.mj_header = headerFresh
-        self.getAppiontData() { (result) in
-            if result
-            {
-                self.tableView.reloadData()
-            }
-        }
-        self.clickPublishCast.isHidden = false
-        // Do any additional setup after loading the view.
-    }
-    @objc func refresh()
-    {
         
-            self.tableView.reloadData()
-            self.headerFresh.endRefreshing()
     }
     func getAppiontData(complection:@escaping (Bool) -> Void) {
         TargetManager.share.requestUserAllBroadcast(userid: userid) { (models, error) in
             guard error != nil else{
-                self.appiontModels = models
+                self.appiontModels = models ?? []
                 complection(true)
                 return
             }
             complection(false)
         }
-
-       
-        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
         IQKeyboardManager.sharedManager().enable = false
-//        RootViewController?.showTheTabbar()
+        
+//        self.getAppiontData { (success) in//在这里是因为别人发布广播成功后返回这个界面刷新数据
+//            if success
+//            {
+//                if self.appiontModels.count > 0 {
+//                    self.noCastBackView.isHidden = true
+//                }
+//                else
+//                {
+//                    self.noCastBackView.isHidden = false
+//                }
+//                self.tableView.reloadData()
+//            }
+//        }
     }
     override func viewDidDisappear(_ animated: Bool) {
         IQKeyboardManager.sharedManager().enableAutoToolbar = true
         IQKeyboardManager.sharedManager().enable = true
     }
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return self.appiontModels?.count ?? 0
+        return self.appiontModels.count
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -115,12 +129,12 @@ class UserBroadcastListViewController: BaseMainTableViewController,PhotoPickerCo
         cell.selectionStyle = UITableViewCellSelectionStyle.none
         cell.tag = indexPath.section
         cell.isEnableDelete = true
-        cell.setDatasource(model: appiontModels![indexPath.section])
+        cell.setDatasource(model: appiontModels[indexPath.section])
         return cell
     }
-
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let model = appiontModels![indexPath.section]
+        let model = appiontModels[indexPath.section]
         
         let height = caculateCellHeight(model: model)
         return height
@@ -172,21 +186,21 @@ extension UserBroadcastListViewController
             self.reportTag = index
         }
         if ClickEnlistBtn == name {//我要报名
-            guard let model = appiontModels?[index],model.poster?.user_id == CurrentUserInfo?.data?.user_id else
+            guard appiontModels[index].poster?.user_id == CurrentUserInfo?.data?.user_id else
             {
                 alertHud(title: "只有本人才能查看报名哦")
                 return
             }
             
             let vc = EnlistDetailViewController()
-            vc.detaileModel = model
+            vc.detaileModel = appiontModels[index]
             RootNav().pushViewController(vc, animated: true)
         }
         if name == ClickLikeChangeBtn  {//点赞
             guard let index = info as? Int else{
                 return
             }
-            let model:lonelySpeechDetaileModel = appiontModels![index]
+            let model:lonelySpeechDetaileModel = appiontModels[index]
             let appointment_id = model.appointment_id
             if let like = model.is_like,like//取消赞
             {
@@ -221,7 +235,7 @@ extension UserBroadcastListViewController
                     guard let index = info as? Int else{
                         return
                     }
-                    let model:lonelySpeechDetaileModel = self.appiontModels![index]
+                    let model:lonelySpeechDetaileModel = self.appiontModels[index]
                     let params = ["publisher_id":CurrentUserInfo?.data?.user_id ?? "","content":text]
                     TargetManager.share.issueComment(appointment_id: model.appointment_id ?? "", params: params, complection: { (commentmodel, error) in
                         guard let comment = commentmodel else{
@@ -240,14 +254,14 @@ extension UserBroadcastListViewController
             guard let index = info as? Int else{
                 return
             }
-            let model:lonelySpeechDetaileModel = appiontModels![index]
+            let model:lonelySpeechDetaileModel = appiontModels[index]
             let appointment_id = model.appointment_id
             AlertViewCoustom().showalertView(style: .alert, title: alertTitle, message: "确定删除这条约会吗", cancelBtnTitle: alertCancel, touchIndex: { (index) in
                 if index == 1
                 {
                     TargetManager.share.deleteUserBrocast(appointment_id: appointment_id ?? "", complection: { (result) in
                         if result {
-                            self.appiontModels?.remove(at: index)
+                            self.appiontModels.remove(at: index)
                             self.tableView.reloadData()
                         }
                     })
@@ -258,8 +272,8 @@ extension UserBroadcastListViewController
     }
     func reloadMyTableView(index:Int, model:lonelySpeechDetaileModel)
     {
-        self.appiontModels?.remove(at: index)
-        self.appiontModels?.insert(model, at: index)
+        self.appiontModels.remove(at: index)
+        self.appiontModels.insert(model, at: index)
         let indexPath = IndexPath.init(row: 0, section: index)
         self.tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
         
@@ -292,7 +306,7 @@ extension UserBroadcastListViewController
             if state == UploadImageState.success
             {//报名
                 let params = ["user_id":CurrentUserInfo?.data?.user_id ?? "","attachment":urls?.last ?? ""]
-                let model:lonelySpeechDetaileModel = self.appiontModels![self.reportTag]
+                let model:lonelySpeechDetaileModel = self.appiontModels[self.reportTag]
                 TargetManager.share.signUp(params: params, appointment_id: model.poster?.user_id ?? "", complection: { (success) in
                     if success
                     {
@@ -308,6 +322,8 @@ extension UserBroadcastListViewController
         })
     }
 }
+
+
 
     
 
