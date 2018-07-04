@@ -17,10 +17,9 @@ class FinishViewController: BaseViewController {
         super.viewDidLoad()
         self.registerBtn.layer.borderWidth = 1.0
         registerBtn.layer.borderColor = APPCustomBtnColor.cgColor
-        clearUserInfo()
+//        clearUserInfo()
         FillCondition.share.getConditions()
         self.autoLogin()
-        // Do any additional setup after loading the view.
     }
     func autoLogin() {//自动登录
         if let user = CurrentUserInfo {
@@ -63,16 +62,6 @@ class FinishViewController: BaseViewController {
         delegate.setRootViewController(vc: BaseTabBarViewController())
     }
     @IBAction func registerBtn(_ sender: UIButton) {
-       
-//        let post  = ["stature": 25.0, "dress_style": "[\"制服\"]", "nickname": "zzy1", "age": 17.0, "identity": "白领", "language": "[\"粤语\"]", "appointment_place": "[\"自贡\"]", "contact_qq": "1332365", "tags": "[\"学霸\",\"女神经\"]", "self_introduction": "", "emotion_status": "已婚", "appointment_condition": "[\"有车\"]", "avatar": "", "contact_wechat": "", "weight": 25.0, "appointment_program": "[\"唱歌\"]", "sex": "1", "bust": 25.0] as [String : Any]
-//        let params = ["user_json":post]
-//
-//
-//        NetCostom.shared.requestTest(method: .put, wengen: "users/5b225c0bf0fae043f502adac", params: params, success: { (result) in
-//
-//        }) { (error) in
-//
-//        }
         
         self.navigationController?.pushViewController(RegisterViewController(), animated: true)
     }

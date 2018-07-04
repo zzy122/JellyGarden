@@ -16,10 +16,10 @@ enum ClickUserInfoTabbarBtntype {
 }
 class UserInfoTabbar: UIView {
     
-    var tagFrame:CGRect?
-    override func draw(_ rect: CGRect) {
-        self.frame = self.tagFrame!
-    }
+//    var tagFrame:CGRect?
+//    override func draw(_ rect: CGRect) {
+//        self.frame = self.tagFrame!
+//    }
     @IBOutlet weak var collectionImage: UIImageView!
     class func createUserInfoTabbar() -> UserInfoTabbar?{
         let nibView = CustomCreateNib<UserInfoTabbar>().createXibView()

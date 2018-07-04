@@ -40,6 +40,7 @@ typedef NS_ENUM(NSUInteger, UploadVieoStyle) {
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+//    [self.recordEngine startUp];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -56,6 +57,9 @@ typedef NS_ENUM(NSUInteger, UploadVieoStyle) {
         [self.recordEngine previewLayer].frame = self.view.bounds;
         [self.view.layer insertSublayer:[self.recordEngine previewLayer] atIndex:0];
     }
+    //前置摄像
+    [self.recordEngine closeFlashLight];
+    [self.recordEngine changeCameraInputDeviceisFront:YES];
     [self.recordEngine startUp];
 }
 
@@ -66,9 +70,7 @@ typedef NS_ENUM(NSUInteger, UploadVieoStyle) {
     // 博客地址：http://blog.csdn.net/wang631106979/article/details/51498009
     self.allowRecord = YES;
     
-    //前置摄像
-    [self.recordEngine closeFlashLight];
-    [self.recordEngine changeCameraInputDeviceisFront:YES];
+    
 }
 
 //根据状态调整view的展示情况

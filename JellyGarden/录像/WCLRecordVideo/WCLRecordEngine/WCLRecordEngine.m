@@ -412,6 +412,7 @@
 
 //获得视频存放地址
 - (NSString *)getVideoCachePath {
+    
     NSString *videoCache = [NSTemporaryDirectory() stringByAppendingPathComponent:@"videos"] ;
     BOOL isDir = NO;
     NSFileManager *fileManager = [NSFileManager defaultManager];

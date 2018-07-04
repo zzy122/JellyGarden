@@ -9,7 +9,9 @@
 import UIKit
 
 class ManpersonInfoHeader: UIView {
-     @IBOutlet weak var VipLabl: UILabel!
+    
+    @IBOutlet weak var bottomView: UIView!
+    @IBOutlet weak var VipLabl: UILabel!
     @IBOutlet weak var introduceContentLab: UILabel!
     @IBOutlet weak var troduceLab: UILabel!
     @IBOutlet weak var ImageContentView: UIView!

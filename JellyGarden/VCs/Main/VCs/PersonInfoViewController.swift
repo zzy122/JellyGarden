@@ -7,19 +7,39 @@
 //
 
 import UIKit
-
+enum LookUserInfotype {
+    case pubilic;//公开
+    case payphoto;//付费相册
+    case validation;//设置查看权限
+    case stealth;//隐身
+}
 class PersonInfoViewController: BaseTableViewController,ResponderRouter {
     var leftTitles:[String] = ["她的广播","个人介绍","约会节目","约会条件","微信","风格","语言","感情"]
     var rightTitles:[String] = ["","","","","","","",""]
     
+    var showType:LookUserInfotype?
+    lazy var footerView:PermissionLookView = {
+        let foot = PermissionLookView.createPermissionLookView()
+        let backView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: self.view.frame.height - self.headerView.frame.height))
+        backView.backgroundColor = UIColor.clear
+        foot?.frame = backView.bounds
+        backView.addSubview(foot!)
+        self.tableView.tableFooterView = backView
+        return foot!
+        
+    }()
     
     lazy var bottomView:UserInfoTabbar = {
+        let view1 = UIView.init(frame: CGRect.init(x: 0, y: ScreenHeight - 55, width: ScreenWidth, height: 55))
+        view1.backgroundColor = UIColor.clear
         let bottom:UserInfoTabbar = UserInfoTabbar.createUserInfoTabbar()!
-        bottom.tagFrame = CGRect.init(x: 0, y: ScreenHeight - 55, width: ScreenWidth, height: 55)
-        
-        self.view.addSubview(bottom)
+
+        bottom.frame = view1.bounds
+        view1.addSubview(bottom)
+        self.view.addSubview(view1)
         return bottom
     }()
+
     var collectionImageStr:String = ""
     {
         didSet{
@@ -51,9 +71,7 @@ class PersonInfoViewController: BaseTableViewController,ResponderRouter {
             }
         }
     }
-    override func viewDidLayoutSubviews() {
-
-    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
@@ -64,6 +82,11 @@ class PersonInfoViewController: BaseTableViewController,ResponderRouter {
         let backView = UIView()
         backView.backgroundColor = UIColor.clear
         backView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 320 + CGFloat(intege) * (BodyImageHeight + 8))
+        if self.showType == .validation//查看权限 只有头像信息
+        {
+             backView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 320 )
+        }
+        view1?.centerContentView.isHidden = true
         view1?.frame = backView.bounds
         backView.addSubview(view1!)
         view1?.userModel = self.userInfoModel?.data
@@ -77,6 +100,11 @@ class PersonInfoViewController: BaseTableViewController,ResponderRouter {
         self.headerView.isHidden = false
         
         self.bottomView.isHidden = false
+        if self.showType == .validation
+        {
+            self.footerView.isHidden = false
+        }
+        
         // Do any additional setup after loading the view.
     }
     
@@ -106,6 +134,10 @@ class PersonInfoViewController: BaseTableViewController,ResponderRouter {
                 break
                 
             }
+        }
+        if name == ClickPermissionBtn
+        {
+            DebugLog(message: "点击了申请查看")
         }
     }
     func gotoChatVC() {
@@ -158,7 +190,10 @@ extension PersonInfoViewController
 {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        if self.showType == .pubilic {
+           return 1
+        }
+        return 0
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
       return self.leftTitles.count
@@ -224,6 +259,7 @@ extension PersonInfoViewController
             break
         }
     }
+   
 }
 
 

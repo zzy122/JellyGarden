@@ -9,13 +9,23 @@
 import UIKit
 
 class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
-    
+    var showType:LookUserInfotype?
     var broadcastAry:[Any] = []
     var userInfoModel:UserModel? {
         didSet{
 
         }
     }
+    lazy var footerView:PermissionLookView = {
+        let foot = PermissionLookView.createPermissionLookView()
+        let backView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: self.tableView.frame.height - self.headerView.frame.height))
+        backView.backgroundColor = UIColor.clear
+        foot?.frame = backView.bounds
+        backView.addSubview(foot!)
+        self.tableView.tableFooterView = backView
+        return foot!
+        
+    }()
     var collectionImageStr:String = ""
     {
         didSet{
@@ -23,9 +33,12 @@ class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
         }
     }
     lazy var bottomView:ManUserInfoTabbar = {
+        let view1 = UIView.init(frame: CGRect.init(x: 0, y: ScreenHeight - 55, width: ScreenWidth, height: 55))
         let bottom = ManUserInfoTabbar.createManUserInfoTabbar()
-        bottom?.tagFrame = CGRect.init(x: 0, y: ScreenHeight - 55, width: ScreenWidth, height: 55)
-        self.view.addSubview(bottom!)
+        bottom?.frame = view1.bounds
+        view1.backgroundColor = UIColor.clear
+        view1.addSubview(bottom!)
+        self.view.addSubview(view1)
         return bottom!
     }()
     override func viewDidAppear(_ animated: Bool) {
@@ -39,7 +52,13 @@ class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
         let backView = UIView()
         backView.backgroundColor = UIColor.clear
         backView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 260 + CGFloat(intege) * (BodyImageHeight + 8))
+        if self.showType == .validation
+        {
+            backView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 260)
+            view1?.bottomView.isHidden = true
+        }
         view1?.frame = backView.bounds
+        
         backView.addSubview(view1!)
         self.tableView.tableHeaderView = backView
         return view1!
@@ -47,28 +66,21 @@ class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.headerView.isHidden = false
+        self.bottomView.isHidden = false
         self.headerView.userModel = self.userInfoModel?.data
         self.tableView.register(UINib.init(nibName: "ConfessionTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "ConfessionTableViewCell")
-       
-        
-        
-        // Do any additional setup after loading the view.
-    }
-    override func viewWillLayoutSubviews() {
-        tableView.frame = CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: self.view.frame.height - bottomView.frame.height)
-        self.tableView.tableHeaderView = self.headerView
-        
-        self.tableView.sectionHeaderHeight = 40
-        if self.broadcastAry.count == 0
+         tableView.frame = CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: ScreenHeight - self.bottomView.frame.height)
+        if self.broadcastAry.count == 0 && showType == .pubilic
         {
             self.createfootView()
         }
-        else
+        else if showType == .validation//访问权限
         {
-            
+            self.footerView.isHidden = false
         }
-        self.tableView.reloadData()
+        
     }
+
     
     func createfootView()
     {
@@ -80,10 +92,7 @@ class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
         footer.addSubview(lable)
         self.tableView.tableFooterView = footer
     }
-//    override func viewDidLayoutSubviews() {
-//
-//
-//    }
+
     func interceptRoute(name: String, objc: UIResponder?, info: Any?) {
         if name == ClickUserInfoTabbar {
             guard let btnTag = info as? ClickUserInfoTabbarBtntype
@@ -122,6 +131,12 @@ class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
                 
             }
         }
+        if name == ClickPermissionBtn
+        {
+            DebugLog(message: "点击了申请查看")
+        }
+        
+        
     }
     
     
@@ -145,7 +160,11 @@ class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
 extension ManPersonInfoViewController
 {
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        if showType == .pubilic
+        {
+            return 1
+        }
+        return 0
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.broadcastAry.count
@@ -167,7 +186,11 @@ extension ManPersonInfoViewController
         return section
     }
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40
+        if self.showType == .pubilic
+        {
+           return 40
+        }
+        return 0
     }
     
     

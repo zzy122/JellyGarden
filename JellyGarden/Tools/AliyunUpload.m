@@ -120,8 +120,7 @@ NSString * const BucketName = @"jellygarden";
     put.objectKey = vedioName;
     
     put.uploadingFileURL = [NSURL fileURLWithPath:VedioPath];
-    
-    // optional fields
+
     put.uploadProgress = ^(int64_t bytesSent, int64_t totalByteSent, int64_t totalBytesExpectedToSend) {
         NSLog(@"%lld, %lld, %lld", bytesSent, totalByteSent, totalBytesExpectedToSend);
     };
