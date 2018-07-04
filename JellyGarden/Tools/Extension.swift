@@ -7,16 +7,3 @@
 //
 
 import Foundation
-
-extension  {
-    
-    func cancel(title: String?, cancel: (() -> Void)?) -> UIAlertController {
-        
-        let action = UIAlertAction(title: title, style: UIAlertActionStyle.cancel) { (action) in
-            cancel()
-        }
-        return self
-    }
-    
-    func others(
-}
