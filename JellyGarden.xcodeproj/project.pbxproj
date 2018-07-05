@@ -2002,7 +2002,7 @@
 				CODE_SIGN_ENTITLEMENTS = JellyGarden/JellyGarden.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L8E8CV789S;
+				DEVELOPMENT_TEAM = V7993MA8C9;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2018,7 +2018,7 @@
 					"$(PROJECT_DIR)/JellyGarden/Library/XGPUSH",
 					"$(PROJECT_DIR)/JellyGarden/Library/JsmsSDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "cn.com.JellyGarden-testa";
+				PRODUCT_BUNDLE_IDENTIFIER = "cn.com.JellyGarden-test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2040,7 +2040,7 @@
 				CODE_SIGN_ENTITLEMENTS = JellyGarden/JellyGarden.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L8E8CV789S;
+				DEVELOPMENT_TEAM = V7993MA8C9;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2056,7 +2056,7 @@
 					"$(PROJECT_DIR)/JellyGarden/Library/XGPUSH",
 					"$(PROJECT_DIR)/JellyGarden/Library/JsmsSDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "cn.com.JellyGarden-testa";
+				PRODUCT_BUNDLE_IDENTIFIER = "cn.com.JellyGarden-test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

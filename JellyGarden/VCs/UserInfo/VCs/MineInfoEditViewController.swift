@@ -11,7 +11,7 @@ import MobileCoreServices
 import Photos
 import HandyJSON
 
-class MineInfoEditViewController: BaseMainViewController {
+class MineInfoEditViewController: BaseMainViewController, UITextViewDelegate {
 
     @IBOutlet weak var tableView: UITableView! {
         didSet {
@@ -62,6 +62,7 @@ class MineInfoEditViewController: BaseMainViewController {
         // Do any additional setup after loading the view.
         title = "编辑资料"
         
+        textView.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -77,13 +78,76 @@ class MineInfoEditViewController: BaseMainViewController {
     
     override func clickRightBtn() {
         /// 保存
+        guard let newInfoModel = self.newUserInfo else {
+            alertHud(title: "没有做出任何修改")
+            return
+        }
+        var fillInfo:[String:Any] = [:]
+        fillInfo["nickname"] = self.userInfo.data?.nickname
+        fillInfo["avatar"] = self.userInfo.data?.avatar
+        fillInfo["appointment_place"] = self.userInfo.data?.appointment_place
+        fillInfo["age"] = self.userInfo.data?.age
+        fillInfo["identity"] = self.userInfo.data?.identity
+        fillInfo["sex"] = self.userInfo.data?.sex
+        fillInfo["language"] = self.userInfo.data?.language
+        fillInfo["bust"] = self.userInfo.data?.bust
+        fillInfo["contact_wechat"] = self.userInfo.data?.contact_wechat
+        fillInfo["contact_qq"] = self.userInfo.data?.contact_qq
+        fillInfo["dress_style"] = self.userInfo.data?.dress_style
+        fillInfo["appointment_program"] = self.userInfo.data?.appointment_program
+        fillInfo["emotion_status"] = self.userInfo.data?.emotion_status
+        fillInfo["stature"] = self.userInfo.data?.stature
+        fillInfo["weight"] = self.userInfo.data?.weight
+        fillInfo["appointment_condition"] = self.userInfo.data?.appointment_condition
+        fillInfo["self_introduction"] = self.userInfo.data?.self_introduction
+        fillInfo["tags"] = self.userInfo.data?.tags
+        
+        let param:[String:Any] = ["user_json":getJSONStringFromObject(dictionary: fillInfo)]
+        TargetManager.share.fillUserInfo(params: param) {[weak self] (result, error) in
+            if error == nil {
+                updateUserInfo()
+                alertHud(title: "保存成功")
+                self?.navigationController?.popViewController(animated: true)
+            }
+        }
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        var infModel = self.getInfoModel()
+        infModel.data?.self_introduction = textView.text
+        newUserInfo = infModel
+        self.userInfo.data?.self_introduction = textView.text
     }
 }
 
 extension MineInfoEditViewController: TagsViewDelegate {
     
-    func tagsView(didTouchTagAtIndex index: Int) {
+    func tagsView(didDeselectTagAtIndex index: Int) {
+        let tags = FillCondition.share.conditionTag
+        let removeTag = tags[index]
         
+        var selectedTags = self.userInfo.data?.tags ?? []
+        if let index = selectedTags.index(of: removeTag) {
+            selectedTags.remove(at: index)
+        }
+        
+        var infoModel = self.getInfoModel()
+        infoModel.data?.tags = selectedTags
+        self.newUserInfo = infoModel
+        self.userInfo.data?.tags = selectedTags
+    }
+    
+    func tagsView(didTouchTagAtIndex index: Int) {
+        let tags = FillCondition.share.conditionTag
+        let addTag = tags[index]
+        
+        var selectedTags = self.userInfo.data?.tags ?? []
+        selectedTags.append(addTag)
+        
+        var infoModel = self.getInfoModel()
+        infoModel.data?.tags = selectedTags
+        self.newUserInfo = infoModel
+        self.userInfo.data?.tags = selectedTags
     }
     
     func reloadTag() {
@@ -103,6 +167,7 @@ extension MineInfoEditViewController: PhotoPickerControllerDelegate, UIImagePick
     func getInfoModel() -> UserModel {
         if newUserInfo == nil {
             newUserInfo = UserModel()
+            newUserInfo?.data = UserInfo()
         }
         return newUserInfo!
     }
@@ -137,7 +202,9 @@ extension MineInfoEditViewController: PhotoPickerControllerDelegate, UIImagePick
                 infoModel.data?.avatar = urls?.last
                 self.newUserInfo = infoModel
                 self.userInfo.data?.avatar = urls?.last
-                self.tableView.reloadData()
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             }
         })
     }
@@ -154,7 +221,9 @@ extension MineInfoEditViewController: PhotoPickerControllerDelegate, UIImagePick
                     infoModel.data?.avatar = urls?.last
                     self.newUserInfo = infoModel
                     self.userInfo.data?.avatar = urls?.last
-                    self.tableView.reloadData()
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
                 }
             })
         }
@@ -350,23 +419,38 @@ extension MineInfoEditViewController: PhotoPickerControllerDelegate, UIImagePick
     /// qq
     func qq() {
         AlertAction.share.showAlertView(type: UIKeyboardType.numberPad,
-                                        title: "身高",
-                                        placeHodel: "请填写您的身高(CM)",
+                                        title: "QQ",
+                                        placeHodel: "请填写您的QQ",
                                         detailTitle: nil,
                                         detailImage: nil) { (sure, result) in
                                             
                                             if sure, let stature = result, stature.count > 0 {
                                                 var infoModel = self.getInfoModel()
-                                                infoModel.data?.stature = Int(stature) ?? 180
+                                                infoModel.data?.contact_qq = result
                                                 self.newUserInfo = infoModel
-                                                self.userInfo.data?.stature = Int(stature) ?? 180
+                                                self.userInfo.data?.contact_qq = result
                                                 self.tableView.reloadData()
                                             }
         }
     }
     
     /// 微信
-    func wechat() {}
+    func wechat() {
+        AlertAction.share.showAlertView(type: UIKeyboardType.numberPad,
+                                        title: "微信",
+                                        placeHodel: "请填写您的微信",
+                                        detailTitle: nil,
+                                        detailImage: nil) { (sure, result) in
+                                            
+                                            if sure, let stature = result, stature.count > 0 {
+                                                var infoModel = self.getInfoModel()
+                                                infoModel.data?.contact_wechat = result
+                                                self.newUserInfo = infoModel
+                                                self.userInfo.data?.contact_wechat = result
+                                                self.tableView.reloadData()
+                                            }
+        }
+    }
 }
 
 extension MineInfoEditViewController: UITableViewDelegate {
