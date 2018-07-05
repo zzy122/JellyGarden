@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import MobileCoreServices
+import Photos
+import HandyJSON
 
-class MineInfoEditViewController: BaseMainViewController {
+class MineInfoEditViewController: BaseMainViewController, UITextViewDelegate {
 
     @IBOutlet weak var tableView: UITableView! {
         didSet {
@@ -59,6 +62,7 @@ class MineInfoEditViewController: BaseMainViewController {
         // Do any additional setup after loading the view.
         title = "编辑资料"
         
+        textView.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,13 +78,76 @@ class MineInfoEditViewController: BaseMainViewController {
     
     override func clickRightBtn() {
         /// 保存
+        guard let newInfoModel = self.newUserInfo else {
+            alertHud(title: "没有做出任何修改")
+            return
+        }
+        var fillInfo:[String:Any] = [:]
+        fillInfo["nickname"] = self.userInfo.data?.nickname
+        fillInfo["avatar"] = self.userInfo.data?.avatar
+        fillInfo["appointment_place"] = self.userInfo.data?.appointment_place
+        fillInfo["age"] = self.userInfo.data?.age
+        fillInfo["identity"] = self.userInfo.data?.identity
+        fillInfo["sex"] = self.userInfo.data?.sex
+        fillInfo["language"] = self.userInfo.data?.language
+        fillInfo["bust"] = self.userInfo.data?.bust
+        fillInfo["contact_wechat"] = self.userInfo.data?.contact_wechat
+        fillInfo["contact_qq"] = self.userInfo.data?.contact_qq
+        fillInfo["dress_style"] = self.userInfo.data?.dress_style
+        fillInfo["appointment_program"] = self.userInfo.data?.appointment_program
+        fillInfo["emotion_status"] = self.userInfo.data?.emotion_status
+        fillInfo["stature"] = self.userInfo.data?.stature
+        fillInfo["weight"] = self.userInfo.data?.weight
+        fillInfo["appointment_condition"] = self.userInfo.data?.appointment_condition
+        fillInfo["self_introduction"] = self.userInfo.data?.self_introduction
+        fillInfo["tags"] = self.userInfo.data?.tags
+        
+        let param:[String:Any] = ["user_json":getJSONStringFromObject(dictionary: fillInfo)]
+        TargetManager.share.fillUserInfo(params: param) {[weak self] (result, error) in
+            if error == nil {
+                updateUserInfo()
+                alertHud(title: "保存成功")
+                self?.navigationController?.popViewController(animated: true)
+            }
+        }
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        var infModel = self.getInfoModel()
+        infModel.data?.self_introduction = textView.text
+        newUserInfo = infModel
+        self.userInfo.data?.self_introduction = textView.text
     }
 }
 
 extension MineInfoEditViewController: TagsViewDelegate {
     
-    func tagsView(didTouchTagAtIndex index: Int) {
+    func tagsView(didDeselectTagAtIndex index: Int) {
+        let tags = FillCondition.share.conditionTag
+        let removeTag = tags[index]
         
+        var selectedTags = self.userInfo.data?.tags ?? []
+        if let index = selectedTags.index(of: removeTag) {
+            selectedTags.remove(at: index)
+        }
+        
+        var infoModel = self.getInfoModel()
+        infoModel.data?.tags = selectedTags
+        self.newUserInfo = infoModel
+        self.userInfo.data?.tags = selectedTags
+    }
+    
+    func tagsView(didTouchTagAtIndex index: Int) {
+        let tags = FillCondition.share.conditionTag
+        let addTag = tags[index]
+        
+        var selectedTags = self.userInfo.data?.tags ?? []
+        selectedTags.append(addTag)
+        
+        var infoModel = self.getInfoModel()
+        infoModel.data?.tags = selectedTags
+        self.newUserInfo = infoModel
+        self.userInfo.data?.tags = selectedTags
     }
     
     func reloadTag() {
@@ -91,6 +158,297 @@ extension MineInfoEditViewController: TagsViewDelegate {
                     tags1.selectItem(at: IndexPath(item: index, section: 0), animated: false, scrollPosition: UICollectionViewScrollPosition.top)
                 }
             }
+        }
+    }
+}
+
+extension MineInfoEditViewController: PhotoPickerControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func getInfoModel() -> UserModel {
+        if newUserInfo == nil {
+            newUserInfo = UserModel()
+            newUserInfo?.data = UserInfo()
+        }
+        return newUserInfo!
+    }
+    
+    /// 相册
+    func showAlbum() {
+        let vc = QPPhotoPickerViewController(type: PageType.AllAlbum)
+        vc.imageSelectDelegate = self
+        vc.imageMaxSelectedNum = 1
+        present(vc, animated: true, completion: nil)
+    }
+    
+    /// 相机
+    func showCamera() {
+        let picker = UIImagePickerController()
+        picker.allowsEditing = false
+        picker.sourceType = UIImagePickerControllerSourceType.camera
+        picker.mediaTypes = [kUTTypeImage] as [String]
+        picker.delegate = self
+        present(picker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        picker.dismiss(animated: true, completion: nil)
+        let yunmodel: AliyunUploadModel = AliyunUploadModel()
+        yunmodel.image = image
+        yunmodel.fileName = "\(getImageName()).png"
+        AliyunUpload.share().uploadImage(toAliyun: [yunmodel], isAsync: true, completion: { (urls, failCount, successCount, state) in
+            if state == UploadImageState.success {
+                var infoModel = self.getInfoModel()
+                infoModel.data?.avatar = urls?.last
+                self.newUserInfo = infoModel
+                self.userInfo.data?.avatar = urls?.last
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+        })
+    }
+    
+    func onImageSelectFinished(images: [PHAsset]) {
+        QPPhotoDataAndImage.getImagesAndDatas(photos: images) { (array) in
+            let model:QPPhotoImageModel? = array?.last
+            let yunmodel: AliyunUploadModel = AliyunUploadModel()
+            yunmodel.image = model?.bigImage
+            yunmodel.fileName = "\(getImageName()).png"
+            AliyunUpload.share().uploadImage(toAliyun: [yunmodel], isAsync: true, completion: { (urls, failCount, successCount, state) in
+                if state == UploadImageState.success {
+                    var infoModel = self.getInfoModel()
+                    infoModel.data?.avatar = urls?.last
+                    self.newUserInfo = infoModel
+                    self.userInfo.data?.avatar = urls?.last
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                }
+            })
+        }
+    }
+    
+    /// 昵称
+    func editNickName() {
+        AlertAction.share.showAlertView(type: nil,
+                                        title: "昵称",
+                                        placeHodel: "请输入昵称",
+                                        detailTitle: nil,
+                                        detailImage: nil) { (sure, result) in
+                                            if sure {
+                                                var infoModel = self.getInfoModel()
+                                                infoModel.data?.nickname = result
+                                                self.newUserInfo = infoModel
+                                                self.userInfo.data?.nickname = result
+                                                self.tableView.reloadData()
+                                            }
+        }
+    }
+    
+    /// 约会范围
+    func appointFanwei() {
+        AlertAction.share.showbottomPicker(title: "约会范围", maxCount: 4, dataAry: currentCitys, currentData: userInfo.data?.appointment_place) { (fanwei) in
+            var infoModel = self.getInfoModel()
+            infoModel.data?.appointment_place = fanwei
+            self.userInfo.data?.appointment_place = fanwei
+            self.tableView.reloadData()
+        }
+    }
+    
+    var ageList: [PikerModel] {
+        var dicAry:[[String:Any]] = []
+        for i in 15 ..< 46 {
+            let dic:[String:Any] = ["citysName":i]
+            dicAry.append(dic)
+        }
+        return [PikerModel].deserialize(from: dicAry) as! [PikerModel]
+    }
+
+    /// 年龄
+    func appointAge() {
+        var currentData:[String] = []
+        
+        let agestr = "\(userInfo.data?.age ?? 18)"
+        if agestr.count > 0 {
+            currentData = [agestr]
+        }
+
+        AlertAction.share.showbottomPicker(title: "选择年龄", maxCount: 1, dataAry: ageList, currentData: currentData) { (ages) in
+            if let first = ages.first {
+                var infoMdoel = self.getInfoModel()
+                infoMdoel.data?.age = Int(first) ?? 18
+                self.newUserInfo = infoMdoel
+                self.userInfo.data?.age = Int(first) ?? 18
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    /// 身高
+    func shengao() {
+        AlertAction.share.showAlertView(type: UIKeyboardType.numberPad,
+                                        title: "身高",
+                                        placeHodel: "请填写您的身高(CM)",
+                                        detailTitle: nil,
+                                        detailImage: nil) { (sure, result) in
+            
+                                            if sure, let stature = result, stature.count > 0 {
+                                                var infoModel = self.getInfoModel()
+                                                infoModel.data?.stature = Int(stature) ?? 180
+                                                self.newUserInfo = infoModel
+                                                self.userInfo.data?.stature = Int(stature) ?? 180
+                                                self.tableView.reloadData()
+                                            }
+        }
+    }
+    
+    /// 身份
+    func shenfen() {
+        AlertAction.share.showbottomPicker(title: "选择您的身份", maxCount: 1, dataAry: FillCondition.share.identityListModel, currentData: [userInfo.data?.identity ?? ""]) { (identify) in
+            var infoModel = self.getInfoModel()
+            infoModel.data?.identity = identify.first
+            self.newUserInfo = infoModel
+            self.userInfo.data?.identity = identify.first
+            self.tableView.reloadData()
+        }
+    }
+    
+    /// 体重
+    func weight() {
+        AlertAction.share.showAlertView(type: UIKeyboardType.numberPad,
+                                        title: "体重",
+                                        placeHodel: "请填写您的体重(KG)",
+                                        detailTitle: nil,
+                                        detailImage: nil) { (sure, result) in
+                                            guard sure, let result = result, result.count > 0 else { return }
+                                            var infModel = self.getInfoModel()
+                                            infModel.data?.weight = Int(result)
+                                            self.newUserInfo = infModel
+                                            self.userInfo.data?.weight = Int(result)
+                                            self.tableView.reloadData()
+        }
+    }
+    
+    /// 胸围
+    func bust() {
+        AlertAction.share.showAlertView(type: UIKeyboardType.numberPad,
+                                        title: "胸围",
+                                        placeHodel: "请填写您的胸围",
+                                        detailTitle: nil,
+                                        detailImage: nil) { (sure, result) in
+                                            guard sure, let result = result, result.count > 0 else { return }
+                                            var infoModel = self.getInfoModel()
+                                            infoModel.data?.bust = Int(result)
+                                            self.newUserInfo = infoModel
+                                            self.userInfo.data?.bust = Int(result)
+                                            self.tableView.reloadData()
+        }
+    }
+    
+    /// 风格
+    func style() {
+        AlertAction.share.showbottomPicker(title: "请选择您的风格",
+                                           maxCount: 4,
+                                           dataAry: FillCondition.share.dressStyleListModel,
+                                           currentData: userInfo.data?.dress_style) { (styles) in
+                                            var infoModel = self.getInfoModel()
+                                            infoModel.data?.dress_style = styles
+                                            self.newUserInfo = infoModel
+                                            self.userInfo.data?.dress_style = styles
+                                            self.tableView.reloadData()
+        }
+    }
+    
+    /// 语言
+    func language() {
+        AlertAction.share.showbottomPicker(title: "选择您的语言",
+                                           maxCount: 4,
+                                           dataAry: FillCondition.share.languageListModel,
+                                           currentData: userInfo.data?.language) { (languages) in
+                                            var infoModel = self.getInfoModel()
+                                            infoModel.data?.language = languages
+                                            self.newUserInfo = infoModel
+                                            self.userInfo.data?.language = languages
+                                            self.tableView.reloadData()
+        }
+    }
+    
+    /// 感情
+    func emotion() {
+        AlertAction.share.showbottomPicker(title: "请选择您的情感状态",
+                                           maxCount: 1,
+                                           dataAry: FillCondition.share.emotionStatusList,
+                                           currentData: [userInfo.data?.emotion_status ?? ""]) { (emotion) in
+                                            var infoModel = self.getInfoModel()
+                                            infoModel.data?.emotion_status = emotion.first
+                                            self.newUserInfo = infoModel
+                                            self.userInfo.data?.emotion_status = emotion.first
+                                            self.tableView.reloadData()
+        }
+    }
+    
+    /// 节目
+    func progoram() {
+        AlertAction.share.showbottomPicker(title: "请选择您的约会节目",
+                                           maxCount: 4,
+                                           dataAry: FillCondition.share.appointmentProgramListModel,
+                                           currentData: userInfo.data?.appointment_program) { (emotion) in
+                                            var infoModel = self.getInfoModel()
+                                            infoModel.data?.appointment_program = emotion
+                                            self.newUserInfo = infoModel
+                                            self.userInfo.data?.appointment_program = emotion
+                                            self.tableView.reloadData()
+        }
+    }
+    
+    /// 条件
+    func condition() {
+        AlertAction.share.showbottomPicker(title: "请选择您的约会条件",
+                                           maxCount: 4,
+                                           dataAry: FillCondition.share.appointmentConditionListModel,
+                                           currentData: userInfo.data?.appointment_condition) { (emotion) in
+                                            var infoModel = self.getInfoModel()
+                                            infoModel.data?.appointment_condition = emotion
+                                            self.newUserInfo = infoModel
+                                            self.userInfo.data?.appointment_condition = emotion
+                                            self.tableView.reloadData()
+        }
+    }
+    
+    /// qq
+    func qq() {
+        AlertAction.share.showAlertView(type: UIKeyboardType.numberPad,
+                                        title: "QQ",
+                                        placeHodel: "请填写您的QQ",
+                                        detailTitle: nil,
+                                        detailImage: nil) { (sure, result) in
+                                            
+                                            if sure, let stature = result, stature.count > 0 {
+                                                var infoModel = self.getInfoModel()
+                                                infoModel.data?.contact_qq = result
+                                                self.newUserInfo = infoModel
+                                                self.userInfo.data?.contact_qq = result
+                                                self.tableView.reloadData()
+                                            }
+        }
+    }
+    
+    /// 微信
+    func wechat() {
+        AlertAction.share.showAlertView(type: UIKeyboardType.numberPad,
+                                        title: "微信",
+                                        placeHodel: "请填写您的微信",
+                                        detailTitle: nil,
+                                        detailImage: nil) { (sure, result) in
+                                            
+                                            if sure, let stature = result, stature.count > 0 {
+                                                var infoModel = self.getInfoModel()
+                                                infoModel.data?.contact_wechat = result
+                                                self.newUserInfo = infoModel
+                                                self.userInfo.data?.contact_wechat = result
+                                                self.tableView.reloadData()
+                                            }
         }
     }
 }
@@ -111,63 +469,70 @@ extension MineInfoEditViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         // 头像
         if 0 == indexPath.section && 0 == indexPath.row {
-            UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+            AlertViewCoustom().showalertView(style: UIAlertControllerStyle.actionSheet, title: nil, message: nil, cancelBtnTitle: "取消", touchIndex: { (index) in
+                if index == 1 {
+                    self.showCamera()
+                }
+                else if index == 2 {
+                    self.showAlbum()
+                }
+            }, otherButtonTitles: "拍照", "相册")
         }
         // 昵称
         else if 0 == indexPath.section && 1 == indexPath.row {
-            
+            editNickName()
         }
         // 约会范围
         else if 0 == indexPath.section && 2 == indexPath.row {
-            
+            appointFanwei()
         }
             // 年龄
         else if 0 == indexPath.section && 3 == indexPath.row {
-            
+            appointAge()
         }
             /// 身高
         else if 0 == indexPath.section && 4 == indexPath.row {
-            
+            shengao()
         }
             // 身份
         else if 0 == indexPath.section && 5 == indexPath.row {
-            
+            shenfen()
         }
             // 体重
         else if 0 == indexPath.section && 6 == indexPath.row {
-            
+            weight()
         }
             // 胸围
         else if 0 == indexPath.section && 7 == indexPath.row {
-            
+            bust()
         }
             // 打扮风格
         else if 1 == indexPath.section && 0 == indexPath.row {
-            
+            style()
         }
             /// 语言
         else if 1 == indexPath.section && 1 == indexPath.row {
-            
+            language()
         }
             // 感情
         else if 1 == indexPath.section && 2 == indexPath.row {
-            
+            emotion()
         }
             // 约会节目
         else if 1 == indexPath.section && 3 == indexPath.row {
-            
+            progoram()
         }
             // 约会条件
         else if 1 == indexPath.section && 4 == indexPath.row {
-            
+            condition()
         }
             // QQ
         else if 2 == indexPath.section && 0 == indexPath.row {
-            
+            qq()
         }
             // wechat
         else if 2 == indexPath.section && 1 == indexPath.row {
-            
+            wechat()
         }
     }
     

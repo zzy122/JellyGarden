@@ -38,7 +38,7 @@ class PersonalInfoHeader: UIView {
 //
 //        }
 //    }
-    var userModel:userInfo?{
+    var userModel:UserInfo?{
         didSet{
             self.headerImage.sd_DownLoadImage(url: userModel?.avatar ?? "")
            self.nikeNameLab.text = userModel?.nickname

@@ -36,7 +36,7 @@ class PersonInfoImageView: UIView,UICollectionViewDelegate,UICollectionViewDataS
         return btn
         
     }()
-    var userModel:userInfo? {
+    var userModel:UserInfo? {
         didSet{
             
             self.collectonView.reloadData()

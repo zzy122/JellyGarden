@@ -10,6 +10,7 @@ import UIKit
 
 protocol TagsViewDelegate: NSObjectProtocol {
     func tagsView(didTouchTagAtIndex index: Int)
+    func tagsView(didDeselectTagAtIndex index: Int)
 }
 
 class TagsView: UICollectionView {

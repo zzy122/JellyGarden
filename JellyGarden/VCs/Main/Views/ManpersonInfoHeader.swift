@@ -27,7 +27,7 @@ class ManpersonInfoHeader: UIView {
     var imageAry:[String] = []//照片数量
     
 
-    var userModel:userInfo?{
+    var userModel:UserInfo?{
         didSet{
             self.headerImage.sd_DownLoadImage(url: userModel?.avatar ?? "")
             self.nikeNameLab.text = userModel?.nickname
