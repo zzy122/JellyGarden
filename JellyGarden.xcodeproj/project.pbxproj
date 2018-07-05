@@ -163,6 +163,26 @@
 		5A7FC44020EB6D1D00D7E137 /* NOCastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7FC43F20EB6D1D00D7E137 /* NOCastView.swift */; };
 		5A7FC44220EB6D3200D7E137 /* NOCastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A7FC44120EB6D3200D7E137 /* NOCastView.xib */; };
 		5A7FC44420EB7FF300D7E137 /* ADDPayCountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7FC44320EB7FF300D7E137 /* ADDPayCountViewController.swift */; };
+		5A7FC44720ED097300D7E137 /* PayAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7FC44520ED097300D7E137 /* PayAccountTableViewCell.swift */; };
+		5A7FC44820ED097300D7E137 /* PayAccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A7FC44620ED097300D7E137 /* PayAccountTableViewCell.xib */; };
+		5A7FC44A20ED0B9200D7E137 /* AdministerPayAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7FC44920ED0B9200D7E137 /* AdministerPayAccountViewController.swift */; };
+		5A7FC44C20EE4BA400D7E137 /* MyLikesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7FC44B20EE4BA400D7E137 /* MyLikesViewController.swift */; };
+		5A7FC44E20EE537100D7E137 /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7FC44D20EE537100D7E137 /* WalletView.swift */; };
+		5A7FC45020EE537E00D7E137 /* WalletView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A7FC44F20EE537E00D7E137 /* WalletView.xib */; };
+		5A7FC45220EE5AB200D7E137 /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7FC45120EE5AB200D7E137 /* WalletViewController.swift */; };
+		5A7FC45520EE5D4B00D7E137 /* WalletTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7FC45320EE5D4B00D7E137 /* WalletTableViewCell.swift */; };
+		5A7FC45620EE5D4B00D7E137 /* WalletTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A7FC45420EE5D4B00D7E137 /* WalletTableViewCell.xib */; };
+		5A7FC45820EE656900D7E137 /* DepositRuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7FC45720EE656900D7E137 /* DepositRuleView.swift */; };
+		5A7FC45A20EE657800D7E137 /* DepositRuleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A7FC45920EE657800D7E137 /* DepositRuleView.xib */; };
+		5A7FC45C20EE706600D7E137 /* DepositManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7FC45B20EE706600D7E137 /* DepositManagerViewController.swift */; };
+		5A7FC45F20EE70DB00D7E137 /* DepositManagerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7FC45D20EE70DB00D7E137 /* DepositManagerTableViewCell.swift */; };
+		5A7FC46020EE70DB00D7E137 /* DepositManagerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A7FC45E20EE70DB00D7E137 /* DepositManagerTableViewCell.xib */; };
+		5A7FC46320EE739C00D7E137 /* DepositRefundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7FC46120EE739C00D7E137 /* DepositRefundTableViewCell.swift */; };
+		5A7FC46420EE739C00D7E137 /* DepositRefundTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A7FC46220EE739C00D7E137 /* DepositRefundTableViewCell.xib */; };
+		5A7FC46620EE7C8A00D7E137 /* NoDepositRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7FC46520EE7C8A00D7E137 /* NoDepositRecord.swift */; };
+		5A7FC46820EE7C9600D7E137 /* NoDepositRecord.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A7FC46720EE7C9600D7E137 /* NoDepositRecord.xib */; };
+		5A7FC46A20EE7F6700D7E137 /* DisAgreeRefundView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A7FC46920EE7F6700D7E137 /* DisAgreeRefundView.xib */; };
+		5A7FC46C20EE7F7A00D7E137 /* DisAgreeRefundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7FC46B20EE7F7A00D7E137 /* DisAgreeRefundView.swift */; };
 		5A80C49320BFDB150033CAF8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A80C49220BFDB150033CAF8 /* AppDelegate.swift */; };
 		5A80C49520BFDB150033CAF8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A80C49420BFDB150033CAF8 /* ViewController.swift */; };
 		5A80C49820BFDB150033CAF8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A80C49620BFDB150033CAF8 /* Main.storyboard */; };
@@ -247,7 +267,6 @@
 		5AFA3B6D20D78AE40052FC42 /* WCLRecordProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AFA3B6320D78AE30052FC42 /* WCLRecordProgressView.m */; };
 		5AFA3B6E20D78AE40052FC42 /* WCLRecordEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AFA3B6720D78AE30052FC42 /* WCLRecordEncoder.m */; };
 		5AFA3B6F20D78AE40052FC42 /* WCLRecordEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AFA3B6A20D78AE30052FC42 /* WCLRecordEngine.m */; };
-		5E2D207320ECCD6D00FD1B01 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2D207220ECCD6D00FD1B01 /* Extension.swift */; };
 		5E6AE15C20DF2E7B00901D43 /* MineInfoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AE15B20DF2E7B00901D43 /* MineInfoHeaderView.swift */; };
 		5E6AE15E20DF2E8700901D43 /* MineInfoHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E6AE15D20DF2E8700901D43 /* MineInfoHeaderView.xib */; };
 		5E6AE16120DF3BC400901D43 /* MineRedPhoneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AE15F20DF3BC400901D43 /* MineRedPhoneCell.swift */; };
@@ -469,6 +488,26 @@
 		5A7FC43F20EB6D1D00D7E137 /* NOCastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NOCastView.swift; sourceTree = "<group>"; };
 		5A7FC44120EB6D3200D7E137 /* NOCastView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NOCastView.xib; sourceTree = "<group>"; };
 		5A7FC44320EB7FF300D7E137 /* ADDPayCountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADDPayCountViewController.swift; sourceTree = "<group>"; };
+		5A7FC44520ED097300D7E137 /* PayAccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayAccountTableViewCell.swift; sourceTree = "<group>"; };
+		5A7FC44620ED097300D7E137 /* PayAccountTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PayAccountTableViewCell.xib; sourceTree = "<group>"; };
+		5A7FC44920ED0B9200D7E137 /* AdministerPayAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdministerPayAccountViewController.swift; sourceTree = "<group>"; };
+		5A7FC44B20EE4BA400D7E137 /* MyLikesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLikesViewController.swift; sourceTree = "<group>"; };
+		5A7FC44D20EE537100D7E137 /* WalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletView.swift; sourceTree = "<group>"; };
+		5A7FC44F20EE537E00D7E137 /* WalletView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WalletView.xib; sourceTree = "<group>"; };
+		5A7FC45120EE5AB200D7E137 /* WalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
+		5A7FC45320EE5D4B00D7E137 /* WalletTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTableViewCell.swift; sourceTree = "<group>"; };
+		5A7FC45420EE5D4B00D7E137 /* WalletTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WalletTableViewCell.xib; sourceTree = "<group>"; };
+		5A7FC45720EE656900D7E137 /* DepositRuleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositRuleView.swift; sourceTree = "<group>"; };
+		5A7FC45920EE657800D7E137 /* DepositRuleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DepositRuleView.xib; sourceTree = "<group>"; };
+		5A7FC45B20EE706600D7E137 /* DepositManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositManagerViewController.swift; sourceTree = "<group>"; };
+		5A7FC45D20EE70DB00D7E137 /* DepositManagerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositManagerTableViewCell.swift; sourceTree = "<group>"; };
+		5A7FC45E20EE70DB00D7E137 /* DepositManagerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DepositManagerTableViewCell.xib; sourceTree = "<group>"; };
+		5A7FC46120EE739C00D7E137 /* DepositRefundTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositRefundTableViewCell.swift; sourceTree = "<group>"; };
+		5A7FC46220EE739C00D7E137 /* DepositRefundTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DepositRefundTableViewCell.xib; sourceTree = "<group>"; };
+		5A7FC46520EE7C8A00D7E137 /* NoDepositRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDepositRecord.swift; sourceTree = "<group>"; };
+		5A7FC46720EE7C9600D7E137 /* NoDepositRecord.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoDepositRecord.xib; sourceTree = "<group>"; };
+		5A7FC46920EE7F6700D7E137 /* DisAgreeRefundView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DisAgreeRefundView.xib; sourceTree = "<group>"; };
+		5A7FC46B20EE7F7A00D7E137 /* DisAgreeRefundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisAgreeRefundView.swift; sourceTree = "<group>"; };
 		5A80C48F20BFDB150033CAF8 /* JellyGarden.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JellyGarden.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A80C49220BFDB150033CAF8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5A80C49420BFDB150033CAF8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -566,7 +605,6 @@
 		5AFA3B6720D78AE30052FC42 /* WCLRecordEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCLRecordEncoder.m; sourceTree = "<group>"; };
 		5AFA3B6920D78AE30052FC42 /* WCLRecordEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCLRecordEngine.h; sourceTree = "<group>"; };
 		5AFA3B6A20D78AE30052FC42 /* WCLRecordEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCLRecordEngine.m; sourceTree = "<group>"; };
-		5E2D207220ECCD6D00FD1B01 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		5E6AE15B20DF2E7B00901D43 /* MineInfoHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineInfoHeaderView.swift; sourceTree = "<group>"; };
 		5E6AE15D20DF2E8700901D43 /* MineInfoHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MineInfoHeaderView.xib; sourceTree = "<group>"; };
 		5E6AE15F20DF3BC400901D43 /* MineRedPhoneCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineRedPhoneCell.swift; sourceTree = "<group>"; };
@@ -716,7 +754,6 @@
 				5A459AEA20D3640900C0A6FA /* AliyunUpload.m */,
 				5A120C3E20DB70EF004A9DCF /* AliyunManager.swift */,
 				5A459AE220D235FD00C0A6FA /* UploadToAliyun.swift */,
-				5E2D207220ECCD6D00FD1B01 /* Extension.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -1148,6 +1185,22 @@
 				5E6AE15D20DF2E8700901D43 /* MineInfoHeaderView.xib */,
 				5E6AE15F20DF3BC400901D43 /* MineRedPhoneCell.swift */,
 				5E6AE16020DF3BC400901D43 /* MineRedPhoneCell.xib */,
+				5A7FC44520ED097300D7E137 /* PayAccountTableViewCell.swift */,
+				5A7FC44620ED097300D7E137 /* PayAccountTableViewCell.xib */,
+				5A7FC44D20EE537100D7E137 /* WalletView.swift */,
+				5A7FC44F20EE537E00D7E137 /* WalletView.xib */,
+				5A7FC45320EE5D4B00D7E137 /* WalletTableViewCell.swift */,
+				5A7FC45720EE656900D7E137 /* DepositRuleView.swift */,
+				5A7FC45920EE657800D7E137 /* DepositRuleView.xib */,
+				5A7FC45420EE5D4B00D7E137 /* WalletTableViewCell.xib */,
+				5A7FC45D20EE70DB00D7E137 /* DepositManagerTableViewCell.swift */,
+				5A7FC45E20EE70DB00D7E137 /* DepositManagerTableViewCell.xib */,
+				5A7FC46120EE739C00D7E137 /* DepositRefundTableViewCell.swift */,
+				5A7FC46220EE739C00D7E137 /* DepositRefundTableViewCell.xib */,
+				5A7FC46520EE7C8A00D7E137 /* NoDepositRecord.swift */,
+				5A7FC46720EE7C9600D7E137 /* NoDepositRecord.xib */,
+				5A7FC46920EE7F6700D7E137 /* DisAgreeRefundView.xib */,
+				5A7FC46B20EE7F7A00D7E137 /* DisAgreeRefundView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1164,6 +1217,10 @@
 				5A27B38A20E9D52D0028D5FF /* IdentityAuthenticationViewController.swift */,
 				5A27B38B20E9D52D0028D5FF /* IdentityAuthenticationViewController.xib */,
 				5A7FC44320EB7FF300D7E137 /* ADDPayCountViewController.swift */,
+				5A7FC44920ED0B9200D7E137 /* AdministerPayAccountViewController.swift */,
+				5A7FC44B20EE4BA400D7E137 /* MyLikesViewController.swift */,
+				5A7FC45120EE5AB200D7E137 /* WalletViewController.swift */,
+				5A7FC45B20EE706600D7E137 /* DepositManagerViewController.swift */,
 			);
 			path = VCs;
 			sourceTree = "<group>";
@@ -1390,7 +1447,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A7FC46420EE739C00D7E137 /* DepositRefundTableViewCell.xib in Resources */,
 				5A99B66A20D7C67100371B6F /* WCLRecordVideoVC.xib in Resources */,
+				5A7FC45A20EE657800D7E137 /* DepositRuleView.xib in Resources */,
 				5AEB824620D8EA20002A7E69 /* ConditionCollectionViewCell.xib in Resources */,
 				5A015EBE20C577F200EC8A96 /* RegisterViewController.xib in Resources */,
 				5A459AF320D3EA2D00C0A6FA /* ManpersonInfoHeader.xib in Resources */,
@@ -1400,9 +1459,11 @@
 				5A4E325E20C7B6650051FE00 /* FillInfoView.xib in Resources */,
 				5A80C49D20BFDB150033CAF8 /* LaunchScreen.storyboard in Resources */,
 				5A4E326F20C7BEAE0051FE00 /* PaySelectView.xib in Resources */,
+				5A7FC46A20EE7F6700D7E137 /* DisAgreeRefundView.xib in Resources */,
 				5A4E322B20C792540051FE00 /* ApplayForCodeViewController.xib in Resources */,
 				5AC3FCE320D9E8A400226946 /* StepView.xib in Resources */,
 				5A015E9520C4FDBF00EC8A96 /* FinishViewController.xib in Resources */,
+				5A7FC46020EE70DB00D7E137 /* DepositManagerTableViewCell.xib in Resources */,
 				5A7FC43820EB181D00D7E137 /* PermissionLookView.xib in Resources */,
 				5A4E322720C782E60051FE00 /* InvitationCodeViewController.xib in Resources */,
 				5A0455CF20CD67580041D309 /* ConfessionTableViewCell.xib in Resources */,
@@ -1418,8 +1479,10 @@
 				5AE9CC8F20C8D9100057CFF3 /* UserInfoViewController.xib in Resources */,
 				5A4E326620C7B6650051FE00 /* VipBodyViewCell.xib in Resources */,
 				5A4E326920C7B6650051FE00 /* XIeyiWarmView.xib in Resources */,
+				5A7FC45620EE5D4B00D7E137 /* WalletTableViewCell.xib in Resources */,
 				5A0455C620CD2DE60041D309 /* RelationTypeAlert.xib in Resources */,
 				5A015ED320C6353D00EC8A96 /* APPCustomAlertView.xib in Resources */,
+				5A7FC45020EE537E00D7E137 /* WalletView.xib in Resources */,
 				5A1F3AD020E0EA3C00CB98CD /* ReadDestroryView.xib in Resources */,
 				5A120C4320DB8771004A9DCF /* CommentView.xib in Resources */,
 				5A196AD820C6C1ED002EC0EE /* PickerTableViewCell.xib in Resources */,
@@ -1428,10 +1491,12 @@
 				5A459AB220D1617000C0A6FA /* ApplyOperationView.xib in Resources */,
 				5E6AE16220DF3BC400901D43 /* MineRedPhoneCell.xib in Resources */,
 				5A7FC44220EB6D3200D7E137 /* NOCastView.xib in Resources */,
+				5A7FC44820ED097300D7E137 /* PayAccountTableViewCell.xib in Resources */,
 				5AEC51A720C910EF00DD0099 /* MainUserListTableViewCell.xib in Resources */,
 				5A4E326420C7B6650051FE00 /* UserInfoHeaderView.xib in Resources */,
 				5AF4A75920D64E5E00CFDDD6 /* EnlistDetailTableViewCell.xib in Resources */,
 				5AEC51AD20C9238F00DD0099 /* MainBodyCollectionViewCell.xib in Resources */,
+				5A7FC46820EE7C9600D7E137 /* NoDepositRecord.xib in Resources */,
 				5A574BF120C97CCD00C59276 /* UserInfoTabbar.xib in Resources */,
 				5A0455D320CD68200041D309 /* ConfessionTableViewCellHeader.xib in Resources */,
 				5A7CEC8520D53EBB00B7A7C9 /* AddImageCollectionViewCell.xib in Resources */,
@@ -1678,6 +1743,7 @@
 				5A120C3F20DB70EF004A9DCF /* AliyunManager.swift in Sources */,
 				5A80C4EE20BFF8130033CAF8 /* obj.m in Sources */,
 				5A459ADB20D1753900C0A6FA /* CommentGetHeight.swift in Sources */,
+				5A7FC45520EE5D4B00D7E137 /* WalletTableViewCell.swift in Sources */,
 				5A015EC120C57A2600EC8A96 /* TimingButton.m in Sources */,
 				5AC3FCDF20D9E86800226946 /* StepView.swift in Sources */,
 				5A015E2420C2477E00EC8A96 /* DepositMessage.m in Sources */,
@@ -1691,9 +1757,11 @@
 				5A015ECD20C62BBC00EC8A96 /* FillInformationFirstViewController.swift in Sources */,
 				5A459AEF20D3B60400C0A6FA /* ManPersonInfoViewController.swift in Sources */,
 				5A196ADE20C6C704002EC0EE /* BottomPickerCell.swift in Sources */,
+				5A7FC46C20EE7F7A00D7E137 /* DisAgreeRefundView.swift in Sources */,
 				5A015EC520C57AC600EC8A96 /* ZZYTimerTarget.m in Sources */,
 				5A45D9DA20E33AA600D2B4CE /* ManFillInformationViewController.swift in Sources */,
 				5A27B38C20E9D52D0028D5FF /* IdentityAuthenticationViewController.swift in Sources */,
+				5A7FC45220EE5AB200D7E137 /* WalletViewController.swift in Sources */,
 				5A7CEC7120D532D600B7A7C9 /* QPPhotoListCell.swift in Sources */,
 				5E6AE16F20DF972C00901D43 /* TagsView.swift in Sources */,
 				5A80C4D120BFE1050033CAF8 /* ShowShadow.swift in Sources */,
@@ -1726,8 +1794,10 @@
 				5A459AD320D166A400C0A6FA /* TextStyle.m in Sources */,
 				5AB8F48220E22F2200429108 /* SystemMessageViewController.swift in Sources */,
 				5A7CEC7320D5331100B7A7C9 /* QPPhotoModel.swift in Sources */,
+				5A7FC45820EE656900D7E137 /* DepositRuleView.swift in Sources */,
 				5A0455C820CD2DF80041D309 /* RelationTypeAlert.swift in Sources */,
 				5AEC519320C902C300DD0099 /* ImageRightBtn.swift in Sources */,
+				5A7FC44C20EE4BA400D7E137 /* MyLikesViewController.swift in Sources */,
 				5A7FC44020EB6D1D00D7E137 /* NOCastView.swift in Sources */,
 				5AEC51A920C9228300DD0099 /* MainBodyView.swift in Sources */,
 				5A015E9B20C5121000EC8A96 /* LoginVIewController.swift in Sources */,
@@ -1752,7 +1822,6 @@
 				5A459AD420D166A400C0A6FA /* ZZYFrameParser.m in Sources */,
 				5A7FC43620EB181000D7E137 /* PermissionLookView.swift in Sources */,
 				5A27B37F20E5062E0028D5FF /* UserBroadcastListViewController.swift in Sources */,
-				5E2D207320ECCD6D00FD1B01 /* Extension.swift in Sources */,
 				5A1F3AA020DF35E600CB98CD /* TagStatueCell.m in Sources */,
 				5A015ECB20C5864700EC8A96 /* FillInformationViewController.swift in Sources */,
 				5A80C4EA20BFF6ED0033CAF8 /* OtherApplication.swift in Sources */,
@@ -1765,7 +1834,9 @@
 				5AE9CC9720C8E3A10057CFF3 /* ITemScrollView.swift in Sources */,
 				5A459AD020D166A400C0A6FA /* ZZYDisplayView.m in Sources */,
 				5A196AD720C6C1ED002EC0EE /* PickerTableViewCell.swift in Sources */,
+				5A7FC45F20EE70DB00D7E137 /* DepositManagerTableViewCell.swift in Sources */,
 				5A459AF120D3E9F500C0A6FA /* ManpersonInfoHeader.swift in Sources */,
+				5A7FC45C20EE706600D7E137 /* DepositManagerViewController.swift in Sources */,
 				5AFA3B6F20D78AE40052FC42 /* WCLRecordEngine.m in Sources */,
 				5AEB824220D8E857002A7E69 /* FiltrateCondition.swift in Sources */,
 				5A1F3ABB20DF6CA700CB98CD /* RCLocationConvert.m in Sources */,
@@ -1789,20 +1860,24 @@
 				5AFA3B6D20D78AE40052FC42 /* WCLRecordProgressView.m in Sources */,
 				5A4E326820C7B6650051FE00 /* XIeyiWarmView.swift in Sources */,
 				5A574BF320C97FCD00C59276 /* UserInfoTabbar.swift in Sources */,
+				5A7FC46320EE739C00D7E137 /* DepositRefundTableViewCell.swift in Sources */,
 				5AB8F47620E1F45100429108 /* LookDestoryImage.swift in Sources */,
 				5A7CEC6D20D5324400B7A7C9 /* AlbumToolbarView.swift in Sources */,
 				5AE9CC9320C8DEEF0057CFF3 /* BaseMainViewController.swift in Sources */,
 				5A4E322D20C7A1FB0051FE00 /* FillInformationThirdViewController.swift in Sources */,
 				5AC3FCE520DA01DF00226946 /* LineView.swift in Sources */,
 				5AEC51AC20C9238F00DD0099 /* MainBodyCollectionViewCell.swift in Sources */,
+				5A7FC44E20EE537100D7E137 /* WalletView.swift in Sources */,
 				5A4E325F20C7B6650051FE00 /* InvitationCodeView.swift in Sources */,
 				5E6AE15C20DF2E7B00901D43 /* MineInfoHeaderView.swift in Sources */,
 				5A196AD220C6B5B6002EC0EE /* APPTextfiled.swift in Sources */,
 				5A80C4DF20BFE5780033CAF8 /* BaseViewController.swift in Sources */,
+				5A7FC44720ED097300D7E137 /* PayAccountTableViewCell.swift in Sources */,
 				5A459AE120D2202900C0A6FA /* FillCondition.swift in Sources */,
 				5A015ED520C6392A00EC8A96 /* APPCustomAlertView.swift in Sources */,
 				5A380F6B20DE91DE00CC4152 /* ReadDestroyMessage.m in Sources */,
 				5A7CEC8120D53D1600B7A7C9 /* PhotoImageManager.swift in Sources */,
+				5A7FC46620EE7C8A00D7E137 /* NoDepositRecord.swift in Sources */,
 				5A1F3ABA20DF6CA700CB98CD /* RCAnnotationView.m in Sources */,
 				5A7CEC7B20D533AE00B7A7C9 /* PhotoPreviewToolbarView.swift in Sources */,
 				5A4E326720C7B6650051FE00 /* VipCenterView.swift in Sources */,
@@ -1823,6 +1898,7 @@
 				5A80C4D620BFE1620033CAF8 /* APPCustomFunc.swift in Sources */,
 				5A4E322620C782E60051FE00 /* InvitationCodeViewController.swift in Sources */,
 				5AC3FCE720DA29E000226946 /* PersonInfoImageView.swift in Sources */,
+				5A7FC44A20ED0B9200D7E137 /* AdministerPayAccountViewController.swift in Sources */,
 				5AF4A74F20D564D800CFDDD6 /* VoidKeyWordView.swift in Sources */,
 				5AE9CC8B20C8D83E0057CFF3 /* AppointViewController.swift in Sources */,
 				5AE9CC8920C8CCB30057CFF3 /* MainViewController.swift in Sources */,

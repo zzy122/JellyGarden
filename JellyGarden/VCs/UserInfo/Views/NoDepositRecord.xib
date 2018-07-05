@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="NoDepositRecord" customModule="JellyGarden" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="479"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="广播" translatesAutoresizingMaskIntoConstraints="NO" id="KmH-QK-bDE">
+                    <rect key="frame" x="131.5" y="142.5" width="112" height="59"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="112" id="X8q-QT-HGr"/>
+                        <constraint firstAttribute="height" constant="59" id="jxP-xe-f27"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="你还没有订金记录" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yHB-WN-b1W">
+                    <rect key="frame" x="134.5" y="231.5" width="106.5" height="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="你可邀请男士在约会之前先支付订金(在你的主页),订金会记录在这里,对方确认约会成功之后才会进入到你的钱包." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MeA-gg-qRx">
+                    <rect key="frame" x="15" y="267.5" width="345" height="31.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="建议约会见面时提醒对方确认约会成功" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qem-ae-v86">
+                    <rect key="frame" x="82" y="314" width="225.5" height="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="提示" translatesAutoresizingMaskIntoConstraints="NO" id="gs9-PO-iwv">
+                    <rect key="frame" x="61" y="314" width="16" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="16" id="0dJ-Id-L73"/>
+                        <constraint firstAttribute="height" constant="16" id="k88-vo-npr"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Qem-ae-v86" firstAttribute="centerY" secondItem="gs9-PO-iwv" secondAttribute="centerY" id="Gzu-F1-PDR"/>
+                <constraint firstItem="MeA-gg-qRx" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="KTC-EA-yxg"/>
+                <constraint firstItem="yHB-WN-b1W" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="KaR-Ie-Bpw"/>
+                <constraint firstAttribute="trailing" secondItem="MeA-gg-qRx" secondAttribute="trailing" constant="15" id="OTn-FR-gIJ"/>
+                <constraint firstItem="MeA-gg-qRx" firstAttribute="top" secondItem="yHB-WN-b1W" secondAttribute="bottom" constant="20" id="SR5-wi-syP"/>
+                <constraint firstItem="KmH-QK-bDE" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="UPc-aD-PMb"/>
+                <constraint firstItem="Qem-ae-v86" firstAttribute="leading" secondItem="gs9-PO-iwv" secondAttribute="trailing" constant="5" id="Vyh-da-OKP"/>
+                <constraint firstItem="yHB-WN-b1W" firstAttribute="top" secondItem="KmH-QK-bDE" secondAttribute="bottom" constant="30" id="Yk5-Zk-7Q8"/>
+                <constraint firstItem="Qem-ae-v86" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="7" id="d36-zh-olr"/>
+                <constraint firstItem="yHB-WN-b1W" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="eSd-uK-yaZ"/>
+                <constraint firstItem="Qem-ae-v86" firstAttribute="top" secondItem="MeA-gg-qRx" secondAttribute="bottom" constant="15" id="kZG-Tn-xKg"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="33.5" y="179.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="广播" width="112" height="59"/>
+        <image name="提示" width="14" height="14"/>
+    </resources>
+</document>

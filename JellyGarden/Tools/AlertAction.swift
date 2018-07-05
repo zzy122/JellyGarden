@@ -32,6 +32,7 @@ class AlertAction: NSObject {
         
         return view
     }()
+    
     lazy var comment:CommentView = {
         let view = CommentView.createCommentView()
 
@@ -245,6 +246,10 @@ class AlertAction: NSObject {
             isGetBordHeight = 0.0
         }else{
         }
+        
+    }
+    func showRulesView()
+    {
         
     }
     

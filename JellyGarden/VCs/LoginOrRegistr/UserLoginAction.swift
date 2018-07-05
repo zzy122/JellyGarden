@@ -14,7 +14,7 @@ class UserLoginAction: NSObject {
 
 func loginActionParams(params:[String:Any],nav:UINavigationController?) {
     TargetManager.share.loginAction(params: params) { (model, error) in
-        if let user = model {//这里判断需不需要判断补填信息 gotoSex
+        if let user = model {//这里判断需不需要判断补填信息 
             dealWithLoginUser(model: user, nav: nav)
         }
     }

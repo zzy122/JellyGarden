@@ -99,10 +99,11 @@ class MainViewController: BaseMainViewController,UISearchBarDelegate,ResponderRo
     }
     override func clickRightBtn() {
        RootViewController?.hideTheTabbar()
-        let vc = UserBroadcastListViewController()
+        
+//        let vc = UserBroadcastListViewController()
 //        vc.appiontModels = models ?? []
         //                vc.isSelfBroadcast = (userInfoModel?.data?.user_id == CurrentUserInfo?.data?.user_id)
-        RootNav().pushViewController(vc, animated: true)
+        RootNav().pushViewController(AdministerPayAccountViewController(), animated: true)
         
 // self.navigationController?.pushViewController(SettingViewController(), animated: true)
 //        self.navigationController?.pushViewController(IdentityAuthenticationViewController(), animated: true)

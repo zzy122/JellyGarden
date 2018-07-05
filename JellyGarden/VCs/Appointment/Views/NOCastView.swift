@@ -10,6 +10,8 @@ import UIKit
 
 class NOCastView: UIView {
     @IBOutlet weak var warmLab: UILabel!
+    
+    @IBOutlet weak var imageView: UIImageView!
     class func createNOCastView() -> NOCastView? {
         let nibView = CustomCreateNib<NOCastView>().createXibView()
         guard let view = nibView else {

@@ -22,17 +22,20 @@ class ADDPayCountViewController: BaseMainTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "添加支付宝账号"
+        self.edgesForExtendedLayout = UIRectEdge.bottom
         // Do any additional setup after loading the view.
     }
     func createTextFiled() -> UITextField {
         let text = UITextField.init(frame: CGRect.init(x: ScreenWidth - 160, y: 10, width: 150, height: 30))
         text.borderStyle = .none
+        text.textAlignment = NSTextAlignment.right
         text.font = kFont_Normal
         text.backgroundColor = UIColor.clear
         return text
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        rightBtn.isHidden = false
         rightBtn.setTitle("确定", for: UIControlState.normal)
         rightBtn.setTitleColor(APPCustomBtnColor, for: UIControlState.normal)
     }

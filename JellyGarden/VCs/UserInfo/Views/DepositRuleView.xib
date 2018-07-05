@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="DepositRuleView" customModule="JellyGarden" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="202"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5XH-Iq-FqO">
+                    <rect key="frame" x="325" y="10" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="az0-Gq-1Zl"/>
+                        <constraint firstAttribute="width" constant="40" id="r7R-1W-uGD"/>
+                    </constraints>
+                    <state key="normal" image="close.png"/>
+                    <connections>
+                        <action selector="clickCloseBtn:" destination="iN0-l3-epB" eventType="touchUpInside" id="EHT-uo-Ftw"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="提现规则" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fLt-Lh-7ZJ">
+                    <rect key="frame" x="20" y="50" width="61.5" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="0.17454728484153748" green="0.46681278944015503" blue="0.77285212278366089" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="每当有人付费查看你的联系方式、相册或者向你发红包所得的收益都会进入这里。金额进账3天内没人举报你即可提现，提现将收取20%手续费" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s99-Uy-9I9">
+                    <rect key="frame" x="20" y="76" width="335" height="50.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="5XH-Iq-FqO" secondAttribute="trailing" constant="10" id="21n-AV-Afj"/>
+                <constraint firstItem="5XH-Iq-FqO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="4vd-7x-Juf"/>
+                <constraint firstItem="s99-Uy-9I9" firstAttribute="top" secondItem="fLt-Lh-7ZJ" secondAttribute="bottom" constant="8" id="8qh-06-lhl"/>
+                <constraint firstItem="fLt-Lh-7ZJ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="GzZ-Ek-aUn"/>
+                <constraint firstAttribute="trailing" secondItem="s99-Uy-9I9" secondAttribute="trailing" constant="20" id="PuJ-O6-Sdl"/>
+                <constraint firstItem="fLt-Lh-7ZJ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="50" id="XLm-Sw-B0j"/>
+                <constraint firstItem="s99-Uy-9I9" firstAttribute="leading" secondItem="fLt-Lh-7ZJ" secondAttribute="leading" id="kcz-Ge-244"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="33.5" y="-116"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="close.png" width="24" height="24"/>
+    </resources>
+</document>

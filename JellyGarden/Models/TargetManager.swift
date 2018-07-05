@@ -445,5 +445,67 @@ class TargetManager: NSObject {
             complection(false)
         }
     }
+    //修改密码
+    func xiugaiPassword(params:[String:Any],complection:@escaping(Bool) ->Void)
+    {
+        NetCostom.shared.request(method: .post, wengen: "users/modifyPassword", params: params, success: { (result) in
+            complection(true)
+        }) { (error) in
+            complection(false)
+        }
+    }
+    //绑定手机号
+    func debangPhoneNumber(params:[String:Any],complection:@escaping(Bool) ->Void)
+    {
+        NetCostom.shared.request(method: .post, wengen: "users/\(CurrentUserInfo?.data?.user_id ?? "")/bindPhone", params: params, success: {(result) in
+            updateUserInfo()
+            complection(true)
+        }) { (error) in
+            complection(false)
+        }
+    }
+    //认证
+    func certificationUser(params:[String:Any],complection:@escaping(Bool) ->Void)
+    {
+        NetCostom.shared.request(method: .post, wengen: "certification", params: params, success: {(result) in
+            complection(true)
+        }) { (error) in
+            complection(false)
+        }
+    }
+    
+    //举报 或者拉黑report_type:int 0拉黑 1举报
+    func userReportRequest(params:[String:Any],complection:@escaping(Bool) ->Void)
+    {
+        NetCostom.shared.request(method: .post, wengen: "userReport", params: params, success: {(result) in
+            complection(true)
+        }) { (error) in
+            complection(false)
+        }
+    }
+    // 获取拉黑列表
+    func userReportList(params:[String:Any],complection:@escaping () ->Void)
+    {
+        NetCostom.shared.request(method: .post, wengen: "userReport", params: params, success: {(result) in
+            
+        }) { (error) in
+
+        }
+    }
+    //获取我喜欢的列表
+    func myLikesList(params:[String:Any]?,complection:@escaping ([MainListmodel]?,Error?) -> Void)
+    {
+        NetCostom.shared.request(method: .post, wengen: "likes", params: params, success: { (result) in
+            if let jsonStr = result as? [String:Any]
+            {
+                let model = BaseModel<MainListmodel,[MainListmodel]>.init(resultData: jsonStr["data"] ?? "")
+                complection(model.resultData,nil)
+            }
+        }) { (error) in
+           complection(nil,error)
+        }
+    }
+    
+    
 }
 
