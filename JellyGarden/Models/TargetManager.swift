@@ -405,7 +405,7 @@ class TargetManager: NSObject {
     //删除某条约会
     func deleteUserBrocast(appointment_id:String,complection:@escaping (Bool) -> Void)
     {
-        NetCostom.shared.request(method: .delete, wengen: "\(CurrentUserInfo?.data?.user_id ?? "")/appointments/\(appointment_id)", params: nil, success: { (resulet) in
+        NetCostom.shared.request(method: .delete, wengen: "users/\(CurrentUserInfo?.data?.user_id ?? "")/appointments/\(appointment_id)", params: nil, success: { (resulet) in
             complection(true)
         }) { (error) in
             complection(false)
@@ -490,12 +490,16 @@ class TargetManager: NSObject {
         }
     }
     // 获取拉黑列表
-    func userReportList(params:[String:Any],complection:@escaping () ->Void)
+    func userReportList(params:[String:Any],complection:@escaping ([BlackModel]?,Error?) ->Void)
     {
-        NetCostom.shared.request(method: .post, wengen: "userReport", params: params, success: {(result) in
-            
+        NetCostom.shared.request(method: .get, wengen: "userReport", params: params, success: {(result) in
+            if let jsonStr = result as? [String:Any]
+            {
+                let model = BaseModel<BlackModel,[BlackModel]>.init(resultData: jsonStr["data"] ?? "")
+                complection(model.resultData,nil)
+            }
         }) { (error) in
-
+            complection(nil,error)
         }
     }
     //获取我喜欢的列表
@@ -509,6 +513,27 @@ class TargetManager: NSObject {
             }
         }) { (error) in
            complection(nil,error)
+        }
+    }
+    //更新权限
+    func updatePermission(params:[String:Any]? ,complection:@escaping(Bool) ->Void)
+    {
+        NetCostom.shared.request(method: .put, wengen: "users/\(CurrentUserInfo?.data?.user_id ?? "")/permission", params: params, success: { (result) in
+            complection(true)
+        }) { (error) in
+            complection(false)
+        }
+    }
+    func checkIdentyResult(params:[String:Any], complection:@escaping (IdentityModel?,Error?) -> Void )
+    {
+        NetCostom.shared.request(method: .get, wengen: "certification/status", params: params, success: { (result) in
+            if let jsonStr = result as? [String:Any]
+            {
+                let model = BaseModel<IdentityModel,IdentityModel>.init(resultData: jsonStr["data"] ?? "")
+                complection(model.resultData,nil)
+            }
+        }) { (error) in
+            complection(nil,error)
         }
     }
     

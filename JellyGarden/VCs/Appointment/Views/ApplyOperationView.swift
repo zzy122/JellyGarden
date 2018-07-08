@@ -11,14 +11,6 @@ let ClickReportName = "ClickReportName"
 let ClickEnlistBtn = "ClickEnlistBtn"
 class ApplyOperationView: UIView {
 
-    
-    var tagFrame:CGRect = CGRect.zero
-//    override func draw(_ rect: CGRect) {
-//        self.frame = self.tagFrame
-//    }
-    override func layoutSubviews() {
-        self.frame = self.tagFrame
-    }
 
     class func createApplyOperationView() -> ApplyOperationView?{
         let nibView = CustomCreateNib<ApplyOperationView>().createXibView()

@@ -18,10 +18,10 @@ class BodyImageCollectionViewCell: UICollectionViewCell {
     }
     var type:LookImageType = .clearness
     
-    func setImage(image:UIImage?,isImplement:LookImageType)
+    func setImage(imageStr:String,isImplement:LookImageType)
     {
         
-        self.imageV.image = image
+        self.imageV.sd_DownLoadImage(url: imageStr)
         switch isImplement {
         case .clearness:
             self.implementView.isHidden = true

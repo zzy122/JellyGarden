@@ -13,11 +13,26 @@ enum LookUserInfotype {
     case validation;//设置查看权限
     case stealth;//隐身
 }
+var permissionAry:[String] = [ "公开","查看相册付费","查看前需要通过我验证","隐身"]
+
 class PersonInfoViewController: BaseTableViewController,ResponderRouter {
     var leftTitles:[String] = ["她的广播","个人介绍","约会节目","约会条件","微信","风格","语言","感情"]
     var rightTitles:[String] = ["","","","","","","",""]
     
-    var showType:LookUserInfotype?
+    var showType:LookUserInfotype? {
+        if self.userInfoModel?.data?.permission == permissionAry[3] {
+            return LookUserInfotype.stealth
+        }
+        else if self.userInfoModel?.data?.permission == permissionAry[2] {
+            return LookUserInfotype.validation
+        }
+        else if self.userInfoModel?.data?.permission == permissionAry[1] {
+           return LookUserInfotype.payphoto
+        }
+        else  {
+           return LookUserInfotype.pubilic
+        }
+    }
     lazy var footerView:PermissionLookView = {
         let foot = PermissionLookView.createPermissionLookView()
         let backView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: self.tableView.frame.height - self.headerView.frame.height))

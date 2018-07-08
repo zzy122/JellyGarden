@@ -38,6 +38,7 @@
 		5A0455D320CD68200041D309 /* ConfessionTableViewCellHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A0455D220CD68200041D309 /* ConfessionTableViewCellHeader.xib */; };
 		5A0455D520CD68310041D309 /* ConfessionTableViewCellBody.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A0455D420CD68310041D309 /* ConfessionTableViewCellBody.xib */; };
 		5A0455D720CD683E0041D309 /* ConfessionTableViewCellBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0455D620CD683E0041D309 /* ConfessionTableViewCellBody.swift */; };
+		5A0CC16120F240160056A30E /* IdentityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0CC16020F240160056A30E /* IdentityModel.swift */; };
 		5A120C3F20DB70EF004A9DCF /* AliyunManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A120C3E20DB70EF004A9DCF /* AliyunManager.swift */; };
 		5A120C4120DB875E004A9DCF /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A120C4020DB875E004A9DCF /* CommentView.swift */; };
 		5A120C4320DB8771004A9DCF /* CommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A120C4220DB8771004A9DCF /* CommentView.xib */; };
@@ -245,6 +246,10 @@
 		5ADD1A3020C952FB004504B3 /* PersonalInfoHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADD1A2F20C952FB004504B3 /* PersonalInfoHeader.swift */; };
 		5ADD1A3220C9530E004504B3 /* PersonalInfoHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ADD1A3120C9530E004504B3 /* PersonalInfoHeader.xib */; };
 		5AE28C6420F1252C00EE2973 /* EditPersonalIntroduceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE28C6320F1252C00EE2973 /* EditPersonalIntroduceViewController.swift */; };
+		5AE28C6720F1D26200EE2973 /* BlacklistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE28C6520F1D26200EE2973 /* BlacklistTableViewCell.swift */; };
+		5AE28C6820F1D26200EE2973 /* BlacklistTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AE28C6620F1D26200EE2973 /* BlacklistTableViewCell.xib */; };
+		5AE28C6A20F1F3F900EE2973 /* BlackListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE28C6920F1F3F900EE2973 /* BlackListViewController.swift */; };
+		5AE28C6D20F1F6C200EE2973 /* BlackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE28C6C20F1F6C200EE2973 /* BlackModel.swift */; };
 		5AE9CC8120C7FE0F0057CFF3 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE9CC8020C7FE0F0057CFF3 /* UserModel.swift */; };
 		5AE9CC8720C8C8D70057CFF3 /* LocationCitys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE9CC8620C8C8D70057CFF3 /* LocationCitys.swift */; };
 		5AE9CC8920C8CCB30057CFF3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE9CC8820C8CCB30057CFF3 /* MainViewController.swift */; };
@@ -343,6 +348,7 @@
 		5A0455D220CD68200041D309 /* ConfessionTableViewCellHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfessionTableViewCellHeader.xib; sourceTree = "<group>"; };
 		5A0455D420CD68310041D309 /* ConfessionTableViewCellBody.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfessionTableViewCellBody.xib; sourceTree = "<group>"; };
 		5A0455D620CD683E0041D309 /* ConfessionTableViewCellBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfessionTableViewCellBody.swift; sourceTree = "<group>"; };
+		5A0CC16020F240160056A30E /* IdentityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityModel.swift; sourceTree = "<group>"; };
 		5A120C3E20DB70EF004A9DCF /* AliyunManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliyunManager.swift; sourceTree = "<group>"; };
 		5A120C4020DB875E004A9DCF /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
 		5A120C4220DB8771004A9DCF /* CommentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentView.xib; sourceTree = "<group>"; };
@@ -593,6 +599,10 @@
 		5ADD1A2F20C952FB004504B3 /* PersonalInfoHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoHeader.swift; sourceTree = "<group>"; };
 		5ADD1A3120C9530E004504B3 /* PersonalInfoHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonalInfoHeader.xib; sourceTree = "<group>"; };
 		5AE28C6320F1252C00EE2973 /* EditPersonalIntroduceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPersonalIntroduceViewController.swift; sourceTree = "<group>"; };
+		5AE28C6520F1D26200EE2973 /* BlacklistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlacklistTableViewCell.swift; sourceTree = "<group>"; };
+		5AE28C6620F1D26200EE2973 /* BlacklistTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlacklistTableViewCell.xib; sourceTree = "<group>"; };
+		5AE28C6920F1F3F900EE2973 /* BlackListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackListViewController.swift; sourceTree = "<group>"; };
+		5AE28C6C20F1F6C200EE2973 /* BlackModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackModel.swift; sourceTree = "<group>"; };
 		5AE9CC8020C7FE0F0057CFF3 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		5AE9CC8620C8C8D70057CFF3 /* LocationCitys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCitys.swift; sourceTree = "<group>"; };
 		5AE9CC8820C8CCB30057CFF3 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -1089,9 +1099,19 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		5AE28C6B20F1F69700EE2973 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5AE28C6C20F1F6C200EE2973 /* BlackModel.swift */,
+				5A0CC16020F240160056A30E /* IdentityModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		5AE9CC8220C8C6820057CFF3 /* UserInfo */ = {
 			isa = PBXGroup;
 			children = (
+				5AE28C6B20F1F69700EE2973 /* Models */,
 				5AEC519F20C9108800DD0099 /* VCs */,
 				5AEC519E20C9108800DD0099 /* Views */,
 			);
@@ -1241,6 +1261,8 @@
 				5A7FC46720EE7C9600D7E137 /* NoDepositRecord.xib */,
 				5A7FC46920EE7F6700D7E137 /* DisAgreeRefundView.xib */,
 				5A7FC46B20EE7F7A00D7E137 /* DisAgreeRefundView.swift */,
+				5AE28C6520F1D26200EE2973 /* BlacklistTableViewCell.swift */,
+				5AE28C6620F1D26200EE2973 /* BlacklistTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1266,6 +1288,7 @@
 				5A7FC48320F0F91C00D7E137 /* DebangPhoneViewController.swift */,
 				5A7FC48420F0F91C00D7E137 /* DebangPhoneViewController.xib */,
 				5AE28C6320F1252C00EE2973 /* EditPersonalIntroduceViewController.swift */,
+				5AE28C6920F1F3F900EE2973 /* BlackListViewController.swift */,
 			);
 			path = VCs;
 			sourceTree = "<group>";
@@ -1551,6 +1574,7 @@
 				5AF4A75320D6260100CFDDD6 /* EnlistAppiontViewController.xib in Resources */,
 				5A574C0B20CA397A00C59276 /* LookImageBodyView.xib in Resources */,
 				5A80C49A20BFDB150033CAF8 /* Assets.xcassets in Resources */,
+				5AE28C6820F1D26200EE2973 /* BlacklistTableViewCell.xib in Resources */,
 				5AB8F48020E221FA00429108 /* SystemMessageTableViewCell.xib in Resources */,
 				5ACEFC8220D4F6E000BE5241 /* NormalAppointmentViewController.xib in Resources */,
 				5A015EC920C5834D00EC8A96 /* SexViewController.xib in Resources */,
@@ -1765,6 +1789,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5AE28C6D20F1F6C200EE2973 /* BlackModel.swift in Sources */,
 				5A459AE820D27D2600C0A6FA /* MianUserListRequest.swift in Sources */,
 				5AE9CC8E20C8D9100057CFF3 /* UserInfoViewController.swift in Sources */,
 				5A99B66920D7C67100371B6F /* WCLRecordVideoVC.m in Sources */,
@@ -1821,6 +1846,7 @@
 				5AE9CC8720C8C8D70057CFF3 /* LocationCitys.swift in Sources */,
 				5A27B38920E530510028D5FF /* CommentStarView.swift in Sources */,
 				5A1F3ABC20DF6CA700CB98CD /* RCLocationView.m in Sources */,
+				5AE28C6A20F1F3F900EE2973 /* BlackListViewController.swift in Sources */,
 				5A80C4D520BFE1620033CAF8 /* APPCustomDefine.swift in Sources */,
 				5A7CEC6720D531DC00B7A7C9 /* QPPhotoFetchOptions.swift in Sources */,
 				5A015EBD20C577F200EC8A96 /* RegisterViewController.swift in Sources */,
@@ -1834,6 +1860,7 @@
 				5AE9CC8120C7FE0F0057CFF3 /* UserModel.swift in Sources */,
 				5A7CEC6520D531B900B7A7C9 /* PhotoPickerConfig.swift in Sources */,
 				5A7CEC7520D5335200B7A7C9 /* QPPhotoPreviewViewController.swift in Sources */,
+				5A0CC16120F240160056A30E /* IdentityModel.swift in Sources */,
 				5AE9CC9120C8D9AE0057CFF3 /* ChatListViewController.swift in Sources */,
 				5A574BEC20C95FE300C59276 /* BodyImageCollectionViewCell.swift in Sources */,
 				5A80C49520BFDB150033CAF8 /* ViewController.swift in Sources */,
@@ -1952,6 +1979,7 @@
 				5A4E322620C782E60051FE00 /* InvitationCodeViewController.swift in Sources */,
 				5AC3FCE720DA29E000226946 /* PersonInfoImageView.swift in Sources */,
 				5A7FC44A20ED0B9200D7E137 /* AdministerPayAccountViewController.swift in Sources */,
+				5AE28C6720F1D26200EE2973 /* BlacklistTableViewCell.swift in Sources */,
 				5AF4A74F20D564D800CFDDD6 /* VoidKeyWordView.swift in Sources */,
 				5AE9CC8B20C8D83E0057CFF3 /* AppointViewController.swift in Sources */,
 				5AE9CC8920C8CCB30057CFF3 /* MainViewController.swift in Sources */,

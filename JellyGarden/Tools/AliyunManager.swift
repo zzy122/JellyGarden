@@ -17,10 +17,11 @@ class AliyunManager: NSObject {
         HUD.flash(.labeledProgress(title: nil, subtitle: "上传中"))
         AliyunUpload.share().uploadImage(toAliyun: imageModels, isAsync: true) { (urls, succeeCount, failedCount, state) in
             DispatchQueue.main.async {
-                HUD.hide(animated: false)
+                
                 if failedCount != 0 && succeeCount != 0 {
-                    alertHud(title: "成功\(succeeCount)张,失败\(failedCount)张")
+//                    alertHud(title: "成功\(succeeCount)张,失败\(failedCount)张")
                 }
+                HUD.hide(animated: false)
                 complection(urls,succeeCount,failedCount,state)
             }
             

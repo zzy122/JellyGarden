@@ -33,6 +33,7 @@ class DepositManagerViewController: BaseMainTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "订金管理"
         self.edgesForExtendedLayout = UIRectEdge.bottom
         tableView.register(UINib.init(nibName: "DepositManagerTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "DepositManagerTableViewCell")
         tableView.register(UINib.init(nibName: "DepositRefundTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "DepositRefundTableViewCell")

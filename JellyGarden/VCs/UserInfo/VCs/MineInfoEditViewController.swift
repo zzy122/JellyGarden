@@ -54,8 +54,13 @@ class MineInfoEditViewController: BaseMainViewController, UITextViewDelegate {
     }()
     
     var userInfo: UserModel! = CurrentUserInfo
+    {
+        didSet {
+            
+        }
+        
+    }
     
-    var newUserInfo: UserModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,44 +83,25 @@ class MineInfoEditViewController: BaseMainViewController, UITextViewDelegate {
     
     override func clickRightBtn() {
         /// 保存
-        guard let newInfoModel = self.newUserInfo else {
-            alertHud(title: "没有做出任何修改")
-            return
-        }
-        var fillInfo:[String:Any] = [:]
-        fillInfo["nickname"] = self.userInfo.data?.nickname
-        fillInfo["avatar"] = self.userInfo.data?.avatar
-        fillInfo["appointment_place"] = self.userInfo.data?.appointment_place
-        fillInfo["age"] = self.userInfo.data?.age
-        fillInfo["identity"] = self.userInfo.data?.identity
-        fillInfo["sex"] = self.userInfo.data?.sex
-        fillInfo["language"] = self.userInfo.data?.language
-        fillInfo["bust"] = self.userInfo.data?.bust
-        fillInfo["contact_wechat"] = self.userInfo.data?.contact_wechat
-        fillInfo["contact_qq"] = self.userInfo.data?.contact_qq
-        fillInfo["dress_style"] = self.userInfo.data?.dress_style
-        fillInfo["appointment_program"] = self.userInfo.data?.appointment_program
-        fillInfo["emotion_status"] = self.userInfo.data?.emotion_status
-        fillInfo["stature"] = self.userInfo.data?.stature
-        fillInfo["weight"] = self.userInfo.data?.weight
-        fillInfo["appointment_condition"] = self.userInfo.data?.appointment_condition
-        fillInfo["self_introduction"] = self.userInfo.data?.self_introduction
-        fillInfo["tags"] = self.userInfo.data?.tags
         
-        let param:[String:Any] = ["user_json":getJSONStringFromObject(dictionary: fillInfo)]
-        TargetManager.share.fillUserInfo(params: param) {[weak self] (result, error) in
-            if error == nil {
-                updateUserInfo()
+//        if self.newUserInfo == nil
+//        {
+//            alertHud(title: "没有做出任何修改")
+//            return
+//        }
+        fillInfoRequest(jsonDic: userInfo.data?.toJSON() ?? [:]) { (success) in
+            if success {
+                NSDictionary.init(dictionary: self.userInfo.toJSON() ?? [:]).write(toFile: UserPlist, atomically: true)
+                
                 alertHud(title: "保存成功")
-                self?.navigationController?.popViewController(animated: true)
+                self.navigationController?.popViewController(animated: true)
             }
         }
+        
+
     }
     
     func textViewDidChange(_ textView: UITextView) {
-        var infModel = self.getInfoModel()
-        infModel.data?.self_introduction = textView.text
-        newUserInfo = infModel
         self.userInfo.data?.self_introduction = textView.text
     }
 }
@@ -131,9 +117,6 @@ extension MineInfoEditViewController: TagsViewDelegate {
             selectedTags.remove(at: index)
         }
         
-        var infoModel = self.getInfoModel()
-        infoModel.data?.tags = selectedTags
-        self.newUserInfo = infoModel
         self.userInfo.data?.tags = selectedTags
     }
     
@@ -144,9 +127,6 @@ extension MineInfoEditViewController: TagsViewDelegate {
         var selectedTags = self.userInfo.data?.tags ?? []
         selectedTags.append(addTag)
         
-        var infoModel = self.getInfoModel()
-        infoModel.data?.tags = selectedTags
-        self.newUserInfo = infoModel
         self.userInfo.data?.tags = selectedTags
     }
     
@@ -164,13 +144,7 @@ extension MineInfoEditViewController: TagsViewDelegate {
 
 extension MineInfoEditViewController: PhotoPickerControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    func getInfoModel() -> UserModel {
-        if newUserInfo == nil {
-            newUserInfo = UserModel()
-            newUserInfo?.data = UserInfo()
-        }
-        return newUserInfo!
-    }
+
     
     /// 相册
     func showAlbum() {
@@ -196,17 +170,14 @@ extension MineInfoEditViewController: PhotoPickerControllerDelegate, UIImagePick
         let yunmodel: AliyunUploadModel = AliyunUploadModel()
         yunmodel.image = image
         yunmodel.fileName = "\(getImageName()).png"
-        AliyunUpload.share().uploadImage(toAliyun: [yunmodel], isAsync: true, completion: { (urls, failCount, successCount, state) in
+        AliyunManager.share.uploadImagesToAliyun(imageModels: [yunmodel]) { (urls, successCount, faileCount, state) in
             if state == UploadImageState.success {
-                var infoModel = self.getInfoModel()
-                infoModel.data?.avatar = urls?.last
-                self.newUserInfo = infoModel
                 self.userInfo.data?.avatar = urls?.last
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
             }
-        })
+        }
     }
     
     func onImageSelectFinished(images: [PHAsset]) {
@@ -215,17 +186,14 @@ extension MineInfoEditViewController: PhotoPickerControllerDelegate, UIImagePick
             let yunmodel: AliyunUploadModel = AliyunUploadModel()
             yunmodel.image = model?.bigImage
             yunmodel.fileName = "\(getImageName()).png"
-            AliyunUpload.share().uploadImage(toAliyun: [yunmodel], isAsync: true, completion: { (urls, failCount, successCount, state) in
+            AliyunManager.share.uploadImagesToAliyun(imageModels: [yunmodel]) { (urls, successCount, faileCount, state) in
                 if state == UploadImageState.success {
-                    var infoModel = self.getInfoModel()
-                    infoModel.data?.avatar = urls?.last
-                    self.newUserInfo = infoModel
                     self.userInfo.data?.avatar = urls?.last
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                     }
                 }
-            })
+            }
         }
     }
     
@@ -237,9 +205,6 @@ extension MineInfoEditViewController: PhotoPickerControllerDelegate, UIImagePick
                                         detailTitle: nil,
                                         detailImage: nil) { (sure, result) in
                                             if sure {
-                                                var infoModel = self.getInfoModel()
-                                                infoModel.data?.nickname = result
-                                                self.newUserInfo = infoModel
                                                 self.userInfo.data?.nickname = result
                                                 self.tableView.reloadData()
                                             }
@@ -249,8 +214,6 @@ extension MineInfoEditViewController: PhotoPickerControllerDelegate, UIImagePick
     /// 约会范围
     func appointFanwei() {
         AlertAction.share.showbottomPicker(title: "约会范围", maxCount: 4, dataAry: currentCitys, currentData: userInfo.data?.appointment_place) { (fanwei) in
-            var infoModel = self.getInfoModel()
-            infoModel.data?.appointment_place = fanwei
             self.userInfo.data?.appointment_place = fanwei
             self.tableView.reloadData()
         }
@@ -276,9 +239,6 @@ extension MineInfoEditViewController: PhotoPickerControllerDelegate, UIImagePick
 
         AlertAction.share.showbottomPicker(title: "选择年龄", maxCount: 1, dataAry: ageList, currentData: currentData) { (ages) in
             if let first = ages.first {
-                var infoMdoel = self.getInfoModel()
-                infoMdoel.data?.age = Int(first) ?? 18
-                self.newUserInfo = infoMdoel
                 self.userInfo.data?.age = Int(first) ?? 18
                 self.tableView.reloadData()
             }
@@ -294,9 +254,6 @@ extension MineInfoEditViewController: PhotoPickerControllerDelegate, UIImagePick
                                         detailImage: nil) { (sure, result) in
             
                                             if sure, let stature = result, stature.count > 0 {
-                                                var infoModel = self.getInfoModel()
-                                                infoModel.data?.stature = Int(stature) ?? 180
-                                                self.newUserInfo = infoModel
                                                 self.userInfo.data?.stature = Int(stature) ?? 180
                                                 self.tableView.reloadData()
                                             }
@@ -306,9 +263,7 @@ extension MineInfoEditViewController: PhotoPickerControllerDelegate, UIImagePick
     /// 身份
     func shenfen() {
         AlertAction.share.showbottomPicker(title: "选择您的身份", maxCount: 1, dataAry: FillCondition.share.identityListModel, currentData: [userInfo.data?.identity ?? ""]) { (identify) in
-            var infoModel = self.getInfoModel()
-            infoModel.data?.identity = identify.first
-            self.newUserInfo = infoModel
+           
             self.userInfo.data?.identity = identify.first
             self.tableView.reloadData()
         }
@@ -322,9 +277,6 @@ extension MineInfoEditViewController: PhotoPickerControllerDelegate, UIImagePick
                                         detailTitle: nil,
                                         detailImage: nil) { (sure, result) in
                                             guard sure, let result = result, result.count > 0 else { return }
-                                            var infModel = self.getInfoModel()
-                                            infModel.data?.weight = Int(result)
-                                            self.newUserInfo = infModel
                                             self.userInfo.data?.weight = Int(result)
                                             self.tableView.reloadData()
         }
@@ -338,9 +290,6 @@ extension MineInfoEditViewController: PhotoPickerControllerDelegate, UIImagePick
                                         detailTitle: nil,
                                         detailImage: nil) { (sure, result) in
                                             guard sure, let result = result, result.count > 0 else { return }
-                                            var infoModel = self.getInfoModel()
-                                            infoModel.data?.bust = Int(result)
-                                            self.newUserInfo = infoModel
                                             self.userInfo.data?.bust = Int(result)
                                             self.tableView.reloadData()
         }
@@ -352,9 +301,6 @@ extension MineInfoEditViewController: PhotoPickerControllerDelegate, UIImagePick
                                            maxCount: 4,
                                            dataAry: FillCondition.share.dressStyleListModel,
                                            currentData: userInfo.data?.dress_style) { (styles) in
-                                            var infoModel = self.getInfoModel()
-                                            infoModel.data?.dress_style = styles
-                                            self.newUserInfo = infoModel
                                             self.userInfo.data?.dress_style = styles
                                             self.tableView.reloadData()
         }
@@ -366,9 +312,6 @@ extension MineInfoEditViewController: PhotoPickerControllerDelegate, UIImagePick
                                            maxCount: 4,
                                            dataAry: FillCondition.share.languageListModel,
                                            currentData: userInfo.data?.language) { (languages) in
-                                            var infoModel = self.getInfoModel()
-                                            infoModel.data?.language = languages
-                                            self.newUserInfo = infoModel
                                             self.userInfo.data?.language = languages
                                             self.tableView.reloadData()
         }
@@ -380,9 +323,6 @@ extension MineInfoEditViewController: PhotoPickerControllerDelegate, UIImagePick
                                            maxCount: 1,
                                            dataAry: FillCondition.share.emotionStatusList,
                                            currentData: [userInfo.data?.emotion_status ?? ""]) { (emotion) in
-                                            var infoModel = self.getInfoModel()
-                                            infoModel.data?.emotion_status = emotion.first
-                                            self.newUserInfo = infoModel
                                             self.userInfo.data?.emotion_status = emotion.first
                                             self.tableView.reloadData()
         }
@@ -394,9 +334,6 @@ extension MineInfoEditViewController: PhotoPickerControllerDelegate, UIImagePick
                                            maxCount: 4,
                                            dataAry: FillCondition.share.appointmentProgramListModel,
                                            currentData: userInfo.data?.appointment_program) { (emotion) in
-                                            var infoModel = self.getInfoModel()
-                                            infoModel.data?.appointment_program = emotion
-                                            self.newUserInfo = infoModel
                                             self.userInfo.data?.appointment_program = emotion
                                             self.tableView.reloadData()
         }
@@ -408,9 +345,6 @@ extension MineInfoEditViewController: PhotoPickerControllerDelegate, UIImagePick
                                            maxCount: 4,
                                            dataAry: FillCondition.share.appointmentConditionListModel,
                                            currentData: userInfo.data?.appointment_condition) { (emotion) in
-                                            var infoModel = self.getInfoModel()
-                                            infoModel.data?.appointment_condition = emotion
-                                            self.newUserInfo = infoModel
                                             self.userInfo.data?.appointment_condition = emotion
                                             self.tableView.reloadData()
         }
@@ -425,9 +359,6 @@ extension MineInfoEditViewController: PhotoPickerControllerDelegate, UIImagePick
                                         detailImage: nil) { (sure, result) in
                                             
                                             if sure, let stature = result, stature.count > 0 {
-                                                var infoModel = self.getInfoModel()
-                                                infoModel.data?.contact_qq = result
-                                                self.newUserInfo = infoModel
                                                 self.userInfo.data?.contact_qq = result
                                                 self.tableView.reloadData()
                                             }
@@ -443,9 +374,6 @@ extension MineInfoEditViewController: PhotoPickerControllerDelegate, UIImagePick
                                         detailImage: nil) { (sure, result) in
                                             
                                             if sure, let stature = result, stature.count > 0 {
-                                                var infoModel = self.getInfoModel()
-                                                infoModel.data?.contact_wechat = result
-                                                self.newUserInfo = infoModel
                                                 self.userInfo.data?.contact_wechat = result
                                                 self.tableView.reloadData()
                                             }
@@ -492,11 +420,12 @@ extension MineInfoEditViewController: UITableViewDelegate {
         }
             /// 身高
         else if 0 == indexPath.section && 4 == indexPath.row {
-            shengao()
+            shenfen()
+            
         }
             // 身份
         else if 0 == indexPath.section && 5 == indexPath.row {
-            shenfen()
+           shengao()
         }
             // 体重
         else if 0 == indexPath.section && 6 == indexPath.row {

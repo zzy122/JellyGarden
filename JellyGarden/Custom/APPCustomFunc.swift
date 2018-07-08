@@ -214,5 +214,20 @@ func getImageName() -> String
     return String.init(format: "%@%d.png", CurrentUserInfo?.data?.phone ?? "",time)
     
 }
+//信息修改填写等
+func fillInfoRequest(jsonDic:[String:Any],complection:@escaping (Bool) -> Void)
+{
+    let paramJson:[String:Any] = JSONDeserializer<UserFillModel>.deserializeFrom(dict: jsonDic)?.toJSON() ?? [:]
+    let param:[String:Any] = ["user_json":getJSONStringFromObject(dictionary: paramJson)]
+    TargetManager.share.fillUserInfo(params: param) { (result, error) in
+        if error == nil {
+            complection(true)
+        }
+        else
+        {
+            complection(false)
+        }
+    }
+}
 
 

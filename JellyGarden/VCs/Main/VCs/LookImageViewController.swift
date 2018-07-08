@@ -30,7 +30,7 @@ class LookImageViewController: BaseViewController,ResponderRouter {
             self.imageView.starLookEffect(type: type)
         }
     }
-    
+    var imageUrl:String = ""
     lazy var buttomView:ReckonTimeView = {
         
         let view1 = ReckonTimeView.init(frame:CGRect.init(x: 0, y: self.imageView.frame.maxY, width: ScreenWidth, height: ScreenHeight - self.imageView.frame.maxY), time: 4.0, runComplection: { (complete) in//查看完成
@@ -55,10 +55,11 @@ class LookImageViewController: BaseViewController,ResponderRouter {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.createView()
+        self.imageView.imageBack.sd_DownLoadImage(url: self.imageUrl)
         // Do any additional setup after loading the view.
     }
     func createView() {
-        self.type = LookImageType.effect
+        self.type = LookImageType.clearness
     }
     
     override func viewWillAppear(_ animated: Bool) {

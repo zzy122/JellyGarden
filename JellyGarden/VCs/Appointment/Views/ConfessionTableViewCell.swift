@@ -21,50 +21,112 @@ class ConfessionTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDa
         self.contentView.addSubview(view)
         return view
     }()
+    lazy var headerBackView:UIView = {
+        
+        let view1 = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 50))
+        view1.backgroundColor = UIColor.clear
+        self.headerView = ConfessionTableViewCellHeader.createConfessionTableViewCellHeader()
+        self.headerView?.frame = view1.bounds
+
+        view1.addSubview(self.headerView!)
+        self.contentView.addSubview(view1)
+        return view1
+    }()
+    var headerView:ConfessionTableViewCellHeader?
+    
+    lazy var bodyBackView:UIView = {
+        let view1 = UIView.init(frame: CGRect.init(x: 10, y: self.headerBackView.frame.maxY + 10, width: ScreenWidth - 20, height: getBodyheight()))
+        
+        view1.backgroundColor = UIColor.clear
+        self.bodyView = ConfessionTableViewCellBody.createConfessionTableViewCellBody()
+        self.bodyView?.frame = view1.bounds
+        
+        view1.addSubview(self.bodyView!)
+        self.contentView.addSubview(view1)
+        return view1
+        
+    }()
+    func getBodyheight() -> CGFloat {
+        let oringinTopX:CGFloat = ((self.tagModel?.requirement ?? "").zzy.caculateHeight(font: kFont_system15, width: ScreenWidth - 40, lineSpace: 8)) + 41//计算高度
+        
+        guard  let imageNameAry = tagModel?.attachment,imageNameAry.count > 0 else {
+            
+            return oringinTopX
+        }        
+        let intege = getLines(ary: imageNameAry, veryCount: 4)
+        
+        return oringinTopX + CGFloat(intege) * (BodyImageHeight + 10)
+    }
+    var bodyView:ConfessionTableViewCellBody?
+    lazy var applyBackView:UIView = {
+        let view1 = UIView()
+        view1.backgroundColor = UIColor.clear
+        self.applyView = ApplyOperationView.createApplyOperationView()
+        
+        view1.addSubview(self.applyView!)
+        self.contentView.addSubview(view1)
+        return view1
+    }()
+    
+    var applyView:ApplyOperationView?
+
+    
+    var tagModel:lonelySpeechDetaileModel?
     
     var isEnableDelete:Bool = false
     var detailModel:lonelySpeechDetaileModel? {
         didSet{
-            self.headerView.headerImage.sd_DownLoadImage(url: detailModel?.poster?.avatar ?? "")
-            self.headerView.headerImage.image = imageName(name: detailModel?.poster?.avatar ?? "")
+            self.bodyBackView.frame = CGRect.init(x: 10, y: self.headerBackView.frame.maxY + 10, width: ScreenWidth - 20, height: getBodyheight())
+            self.bodyView?.frame = self.bodyBackView.bounds
+            
+            self.applyBackView.frame = CGRect.init(x: 0, y: self.bodyBackView.frame.maxY, width: ScreenWidth, height: 45)
+            self.applyView?.frame = self.applyBackView.bounds
+            
+            
+            self.headerView?.headerImage.sd_DownLoadImage(url: detailModel?.poster?.avatar ?? "")
+            self.headerView?.headerImage.image = imageName(name: detailModel?.poster?.avatar ?? "")
             let sexStr = (detailModel?.poster?.sex! == 0) ? "男1" : "女1"
-            self.headerView.nikeName.text = detailModel?.poster?.nickname
-            self.headerView.sexImage.image = imageName(name: sexStr)
-            self.headerView.authTrueLab.backgroundColor = APPCustomRedColor
+            self.headerView?.nikeName.text = detailModel?.poster?.nickname
+            self.headerView?.sexImage.image = imageName(name: sexStr)
+            self.headerView?.authTrueLab.backgroundColor = APPCustomRedColor
             if let has_authentication = detailModel?.poster?.has_authentication ,has_authentication
             {
                 //未认证
-                self.headerView.authTrueLab.text = "真实"
+                self.headerView?.authTrueLab.text = "真实"
             }
             else
             {
                 //未认证
-                self.headerView.authTrueLab.text = "未认证"
-                self.headerView.authTrueLab.backgroundColor = UIColor.gray
+                self.headerView?.authTrueLab.text = "未认证"
+                self.headerView?.authTrueLab.backgroundColor = UIColor.gray
             }
-            self.headerView.publishLab.text = "发布于\(timeStampToDate(time: detailModel?.create_at ?? 0, backType: .second))"
-            self.headerView.LikeBtn.setImage(imageName(name: "赞"), for: UIControlState.normal)
+            self.headerView?.publishLab.text = "发布于\(timeStampToDate(time: detailModel?.create_at ?? 0, backType: .second))"
+            self.headerView?.LikeBtn.setImage(imageName(name: "赞"), for: UIControlState.normal)
             if let taglike = detailModel?.is_like,taglike == true  {
-                self.headerView.LikeBtn.setImage(imageName(name: "赞-press"), for: UIControlState.normal)
+                self.headerView?.LikeBtn.setImage(imageName(name: "赞-press"), for: UIControlState.normal)
             }
             
            
             
             let countStr = ((detailModel?.likes_count ?? 0) > 0) ? String.init(format: "%d", (detailModel?.likes_count)!) : ""
-            self.headerView.LikeBtn.setTitle("\(countStr)", for: UIControlState.normal)
+            self.headerView?.LikeBtn.setTitle("\(countStr)", for: UIControlState.normal)
             self.commentAry = detailModel?.comments ?? []
-            self.applyView.lookApplayBtn.setTitle(String.init(format: "查看报名(%d)", detailModel?.sign_up_count ?? 0), for: UIControlState.normal)
+            self.applyView?.lookApplayBtn.setTitle(String.init(format: "查看报名(%d)", detailModel?.sign_up_count ?? 0), for: UIControlState.normal)
             guard let isend = detailModel?.is_overdue,isend else {
-                self.applyView.ApplyStatus.setTitle("我要报名", for: UIControlState.normal)
-                self.applyView.ApplyStatus.setTitleColor(APPCustomRedColor, for: UIControlState.normal)
-                self.applyView.ApplyStatus.isUserInteractionEnabled = true
+                self.applyView?.ApplyStatus.setTitle("我要报名", for: UIControlState.normal)
+                self.applyView?.ApplyStatus.setTitleColor(APPCustomRedColor, for: UIControlState.normal)
+                self.applyView?.ApplyStatus.isUserInteractionEnabled = true
                 return
             }
-            self.applyView.ApplyStatus.isUserInteractionEnabled = false
-            self.applyView.ApplyStatus.setTitle("已结束", for: UIControlState.normal)
-            self.applyView.ApplyStatus.setTitleColor(UIColor.gray, for: UIControlState.normal)
-            self.applyView.isHidden = !(detailModel?.need_signup ?? false)
+            self.applyView?.ApplyStatus.isUserInteractionEnabled = false
+            self.applyView?.ApplyStatus.setTitle("已结束", for: UIControlState.normal)
+            self.applyView?.ApplyStatus.setTitleColor(UIColor.gray, for: UIControlState.normal)
+            self.applyBackView.isHidden = !(detailModel?.need_signup ?? false)
             
+            if (detailModel?.poster?.user_id != CurrentUserInfo?.data?.user_id) || !isEnableDelete  {
+                self.headerView?.deleteBtn.isHidden = true
+                self.headerView?.leftMargin.constant = 10
+            }
             
         }
     }
@@ -72,9 +134,9 @@ class ConfessionTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDa
     
     var commentAry:[commentsModel] = [] {
         didSet{
-            self.applyView.bottomView.isHidden = false
+            self.applyView?.bottomView.isHidden = false
             if commentAry.count == 0 {
-                self.applyView.bottomView.isHidden = true
+                self.applyView?.bottomView.isHidden = true
                 self.tableView.isHidden = true
                 return
             }
@@ -84,27 +146,6 @@ class ConfessionTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDa
     }//评论的数据
     
     
-    lazy var bodyView:ConfessionTableViewCellBody = {
-        let view = ConfessionTableViewCellBody.createConfessionTableViewCellBody(frame: CGRect.init(x: 10, y: self.headerView.tagFrame.maxY + 10, width: ScreenWidth - 20, height: 30))
-        self.contentView.addSubview(view!)
-        self.backgroundColor = UIColor.white
-        return view!
-    }()
-    lazy var headerView:ConfessionTableViewCellHeader = {
-        let view = ConfessionTableViewCellHeader.createConfessionTableViewCellHeader()
-        view?.tagFrame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 50)
-        self.contentView.addSubview(view!)
-        
-        return view!
-    }()
-    lazy var applyView:ApplyOperationView = {
-        let view = ApplyOperationView.createApplyOperationView()
-        view?.tagFrame = CGRect.init(x: 0, y: self.bodyView.tagFrame.maxY, width: ScreenWidth, height: 45)
-        
-        self.contentView.addSubview(view!)
-        return view!
-    }()
-    
     func setTableViewFrame(view:UITableView) {
         var height:CGFloat = 0.0
         for model in self.commentAry
@@ -113,46 +154,46 @@ class ConfessionTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDa
         }
         if detailModel?.need_signup == true
         {
-            view.frame = CGRect.init(x: 0, y: self.applyView.tagFrame.maxY, width: ScreenWidth, height: height)
+            view.frame = CGRect.init(x: 0, y: self.applyBackView.frame.maxY, width: ScreenWidth, height: height)
         }
         else
         {
-            view.frame = CGRect.init(x: 0, y: self.bodyView.tagFrame.maxY, width: ScreenWidth, height: height)
+            view.frame = CGRect.init(x: 0, y: self.bodyBackView.frame.maxY, width: ScreenWidth, height: height)
         }
     }
     
     func setDatasource(model:lonelySpeechDetaileModel) {
+        self.tagModel = model
+        self.headerBackView.isHidden = false
+        self.bodyBackView.isHidden = false
         
-        self.headerView.isHidden = false
-        self.bodyView.isHidden = false
-        self.bodyView.setDatasource(model: model)
-        self.applyView.isHidden = false
-        self.applyView.tag = self.tag
-        self.headerView.tag = self.tag
+        self.applyBackView.isHidden = false
+        self.applyView?.tag = self.tag
+        self.headerView?.tag = self.tag
         self.detailModel = model
-        
-        
-
-    }
-    override func layoutSubviews() {
-        self.setOrigiY()
-    }
-    func setOrigiY()  {
-        self.applyView.tagFrame = CGRect.init(x: 0, y: self.bodyView.tagFrame.maxY, width: ScreenWidth, height: 45)
-        if (detailModel?.poster?.user_id != CurrentUserInfo?.data?.user_id) || !isEnableDelete  {
-            self.headerView.deleteBtn.isHidden = true
-            self.headerView.leftMargin.constant = 10
-        }
-        self.headerView.setNeedsLayout()//重新布局
-        self.bodyView.setNeedsLayout()//重新布局
-        self.applyView.setNeedsLayout()//重新布局
+        self.bodyView?.setDatasource(model: model)
         self.setTableViewFrame(view: self.tableView)
+    
     }
-    func getCellHeight() -> CGFloat {
-        let topHeight:CGFloat = 50
-        let bodyHeight = self.bodyView.getBodyheight()
-        return topHeight + bodyHeight
-    }
+//    override func layoutSubviews() {
+//        self.setOrigiY()
+//    }
+//    func setOrigiY()  {
+//        self.applyBackView.frame = CGRect.init(x: 0, y: self.bodyBackView.frame.maxY, width: ScreenWidth, height: 45)
+////        if (detailModel?.poster?.user_id != CurrentUserInfo?.data?.user_id) || !isEnableDelete  {
+////            self.headerView?.deleteBtn.isHidden = true
+////            self.headerView?.leftMargin.constant = 10
+////        }
+//        self.headerBackView.setNeedsLayout()//重新布局
+//        self.bodyBackView.setNeedsLayout()//重新布局
+//        self.applyBackView.setNeedsLayout()//重新布局
+//        self.setTableViewFrame(view: self.tableView)
+//    }
+//    func getCellHeight() -> CGFloat {
+//        let topHeight:CGFloat = 50
+//        let bodyHeight = self.bodyBackView.frame.height
+//        return topHeight + bodyHeight
+//    }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -37,6 +37,17 @@ class UserBroadcastListViewController: BaseMainTableViewController,PhotoPickerCo
     
     
     var appiontModels:[lonelySpeechDetaileModel] = []
+    {
+        didSet{
+            if appiontModels.count == 0{
+                self.noCastBackView.isHidden = false
+            }
+            else
+            {
+              self.noCastBackView.isHidden = true
+            }
+        }
+    }
     
     
     
@@ -251,7 +262,7 @@ extension UserBroadcastListViewController
         }
         if name == ClickDeleteBtn
         {
-            guard let index = info as? Int else{
+            guard let indexTag = info as? Int else{
                 return
             }
             let model:lonelySpeechDetaileModel = appiontModels[index]
@@ -261,7 +272,7 @@ extension UserBroadcastListViewController
                 {
                     TargetManager.share.deleteUserBrocast(appointment_id: appointment_id ?? "", complection: { (result) in
                         if result {
-                            self.appiontModels.remove(at: index)
+                            self.appiontModels.remove(at: indexTag)
                             self.tableView.reloadData()
                         }
                     })

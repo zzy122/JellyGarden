@@ -14,7 +14,8 @@ class BaseMainTableViewController: BaseTableViewController {
         super.viewDidLoad()
         
         self.view.autoresizesSubviews = true
-        self.edgesForExtendedLayout = UIRectEdge.init(rawValue: 0)
+        self.edgesForExtendedLayout = UIRectEdge.bottom
+//        self.edgesForExtendedLayout = UIRectEdge.init(rawValue: 0)
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {

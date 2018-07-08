@@ -10,7 +10,11 @@ import UIKit
 
 class UserInfoViewController: BaseMainViewController {
 
-    var userInfo: UserModel? = CurrentUserInfo
+
+    var currentOppiontConditions:[String] = {
+        return CurrentUserInfo?.data?.appointment_condition ?? []
+        
+    }()//选择的约会条件
     
     @IBOutlet weak var tableView: UITableView! {
         didSet {
@@ -78,13 +82,14 @@ class UserInfoViewController: BaseMainViewController {
         extendedLayoutIncludesOpaqueBars = true
         edgesForExtendedLayout = .top
         
-        headerView.userInfo = userInfo
+        headerView.userInfo = CurrentUserInfo
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: false)
         RootViewController?.showTheTabbar()
+        self.tableView.reloadData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -159,6 +164,8 @@ extension UserInfoViewController: ResponderRouter {
             RootNav().pushViewController(vc, animated: true)
             break
         case Mine_Info_Dingjing: // 定金
+            let vc = DepositManagerViewController()
+            RootNav().pushViewController(vc, animated: true)
             break
         case Mine_Info_HeaderInfo: // 个人信息
             let vc = MineInfoEditViewController()
@@ -186,23 +193,15 @@ extension UserInfoViewController: UITableViewDelegate {
                 break
             case 1://查看权限
                 AlertViewCoustom().showalertView(style: .actionSheet, title: "查看权限", message: nil, cancelBtnTitle: "取消", touchIndex: { (ind) in
-                    if ind == 1//公开
-                    {
-                        
+                    
+                    
+                    guard ind != 0 else{
+                        return
                     }
-                    else if ind == 2//查看相册付费
-                    {
-                        
-                    }
-                    else if ind == 3//验证
-                    {
-                        
-                    }
-                    else if ind == 4//隐身
-                    {
-                        
-                    }
-                }, otherButtonTitles: "公开", "查看相册付费","查看前需要通过我验证","隐身")
+                    self.updatePermission(index: ind)
+                    
+                    
+                }, otherButtonTitles: permissionAry[0], permissionAry[1],permissionAry[2],permissionAry[3])
                 
                 break
             case 2://个人介绍
@@ -210,7 +209,10 @@ extension UserInfoViewController: UITableViewDelegate {
                 RootNav().pushViewController(EditPersonalIntroduceViewController(), animated: true)
                 break
             case 3://约会条件
-                
+                AlertAction.share.showbottomPicker(title: title, maxCount: 4, dataAry: FillCondition.share.appointmentConditionListModel, currentData: currentOppiontConditions, backData: { (result) in
+                   self.conditionAction(result: result)
+                    
+                })
                 break
             case 4://分享
                 break
@@ -223,7 +225,8 @@ extension UserInfoViewController: UITableViewDelegate {
         case 2:
             switch indexPath.row {
             case 0://黑名单
-                
+               RootViewController?.hideTheTabbar()
+                RootNav().pushViewController(BlackListViewController(), animated: true)
                 break
             case 1://历时访客
                 break
@@ -238,7 +241,30 @@ extension UserInfoViewController: UITableViewDelegate {
         }
         
     }
-    
+    func updatePermission(index:Int)
+    {
+        let str = permissionAry[index - 1]
+        let parms = ["permission":str]
+        TargetManager.share.updatePermission(params: parms) { (success) in
+            if success{
+                let model = CurrentUserInfo
+                model?.data?.permission = str
+                NSDictionary.init(dictionary: model?.toJSON() ?? [:]).write(toFile: UserPlist, atomically: true)
+                self.tableView.reloadData()
+            }
+        }
+    }
+    func conditionAction(result:[String]) {//更新约会条件
+        let model = CurrentUserInfo
+        model?.data?.appointment_condition = result
+        fillInfoRequest(jsonDic: model?.data?.toJSON() ?? [:], complection: { (result) in
+            if result
+            {
+                NSDictionary.init(dictionary: (model?.toJSON())!).write(toFile: UserPlist, atomically: true)
+                self.tableView.reloadData()
+            }
+        })
+    }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if 0 == indexPath.section {
             return 220
@@ -298,19 +324,20 @@ extension UserInfoViewController: UITableViewDataSource {
             cell?.accessoryType = .disclosureIndicator
             if 1 == indexPath.section && 0 == indexPath.row {
                 cell?.textLabel?.text = "绑定手机"
-                cell?.detailTextLabel?.text = userInfo?.data?.phone
+                cell?.detailTextLabel?.text = CurrentUserInfo?.data?.phone
             }
             else if 1 == indexPath.section && 1 == indexPath.row {
                 cell?.textLabel?.text = "查看权限"
-                cell?.detailTextLabel?.text = "公开"
+                cell?.detailTextLabel?.text = CurrentUserInfo?.data?.permission
             }
             else if 1 == indexPath.section && 2 == indexPath.row {
                 cell?.textLabel?.text = "个人介绍"
-                cell?.detailTextLabel?.text = userInfo?.data?.self_introduction
+                cell?.detailTextLabel?.text = CurrentUserInfo?.data?.self_introduction
             }
             else if 1 == indexPath.section && 3 == indexPath.row {
                 cell?.textLabel?.text = "约会条件"
-                cell?.detailTextLabel?.text = userInfo?.data?.appointment_condition?.joined(separator: "、")
+                cell?.detailTextLabel?.text = CurrentUserInfo?.data?.appointment_condition?.joined(separator: " ")
+                
             }
             else if 1 == indexPath.section && 4 == indexPath.row {
                 cell?.textLabel?.text = "分享果冻花园"

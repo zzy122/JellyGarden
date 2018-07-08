@@ -12,15 +12,7 @@ let ClickDeleteBtn = "ClickDeleteBtn"
 
 let ClickCommentBtn = "ClickCommentBtn"
 class ConfessionTableViewCellHeader: UIView {
-    var tagFrame:CGRect = CGRect.zero
-//    override func draw(_ rect: CGRect) {
-//        self.frame = self.tagFrame
-//        
-//        DebugLog(message: "cell header的draw被调用")
-//    }
-    override func layoutSubviews() {
-        self.frame = self.tagFrame
-    }
+
 
     @IBOutlet weak var leftMargin: NSLayoutConstraint!
     @IBOutlet weak var deleteBtn: UIButton!

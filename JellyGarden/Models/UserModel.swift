@@ -9,6 +9,7 @@
 
 import UIKit
 class UserInfo:JSON {
+    var permission:String?
     var bust:Int?//胸围
     var age:Int?//年龄
     var lon:Double?//经度
@@ -44,8 +45,36 @@ class UserInfo:JSON {
     }
 }
 
-struct UserModel:JSON {
+class UserModel:JSON {
     var code: Int?
     var data: UserInfo?
     var msg: String?
+    required init() {
+        
+    }
+}
+//信息填写修改等需要的字段
+class UserFillModel:JSON
+{
+    var bust:Int?//胸围
+    var age:Int?//年龄
+    var contact_wechat:String?//微信号
+    var self_introduction:String?//自我介绍
+    var contact_qq:String?//QQ号
+    var dress_style:[String]?//打扮方式
+    var nickname:String?//昵称
+    var stature:Int?//身高
+    var avatar:String?//头像地址
+    var appointment_program:[String]?//约会项目
+    var appointment_condition:[String]?//约会条件
+    var language:[String]?//语言
+    var identity:String?//身份
+    var tags:[String]?//标签
+    var emotion_status:String?//情感状态
+    var weight:Int?
+    var sex:Int?// 0 男 1女
+    var appointment_place:[String]?//约会范围
+    required init() {
+        
+    }
 }

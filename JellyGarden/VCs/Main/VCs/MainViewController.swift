@@ -152,7 +152,7 @@ class MainViewController: BaseMainViewController,UISearchBarDelegate,ResponderRo
             {
                 
                 let vc = PersonInfoViewController()
-                vc.showType = .validation//查看权限
+//                vc.showType = .validation//查看权限
                 TargetManager.share.getDetailUserInfo(userid: model.user_id ?? "",isUpdateUser:false, complection: { (userinfo, error) in
                     guard let user = userinfo else{
                         return
@@ -164,7 +164,7 @@ class MainViewController: BaseMainViewController,UISearchBarDelegate,ResponderRo
             else
             {
                 let vc = ManPersonInfoViewController()
-                vc.showType = .validation
+//                vc.showType = .validation
                 TargetManager.share.getDetailUserInfo(userid: model.user_id ?? "",isUpdateUser:false, complection: { (userinfo, error) in
                     guard let user = userinfo else{
                         return

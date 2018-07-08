@@ -97,7 +97,8 @@ extension PersonInfoImageView
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BodyImageCollectionViewCell", for: indexPath) as? BodyImageCollectionViewCell
-        cell?.setImage(image: imageName(name: "loginicon"), isImplement: LookImageType.effect)
+        cell?.setImage(imageStr: self.userModel?.photos?[indexPath.row] ?? "", isImplement: LookImageType.effect)
+        
         
         return cell!
         

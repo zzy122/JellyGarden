@@ -52,10 +52,7 @@ class MainBodyCollectionViewCell: UICollectionViewCell,UITableViewDataSource,UIT
     
     
     @IBOutlet weak var tableView: UITableView!
-//    override init(frame: CGRect) {//不起作用
-//        super.init(frame: frame)
-//        tableView.register(UINib.init(nibName: "MainUserListTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "MainUserListTableViewCell")
-//    }
+
     override func draw(_ rect: CGRect) {
         DebugLog(message: "draw")
     }

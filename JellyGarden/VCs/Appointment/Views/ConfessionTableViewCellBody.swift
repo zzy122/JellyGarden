@@ -21,7 +21,7 @@ class ConfessionTableViewCellBody: UIView,UICollectionViewDelegate,UICollectionV
     lazy var collectonView:UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let margin:CGFloat = 10.0
-        layout.itemSize = CGSize.init(width: (self.tagFrame.width - 6 * margin) / 4.0, height: BodyImageHeight)
+        layout.itemSize = CGSize.init(width: (self.frame.width - 6 * margin) / 4.0, height: BodyImageHeight)
         layout.scrollDirection = UICollectionViewScrollDirection.vertical//
         
         layout.minimumLineSpacing = margin
@@ -39,52 +39,32 @@ class ConfessionTableViewCellBody: UIView,UICollectionViewDelegate,UICollectionV
         return view
     }()
     
-    
-    var tagFrame:CGRect = CGRect.zero
-//    override func draw(_ rect: CGRect) {
-//        self.frame = self.tagFrame
-////        self.collectonView.isHidden = false
-//    }
-    override func layoutSubviews() {
-        self.frame = self.tagFrame
-    }
-    class func createConfessionTableViewCellBody(frame:CGRect) -> ConfessionTableViewCellBody? {
+
+    class func createConfessionTableViewCellBody() -> ConfessionTableViewCellBody? {
         let nibView = CustomCreateNib<ConfessionTableViewCellBody>().createXibView()
         guard let view = nibView else {
             return nil
         }
         view.dingJinBtn.layer.cornerRadius = 13
         view.dingJinBtn.clipsToBounds = true
-        view.tagFrame = frame
         view.layer.cornerRadius = 8.0
         view.clipsToBounds = true
         return view
     }
     func setDatasource(model:lonelySpeechDetaileModel) {
-//        timeLocalStr:String,describtionStr:String,imageAry:[String]
         let titleStr = "\(timeStampToDate(time: model.create_at ?? 0,backType: .day))·\(model.city ?? "")"
         
         self.timeLocalLab.text = titleStr
         self.describtionLab.text = model.requirement ?? ""
         self.imageNameAry = model.attachment ?? []
-        self.tagFrame = CGRect.init(x: self.tagFrame.origin.x,  y: 60, width: tagFrame.width, height: self.getBodyheight())
+
         self.collectonView.isHidden = false
-        self.collectonView.frame = CGRect.init(x: 0, y: 0, width: self.tagFrame.width, height: self.tagFrame.height - describtionLab.frame.maxY)
+        self.collectonView.frame = CGRect.init(x: 0, y: 0, width: self.frame.width, height: self.frame.height - describtionLab.frame.maxY)
         self.collectonView.reloadData()
         
     }
     
-    func getBodyheight() -> CGFloat {
-        let oringinTopX:CGFloat = (self.describtionLab.text?.zzy.caculateHeight(font: kFont_system15, width: self.tagFrame.width - 20, lineSpace: 8))! + 10 + self.timeLocalLab.frame.maxY//计算高度
-        
-        if imageNameAry?.count == 0 {
-            return oringinTopX
-        }
-        
-        let intege = getLines(ary: imageNameAry!, veryCount: 4)
-       
-        return oringinTopX + CGFloat(intege) * (BodyImageHeight + 10)
-    }
+
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -93,13 +73,17 @@ class ConfessionTableViewCellBody: UIView,UICollectionViewDelegate,UICollectionV
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BodyImageCollectionViewCell", for: indexPath) as? BodyImageCollectionViewCell
-        cell?.setImage(image: imageName(name: "loginicon"), isImplement: LookImageType.clearness)
+        cell?.setImage(imageStr: imageNameAry?[indexPath.row] ?? "", isImplement: LookImageType.clearness)
+      
         return cell!
         
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         RootViewController?.hideTheTabbar()
-        RootNav().pushViewController(LookImageViewController(), animated: true)
+        let vc = LookImageViewController()
+        vc.imageUrl = imageNameAry?[indexPath.row] ?? ""
+        
+        RootNav().pushViewController(vc, animated: true)
     }
     
     /*

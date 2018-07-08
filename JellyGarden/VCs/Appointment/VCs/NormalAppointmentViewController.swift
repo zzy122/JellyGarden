@@ -256,6 +256,7 @@ extension NormalAppointmentViewController
                 for str in imageUrls{
                     self.images.append(str)
                 }
+                self.urlPaths = imageUrls
                 self.reloadMyView()
             }
             else

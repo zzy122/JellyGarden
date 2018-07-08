@@ -69,6 +69,7 @@ typedef NS_ENUM(NSUInteger, UploadVieoStyle) {
     // Do any additional setup after loading the view from its nib.
     // 博客地址：http://blog.csdn.net/wang631106979/article/details/51498009
     self.allowRecord = YES;
+    self.titleLable.text = @"锄禾日当午,汗滴禾下锄";
     
     
 }

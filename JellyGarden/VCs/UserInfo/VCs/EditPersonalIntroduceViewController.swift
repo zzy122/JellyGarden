@@ -88,9 +88,9 @@ class EditPersonalIntroduceViewController: BaseViewController,UITextViewDelegate
             
         }
         fillInfo = model?.data?.toJSON() ?? [:]
-        let param:[String:Any] = ["user_json":getJSONStringFromObject(dictionary: fillInfo)]
-        TargetManager.share.fillUserInfo(params: param) { (result, error) in
-            if error == nil {
+        
+        fillInfoRequest(jsonDic: fillInfo) { (result) in
+            if result {
                 NSDictionary.init(dictionary: (model?.toJSON())!).write(toFile: UserPlist, atomically: true)
                 self.navigationController?.popViewController(animated: true)
             }

@@ -9,7 +9,20 @@
 import UIKit
 
 class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
-    var showType:LookUserInfotype?
+    var showType:LookUserInfotype? {
+        if self.userInfoModel?.data?.permission == permissionAry[3] {
+            return LookUserInfotype.stealth
+        }
+        else if self.userInfoModel?.data?.permission == permissionAry[2] {
+            return LookUserInfotype.validation
+        }
+        else if self.userInfoModel?.data?.permission == permissionAry[1] {
+            return LookUserInfotype.payphoto
+        }
+        else  {
+            return LookUserInfotype.pubilic
+        }
+    }
     var broadcastAry:[Any] = []
     var userInfoModel:UserModel? {
         didSet{
@@ -51,7 +64,7 @@ class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
         let view1 = ManpersonInfoHeader.createManpersonInfoHeader()
         let backView = UIView()
         backView.backgroundColor = UIColor.clear
-        backView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 260 + CGFloat(intege) * (BodyImageHeight + 8))
+        backView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 330 + CGFloat(intege) * (BodyImageHeight + 8))
         if self.showType == .validation
         {
             backView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 260)
