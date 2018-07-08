@@ -8,7 +8,7 @@
 //
 
 import UIKit
-struct UserInfo:JSON {
+class UserInfo:JSON {
     var bust:Int?//胸围
     var age:Int?//年龄
     var lon:Double?//经度
@@ -39,6 +39,9 @@ struct UserInfo:JSON {
     var vip_level:Int?
     var balance:Int?
     var likes:[String]?
+    required init() {
+        
+    }
 }
 
 struct UserModel:JSON {

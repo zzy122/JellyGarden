@@ -2,20 +2,22 @@
 //  WalletView.swift
 //  JellyGarden
 //
-//  Created by zzy on 2018/7/5.
+//  Created by zzy on 2018/7/7.
 //  Copyright © 2018年 zzy. All rights reserved.
 //
 
 import UIKit
 let ClickDeposit = "ClickDeposit"
-class WalletView: UIView {
-
+class WalletHeaderView: UIView {
     @IBOutlet weak var dePositBtn: UIButton!
     @IBOutlet weak var depositLab: UILabel!
     @IBOutlet weak var moneyLab: UILabel!
-    class func createWalletView() ->WalletView?
+    @IBAction func clickDepositBtn(_ sender: UIButton) {
+        zzy.router(name: ClickDeposit, object: nil, info: nil)
+    }
+    class func createWalletHeaderView() ->WalletHeaderView?
     {
-        let nibView = CustomCreateNib<WalletView>().createXibView()
+        let nibView = CustomCreateNib<WalletHeaderView>().createXibView()
         return nibView
     }
     /*
@@ -25,8 +27,5 @@ class WalletView: UIView {
         // Drawing code
     }
     */
-    @IBAction func clickDepositBtn(_ sender: UIButton) {
-        zzy.router(name: ClickDeposit, object: nil, info: nil)
-    }
-    
+
 }

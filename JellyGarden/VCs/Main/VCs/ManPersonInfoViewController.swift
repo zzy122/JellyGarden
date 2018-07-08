@@ -138,7 +138,9 @@ class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
         
         
     }
-    
+    override func viewDidLayoutSubviews() {
+        
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

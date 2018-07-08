@@ -85,7 +85,12 @@ func continueString(strAry:[String]?,separetStr:String) -> String {
 //清除用户信息
 func clearUserInfo()
 {
-   try? FileManager.default.removeItem(atPath: UserPlist)
+    NeedGesterPassword = false
+    UserDefaults.standard.set("", forKey: "GesterPassword")
+    DispatchQueue.main.async {
+        try? FileManager.default.removeItem(atPath: UserPlist)
+    }
+   
 }
 //添加照片的协议方法
 var UnreadCount:Int {

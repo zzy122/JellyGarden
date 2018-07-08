@@ -119,7 +119,7 @@ class MainViewController: BaseMainViewController,UISearchBarDelegate,ResponderRo
         cll.startLocation()
         self.view.addSubview(self.scrollItemView)
         self.view.addSubview(self.bodyView)
-        
+        self.edgesForExtendedLayout = UIRectEdge.init(rawValue: 0)
         self.navigationController?.hidesBottomBarWhenPushed = true 
         // Do any additional setup after loading the view.
     }

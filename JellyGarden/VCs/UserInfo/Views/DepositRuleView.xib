@@ -21,7 +21,7 @@
                         <constraint firstAttribute="height" constant="40" id="az0-Gq-1Zl"/>
                         <constraint firstAttribute="width" constant="40" id="r7R-1W-uGD"/>
                     </constraints>
-                    <state key="normal" image="close.png"/>
+                    <state key="normal" image="关闭"/>
                     <connections>
                         <action selector="clickCloseBtn:" destination="iN0-l3-epB" eventType="touchUpInside" id="EHT-uo-Ftw"/>
                     </connections>
@@ -54,6 +54,6 @@
         </view>
     </objects>
     <resources>
-        <image name="close.png" width="24" height="24"/>
+        <image name="关闭" width="18" height="18"/>
     </resources>
 </document>

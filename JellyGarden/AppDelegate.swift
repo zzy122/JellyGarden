@@ -61,6 +61,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let  result = UMSocialManager.default().handleOpen(url)
         return result
     }
+    func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
+        let result = UMSocialManager.default().handleOpen(url)
+        return result
+    }
     /**
      收到推送的回调
      @param application  UIApplication 实例
@@ -97,6 +101,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
+        
+       
+        if let password =  UserDefaults.standard.object(forKey: "GesterPassword") as? String ,password.count > 0
+        {
+            if NeedGesterPassword
+            {
+                if (RootNav().topViewController?.isKind(of: CSIIGesturePasswordController.self))!
+                {
+                    return
+                }
+                
+                let  gesterVC =  CSIIGesturePasswordController().initwithType(InitializeType.login, withState: { (success) in
+                    if success {
+
+                    }
+                })
+                
+                gesterVC?.gesturePasswordView.logoimgView.sd_DownLoadImage(url: CurrentUserInfo?.data?.avatar ?? "")
+                RootViewController?.present(gesterVC!, animated: true, completion: nil)
+                
+            }
+        }
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
 

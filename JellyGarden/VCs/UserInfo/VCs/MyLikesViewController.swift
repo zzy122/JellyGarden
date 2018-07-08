@@ -25,7 +25,7 @@ class MyLikesViewController: BaseMainTableViewController {
                 self.tableView.tableFooterView = self.nolikesView
                 return
             }
-            self.tableView.tableFooterView = nil
+            self.tableView.tableFooterView = UIView()
             self.tableView.reloadData()
         }
     }
@@ -34,6 +34,7 @@ class MyLikesViewController: BaseMainTableViewController {
         self.title = "我喜欢的"
         self.edgesForExtendedLayout = UIRectEdge.bottom
         tableView.register(UINib.init(nibName: "MainUserListTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "MainUserListTableViewCellidentifier")
+        self.getLikesData()
         // Do any additional setup after loading the view.
     }
     func getLikesData()
@@ -72,12 +73,19 @@ extension MyLikesViewController
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:MainUserListTableViewCell = tableView.dequeueReusableCell(withIdentifier: "MainUserListTableViewCellidentifier", for: indexPath) as! MainUserListTableViewCell
+        cell.realityLab.layer.cornerRadius = 8.0
+        
+        cell.realityLab.clipsToBounds = true
+        cell.userHeaderImage.layer.cornerRadius = 35
+        cell.userHeaderImage.clipsToBounds = true
+        
         cell.model = userModels?[indexPath.row]
         cell.heartImage.isHidden = true
         return cell
         
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         let model = userModels?[indexPath.row]
         if model?.sex == 1
         {
@@ -104,5 +112,8 @@ extension MyLikesViewController
                 RootNav().pushViewController(vc, animated: true)
             })
         }
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
     }
 }

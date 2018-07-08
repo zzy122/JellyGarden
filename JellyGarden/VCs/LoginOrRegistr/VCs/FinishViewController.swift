@@ -10,16 +10,17 @@ import UIKit
 
 class FinishViewController: BaseViewController {
 //    @IBOutlet weak var topView: UIView!
-    
+
     @IBOutlet weak var registerBtn: UIButton!
     @IBOutlet weak var imageView: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.registerBtn.layer.borderWidth = 1.0
         registerBtn.layer.borderColor = APPCustomBtnColor.cgColor
-//        clearUserInfo()
         FillCondition.share.getConditions()
         self.autoLogin()
+       
+        
     }
     
     func autoLogin() {//自动登录

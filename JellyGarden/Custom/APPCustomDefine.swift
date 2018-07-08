@@ -11,7 +11,12 @@ import HandyJSON
 class APPCustomDefine: NSObject {
 
 }
-//var location:CLLocation? = CLLocation.init(latitude: <#T##CLLocationDegrees#>, longitude: <#T##CLLocationDegrees#>)
+
+var NeedGesterPassword:Bool = false {
+    didSet{
+        UserDefaults.standard.set(NeedGesterPassword, forKey: "NeedGesterPassword")
+    }
+}
 
 let SERVER_HOST:String = "http://39.105.9.66/mask/app/api/"
 

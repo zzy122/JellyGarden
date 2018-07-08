@@ -86,6 +86,7 @@ class AppointViewController: BaseMainTableViewController,ResponderRouter,PhotoPi
         tableView.estimatedSectionFooterHeight = 0
         tableView.estimatedSectionHeaderHeight = 0
         self.tableView.mj_header = headerFresh
+         self.edgesForExtendedLayout = UIRectEdge.init(rawValue: 0)
         // Do any additional setup after loading the view.
     }
     @objc func refresh()

@@ -7,8 +7,11 @@
 //
 
 import UIKit
-let ClickCloseDepositView = "ClickCloseDepositView"
+//let ClickCloseDepositView = "ClickCloseDepositView"
+typealias ClickCloseDepositView = () -> ()
 class DepositRuleView: UIView {
+    private var closeMyView:ClickCloseDepositView?
+    
     class func createRuleView() ->DepositRuleView
     {
         let nibView = CustomCreateNib<DepositRuleView>().createXibView()
@@ -16,9 +19,11 @@ class DepositRuleView: UIView {
         nibView?.clipsToBounds = true
         return nibView!
     }
-
+    func  clickClose(close:@escaping ClickCloseDepositView) {
+        self.closeMyView = close
+    }
     @IBAction func clickCloseBtn(_ sender: UIButton) {
-        zzy.router(name: ClickCloseDepositView, object: nil, info: nil)
+        closeMyView?()
     }
     /*
     // Only override draw() if you perform custom drawing.

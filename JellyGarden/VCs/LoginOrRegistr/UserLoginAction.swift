@@ -32,8 +32,9 @@ func dealWithLoginUser(model:UserModel,nav:UINavigationController?)
 {
     if let nickName = model.data?.appointment_place,nickName.count > 0//
     {
-        //请求token 进入主页
+       
         judgeGotoMainVC()
+        
     }
     else
     {
@@ -42,6 +43,7 @@ func dealWithLoginUser(model:UserModel,nav:UINavigationController?)
 }
 func judgeGotoMainVC()
 {
+
     TargetManager.share.rongcloudToken(isRefresh:false) { (model) in
         guard let tokenModel = model else{
             return
@@ -51,12 +53,32 @@ func judgeGotoMainVC()
             {
                 let delegate = UIApplication.shared.delegate as! AppDelegate
                 delegate.setRootViewController(vc: BaseTabBarViewController())
+                judgeGesterPassword()
             }
             else
             {
                 alertHud(title: "用户聊天登录失败")
             }
         })
+    }
+}
+func judgeGesterPassword()
+{
+    if UserDefaults.standard.bool(forKey: "NeedGesterPassword") {//是否需要APP打开密码
+        let gesterVC:CSIIGesturePasswordController = CSIIGesturePasswordController().initwithType(InitializeType.login, withState: { (success) in
+            if success {
+                //请求token 进入主页
+                NeedGesterPassword = true
+                
+            }
+        })
+        
+        gesterVC.isLunch = true
+        gesterVC.gesturePasswordView.logoimgView.sd_DownLoadImage(url: CurrentUserInfo?.data?.avatar ?? "")
+        RootViewController?.present(gesterVC, animated: true, completion: {
+            
+        })
+//        RootNav().pushViewController(gesterVC, animated: true)
     }
 }
 

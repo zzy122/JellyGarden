@@ -15,6 +15,7 @@ class SettingViewController: BaseMainTableViewController {
         super.viewDidLoad()
         self.title = "设置"
        self.getMemorySize()
+        self.edgesForExtendedLayout = UIRectEdge.bottom
         // Do any additional setup after loading the view.
     }
     func getMemorySize()
@@ -74,6 +75,24 @@ extension SettingViewController
             let str = String.init(format: "%.1fM", imageCatch / Float(1024 * 1024))
             alertHud(title: "已为你清理\(str)")
             self.getMemorySize()
+        }
+        else if indexPath.row == 1
+        {
+            let vc:CSIIGesturePasswordController = CSIIGesturePasswordController().initwithType(InitializeType.set, withState: { (issuccess) in
+                if issuccess {
+                    NeedGesterPassword = true
+                }
+            })
+            vc.isLunch = true
+            vc.gesturePasswordView.logoimgView.sd_DownLoadImage(url: CurrentUserInfo?.data?.avatar ?? "")
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        else if indexPath.row == 0 {
+            self.navigationController?.pushViewController(XiugaiPasswordViewController(), animated: true)
+        }
+        else if indexPath.row == 2 {
+            self.navigationController?.pushViewController(MessagePushSettingViewController(), animated: true)
+            
         }
     }
 }

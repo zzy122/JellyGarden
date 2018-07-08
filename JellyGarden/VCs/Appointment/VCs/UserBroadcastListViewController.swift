@@ -99,19 +99,19 @@ class UserBroadcastListViewController: BaseMainTableViewController,PhotoPickerCo
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
         IQKeyboardManager.sharedManager().enable = false
         
-//        self.getAppiontData { (success) in//在这里是因为别人发布广播成功后返回这个界面刷新数据
-//            if success
-//            {
-//                if self.appiontModels.count > 0 {
-//                    self.noCastBackView.isHidden = true
-//                }
-//                else
-//                {
-//                    self.noCastBackView.isHidden = false
-//                }
-//                self.tableView.reloadData()
-//            }
-//        }
+        self.getAppiontData { (success) in//在这里是因为别人发布广播成功后返回这个界面刷新数据
+            if success
+            {
+                if self.appiontModels.count > 0 {
+                    self.noCastBackView.isHidden = true
+                }
+                else
+                {
+                    self.noCastBackView.isHidden = false
+                }
+                self.tableView.reloadData()
+            }
+        }
     }
     override func viewDidDisappear(_ animated: Bool) {
         IQKeyboardManager.sharedManager().enableAutoToolbar = true

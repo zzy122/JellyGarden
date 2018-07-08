@@ -12,6 +12,7 @@ let BodyImageHeight = 90 * SCALE
 class PersonalInfoHeader: UIView {
     
     
+    @IBOutlet weak var centerContentViewHeight: NSLayoutConstraint!
     @IBOutlet weak var VipLabl: UILabel!
     @IBOutlet weak var userInfoContentView: UIView!
     @IBOutlet weak var centerContentView: UIView!

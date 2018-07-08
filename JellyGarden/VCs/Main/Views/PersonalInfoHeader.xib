@@ -271,6 +271,7 @@
                 <outlet property="bodyHeightLab" destination="xZZ-wS-a8O" id="h2S-IN-4hE"/>
                 <outlet property="bodyWeightLab" destination="x8K-pL-ArZ" id="rq2-VY-t0H"/>
                 <outlet property="centerContentView" destination="ndW-I4-Vw9" id="kPt-FZ-LSE"/>
+                <outlet property="centerContentViewHeight" destination="TYw-At-iyr" id="RnD-Li-qgr"/>
                 <outlet property="cityLab" destination="675-fr-WLa" id="M3P-Tr-WvN"/>
                 <outlet property="detailLab" destination="1Xh-Ds-c2n" id="Rar-yd-J4a"/>
                 <outlet property="distanceLab" destination="Q5M-Do-hci" id="0Be-aO-5mw"/>

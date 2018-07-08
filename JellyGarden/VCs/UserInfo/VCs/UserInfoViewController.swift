@@ -10,7 +10,7 @@ import UIKit
 
 class UserInfoViewController: BaseMainViewController {
 
-    var userInfo: UserModel = CurrentUserInfo!
+    var userInfo: UserModel? = CurrentUserInfo
     
     @IBOutlet weak var tableView: UITableView! {
         didSet {
@@ -73,6 +73,7 @@ class UserInfoViewController: BaseMainViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.navigationController?.hidesBottomBarWhenPushed = true
         
         extendedLayoutIncludesOpaqueBars = true
         edgesForExtendedLayout = .top
@@ -83,6 +84,7 @@ class UserInfoViewController: BaseMainViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: false)
+        RootViewController?.showTheTabbar()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -100,11 +102,12 @@ class UserInfoViewController: BaseMainViewController {
 extension UserInfoViewController {
     
     @IBAction func touchSetting() {
-        
+        RootViewController?.hideTheTabbar()
+       RootNav().pushViewController(SettingViewController(), animated: true)
     }
     
     @IBAction func touchShare() {
-        
+        UMengAcion.uMengShare()
     }
     
     func touchRecover() {
@@ -116,6 +119,20 @@ extension UserInfoViewController {
     }
     
     func touchLogout() {
+        let finish = FinishViewController()
+//        finish.isNeedAutoLogin = false
+        clearUserInfo()
+        let nav = UINavigationController.init(rootViewController: finish)
+        
+        RootViewController?.present(nav, animated: true, completion: {
+                let delegate = UIApplication.shared.delegate as! AppDelegate
+                delegate.setRootViewController(vc: nav)
+                judgeGesterPassword()
+            
+        })
+        
+        
+        
         
     }
 }
@@ -123,14 +140,23 @@ extension UserInfoViewController {
 extension UserInfoViewController: ResponderRouter {
 
     func interceptRoute(name: String, objc: UIResponder?, info: Any?) {
+        RootViewController?.hideTheTabbar()
         switch name {
+            
         case Mine_Info_Like: // 喜欢
+            RootNav().pushViewController(MyLikesViewController(), animated: true)
             break
         case Mine_Info_Wallet: // 钱包
+            RootNav().pushViewController(WalletViewController(), animated: true)
             break
         case Mine_Info_Guangbo: // 广播
+            let vc = UserBroadcastListViewController()
+            vc.userid = CurrentUserInfo?.data?.user_id ?? ""
+            RootNav().pushViewController(vc, animated: true)
             break
         case Mine_Info_Renzhen: // 认真
+            let vc = IdentityAuthenticationViewController()
+            RootNav().pushViewController(vc, animated: true)
             break
         case Mine_Info_Dingjing: // 定金
             break
@@ -148,6 +174,69 @@ extension UserInfoViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        switch indexPath.section {
+        case 0:
+            
+            break
+        case 1:
+            switch indexPath.row {
+            case 0://绑定手机
+                RootViewController?.hideTheTabbar()
+                RootNav().pushViewController(DebangPhoneViewController(), animated: true)
+                break
+            case 1://查看权限
+                AlertViewCoustom().showalertView(style: .actionSheet, title: "查看权限", message: nil, cancelBtnTitle: "取消", touchIndex: { (ind) in
+                    if ind == 1//公开
+                    {
+                        
+                    }
+                    else if ind == 2//查看相册付费
+                    {
+                        
+                    }
+                    else if ind == 3//验证
+                    {
+                        
+                    }
+                    else if ind == 4//隐身
+                    {
+                        
+                    }
+                }, otherButtonTitles: "公开", "查看相册付费","查看前需要通过我验证","隐身")
+                
+                break
+            case 2://个人介绍
+               RootViewController?.hideTheTabbar()
+                RootNav().pushViewController(EditPersonalIntroduceViewController(), animated: true)
+                break
+            case 3://约会条件
+                
+                break
+            case 4://分享
+                break
+            case 5://用户协议
+                break
+            default:
+                break
+            }
+            break
+        case 2:
+            switch indexPath.row {
+            case 0://黑名单
+                
+                break
+            case 1://历时访客
+                break
+            case 2://阅后即焚
+                break
+            default:
+                break
+            }
+            break
+        default:
+            break
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -209,7 +298,7 @@ extension UserInfoViewController: UITableViewDataSource {
             cell?.accessoryType = .disclosureIndicator
             if 1 == indexPath.section && 0 == indexPath.row {
                 cell?.textLabel?.text = "绑定手机"
-                cell?.detailTextLabel?.text = userInfo.data?.phone
+                cell?.detailTextLabel?.text = userInfo?.data?.phone
             }
             else if 1 == indexPath.section && 1 == indexPath.row {
                 cell?.textLabel?.text = "查看权限"
@@ -217,11 +306,11 @@ extension UserInfoViewController: UITableViewDataSource {
             }
             else if 1 == indexPath.section && 2 == indexPath.row {
                 cell?.textLabel?.text = "个人介绍"
-                cell?.detailTextLabel?.text = userInfo.data?.self_introduction
+                cell?.detailTextLabel?.text = userInfo?.data?.self_introduction
             }
             else if 1 == indexPath.section && 3 == indexPath.row {
                 cell?.textLabel?.text = "约会条件"
-                cell?.detailTextLabel?.text = userInfo.data?.appointment_condition?.joined(separator: "、")
+                cell?.detailTextLabel?.text = userInfo?.data?.appointment_condition?.joined(separator: "、")
             }
             else if 1 == indexPath.section && 4 == indexPath.row {
                 cell?.textLabel?.text = "分享果冻花园"

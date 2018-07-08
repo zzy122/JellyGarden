@@ -54,7 +54,7 @@ class MessgeCenterViewController: BaseMainViewController,UIScrollViewDelegate {
         view.addSubview(self.scrollItemView)
         view.addSubview(self.bodyScrollView)
         self.title = "消息中心"
-        
+         self.edgesForExtendedLayout = UIRectEdge.init(rawValue: 0)
         // Do any additional setup after loading the view.
     }
     

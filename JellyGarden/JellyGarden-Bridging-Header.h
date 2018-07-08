@@ -44,4 +44,5 @@
 #import "ReadDestroyCell.h"
 
 #import "UIResponder+Router.h"
+#import "CSIIGesturePasswordController.h"
 

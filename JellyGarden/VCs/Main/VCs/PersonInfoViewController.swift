@@ -20,7 +20,7 @@ class PersonInfoViewController: BaseTableViewController,ResponderRouter {
     var showType:LookUserInfotype?
     lazy var footerView:PermissionLookView = {
         let foot = PermissionLookView.createPermissionLookView()
-        let backView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: self.view.frame.height - self.headerView.frame.height))
+        let backView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: self.tableView.frame.height - self.headerView.frame.height))
         backView.backgroundColor = UIColor.clear
         foot?.frame = backView.bounds
         backView.addSubview(foot!)
@@ -71,7 +71,9 @@ class PersonInfoViewController: BaseTableViewController,ResponderRouter {
             }
         }
     }
-    
+    override func viewDidLayoutSubviews() {
+        
+    }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
@@ -81,12 +83,14 @@ class PersonInfoViewController: BaseTableViewController,ResponderRouter {
         let view1 = PersonalInfoHeader.createPersonalInfoHeader()
         let backView = UIView()
         backView.backgroundColor = UIColor.clear
-        backView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 320 + CGFloat(intege) * (BodyImageHeight + 8))
+        backView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 330 + CGFloat(intege) * (BodyImageHeight + 8))
         if self.showType == .validation//查看权限 只有头像信息
         {
-             backView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 320 )
+             backView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 260 )
+            view1?.centerContentViewHeight.constant = 0
+            view1?.centerContentView.isHidden = true
         }
-        view1?.centerContentView.isHidden = true
+        
         view1?.frame = backView.bounds
         backView.addSubview(view1!)
         view1?.userModel = self.userInfoModel?.data
@@ -100,10 +104,14 @@ class PersonInfoViewController: BaseTableViewController,ResponderRouter {
         self.headerView.isHidden = false
         
         self.bottomView.isHidden = false
+        
+        tableView.frame = CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: ScreenHeight - self.bottomView.frame.height)
         if self.showType == .validation
         {
             self.footerView.isHidden = false
         }
+       
+        
         
         // Do any additional setup after loading the view.
     }
@@ -150,6 +158,8 @@ class PersonInfoViewController: BaseTableViewController,ResponderRouter {
         
         RootViewController?.hideTheTabbar()
     }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

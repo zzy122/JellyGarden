@@ -10,12 +10,13 @@ import UIKit
 
 class WalletViewController: BaseTableViewController,ResponderRouter {
     var modelAry:[Any] = []
-    lazy var headerView:WalletView = {
-        let view1 = WalletView.createWalletView()
+    lazy var headerView:WalletHeaderView = {
+        let view1 = WalletHeaderView.createWalletHeaderView()
         let backView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 250))
         
         backView.backgroundColor = UIColor.clear
         backView.addSubview(view1!)
+        self.tableView.tableHeaderView = backView
         view1?.frame = backView.bounds
         view1?.moneyLab.text = "0.00"
         view1?.depositLab.text = "0.00"
@@ -31,6 +32,9 @@ class WalletViewController: BaseTableViewController,ResponderRouter {
     lazy var ruleView:UIView = {
         let view1 = DepositRuleView.createRuleView()
         let backView = UIView.init(frame: CGRect.init(x: 25, y: (ScreenHeight - 160) / 2.0, width: ScreenWidth - 50, height: 160))
+        view1.clickClose {
+            self.hiddenTheView(view: backView)
+        }
         backView.backgroundColor = UIColor.clear
         backView.addSubview(view1)
         return backView
@@ -68,16 +72,21 @@ class WalletViewController: BaseTableViewController,ResponderRouter {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "钱包"
+        self.headerView.isHidden = false
         tableView.register(UINib.init(nibName: "WalletTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "WalletTableViewCell")
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         rightBtn.setTitle("提现规则", for: UIControlState.normal)
+        rightBtn.isHidden = false
         rightBtn.setTitleColor(UIColor.white, for: UIControlState.normal)
         
     }
     override func clickRightBtn() {
+        UIApplication.shared.keyWindow?.addSubview(backView)
+        UIApplication.shared.keyWindow?.addSubview(ruleView)
+        
         self.showTheView(View: self.ruleView)
     }
     
@@ -104,10 +113,7 @@ extension WalletViewController
         if name == ClickDeposit {//点击提现
             
         }
-        if name == ClickCloseDepositView
-        {
-            self.hiddenTheView(view: self.ruleView)
-        }
+       
     }
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1

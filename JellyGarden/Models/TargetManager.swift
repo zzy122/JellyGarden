@@ -384,6 +384,7 @@ class TargetManager: NSObject {
             complection(nil,error)
         }
     }
+    //获取用户所有广播
     func requestUserAllBroadcast(userid:String,complection:@escaping ([lonelySpeechDetaileModel]?,Error?) -> Void)
     {
         NetCostom.shared.request(method: .get, wengen: "users/\(userid)/appointments", params: nil, success: { (result) in
@@ -449,6 +450,9 @@ class TargetManager: NSObject {
     func xiugaiPassword(params:[String:Any],complection:@escaping(Bool) ->Void)
     {
         NetCostom.shared.request(method: .post, wengen: "users/modifyPassword", params: params, success: { (result) in
+            let model = CurrentUserInfo
+            model?.data?.password = params["new_password"] as? String
+            NSDictionary.init(dictionary: (model?.toJSON())!).write(toFile: UserPlist, atomically: true)
             complection(true)
         }) { (error) in
             complection(false)
@@ -458,7 +462,9 @@ class TargetManager: NSObject {
     func debangPhoneNumber(params:[String:Any],complection:@escaping(Bool) ->Void)
     {
         NetCostom.shared.request(method: .post, wengen: "users/\(CurrentUserInfo?.data?.user_id ?? "")/bindPhone", params: params, success: {(result) in
-            updateUserInfo()
+            let model = CurrentUserInfo
+            model?.data?.phone = params["phone"] as? String
+            NSDictionary.init(dictionary: (model?.toJSON())!).write(toFile: UserPlist, atomically: true)
             complection(true)
         }) { (error) in
             complection(false)
@@ -495,7 +501,7 @@ class TargetManager: NSObject {
     //获取我喜欢的列表
     func myLikesList(params:[String:Any]?,complection:@escaping ([MainListmodel]?,Error?) -> Void)
     {
-        NetCostom.shared.request(method: .post, wengen: "likes", params: params, success: { (result) in
+        NetCostom.shared.request(method: .get, wengen: "gardens/likes", params: params, success: { (result) in
             if let jsonStr = result as? [String:Any]
             {
                 let model = BaseModel<MainListmodel,[MainListmodel]>.init(resultData: jsonStr["data"] ?? "")
