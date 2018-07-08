@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Photos
 class UserInfoViewController: BaseMainViewController {
 
 
@@ -171,9 +171,24 @@ extension UserInfoViewController: ResponderRouter {
             let vc = MineInfoEditViewController()
             vc.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(vc, animated: true)
+            break
+        case ClickSettingRedpacket:
+            
+            break
+        case ClickFirstPhoto:
+            let vc = QPPhotoPickerViewController(type: PageType.AllAlbum)
+            vc.imageSelectDelegate = self
+            //最大照片数量
+            vc.imageMaxSelectedNum = 1
+            self.present(vc, animated: true, completion: nil)
+            
+            
+            break
         default:
             break
         }
+        
+        
     }
 }
 
@@ -267,7 +282,16 @@ extension UserInfoViewController: UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if 0 == indexPath.section {
-            return 220
+            guard var photoStrs = CurrentUserInfo?.data?.photos,photoStrs.count > 0
+            else{
+                
+                return 220
+            }
+            photoStrs.append(" ")
+            let itemWidth:CGFloat = (ScreenWidth - 3 * 10) / 4
+            let intege = getLines(ary: photoStrs, veryCount: 4)
+            let height = CGFloat(intege) * (itemWidth + 10)
+            return height
         }
         return 44
     }
@@ -375,4 +399,51 @@ extension UserInfoViewController: UITableViewDataSource {
             return cell!
         }
     }
+}
+extension UserInfoViewController:PhotoPickerControllerDelegate
+{
+    func onImageSelectFinished(images: [PHAsset]) {
+        QPPhotoDataAndImage.getImagesAndDatas(photos: images) { (array) in
+            self.uploadImage(sender: array)
+        }
+    }
+    func uploadImage(sender:[QPPhotoImageModel]?)
+    {
+        guard let photos = sender ,photos.count > 0 else {
+            return
+        }
+        var models:[AliyunUploadModel] = []
+        for imageModel in photos
+        {
+            let model = AliyunUploadModel()
+            model.image = imageModel.bigImage
+            model.fileName = getImageName()
+            models.append(model)
+            
+        }
+        AliyunManager.share.uploadImagesToAliyun(imageModels: models, complection: { (urls, succecCount, failCount, state) in
+            if state == UploadImageState.success
+            {
+                
+                self.uploadUserPhotoUrlToServer(urlStr: urls?.last ?? "")
+                
+                
+            }
+            else
+            {
+                DebugLog(message: "上传失败")
+            }
+        })
+    }
+    func uploadUserPhotoUrlToServer(urlStr:String){
+        TargetManager.share.addUserPhotos(params: ["url":urlStr]) { (success) in
+            if success{
+                let userModel = CurrentUserInfo
+                userModel?.data?.photos?.append(urlStr)
+                NSDictionary.init(dictionary: userModel?.toJSON() ?? [:]).write(toFile: UserPlist, atomically: true)
+                self.tableView.reloadRows(at: [IndexPath.init(row: 0, section: 0)], with: UITableViewRowAnimation.automatic)
+            }
+        }
+    }
+    
 }

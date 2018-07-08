@@ -16,7 +16,7 @@
 @implementation ReadDestroyCell
 + (CGSize)sizeForMessageModel:(RCMessageModel *)model withCollectionViewWidth:(CGFloat)collectionViewWidth referenceExtraHeight:(CGFloat)extraHeight
 {
-    return CGSizeMake(collectionViewWidth, 100*[UIScreen mainScreen].bounds.size.width / 320.0 + extraHeight + 20);
+    return CGSizeMake(collectionViewWidth, 100*[UIScreen mainScreen].bounds.size.width / 320.0 + extraHeight + 40);
     
 }
 

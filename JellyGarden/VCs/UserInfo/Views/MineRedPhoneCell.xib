@@ -95,35 +95,14 @@
                             <constraint firstAttribute="trailing" secondItem="Fag-yd-lre" secondAttribute="trailing" id="uFZ-X1-F2g"/>
                         </constraints>
                     </view>
-                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="n91-N1-Sgh">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="220"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="C1z-kv-FOl">
-                            <size key="itemSize" width="50" height="50"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <connections>
-                            <outlet property="dataSource" destination="KGk-i7-Jjw" id="qlp-d9-jap"/>
-                            <outlet property="delegate" destination="KGk-i7-Jjw" id="z7d-lk-hKC"/>
-                        </connections>
-                    </collectionView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="n91-N1-Sgh" secondAttribute="bottom" id="6aX-EP-FVZ"/>
                     <constraint firstItem="uPs-Lv-f50" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="8O8-LC-Ljn"/>
-                    <constraint firstItem="n91-N1-Sgh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="D64-2T-1R5"/>
-                    <constraint firstAttribute="trailing" secondItem="n91-N1-Sgh" secondAttribute="trailing" id="PDL-YZ-6Dh"/>
                     <constraint firstAttribute="trailing" secondItem="63w-wa-ApC" secondAttribute="trailing" constant="10" id="Yf4-tc-lrA"/>
                     <constraint firstItem="63w-wa-ApC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="aOI-XR-9MJ"/>
                     <constraint firstItem="uPs-Lv-f50" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="dJN-d3-jq4"/>
-                    <constraint firstItem="n91-N1-Sgh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="uNn-oN-3MT"/>
                 </constraints>
             </tableViewCellContentView>
-            <connections>
-                <outlet property="collectionView" destination="n91-N1-Sgh" id="lx1-x8-Tea"/>
-            </connections>
             <point key="canvasLocation" x="34" y="28"/>
         </tableViewCell>
     </objects>

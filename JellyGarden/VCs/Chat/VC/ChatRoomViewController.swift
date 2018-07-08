@@ -262,7 +262,7 @@ extension ChatRoomViewController
             let yunmodel:AliyunUploadModel = AliyunUploadModel()
             yunmodel.image = model?.bigImage
             yunmodel.fileName = "\(getImageName()).png"
-            AliyunUpload.share().uploadImage(toAliyun: [yunmodel], isAsync: true, completion: { (urls, failCount, successCount, state) in
+            AliyunManager.share.uploadImagesToAliyun(imageModels: [yunmodel], complection: { (urls, failCount, successCount, state) in
                 if state == UploadImageState.success
                 {
                     self.sendImage(url: urls?.last ?? "")
@@ -277,15 +277,11 @@ extension ChatRoomViewController
         mes.imageUrl = url
         mes.isRead = NSNumber.init(value: 0)
         mes.senderUserInfo = RCIM.shared().currentUserInfo
-        RCIM.shared().sendMediaMessage(RCConversationType.ConversationType_PRIVATE, targetId: self.targetId, content: mes, pushContent: "阅后即焚", pushData: "图片", progress: { (gress, messageId) in
-            DebugLog(message: "进度:\(gress)userid:\(messageId)")
-            
-        }, success: { (code) in
-            DebugLog(message: "发送图片成功")
-        }, error: { (errorCode, code) in
-            
-        }, cancel: { (tag) in
-            
+        
+        RCIM.shared().sendMessage(RCConversationType.ConversationType_PRIVATE, targetId: self.targetId, content: mes, pushContent: "阅后即焚", pushData: "图片", success: { (resunt) in
+            DebugLog(message: "发送成功\(resunt)")
+        }, error: { (code, errcod) in
+            DebugLog(message: "发送失败\(errcod)")
         })
     }
     

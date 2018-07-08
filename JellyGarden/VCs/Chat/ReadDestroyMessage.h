@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <RongIMLib/RongIMLib.h>
 #define RCDestroyImageMessageTypeIdentifier @"RC:destroyImage"
-@interface ReadDestroyMessage : RCMessageContent
+@interface ReadDestroyMessage : RCMessageContent <NSCoding>
 @property(nonatomic,strong) NSNumber* isRead; //是否点击照片 0 未点击 1已点击
 @property(nonatomic,strong) NSString* imageUrl;
 @end

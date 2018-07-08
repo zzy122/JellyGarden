@@ -36,18 +36,21 @@ class PersonInfoImageView: UIView,UICollectionViewDelegate,UICollectionViewDataS
         return btn
         
     }()
+    
     var userModel:UserInfo? {
         didSet{
-            
             self.collectonView.reloadData()
         }
     }
+    var itemHeight = BodyImageHeight
     override func layoutSubviews() {
-        if userModel?.sex == 1 {
+        if userModel?.permission == permissionAry[1] && userModel?.user_id != CurrentUserInfo?.data?.user_id {
             self.implementView.isHidden = false
             warmLab.text = "她设置了付费相册"
             self.deblockBtn.setTitle("解锁她的相册", for: UIControlState.normal)
         }
+        self.collectonView.frame = self.bounds
+        
     }
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -59,7 +62,7 @@ class PersonInfoImageView: UIView,UICollectionViewDelegate,UICollectionViewDataS
     lazy var collectonView:UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let margin:CGFloat = 8.0
-        layout.itemSize = CGSize.init(width: (self.frame.width - 3 * margin) / 4.0, height: BodyImageHeight)
+        layout.itemSize = CGSize.init(width: (self.frame.width - 3 * margin) / 4.0, height: itemHeight)
         layout.scrollDirection = UICollectionViewScrollDirection.vertical//
         
         layout.minimumLineSpacing = margin
@@ -93,17 +96,41 @@ extension PersonInfoImageView
         return 1
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.userModel?.photos?.count ?? 0
+        
+        let count = self.userModel?.photos?.count ?? 0
+        return (userModel?.user_id == CurrentUserInfo?.data?.user_id) ? (count + 1) : count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BodyImageCollectionViewCell", for: indexPath) as? BodyImageCollectionViewCell
-        cell?.setImage(imageStr: self.userModel?.photos?[indexPath.row] ?? "", isImplement: LookImageType.effect)
         
+        if indexPath.row != self.userModel?.photos?.count
+        {
+            cell?.setImage(imageStr: self.userModel?.photos?[indexPath.row] ?? "", isImplement: LookImageType.clearness)
+        }
+        else//是本人资料 设置添加按钮可以添加照片
+        {
+            cell?.setImage(imageStr: "添加照片-1", isImplement: LookImageType.clearness)
+            cell?.imageV.image = imageName(name: "添加照片-1")
+        }
         
         return cell!
         
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        RootNav().pushViewController(LookImageViewController(), animated: true)
+        if indexPath.row != self.userModel?.photos?.count
+        {
+            RootViewController?.hideTheTabbar()
+            let vc = LookImageViewController()
+            vc.imageUrl = userModel?.photos?[indexPath.row] ?? ""
+            
+            RootNav().pushViewController(vc, animated: true)
+        }
+        else//是本人资料 设置添加按钮点击事件可以添加照片
+        {
+            zzy.router(name: ClickFirstPhoto, object: nil, info: nil)
+        }
+        
+        
+        
     }
 }

@@ -536,6 +536,14 @@ class TargetManager: NSObject {
             complection(nil,error)
         }
     }
+    func addUserPhotos(params:[String:Any],complection:@escaping(Bool) -> Void)
+    {
+        NetCostom.shared.request(method: .put, wengen: "users/\(CurrentUserInfo?.data?.user_id ?? "")/photos", params: params, success: { (result) in
+            complection(true)
+        }) { (error) in
+            complection(false)
+        }
+    }
     
     
 }
