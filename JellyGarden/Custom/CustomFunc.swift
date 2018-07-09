@@ -98,6 +98,7 @@ func getJSONStringFromObject(dictionary:Any) -> String {
     return str
     
 }
+//得到现在的时间戳
 func getTimeStamp(date:Date) -> Int{
     let timeInterval:TimeInterval = date.timeIntervalSince1970
     let timeStamp = Int(timeInterval)
@@ -124,6 +125,7 @@ func timeStampToDate(time:Int , backType:DateFormatterType) -> String{
     }
     return dformatter.string(from: date)
 }
+//字符转换成时间戳
 func stringToTimeStamp(dateStr:String?) -> Int{
     let dateFormatter = DateFormatter.init()
     
@@ -174,6 +176,36 @@ func locationEncode(cityName:String)  -> CLLocation? {
         print("经度：\(longitude),维度：\(latitude)")
     }
     return location
+}
+func distanceTime(time:Int) -> String
+{
+    let date = Date.init(timeIntervalSince1970: TimeInterval(time))
+    let zone = NSTimeZone.system
+    let interval = zone.secondsFromGMT(for: date)
+    let myDate = date.addingTimeInterval(TimeInterval(interval))
+    let nowDate = Date().addingTimeInterval(TimeInterval(interval))
+    var timeInterval = myDate.timeIntervalSince(nowDate)
+    timeInterval = -(timeInterval)
+    var backStr:String = ""
+    if timeInterval < 50 {
+        backStr = "刚刚"
+    }
+    else if (Int(timeInterval / 60)) < Int(60){
+        backStr = String.init(format: "%ld分钟前", Int(timeInterval / 60))
+    }
+    else if Int(timeInterval / (60 * 60)) < 24 {
+       backStr = String.init(format: "%ld小时前", Int(timeInterval / (60 * 60)))
+    }
+    else if Int(timeInterval / (24 * 60 * 60)) < 30 {
+        backStr = String.init(format: "%ld天前", Int(timeInterval / (24 * 60 * 60)))
+    }
+    else if Int(timeInterval / (24 * 60 * 60 * 30)) < 12 {
+        backStr = String.init(format: "%ld月前", Int(timeInterval / (30 * 24 * 60 * 60)))
+    }
+    else{
+        backStr = String.init(format: "%ld年前", Int(timeInterval / (12 * 30 * 24 * 60 * 60)))
+    }
+    return backStr
 }
 
 

@@ -179,7 +179,7 @@ extension UserInfoViewController: ResponderRouter {
             let vc = QPPhotoPickerViewController(type: PageType.AllAlbum)
             vc.imageSelectDelegate = self
             //最大照片数量
-            vc.imageMaxSelectedNum = 1
+            vc.imageMaxSelectedNum = 4
             self.present(vc, animated: true, completion: nil)
             
             
@@ -425,7 +425,7 @@ extension UserInfoViewController:PhotoPickerControllerDelegate
             if state == UploadImageState.success
             {
                 
-                self.uploadUserPhotoUrlToServer(urlStr: urls?.last ?? "")
+                self.uploadUserPhotoUrlToServer(urlStrs: urls ?? [])
                 
                 
             }
@@ -435,11 +435,14 @@ extension UserInfoViewController:PhotoPickerControllerDelegate
             }
         })
     }
-    func uploadUserPhotoUrlToServer(urlStr:String){
-        TargetManager.share.addUserPhotos(params: ["url":urlStr]) { (success) in
+    func uploadUserPhotoUrlToServer(urlStrs:[String]){
+        TargetManager.share.addUserPhotos(params: ["url_list":urlStrs.joined(separator: ",")]) { (success) in
             if success{
                 let userModel = CurrentUserInfo
-                userModel?.data?.photos?.append(urlStr)
+                for urlstr in urlStrs
+                {
+                    userModel?.data?.photos?.append(urlstr)
+                }
                 NSDictionary.init(dictionary: userModel?.toJSON() ?? [:]).write(toFile: UserPlist, atomically: true)
                 self.tableView.reloadRows(at: [IndexPath.init(row: 0, section: 0)], with: UITableViewRowAnimation.automatic)
             }

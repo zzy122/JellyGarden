@@ -82,8 +82,10 @@ class ConfessionTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDa
             self.applyBackView.frame = CGRect.init(x: 0, y: self.bodyBackView.frame.maxY, width: ScreenWidth, height: 45)
             self.applyView?.frame = self.applyBackView.bounds
             
-            
-            self.headerView?.headerImage.sd_DownLoadImage(url: detailModel?.poster?.avatar ?? "")
+            let imageUrl = detailModel?.poster?.avatar ?? ""
+            DebugLog(message: "头像地址:\(imageUrl)")
+
+            self.headerView?.headerImage.sd_DownLoadImage(url: imageUrl)
             self.headerView?.headerImage.image = imageName(name: detailModel?.poster?.avatar ?? "")
             let sexStr = (detailModel?.poster?.sex! == 0) ? "男1" : "女1"
             self.headerView?.nikeName.text = detailModel?.poster?.nickname

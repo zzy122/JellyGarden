@@ -64,11 +64,7 @@ class DebangPhoneViewController: BaseMainViewController {
         sender.starTime()
         
         TargetManager.share.getMSCode(params: params) { (result, eror) in
-            if let dic = result {
-                AlertViewCoustom().showalertView(style: .alert, title: alertTitle, message: dic["msg"] as? String, cancelBtnTitle: alertConfirm, touchIndex: { (index) in
-                    
-                }, otherButtonTitles: nil)
-            }
+           
         }
         
         

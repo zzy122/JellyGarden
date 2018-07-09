@@ -21,6 +21,7 @@ class MainListmodel:JSON {
     var lon:Double?
     var sex:Int?
     var is_like:Bool?
+    var permission:String?
     required init() {
         
     }

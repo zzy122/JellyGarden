@@ -32,7 +32,7 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Agi-jt-BcD">
-                    <rect key="frame" x="285" y="7.5" width="100" height="26"/>
+                    <rect key="frame" x="275" y="7.5" width="100" height="26"/>
                     <color key="backgroundColor" red="0.91226416830000001" green="0.31919541950000002" blue="0.60110467670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="26" id="Jw8-fC-uol"/>
@@ -56,7 +56,7 @@
                 <constraint firstItem="LLP-DY-GYX" firstAttribute="top" secondItem="WcP-sD-k6A" secondAttribute="bottom" constant="3" id="p3K-jY-n7B"/>
                 <constraint firstItem="LLP-DY-GYX" firstAttribute="leading" secondItem="WcP-sD-k6A" secondAttribute="leading" id="uCd-ue-csM"/>
                 <constraint firstItem="WcP-sD-k6A" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="wDz-Aj-j7B"/>
-                <constraint firstAttribute="trailing" secondItem="Agi-jt-BcD" secondAttribute="trailing" constant="-10" id="xH2-8Q-ux9"/>
+                <constraint firstAttribute="trailing" secondItem="Agi-jt-BcD" secondAttribute="trailing" id="xH2-8Q-ux9"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>

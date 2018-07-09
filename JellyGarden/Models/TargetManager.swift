@@ -199,6 +199,14 @@ class TargetManager: NSObject {
     func getMSCode(params:[String:Any],complection:@escaping ([String:Any]?,Error?) -> Void)
     {
         NetCostom.shared.request(method:.post ,wengen: "verify_code", params: params, success: { (result) in
+            if let dic = result as? [String:Any] {
+                let codeDic = dic["data"] as? [String:String]
+                let codeStr = codeDic?["verify_code"] ?? ""
+                let mesge = dic["msg"] as? String
+                AlertViewCoustom().showalertView(style: .alert, title: alertTitle, message: "验证码:\(codeStr)\(mesge ?? "")", cancelBtnTitle: alertConfirm, touchIndex: { (index) in
+                    
+                }, otherButtonTitles: nil)
+            }
             complection(result as? [String:Any],nil)
         }) { (error) in
            complection(nil,error)

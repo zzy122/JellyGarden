@@ -27,6 +27,8 @@ class ConfessionTableViewCellHeader: UIView {
         guard let view = nibView else {
             return nil
         }
+        view.headerImage.clipsToBounds = true
+        view.headerImage.layer.cornerRadius = 18
         view.authTrueLab.layer.cornerRadius = 5.0
         view.authTrueLab.clipsToBounds = true
         return view

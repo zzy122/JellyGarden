@@ -39,6 +39,9 @@
 		5A0455D520CD68310041D309 /* ConfessionTableViewCellBody.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A0455D420CD68310041D309 /* ConfessionTableViewCellBody.xib */; };
 		5A0455D720CD683E0041D309 /* ConfessionTableViewCellBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0455D620CD683E0041D309 /* ConfessionTableViewCellBody.swift */; };
 		5A0CC16120F240160056A30E /* IdentityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0CC16020F240160056A30E /* IdentityModel.swift */; };
+		5A0CC16320F2F3F40056A30E /* MessageBroastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0CC16220F2F3F40056A30E /* MessageBroastViewController.swift */; };
+		5A0CC16620F2F4170056A30E /* MessageBroastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0CC16420F2F4170056A30E /* MessageBroastTableViewCell.swift */; };
+		5A0CC16720F2F4170056A30E /* MessageBroastTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A0CC16520F2F4170056A30E /* MessageBroastTableViewCell.xib */; };
 		5A120C3F20DB70EF004A9DCF /* AliyunManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A120C3E20DB70EF004A9DCF /* AliyunManager.swift */; };
 		5A120C4120DB875E004A9DCF /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A120C4020DB875E004A9DCF /* CommentView.swift */; };
 		5A120C4320DB8771004A9DCF /* CommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A120C4220DB8771004A9DCF /* CommentView.xib */; };
@@ -349,6 +352,9 @@
 		5A0455D420CD68310041D309 /* ConfessionTableViewCellBody.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfessionTableViewCellBody.xib; sourceTree = "<group>"; };
 		5A0455D620CD683E0041D309 /* ConfessionTableViewCellBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfessionTableViewCellBody.swift; sourceTree = "<group>"; };
 		5A0CC16020F240160056A30E /* IdentityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityModel.swift; sourceTree = "<group>"; };
+		5A0CC16220F2F3F40056A30E /* MessageBroastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBroastViewController.swift; sourceTree = "<group>"; };
+		5A0CC16420F2F4170056A30E /* MessageBroastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBroastTableViewCell.swift; sourceTree = "<group>"; };
+		5A0CC16520F2F4170056A30E /* MessageBroastTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageBroastTableViewCell.xib; sourceTree = "<group>"; };
 		5A120C3E20DB70EF004A9DCF /* AliyunManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliyunManager.swift; sourceTree = "<group>"; };
 		5A120C4020DB875E004A9DCF /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
 		5A120C4220DB8771004A9DCF /* CommentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentView.xib; sourceTree = "<group>"; };
@@ -863,6 +869,8 @@
 				5AB8F47520E1F45000429108 /* LookDestoryImage.swift */,
 				5AB8F47D20E221FA00429108 /* SystemMessageTableViewCell.swift */,
 				5AB8F47E20E221FA00429108 /* SystemMessageTableViewCell.xib */,
+				5A0CC16420F2F4170056A30E /* MessageBroastTableViewCell.swift */,
+				5A0CC16520F2F4170056A30E /* MessageBroastTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -874,6 +882,7 @@
 				5A120C4E20DD3CDD004A9DCF /* ChatRoomViewController.swift */,
 				5AB8F47720E2136800429108 /* MessgeCenterViewController.swift */,
 				5AB8F48120E22F2200429108 /* SystemMessageViewController.swift */,
+				5A0CC16220F2F3F40056A30E /* MessageBroastViewController.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -1553,6 +1562,7 @@
 				5A015ED320C6353D00EC8A96 /* APPCustomAlertView.xib in Resources */,
 				5A1F3AD020E0EA3C00CB98CD /* ReadDestroryView.xib in Resources */,
 				5A120C4320DB8771004A9DCF /* CommentView.xib in Resources */,
+				5A0CC16720F2F4170056A30E /* MessageBroastTableViewCell.xib in Resources */,
 				5A196AD820C6C1ED002EC0EE /* PickerTableViewCell.xib in Resources */,
 				5A196ADF20C6C704002EC0EE /* BottomPickerCell.xib in Resources */,
 				5A7FC43E20EB684E00D7E137 /* XiugaiPasswordViewController.xib in Resources */,
@@ -1848,6 +1858,7 @@
 				5A1F3ABC20DF6CA700CB98CD /* RCLocationView.m in Sources */,
 				5AE28C6A20F1F3F900EE2973 /* BlackListViewController.swift in Sources */,
 				5A80C4D520BFE1620033CAF8 /* APPCustomDefine.swift in Sources */,
+				5A0CC16320F2F3F40056A30E /* MessageBroastViewController.swift in Sources */,
 				5A7CEC6720D531DC00B7A7C9 /* QPPhotoFetchOptions.swift in Sources */,
 				5A015EBD20C577F200EC8A96 /* RegisterViewController.swift in Sources */,
 				5A7FC44420EB7FF300D7E137 /* ADDPayCountViewController.swift in Sources */,
@@ -1880,6 +1891,7 @@
 				5A015E9B20C5121000EC8A96 /* LoginVIewController.swift in Sources */,
 				5AE9CC9520C8DF0E0057CFF3 /* BaseMainTableViewController.swift in Sources */,
 				5A120C4120DB875E004A9DCF /* CommentView.swift in Sources */,
+				5A0CC16620F2F4170056A30E /* MessageBroastTableViewCell.swift in Sources */,
 				5A80C4D020BFE1050033CAF8 /* CustomFunc.swift in Sources */,
 				5A7CEC6B20D5321300B7A7C9 /* QPPhotoCell.swift in Sources */,
 				5A27B37D20E4DCFA0028D5FF /* ReadImageModel.swift in Sources */,

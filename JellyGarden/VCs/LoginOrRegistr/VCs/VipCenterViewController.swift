@@ -177,7 +177,7 @@ class VipCenterViewController: BaseViewController,ResponderRouter {
                 if let payDic = dic["data"] as? [String:Any]
                 {
                     //发起支付
-                    OtherApplication.share.pay(charge: payDic, complection: { (result) in
+                    OtherApplication.share.pay(VC:self, charge: payDic, complection: { (result) in
                         alertHud(title: "购买成功")
                         self.gotoMainVC()
                     })
@@ -190,9 +190,23 @@ class VipCenterViewController: BaseViewController,ResponderRouter {
     
     func gotoMainVC()
     {
-        updateUserInfo()
-        let delegate = UIApplication.shared.delegate as! AppDelegate
-        delegate.setRootViewController(vc: BaseTabBarViewController())
+        if isHaveUserHeader == false {
+            var vcs = self.navigationController?.viewControllers
+            
+            vcs?.removeLast()
+            vcs?.append(ManFillInformationViewController())
+            self.navigationController?.setViewControllers(vcs!, animated: true)
+        }
+        else
+        {
+            
+        }
+        
+//        self.navigationController?.pushViewController(ManFillInformationViewController(), animated: true)
+//        updateUserInfo()
+//
+//        let delegate = UIApplication.shared.delegate as! AppDelegate
+//        delegate.setRootViewController(vc: BaseTabBarViewController())
         
     }
     @objc func clickAutoPayBtn(sender:UIButton)

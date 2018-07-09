@@ -49,6 +49,24 @@ class MainUserListTableViewCell: UITableViewCell {
             if let isLike = model?.is_like ,isLike{
                 heartImage.image = imageName(name: "赞-实")
             }
+            if model?.permission == permissionAry[1]//相册付费
+            {
+                lookUserImage.isHidden = false
+                lookLab.isHidden = false
+                lookLab.text = "付费相册"
+            }
+            else if model?.permission == permissionAry[2]//申请查看权限
+            {
+                lookUserImage.isHidden = false
+                lookLab.isHidden = false
+                lookLab.text = "申请浏览"
+            }
+            else
+            {
+                lookUserImage.isHidden = true
+                lookLab.isHidden = true
+            }
+            
         }
     }
     

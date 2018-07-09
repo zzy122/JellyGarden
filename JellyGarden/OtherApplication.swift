@@ -113,8 +113,8 @@ class OtherApplication: NSObject,WXApiDelegate,RCIMUserInfoDataSource,RCIMGroupM
     
     
     //支付  charge是后台请求的数据
-    func pay(charge:[String:Any],complection:@escaping (Bool) ->Void) {
-        Pingpp.createPayment(charge as NSObject, viewController: RootNav().topViewController, appURLScheme: "JellyGarden") { (result, error) in
+    func pay(VC:UIViewController, charge:[String:Any],complection:@escaping (Bool) ->Void) {
+        Pingpp.createPayment(charge as NSObject, viewController: VC, appURLScheme: "JellyGarden") { (result, error) in
             guard error == nil else {
                 AlertViewCoustom().showalertView(style: .alert, title: alertTitle, message: "\(error.debugDescription)", cancelBtnTitle: alertConfirm, touchIndex: { (index) in
                 }, otherButtonTitles: nil)

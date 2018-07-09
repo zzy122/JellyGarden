@@ -16,14 +16,14 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mAC-HR-jIk">
-                    <rect key="frame" x="10" y="23" width="35" height="35"/>
+                    <rect key="frame" x="10" y="22.5" width="36" height="36"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="35" id="6YF-Mm-MHj"/>
-                        <constraint firstAttribute="height" constant="35" id="NfA-fB-A5p"/>
+                        <constraint firstAttribute="width" constant="36" id="6YF-Mm-MHj"/>
+                        <constraint firstAttribute="height" constant="36" id="NfA-fB-A5p"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="682-Ns-zNx">
-                    <rect key="frame" x="55" y="20" width="39.5" height="19.5"/>
+                    <rect key="frame" x="56" y="19.5" width="39.5" height="19.5"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="19.5" id="nBm-aK-D3c"/>
                     </constraints>
@@ -32,20 +32,20 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gNG-32-eLq">
-                    <rect key="frame" x="55" y="44" width="35.5" height="17"/>
+                    <rect key="frame" x="56" y="44.5" width="35.5" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2Qm-BX-9dP">
-                    <rect key="frame" x="102.5" y="22.5" width="15" height="15"/>
+                    <rect key="frame" x="103.5" y="22" width="15" height="15"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="15" id="mH1-uo-eMS"/>
                         <constraint firstAttribute="width" constant="15" id="qQf-Qp-XTu"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未认证" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a3F-Fh-GNU">
-                    <rect key="frame" x="125.5" y="22" width="40" height="16"/>
+                    <rect key="frame" x="126.5" y="21.5" width="40" height="16"/>
                     <color key="backgroundColor" red="0.91226416830000001" green="0.31919541950000002" blue="0.60110467670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="16" id="Lvg-ex-pWp"/>

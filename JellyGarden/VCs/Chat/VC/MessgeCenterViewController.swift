@@ -70,6 +70,9 @@ class MessgeCenterViewController: BaseMainViewController,UIScrollViewDelegate {
         }
     }
     override func clickRightBtn() {
+        RootViewController?.hideTheTabbar()
+        
+        self.navigationController?.pushViewController(MessagePushSettingViewController(), animated: true)
         
     }
     override func didReceiveMemoryWarning() {

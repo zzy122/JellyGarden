@@ -45,8 +45,8 @@ class ConfessionTableViewCellBody: UIView,UICollectionViewDelegate,UICollectionV
         guard let view = nibView else {
             return nil
         }
-        view.dingJinBtn.layer.cornerRadius = 13
-        view.dingJinBtn.clipsToBounds = true
+        view.dingJinBtn.addCorners(roundCorners:  UIRectCorner(rawValue: UIRectCorner.RawValue(UInt8(UIRectCorner.bottomLeft.rawValue) | UInt8(UIRectCorner.topLeft.rawValue))), cornerSize: CGSize.init(width: 10, height: 13))
+//        view.dingJinBtn.clipsToBounds = true
         view.layer.cornerRadius = 8.0
         view.clipsToBounds = true
         return view

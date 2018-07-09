@@ -83,7 +83,7 @@ class PersonalInfoHeader: UIView {
     lazy var imageBodyView:PersonInfoImageView = { 
         let view = PersonInfoImageView.init(frame:  CGRect.init(x: 0, y: 0, width: (self.frame.width), height: (self.frame.height) - self.ImageContentView.frame.minY))
         view.userModel = self.userModel
-        self.addSubview(view)
+        self.ImageContentView.addSubview(view)
         return view
     }()
     class func createPersonalInfoHeader() -> PersonalInfoHeader?{

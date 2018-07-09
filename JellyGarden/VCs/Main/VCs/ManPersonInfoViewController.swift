@@ -26,7 +26,10 @@ class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
     var broadcastAry:[Any] = []
     var userInfoModel:UserModel? {
         didSet{
-
+            if userInfoModel?.data?.likes?.contains(CurrentUserInfo?.data?.user_id ?? "") == true
+            {
+                self.collectionImageStr = "赞-实"
+            }
         }
     }
     lazy var footerView:PermissionLookView = {
@@ -58,9 +61,9 @@ class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
         super.viewDidAppear(animated)
         
     }
-    let images:[String] = []
+
     lazy var headerView:ManpersonInfoHeader = {
-        var intege = getLines(ary: images, veryCount: 4)
+        var intege = getLines(ary: userInfoModel?.data?.photos, veryCount: 4)
         let view1 = ManpersonInfoHeader.createManpersonInfoHeader()
         let backView = UIView()
         backView.backgroundColor = UIColor.clear

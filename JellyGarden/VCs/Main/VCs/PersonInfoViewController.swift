@@ -13,13 +13,14 @@ enum LookUserInfotype {
     case validation;//设置查看权限
     case stealth;//隐身
 }
-var permissionAry:[String] = [ "公开","查看相册付费","查看前需要通过我验证","隐身"]
+var permissionAry:[String] = [ "公开","查看相册付费","查看前需要通过我的验证","隐身"]
 
 class PersonInfoViewController: BaseTableViewController,ResponderRouter {
     var leftTitles:[String] = ["她的广播","个人介绍","约会节目","约会条件","微信","风格","语言","感情"]
     var rightTitles:[String] = ["","","","","","","",""]
     
     var showType:LookUserInfotype? {
+        
         if self.userInfoModel?.data?.permission == permissionAry[3] {
             return LookUserInfotype.stealth
         }
@@ -104,6 +105,7 @@ class PersonInfoViewController: BaseTableViewController,ResponderRouter {
              backView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 260 )
             view1?.centerContentViewHeight.constant = 0
             view1?.centerContentView.isHidden = true
+            view1?.ImageContentView.isHidden = true
         }
         
         view1?.frame = backView.bounds
@@ -215,7 +217,7 @@ extension PersonInfoViewController
 {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        if self.showType == .pubilic {
+        if self.showType != .validation{
            return 1
         }
         return 0

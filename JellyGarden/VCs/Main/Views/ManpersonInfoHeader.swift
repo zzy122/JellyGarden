@@ -24,7 +24,7 @@ class ManpersonInfoHeader: UIView {
     @IBOutlet weak var nikeNameLab: UILabel!//昵称
     @IBOutlet weak var headerImage: UIImageView!
 //    var tagFrame:CGRect?
-    var imageAry:[String] = []//照片数量
+//    var imageAry:[String] = []//照片数量
     
 
     var userModel:UserInfo?{
@@ -49,19 +49,19 @@ class ManpersonInfoHeader: UIView {
             cityLab.text = continueString(strAry: userModel?.appointment_place,separetStr:"  ")
             self.introduceContentLab.text = userModel?.self_introduction
             
+            if userModel?.photos?.count == 0 {
+                self.imageBodyView.isHidden = true
+                return
+            }
+            self.imageBodyView.isHidden = false
         }
         
     }
     override func layoutSubviews() {
-//        self.frame = tagFrame!
-        if self.imageAry.count == 0 {
-            return
-        }
-        self.imageBodyView.isHidden = false
         
     }
     lazy var imageBodyView:PersonInfoImageView = {
-        let view = PersonInfoImageView.init(frame:  CGRect.init(x: 0, y: 0, width: (self.frame.width), height: (self.frame.height) - self.ImageContentView.frame.minY))
+        let view = PersonInfoImageView.init(frame:  CGRect.init(x: 0, y: 0, width: self.frame.width, height: self.frame.height - self.bottomView.frame.minY - 80))
         view.userModel = self.userModel
         self.ImageContentView.addSubview(view)
         return view
