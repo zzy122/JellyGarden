@@ -194,7 +194,6 @@
 		5A7FC48A20F1062300D7E137 /* WalletHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A7FC48920F1062300D7E137 /* WalletHeaderView.xib */; };
 		5A80C49320BFDB150033CAF8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A80C49220BFDB150033CAF8 /* AppDelegate.swift */; };
 		5A80C49520BFDB150033CAF8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A80C49420BFDB150033CAF8 /* ViewController.swift */; };
-		5A80C49820BFDB150033CAF8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A80C49620BFDB150033CAF8 /* Main.storyboard */; };
 		5A80C49A20BFDB150033CAF8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A80C49920BFDB150033CAF8 /* Assets.xcassets */; };
 		5A80C49D20BFDB150033CAF8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A80C49B20BFDB150033CAF8 /* LaunchScreen.storyboard */; };
 		5A80C4A820BFDB150033CAF8 /* JellyGardenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A80C4A720BFDB150033CAF8 /* JellyGardenTests.swift */; };
@@ -539,7 +538,6 @@
 		5A80C48F20BFDB150033CAF8 /* JellyGarden.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JellyGarden.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A80C49220BFDB150033CAF8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5A80C49420BFDB150033CAF8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		5A80C49720BFDB150033CAF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5A80C49920BFDB150033CAF8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5A80C49C20BFDB150033CAF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5A80C49E20BFDB150033CAF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1026,7 +1024,6 @@
 				5A80C4E020BFE7AF0033CAF8 /* Models */,
 				5A80C4D720BFE5690033CAF8 /* BaseVC */,
 				5A80C4C220BFE0F70033CAF8 /* Custom */,
-				5A80C49620BFDB150033CAF8 /* Main.storyboard */,
 				5A80C49920BFDB150033CAF8 /* Assets.xcassets */,
 				5A80C49B20BFDB150033CAF8 /* LaunchScreen.storyboard */,
 				5A80C49E20BFDB150033CAF8 /* Info.plist */,
@@ -1468,7 +1465,7 @@
 					5A80C48E20BFDB150033CAF8 = {
 						CreatedOnToolsVersion = 9.1;
 						LastSwiftMigration = 0910;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 1;
@@ -1579,7 +1576,6 @@
 				5ACEFC8220D4F6E000BE5241 /* NormalAppointmentViewController.xib in Resources */,
 				5A015EC920C5834D00EC8A96 /* SexViewController.xib in Resources */,
 				5A27B38D20E9D52D0028D5FF /* IdentityAuthenticationViewController.xib in Resources */,
-				5A80C49820BFDB150033CAF8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2023,14 +2019,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		5A80C49620BFDB150033CAF8 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5A80C49720BFDB150033CAF8 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		5A80C49B20BFDB150033CAF8 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -2159,8 +2147,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = JellyGarden/JellyGarden.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 3W4VK75454;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = V7993MA8C9;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2176,10 +2164,10 @@
 					"$(PROJECT_DIR)/JellyGarden/Library/XGPUSH",
 					"$(PROJECT_DIR)/JellyGarden/Library/JsmsSDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cn.com.JellyGarden;
+				PRODUCT_BUNDLE_IDENTIFIER = "cn.com.JellyGarden-test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7c09b77d-7d26-41ae-b8fb-2e68837b1acd";
-				PROVISIONING_PROFILE_SPECIFIER = JellyGardenDevelpmentProfile;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "JellyGarden/JellyGarden-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2197,8 +2185,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = JellyGarden/JellyGarden.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 3W4VK75454;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = V7993MA8C9;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2214,10 +2202,10 @@
 					"$(PROJECT_DIR)/JellyGarden/Library/XGPUSH",
 					"$(PROJECT_DIR)/JellyGarden/Library/JsmsSDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cn.com.JellyGarden;
+				PRODUCT_BUNDLE_IDENTIFIER = "cn.com.JellyGarden-test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7c09b77d-7d26-41ae-b8fb-2e68837b1acd";
-				PROVISIONING_PROFILE_SPECIFIER = JellyGardenDevelpmentProfile;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "JellyGarden/JellyGarden-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
 				SWIFT_VERSION = 4.0;

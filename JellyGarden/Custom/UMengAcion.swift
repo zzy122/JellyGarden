@@ -14,11 +14,11 @@ class UMengAcion: NSObject {
         UMSocialUIManager.showShareMenuViewInWindow {(platformType, shreMenuView) in
             let messageObject:UMSocialMessageObject = UMSocialMessageObject.init()
             messageObject.text = "友盟分享测试(图片)，swift3.0 Xcode8.1 umeng6.0.3 作者：targetcloud"
-            let shareObject:UMShareImageObject = UMShareImageObject.init()
+            let shareObject:UMShareWebpageObject = UMShareWebpageObject.init()
             shareObject.title = "图片分享"
             shareObject.descr = "这里是图片分享测试，作者：targetcloud"
             shareObject.thumbImage = UIImage.init(named: "icon")
-            shareObject.shareImage = "http://dev.umeng.com/images/tab2_1.png"
+            shareObject.webpageUrl = "https://www.baidu.com"
             messageObject.shareObject = shareObject;
             UMSocialManager.default().share(to: platformType, messageObject: messageObject, currentViewController: self, completion: { (shareResponse, error) in
                 if let error1 = error {
