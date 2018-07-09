@@ -73,7 +73,6 @@ class OtherApplication: NSObject,WXApiDelegate,RCIMUserInfoDataSource,RCIMGroupM
             DebugLog(message: "登录融云成功");
             DispatchQueue.main.async {//回主线程操作
                 
-                
                 RCIM.shared().userInfoDataSource = self
                 let model = RCUserInfo.init(userId: CurrentUserInfo?.data?.user_id ?? "", name: CurrentUserInfo?.data?.nickname, portrait: CurrentUserInfo?.data?.avatar);
                 RCIM.shared().currentUserInfo = model

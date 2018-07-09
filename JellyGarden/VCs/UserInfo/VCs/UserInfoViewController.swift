@@ -135,10 +135,6 @@ extension UserInfoViewController {
                 judgeGesterPassword()
             
         })
-        
-        
-        
-        
     }
 }
 
