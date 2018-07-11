@@ -19,7 +19,7 @@ func getImageViewHeight(imageAry:[Any]) -> CGFloat {
     let intege:Int = getLines(ary: imageAry, veryCount: 4)
     return CGFloat(intege) * (cellWidth + imageMargin)
 }
-class NormalAppointmentViewController: BaseMainViewController,UICollectionViewDelegate,UICollectionViewDataSource,PhotoPickerControllerDelegate,ResponderRouter,UITextViewDelegate,UICollectionViewDelegateFlowLayout {
+class NormalAppointmentViewController: BaseMainViewController,UICollectionViewDelegate,UICollectionViewDataSource,TZImagePickerControllerDelegate,ResponderRouter,UITextViewDelegate,UICollectionViewDelegateFlowLayout {
     var urlPaths:[String]? = []
     
     lazy var picker:ZZYdatepicker = {
@@ -164,7 +164,7 @@ class NormalAppointmentViewController: BaseMainViewController,UICollectionViewDe
         }
         let timeStamp = stringToTimeStamp(dateStr: dateStr)
         let url = continueString(strAry: urlPaths,separetStr:",")
-        let params:[String:Any] = ["poster_id":CurrentUserInfo?.data?.user_id ?? "","time":timeStamp,"city":appiontCity.text ?? "","requirement":contentStr.text,"attachment":url,"deposit": Int(dingJinFiled.text ?? "0") ?? 0,"need_signup":false]
+        let params:[String:Any] = ["poster_id":CurrentUserInfo?.data?.user_id ?? "","time":timeStamp,"city":appiontCity.text ?? "","requirement":contentStr.text,"attachment":url,"deposit": Int(dingJinFiled.text ?? "0") ?? 0,"need_signup":0]
         
         TargetManager.share.issueAppiont(params: params) { (success, error) in
             if success {
@@ -220,20 +220,20 @@ extension NormalAppointmentViewController
     }
     func addPhotos(){
         //初始化并弹出相册页
-        let vc = QPPhotoPickerViewController(type: PageType.AllAlbum)
-        vc.imageSelectDelegate = self
-        //最大照片数量
-        vc.imageMaxSelectedNum = 6
-        vc.alreadySelectedImageNum = images.count
-        self.present(vc, animated: true, completion: nil)
-    }
-    //添加照片的协议方法
-    func onImageSelectFinished(images: [PHAsset]) {
-        QPPhotoDataAndImage.getImagesAndDatas(photos: images) { (array) in
-            self.uploadImage(sender: array)
+        let vc = TZImagePickerController.init(maxImagesCount: 6, delegate: self)
+        vc?.allowPickingVideo = false
+        vc?.allowPickingImage = true
+        vc?.allowTakePicture = true
+        vc?.didFinishPickingPhotosHandle = {(photos, assets, isSelectOriginalPhoto) in
+            self.uploadImage(sender: photos)
+            
         }
+        self.present(vc!, animated: true, completion: nil)
+        
+        
     }
-    func uploadImage(sender:[QPPhotoImageModel]?)
+   
+    func uploadImage(sender:[Image]?)
     {
         guard let photos = sender ,photos.count > 0 else {
             return
@@ -242,7 +242,7 @@ extension NormalAppointmentViewController
         for imageModel in photos
         {
             let model = AliyunUploadModel()
-            model.image = imageModel.smallImage
+            model.image = imageModel
             model.fileName = getImageName()
             models.append(model)
             

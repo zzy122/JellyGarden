@@ -60,7 +60,7 @@
                     </userDefinedRuntimeAttributes>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ePC-mf-fBE">
-                    <rect key="frame" x="201" y="17.5" width="60" height="46"/>
+                    <rect key="frame" x="209" y="17.5" width="60" height="46"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="60" id="fbj-ba-CqB"/>
@@ -113,7 +113,7 @@
                 <constraint firstItem="a3F-Fh-GNU" firstAttribute="leading" secondItem="2Qm-BX-9dP" secondAttribute="trailing" constant="8" id="Mxb-KA-F24"/>
                 <constraint firstItem="a3F-Fh-GNU" firstAttribute="centerY" secondItem="682-Ns-zNx" secondAttribute="centerY" id="R0W-U3-Szc"/>
                 <constraint firstItem="ePC-mf-fBE" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="cOK-if-LLi"/>
-                <constraint firstItem="VIf-8j-852" firstAttribute="leading" secondItem="ePC-mf-fBE" secondAttribute="trailing" constant="8" id="fpi-AA-hOh"/>
+                <constraint firstItem="VIf-8j-852" firstAttribute="leading" secondItem="ePC-mf-fBE" secondAttribute="trailing" id="fpi-AA-hOh"/>
                 <constraint firstItem="682-Ns-zNx" firstAttribute="top" secondItem="mAC-HR-jIk" secondAttribute="top" constant="-3" id="gbV-rp-zRw"/>
                 <constraint firstItem="2Qm-BX-9dP" firstAttribute="leading" secondItem="682-Ns-zNx" secondAttribute="trailing" constant="8" id="r8D-mU-k0w"/>
                 <constraint firstItem="gNG-32-eLq" firstAttribute="bottom" secondItem="mAC-HR-jIk" secondAttribute="bottom" constant="3" id="swh-eg-cjy"/>

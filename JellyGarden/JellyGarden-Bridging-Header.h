@@ -4,7 +4,7 @@
 
 #import <UMShare/UMShare.h>
 #import <UShareUI/UShareUI.h>
-
+#import <JPUSHService.h>
 #import <WXApi.h>
 
 #import <RongIMKit/RongIMKit.h>
@@ -45,4 +45,6 @@
 
 #import "UIResponder+Router.h"
 #import "CSIIGesturePasswordController.h"
+
+#import "TZImagePickerController.h"
 

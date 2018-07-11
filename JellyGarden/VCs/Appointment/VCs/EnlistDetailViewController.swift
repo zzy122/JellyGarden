@@ -15,6 +15,7 @@ class EnlistDetailViewController: BaseMainTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "报名详情"
+        self.detaileModel?.need_signup = false//取消查看报名等按钮
         self.tableView.register(UINib.init(nibName: "ConfessionTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "ConfessionTableViewCell")
         self.tableView.register(UINib.init(nibName: "EnlistDetailTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "EnlistDetailTableViewCell")
         // Do any additional setup after loading the view.

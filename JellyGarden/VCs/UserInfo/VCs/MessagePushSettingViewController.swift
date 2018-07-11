@@ -115,11 +115,11 @@ extension MessagePushSettingViewController
         {
             cell = UITableViewCell.init(style: UITableViewCellStyle.value1, reuseIdentifier: "MessagePushSettingViewController")
             let swit = createSwitchBtn()
-            swit.tag = indexPath.row
+            swit.tag = indexPath.row + 1
             swit.addTarget(self, action: #selector(clickSwitch(swt:)), for: UIControlEvents.valueChanged)
             cell?.contentView.addSubview(swit)
         }
-        let swit = cell?.contentView.viewWithTag(indexPath.row) as? UISwitch
+        let swit = cell?.contentView.viewWithTag(indexPath.row + 1) as? UISwitch
         swit?.isOn = states[indexPath.row]
         cell?.textLabel?.text = leftSterings[indexPath.row]
         cell?.selectionStyle = UITableViewCellSelectionStyle.none
@@ -127,7 +127,7 @@ extension MessagePushSettingViewController
     }
     @objc func clickSwitch(swt:UISwitch)
     {
-        currentState.replaceSubrange(swt.tag..<swt.tag + 1, with: [swt.isOn])
+        currentState.replaceSubrange((swt.tag - 1)..<swt.tag, with: [swt.isOn])
     }
     
 }

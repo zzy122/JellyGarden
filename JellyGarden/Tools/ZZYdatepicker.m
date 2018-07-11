@@ -72,29 +72,26 @@
         [self addSubview:self.dateLab];
         self.dateLab.frame = CGRectMake(8, 5, CGRectGetMinX(self.finish.frame) - 16, 30);
         
-//        [self.dateLab mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.left.mas_equalTo(8);
-//            make.centerY.mas_equalTo(self.btnBackView.mas_centerY);
-//            make.right.mas_equalTo(self.finish.mas_left).mas_equalTo(-8);
-//        }];
-        
         self.datePicker = [[UIDatePicker alloc]init];
         self.datePicker.backgroundColor = [UIColor colorWithRed:241/255.0 green:241/255.0 blue:241/255.0 alpha:1];
         self.datePicker.datePickerMode = UIDatePickerModeDate;
         if (self.dateStr.length != 0) {
             [self setDate];
         }
-//        self.datePicker.minimumDate = [NSDate date];
-        //        self.datePicker.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width - 80, 80);
+        if (self.datestr.length == 0)
+        {
+            NSDateFormatter* format = [[NSDateFormatter alloc]init];
+            [format setDateFormat:@"yyyy-MM-dd"];
+            self.datestr = [format stringFromDate:[NSDate new]];
+        }
+        
+        
         [self.datePicker setLocale:[[NSLocale alloc]initWithLocaleIdentifier:@"zh_Hans_CN"]];
         [self.datePicker setCalendar:[NSCalendar currentCalendar]];
         [self.datePicker addTarget:self action:@selector(clicldatepick:) forControlEvents:UIControlEventValueChanged];
         [self addSubview:self.datePicker];
         self.datePicker.frame = CGRectMake(0, CGRectGetHeight(self.btnBackView.frame), CGRectGetWidth(self.frame), CGRectGetHeight(self.frame) - CGRectGetHeight(self.btnBackView.frame));
-//        [self.datePicker mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.top.mas_equalTo(self.finish.mas_bottom).mas_equalTo(0);
-//            make.left.right.bottom.mas_equalTo(0);
-//        }];
+
         
         NSDateFormatter *forTime=[[NSDateFormatter alloc]init];
         [forTime setDateFormat:@"yyyy年MM月dd日"];

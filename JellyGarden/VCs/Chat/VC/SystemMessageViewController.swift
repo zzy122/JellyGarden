@@ -65,6 +65,29 @@ extension SystemMessageViewController
             RootViewController?.hideTheTabbar()
             RootNav().pushViewController(MessageBroastViewController(), animated: true)
             break
+        case 1:
+            RootNav().pushViewController(EarningsRemindViewController(), animated: true)
+            break
+        case 2:
+//            RootViewController?.hideTheTabbar()
+//            RootNav().pushViewController(MessageBroastViewController(), animated: true)
+            break
+        case 3:
+//            RootViewController?.hideTheTabbar()
+//            RootNav().pushViewController(CheckApplyforViewController(), animated: true)
+            break
+        case 4:
+            
+            RootNav().pushViewController(CheckApplyforViewController(), animated: true)
+            break
+        case 5:
+            RootViewController?.hideTheTabbar()
+            RootNav().pushViewController(CommentNoticeViewController(), animated: true)
+            break
+        case 0:
+            RootViewController?.hideTheTabbar()
+            RootNav().pushViewController(DepostNoticeViewController(), animated: true)
+            break
         default:
             break
         }

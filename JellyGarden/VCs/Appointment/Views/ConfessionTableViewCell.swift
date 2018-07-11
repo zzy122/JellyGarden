@@ -74,6 +74,15 @@ class ConfessionTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDa
     var tagModel:lonelySpeechDetaileModel?
     
     var isEnableDelete:Bool = false
+    {
+        didSet{
+            if isEnableDelete == false
+            {
+                self.headerView?.deleteBtn.isHidden = true
+                self.headerView?.leftMargin.constant = 10
+            }
+        }
+    }
     var detailModel:lonelySpeechDetaileModel? {
         didSet{
             self.bodyBackView.frame = CGRect.init(x: 10, y: self.headerBackView.frame.maxY + 10, width: ScreenWidth - 20, height: getBodyheight())
@@ -124,15 +133,26 @@ class ConfessionTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDa
             self.applyView?.ApplyStatus.setTitle("已结束", for: UIControlState.normal)
             self.applyView?.ApplyStatus.setTitleColor(UIColor.gray, for: UIControlState.normal)
             self.applyBackView.isHidden = !(detailModel?.need_signup ?? false)
-            
-            if (detailModel?.poster?.user_id != CurrentUserInfo?.data?.user_id) || !isEnableDelete  {
+           
+            if (detailModel?.poster?.user_id != CurrentUserInfo?.data?.user_id) || (isEnableDelete == false)  {
+                
                 self.headerView?.deleteBtn.isHidden = true
                 self.headerView?.leftMargin.constant = 10
+            }
+            else
+            {
+                self.headerView?.leftMargin.constant = 60
+                self.headerView?.deleteBtn.isHidden = false
             }
             
         }
     }
-    
+    override func setNeedsLayout() {
+        if (detailModel?.poster?.user_id != CurrentUserInfo?.data?.user_id) || (isEnableDelete == false)  {
+            self.headerView?.deleteBtn.isHidden = true
+            self.headerView?.leftMargin.constant = 10
+        }
+    }
     
     var commentAry:[commentsModel] = [] {
         didSet{
@@ -177,25 +197,6 @@ class ConfessionTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDa
         self.setTableViewFrame(view: self.tableView)
     
     }
-//    override func layoutSubviews() {
-//        self.setOrigiY()
-//    }
-//    func setOrigiY()  {
-//        self.applyBackView.frame = CGRect.init(x: 0, y: self.bodyBackView.frame.maxY, width: ScreenWidth, height: 45)
-////        if (detailModel?.poster?.user_id != CurrentUserInfo?.data?.user_id) || !isEnableDelete  {
-////            self.headerView?.deleteBtn.isHidden = true
-////            self.headerView?.leftMargin.constant = 10
-////        }
-//        self.headerBackView.setNeedsLayout()//重新布局
-//        self.bodyBackView.setNeedsLayout()//重新布局
-//        self.applyBackView.setNeedsLayout()//重新布局
-//        self.setTableViewFrame(view: self.tableView)
-//    }
-//    func getCellHeight() -> CGFloat {
-//        let topHeight:CGFloat = 50
-//        let bodyHeight = self.bodyBackView.frame.height
-//        return topHeight + bodyHeight
-//    }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -219,7 +220,9 @@ extension ConfessionTableViewCell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:CommentTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CommentTableViewCell", for: indexPath) as! CommentTableViewCell
         let model:commentsModel = self.commentAry[indexPath.row]
-        cell.nickNameLab.text = "\(model.publisher_name ?? ""):"
+        let nickName = model.publisher_name ?? ""
+        cell.title = nickName
+        cell.nickNameLab.text = nickName
         cell.commentLab.text = model.content ?? ""
         return cell
     }

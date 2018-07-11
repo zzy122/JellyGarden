@@ -22,8 +22,9 @@ class MainViewController: BaseMainViewController,UISearchBarDelegate,ResponderRo
             
             self.leftBtn.isHidden = false
             self.leftBtn.setTitle(cityStr, for: UIControlState.normal)
+            self.leftBtn.titleLabel?.font = kFont_system14
             self.leftBtn.setTitleColor(UIColor.gray, for: UIControlState.normal)
-            self.leftBtn.setImage(imageName(name: "选中"), for: UIControlState.normal)
+            self.leftBtn.setImage(imageName(name: "箭头-下"), for: UIControlState.normal)
             self.bodyView.tagLocalCity = cityStr
             self.leftBtn.sizeToFit()
         }
@@ -57,8 +58,11 @@ class MainViewController: BaseMainViewController,UISearchBarDelegate,ResponderRo
     }()
     lazy var searchBarBtn:UIButton = {
        
-        
-        let Btn = UIButton.init(frame: CGRect.init(x: 60, y: 10, width: ScreenWidth - 120, height: 40))
+        let view1 = UIView()
+        view1.backgroundColor = UIColor.clear
+        view1.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth - 160, height: 50)
+        let width = 170 * SCALE
+        let Btn = UIButton.init(frame: CGRect.init(x: (view1.bounds.width - width) / 2.0, y: (view1.bounds.size.height - 40 ) / 2.0, width: width, height: 35))
         Btn.layer.cornerRadius = 20.0
         Btn.backgroundColor = APPCustomGrayColor
         Btn.contentHorizontalAlignment = UIControlContentHorizontalAlignment.left
@@ -69,8 +73,8 @@ class MainViewController: BaseMainViewController,UISearchBarDelegate,ResponderRo
         Btn.contentEdgeInsets = UIEdgeInsets.init(top: 0, left: 10, bottom: 0, right: -10)
         Btn.setTitle("搜索", for: UIControlState.normal)
         Btn.addTarget(self, action: #selector(clickSearch), for: UIControlEvents.touchUpInside)
-        
-        self.navigationItem.titleView = Btn
+        view1.addSubview(Btn)
+        self.navigationItem.titleView = view1
         return Btn
         
     }()
@@ -98,17 +102,9 @@ class MainViewController: BaseMainViewController,UISearchBarDelegate,ResponderRo
         
     }
     override func clickRightBtn() {
-       RootViewController?.hideTheTabbar()
+//       RootViewController?.hideTheTabbar()
         
-//        let vc = UserBroadcastListViewController()
-//        vc.appiontModels = models ?? []
-        //                vc.isSelfBroadcast = (userInfoModel?.data?.user_id == CurrentUserInfo?.data?.user_id)
-        RootNav().pushViewController(AdministerPayAccountViewController(), animated: true)
-        
-// self.navigationController?.pushViewController(SettingViewController(), animated: true)
-//        self.navigationController?.pushViewController(IdentityAuthenticationViewController(), animated: true)
-        
-//        self.bodyView.tagSex = (bodyView.tagSex == .woman) ? .man : .woman
+        self.bodyView.tagSex = (bodyView.tagSex == .woman) ? .man : .woman
     }
     @objc func clickSearch(){
         self.navigationController?.pushViewController(SearchUserViewController(), animated: true)
@@ -198,4 +194,8 @@ class MainViewController: BaseMainViewController,UISearchBarDelegate,ResponderRo
     }
     */
 
+}
+extension MainViewController:TZImagePickerControllerDelegate
+{
+    
 }

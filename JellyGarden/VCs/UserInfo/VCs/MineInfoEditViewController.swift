@@ -142,16 +142,32 @@ extension MineInfoEditViewController: TagsViewDelegate {
     }
 }
 
-extension MineInfoEditViewController: PhotoPickerControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension MineInfoEditViewController: TZImagePickerControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
 
     
     /// 相册
     func showAlbum() {
-        let vc = QPPhotoPickerViewController(type: PageType.AllAlbum)
-        vc.imageSelectDelegate = self
-        vc.imageMaxSelectedNum = 1
-        present(vc, animated: true, completion: nil)
+        let vc = TZImagePickerController.init(maxImagesCount: 1, delegate: self)
+        vc?.allowPickingVideo = false
+        vc?.allowPickingImage = true
+        vc?.allowTakePicture = true
+        vc?.didFinishPickingPhotosHandle = {(photos, assets, isSelectOriginalPhoto) in
+            let yunmodel: AliyunUploadModel = AliyunUploadModel()
+            yunmodel.image = photos?.last
+            yunmodel.fileName = "\(getImageName()).png"
+            AliyunManager.share.uploadImagesToAliyun(imageModels: [yunmodel]) { (urls, successCount, faileCount, state) in
+                if state == UploadImageState.success {
+                    self.userInfo.data?.avatar = urls?.last
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                }
+            }
+            
+        }
+        self.present(vc!, animated: true, completion: nil)
+        
     }
     
     /// 相机
@@ -180,22 +196,6 @@ extension MineInfoEditViewController: PhotoPickerControllerDelegate, UIImagePick
         }
     }
     
-    func onImageSelectFinished(images: [PHAsset]) {
-        QPPhotoDataAndImage.getImagesAndDatas(photos: images) { (array) in
-            let model:QPPhotoImageModel? = array?.last
-            let yunmodel: AliyunUploadModel = AliyunUploadModel()
-            yunmodel.image = model?.bigImage
-            yunmodel.fileName = "\(getImageName()).png"
-            AliyunManager.share.uploadImagesToAliyun(imageModels: [yunmodel]) { (urls, successCount, faileCount, state) in
-                if state == UploadImageState.success {
-                    self.userInfo.data?.avatar = urls?.last
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
-                }
-            }
-        }
-    }
     
     /// 昵称
     func editNickName() {

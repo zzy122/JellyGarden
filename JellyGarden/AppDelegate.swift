@@ -26,16 +26,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.sharedManager().shouldResignOnTouchOutside = true
         IQKeyboardManager.sharedManager().shouldToolbarUsesTextFieldTintColor = true
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
+        //
         
-//        JPUSHService.setup(withOption: launchOptions, appKey: JPushAppKey, channel: JPushChannel, apsForProduction: false)//开发环境
+       
         
         OtherApplication.share.setYumeng()
         OtherApplication.share.setRongIM()
-//        OtherApplication.share.setWeiChatPay()
+        
+        OtherApplication.share.setJPushSetting()
+        
+        JPUSHService.setup(withOption: launchOptions, appKey: JPushAppKey, channel: JPushChannel, apsForProduction: false)//开发环境
+        //jpush自定义消息
+        NotificationCenter.default.addObserver(self, selector: #selector(networkDidReceiveMessage(notification:)), name: NSNotification.Name.jpfNetworkDidReceiveMessage, object: nil)
         // Override point for customization after application launch.
         return true
     }
-    
+    @objc func networkDidReceiveMessage(notification:NSNotification){//自定义的消息
+        DebugLog(message: "收到的通知:\(String(describing: notification.userInfo))")
+        
+        
+    }
     func setRootViewController(vc:UIViewController) {
         self.window?.rootViewController = vc
         self.window?.makeKeyAndVisible()
@@ -71,20 +81,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
      @param userInfo 推送时指定的参数
      @param completionHandler 完成回调
      */
-//    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-//        DebugLog(message: "收到推送消息的内容:\(userInfo.description)")
-//        JPUSHService.handleRemoteNotification(userInfo)
-//        completionHandler(.newData)
-//    }
-//    
-//    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
-//        JPUSHService.handleRemoteNotification(userInfo)
-//    }
-//    
-//    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-//        JPUSHService.registerDeviceToken(deviceToken)
-//    }
-//    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        DebugLog(message: "收到推送消息的内容:\(userInfo.description)")
+        JPUSHService.handleRemoteNotification(userInfo)
+        completionHandler(.newData)
+    }
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
+        JPUSHService.handleRemoteNotification(userInfo)
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        JPUSHService.registerDeviceToken(deviceToken)
+    }
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

@@ -16,7 +16,6 @@ class CommentTableViewCell: UITableViewCell {
     var title:String = ""  {
         didSet{
             self.titleWidth.constant = title.zzy.caculateWidth(font: kFont_system15)
-//            self.nickNameLab.frame = CGRect.init(x: self.nickNameLab.frame.origin.x, y: self.nickNameLab.frame.origin.y, width: title.zzy.caculateWidth(font: kFont_system15), height: 20)
         }
     }
     

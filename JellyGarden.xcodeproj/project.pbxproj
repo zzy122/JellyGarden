@@ -139,24 +139,23 @@
 		5A574BFB20CA204A00C59276 /* ReckonTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A574BFA20CA204A00C59276 /* ReckonTimeView.swift */; };
 		5A574C0920CA396800C59276 /* LookImageBodyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A574C0820CA396800C59276 /* LookImageBodyView.swift */; };
 		5A574C0B20CA397A00C59276 /* LookImageBodyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A574C0A20CA397A00C59276 /* LookImageBodyView.xib */; };
-		5A7CEC5F20D5314700B7A7C9 /* QPPhotoPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7CEC5E20D5314700B7A7C9 /* QPPhotoPickerViewController.swift */; };
-		5A7CEC6120D5316900B7A7C9 /* QPPhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7CEC6020D5316900B7A7C9 /* QPPhotoCollectionViewController.swift */; };
-		5A7CEC6320D5318E00B7A7C9 /* QPPhotoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7CEC6220D5318E00B7A7C9 /* QPPhotoListViewController.swift */; };
-		5A7CEC6520D531B900B7A7C9 /* PhotoPickerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7CEC6420D531B900B7A7C9 /* PhotoPickerConfig.swift */; };
-		5A7CEC6720D531DC00B7A7C9 /* QPPhotoFetchOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7CEC6620D531DC00B7A7C9 /* QPPhotoFetchOptions.swift */; };
-		5A7CEC6A20D5321300B7A7C9 /* QPPhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A7CEC6820D5321300B7A7C9 /* QPPhotoCell.xib */; };
-		5A7CEC6B20D5321300B7A7C9 /* QPPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7CEC6920D5321300B7A7C9 /* QPPhotoCell.swift */; };
-		5A7CEC6D20D5324400B7A7C9 /* AlbumToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7CEC6C20D5324400B7A7C9 /* AlbumToolbarView.swift */; };
-		5A7CEC7020D532D600B7A7C9 /* QPPhotoListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A7CEC6E20D532D600B7A7C9 /* QPPhotoListCell.xib */; };
-		5A7CEC7120D532D600B7A7C9 /* QPPhotoListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7CEC6F20D532D600B7A7C9 /* QPPhotoListCell.swift */; };
-		5A7CEC7320D5331100B7A7C9 /* QPPhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7CEC7220D5331100B7A7C9 /* QPPhotoModel.swift */; };
-		5A7CEC7520D5335200B7A7C9 /* QPPhotoPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7CEC7420D5335200B7A7C9 /* QPPhotoPreviewViewController.swift */; };
-		5A7CEC7720D5337F00B7A7C9 /* QPPhotoPreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7CEC7620D5337E00B7A7C9 /* QPPhotoPreviewCell.swift */; };
-		5A7CEC7920D5339500B7A7C9 /* PhotoPreviewBottomBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7CEC7820D5339500B7A7C9 /* PhotoPreviewBottomBarView.swift */; };
-		5A7CEC7B20D533AE00B7A7C9 /* PhotoPreviewToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7CEC7A20D533AE00B7A7C9 /* PhotoPreviewToolbarView.swift */; };
-		5A7CEC7D20D53BF300B7A7C9 /* QPPhotoDataAndImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7CEC7C20D53BF300B7A7C9 /* QPPhotoDataAndImage.swift */; };
-		5A7CEC7F20D53C4800B7A7C9 /* QPPhotoImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7CEC7E20D53C4800B7A7C9 /* QPPhotoImageModel.swift */; };
-		5A7CEC8120D53D1600B7A7C9 /* PhotoImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7CEC8020D53D1500B7A7C9 /* PhotoImageManager.swift */; };
+		5A6C938620F4EA4200E57223 /* NSBundle+TZImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A6C936A20F4EA4200E57223 /* NSBundle+TZImagePicker.m */; };
+		5A6C938720F4EA4200E57223 /* TZAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A6C936C20F4EA4200E57223 /* TZAssetCell.m */; };
+		5A6C938820F4EA4200E57223 /* TZAssetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A6C936E20F4EA4200E57223 /* TZAssetModel.m */; };
+		5A6C938920F4EA4200E57223 /* TZGifPhotoPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A6C937020F4EA4200E57223 /* TZGifPhotoPreviewController.m */; };
+		5A6C938A20F4EA4200E57223 /* TZImageCropManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A6C937220F4EA4200E57223 /* TZImageCropManager.m */; };
+		5A6C938B20F4EA4200E57223 /* TZImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A6C937420F4EA4200E57223 /* TZImageManager.m */; };
+		5A6C938C20F4EA4200E57223 /* TZImagePickerController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5A6C937520F4EA4200E57223 /* TZImagePickerController.bundle */; };
+		5A6C938D20F4EA4200E57223 /* TZImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A6C937720F4EA4200E57223 /* TZImagePickerController.m */; };
+		5A6C938E20F4EA4200E57223 /* TZLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A6C937920F4EA4200E57223 /* TZLocationManager.m */; };
+		5A6C938F20F4EA4200E57223 /* TZPhotoPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A6C937B20F4EA4200E57223 /* TZPhotoPickerController.m */; };
+		5A6C939020F4EA4200E57223 /* TZPhotoPreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A6C937D20F4EA4200E57223 /* TZPhotoPreviewCell.m */; };
+		5A6C939120F4EA4200E57223 /* TZPhotoPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A6C937F20F4EA4200E57223 /* TZPhotoPreviewController.m */; };
+		5A6C939220F4EA4200E57223 /* TZProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A6C938120F4EA4200E57223 /* TZProgressView.m */; };
+		5A6C939320F4EA4200E57223 /* TZVideoPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A6C938320F4EA4200E57223 /* TZVideoPlayerController.m */; };
+		5A6C939420F4EA4200E57223 /* UIView+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A6C938520F4EA4200E57223 /* UIView+Layout.m */; };
+		5A6C939720F59D0800E57223 /* LookImageSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6C939520F59D0800E57223 /* LookImageSettingViewController.swift */; };
+		5A6C939820F59D0800E57223 /* LookImageSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A6C939620F59D0800E57223 /* LookImageSettingViewController.xib */; };
 		5A7CEC8420D53EBB00B7A7C9 /* AddImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7CEC8220D53EBB00B7A7C9 /* AddImageCollectionViewCell.swift */; };
 		5A7CEC8520D53EBB00B7A7C9 /* AddImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A7CEC8320D53EBB00B7A7C9 /* AddImageCollectionViewCell.xib */; };
 		5A7FC43620EB181000D7E137 /* PermissionLookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7FC43520EB181000D7E137 /* PermissionLookView.swift */; };
@@ -245,6 +244,10 @@
 		5AC3FCE720DA29E000226946 /* PersonInfoImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC3FCE620DA29E000226946 /* PersonInfoImageView.swift */; };
 		5ACEFC8120D4F6E000BE5241 /* NormalAppointmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACEFC7F20D4F6E000BE5241 /* NormalAppointmentViewController.swift */; };
 		5ACEFC8220D4F6E000BE5241 /* NormalAppointmentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ACEFC8020D4F6E000BE5241 /* NormalAppointmentViewController.xib */; };
+		5AD77E7D20F3857B0002FC22 /* EarningsRemindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD77E7C20F3857B0002FC22 /* EarningsRemindViewController.swift */; };
+		5AD77E7F20F385D80002FC22 /* CheckApplyforViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD77E7E20F385D80002FC22 /* CheckApplyforViewController.swift */; };
+		5AD77E8120F386480002FC22 /* CommentNoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD77E8020F386480002FC22 /* CommentNoticeViewController.swift */; };
+		5AD77E8320F3867E0002FC22 /* DepostNoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD77E8220F3867E0002FC22 /* DepostNoticeViewController.swift */; };
 		5ADD1A3020C952FB004504B3 /* PersonalInfoHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADD1A2F20C952FB004504B3 /* PersonalInfoHeader.swift */; };
 		5ADD1A3220C9530E004504B3 /* PersonalInfoHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ADD1A3120C9530E004504B3 /* PersonalInfoHeader.xib */; };
 		5AE28C6420F1252C00EE2973 /* EditPersonalIntroduceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE28C6320F1252C00EE2973 /* EditPersonalIntroduceViewController.swift */; };
@@ -480,24 +483,37 @@
 		5A574BFA20CA204A00C59276 /* ReckonTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReckonTimeView.swift; sourceTree = "<group>"; };
 		5A574C0820CA396800C59276 /* LookImageBodyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookImageBodyView.swift; sourceTree = "<group>"; };
 		5A574C0A20CA397A00C59276 /* LookImageBodyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LookImageBodyView.xib; sourceTree = "<group>"; };
-		5A7CEC5E20D5314700B7A7C9 /* QPPhotoPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QPPhotoPickerViewController.swift; sourceTree = "<group>"; };
-		5A7CEC6020D5316900B7A7C9 /* QPPhotoCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QPPhotoCollectionViewController.swift; sourceTree = "<group>"; };
-		5A7CEC6220D5318E00B7A7C9 /* QPPhotoListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QPPhotoListViewController.swift; sourceTree = "<group>"; };
-		5A7CEC6420D531B900B7A7C9 /* PhotoPickerConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPickerConfig.swift; sourceTree = "<group>"; };
-		5A7CEC6620D531DC00B7A7C9 /* QPPhotoFetchOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QPPhotoFetchOptions.swift; sourceTree = "<group>"; };
-		5A7CEC6820D5321300B7A7C9 /* QPPhotoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QPPhotoCell.xib; sourceTree = "<group>"; };
-		5A7CEC6920D5321300B7A7C9 /* QPPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QPPhotoCell.swift; sourceTree = "<group>"; };
-		5A7CEC6C20D5324400B7A7C9 /* AlbumToolbarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumToolbarView.swift; sourceTree = "<group>"; };
-		5A7CEC6E20D532D600B7A7C9 /* QPPhotoListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QPPhotoListCell.xib; sourceTree = "<group>"; };
-		5A7CEC6F20D532D600B7A7C9 /* QPPhotoListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QPPhotoListCell.swift; sourceTree = "<group>"; };
-		5A7CEC7220D5331100B7A7C9 /* QPPhotoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QPPhotoModel.swift; sourceTree = "<group>"; };
-		5A7CEC7420D5335200B7A7C9 /* QPPhotoPreviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QPPhotoPreviewViewController.swift; sourceTree = "<group>"; };
-		5A7CEC7620D5337E00B7A7C9 /* QPPhotoPreviewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QPPhotoPreviewCell.swift; sourceTree = "<group>"; };
-		5A7CEC7820D5339500B7A7C9 /* PhotoPreviewBottomBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPreviewBottomBarView.swift; sourceTree = "<group>"; };
-		5A7CEC7A20D533AE00B7A7C9 /* PhotoPreviewToolbarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPreviewToolbarView.swift; sourceTree = "<group>"; };
-		5A7CEC7C20D53BF300B7A7C9 /* QPPhotoDataAndImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QPPhotoDataAndImage.swift; sourceTree = "<group>"; };
-		5A7CEC7E20D53C4800B7A7C9 /* QPPhotoImageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QPPhotoImageModel.swift; sourceTree = "<group>"; };
-		5A7CEC8020D53D1500B7A7C9 /* PhotoImageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoImageManager.swift; sourceTree = "<group>"; };
+		5A6C936920F4EA4200E57223 /* NSBundle+TZImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+TZImagePicker.h"; sourceTree = "<group>"; };
+		5A6C936A20F4EA4200E57223 /* NSBundle+TZImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+TZImagePicker.m"; sourceTree = "<group>"; };
+		5A6C936B20F4EA4200E57223 /* TZAssetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZAssetCell.h; sourceTree = "<group>"; };
+		5A6C936C20F4EA4200E57223 /* TZAssetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZAssetCell.m; sourceTree = "<group>"; };
+		5A6C936D20F4EA4200E57223 /* TZAssetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZAssetModel.h; sourceTree = "<group>"; };
+		5A6C936E20F4EA4200E57223 /* TZAssetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZAssetModel.m; sourceTree = "<group>"; };
+		5A6C936F20F4EA4200E57223 /* TZGifPhotoPreviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZGifPhotoPreviewController.h; sourceTree = "<group>"; };
+		5A6C937020F4EA4200E57223 /* TZGifPhotoPreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZGifPhotoPreviewController.m; sourceTree = "<group>"; };
+		5A6C937120F4EA4200E57223 /* TZImageCropManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZImageCropManager.h; sourceTree = "<group>"; };
+		5A6C937220F4EA4200E57223 /* TZImageCropManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZImageCropManager.m; sourceTree = "<group>"; };
+		5A6C937320F4EA4200E57223 /* TZImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZImageManager.h; sourceTree = "<group>"; };
+		5A6C937420F4EA4200E57223 /* TZImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZImageManager.m; sourceTree = "<group>"; };
+		5A6C937520F4EA4200E57223 /* TZImagePickerController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TZImagePickerController.bundle; sourceTree = "<group>"; };
+		5A6C937620F4EA4200E57223 /* TZImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZImagePickerController.h; sourceTree = "<group>"; };
+		5A6C937720F4EA4200E57223 /* TZImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZImagePickerController.m; sourceTree = "<group>"; };
+		5A6C937820F4EA4200E57223 /* TZLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZLocationManager.h; sourceTree = "<group>"; };
+		5A6C937920F4EA4200E57223 /* TZLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZLocationManager.m; sourceTree = "<group>"; };
+		5A6C937A20F4EA4200E57223 /* TZPhotoPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZPhotoPickerController.h; sourceTree = "<group>"; };
+		5A6C937B20F4EA4200E57223 /* TZPhotoPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZPhotoPickerController.m; sourceTree = "<group>"; };
+		5A6C937C20F4EA4200E57223 /* TZPhotoPreviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZPhotoPreviewCell.h; sourceTree = "<group>"; };
+		5A6C937D20F4EA4200E57223 /* TZPhotoPreviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZPhotoPreviewCell.m; sourceTree = "<group>"; };
+		5A6C937E20F4EA4200E57223 /* TZPhotoPreviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZPhotoPreviewController.h; sourceTree = "<group>"; };
+		5A6C937F20F4EA4200E57223 /* TZPhotoPreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZPhotoPreviewController.m; sourceTree = "<group>"; };
+		5A6C938020F4EA4200E57223 /* TZProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZProgressView.h; sourceTree = "<group>"; };
+		5A6C938120F4EA4200E57223 /* TZProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZProgressView.m; sourceTree = "<group>"; };
+		5A6C938220F4EA4200E57223 /* TZVideoPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZVideoPlayerController.h; sourceTree = "<group>"; };
+		5A6C938320F4EA4200E57223 /* TZVideoPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZVideoPlayerController.m; sourceTree = "<group>"; };
+		5A6C938420F4EA4200E57223 /* UIView+Layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Layout.h"; sourceTree = "<group>"; };
+		5A6C938520F4EA4200E57223 /* UIView+Layout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Layout.m"; sourceTree = "<group>"; };
+		5A6C939520F59D0800E57223 /* LookImageSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookImageSettingViewController.swift; sourceTree = "<group>"; };
+		5A6C939620F59D0800E57223 /* LookImageSettingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LookImageSettingViewController.xib; sourceTree = "<group>"; };
 		5A7CEC8220D53EBB00B7A7C9 /* AddImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		5A7CEC8320D53EBB00B7A7C9 /* AddImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddImageCollectionViewCell.xib; sourceTree = "<group>"; };
 		5A7FC43520EB181000D7E137 /* PermissionLookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionLookView.swift; sourceTree = "<group>"; };
@@ -600,6 +616,10 @@
 		5AC3FCE620DA29E000226946 /* PersonInfoImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonInfoImageView.swift; sourceTree = "<group>"; };
 		5ACEFC7F20D4F6E000BE5241 /* NormalAppointmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalAppointmentViewController.swift; sourceTree = "<group>"; };
 		5ACEFC8020D4F6E000BE5241 /* NormalAppointmentViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NormalAppointmentViewController.xib; sourceTree = "<group>"; };
+		5AD77E7C20F3857B0002FC22 /* EarningsRemindViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarningsRemindViewController.swift; sourceTree = "<group>"; };
+		5AD77E7E20F385D80002FC22 /* CheckApplyforViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckApplyforViewController.swift; sourceTree = "<group>"; };
+		5AD77E8020F386480002FC22 /* CommentNoticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentNoticeViewController.swift; sourceTree = "<group>"; };
+		5AD77E8220F3867E0002FC22 /* DepostNoticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepostNoticeViewController.swift; sourceTree = "<group>"; };
 		5ADD1A2F20C952FB004504B3 /* PersonalInfoHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoHeader.swift; sourceTree = "<group>"; };
 		5ADD1A3120C9530E004504B3 /* PersonalInfoHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonalInfoHeader.xib; sourceTree = "<group>"; };
 		5AE28C6320F1252C00EE2973 /* EditPersonalIntroduceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPersonalIntroduceViewController.swift; sourceTree = "<group>"; };
@@ -881,6 +901,10 @@
 				5AB8F47720E2136800429108 /* MessgeCenterViewController.swift */,
 				5AB8F48120E22F2200429108 /* SystemMessageViewController.swift */,
 				5A0CC16220F2F3F40056A30E /* MessageBroastViewController.swift */,
+				5AD77E7C20F3857B0002FC22 /* EarningsRemindViewController.swift */,
+				5AD77E7E20F385D80002FC22 /* CheckApplyforViewController.swift */,
+				5AD77E8020F386480002FC22 /* CommentNoticeViewController.swift */,
+				5AD77E8220F3867E0002FC22 /* DepostNoticeViewController.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -954,29 +978,40 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		5A7CEC2520D52F8300B7A7C9 /* 相册 */ = {
+		5A6C936820F4EA4200E57223 /* TZImagePickerController */ = {
 			isa = PBXGroup;
 			children = (
-				5A7CEC8020D53D1500B7A7C9 /* PhotoImageManager.swift */,
-				5A7CEC7E20D53C4800B7A7C9 /* QPPhotoImageModel.swift */,
-				5A7CEC7C20D53BF300B7A7C9 /* QPPhotoDataAndImage.swift */,
-				5A7CEC7A20D533AE00B7A7C9 /* PhotoPreviewToolbarView.swift */,
-				5A7CEC6C20D5324400B7A7C9 /* AlbumToolbarView.swift */,
-				5A7CEC7820D5339500B7A7C9 /* PhotoPreviewBottomBarView.swift */,
-				5A7CEC7220D5331100B7A7C9 /* QPPhotoModel.swift */,
-				5A7CEC7620D5337E00B7A7C9 /* QPPhotoPreviewCell.swift */,
-				5A7CEC6F20D532D600B7A7C9 /* QPPhotoListCell.swift */,
-				5A7CEC6E20D532D600B7A7C9 /* QPPhotoListCell.xib */,
-				5A7CEC6920D5321300B7A7C9 /* QPPhotoCell.swift */,
-				5A7CEC6820D5321300B7A7C9 /* QPPhotoCell.xib */,
-				5A7CEC6420D531B900B7A7C9 /* PhotoPickerConfig.swift */,
-				5A7CEC6620D531DC00B7A7C9 /* QPPhotoFetchOptions.swift */,
-				5A7CEC6220D5318E00B7A7C9 /* QPPhotoListViewController.swift */,
-				5A7CEC7420D5335200B7A7C9 /* QPPhotoPreviewViewController.swift */,
-				5A7CEC6020D5316900B7A7C9 /* QPPhotoCollectionViewController.swift */,
-				5A7CEC5E20D5314700B7A7C9 /* QPPhotoPickerViewController.swift */,
+				5A6C936920F4EA4200E57223 /* NSBundle+TZImagePicker.h */,
+				5A6C936A20F4EA4200E57223 /* NSBundle+TZImagePicker.m */,
+				5A6C936B20F4EA4200E57223 /* TZAssetCell.h */,
+				5A6C936C20F4EA4200E57223 /* TZAssetCell.m */,
+				5A6C936D20F4EA4200E57223 /* TZAssetModel.h */,
+				5A6C936E20F4EA4200E57223 /* TZAssetModel.m */,
+				5A6C936F20F4EA4200E57223 /* TZGifPhotoPreviewController.h */,
+				5A6C937020F4EA4200E57223 /* TZGifPhotoPreviewController.m */,
+				5A6C937120F4EA4200E57223 /* TZImageCropManager.h */,
+				5A6C937220F4EA4200E57223 /* TZImageCropManager.m */,
+				5A6C937320F4EA4200E57223 /* TZImageManager.h */,
+				5A6C937420F4EA4200E57223 /* TZImageManager.m */,
+				5A6C937520F4EA4200E57223 /* TZImagePickerController.bundle */,
+				5A6C937620F4EA4200E57223 /* TZImagePickerController.h */,
+				5A6C937720F4EA4200E57223 /* TZImagePickerController.m */,
+				5A6C937820F4EA4200E57223 /* TZLocationManager.h */,
+				5A6C937920F4EA4200E57223 /* TZLocationManager.m */,
+				5A6C937A20F4EA4200E57223 /* TZPhotoPickerController.h */,
+				5A6C937B20F4EA4200E57223 /* TZPhotoPickerController.m */,
+				5A6C937C20F4EA4200E57223 /* TZPhotoPreviewCell.h */,
+				5A6C937D20F4EA4200E57223 /* TZPhotoPreviewCell.m */,
+				5A6C937E20F4EA4200E57223 /* TZPhotoPreviewController.h */,
+				5A6C937F20F4EA4200E57223 /* TZPhotoPreviewController.m */,
+				5A6C938020F4EA4200E57223 /* TZProgressView.h */,
+				5A6C938120F4EA4200E57223 /* TZProgressView.m */,
+				5A6C938220F4EA4200E57223 /* TZVideoPlayerController.h */,
+				5A6C938320F4EA4200E57223 /* TZVideoPlayerController.m */,
+				5A6C938420F4EA4200E57223 /* UIView+Layout.h */,
+				5A6C938520F4EA4200E57223 /* UIView+Layout.m */,
 			);
-			path = "相册";
+			path = TZImagePickerController;
 			sourceTree = "<group>";
 		};
 		5A7FC46D20EF9F2500D7E137 /* GesterVC */ = {
@@ -1137,8 +1172,8 @@
 		5AE9CC8520C8C68C0057CFF3 /* Appointment */ = {
 			isa = PBXGroup;
 			children = (
+				5A6C936820F4EA4200E57223 /* TZImagePickerController */,
 				5AEB823E20D8BFCE002A7E69 /* Models */,
-				5A7CEC2520D52F8300B7A7C9 /* 相册 */,
 				5AEC519820C9105E00DD0099 /* VCs */,
 				5AEC519B20C9105E00DD0099 /* Views */,
 			);
@@ -1295,6 +1330,8 @@
 				5A7FC48420F0F91C00D7E137 /* DebangPhoneViewController.xib */,
 				5AE28C6320F1252C00EE2973 /* EditPersonalIntroduceViewController.swift */,
 				5AE28C6920F1F3F900EE2973 /* BlackListViewController.swift */,
+				5A6C939520F59D0800E57223 /* LookImageSettingViewController.swift */,
+				5A6C939620F59D0800E57223 /* LookImageSettingViewController.xib */,
 			);
 			path = VCs;
 			sourceTree = "<group>";
@@ -1474,7 +1511,7 @@
 					5A80C48E20BFDB150033CAF8 = {
 						CreatedOnToolsVersion = 9.1;
 						LastSwiftMigration = 0910;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 1;
@@ -1530,12 +1567,12 @@
 				5A0455D520CD68310041D309 /* ConfessionTableViewCellBody.xib in Resources */,
 				5A27B38320E5272A0028D5FF /* ManUserInfoTabbar.xib in Resources */,
 				5A7FC48620F0F91C00D7E137 /* DebangPhoneViewController.xib in Resources */,
-				5A7CEC7020D532D600B7A7C9 /* QPPhotoListCell.xib in Resources */,
 				5A4E325E20C7B6650051FE00 /* FillInfoView.xib in Resources */,
 				5A80C49D20BFDB150033CAF8 /* LaunchScreen.storyboard in Resources */,
 				5A4E326F20C7BEAE0051FE00 /* PaySelectView.xib in Resources */,
 				5A7FC46A20EE7F6700D7E137 /* DisAgreeRefundView.xib in Resources */,
 				5A4E322B20C792540051FE00 /* ApplayForCodeViewController.xib in Resources */,
+				5A6C938C20F4EA4200E57223 /* TZImagePickerController.bundle in Resources */,
 				5AC3FCE320D9E8A400226946 /* StepView.xib in Resources */,
 				5A015E9520C4FDBF00EC8A96 /* FinishViewController.xib in Resources */,
 				5A7FC46020EE70DB00D7E137 /* DepositManagerTableViewCell.xib in Resources */,
@@ -1543,7 +1580,6 @@
 				5A4E322720C782E60051FE00 /* InvitationCodeViewController.xib in Resources */,
 				5A0455CF20CD67580041D309 /* ConfessionTableViewCell.xib in Resources */,
 				5A4E326020C7B6650051FE00 /* InvitationCodeView.xib in Resources */,
-				5A7CEC6A20D5321300B7A7C9 /* QPPhotoCell.xib in Resources */,
 				5A459AD920D1721D00C0A6FA /* CommentTableViewCell.xib in Resources */,
 				5A27B38720E530460028D5FF /* CommentStarView.xib in Resources */,
 				5ADD1A3220C9530E004504B3 /* PersonalInfoHeader.xib in Resources */,
@@ -1586,6 +1622,7 @@
 				5ACEFC8220D4F6E000BE5241 /* NormalAppointmentViewController.xib in Resources */,
 				5A015EC920C5834D00EC8A96 /* SexViewController.xib in Resources */,
 				5A27B38D20E9D52D0028D5FF /* IdentityAuthenticationViewController.xib in Resources */,
+				5A6C939820F59D0800E57223 /* LookImageSettingViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1808,25 +1845,26 @@
 				5A0455D720CD683E0041D309 /* ConfessionTableViewCellBody.swift in Sources */,
 				5A459ACF20D166A400C0A6FA /* ZZYLinkTextData.m in Sources */,
 				5A459AD520D166A400C0A6FA /* ZZYCoreTextData.m in Sources */,
+				5A6C939120F4EA4200E57223 /* TZPhotoPreviewController.m in Sources */,
 				5E6AE16120DF3BC400901D43 /* MineRedPhoneCell.swift in Sources */,
-				5A7CEC6120D5316900B7A7C9 /* QPPhotoCollectionViewController.swift in Sources */,
 				5AFA3B6E20D78AE40052FC42 /* WCLRecordEncoder.m in Sources */,
 				5A0455D120CD680E0041D309 /* ConfessionTableViewCellHeader.swift in Sources */,
 				5A574BEF20C961D400C59276 /* PersonInfoViewController.swift in Sources */,
+				5AD77E8320F3867E0002FC22 /* DepostNoticeViewController.swift in Sources */,
 				5A459ADD20D2095B00C0A6FA /* UserLoginAction.swift in Sources */,
 				5A459AEB20D3640900C0A6FA /* AliyunUpload.m in Sources */,
 				5A015E9720C50C1100EC8A96 /* UMengAcion.swift in Sources */,
-				5A7CEC7720D5337F00B7A7C9 /* QPPhotoPreviewCell.swift in Sources */,
 				5A015ED720C647BF00EC8A96 /* AlertAction.swift in Sources */,
 				5A120C3F20DB70EF004A9DCF /* AliyunManager.swift in Sources */,
 				5A80C4EE20BFF8130033CAF8 /* obj.m in Sources */,
 				5A459ADB20D1753900C0A6FA /* CommentGetHeight.swift in Sources */,
 				5A7FC45520EE5D4B00D7E137 /* WalletTableViewCell.swift in Sources */,
+				5A6C938920F4EA4200E57223 /* TZGifPhotoPreviewController.m in Sources */,
 				5A015EC120C57A2600EC8A96 /* TimingButton.m in Sources */,
 				5AC3FCDF20D9E86800226946 /* StepView.swift in Sources */,
+				5AD77E7D20F3857B0002FC22 /* EarningsRemindViewController.swift in Sources */,
 				5A015E2420C2477E00EC8A96 /* DepositMessage.m in Sources */,
 				5A7FC48820F105DE00D7E137 /* WalletHeaderView.swift in Sources */,
-				5A7CEC7920D5339500B7A7C9 /* PhotoPreviewBottomBarView.swift in Sources */,
 				5A120C5420DE869A004A9DCF /* DepositMessageCell.m in Sources */,
 				5A1F3AA320DF374800CB98CD /* TagStatueMessage.m in Sources */,
 				5A1F3AB820DF6CA700CB98CD /* HeadCollectionView.m in Sources */,
@@ -1835,6 +1873,7 @@
 				5A27B38120E527180028D5FF /* ManUserInfoTabbar.swift in Sources */,
 				5A1F3ACE20E0EA2A00CB98CD /* ReadDestroryView.m in Sources */,
 				5A015ECD20C62BBC00EC8A96 /* FillInformationFirstViewController.swift in Sources */,
+				5A6C938B20F4EA4200E57223 /* TZImageManager.m in Sources */,
 				5A459AEF20D3B60400C0A6FA /* ManPersonInfoViewController.swift in Sources */,
 				5A196ADE20C6C704002EC0EE /* BottomPickerCell.swift in Sources */,
 				5A7FC46C20EE7F7A00D7E137 /* DisAgreeRefundView.swift in Sources */,
@@ -1842,11 +1881,12 @@
 				5A45D9DA20E33AA600D2B4CE /* ManFillInformationViewController.swift in Sources */,
 				5A27B38C20E9D52D0028D5FF /* IdentityAuthenticationViewController.swift in Sources */,
 				5A7FC45220EE5AB200D7E137 /* WalletViewController.swift in Sources */,
-				5A7CEC7120D532D600B7A7C9 /* QPPhotoListCell.swift in Sources */,
 				5E6AE16F20DF972C00901D43 /* TagsView.swift in Sources */,
+				5A6C938A20F4EA4200E57223 /* TZImageCropManager.m in Sources */,
 				5A80C4D120BFE1050033CAF8 /* ShowShadow.swift in Sources */,
 				5ADD1A3020C952FB004504B3 /* PersonalInfoHeader.swift in Sources */,
 				5AF4A75220D6260100CFDDD6 /* EnlistAppiontViewController.swift in Sources */,
+				5A6C939720F59D0800E57223 /* LookImageSettingViewController.swift in Sources */,
 				5A45D9D720E27A0800D2B4CE /* VipPageModel.swift in Sources */,
 				5A80C4CE20BFE1050033CAF8 /* NetCostom.swift in Sources */,
 				5AE9CC8720C8C8D70057CFF3 /* LocationCitys.swift in Sources */,
@@ -1854,8 +1894,8 @@
 				5A1F3ABC20DF6CA700CB98CD /* RCLocationView.m in Sources */,
 				5AE28C6A20F1F3F900EE2973 /* BlackListViewController.swift in Sources */,
 				5A80C4D520BFE1620033CAF8 /* APPCustomDefine.swift in Sources */,
+				5A6C939220F4EA4200E57223 /* TZProgressView.m in Sources */,
 				5A0CC16320F2F3F40056A30E /* MessageBroastViewController.swift in Sources */,
-				5A7CEC6720D531DC00B7A7C9 /* QPPhotoFetchOptions.swift in Sources */,
 				5A015EBD20C577F200EC8A96 /* RegisterViewController.swift in Sources */,
 				5A7FC44420EB7FF300D7E137 /* ADDPayCountViewController.swift in Sources */,
 				5AB8F47F20E221FA00429108 /* SystemMessageTableViewCell.swift in Sources */,
@@ -1865,8 +1905,6 @@
 				5AF4A75820D64E5E00CFDDD6 /* EnlistDetailTableViewCell.swift in Sources */,
 				5A80C4CC20BFE1050033CAF8 /* CustomDefine.swift in Sources */,
 				5AE9CC8120C7FE0F0057CFF3 /* UserModel.swift in Sources */,
-				5A7CEC6520D531B900B7A7C9 /* PhotoPickerConfig.swift in Sources */,
-				5A7CEC7520D5335200B7A7C9 /* QPPhotoPreviewViewController.swift in Sources */,
 				5A0CC16120F240160056A30E /* IdentityModel.swift in Sources */,
 				5AE9CC9120C8D9AE0057CFF3 /* ChatListViewController.swift in Sources */,
 				5A574BEC20C95FE300C59276 /* BodyImageCollectionViewCell.swift in Sources */,
@@ -1874,9 +1912,9 @@
 				5A459ACE20D166A400C0A6FA /* TextStyleModel.m in Sources */,
 				5A80C4CF20BFE1050033CAF8 /* CustomProtocol.swift in Sources */,
 				5A1F3AB920DF6CA700CB98CD /* RCAnnotation.m in Sources */,
+				5A6C938E20F4EA4200E57223 /* TZLocationManager.m in Sources */,
 				5A459AD320D166A400C0A6FA /* TextStyle.m in Sources */,
 				5AB8F48220E22F2200429108 /* SystemMessageViewController.swift in Sources */,
-				5A7CEC7320D5331100B7A7C9 /* QPPhotoModel.swift in Sources */,
 				5A7FC45820EE656900D7E137 /* DepositRuleView.swift in Sources */,
 				5A0455C820CD2DF80041D309 /* RelationTypeAlert.swift in Sources */,
 				5AEC519320C902C300DD0099 /* ImageRightBtn.swift in Sources */,
@@ -1889,7 +1927,7 @@
 				5A120C4120DB875E004A9DCF /* CommentView.swift in Sources */,
 				5A0CC16620F2F4170056A30E /* MessageBroastTableViewCell.swift in Sources */,
 				5A80C4D020BFE1050033CAF8 /* CustomFunc.swift in Sources */,
-				5A7CEC6B20D5321300B7A7C9 /* QPPhotoCell.swift in Sources */,
+				5A6C938D20F4EA4200E57223 /* TZImagePickerController.m in Sources */,
 				5A27B37D20E4DCFA0028D5FF /* ReadImageModel.swift in Sources */,
 				5A4E326120C7B6650051FE00 /* PackageView.swift in Sources */,
 				5A120C4F20DD3CDD004A9DCF /* ChatRoomViewController.swift in Sources */,
@@ -1913,13 +1951,12 @@
 				5A4E325D20C7B6650051FE00 /* FillInfoView.swift in Sources */,
 				5A0455CE20CD67580041D309 /* ConfessionTableViewCell.swift in Sources */,
 				5AF4A75520D64D5500CFDDD6 /* EnlistDetailViewController.swift in Sources */,
-				5A7CEC5F20D5314700B7A7C9 /* QPPhotoPickerViewController.swift in Sources */,
-				5A7CEC6320D5318E00B7A7C9 /* QPPhotoListViewController.swift in Sources */,
 				5A015EB020C5413300EC8A96 /* VipCenterViewController.swift in Sources */,
 				5AE9CC9720C8E3A10057CFF3 /* ITemScrollView.swift in Sources */,
 				5A459AD020D166A400C0A6FA /* ZZYDisplayView.m in Sources */,
 				5A196AD720C6C1ED002EC0EE /* PickerTableViewCell.swift in Sources */,
 				5A7FC45F20EE70DB00D7E137 /* DepositManagerTableViewCell.swift in Sources */,
+				5A6C938F20F4EA4200E57223 /* TZPhotoPickerController.m in Sources */,
 				5A459AF120D3E9F500C0A6FA /* ManpersonInfoHeader.swift in Sources */,
 				5A7FC45C20EE706600D7E137 /* DepositManagerViewController.swift in Sources */,
 				5AFA3B6F20D78AE40052FC42 /* WCLRecordEngine.m in Sources */,
@@ -1939,8 +1976,8 @@
 				5E6AE16E20DF972C00901D43 /* TagCell.swift in Sources */,
 				5A80C49320BFDB150033CAF8 /* AppDelegate.swift in Sources */,
 				5A380F6520DE88E400CC4152 /* DepositView.m in Sources */,
+				5A6C938720F4EA4200E57223 /* TZAssetCell.m in Sources */,
 				5A1F3AC820E0DDC900CB98CD /* ReadDestroyCell.m in Sources */,
-				5A7CEC7F20D53C4800B7A7C9 /* QPPhotoImageModel.swift in Sources */,
 				5A80C4DE20BFE5780033CAF8 /* BaseTableViewController.swift in Sources */,
 				5A459AD820D1721D00C0A6FA /* CommentTableViewCell.swift in Sources */,
 				5A1F3ABD20DF6CA700CB98CD /* RealTimeLocationEndCell.m in Sources */,
@@ -1949,7 +1986,6 @@
 				5A574BF320C97FCD00C59276 /* UserInfoTabbar.swift in Sources */,
 				5A7FC46320EE739C00D7E137 /* DepositRefundTableViewCell.swift in Sources */,
 				5AB8F47620E1F45100429108 /* LookDestoryImage.swift in Sources */,
-				5A7CEC6D20D5324400B7A7C9 /* AlbumToolbarView.swift in Sources */,
 				5AE9CC9320C8DEEF0057CFF3 /* BaseMainViewController.swift in Sources */,
 				5A4E322D20C7A1FB0051FE00 /* FillInformationThirdViewController.swift in Sources */,
 				5AC3FCE520DA01DF00226946 /* LineView.swift in Sources */,
@@ -1962,11 +1998,10 @@
 				5A459AE120D2202900C0A6FA /* FillCondition.swift in Sources */,
 				5A7FC47820EF9F3200D7E137 /* CSIIGesturePasswordController.m in Sources */,
 				5A015ED520C6392A00EC8A96 /* APPCustomAlertView.swift in Sources */,
+				5AD77E7F20F385D80002FC22 /* CheckApplyforViewController.swift in Sources */,
 				5A380F6B20DE91DE00CC4152 /* ReadDestroyMessage.m in Sources */,
-				5A7CEC8120D53D1600B7A7C9 /* PhotoImageManager.swift in Sources */,
 				5A7FC46620EE7C8A00D7E137 /* NoDepositRecord.swift in Sources */,
 				5A1F3ABA20DF6CA700CB98CD /* RCAnnotationView.m in Sources */,
-				5A7CEC7B20D533AE00B7A7C9 /* PhotoPreviewToolbarView.swift in Sources */,
 				5A4E326720C7B6650051FE00 /* VipCenterView.swift in Sources */,
 				5A7FC43A20EB5A2D00D7E137 /* SettingViewController.swift in Sources */,
 				5A1F3AC020DF6CA700CB98CD /* RealTimeLocationViewController.m in Sources */,
@@ -1977,13 +2012,18 @@
 				5A1F3ABE20DF6CA700CB98CD /* RealTimeLocationStartCell.m in Sources */,
 				5A7FC47C20EF9F3200D7E137 /* CSIIGesturePasswordView.m in Sources */,
 				5A4E326520C7B6650051FE00 /* VipBodyViewCell.swift in Sources */,
+				5A6C938820F4EA4200E57223 /* TZAssetModel.m in Sources */,
 				5A459AED20D3B1D400C0A6FA /* WomanBroadcastViewController.swift in Sources */,
 				5A80C4D220BFE1050033CAF8 /* CustomExtension.swift in Sources */,
 				5A4E326320C7B6650051FE00 /* PaySelectView.swift in Sources */,
 				5A196ADA20C6C481002EC0EE /* PikerModel.swift in Sources */,
-				5A7CEC7D20D53BF300B7A7C9 /* QPPhotoDataAndImage.swift in Sources */,
+				5A6C938620F4EA4200E57223 /* NSBundle+TZImagePicker.m in Sources */,
+				5A6C939020F4EA4200E57223 /* TZPhotoPreviewCell.m in Sources */,
 				5A0455CB20CD5BCF0041D309 /* ZZYdatepicker.m in Sources */,
 				5A80C4D620BFE1620033CAF8 /* APPCustomFunc.swift in Sources */,
+				5A6C939420F4EA4200E57223 /* UIView+Layout.m in Sources */,
+				5A6C939320F4EA4200E57223 /* TZVideoPlayerController.m in Sources */,
+				5AD77E8120F386480002FC22 /* CommentNoticeViewController.swift in Sources */,
 				5A4E322620C782E60051FE00 /* InvitationCodeViewController.swift in Sources */,
 				5AC3FCE720DA29E000226946 /* PersonInfoImageView.swift in Sources */,
 				5A7FC44A20ED0B9200D7E137 /* AdministerPayAccountViewController.swift in Sources */,
@@ -2159,8 +2199,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = JellyGarden/JellyGarden.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = V7993MA8C9;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 3W4VK75454;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2176,10 +2216,10 @@
 					"$(PROJECT_DIR)/JellyGarden/Library/XGPUSH",
 					"$(PROJECT_DIR)/JellyGarden/Library/JsmsSDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "cn.com.JellyGarden-test";
+				PRODUCT_BUNDLE_IDENTIFIER = cn.com.JellyGarden;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "7c09b77d-7d26-41ae-b8fb-2e68837b1acd";
+				PROVISIONING_PROFILE_SPECIFIER = JellyGardenDevelpmentProfile;
 				SWIFT_OBJC_BRIDGING_HEADER = "JellyGarden/JellyGarden-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2197,8 +2237,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = JellyGarden/JellyGarden.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = V7993MA8C9;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 3W4VK75454;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2214,10 +2254,10 @@
 					"$(PROJECT_DIR)/JellyGarden/Library/XGPUSH",
 					"$(PROJECT_DIR)/JellyGarden/Library/JsmsSDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "cn.com.JellyGarden-test";
+				PRODUCT_BUNDLE_IDENTIFIER = cn.com.JellyGarden;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "7c09b77d-7d26-41ae-b8fb-2e68837b1acd";
+				PROVISIONING_PROFILE_SPECIFIER = JellyGardenDevelpmentProfile;
 				SWIFT_OBJC_BRIDGING_HEADER = "JellyGarden/JellyGarden-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
 				SWIFT_VERSION = 4.0;

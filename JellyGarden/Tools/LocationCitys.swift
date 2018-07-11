@@ -11,9 +11,7 @@ import CoreLocation
 
 class LocationCitys: NSObject {
     typealias locationMessage = (String?,CLLocation?) -> Void
-    
-    
-    
+
     var locationBlock:locationMessage?
     
     lazy var locationM: CLLocationManager = {//info.plist add :Privacy - Location Always Usage Description

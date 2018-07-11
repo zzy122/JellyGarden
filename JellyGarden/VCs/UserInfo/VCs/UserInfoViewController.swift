@@ -8,13 +8,13 @@
 
 import UIKit
 import Photos
-class UserInfoViewController: BaseMainViewController {
+class UserInfoViewController: BaseMainViewController,TZImagePickerControllerDelegate {
 
 
-    var currentOppiontConditions:[String] = {
-        return CurrentUserInfo?.data?.appointment_condition ?? []
-        
-    }()//选择的约会条件
+//    var currentOppiontConditions:[String] = {
+//        return CurrentUserInfo?.data?.appointment_condition ?? []
+//
+//    }()//选择的约会条件
     
     @IBOutlet weak var tableView: UITableView! {
         didSet {
@@ -120,6 +120,11 @@ extension UserInfoViewController {
     }
     
     func touchService() {
+        RootViewController?.hideTheTabbar()
+        let vc = RCConversationViewController.init(conversationType: RCConversationType.ConversationType_CUSTOMERSERVICE, targetId: "KEFU149269681191160")
+        vc?.title = "客服功能尚未开启"
+        self.navigationController?.pushViewController(vc!, animated: true)
+        
         
     }
     
@@ -172,11 +177,19 @@ extension UserInfoViewController: ResponderRouter {
             
             break
         case ClickFirstPhoto:
-            let vc = QPPhotoPickerViewController(type: PageType.AllAlbum)
-            vc.imageSelectDelegate = self
-            //最大照片数量
-            vc.imageMaxSelectedNum = 4
-            self.present(vc, animated: true, completion: nil)
+            
+            let vc = TZImagePickerController.init(maxImagesCount: 4, delegate: self)
+            vc?.allowPickingVideo = false
+            vc?.allowPickingImage = true
+            vc?.allowTakePicture = true
+            vc?.didFinishPickingPhotosHandle = {(photos, assets, isSelectOriginalPhoto) in
+                self.uploadImage(sender: photos)
+                
+            }
+            
+            self.present(vc!, animated: true, completion: nil)
+            
+
             
             
             break
@@ -220,7 +233,7 @@ extension UserInfoViewController: UITableViewDelegate {
                 RootNav().pushViewController(EditPersonalIntroduceViewController(), animated: true)
                 break
             case 3://约会条件
-                AlertAction.share.showbottomPicker(title: title, maxCount: 4, dataAry: FillCondition.share.appointmentConditionListModel, currentData: currentOppiontConditions, backData: { (result) in
+                AlertAction.share.showbottomPicker(title: title, maxCount: 4, dataAry: FillCondition.share.appointmentConditionListModel, currentData: CurrentUserInfo?.data?.appointment_condition, backData: { (result) in
                    self.conditionAction(result: result)
                     
                 })
@@ -340,7 +353,7 @@ extension UserInfoViewController: UITableViewDataSource {
                 cell?.detailTextLabel?.textColor = hexString(hex: "999999")
                 cell?.detailTextLabel?.font = UIFont.systemFont(ofSize: 12)
             }
-            
+            cell?.accessoryView = nil
             cell?.accessoryType = .disclosureIndicator
             if 1 == indexPath.section && 0 == indexPath.row {
                 cell?.textLabel?.text = "绑定手机"
@@ -396,14 +409,10 @@ extension UserInfoViewController: UITableViewDataSource {
         }
     }
 }
-extension UserInfoViewController:PhotoPickerControllerDelegate
+extension UserInfoViewController
 {
-    func onImageSelectFinished(images: [PHAsset]) {
-        QPPhotoDataAndImage.getImagesAndDatas(photos: images) { (array) in
-            self.uploadImage(sender: array)
-        }
-    }
-    func uploadImage(sender:[QPPhotoImageModel]?)
+   
+    func uploadImage(sender:[Image]?)
     {
         guard let photos = sender ,photos.count > 0 else {
             return
@@ -412,7 +421,7 @@ extension UserInfoViewController:PhotoPickerControllerDelegate
         for imageModel in photos
         {
             let model = AliyunUploadModel()
-            model.image = imageModel.bigImage
+            model.image = imageModel
             model.fileName = getImageName()
             models.append(model)
             

@@ -10,15 +10,19 @@ import UIKit
 
 class UMengAcion: NSObject {
     class func uMengShare() {
+        UMSocialUIManager.setPreDefinePlatforms([NSNumber.init(value: Int8(UMSocialPlatformType.QQ.rawValue)),NSNumber.init(value: Int8(UMSocialPlatformType.wechatSession.rawValue))])
+        
         
         UMSocialUIManager.showShareMenuViewInWindow {(platformType, shreMenuView) in
+           
+            
+            let shareObject:UMShareObject =
+                UMShareObject.shareObject(withTitle: "测试标题", descr: "这里是图片分享测试", thumImage: "https://mobile.umeng.com/images/pic/home/social/img-1.png") as! UMShareObject
+//            shareObject.webpageUrl = "http://mobile.umeng.com/social";
+            
+            
             let messageObject:UMSocialMessageObject = UMSocialMessageObject.init()
-            messageObject.text = "友盟分享测试(图片)，swift3.0 Xcode8.1 umeng6.0.3 作者：targetcloud"
-            let shareObject:UMShareWebpageObject = UMShareWebpageObject.init()
-            shareObject.title = "图片分享"
-            shareObject.descr = "这里是图片分享测试，作者：targetcloud"
-            shareObject.thumbImage = UIImage.init(named: "icon")
-            shareObject.webpageUrl = "https://www.baidu.com"
+//            messageObject.text = "友盟分享测试(图片)，swift3.0 Xcode8.1 umeng6.0.3 作者：targetcloud"
             messageObject.shareObject = shareObject;
             UMSocialManager.default().share(to: platformType, messageObject: messageObject, currentViewController: self, completion: { (shareResponse, error) in
                 if let error1 = error {

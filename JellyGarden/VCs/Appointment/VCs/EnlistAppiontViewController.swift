@@ -8,7 +8,7 @@
 
 import UIKit
 import Photos
-class EnlistAppiontViewController: BaseMainViewController,UICollectionViewDelegate,UICollectionViewDataSource,PhotoPickerControllerDelegate,ResponderRouter,UITextViewDelegate {
+class EnlistAppiontViewController: BaseMainViewController,UICollectionViewDelegate,UICollectionViewDataSource,ResponderRouter,TZImagePickerControllerDelegate,UITextViewDelegate {
     var images:[String] = []
     @IBOutlet weak var collectionTagLab: UILabel!
     @IBOutlet weak var dingjinBackView: UIView!
@@ -21,7 +21,7 @@ class EnlistAppiontViewController: BaseMainViewController,UICollectionViewDelega
     @IBOutlet weak var contentTextview: UITextView!
     @IBOutlet weak var appiontTime: UILabel!
     @IBOutlet weak var appiontDate: UILabel!
-    var urlPaths:[String]? = []
+//    var urlPaths:[String]? = []
     
     var dateStr:String = ""
     var timeStr:String = ""
@@ -83,7 +83,8 @@ class EnlistAppiontViewController: BaseMainViewController,UICollectionViewDelega
     @IBAction func clickTimeBtn(_ sender: UIButton) {
          contentTextview.resignFirstResponder()
         AlertAction.share.showbottomPicker(title: "约会时间", maxCount: 1, dataAry: appiontTimeAry, currentData: [self.appiontTime.text ?? ""]) { (result) in
-            self.appiontDate.text = result.last
+            self.appiontTime.text = result.last
+            self.timeStr = result.last ?? ""
         }
     }
     @IBAction func clickDateBtn(_ sender: UIButton) {
@@ -120,8 +121,8 @@ class EnlistAppiontViewController: BaseMainViewController,UICollectionViewDelega
         }
         
         let timeStamp = stringToTimeStamp(dateStr: dateStr)
-        let url = continueString(strAry: urlPaths,separetStr:",")
-        let params:[String:Any] = ["poster_id":CurrentUserInfo?.data?.user_id ?? "","time":timeStamp,"city":appiontLab.text ?? "","requirement":contentTextview.text,"attachment":url,"deposit": Int(dingjinFiled.text ?? "0") ?? 0,"need_signup":true]
+        let url = images.joined(separator: ",")
+        let params:[String:Any] = ["poster_id":CurrentUserInfo?.data?.user_id ?? "","time":timeStamp,"city":appiontLab.text ?? "","requirement":contentTextview.text,"attachment":url,"deposit": Int(dingjinFiled.text ?? "0") ?? 0,"need_signup":1]
         TargetManager.share.issueAppiont(params: params) { (success, error) in
             if success {
                 DebugLog(message: "发布成功")
@@ -197,22 +198,20 @@ extension EnlistAppiontViewController
         }
     }
     func addPhotos(){
-        //初始化并弹出相册页
-        let vc = QPPhotoPickerViewController(type: PageType.AllAlbum)
-        vc.imageSelectDelegate = self
-        //最大照片数量
-        vc.imageMaxSelectedNum = 6
-        vc.alreadySelectedImageNum = images.count
-        self.present(vc, animated: true, completion: nil)
-    }
-    //添加照片的协议方法
-    func onImageSelectFinished(images: [PHAsset]) {
-        QPPhotoDataAndImage.getImagesAndDatas(photos: images) { (array) in
-            self.uploadImage(sender: array)
+        let vc = TZImagePickerController.init(maxImagesCount: 6, delegate: self)
+        vc?.allowPickingVideo = false
+        vc?.allowPickingImage = true
+        vc?.allowTakePicture = true
+        vc?.didFinishPickingPhotosHandle = {(photos, assets, isSelectOriginalPhoto) in
+            self.uploadImage(sender: photos)
             
         }
+        self.present(vc!, animated: true, completion: nil)
+        //初始化并弹出相册页
+       
     }
-    func uploadImage(sender:[QPPhotoImageModel]?)
+ 
+    func uploadImage(sender:[Image]?)
     {
         guard let photos = sender ,photos.count > 0 else {
             return
@@ -221,7 +220,7 @@ extension EnlistAppiontViewController
         for imageModel in photos
         {
             let model = AliyunUploadModel()
-            model.image = imageModel.smallImage
+            model.image = imageModel
             model.fileName = getImageName()
             models.append(model)
             

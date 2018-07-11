@@ -8,8 +8,8 @@
 
 import UIKit
 import UserNotifications
-//class OtherApplication: NSObject,WXApiDelegate,JPUSHRegisterDelegate,RCIMUserInfoDataSource,RCIMGroupMemberDataSource,RCIMConnectionStatusDelegate,RCIMReceiveMessageDelegate {
-class OtherApplication: NSObject,WXApiDelegate,RCIMUserInfoDataSource,RCIMGroupMemberDataSource,RCIMConnectionStatusDelegate,RCIMReceiveMessageDelegate {
+
+class OtherApplication: NSObject,WXApiDelegate,RCIMUserInfoDataSource,RCIMGroupMemberDataSource,RCIMConnectionStatusDelegate,RCIMReceiveMessageDelegate,JPUSHRegisterDelegate {
 
     static var share = OtherApplication()
     private override init() {
@@ -24,7 +24,7 @@ class OtherApplication: NSObject,WXApiDelegate,RCIMUserInfoDataSource,RCIMGroupM
         
         UMSocialManager.default().setPlaform(.QQ, appKey: QQShareKey, appSecret: QQShareSecrete, redirectURL: "http://www.qq.com/music.html")
         
-        UMSocialManager.default().setPlaform(.sina, appKey: WeiBoShareKey, appSecret: weiBoShareSecret, redirectURL: "http://open.weibo.com/apps/80911205/privilege/oauth")
+//        UMSocialManager.default().setPlaform(.sina, appKey: WeiBoShareKey, appSecret: weiBoShareSecret, redirectURL: "http://open.weibo.com/apps/80911205/privilege/oauth")
     }
     func setRongIM () {
         //设置appkey
@@ -61,11 +61,11 @@ class OtherApplication: NSObject,WXApiDelegate,RCIMUserInfoDataSource,RCIMGroupM
 //        }
     }
     func setJPushSetting() {
-//        let entity = JPUSHRegisterEntity()
-//        entity.types = Int(UInt8(JPAuthorizationOptions.alert.rawValue) | UInt8(JPAuthorizationOptions.badge.rawValue) | UInt8(JPAuthorizationOptions.sound.rawValue))
-//
-//        JPUSHService.register(forRemoteNotificationConfig: entity, delegate: self)
-//
+        let entity = JPUSHRegisterEntity()
+        entity.types = Int(UInt8(JPAuthorizationOptions.alert.rawValue) | UInt8(JPAuthorizationOptions.badge.rawValue) | UInt8(JPAuthorizationOptions.sound.rawValue))
+
+        JPUSHService.register(forRemoteNotificationConfig: entity, delegate: self)
+
 
     }
     func connectRongyun(token:String,complectiom:@escaping (Bool) -> Void) {
@@ -91,23 +91,27 @@ class OtherApplication: NSObject,WXApiDelegate,RCIMUserInfoDataSource,RCIMGroupM
    
     
     //JPUSHRegisterDelegate
-//    @available(iOS 10.0, *)
-//    func jpushNotificationCenter(_ center: UNUserNotificationCenter!, didReceive response: UNNotificationResponse!, withCompletionHandler completionHandler: (() -> Void)!) {
-//        let userinfo = response.notification.request.content.userInfo
-//        
-//        if (response.notification.request.trigger?.isKind(of: UNPushNotificationTrigger.self))! {
-//            JPUSHService.handleRemoteNotification(userinfo)
-//        }
-//        completionHandler()
-//    }
-//    @available(iOS 10.0, *)
-//    func jpushNotificationCenter(_ center: UNUserNotificationCenter!, willPresent notification: UNNotification!, withCompletionHandler completionHandler: ((Int) -> Void)!) {
-//        let info = notification.request.content.userInfo
-//        if (notification.request.trigger?.isKind(of: UNPushNotificationTrigger.self))! {
-//            JPUSHService.handleRemoteNotification(info)
-//        }
-//        completionHandler(Int(UNNotificationPresentationOptions.alert.rawValue | UNNotificationPresentationOptions.sound.rawValue | UNNotificationPresentationOptions.badge.rawValue))
-//    }
+    @available(iOS 10.0, *)
+    func jpushNotificationCenter(_ center: UNUserNotificationCenter!, didReceive response: UNNotificationResponse!, withCompletionHandler completionHandler: (() -> Void)!) {
+        let userinfo = response.notification.request.content.userInfo
+        
+        if (response.notification.request.trigger?.isKind(of: UNPushNotificationTrigger.self))! {//后台挂起收到推送消息 点击推送消息进去之后执行
+            
+            DebugLog(message: "收到推送消息\(userinfo)")
+            
+            
+            JPUSHService.handleRemoteNotification(userinfo)
+        }
+        completionHandler()
+    }
+    @available(iOS 10.0, *)
+    func jpushNotificationCenter(_ center: UNUserNotificationCenter!, willPresent notification: UNNotification!, withCompletionHandler completionHandler: ((Int) -> Void)!) {
+        let info = notification.request.content.userInfo
+        if (notification.request.trigger?.isKind(of: UNPushNotificationTrigger.self))! {
+            JPUSHService.handleRemoteNotification(info)
+        }
+        completionHandler(Int(UNNotificationPresentationOptions.alert.rawValue | UNNotificationPresentationOptions.sound.rawValue | UNNotificationPresentationOptions.badge.rawValue))
+    }
     
     
     

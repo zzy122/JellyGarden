@@ -14,7 +14,7 @@ let PLUGIN_BOARD_GIFT_FILE_TAG = 2005//礼物
 let PLUGIN_BOARD_VIDEO_FILE_TAG = 2001//视频通话
 let PLUGIN_BOARD_READ_FILE_TAG = 2002//阅后即焚
 let PLUGIN_BOARD_REDBAG_FILE_TAG = 2003//红包
-class ChatRoomViewController: RCConversationViewController,RCRealTimeLocationObserver,PhotoPickerControllerDelegate {
+class ChatRoomViewController: RCConversationViewController,RCRealTimeLocationObserver,TZImagePickerControllerDelegate{
     var realTimeLocation:RCRealTimeLocationProxy?
     let lookDestoryView:LookDestoryImage = {
         let view1 = LookDestoryImage.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight))
@@ -70,11 +70,24 @@ class ChatRoomViewController: RCConversationViewController,RCRealTimeLocationObs
         case PLUGIN_BOARD_REDBAG_FILE_TAG://红包
             break
         case PLUGIN_BOARD_READ_FILE_TAG://阅后即焚
-            let vc = QPPhotoPickerViewController(type: PageType.AllAlbum)
-            vc.imageSelectDelegate = self
-            //最大照片数量
-            vc.imageMaxSelectedNum = 1
-            self.present(vc, animated: true, completion: nil)
+            let vc = TZImagePickerController.init(maxImagesCount: 1, delegate: self)
+            vc?.allowPickingVideo = false
+            vc?.allowPickingImage = true
+            vc?.allowTakePicture = true
+            vc?.didFinishPickingPhotosHandle = {(photos, assets, isSelectOriginalPhoto) in
+                let yunmodel:AliyunUploadModel = AliyunUploadModel()
+                yunmodel.image = photos?.last
+                yunmodel.fileName = "\(getImageName()).png"
+                AliyunManager.share.uploadImagesToAliyun(imageModels: [yunmodel], complection: { (urls, failCount, successCount, state) in
+                    if state == UploadImageState.success
+                    {
+                        self.sendImage(url: urls?.last ?? "")
+                    }
+                })
+            }
+            
+            self.present(vc!, animated: true, completion: nil)
+            
             break
         case PLUGIN_BOARD_VIDEO_FILE_TAG://视频
             alertHud(title: "收费项目");
@@ -254,23 +267,6 @@ class ChatRoomViewController: RCConversationViewController,RCRealTimeLocationObs
 extension ChatRoomViewController
 {
     
-   
-    func onImageSelectFinished(images: [PHAsset]) {
-        
-        QPPhotoDataAndImage.getImagesAndDatas(photos: images) { (array) in
-            let model:QPPhotoImageModel? = array?.last
-            let yunmodel:AliyunUploadModel = AliyunUploadModel()
-            yunmodel.image = model?.bigImage
-            yunmodel.fileName = "\(getImageName()).png"
-            AliyunManager.share.uploadImagesToAliyun(imageModels: [yunmodel], complection: { (urls, failCount, successCount, state) in
-                if state == UploadImageState.success
-                {
-                    self.sendImage(url: urls?.last ?? "")
-                }
-            })
-            
-        }
-    }
     func sendImage(url:String)
     {
         let mes:ReadDestroyMessage  = ReadDestroyMessage.init()

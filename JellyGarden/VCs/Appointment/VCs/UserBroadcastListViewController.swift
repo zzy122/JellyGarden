@@ -9,7 +9,7 @@
 import UIKit
 import MJRefresh
 import Photos
-class UserBroadcastListViewController: BaseMainTableViewController,PhotoPickerControllerDelegate,ResponderRouter {
+class UserBroadcastListViewController: BaseMainTableViewController,TZImagePickerControllerDelegate,ResponderRouter {
     var userid:String = ""
     var reportTag:Int = 0
     var isSelfBroadcast:Bool = false
@@ -189,14 +189,6 @@ extension UserBroadcastListViewController
             return
         }
         if name == ClickReportName {//点击产看报名
-            let vc = QPPhotoPickerViewController(type: PageType.AllAlbum)
-            vc.imageSelectDelegate = self
-            //最大照片数量
-            vc.imageMaxSelectedNum = 1
-            self.present(vc, animated: true, completion: nil)
-            self.reportTag = index
-        }
-        if ClickEnlistBtn == name {//我要报名
             guard appiontModels[index].poster?.user_id == CurrentUserInfo?.data?.user_id else
             {
                 alertHud(title: "只有本人才能查看报名哦")
@@ -206,6 +198,19 @@ extension UserBroadcastListViewController
             let vc = EnlistDetailViewController()
             vc.detaileModel = appiontModels[index]
             RootNav().pushViewController(vc, animated: true)
+        }
+        if ClickEnlistBtn == name {//我要报名
+            let vc = TZImagePickerController.init(maxImagesCount: 1, delegate: self)
+            vc?.allowPickingVideo = false
+            vc?.allowPickingImage = true
+            vc?.allowTakePicture = true
+            vc?.didFinishPickingPhotosHandle = {(photos, assets, isSelectOriginalPhoto) in
+                self.uploadImage(sender: photos)
+                
+            }
+            self.present(vc!, animated: true, completion: nil)
+            self.reportTag = index
+            
         }
         if name == ClickLikeChangeBtn  {//点赞
             guard let index = info as? Int else{
@@ -294,12 +299,8 @@ extension UserBroadcastListViewController
 extension UserBroadcastListViewController
 {
     //添加照片的协议方法
-    func onImageSelectFinished(images: [PHAsset]) {
-        QPPhotoDataAndImage.getImagesAndDatas(photos: images) { (array) in
-            self.uploadImage(sender: array)
-        }
-    }
-    func uploadImage(sender:[QPPhotoImageModel]?)
+   
+    func uploadImage(sender:[Image]?)
     {
         guard let photos = sender ,photos.count > 0 else {
             return
@@ -308,7 +309,7 @@ extension UserBroadcastListViewController
         for imageModel in photos
         {
             let model = AliyunUploadModel()
-            model.image = imageModel.smallImage
+            model.image = imageModel
             model.fileName = getImageName()
             models.append(model)
             

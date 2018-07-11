@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -27,32 +27,11 @@
                         <constraint firstAttribute="height" constant="200" id="YAR-nq-Ifx"/>
                     </constraints>
                 </imageView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I14-nQ-3ov">
-                    <rect key="frame" x="250" y="587" width="125" height="80"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FZu-bq-a3O">
-                            <rect key="frame" x="42" y="20" width="40" height="40"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="40" id="IG2-bl-Bfx"/>
-                                <constraint firstAttribute="width" constant="40" id="lhA-tF-KRC"/>
-                            </constraints>
-                            <state key="normal" backgroundImage="微博"/>
-                            <connections>
-                                <action selector="clickWeiBoBtn:" destination="-1" eventType="touchUpInside" id="a8H-cd-EiV"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstItem="FZu-bq-a3O" firstAttribute="centerX" secondItem="I14-nQ-3ov" secondAttribute="centerX" id="Rkr-Sj-ldE"/>
-                        <constraint firstItem="FZu-bq-a3O" firstAttribute="centerY" secondItem="I14-nQ-3ov" secondAttribute="centerY" id="UTB-fR-08a"/>
-                    </constraints>
-                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lqo-WT-YGN">
-                    <rect key="frame" x="0.0" y="587" width="125" height="80"/>
+                    <rect key="frame" x="0.0" y="587" width="187.5" height="80"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JxI-Pv-5rm">
-                            <rect key="frame" x="42" y="20" width="40" height="40"/>
+                            <rect key="frame" x="73.5" y="20" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="40" id="IQ2-HF-gIi"/>
                                 <constraint firstAttribute="height" constant="40" id="qyJ-g4-tJH"/>
@@ -71,10 +50,10 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kyz-QY-X6V">
-                    <rect key="frame" x="125" y="587" width="125" height="80"/>
+                    <rect key="frame" x="187.5" y="587" width="187.5" height="80"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r76-08-X9l">
-                            <rect key="frame" x="42" y="20" width="40" height="40"/>
+                            <rect key="frame" x="73.5" y="20" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="40" id="3Bb-56-jQ0"/>
                                 <constraint firstAttribute="height" constant="40" id="Bhh-Cr-Zcp"/>
@@ -177,20 +156,16 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="Lqo-WT-YGN" firstAttribute="height" secondItem="kyz-QY-X6V" secondAttribute="height" id="1pj-o2-GrV"/>
-                <constraint firstItem="I14-nQ-3ov" firstAttribute="leading" secondItem="kyz-QY-X6V" secondAttribute="trailing" id="3SM-Cj-Ihv"/>
                 <constraint firstItem="Lqo-WT-YGN" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="4X6-jH-mK1"/>
-                <constraint firstAttribute="trailing" secondItem="I14-nQ-3ov" secondAttribute="trailing" id="5Dx-O2-adL"/>
                 <constraint firstItem="kyz-QY-X6V" firstAttribute="leading" secondItem="Lqo-WT-YGN" secondAttribute="trailing" id="5PZ-bP-tGW"/>
-                <constraint firstItem="I14-nQ-3ov" firstAttribute="top" secondItem="ZAT-dJ-OFu" secondAttribute="bottom" constant="8" id="68g-mK-HDh"/>
-                <constraint firstItem="I14-nQ-3ov" firstAttribute="width" secondItem="kyz-QY-X6V" secondAttribute="width" id="7W6-CM-SEO"/>
                 <constraint firstItem="6VB-g2-rpq" firstAttribute="top" secondItem="IKH-0w-Hlw" secondAttribute="bottom" id="B9I-5V-TMU"/>
                 <constraint firstItem="IKH-0w-Hlw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="CYI-1G-ULw"/>
                 <constraint firstItem="a91-ec-1QO" firstAttribute="centerY" secondItem="ZAT-dJ-OFu" secondAttribute="centerY" id="Jyq-7I-P8a"/>
-                <constraint firstItem="I14-nQ-3ov" firstAttribute="bottom" secondItem="kyz-QY-X6V" secondAttribute="bottom" id="Nc4-pj-6ch"/>
+                <constraint firstAttribute="trailing" secondItem="kyz-QY-X6V" secondAttribute="trailing" id="LQO-9g-kEt"/>
+                <constraint firstItem="Lqo-WT-YGN" firstAttribute="top" secondItem="ZAT-dJ-OFu" secondAttribute="bottom" constant="8" id="NTG-oS-eth"/>
                 <constraint firstItem="6VB-g2-rpq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="OeR-u3-Xz4"/>
                 <constraint firstItem="Lqo-WT-YGN" firstAttribute="bottom" secondItem="kyz-QY-X6V" secondAttribute="bottom" id="YIT-iA-Lwr"/>
                 <constraint firstAttribute="trailing" secondItem="6VB-g2-rpq" secondAttribute="trailing" id="cSG-f3-34y"/>
-                <constraint firstItem="I14-nQ-3ov" firstAttribute="height" secondItem="kyz-QY-X6V" secondAttribute="height" id="dO0-j9-Z7g"/>
                 <constraint firstAttribute="trailing" secondItem="IKH-0w-Hlw" secondAttribute="trailing" id="h2h-Gn-gTA"/>
                 <constraint firstAttribute="bottom" secondItem="Lqo-WT-YGN" secondAttribute="bottom" id="hZ2-4K-oIb"/>
                 <constraint firstItem="ZAT-dJ-OFu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="iKD-3S-qtU"/>
@@ -208,6 +183,5 @@
         <image name="bg" width="187" height="104"/>
         <image name="loginicon" width="50" height="50"/>
         <image name="微信" width="40" height="40"/>
-        <image name="微博" width="40" height="40"/>
     </resources>
 </document>

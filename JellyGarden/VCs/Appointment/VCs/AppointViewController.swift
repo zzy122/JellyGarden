@@ -9,7 +9,7 @@
 import UIKit
 import MJRefresh
 import Photos
-class AppointViewController: BaseMainTableViewController,ResponderRouter,PhotoPickerControllerDelegate {
+class AppointViewController: BaseMainTableViewController,ResponderRouter,TZImagePickerControllerDelegate {
     
 //    var appiontOpration:AppiontDataManager = {
 //        let manager = AppiontDataManager.share
@@ -17,10 +17,26 @@ class AppointViewController: BaseMainTableViewController,ResponderRouter,PhotoPi
 //        return manager
 //
 //    }()
+    var cityStr:String = LocalCityName {
+        didSet{
+            LocalCityName = cityStr
+            MM_WARNING//此处设置请求params  self.params 发起请求
+//            self.params[]
+            
+            self.leftBtn.isHidden = false
+            self.leftBtn.setTitle(cityStr, for: UIControlState.normal)
+            self.leftBtn.titleLabel?.font = kFont_system14
+            self.leftBtn.setTitleColor(UIColor.gray, for: UIControlState.normal)
+            self.leftBtn.setImage(imageName(name: "箭头-下"), for: UIControlState.normal)
+            
+            self.leftBtn.sizeToFit()
+        }
+    }
     
     var reportTag:Int = 0
     let headerFresh = MJRefreshNormalHeader()
-    lazy var conditionView:FiltrateCondition = {
+    lazy var
+    conditionView:FiltrateCondition = {
         let view1 = FiltrateCondition.init(frame: CGRect.init(x: 0, y: -250, width: ScreenWidth, height: 250))
         
         self.view.addSubview(view1)
@@ -62,12 +78,7 @@ class AppointViewController: BaseMainTableViewController,ResponderRouter,PhotoPi
             self.leftBtn.sizeToFit()
         }
     }
-    override func clickLeftBtn() {
-        AlertAction.share.showbottomPicker(title: self.cityName, maxCount: 1, dataAry: nil, currentData: [self.cityName]) { (result) in
-            self.cityName = result.last ?? self.cityName
-            
-        }
-    }
+   
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.addAppiont.frame = CGRect.init(x: ScreenWidth - 80, y: self.view.frame.height - 80, width: 50, height: 50)
@@ -87,7 +98,6 @@ class AppointViewController: BaseMainTableViewController,ResponderRouter,PhotoPi
         tableView.estimatedSectionHeaderHeight = 0
         self.tableView.mj_header = headerFresh
          self.edgesForExtendedLayout = UIRectEdge.init(rawValue: 0)
-        // Do any additional setup after loading the view.
     }
     @objc func refresh()
     {
@@ -122,11 +132,19 @@ class AppointViewController: BaseMainTableViewController,ResponderRouter,PhotoPi
         self.rightBtn.isHidden = false
         self.rightBtn.setImage(imageName(name: "筛选"), for: UIControlState.normal)
         self.addAppiont.isHidden = false
+        
+        self.leftBtn.isHidden = false
+        self.leftBtn.leftTitie = true
+        self.leftBtn.setTitle(cityStr, for: UIControlState.normal)
+        self.leftBtn.setTitleColor(UIColor.gray, for: UIControlState.normal)
+        self.leftBtn.setImage(imageName(name: "箭头-下"), for: UIControlState.normal)
     }
+
     override func viewDidDisappear(_ animated: Bool) {
         IQKeyboardManager.sharedManager().enableAutoToolbar = true
         IQKeyboardManager.sharedManager().enable = true
     }
+
     override func clickRightBtn() {
         guard self.conditionView.isselect else {
             self.showConditionView()
@@ -135,6 +153,12 @@ class AppointViewController: BaseMainTableViewController,ResponderRouter,PhotoPi
         }
 //        self.conditionView.isselect = false
 //        self.closeConditionView()
+    }
+    override func clickLeftBtn() {
+        AlertAction.share.showbottomPicker(title: self.cityStr, maxCount: 1, dataAry: currentCitys, currentData: [self.cityStr]) { (result) in
+            self.cityStr = result.last ?? self.cityStr
+            
+        }
     }
     func closeConditionView() {
         UIView.animate(withDuration: 0.3, animations: {
@@ -164,7 +188,7 @@ class AppointViewController: BaseMainTableViewController,ResponderRouter,PhotoPi
         let cell:ConfessionTableViewCell = tableView.dequeueReusableCell(withIdentifier: "ConfessionTableViewCell", for: indexPath) as! ConfessionTableViewCell
         cell.selectionStyle = UITableViewCellSelectionStyle.none
         cell.tag = indexPath.section
-        
+
         cell.setDatasource(model: appiontModels![indexPath.section])
         return cell
     }
@@ -227,24 +251,27 @@ extension AppointViewController
             return
         }
         if name == ClickReportName {//点击产看报名
-            let vc = QPPhotoPickerViewController(type: PageType.AllAlbum)
-            vc.imageSelectDelegate = self
-            //最大照片数量
-            vc.imageMaxSelectedNum = 1
-            self.present(vc, animated: true, completion: nil)
-            self.reportTag = index
-        }
-        if ClickEnlistBtn == name {//我要报名
             guard let model = appiontModels?[index],model.poster?.user_id == CurrentUserInfo?.data?.user_id else
             {
                 alertHud(title: "只有本人才能查看报名哦")
                 return
             }
-            
+            RootViewController?.hideTheTabbar()
             let vc = EnlistDetailViewController()
             vc.detaileModel = model
-            
             RootNav().pushViewController(vc, animated: true)
+        }
+        if ClickEnlistBtn == name {//我要报名
+            let vc = TZImagePickerController.init(maxImagesCount: 1, delegate: self)
+            vc?.allowPickingVideo = false
+            vc?.allowPickingImage = true
+            vc?.allowTakePicture = true
+            vc?.didFinishPickingPhotosHandle = {(photos, assets, isSelectOriginalPhoto) in
+                self.uploadImage(sender: photos)
+                
+            }
+            self.present(vc!, animated: true, completion: nil)
+            self.reportTag = index
         }
         if name == ClickLikeChangeBtn  {//点赞
             let model:lonelySpeechDetaileModel = appiontModels![index]
@@ -266,7 +293,7 @@ extension AppointViewController
                     if complection//请求数据刷新
                     {
                         model.is_like = true
-                         model.likes_count  =  model.likes_count ?? 0 + 1
+                         model.likes_count  =  (model.likes_count ?? 0) + 1
                         self.reloadMyTableView(index: index, model: model)
                     }
                 })
@@ -309,12 +336,8 @@ extension AppointViewController
 extension AppointViewController
 {
     //添加照片的协议方法
-    func onImageSelectFinished(images: [PHAsset]) {
-        QPPhotoDataAndImage.getImagesAndDatas(photos: images) { (array) in
-            self.uploadImage(sender: array)
-        }
-    }
-    func uploadImage(sender:[QPPhotoImageModel]?)
+  
+    func uploadImage(sender:[Image]?)
     {
         guard let photos = sender ,photos.count > 0 else {
             return
@@ -323,7 +346,7 @@ extension AppointViewController
         for imageModel in photos
         {
             let model = AliyunUploadModel()
-            model.image = imageModel.smallImage
+            model.image = imageModel
             model.fileName = getImageName()
             models.append(model)
             
