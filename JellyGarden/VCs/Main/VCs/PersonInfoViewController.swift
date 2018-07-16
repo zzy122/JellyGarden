@@ -20,7 +20,10 @@ class PersonInfoViewController: BaseTableViewController,ResponderRouter {
     var rightTitles:[String] = ["","","","","","","",""]
     
     var showType:LookUserInfotype? {
-        
+        if self.userInfoModel?.data?.user_id == CurrentUserInfo?.data?.user_id
+        {
+            return LookUserInfotype.pubilic
+        }
         if self.userInfoModel?.data?.permission == permissionAry[3] {
             return LookUserInfotype.stealth
         }

@@ -81,6 +81,7 @@ extension EnlistDetailViewController
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "EnlistDetailTableViewCell", for: indexPath) as! EnlistDetailTableViewCell
         cell.model = signModels?[indexPath.row]
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
         return cell
             
         
@@ -103,6 +104,7 @@ extension EnlistDetailViewController
         }
         return nil
     }
+
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         if section == 0 {
             return 50

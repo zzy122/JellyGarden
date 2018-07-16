@@ -10,6 +10,11 @@ import UIKit
 
 class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
     var showType:LookUserInfotype? {
+        if self.userInfoModel?.data?.user_id == CurrentUserInfo?.data?.user_id
+        {
+            return LookUserInfotype.pubilic
+        }
+        
         if self.userInfoModel?.data?.permission == permissionAry[3] {
             return LookUserInfotype.stealth
         }
@@ -23,7 +28,21 @@ class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
             return LookUserInfotype.pubilic
         }
     }
+    var reportTag:Int = 0
     var broadcastAry:[lonelySpeechDetaileModel] = []
+    {
+        didSet{
+            self.tableView.reloadData()
+            if broadcastAry.count == 0 && showType == .pubilic
+            {
+                self.createfootView()
+            }
+            else if showType == .validation//访问权限
+            {
+                self.footerView.isHidden = false
+            }
+        }
+    }
     
     var userInfoModel:UserModel? {
         didSet{
@@ -87,14 +106,10 @@ class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
         self.headerView.userModel = self.userInfoModel?.data
         self.tableView.register(UINib.init(nibName: "ConfessionTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "ConfessionTableViewCell")
          tableView.frame = CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: ScreenHeight - self.bottomView.frame.height)
-        if self.broadcastAry.count == 0 && showType == .pubilic
-        {
-            self.createfootView()
-        }
-        else if showType == .validation//访问权限
-        {
-            self.footerView.isHidden = false
-        }
+        self.tableView.estimatedSectionFooterHeight = 0
+        self.tableView.estimatedSectionHeaderHeight = 0
+        self.tableView.estimatedRowHeight = 0
+        self.getBroastData()
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -129,7 +144,7 @@ class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
     {
         TargetManager.share.requestUserAllBroadcast(userid: userInfoModel?.data?.user_id ?? "") { (models, error) in
             if error == nil {
-                self.broadcastAry = models
+                self.broadcastAry = models ?? []
             }
         }
     }
@@ -187,7 +202,95 @@ class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
         {
             DebugLog(message: "点击了申请查看")
         }
+        if name == ClickLikeChangeBtn  {//点赞
+            guard let index = info as? Int else{
+                return
+            }
+            
+            let model:lonelySpeechDetaileModel = broadcastAry[index]
+            let appointment_id = model.appointment_id
+            if let like = model.is_like,like//取消赞
+            {
+                TargetManager.share.cancelLikeAppiont(appointment_id: appointment_id, complection: { (result, error) in
+                    if result//请求数据刷新
+                    {
+                        model.likes_count  =  model.likes_count! - 1
+                        model.is_like = false
+                        self.reloadMyTableView(index: index, model: model)
+                    }
+                })
+            }
+            else//点赞
+            {
+                TargetManager.share.likeAppiont(appointment_id: appointment_id, complection: { (complection, error) in
+                    if complection//请求数据刷新
+                    {
+                        model.is_like = true
+                        model.likes_count  =  (model.likes_count ?? 0) + 1
+                        self.reloadMyTableView(index: index, model: model)
+                    }
+                })
+            }
+        }
+        if name == ClickCommentBtn {//评论
+            guard let index = info as? Int else{
+                return
+            }
+            AlertAction.share.showCommentView(clickType: { (type, str) in
+                guard let text = str else{
+                    return
+                }
+                if type == .publish{
+                    
+                    let model:lonelySpeechDetaileModel = self.broadcastAry[index]
+                    let params = ["publisher_id":CurrentUserInfo?.data?.user_id ?? "","content":text]
+                    TargetManager.share.issueComment(appointment_id: model.appointment_id ?? "", params: params, complection: { (commentmodel, error) in
+                        guard let comment = commentmodel else{
+                            return
+                        }
+                        model.comments?.append(comment)
+                        self.reloadMyTableView(index: index, model: model)
+                    })
+                    
+                }
+                
+            })
+        }
+        if ClickEnlistBtn == name {//我要报名
+            guard let index = info as? Int else{
+                return
+            }
+            guard broadcastAry[index].poster?.user_id != CurrentUserInfo?.data?.user_id else
+            {
+                alertHud(title: "不能报名本人哦")
+                return
+            }
+            guard broadcastAry[index].poster?.sex != CurrentUserInfo?.data?.sex else
+            {
+                alertHud(title: "不能报名同性别哦")
+                return
+            }
+            
+            let vc = TZImagePickerController.init(maxImagesCount: 1, delegate: self)
+            vc?.allowPickingVideo = false
+            vc?.allowPickingImage = true
+            vc?.allowTakePicture = true
+            vc?.didFinishPickingPhotosHandle = {(photos, assets, isSelectOriginalPhoto) in
+                self.uploadImage(sender: photos)
+                
+            }
+            self.present(vc!, animated: true, completion: nil)
+            self.reportTag = index
+        }
         
+        
+    }
+    func reloadMyTableView(index:Int, model:lonelySpeechDetaileModel)
+    {
+        self.broadcastAry.remove(at: index)
+        self.broadcastAry.insert(model, at: index)
+        let indexPath = IndexPath.init(row: 0, section: index)
+        self.tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
         
     }
     override func viewDidLayoutSubviews() {
@@ -216,37 +319,85 @@ extension ManPersonInfoViewController
     override func numberOfSections(in tableView: UITableView) -> Int {
         if showType == .pubilic
         {
-            return 1
+            return self.broadcastAry.count
         }
         return 0
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.broadcastAry.count
+        return 1
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ConfessionTableViewCell", for: indexPath) as! ConfessionTableViewCell
-        cell.setDatasource(model: lonelySpeechDetaileModel())
+        cell.setDatasource(model: self.broadcastAry[indexPath.section])
             return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            return caculateCellHeight(model: lonelySpeechDetaileModel())
+            return caculateCellHeight(model: self.broadcastAry[indexPath.section])
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let section = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 40))
-        section.backgroundColor = UIColor.clear
-        let lable = creatLable(frame: CGRect.init(x: 10, y: 20, width: 100, height: 20), title: "他的广播", font: kFont_system14, textColor: UIColor.lightGray)
-        lable.backgroundColor = UIColor.clear
-        section.addSubview(lable)
-        return section
+        if section == 0
+        {
+            let section = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 40))
+            section.backgroundColor = UIColor.clear
+            let lable = creatLable(frame: CGRect.init(x: 10, y: 20, width: 100, height: 20), title: "他的广播", font: kFont_system14, textColor: UIColor.lightGray)
+            lable.backgroundColor = UIColor.clear
+            section.addSubview(lable)
+            return section
+        }
+        else
+        {
+            let section = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 20))
+            section.backgroundColor = UIColor.clear
+           
+            return section
+        }
+        
     }
+    
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if self.showType == .pubilic
+        if self.showType == .pubilic && section == 0
         {
            return 40
         }
-        return 0
+        return 20
     }
     
     
     
+}
+extension ManPersonInfoViewController:TZImagePickerControllerDelegate
+{
+    func uploadImage(sender:[Image]?)
+    {
+        guard let photos = sender ,photos.count > 0 else {
+            return
+        }
+        var models:[AliyunUploadModel] = []
+        for imageModel in photos
+        {
+            let model = AliyunUploadModel()
+            model.image = imageModel
+            model.fileName = getImageName()
+            models.append(model)
+            
+        }
+        AliyunManager.share.uploadImagesToAliyun(imageModels: models, complection: { (urls, succecCount, failCount, state) in
+            if state == UploadImageState.success
+            {//报名
+                let params:[String:Any] = ["user_id":CurrentUserInfo?.data?.user_id ?? "","attachment":urls?.last ?? "","has_pay_deposit":0]
+                let model:lonelySpeechDetaileModel = self.broadcastAry[self.reportTag]
+                TargetManager.share.signUpAppiont(appointment_id: model.appointment_id ?? "", params: params, complection: { (success, error) in
+                    if success
+                    {
+                        model.sign_up_count  = (model.sign_up_count ?? 0) + 1
+                        self.reloadMyTableView(index: self.reportTag, model: model)
+                    }
+                })
+            }
+            else
+            {
+                DebugLog(message: "上传失败")
+            }
+        })
+    }
 }

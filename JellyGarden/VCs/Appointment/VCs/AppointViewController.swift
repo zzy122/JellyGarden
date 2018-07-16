@@ -54,10 +54,12 @@ class AppointViewController: BaseMainTableViewController,ResponderRouter,TZImage
                 {
                     self.tableView.reloadData()
                 }
+                self.headerFresh.endRefreshing()
+                self.footerFresh.endRefreshing()
             }
         }
     }
-    var page:Int = 0
+    var page:Int = 1
     {
         didSet{
             self.params?["page"] = page
@@ -105,27 +107,28 @@ class AppointViewController: BaseMainTableViewController,ResponderRouter,TZImage
     @objc func footerRefreshAction()
     {
        self.page = self.page + 1
-    self.getAppiontData(param: self.params!) { (result) in
-            if result
-            {
-                self.tableView.reloadData()
-            }
-            self.headerFresh.endRefreshing()
-            self.footerFresh.endRefreshing()
-        }
+//    self.getAppiontData(param: self.params!) { (result) in
+//            if result
+//            {
+//                self.tableView.reloadData()
+//            }
+//            self.headerFresh.endRefreshing()
+//            self.footerFresh.endRefreshing()
+//        }
     }
     @objc func refresh()
     {
-        self.page = 0
+        
         self.appiontModels?.removeAll()
-        self.getAppiontData(param: self.params!) { (result) in
-            if result
-            {
-                self.tableView.reloadData()
-            }
-            self.headerFresh.endRefreshing()
-            self.footerFresh.endRefreshing()
-        }
+        self.page = 1
+//        self.getAppiontData(param: self.params!) { (result) in
+//            if result
+//            {
+//                self.tableView.reloadData()
+//            }
+//            self.headerFresh.endRefreshing()
+//            self.footerFresh.endRefreshing()
+//        }
     }
     func getAppiontData(param:[String:Any] ,complection:@escaping (Bool) -> Void) {
         var params = param
@@ -289,6 +292,11 @@ extension AppointViewController
             guard let model = appiontModels?[index],model.poster?.user_id != CurrentUserInfo?.data?.user_id else
             {
                 alertHud(title: "不能报名本人哦")
+                return
+            }
+            guard model.poster?.sex != CurrentUserInfo?.data?.sex else
+            {
+                alertHud(title: "不能报名同性别哦")
                 return
             }
             

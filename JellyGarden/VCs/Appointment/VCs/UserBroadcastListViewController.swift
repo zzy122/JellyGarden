@@ -200,6 +200,11 @@ extension UserBroadcastListViewController
             RootNav().pushViewController(vc, animated: true)
         }
         if ClickEnlistBtn == name {//我要报名
+            guard userid != CurrentUserInfo?.data?.user_id else
+            {
+                alertHud(title: "不能报名本人哦")
+                return
+            }
             let vc = TZImagePickerController.init(maxImagesCount: 1, delegate: self)
             vc?.allowPickingVideo = false
             vc?.allowPickingImage = true
