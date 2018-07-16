@@ -191,7 +191,9 @@ class ManFillInformationViewController: BaseViewController,UIImagePickerControll
         
         TargetManager.share.fillUserInfo(params: param) { (result, error) in
             if error == nil {
-                updateUserInfo()
+                updateUserInfo(complection: { (result) in
+                    
+                })
                 
                 let delegate = UIApplication.shared.delegate as! AppDelegate
                 delegate.setRootViewController(vc: BaseTabBarViewController())

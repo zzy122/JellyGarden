@@ -43,8 +43,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     @objc func networkDidReceiveMessage(notification:NSNotification){//自定义的消息
         DebugLog(message: "收到的通知:\(String(describing: notification.userInfo))")
-        
-        
     }
     func setRootViewController(vc:UIViewController) {
         self.window?.rootViewController = vc

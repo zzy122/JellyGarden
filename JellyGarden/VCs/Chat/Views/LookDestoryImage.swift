@@ -12,7 +12,7 @@ import UIKit
 class LookDestoryImage: UIView {
     let imageView:LookImageBodyView = {
         let view1 = LookImageBodyView.createLookImageView()
-        view1?.tagFrame = CGRect.init(x: 0, y: 100, width: ScreenWidth, height: ScreenHeight - 200)
+        view1?.frame = CGRect.init(x: 0, y: 100, width: ScreenWidth, height: ScreenHeight - 200)
         view1?.starLookEffect(type: LookImageType.clearness)
         return view1!
     }()

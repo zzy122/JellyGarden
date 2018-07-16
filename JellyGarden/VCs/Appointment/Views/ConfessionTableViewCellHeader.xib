@@ -99,6 +99,12 @@
                         <action selector="clickCommentBtn:" destination="iN0-l3-epB" eventType="touchUpInside" id="cMI-rh-nTV"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vph-sr-Akn">
+                    <rect key="frame" x="10" y="22" width="36" height="36.5"/>
+                    <connections>
+                        <action selector="clickHeaderBtn:" destination="iN0-l3-epB" eventType="touchUpInside" id="c3M-aF-rIB"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -108,13 +114,17 @@
                 <constraint firstItem="VIf-8j-852" firstAttribute="height" secondItem="ePC-mf-fBE" secondAttribute="height" id="BQO-qV-6Da"/>
                 <constraint firstAttribute="trailing" secondItem="EhA-dL-a38" secondAttribute="trailing" constant="10" id="Cmz-6S-X5U"/>
                 <constraint firstItem="2Qm-BX-9dP" firstAttribute="centerY" secondItem="682-Ns-zNx" secondAttribute="centerY" id="FPt-db-SJl"/>
+                <constraint firstItem="mAC-HR-jIk" firstAttribute="leading" secondItem="vph-sr-Akn" secondAttribute="leading" id="Jeh-12-nwc"/>
                 <constraint firstAttribute="trailing" secondItem="VIf-8j-852" secondAttribute="trailing" constant="60" id="L3P-RC-4U7"/>
                 <constraint firstItem="VIf-8j-852" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="LIq-6X-SY3"/>
                 <constraint firstItem="a3F-Fh-GNU" firstAttribute="leading" secondItem="2Qm-BX-9dP" secondAttribute="trailing" constant="8" id="Mxb-KA-F24"/>
                 <constraint firstItem="a3F-Fh-GNU" firstAttribute="centerY" secondItem="682-Ns-zNx" secondAttribute="centerY" id="R0W-U3-Szc"/>
+                <constraint firstItem="mAC-HR-jIk" firstAttribute="trailing" secondItem="vph-sr-Akn" secondAttribute="trailing" id="VfL-tI-5aD"/>
                 <constraint firstItem="ePC-mf-fBE" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="cOK-if-LLi"/>
                 <constraint firstItem="VIf-8j-852" firstAttribute="leading" secondItem="ePC-mf-fBE" secondAttribute="trailing" id="fpi-AA-hOh"/>
                 <constraint firstItem="682-Ns-zNx" firstAttribute="top" secondItem="mAC-HR-jIk" secondAttribute="top" constant="-3" id="gbV-rp-zRw"/>
+                <constraint firstItem="mAC-HR-jIk" firstAttribute="top" secondItem="vph-sr-Akn" secondAttribute="top" id="jez-5W-Gc3"/>
+                <constraint firstItem="mAC-HR-jIk" firstAttribute="bottom" secondItem="vph-sr-Akn" secondAttribute="bottom" id="m96-9w-0ko"/>
                 <constraint firstItem="2Qm-BX-9dP" firstAttribute="leading" secondItem="682-Ns-zNx" secondAttribute="trailing" constant="8" id="r8D-mU-k0w"/>
                 <constraint firstItem="gNG-32-eLq" firstAttribute="bottom" secondItem="mAC-HR-jIk" secondAttribute="bottom" constant="3" id="swh-eg-cjy"/>
                 <constraint firstItem="gNG-32-eLq" firstAttribute="leading" secondItem="682-Ns-zNx" secondAttribute="leading" id="xYZ-1x-eDy"/>

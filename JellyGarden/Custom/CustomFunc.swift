@@ -125,18 +125,24 @@ func timeStampToDate(time:Int , backType:DateFormatterType) -> String{
     }
     return dformatter.string(from: date)
 }
-//字符转换成时间戳
-func stringToTimeStamp(dateStr:String?) -> Int{
+//字符转换成时间戳 毫秒
+func stringToTimeStamp(dateStr:String?,type:DateFormatterType) -> Int{
     let dateFormatter = DateFormatter.init()
-    
-    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+    if type == .day {
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+    }
+    else
+    {
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+    }
+
     guard let str = dateStr else {
         
         return getTimeStamp(date: Date())
     }
     
     let date = dateFormatter.date(from: str)
-    return getTimeStamp(date: date ?? Date())
+    return getTimeStamp(date: date ?? Date()) * 1000
 }
 
 //反地理编码

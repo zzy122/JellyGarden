@@ -28,17 +28,7 @@ class PersonalInfoHeader: UIView {
     @IBOutlet weak var detailLab: UILabel!//地址所在地 年龄 职业
     @IBOutlet weak var nikeNameLab: UILabel!//昵称
     @IBOutlet weak var headerImage: UIImageView!
-//    var tagFrame:CGRect? {
-//        didSet{
-//            self.frame = tagFrame!
-//            guard let ary = userModel?.photos,ary.count > 0 else {
-//                self.imageBodyView.isHidden = true
-//                return
-//            }
-//            self.imageBodyView.isHidden = false
-//
-//        }
-//    }
+
     var userModel:UserInfo?{
         didSet{
             self.headerImage.sd_DownLoadImage(url: userModel?.avatar ?? "")
@@ -55,9 +45,10 @@ class PersonalInfoHeader: UIView {
                 attestationLab.backgroundColor = UIColor.gray
                 attestationDetailLab.isHidden = true
             }
+            let distance = Float.init(userModel?.distance ?? "0.0")
             detailLab.text = continueString(strAry: [userModel?.city ?? "", "\(String.init(format: "%d", userModel?.age ?? 0))岁",userModel?.identity ?? ""],separetStr:"  ")
-            let distance = getDistance(lat1: UserLocation.coordinate.latitude, lng1: UserLocation.coordinate.longitude, lat2: userModel?.lat ?? 0, lng2: userModel?.lon ?? 0)
-            distanceLab.text = String.init(format: "%.0fkm", distance)
+           
+            distanceLab.text = String.init(format: "%.1fkm", distance ?? 0.0)
             cityLab.text = continueString(strAry: userModel?.appointment_place,separetStr:"  ")
             let hostStr = String.init(format: "%d", userModel?.bust ?? 0)
             let bodyWeightStr = String.init(format: "%d", userModel?.weight ?? 0)
@@ -72,7 +63,7 @@ class PersonalInfoHeader: UIView {
                     self.VipLabl.isHidden = false
                 }
             }
-            guard let ary = userModel?.photos,ary.count > 0 else {
+            guard let ary = userModel?.custom_photos,ary.count > 0 else {
                 self.imageBodyView.isHidden = true
                 return
             }

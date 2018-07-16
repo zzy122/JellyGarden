@@ -55,15 +55,15 @@ class BlackListViewController: BaseMainTableViewController,ResponderRouter {
 extension BlackListViewController
 {
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return blackModels?.count ?? 0
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return blackModels?.count ?? 0
+        return 1
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:BlacklistTableViewCell = tableView.dequeueReusableCell(withIdentifier: "BlacklistTableViewCell", for: indexPath) as! BlacklistTableViewCell
-        cell.model = blackModels?[indexPath.row]
-        cell.tag = indexPath.row
+        cell.model = blackModels?[indexPath.section]
+        cell.tag = indexPath.section
         return cell
     }
     func interceptRoute(name: String, objc: UIResponder?, info: Any?) {
@@ -72,9 +72,23 @@ extension BlackListViewController
             {
                 return
             }
-            blackModels?.remove(at: index)
+            TargetManager.share.cancelUserReportRequest(report_user_id: blackModels?[index].user_id ?? "", complection: { (success) in
+                if success {
+                    self.blackModels?.remove(at: index)
+                }
+            })
+            
         }
     }
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 15
+    }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let vie1 = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 15))
+        vie1.backgroundColor = UIColor.clear
+        return vie1
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }

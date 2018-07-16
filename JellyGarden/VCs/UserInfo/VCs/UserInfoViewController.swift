@@ -10,11 +10,6 @@ import UIKit
 import Photos
 class UserInfoViewController: BaseMainViewController,TZImagePickerControllerDelegate {
 
-
-//    var currentOppiontConditions:[String] = {
-//        return CurrentUserInfo?.data?.appointment_condition ?? []
-//
-//    }()//选择的约会条件
     
     @IBOutlet weak var tableView: UITableView! {
         didSet {
@@ -122,7 +117,12 @@ extension UserInfoViewController {
     func touchService() {
         RootViewController?.hideTheTabbar()
         let vc = RCConversationViewController.init(conversationType: RCConversationType.ConversationType_CUSTOMERSERVICE, targetId: "KEFU149269681191160")
-        vc?.title = "客服功能尚未开启"
+        vc?.targetId = "service"
+        let info = RCCustomerServiceInfo.init()
+        info.nickName = RCIM.shared().currentUserInfo.name
+        info.portraitUrl = RCIM.shared().currentUserInfo.portraitUri
+        vc?.csInfo = info
+        vc?.title = "客服"
         self.navigationController?.pushViewController(vc!, animated: true)
         
         
@@ -193,6 +193,17 @@ extension UserInfoViewController: ResponderRouter {
             
             
             break
+        case Click_Mine_Photo://点击了照片 此处做处理
+            
+            guard let intTag = info as? Int else{
+                return
+            }
+            RootViewController?.hideTheTabbar()
+            let vc = LookImageSettingViewController()
+            vc.tagIndex = intTag
+            RootNav().present(vc, animated: true, completion: nil)
+            
+            break
         default:
             break
         }
@@ -215,7 +226,14 @@ extension UserInfoViewController: UITableViewDelegate {
                 RootViewController?.hideTheTabbar()
                 RootNav().pushViewController(DebangPhoneViewController(), animated: true)
                 break
-            case 1://查看权限
+            case 1://会员
+                RootViewController?.hideTheTabbar()
+                let vc = VipCenterViewController()
+                vc.isHaveUserHeader = true
+                self.navigationController?.pushViewController(vc, animated: true)
+               
+                break
+            case 2://查看权限
                 AlertViewCoustom().showalertView(style: .actionSheet, title: "查看权限", message: nil, cancelBtnTitle: "取消", touchIndex: { (ind) in
                     
                     
@@ -228,19 +246,19 @@ extension UserInfoViewController: UITableViewDelegate {
                 }, otherButtonTitles: permissionAry[0], permissionAry[1],permissionAry[2],permissionAry[3])
                 
                 break
-            case 2://个人介绍
+            case 3://个人介绍
                RootViewController?.hideTheTabbar()
                 RootNav().pushViewController(EditPersonalIntroduceViewController(), animated: true)
                 break
-            case 3://约会条件
+            case 4://约会条件
                 AlertAction.share.showbottomPicker(title: title, maxCount: 4, dataAry: FillCondition.share.appointmentConditionListModel, currentData: CurrentUserInfo?.data?.appointment_condition, backData: { (result) in
                    self.conditionAction(result: result)
                     
                 })
                 break
-            case 4://分享
+            case 5://分享
                 break
-            case 5://用户协议
+            case 6://用户协议
                 break
             default:
                 break
@@ -291,12 +309,12 @@ extension UserInfoViewController: UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if 0 == indexPath.section {
-            guard var photoStrs = CurrentUserInfo?.data?.photos,photoStrs.count > 0
+            guard var photoStrs = CurrentUserInfo?.data?.custom_photos,photoStrs.count > 0
             else{
                 
                 return 220
             }
-            photoStrs.append(" ")
+            photoStrs.append(PhotoModel())
             let itemWidth:CGFloat = (ScreenWidth - 3 * 10) / 4
             let intege = getLines(ary: photoStrs, veryCount: 4)
             let height = CGFloat(intege) * (itemWidth + 10)
@@ -331,7 +349,7 @@ extension UserInfoViewController: UITableViewDataSource {
         case 0:
             return 1
         case 1:
-            return 6
+            return 7
         case 2:
             return 3
         default:
@@ -360,23 +378,27 @@ extension UserInfoViewController: UITableViewDataSource {
                 cell?.detailTextLabel?.text = CurrentUserInfo?.data?.phone
             }
             else if 1 == indexPath.section && 1 == indexPath.row {
+                cell?.textLabel?.text = "会员"
+                cell?.detailTextLabel?.text = ""
+            }
+            else if 1 == indexPath.section && 2 == indexPath.row {
                 cell?.textLabel?.text = "查看权限"
                 cell?.detailTextLabel?.text = CurrentUserInfo?.data?.permission
             }
-            else if 1 == indexPath.section && 2 == indexPath.row {
+            else if 1 == indexPath.section && 3 == indexPath.row {
                 cell?.textLabel?.text = "个人介绍"
                 cell?.detailTextLabel?.text = CurrentUserInfo?.data?.self_introduction
             }
-            else if 1 == indexPath.section && 3 == indexPath.row {
+            else if 1 == indexPath.section && 4 == indexPath.row {
                 cell?.textLabel?.text = "约会条件"
                 cell?.detailTextLabel?.text = CurrentUserInfo?.data?.appointment_condition?.joined(separator: " ")
                 
             }
-            else if 1 == indexPath.section && 4 == indexPath.row {
+            else if 1 == indexPath.section && 5 == indexPath.row {
                 cell?.textLabel?.text = "分享果冻花园"
                 cell?.detailTextLabel?.text = ""
             }
-            else if 1 == indexPath.section && 5 == indexPath.row {
+            else if 1 == indexPath.section && 6 == indexPath.row {
                 cell?.textLabel?.text = "用户使用协议"
                 cell?.detailTextLabel?.text = ""
             }
@@ -429,10 +451,7 @@ extension UserInfoViewController
         AliyunManager.share.uploadImagesToAliyun(imageModels: models, complection: { (urls, succecCount, failCount, state) in
             if state == UploadImageState.success
             {
-                
                 self.uploadUserPhotoUrlToServer(urlStrs: urls ?? [])
-                
-                
             }
             else
             {
@@ -441,17 +460,28 @@ extension UserInfoViewController
         })
     }
     func uploadUserPhotoUrlToServer(urlStrs:[String]){
-        TargetManager.share.addUserPhotos(params: ["url_list":urlStrs.joined(separator: ",")]) { (success) in
-            if success{
-                let userModel = CurrentUserInfo
-                for urlstr in urlStrs
+//        let signe = DispatchSemaphore.init(value: 0)
+        for i in 0 ..< urlStrs.count
+        {
+            let urlstr = urlStrs[i]
+//            DispatchGroup().enter()
+            let params:[String:Any] = ["user_id":CurrentUserInfo?.data?.user_id ?? "","url":urlstr,"type":0]
+            
+            TargetManager.share.addUserPhotos(params: params, complection: { (success) in
+                DebugLog(message: "上传成功")
+                if i == urlStrs.count - 1
                 {
-                    userModel?.data?.photos?.append(urlstr)
+                    self.tableView.reloadRows(at: [IndexPath.init(row: 0, section: 0)], with: UITableViewRowAnimation.automatic)
                 }
-                NSDictionary.init(dictionary: userModel?.toJSON() ?? [:]).write(toFile: UserPlist, atomically: true)
-                self.tableView.reloadRows(at: [IndexPath.init(row: 0, section: 0)], with: UITableViewRowAnimation.automatic)
-            }
+            })
+            
         }
+       
+//        DispatchGroup().notify(queue: DispatchQueue.main) {
+//            self.tableView.reloadRows(at: [IndexPath.init(row: 0, section: 0)], with: UITableViewRowAnimation.automatic)
+//        }
+        
+        
     }
     
 }

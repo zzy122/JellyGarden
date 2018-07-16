@@ -23,7 +23,8 @@ class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
             return LookUserInfotype.pubilic
         }
     }
-    var broadcastAry:[Any] = []
+    var broadcastAry:[lonelySpeechDetaileModel] = []
+    
     var userInfoModel:UserModel? {
         didSet{
             if userInfoModel?.data?.likes?.contains(CurrentUserInfo?.data?.user_id ?? "") == true
@@ -63,7 +64,7 @@ class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
     }
 
     lazy var headerView:ManpersonInfoHeader = {
-        var intege = getLines(ary: userInfoModel?.data?.photos, veryCount: 4)
+        var intege = getLines(ary: userInfoModel?.data?.custom_photos, veryCount: 4)
         let view1 = ManpersonInfoHeader.createManpersonInfoHeader()
         let backView = UIView()
         backView.backgroundColor = UIColor.clear
@@ -96,7 +97,42 @@ class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
         }
         
     }
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        RootViewController?.hideTheTabbar()
+        rightBtn.isHidden = false
+        rightBtn.setTitle("...", for: UIControlState.normal)
+        rightBtn.setTitleColor(UIColor.white, for: UIControlState.normal)
+    }
+    override func clickRightBtn() {
+        AlertViewCoustom().showalertView(style: UIAlertControllerStyle.actionSheet, title: nil, message: nil, cancelBtnTitle: "取消", touchIndex: { (index) in
+            
+            if index == 1//拉黑
+            {
+                
+                
+                TargetManager.share.userReportRequest(params: ["user_id": CurrentUserInfo?.data?.user_id ?? "","report_user_id": self.userInfoModel?.data?.user_id ?? "","report_type":0], complection: { (success) in
+                    
+                })
+            }
+            else if index == 2//举报
+            {
+                TargetManager.share.userReportRequest(params: ["user_id": CurrentUserInfo?.data?.user_id ?? "","report_user_id": self.userInfoModel?.data?.user_id ?? "","report_type":1], complection: { (success) in
+                    
+                })
+            }
+            
+        }, otherButtonTitles: "拉黑", "举报")
+    }
+    func getBroastData()
+    {
+        TargetManager.share.requestUserAllBroadcast(userid: userInfoModel?.data?.user_id ?? "") { (models, error) in
+            if error == nil {
+                self.broadcastAry = models
+            }
+        }
+    }
     
     func createfootView()
     {

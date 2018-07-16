@@ -43,13 +43,25 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V3x-lD-Dee">
+                    <rect key="frame" x="275" y="0.5" width="100" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="kgA-DI-KJw"/>
+                    </constraints>
+                    <connections>
+                        <action selector="clickPayDeposit:" destination="iN0-l3-epB" eventType="touchUpInside" id="8pG-qg-oDF"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.92941176470588238" green="0.95294117647058818" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="V3x-lD-Dee" firstAttribute="leading" secondItem="Agi-jt-BcD" secondAttribute="leading" id="9hf-cw-CYj"/>
                 <constraint firstItem="Nm4-8G-CKH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="DoQ-Tt-VyE"/>
+                <constraint firstItem="V3x-lD-Dee" firstAttribute="trailing" secondItem="Agi-jt-BcD" secondAttribute="trailing" id="Mx2-hN-hG1"/>
                 <constraint firstItem="Nm4-8G-CKH" firstAttribute="top" secondItem="LLP-DY-GYX" secondAttribute="bottom" id="UvD-Yz-osE"/>
                 <constraint firstItem="Agi-jt-BcD" firstAttribute="centerY" secondItem="WcP-sD-k6A" secondAttribute="centerY" id="bE6-CR-Je1"/>
                 <constraint firstAttribute="trailing" secondItem="LLP-DY-GYX" secondAttribute="trailing" constant="10" id="bKN-Mk-c5u"/>
+                <constraint firstItem="Agi-jt-BcD" firstAttribute="centerY" secondItem="V3x-lD-Dee" secondAttribute="centerY" id="dvB-7r-xzx"/>
                 <constraint firstItem="WcP-sD-k6A" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="ha5-7u-VnR"/>
                 <constraint firstAttribute="trailing" secondItem="Nm4-8G-CKH" secondAttribute="trailing" id="mWs-OP-Twe"/>
                 <constraint firstAttribute="bottom" secondItem="Nm4-8G-CKH" secondAttribute="bottom" id="nHq-Yx-fE2"/>

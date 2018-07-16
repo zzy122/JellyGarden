@@ -9,7 +9,7 @@
 import UIKit
 let ClickLikeChangeBtn = "ClickLikeChangeBtn"
 let ClickDeleteBtn = "ClickDeleteBtn"
-
+let ClickUserInfoHeader = "ClickUserInfoHeader"
 let ClickCommentBtn = "ClickCommentBtn"
 class ConfessionTableViewCellHeader: UIView {
 
@@ -44,6 +44,9 @@ class ConfessionTableViewCellHeader: UIView {
         zzy.router(name: ClickCommentBtn, object: nil, info: self.tag)
     }
     
+    @IBAction func clickHeaderBtn(_ sender: UIButton) {
+        zzy.router(name: ClickUserInfoHeader, object: nil, info: self.tag)
+    }
     @IBAction func clickDeletBtn(_ sender: UIButton) {
         zzy.router(name: ClickDeleteBtn, object: nil, info: self.tag)
     }

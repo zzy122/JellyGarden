@@ -30,6 +30,8 @@ func thirdLoginParams(params:[String:Any],nav:UINavigationController?)
 }
 func dealWithLoginUser(model:UserModel,nav:UINavigationController?)
 {
+    
+    
     if let nickName = model.data?.appointment_place,nickName.count > 0//
     {
        

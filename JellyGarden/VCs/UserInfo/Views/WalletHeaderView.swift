@@ -18,7 +18,19 @@ class WalletHeaderView: UIView {
     class func createWalletHeaderView() ->WalletHeaderView?
     {
         let nibView = CustomCreateNib<WalletHeaderView>().createXibView()
+        nibView?.reloadData()
         return nibView
+    }
+    func reloadData()
+    {
+        self.moneyLab.text = "\(CurrentUserInfo?.data?.balance ?? 0).00"
+        if (CurrentUserInfo?.data?.balance ?? 0) > (CurrentUserInfo?.data?.frozen_balance ?? 0)
+        {
+            self.depositLab.text = "\((CurrentUserInfo?.data?.balance ?? 0) - (CurrentUserInfo?.data?.frozen_balance ?? 0)).00"
+        }
+        else{
+            self.depositLab.text = "0.00"
+        }
     }
     /*
     // Only override draw() if you perform custom drawing.

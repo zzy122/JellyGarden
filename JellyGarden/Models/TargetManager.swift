@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import HandyJSON
 class TargetManager: NSObject {
 
     static var share = TargetManager()
@@ -19,7 +19,7 @@ class TargetManager: NSObject {
     //获取用户信息
     func getDetailUserInfo(userid:String,isUpdateUser:Bool, complection:@escaping (UserModel?,Error?) -> Void)  {
         
-            NetCostom.shared.request(method:.get ,wengen: "gardens/\(userid)", params: nil, success: { (result) in
+            NetCostom.shared.request(method:.get ,wengen: "gardens/\(userid)?my_user_id=\(CurrentUserInfo?.data?.user_id ?? "")", params: nil, success: { (result) in
                 if isUpdateUser
                 {
                     guard let user = result as? [String:Any] else {
@@ -135,10 +135,12 @@ class TargetManager: NSObject {
             complection(false,error)
         }
     }
+    //获取寂寞列表详情
+    
     //获取约会详情   仅限用户自己能调用
-    func getAppiontDetail(params:[String:Any],complection:@escaping (lonelySpeechDetaileModel?,Error?) -> Void)
+    func getAppiontDetail(appointment_id:String,complection:@escaping (lonelySpeechDetaileModel?,Error?) -> Void)
     {
-        NetCostom.shared.request(method: .get, wengen: "appointment", params: params, success: { (result) in
+        NetCostom.shared.request(method: .get, wengen: "appointment/\(appointment_id)", params: nil, success: { (result) in
             if let jsonStr = result as? [String:Any]
             {
                 let model = BaseModel<lonelySpeechDetaileModel,lonelySpeechDetaileModel>.init(resultData: jsonStr["data"] ?? "")
@@ -189,7 +191,11 @@ class TargetManager: NSObject {
     }
     //报名 params [user_id,attachment:string//多张图片 用,隔开   content  has_pay_deposit:是否支付定金]
     func signUpAppiont(appointment_id:String?,params:[String:Any]?,complection:@escaping (Bool,Error?) -> Void){
-        NetCostom.shared.request(method:.delete ,wengen: "appointment/\(appointment_id ?? "")/signup", params: params, success: { (result) in
+        NetCostom.shared.request(method:.post ,wengen: "appointment/\(appointment_id ?? "")/signup", params: params, success: { (result) in
+            guard let dic = result as? [String:Any] else{
+                return
+            }
+            alertHud(title: dic["msg"] as! String)
             complection(true,nil)
         }) { (error) in
             complection(false,error)
@@ -258,6 +264,7 @@ class TargetManager: NSObject {
             complection(false,error)
         }
     }
+    //提现
     func withdrawal(params:[String:Any]?,complection:@escaping (Bool,Error?) -> Void) {
         NetCostom.shared.request(method: .post, wengen: "withdrawal", params: params, success: { (result) in
             complection(true,nil)
@@ -311,6 +318,7 @@ class TargetManager: NSObject {
     }
     //请求融云token
     func rongcloudToken(isRefresh:Bool, complection:@escaping (RCTokenModel?) -> Void) {
+        DebugLog(message: "内存中的: \(CurrentUserInfo?.data?.user_id ?? "")")
         let param = ["user_id":CurrentUserInfo?.data?.user_id ?? "","nickname":CurrentUserInfo?.data?.nickname ?? "","avatar":CurrentUserInfo?.data?.avatar ?? ""]
         var wengen = "rongcloud/token"
         if isRefresh
@@ -363,7 +371,7 @@ class TargetManager: NSObject {
             
         }
     }
-    //添加照片  或者红包照片
+    //添加照片  或者红包照片 阅后即焚
     func addImageToServer(params:[String:Any],complection:@escaping (Bool) -> Void)
     {
         NetCostom.shared.request(method: .post, wengen: "custom_photos", params: params, success: { (result) in
@@ -419,14 +427,7 @@ class TargetManager: NSObject {
             complection(false)
         }
     }
-    func signUp(params:[String:Any],appointment_id:String,complection:@escaping (Bool) -> Void)
-    {
-        NetCostom.shared.request(method: .post, wengen: "appointment/\(appointment_id)/signup", params: params, success: { (result) in
-            complection(true)
-        }) { (error) in
-            complection(false)
-        }
-    }
+
     func getAllComments(user_id:String,complection:@escaping([commentsModel]?,Error?) -> Void)
     {
         NetCostom.shared.request(method: .get, wengen: "gardens/comments?user_id=\(user_id)", params: nil, success: { (result) in
@@ -492,6 +493,19 @@ class TargetManager: NSObject {
     func userReportRequest(params:[String:Any],complection:@escaping(Bool) ->Void)
     {
         NetCostom.shared.request(method: .post, wengen: "userReport", params: params, success: {(result) in
+            guard let dic = result as? [String:Any]  else{
+                return
+            }
+            alertHud(title: "\((dic["msg"] as? String) ?? "")")
+            complection(true)
+        }) { (error) in
+            complection(false)
+        }
+    }
+    //取消拉黑
+    func cancelUserReportRequest(report_user_id:String,complection:@escaping (Bool) ->Void)
+    {
+        NetCostom.shared.request(method: .delete, wengen: "userReport/\(report_user_id)?user_id=\(CurrentUserInfo?.data?.user_id ?? "")", params: nil, success: {(result) in
             complection(true)
         }) { (error) in
             complection(false)
@@ -532,6 +546,7 @@ class TargetManager: NSObject {
             complection(false)
         }
     }
+    //检查认证状态
     func checkIdentyResult(params:[String:Any], complection:@escaping (IdentityModel?,Error?) -> Void )
     {
         NetCostom.shared.request(method: .get, wengen: "certification/status", params: params, success: { (result) in
@@ -544,9 +559,71 @@ class TargetManager: NSObject {
             complection(nil,error)
         }
     }
+    //个人中心上传图片
     func addUserPhotos(params:[String:Any],complection:@escaping(Bool) -> Void)
     {
-        NetCostom.shared.request(method: .put, wengen: "users/\(CurrentUserInfo?.data?.user_id ?? "")/photos", params: params, success: { (result) in
+        NetCostom.shared.request(method: .post, wengen: "custom_photos", params: params, success: { (result) in
+            self.addUserPhotos(params: params)
+            complection(true)
+        }) { (error) in
+            complection(false)
+        }
+    }
+    //个人中心删除图片@WeakObj();
+    func deletePhoto(imageUrl:String,complection:@escaping(Bool) -> Void)
+    {
+        NetCostom.shared.request(method: .delete, wengen: "custom_photos?user_id=\(CurrentUserInfo?.data?.user_id ?? "")&url=\(imageUrl)", params: nil, success: { (result) in
+            
+            
+            complection(true)
+        }) { (error) in
+            complection(false)
+        }
+    }
+    private func addUserPhotos(params:[String:Any])
+    {
+        //本地添加图片
+        let model = JSONDeserializer<PhotoModel>.deserializeFrom(dict: params)
+        let user = CurrentUserInfo
+        user?.data?.custom_photos?.append(model!)
+        NSDictionary.init(dictionary: (user?.toJSON())!).write(toFile: UserPlist, atomically: true)
+    }
+    //更新个人中心图片状态
+    func updateUserPhotos(params:[String:Any],complection:@escaping(Bool) -> Void)
+    {
+        NetCostom.shared.request(method: .put, wengen: "custom_photos", params: params, success: { (result) in
+            complection(true)
+        }) { (error) in
+            complection(false)
+        }
+    }
+    //查看支付宝账号
+    func getAlipayAccount(params:[String:Any],complection:@escaping([AlipayModel]?,Error?) -> Void)
+    {
+        NetCostom.shared.request(method: .get, wengen: "alipay", params: params, success: { (result) in
+            guard let dic = result as? [String:Any] else{
+                return
+            }
+            let model = BaseModel<AlipayModel,[AlipayModel]>.init(resultData: dic["data"] ?? [:])
+            complection(model.resultData,nil)
+        }) { (error) in
+            complection(nil,error)
+            
+        }
+    }
+    //添加支付宝账号
+    func addAlipayAccount(params:[String:Any],complection:@escaping(Bool) -> Void)
+    {
+        NetCostom.shared.request(method: .post, wengen: "alipay", params: params, success: { (result) in
+            complection(true)
+        }) { (error) in
+            complection(false)
+        }
+    }
+    //删除支付宝账号
+    func deleteAlipayAccount(alipay_account_id:String,complection:@escaping(Bool) -> Void)
+    {
+        NetCostom.shared.request(method: .delete, wengen: "alipay/\(alipay_account_id)", params: nil, success: { (result) in
             complection(true)
         }) { (error) in
             complection(false)

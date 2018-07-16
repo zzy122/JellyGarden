@@ -156,6 +156,11 @@ extension NetCostom {
             }
             return
         }
+//        if resultDic["errors"] != nil
+//        {
+//            alertHud(title: "\(String(describing: resultDic["errors"]))")
+//            return
+//        }
         if let errorStr = resultDic[Defult_jsonError] as? String {
             let errorMessage = NSError.init(domain: "NSApplicationErrorDomain", code: 1, userInfo: [Defult_errorReson:errorStr])
             self.showErrorMessg(error: errorMessage, backError: error)

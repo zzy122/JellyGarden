@@ -22,7 +22,7 @@ class MineRedPhoneCell: UITableViewCell {
     }()
     override func layoutSubviews() {
         
-        if let photos = CurrentUserInfo?.data?.photos,photos.count > 0
+        if let photos = CurrentUserInfo?.data?.custom_photos,photos.count > 0
         {
             imageBodyView.frame = self.bounds
             self.imageBodyView.isHidden = false

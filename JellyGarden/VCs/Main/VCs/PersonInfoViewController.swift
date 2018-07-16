@@ -55,7 +55,7 @@ class PersonInfoViewController: BaseTableViewController,ResponderRouter {
         self.view.addSubview(view1)
         return bottom
     }()
-
+    
     var collectionImageStr:String = ""
     {
         didSet{
@@ -95,7 +95,7 @@ class PersonInfoViewController: BaseTableViewController,ResponderRouter {
 
     }
     lazy var headerView:PersonalInfoHeader = {
-        var intege = getLines(ary: self.userInfoModel?.data?.photos, veryCount: 4)
+        var intege = getLines(ary: self.userInfoModel?.data?.custom_photos, veryCount: 4)
         let view1 = PersonalInfoHeader.createPersonalInfoHeader()
         let backView = UIView()
         backView.backgroundColor = UIColor.clear
@@ -174,9 +174,32 @@ class PersonInfoViewController: BaseTableViewController,ResponderRouter {
         super.viewWillAppear(animated)
         
         RootViewController?.hideTheTabbar()
+        rightBtn.isHidden = false
+        rightBtn.setTitle("...", for: UIControlState.normal)
+        rightBtn.setTitleColor(UIColor.white, for: UIControlState.normal)
+        
+        
+        
     }
     
-    
+    override func clickRightBtn() {
+        AlertViewCoustom().showalertView(style: UIAlertControllerStyle.actionSheet, title: nil, message: nil, cancelBtnTitle: "取消", touchIndex: { (index) in
+            
+            if index == 1//拉黑
+            {
+                TargetManager.share.userReportRequest(params: ["user_id": CurrentUserInfo?.data?.user_id ?? "","report_user_id": self.userInfoModel?.data?.user_id ?? "","report_type":0], complection: { (success) in
+                    
+                })
+            }
+            else if index == 2//举报
+            {
+                TargetManager.share.userReportRequest(params: ["user_id": CurrentUserInfo?.data?.user_id ?? "","report_user_id": self.userInfoModel?.data?.user_id ?? "","report_type":1], complection: { (success) in
+                    
+                })
+            }
+            
+        }, otherButtonTitles: "拉黑", "举报")
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

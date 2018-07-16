@@ -84,6 +84,9 @@ class VipCenterViewController: BaseViewController,ResponderRouter {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if self.isHaveUserHeader  {
+            leftBtn.setImage(imageName(name: "navi_back"), for: UIControlState.normal)
+        }
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white,NSAttributedStringKey.font:kFont_system20]
     }
     func createView() {
@@ -95,11 +98,28 @@ class VipCenterViewController: BaseViewController,ResponderRouter {
         selectLable.backgroundColor = UIColor.clear
         
         if isHaveUserHeader {//头像板块
-            let userHeader = UserInfoHeaderView.newUserHeader()!
-            userHeader.tagFrame = CGRect.init(x: 0, y: 74, width: ScreenWidth, height: 130)
-            selectLable.frame = CGRect.init(x: 20, y: userHeader.tagFrame!.maxY + 30, width: 200, height: 20)
-            topView.addSubview(userHeader)
+//            let model = CurrentUserInfo
+//            model?.data?.vip_level = 2
+//            model?.data?.vip_expire_time = 172637612731
+//            let user = model?.toJSON()
+//            NSDictionary.init(dictionary: user ?? [:]).write(toFile: UserPlist, atomically: true)
             
+            let headerBackView = UIView()
+            headerBackView.backgroundColor = UIColor.clear
+            headerBackView.frame = CGRect.init(x: 0, y: 74, width: ScreenWidth, height: 100)
+            if let count = CurrentUserInfo?.data?.vip_expire_time,count > 0
+            {
+                if let vip = CurrentUserInfo?.data?.vip_level, vip > 0
+                {
+                   headerBackView.frame = CGRect.init(x: 0, y: 74, width: ScreenWidth, height: 130)
+                }
+            }
+            let userHeader = UserInfoHeaderView.newUserHeader()!
+            
+            userHeader.frame = headerBackView.bounds
+            selectLable.frame = CGRect.init(x: 20, y: headerBackView.frame.maxY + 30, width: 200, height: 20)
+            headerBackView.addSubview(userHeader)
+            topView.addSubview(headerBackView)
             topView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: selectLable.frame.maxY + 60)
         }
         topView.addSubview(selectLable)
@@ -178,12 +198,11 @@ class VipCenterViewController: BaseViewController,ResponderRouter {
                 {
                     //发起支付
                     OtherApplication.share.pay(VC:self, charge: payDic, complection: { (result) in
+                        
                         alertHud(title: "购买成功")
                         self.gotoMainVC()
                     })
                 }
-                
-               
             }
         }
     }
@@ -199,6 +218,12 @@ class VipCenterViewController: BaseViewController,ResponderRouter {
         }
         else
         {
+            updateUserInfo(complection: { (result) in
+                if result {
+                    self.navigationController?.popViewController(animated: true)
+                }
+            })
+            
             
         }
         

@@ -27,7 +27,7 @@ class LookImageBodyView: UIView {
         self.insertSubview(view, aboveSubview: imageBack)
         view.alpha = 0.0
         view.addGestureRecognizer(self.gester)
-        
+
         return view
     }()
     class func createLookImageView() ->LookImageBodyView? {
@@ -35,14 +35,14 @@ class LookImageBodyView: UIView {
         let nibView = CustomCreateNib<LookImageBodyView>().createXibView()
         return nibView
     }
-    var tagFrame:CGRect = CGRect.zero {
-        didSet{
-            self.implementView.frame = CGRect.init(x: 0, y: 0, width: tagFrame.width, height: tagFrame.height)
-        }
-    }
-    override func draw(_ rect: CGRect) {
-        self.frame = tagFrame
-    }
+//    var tagFrame:CGRect = CGRect.zero {
+//        didSet{
+//            self.implementView.frame = CGRect.init(x: 0, y: 0, width: tagFrame.width, height: tagFrame.height)
+//        }
+//    }
+//    override func draw(_ rect: CGRect) {
+//        self.frame = tagFrame
+//    }
     func starLookEffect(type:LookImageType) {
         if type == .clearness {
             self.imageShow.isHidden = true

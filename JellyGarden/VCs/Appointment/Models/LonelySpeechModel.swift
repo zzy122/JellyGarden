@@ -22,11 +22,22 @@ struct commentsModel:JSON {
     var publisher_avatar:String?//评论头像
     var publisher_name:String?
 }
+struct sign_up:JSON {
+    var nickname:String?
+    var has_pay_deposit:Bool?
+    var user_id:String?
+    var create_at:Int?
+    var content:String?
+    var avatar:String?
+    var attachment:[String]?
+    
+}
 
 
 class lonelySpeechDetaileModel:JSON {
     var time:Int?
     var sign_up_count:Int?//报名人数
+    var sign_up:[sign_up]?
     var requirement:String?//发布的内容
     var is_like:Bool?//是否点赞
     var create_at:Int?//创建时间
@@ -38,7 +49,7 @@ class lonelySpeechDetaileModel:JSON {
     var likes_count:Int?//点赞人数
     var distance:Int?//距离
     var city:String?//城市
-    var need_signup:Bool?//yes 报名约会
+    var need_signup:Int?//1 报名约会
     required init() {
         
     }

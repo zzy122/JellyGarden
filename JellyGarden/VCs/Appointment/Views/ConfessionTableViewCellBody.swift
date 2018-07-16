@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+let ClickDepositBtn = "ClickDepositBtn"
 class ConfessionTableViewCellBody: UIView,UICollectionViewDelegate,UICollectionViewDataSource {
 
     @IBOutlet weak var dingJinBtn: UIButton!
@@ -85,6 +85,11 @@ class ConfessionTableViewCellBody: UIView,UICollectionViewDelegate,UICollectionV
         
         RootNav().pushViewController(vc, animated: true)
     }
+    
+    @IBAction func clickPayDeposit(_ sender: UIButton) {
+        zzy.router(name: ClickDepositBtn, object: nil, info: self.tag)
+    }
+    
     
     /*
     // Only override draw() if you perform custom drawing.

@@ -22,7 +22,7 @@ class MainViewController: BaseMainViewController,UISearchBarDelegate,ResponderRo
             
             self.leftBtn.isHidden = false
             self.leftBtn.setTitle(cityStr, for: UIControlState.normal)
-            self.leftBtn.titleLabel?.font = kFont_system14
+            self.leftBtn.titleLabel?.font = kFont_system15
             self.leftBtn.setTitleColor(UIColor.gray, for: UIControlState.normal)
             self.leftBtn.setImage(imageName(name: "箭头-下"), for: UIControlState.normal)
             self.bodyView.tagLocalCity = cityStr
@@ -153,6 +153,7 @@ class MainViewController: BaseMainViewController,UISearchBarDelegate,ResponderRo
                     guard let user = userinfo else{
                         return
                     }
+                    user.data?.distance = model.distance
                     vc.userInfoModel = user
                     RootNav().pushViewController(vc, animated: true)
                 })
@@ -165,6 +166,7 @@ class MainViewController: BaseMainViewController,UISearchBarDelegate,ResponderRo
                     guard let user = userinfo else{
                         return
                     }
+                    user.data?.distance = model.distance
                     vc.userInfoModel = user
                     RootNav().pushViewController(vc, animated: true)
                 })

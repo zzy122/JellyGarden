@@ -156,6 +156,10 @@
 		5A6C939420F4EA4200E57223 /* UIView+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A6C938520F4EA4200E57223 /* UIView+Layout.m */; };
 		5A6C939720F59D0800E57223 /* LookImageSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6C939520F59D0800E57223 /* LookImageSettingViewController.swift */; };
 		5A6C939820F59D0800E57223 /* LookImageSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A6C939620F59D0800E57223 /* LookImageSettingViewController.xib */; };
+		5A6C939A20F635B200E57223 /* AlipayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6C939920F635B200E57223 /* AlipayModel.swift */; };
+		5A6C939C20F63C4C00E57223 /* AlipayBottomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6C939B20F63C4C00E57223 /* AlipayBottomAlertView.swift */; };
+		5A6C939E20F63C5C00E57223 /* AlipayBottomAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A6C939D20F63C5C00E57223 /* AlipayBottomAlertView.xib */; };
+		5A6C93A020F643C900E57223 /* AlipayAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6C939F20F643C900E57223 /* AlipayAction.swift */; };
 		5A7CEC8420D53EBB00B7A7C9 /* AddImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7CEC8220D53EBB00B7A7C9 /* AddImageCollectionViewCell.swift */; };
 		5A7CEC8520D53EBB00B7A7C9 /* AddImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A7CEC8320D53EBB00B7A7C9 /* AddImageCollectionViewCell.xib */; };
 		5A7FC43620EB181000D7E137 /* PermissionLookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7FC43520EB181000D7E137 /* PermissionLookView.swift */; };
@@ -514,6 +518,10 @@
 		5A6C938520F4EA4200E57223 /* UIView+Layout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Layout.m"; sourceTree = "<group>"; };
 		5A6C939520F59D0800E57223 /* LookImageSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookImageSettingViewController.swift; sourceTree = "<group>"; };
 		5A6C939620F59D0800E57223 /* LookImageSettingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LookImageSettingViewController.xib; sourceTree = "<group>"; };
+		5A6C939920F635B200E57223 /* AlipayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlipayModel.swift; sourceTree = "<group>"; };
+		5A6C939B20F63C4C00E57223 /* AlipayBottomAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlipayBottomAlertView.swift; sourceTree = "<group>"; };
+		5A6C939D20F63C5C00E57223 /* AlipayBottomAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlipayBottomAlertView.xib; sourceTree = "<group>"; };
+		5A6C939F20F643C900E57223 /* AlipayAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlipayAction.swift; sourceTree = "<group>"; };
 		5A7CEC8220D53EBB00B7A7C9 /* AddImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		5A7CEC8320D53EBB00B7A7C9 /* AddImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddImageCollectionViewCell.xib; sourceTree = "<group>"; };
 		5A7FC43520EB181000D7E137 /* PermissionLookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionLookView.swift; sourceTree = "<group>"; };
@@ -1145,6 +1153,7 @@
 			children = (
 				5AE28C6C20F1F6C200EE2973 /* BlackModel.swift */,
 				5A0CC16020F240160056A30E /* IdentityModel.swift */,
+				5A6C939920F635B200E57223 /* AlipayModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1304,6 +1313,9 @@
 				5A7FC46B20EE7F7A00D7E137 /* DisAgreeRefundView.swift */,
 				5AE28C6520F1D26200EE2973 /* BlacklistTableViewCell.swift */,
 				5AE28C6620F1D26200EE2973 /* BlacklistTableViewCell.xib */,
+				5A6C939B20F63C4C00E57223 /* AlipayBottomAlertView.swift */,
+				5A6C939D20F63C5C00E57223 /* AlipayBottomAlertView.xib */,
+				5A6C939F20F643C900E57223 /* AlipayAction.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1616,6 +1628,7 @@
 				5E6AE16620DF962900901D43 /* MineInfoEditViewController.xib in Resources */,
 				5AF4A75320D6260100CFDDD6 /* EnlistAppiontViewController.xib in Resources */,
 				5A574C0B20CA397A00C59276 /* LookImageBodyView.xib in Resources */,
+				5A6C939E20F63C5C00E57223 /* AlipayBottomAlertView.xib in Resources */,
 				5A80C49A20BFDB150033CAF8 /* Assets.xcassets in Resources */,
 				5AE28C6820F1D26200EE2973 /* BlacklistTableViewCell.xib in Resources */,
 				5AB8F48020E221FA00429108 /* SystemMessageTableViewCell.xib in Resources */,
@@ -1887,6 +1900,7 @@
 				5ADD1A3020C952FB004504B3 /* PersonalInfoHeader.swift in Sources */,
 				5AF4A75220D6260100CFDDD6 /* EnlistAppiontViewController.swift in Sources */,
 				5A6C939720F59D0800E57223 /* LookImageSettingViewController.swift in Sources */,
+				5A6C93A020F643C900E57223 /* AlipayAction.swift in Sources */,
 				5A45D9D720E27A0800D2B4CE /* VipPageModel.swift in Sources */,
 				5A80C4CE20BFE1050033CAF8 /* NetCostom.swift in Sources */,
 				5AE9CC8720C8C8D70057CFF3 /* LocationCitys.swift in Sources */,
@@ -1979,6 +1993,7 @@
 				5A6C938720F4EA4200E57223 /* TZAssetCell.m in Sources */,
 				5A1F3AC820E0DDC900CB98CD /* ReadDestroyCell.m in Sources */,
 				5A80C4DE20BFE5780033CAF8 /* BaseTableViewController.swift in Sources */,
+				5A6C939C20F63C4C00E57223 /* AlipayBottomAlertView.swift in Sources */,
 				5A459AD820D1721D00C0A6FA /* CommentTableViewCell.swift in Sources */,
 				5A1F3ABD20DF6CA700CB98CD /* RealTimeLocationEndCell.m in Sources */,
 				5AFA3B6D20D78AE40052FC42 /* WCLRecordProgressView.m in Sources */,
@@ -2033,6 +2048,7 @@
 				5AE9CC8920C8CCB30057CFF3 /* MainViewController.swift in Sources */,
 				5A196AD420C6BB96002EC0EE /* BottomAlert.swift in Sources */,
 				5A7FC43D20EB684E00D7E137 /* XiugaiPasswordViewController.swift in Sources */,
+				5A6C939A20F635B200E57223 /* AlipayModel.swift in Sources */,
 				5A4E326B20C7BD950051FE00 /* UserInfoHeaderView.swift in Sources */,
 				5A7FC47A20EF9F3200D7E137 /* CSIITentacleView.m in Sources */,
 			);

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+let Click_Mine_Photo = "Click_Mine_Photo"
 class PersonInfoImageView: UIView,UICollectionViewDelegate,UICollectionViewDataSource {
     lazy var implementView:UIView = {
         let beffe = UIView.init(frame: self.bounds)
@@ -97,15 +97,16 @@ extension PersonInfoImageView
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        let count = self.userModel?.photos?.count ?? 0
+        let count = self.userModel?.custom_photos?.count ?? 0
         return (userModel?.user_id == CurrentUserInfo?.data?.user_id) ? (count + 1) : count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BodyImageCollectionViewCell", for: indexPath) as? BodyImageCollectionViewCell
         
-        if indexPath.row != self.userModel?.photos?.count
+        if indexPath.row != self.userModel?.custom_photos?.count
         {
-            cell?.setImage(imageStr: self.userModel?.photos?[indexPath.row] ?? "", isImplement: LookImageType.clearness)
+            let model = self.userModel?.custom_photos?[indexPath.row]
+            cell?.model = model
         }
         else//是本人资料 设置添加按钮可以添加照片
         {
@@ -117,12 +118,18 @@ extension PersonInfoImageView
         
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.row != self.userModel?.photos?.count
+        if indexPath.row != self.userModel?.custom_photos?.count
         {
+            if self.userModel?.user_id == CurrentUserInfo?.data?.user_id
+            {
+                zzy.router(name: Click_Mine_Photo, object: nil, info: indexPath.row)
+                return
+                
+            }
+            
             RootViewController?.hideTheTabbar()
             let vc = LookImageViewController()
-            vc.imageUrl = userModel?.photos?[indexPath.row] ?? ""
-            
+            vc.model = self.userModel?.custom_photos?[indexPath.row]
             RootNav().pushViewController(vc, animated: true)
         }
         else//是本人资料 设置添加按钮点击事件可以添加照片

@@ -43,13 +43,14 @@ class ManpersonInfoHeader: UIView {
                 attestationLab.backgroundColor = UIColor.gray
                 attestationDetailLab.isHidden = true
             }
+            let distance = Float.init(userModel?.distance ?? "0.0")
             detailLab.text = continueString(strAry: [userModel?.city ?? "", "\(String.init(format: "%d", userModel?.age ?? 0))岁",userModel?.identity ?? ""],separetStr:"  ")
-            let distance = getDistance(lat1: UserLocation.coordinate.latitude, lng1: UserLocation.coordinate.longitude, lat2: userModel?.lat ?? 0, lng2: userModel?.lon ?? 0)
-            distanceLab.text = String.init(format: "%.0fkm", distance)
+            
+            distanceLab.text = String.init(format: "%.1fkm", distance ?? 0.0)
             cityLab.text = continueString(strAry: userModel?.appointment_place,separetStr:"  ")
             self.introduceContentLab.text = userModel?.self_introduction
             
-            if userModel?.photos?.count == 0 {
+            if userModel?.custom_photos?.count == 0 {
                 self.imageBodyView.isHidden = true
                 return
             }

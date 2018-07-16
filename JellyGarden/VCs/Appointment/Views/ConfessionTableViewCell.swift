@@ -58,6 +58,10 @@ class ConfessionTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDa
         return oringinTopX + CGFloat(intege) * (BodyImageHeight + 10)
     }
     var bodyView:ConfessionTableViewCellBody?
+    
+    
+    
+    
     lazy var applyBackView:UIView = {
         let view1 = UIView()
         view1.backgroundColor = UIColor.clear
@@ -123,16 +127,26 @@ class ConfessionTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDa
             self.headerView?.LikeBtn.setTitle("\(countStr)", for: UIControlState.normal)
             self.commentAry = detailModel?.comments ?? []
             self.applyView?.lookApplayBtn.setTitle(String.init(format: "查看报名(%d)", detailModel?.sign_up_count ?? 0), for: UIControlState.normal)
-            guard let isend = detailModel?.is_overdue,isend else {
+            
+            if let isend = detailModel?.is_overdue,isend == false
+            {
                 self.applyView?.ApplyStatus.setTitle("我要报名", for: UIControlState.normal)
                 self.applyView?.ApplyStatus.setTitleColor(APPCustomRedColor, for: UIControlState.normal)
                 self.applyView?.ApplyStatus.isUserInteractionEnabled = true
-                return
             }
-            self.applyView?.ApplyStatus.isUserInteractionEnabled = false
-            self.applyView?.ApplyStatus.setTitle("已结束", for: UIControlState.normal)
-            self.applyView?.ApplyStatus.setTitleColor(UIColor.gray, for: UIControlState.normal)
-            self.applyBackView.isHidden = !(detailModel?.need_signup ?? false)
+            else
+            {
+                self.applyView?.ApplyStatus.isUserInteractionEnabled = false
+                self.applyView?.ApplyStatus.setTitle("已结束", for: UIControlState.normal)
+                self.applyView?.ApplyStatus.setTitleColor(UIColor.gray, for: UIControlState.normal)
+            }
+           
+
+            if detailModel?.need_signup! == 0
+            {
+                self.applyBackView.isHidden = true
+                
+            }
            
             if (detailModel?.poster?.user_id != CurrentUserInfo?.data?.user_id) || (isEnableDelete == false)  {
                 
@@ -174,7 +188,7 @@ class ConfessionTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDa
         {
             height = height + CommentGetHeight.getHeightCell(title: model.publisher_name ?? "", commentStr: model.content ?? "") + 5
         }
-        if detailModel?.need_signup == true
+        if detailModel?.need_signup == 1
         {
             view.frame = CGRect.init(x: 0, y: self.applyBackView.frame.maxY, width: ScreenWidth, height: height)
         }
@@ -194,6 +208,7 @@ class ConfessionTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDa
         self.headerView?.tag = self.tag
         self.detailModel = model
         self.bodyView?.setDatasource(model: model)
+        self.bodyView?.tag = self.tag
         self.setTableViewFrame(view: self.tableView)
     
     }

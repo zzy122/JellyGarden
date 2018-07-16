@@ -11,14 +11,31 @@ import UIKit
 class EnlistDetailViewController: BaseMainTableViewController {
 
     var detaileModel:lonelySpeechDetaileModel?
+    var signModels:[sign_up]?
+    {
+        didSet{
+            self.tableView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "报名详情"
-        self.detaileModel?.need_signup = false//取消查看报名等按钮
+        self.detaileModel?.need_signup = 0//取消查看报名等按钮
         self.tableView.register(UINib.init(nibName: "ConfessionTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "ConfessionTableViewCell")
         self.tableView.register(UINib.init(nibName: "EnlistDetailTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "EnlistDetailTableViewCell")
+        self.getSinUpModel()
         // Do any additional setup after loading the view.
+    }
+    func getSinUpModel()
+    {
+        TargetManager.share.getAppiontDetail(appointment_id: detaileModel?.appointment_id ?? "") { (model, error) in
+            guard let model1 = model?.sign_up ,model1.count > 0 else
+            {
+               return
+            }
+            self.signModels = model1
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,7 +66,7 @@ extension EnlistDetailViewController
         }
         else
         {
-            return detaileModel?.comments?.count ?? 0
+            return signModels?.count ?? 0
         }
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -63,7 +80,7 @@ extension EnlistDetailViewController
         
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "EnlistDetailTableViewCell", for: indexPath) as! EnlistDetailTableViewCell
-        cell.model = detaileModel?.comments?[indexPath.row]
+        cell.model = signModels?[indexPath.row]
         return cell
             
         

@@ -29,12 +29,13 @@ class MainUserListTableViewCell: UITableViewCell {
     }
     var model:MainListmodel? {
         didSet{
+            let distance = Float.init(model?.distance ?? "0.0")
             self.userHeaderImage.sd_DownLoadImage(url: model?.avatar ?? "")
             self.userNameLab.text = model?.nickname
             self.siteLab.text = model?.city
             self.ageLab.text = "\(model?.age ?? 0)岁"
             self.identityLab.text = model?.identity
-            self.distanceLab.text = "\(getDistance(lat1: UserLocation.coordinate.latitude, lng1: UserLocation.coordinate.longitude, lat2: model?.lat ?? 0.0, lng2: model?.lon ?? 0.0))km"
+            self.distanceLab.text = "\(String.init(format: "%.2f", distance!))km"
             self.imageCountLab.text = "\(model?.photo_count ?? 0)"
             if let trueth = model?.has_authentication,trueth {
                 realityLab.backgroundColor = APPCustomRedColor

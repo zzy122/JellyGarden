@@ -30,6 +30,27 @@ class LookImageViewController: BaseViewController,ResponderRouter {
             self.imageView.starLookEffect(type: type)
         }
     }
+    var model:PhotoModel?
+    {
+        didSet{
+            self.imageUrl = model?.url ?? ""
+            var typeLook:LookImageType = .clearness
+            switch model?.type {
+            case 0?://普通
+                break
+            case 1?://阅后即焚
+                typeLook = .effect
+                break
+            case 2?://红包
+                break
+            case 3?:
+                break
+            default:
+                break
+            }
+            self.type = typeLook
+        }
+    }
     var imageUrl:String = ""
     lazy var buttomView:ReckonTimeView = {
         
@@ -41,7 +62,7 @@ class LookImageViewController: BaseViewController,ResponderRouter {
     }()
     lazy var imageView:LookImageBodyView = {
         let view1 = LookImageBodyView.createLookImageView()
-        view1?.tagFrame = CGRect.init(x: 0, y: 64, width: ScreenWidth, height: ScreenHeight - 140)
+        view1?.frame = CGRect.init(x: 0, y: 64, width: ScreenWidth, height: ScreenHeight - 140)
         self.view.addSubview(view1!)
         return view1!
         
@@ -55,6 +76,7 @@ class LookImageViewController: BaseViewController,ResponderRouter {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.createView()
+        self.imageView.isHidden = false
         self.imageView.imageBack.sd_DownLoadImage(url: self.imageUrl)
         // Do any additional setup after loading the view.
     }
@@ -64,6 +86,7 @@ class LookImageViewController: BaseViewController,ResponderRouter {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.leftBtn.setImage(imageName(name: "navi_back"), for: UIControlState.normal)
         self.imageView.isHidden = false
         self.view.backgroundColor = UIColor.black
     }

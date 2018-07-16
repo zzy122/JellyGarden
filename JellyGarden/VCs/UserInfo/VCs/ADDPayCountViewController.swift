@@ -40,6 +40,22 @@ class ADDPayCountViewController: BaseMainTableViewController {
         rightBtn.setTitleColor(APPCustomBtnColor, for: UIControlState.normal)
     }
     override func clickRightBtn() {
+        guard let accountStr = rightControls.first?.text else
+        {
+            alertHud(title: "请输入支付宝账号")
+            return
+        }
+        guard let nameStr = rightControls.last?.text else
+        {
+            alertHud(title: "请输入支付宝名字")
+            return
+        }
+        
+        TargetManager.share.addAlipayAccount(params: ["user_id":CurrentUserInfo?.data?.user_id ?? "","account":accountStr,"name":nameStr]) { (result) in
+            if result == true {
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
         
     }
     override func didReceiveMemoryWarning() {
@@ -81,6 +97,7 @@ extension ADDPayCountViewController
             cell?.contentView.addSubview(rightControls[indexPath.row])
             
         }
+        cell?.selectionStyle = UITableViewCellSelectionStyle.none
         return cell!
     }
    

@@ -101,6 +101,8 @@ class EnlistAppiontViewController: BaseMainViewController,UICollectionViewDelega
        
     }
     @IBAction func clickIdentificationBtn(_ sender: UIButton) {
+        let vc = IdentityAuthenticationViewController()
+        RootNav().pushViewController(vc, animated: true)
     }
     override func clickRightBtn() {
         if cityStr.count == 0 {
@@ -120,7 +122,7 @@ class EnlistAppiontViewController: BaseMainViewController,UICollectionViewDelega
             return
         }
         
-        let timeStamp = stringToTimeStamp(dateStr: dateStr)
+        let timeStamp = stringToTimeStamp(dateStr: dateStr,type: .day)
         let url = images.joined(separator: ",")
         let params:[String:Any] = ["poster_id":CurrentUserInfo?.data?.user_id ?? "","time":timeStamp,"city":appiontLab.text ?? "","requirement":contentTextview.text,"attachment":url,"deposit": Int(dingjinFiled.text ?? "0") ?? 0,"need_signup":1]
         TargetManager.share.issueAppiont(params: params) { (success, error) in

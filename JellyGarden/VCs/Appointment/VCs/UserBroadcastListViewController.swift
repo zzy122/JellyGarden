@@ -317,15 +317,16 @@ extension UserBroadcastListViewController
         AliyunManager.share.uploadImagesToAliyun(imageModels: models, complection: { (urls, succecCount, failCount, state) in
             if state == UploadImageState.success
             {//报名
-                let params = ["user_id":CurrentUserInfo?.data?.user_id ?? "","attachment":urls?.last ?? ""]
+                let params:[String:Any] = ["user_id":CurrentUserInfo?.data?.user_id ?? "","attachment":urls?.last ?? "","has_pay_deposit":0]
                 let model:lonelySpeechDetaileModel = self.appiontModels[self.reportTag]
-                TargetManager.share.signUp(params: params, appointment_id: model.poster?.user_id ?? "", complection: { (success) in
+                TargetManager.share.signUpAppiont(appointment_id: model.appointment_id ?? "", params: params, complection: { (success, error) in
                     if success
                     {
                         model.sign_up_count  = (model.sign_up_count ?? 0) + 1
                         self.reloadMyTableView(index: self.reportTag, model: model)
                     }
                 })
+                
             }
             else
             {

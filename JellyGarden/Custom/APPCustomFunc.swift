@@ -88,7 +88,13 @@ func clearUserInfo()
     NeedGesterPassword = false
     UserDefaults.standard.set("", forKey: "GesterPassword")
     DispatchQueue.main.async {
-        try? FileManager.default.removeItem(atPath: UserPlist)
+        do {
+            try FileManager.default.removeItem(atPath: UserPlist)
+        }
+        catch let error {
+            DebugLog(message: "清除失败\(error.localizedDescription)")
+        }
+        
     }
    
 }
@@ -118,25 +124,25 @@ func verifyPhoneStr(phone:String?) -> Bool
     return true
 }
 //根据两点经纬度计算两点距离
-func getDistance(lat1:Double,lng1:Double,lat2:Double,lng2:Double) -> Double {
-    let EARTH_RADIUS:Double = 6378137.0
-    
-    let radLat1:Double = radian(d: lat1)
-    let radLat2:Double = radian(d: lat2)
-    
-    let radLng1:Double = radian(d: lng1)
-    let radLng2:Double = radian(d: lng2)
-    
-    let a:Double = radLat1 - radLat2
-    let b:Double = radLng1 - radLng2
-    
-    var s:Double = 22 * asin(sqrt(pow(sin(a/2), 2) + cos(radLat1) * cos(radLat2) * pow(sin(b/2), 2)))
-    s = s * EARTH_RADIUS
-    return s
-}
-func radian(d:Double) -> Double {
-    return d * Double.pi/180.0
-}
+//func getDistance(lat1:Double,lng1:Double,lat2:Double,lng2:Double) -> Double {
+//    let EARTH_RADIUS:Double = 6378137.0
+//
+//    let radLat1:Double = radian(d: lat1)
+//    let radLat2:Double = radian(d: lat2)
+//
+//    let radLng1:Double = radian(d: lng1)
+//    let radLng2:Double = radian(d: lng2)
+//
+//    let a:Double = radLat1 - radLat2
+//    let b:Double = radLng1 - radLng2
+//
+//    var s:Double = 22 * asin(sqrt(pow(sin(a/2), 2) + cos(radLat1) * cos(radLat2) * pow(sin(b/2), 2)))
+//    s = s * EARTH_RADIUS
+//    return s
+//}
+//func radian(d:Double) -> Double {
+//    return d * Double.pi/180.0
+//}
 //根据弧度计算角度
 func angle(r:Double) -> Double {
     return r * 180/Double.pi
@@ -148,7 +154,7 @@ func caculateCellHeight(model:lonelySpeechDetaileModel) -> CGFloat//计算高度
     let textHeight = str.zzy.caculateHeight(font: kFont_system15, width: ScreenWidth - 40, lineSpace: 8.0)
     var oringinTopX:CGFloat = textHeight + 108
     
-    if model.need_signup == true {
+    if model.need_signup == 1 {
         oringinTopX += 45
     }
     let inageAry:[String] = model.attachment ?? []//图片资源
@@ -201,10 +207,12 @@ func getPikerModels(data:[Any]?) ->[PikerModel]?
     return nil
 }
 //更新用户信息
-func updateUserInfo()
+func updateUserInfo(complection:@escaping (Bool) -> Void)
 {
     TargetManager.share.getDetailUserInfo(userid: CurrentUserInfo?.data?.user_id ?? "", isUpdateUser: true) { (model, error) in
-        
+        if error == nil {
+            complection(true)
+        }
     }
 }
 

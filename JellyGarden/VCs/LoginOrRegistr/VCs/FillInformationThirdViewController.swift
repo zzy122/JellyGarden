@@ -93,7 +93,9 @@ class FillInformationThirdViewController: BaseViewController,UITextViewDelegate,
         }
         fillInfoRequest(jsonDic: fillInfo) { (result) in
             if result {
-                updateUserInfo()
+                updateUserInfo(complection: { (result) in
+                    
+                })
                 let delegate = UIApplication.shared.delegate as! AppDelegate
                 delegate.setRootViewController(vc: BaseTabBarViewController())
             }

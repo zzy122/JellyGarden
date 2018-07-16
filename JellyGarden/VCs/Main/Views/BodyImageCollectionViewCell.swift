@@ -16,6 +16,33 @@ class BodyImageCollectionViewCell: UICollectionViewCell {
         
         // Initialization code
     }
+    var model:PhotoModel?
+    {
+        didSet{
+            
+            var type:LookImageType = .clearness
+            switch model?.type {
+            case 0?://普通
+                break
+            case 1?://阅后即焚
+                type = .effect
+                break
+            case 2?://红包
+                break
+            case 3?:
+                break
+            default:
+                break
+            }
+            
+            if let users = model?.view_users,users.contains((CurrentUserInfo?.data?.user_id)!)
+            {
+               type = .lookAfter
+            }
+            
+            self.setImage(imageStr: model?.url ?? "", isImplement: type)
+        }
+    }
     var type:LookImageType = .clearness
     
     func setImage(imageStr:String,isImplement:LookImageType)
@@ -46,6 +73,9 @@ class BodyImageCollectionViewCell: UICollectionViewCell {
             break
         }
     }
+//    override func layoutSubviews() {
+//       self.imageV.frame = self.bounds
+//    }
     lazy var imageTag:UIImageView = {
         let imageVW = UIImageView.init(frame: CGRect.init(x: (self.bounds.size.width - 20) / 2.0 , y: self.bounds.size.height / 2.0 - 20, width: 20, height: 20))
         self.insertSubview(imageVW, aboveSubview: self.implementView)

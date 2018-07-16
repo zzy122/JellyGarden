@@ -248,10 +248,7 @@ class AlertAction: NSObject {
         }
         
     }
-    func showRulesView()
-    {
-        
-    }
+   
     
     
     

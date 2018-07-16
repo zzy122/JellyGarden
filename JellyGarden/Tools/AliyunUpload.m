@@ -59,7 +59,9 @@ NSString * const BucketName = @"jellygarden";
                     NSString* urlPath = [NSString stringWithFormat:@"http://jellygarden.oss-cn-beijing.aliyuncs.com/%@",model.fileName];
                     //添加到数组回传
                     [callBackNames addObject:urlPath];
+                    
                     succecCount++;
+                    
                     NSLog(@"upload object success!");
                 } else {
                     failedCount++;
