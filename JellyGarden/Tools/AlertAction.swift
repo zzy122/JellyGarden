@@ -146,6 +146,9 @@ class AlertAction: NSObject {
         comment.clickChange {[weak self] (type, str) in
             self?.comment.commentTextFiled.resignFirstResponder()
             DebugLog(message: "\(String(describing: str))")
+            guard let text = str, text.count > 0 else{
+                return
+            }
             clickType(type,str)
         }
        

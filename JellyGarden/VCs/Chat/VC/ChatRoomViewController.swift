@@ -9,6 +9,7 @@
 import UIKit
 import Photos
 
+
 let PLUGIN_BOARD_DEPOSIT_FILE_TAG = 2004//定金
 let PLUGIN_BOARD_GIFT_FILE_TAG = 2005//礼物
 let PLUGIN_BOARD_VIDEO_FILE_TAG = 2001//视频通话
@@ -29,22 +30,28 @@ class ChatRoomViewController: RCConversationViewController,RCRealTimeLocationObs
             let image = imageName(name: "阅后即焚-1")
             let image2 = imageName(name: "礼物打赏")
             let image3 = imageName(name: "位置")
-            let image4 = imageName(name: "订金")
+            let image4 = imageName(name: "收取定金")
             let image5 = imageName(name: "红包")
-            let image6 = imageName(name: "视屏通话")
-            
-            
+            let image6 = imageName(name: "视频通话")
+//
+//
             let plugin = self.chatSessionInputBarControl.pluginBoardView;
-            plugin?.insertItem(with: image6, title: "视频通话", tag: PLUGIN_BOARD_VIDEO_FILE_TAG)
-            plugin?.insertItem(with: image, title: "阅后即焚", tag: PLUGIN_BOARD_READ_FILE_TAG)
-            plugin?.insertItem(with: image5, title: "红包", tag: PLUGIN_BOARD_REDBAG_FILE_TAG)
-            plugin?.insertItem(with: image4, title: "收取定金", tag: PLUGIN_BOARD_DEPOSIT_FILE_TAG)
-            plugin?.insertItem(with: image2, title: "打赏礼物", tag: PLUGIN_BOARD_GIFT_FILE_TAG)
-//            plugin?.updateItem(withTag: 1001, image: , title: <#T##String!#>)
+//            plugin?.insertItem(with: image6, title: "视频通话", tag: PLUGIN_BOARD_VIDEO_FILE_TAG)
+//            plugin?.insertItem(with: image, title: "阅后即焚", tag: PLUGIN_BOARD_READ_FILE_TAG)
+//            plugin?.insertItem(with: image5, title: "红包", tag: PLUGIN_BOARD_REDBAG_FILE_TAG)
+//            plugin?.insertItem(with: image4, title: "收取定金", tag: PLUGIN_BOARD_DEPOSIT_FILE_TAG)
+//            plugin?.insertItem(with: image2, title: "打赏礼物", tag: PLUGIN_BOARD_GIFT_FILE_TAG)
+////            plugin?.updateItem(withTag: 1001, image: , title: <#T##String!#>)
+            
             plugin?.updateItem(at: 0, image: imageName(name: "相册"), title: "相册")
             plugin?.updateItem(at: 2, image: image3, title: "位置")
             plugin?.updateItem(at: 1, image: imageName(name: "拍摄"), title: "拍摄")
-            
+             plugin?.updateItem(at: 4, image: image6, title: "视频通话")
+            plugin?.updateItem(at: 5, image: image5, title: "红包")
+            plugin?.removeItem(at: 3)
+            plugin?.insertItem(with: image, title: "阅后即焚", at: 5, tag: PLUGIN_BOARD_READ_FILE_TAG)
+            plugin?.insertItem(with: image4, title: "收取定金", tag: PLUGIN_BOARD_DEPOSIT_FILE_TAG)
+            plugin?.insertItem(with: image2, title: "打赏礼物", tag: PLUGIN_BOARD_GIFT_FILE_TAG)
         }
         /*******************实时地理位置共享***************/
 
@@ -68,6 +75,8 @@ class ChatRoomViewController: RCConversationViewController,RCRealTimeLocationObs
     override func pluginBoardView(_ pluginBoardView: RCPluginBoardView!, clickedItemWithTag tag: Int) {
         switch tag {
         case PLUGIN_BOARD_REDBAG_FILE_TAG://红包
+            JrmfWalletSDK.openWallet()
+            
             break
         case PLUGIN_BOARD_READ_FILE_TAG://阅后即焚
             let vc = TZImagePickerController.init(maxImagesCount: 1, delegate: self)
@@ -89,9 +98,28 @@ class ChatRoomViewController: RCConversationViewController,RCRealTimeLocationObs
             self.present(vc!, animated: true, completion: nil)
             
             break
-        case PLUGIN_BOARD_VIDEO_FILE_TAG://视频
-            alertHud(title: "收费项目");
-            break
+//        case PLUGIN_BOARD_VIDEO_FILE_TAG://视频
+//            AlertViewCoustom().showalertView(style: .actionSheet, title: nil, message: nil, cancelBtnTitle: "取消", touchIndex: { (index) in
+//                if index == 1
+//                {
+//                    if RCCall.shared().isAudioCallEnabled(RCConversationType.ConversationType_PRIVATE)
+//                    {
+//                        RCCall.shared().startSingleCall(self.targetId, mediaType: RCCallMediaType.audio)
+////                        RCCall.shared().startSingleCall(targetId, mediaType: RCCallMediaType.audio)
+//                    }
+//
+//                }
+//                else if index == 2
+//                {
+//                    if RCCall.shared().isVideoCallEnabled(RCConversationType.ConversationType_PRIVATE)
+//                    {
+//                        RCCall.shared().startSingleCall(self.targetId, mediaType: RCCallMediaType.video)
+//                    }
+//                }
+//
+//            }, otherButtonTitles: "语音聊天", "视频聊天")
+//            alertHud(title: "收费项目");
+//            break
         case PLUGIN_BOARD_GIFT_FILE_TAG://礼物
             alertHud(title: "待定功能")
             break
@@ -115,19 +143,21 @@ class ChatRoomViewController: RCConversationViewController,RCRealTimeLocationObs
             
             break
         case 1003://位置
-            AlertViewCoustom().showalertView(style: .actionSheet, title: nil, message: nil, cancelBtnTitle: alertCancel, touchIndex: { (index) in
-                if index == 1
-                {
-                    super.pluginBoardView(self.chatSessionInputBarControl.pluginBoardView, clickedItemWithTag: 1003)
-                }
-                else if index == 2 {
-                    
-                    self.showRealTimeLocationViewController()
-                    
-                }
-                
-                
-            }, otherButtonTitles: "发送位置", "位置实时共享")
+            
+            super.pluginBoardView(self.chatSessionInputBarControl.pluginBoardView, clickedItemWithTag: 1003)
+//            AlertViewCoustom().showalertView(style: .actionSheet, title: nil, message: nil, cancelBtnTitle: alertCancel, touchIndex: { (index) in
+//                if index == 1
+//                {
+//                    super.pluginBoardView(self.chatSessionInputBarControl.pluginBoardView, clickedItemWithTag: 1003)
+//                }
+//                else if index == 2 {
+//                    
+//                    self.showRealTimeLocationViewController()
+//                    
+//                }
+//                
+//                
+//            }, otherButtonTitles: "发送位置", "位置实时共享")
             break
         default:
              super.pluginBoardView(pluginBoardView, clickedItemWithTag: tag)
@@ -196,6 +226,20 @@ class ChatRoomViewController: RCConversationViewController,RCRealTimeLocationObs
         }
         if let mess = model.content as? ReadDestroyMessage {
             DebugLog(message: "地址:\(mess.imageUrl)");
+            TargetManager.share.readImageForUserid(params: ["user_id":CurrentUserInfo?.data?.user_id ?? "","url":mess.imageUrl ?? ""]) { (model, error) in
+                if model?.has_viewed == false
+                {
+                    let vc = LookImageViewController()
+                    vc.imageUrl = mess.imageUrl
+                    vc.type = .effect
+                    RootNav().pushViewController(vc, animated: true)
+                }
+                
+            }
+            
+            
+            
+            
             self.hiddenDestroyImage()
         }
         if let mess = model.content as? RCImageMessage {

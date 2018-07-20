@@ -172,13 +172,16 @@ class AppointViewController: BaseMainTableViewController,ResponderRouter,TZImage
     }
 
     override func clickRightBtn() {
+        
+        
+        
+        
         guard self.conditionView.isselect else {
             self.showConditionView()
             self.conditionView.isselect = true
             return
         }
-//        self.conditionView.isselect = false
-//        self.closeConditionView()
+
     }
     override func clickLeftBtn() {
         self.closeConditionView()
@@ -338,13 +341,20 @@ extension AppointViewController
             }
         }
         if name == ClickCommentBtn {//评论
+             let model:lonelySpeechDetaileModel = self.appiontModels![index]
+            if  model.poster?.sex == CurrentUserInfo?.data?.sex && model.poster?.user_id != CurrentUserInfo?.data?.user_id
+            {
+                alertHud(title: "不能评论同性别哦")
+                return
+            }
+            
             AlertAction.share.showCommentView(clickType: { (type, str) in
-                guard let text = str else{
+                guard let text = str,text.count > 0 else{
                     return
                 }
                 if type == .publish{
                    
-                    let model:lonelySpeechDetaileModel = self.appiontModels![index]
+                   
                     let params = ["publisher_id":CurrentUserInfo?.data?.user_id ?? "","content":text]
                     TargetManager.share.issueComment(appointment_id: model.appointment_id ?? "", params: params, complection: { (commentmodel, error) in
                         guard let comment = commentmodel else{
@@ -360,51 +370,59 @@ extension AppointViewController
         }
         if name == ClickUserInfoHeader//点击头像
         {
-            let model:lonelySpeechDetaileModel = appiontModels![index]
-            let userSex = CurrentUserInfo?.data?.sex
-            if userSex == 0,userSex == model.poster?.sex
-            {
-                alertHud(title: "男士不能查看男士列表哦~")
-                return
-            }
-            if userSex == 1,userSex == model.poster?.sex
-            {
-                alertHud(title: "女士不能查看女士列表哦~")
-                return
-            }
-            RootViewController?.hideTheTabbar()
-            if model.poster?.sex == 1
-            {
-                
-                let vc = PersonInfoViewController()
-                TargetManager.share.getDetailUserInfo(userid: model.poster?.user_id ?? "",isUpdateUser:false, complection: { (userinfo, error) in
-                    guard let user = userinfo else{
-                        return
-                    }
-//                    user.data?.distance = model.distance
-                    vc.userInfoModel = user
-                    RootNav().pushViewController(vc, animated: true)
-                })
-            }
-            else
-            {
-                let vc = ManPersonInfoViewController()
-                TargetManager.share.getDetailUserInfo(userid: model.poster?.user_id ?? "",isUpdateUser:false, complection: { (userinfo, error) in
-                    guard let user = userinfo else{
-                        return
-                    }
-//                    user.data?.distance = model.distance
-                    vc.userInfoModel = user
-                    RootNav().pushViewController(vc, animated: true)
-                })
-            }
+           self.checkUserinfoData(index: index)
         }
         if name == ClickDepositBtn
         {
             let model:lonelySpeechDetaileModel = appiontModels![index]
             alertHud(title: "后台没设置约会定金字段")
         }
+        if name == ClickCommentCell//点击评论
+        {
+            self.checkUserinfoData(index: index)
+        }
         
+    }
+    func checkUserinfoData(index:Int)
+    {
+        let model:lonelySpeechDetaileModel = appiontModels![index]
+        let userSex = CurrentUserInfo?.data?.sex
+        if userSex == 0,userSex == model.poster?.sex
+        {
+            alertHud(title: "男士不能查看男士列表哦~")
+            return
+        }
+        if userSex == 1,userSex == model.poster?.sex
+        {
+            alertHud(title: "女士不能查看女士列表哦~")
+            return
+        }
+        RootViewController?.hideTheTabbar()
+        if model.poster?.sex == 1
+        {
+            
+            let vc = PersonInfoViewController()
+            TargetManager.share.getDetailUserInfo(userid: model.poster?.user_id ?? "",isUpdateUser:false, complection: { (userinfo, error) in
+                guard let user = userinfo else{
+                    return
+                }
+                //                    user.data?.distance = model.distance
+                vc.userInfoModel = user
+                RootNav().pushViewController(vc, animated: true)
+            })
+        }
+        else
+        {
+            let vc = ManPersonInfoViewController()
+            TargetManager.share.getDetailUserInfo(userid: model.poster?.user_id ?? "",isUpdateUser:false, complection: { (userinfo, error) in
+                guard let user = userinfo else{
+                    return
+                }
+                //                    user.data?.distance = model.distance
+                vc.userInfoModel = user
+                RootNav().pushViewController(vc, animated: true)
+            })
+        }
     }
     func reloadMyTableView(index:Int, model:lonelySpeechDetaileModel)
     {

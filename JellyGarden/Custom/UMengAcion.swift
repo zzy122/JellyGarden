@@ -10,21 +10,17 @@ import UIKit
 
 class UMengAcion: NSObject {
     class func uMengShare() {
-        UMSocialUIManager.setPreDefinePlatforms([NSNumber.init(value: Int8(UMSocialPlatformType.QQ.rawValue)),NSNumber.init(value: Int8(UMSocialPlatformType.wechatSession.rawValue))])
+        UMSocialUIManager.setPreDefinePlatforms([NSNumber.init(value: Int8(UMSocialPlatformType.QQ.rawValue)),NSNumber.init(value: Int8(UMSocialPlatformType.qzone.rawValue)),NSNumber.init(value: Int8(UMSocialPlatformType.wechatSession.rawValue)),NSNumber.init(value: Int8(UMSocialPlatformType.wechatTimeLine.rawValue))])
         
         
         UMSocialUIManager.showShareMenuViewInWindow {(platformType, shreMenuView) in
-           
-            
-            let shareObject:UMShareObject =
-                UMShareObject.shareObject(withTitle: "测试标题", descr: "这里是图片分享测试", thumImage: "https://mobile.umeng.com/images/pic/home/social/img-1.png") as! UMShareObject
-//            shareObject.webpageUrl = "http://mobile.umeng.com/social";
-            
+
+            let shareObject:UMShareWebpageObject = UMShareWebpageObject.shareObject(withTitle: "分享title", descr: "描述问题", thumImage: placeImage)
+            shareObject.webpageUrl = "www.baidu.com"
             
             let messageObject:UMSocialMessageObject = UMSocialMessageObject.init()
-//            messageObject.text = "友盟分享测试(图片)，swift3.0 Xcode8.1 umeng6.0.3 作者：targetcloud"
             messageObject.shareObject = shareObject;
-            UMSocialManager.default().share(to: platformType, messageObject: messageObject, currentViewController: self, completion: { (shareResponse, error) in
+            UMSocialManager.default().share(to: platformType, messageObject: messageObject, currentViewController: RootViewController, completion: { (shareResponse, error) in
                 if let error1 = error {
                     print("Share Fail with error ：%@", error1.localizedDescription)
                 }else{
@@ -35,7 +31,7 @@ class UMengAcion: NSObject {
         }
     }
     class func getUserInfoForPlatform(platformType:UMSocialPlatformType){
-        UMSocialManager.default().getUserInfo(with: platformType, currentViewController: TopViewContoller(), completion: { (result:Any?, error:Error?) in
+        UMSocialManager.default().getUserInfo(with: platformType, currentViewController: RootViewController, completion: { (result:Any?, error:Error?) in
             if let userinfo  = result as? UMSocialUserInfoResponse {
                 let message = " name: \(userinfo.name)\n icon: \(userinfo.iconurl)\n gender: \(userinfo.gender)\n"
                 print(message)

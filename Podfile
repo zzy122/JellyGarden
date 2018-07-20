@@ -14,12 +14,9 @@ target 'JellyGarden' do
 	pod 'SnapKit', '~> 4.0.0'
 	
      pod 'Pingpp/Alipay'
-#    pod 'RxSwift',    '~> 4.0'
-#    pod 'RxCocoa',    '~> 4.0'
-#    pod 'SQLite.swift'
+
     #友盟
     pod 'UMCCommon'
-    #pod 'UMCSecurityPlugins'
     # U-Share SDK UI模块（分享面板，建议添加）
     pod 'UMCShare/UI'
     # 集成微信(完整版14.4M)
@@ -27,16 +24,23 @@ target 'JellyGarden' do
     # 集成QQ/QZone/TIM(完整版7.6M)
     pod 'UMCShare/Social/QQ'
     # 集成新浪微博(完整版25.3M)
-    pod 'UMCShare/Social/Sina'
-    #pod 'UMCAnalytics'
+    #pod 'UMCShare/Social/Sina'
+    
+    
+    #注意 干掉友盟日至打印就要把Alipay的sdk换成有utdid的
+    pod 'UMCCommon'
+    pod 'UMCCommonLog'
+    pod 'UMCSecurityPlugins'
 
-#    pod 'RongCloudIM/IMLib', '~> 2.8.3'
-    pod 'RongCloudIM/IMKit', '~> 2.8.3'
+
     #极光
     pod 'JPush', '~> 3.0.7'
     pod 'YYModel', '~> 1.0.4'
     pod 'AliyunOSSiOS'#阿里云存储
     pod 'MJRefresh'
+    pod 'RongCloudRTC/RongCallLib', '~> 2.9.0'
+     pod 'RongCloudRTC/RongCallKit', '~> 2.9.0'
+
   target 'JellyGardenTests' do
     inherit! :search_paths
     # Pods for testing

@@ -84,6 +84,20 @@ class NormalAppointmentViewController: BaseMainViewController,UICollectionViewDe
         
         // Do any additional setup after loading the view.
     }
+    @IBAction func clickSelectBtn(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        if sender.isSelected
+        {
+            dingJinFiled.resignFirstResponder()
+            dingJinFiled.isUserInteractionEnabled = false
+            dingJinFiled.text = ""
+        }
+        else
+        {
+            dingJinFiled.isUserInteractionEnabled = true
+            dingJinFiled.text = ""
+        }
+    }
     override func viewDidLayoutSubviews() {
         super.viewWillLayoutSubviews()
     }

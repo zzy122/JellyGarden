@@ -4,11 +4,16 @@
 
 #import <UMShare/UMShare.h>
 #import <UShareUI/UShareUI.h>
+#import <UMCommon/UMCommon.h>
+#import <UMCommonLog/UMCommonLogManager.h>
 #import <JPUSHService.h>
 #import <WXApi.h>
 
 #import <RongIMKit/RongIMKit.h>
 #import <RongIMLib/RongIMLib.h>
+#import <JrmfWalletKit/JrmfWalletKit.h>
+#import <RongCallKit/RongCallKit.h>
+
 #import "TimingButton.h"
 #import <CommonCrypto/CommonDigest.h>
 
@@ -47,4 +52,7 @@
 #import "CSIIGesturePasswordController.h"
 
 #import "TZImagePickerController.h"
+#import "RCDCustomerServiceViewController.h"
+
+
 

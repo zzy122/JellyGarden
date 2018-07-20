@@ -53,8 +53,11 @@ class EnlistDetailTableViewCell: UITableViewCell {
     }
     @IBAction func clickPrivateChateBtn(_ sender: UIButton) {//私聊
         let vc = ChatRoomViewController.init(conversationType: RCConversationType.ConversationType_PRIVATE, targetId: model?.user_id ?? "")
-        
-        RootNav().pushViewController(vc!, animated: true)
+        vc?.targetId = model?.user_id ?? ""
+        RCIM.shared().userInfoDataSource.getUserInfo(withUserId: model?.user_id) { (info) in
+            vc?.title = info?.name
+           RootNav().pushViewController(vc!, animated: true)
+        }
     }
     @IBAction func clickHeaderBtn(_ sender: UIButton) {//头像
         if CurrentUserInfo?.data?.sex == 0

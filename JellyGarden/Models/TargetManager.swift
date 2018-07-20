@@ -380,7 +380,7 @@ class TargetManager: NSObject {
             complection(false)
         }
     }
-    
+    //查看照片，阅后即焚
     func readImageForUserid(params:[String:Any], complection:@escaping (ReadImageModel?,Error?) -> Void)
     {
         NetCostom.shared.request(method: .post, wengen: "custom_photos/view", params: params, success: { (result) in

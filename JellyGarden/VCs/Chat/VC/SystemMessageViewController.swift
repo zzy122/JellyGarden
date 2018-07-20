@@ -15,8 +15,8 @@ class SystemMessageViewController: BaseMainTableViewController {
         super.viewDidLoad()
         self.tableView.register(UINib.init(nibName: "SystemMessageTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "SystemMessageTableViewCell")
         
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
-        self.tableView.separatorColor = UIColor.groupTableViewBackground
+//        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
+//        self.tableView.separatorColor = UIColor.groupTableViewBackground
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -69,12 +69,13 @@ extension SystemMessageViewController
             RootNav().pushViewController(EarningsRemindViewController(), animated: true)
             break
         case 2:
-//            RootViewController?.hideTheTabbar()
-//            RootNav().pushViewController(MessageBroastViewController(), animated: true)
+            RootViewController?.hideTheTabbar()
+            RootNav().pushViewController(APPNotifyViewController(), animated: true)
+
             break
         case 3:
-//            RootViewController?.hideTheTabbar()
-//            RootNav().pushViewController(CheckApplyforViewController(), animated: true)
+            RootViewController?.hideTheTabbar()
+            RootNav().pushViewController(ContactTableViewController(), animated: true)
             break
         case 4:
             
@@ -82,11 +83,12 @@ extension SystemMessageViewController
             break
         case 5:
             RootViewController?.hideTheTabbar()
-            RootNav().pushViewController(CommentNoticeViewController(), animated: true)
+            RootNav().pushViewController(CommentNotifyViewController(), animated: true)
             break
-        case 0:
-            RootViewController?.hideTheTabbar()
-            RootNav().pushViewController(DepostNoticeViewController(), animated: true)
+        case 6:
+            alertHud(title: "没看到设计图")
+//            RootViewController?.hideTheTabbar()
+//            RootNav().pushViewController(CommentNoticeViewController(), animated: true)
             break
         default:
             break

@@ -116,11 +116,12 @@ extension UserInfoViewController {
     
     func touchService() {
         RootViewController?.hideTheTabbar()
-        let vc = RCConversationViewController.init(conversationType: RCConversationType.ConversationType_CUSTOMERSERVICE, targetId: "KEFU149269681191160")
+        let vc = RCDCustomerServiceViewController.init(conversationType: RCConversationType.ConversationType_CUSTOMERSERVICE, targetId: "service")
         vc?.targetId = "service"
         let info = RCCustomerServiceInfo.init()
         info.nickName = RCIM.shared().currentUserInfo.name
         info.portraitUrl = RCIM.shared().currentUserInfo.portraitUri
+        info.referrer = "20001"
         vc?.csInfo = info
         vc?.title = "客服"
         self.navigationController?.pushViewController(vc!, animated: true)
@@ -216,6 +217,7 @@ extension UserInfoViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
         switch indexPath.section {
         case 0:
             
@@ -226,14 +228,14 @@ extension UserInfoViewController: UITableViewDelegate {
                 RootViewController?.hideTheTabbar()
                 RootNav().pushViewController(DebangPhoneViewController(), animated: true)
                 break
-            case 1://会员
+            case ((CurrentUserInfo?.data?.sex == 1) ? 10:1)://会员
                 RootViewController?.hideTheTabbar()
                 let vc = VipCenterViewController()
                 vc.isHaveUserHeader = true
                 self.navigationController?.pushViewController(vc, animated: true)
                
                 break
-            case 2://查看权限
+            case ((CurrentUserInfo?.data?.sex == 1) ? 1:2)://查看权限
                 AlertViewCoustom().showalertView(style: .actionSheet, title: "查看权限", message: nil, cancelBtnTitle: "取消", touchIndex: { (ind) in
                     
                     
@@ -246,19 +248,20 @@ extension UserInfoViewController: UITableViewDelegate {
                 }, otherButtonTitles: permissionAry[0], permissionAry[1],permissionAry[2],permissionAry[3])
                 
                 break
-            case 3://个人介绍
+            case ((CurrentUserInfo?.data?.sex == 1) ? 2:3)://个人介绍
                RootViewController?.hideTheTabbar()
                 RootNav().pushViewController(EditPersonalIntroduceViewController(), animated: true)
                 break
-            case 4://约会条件
+            case ((CurrentUserInfo?.data?.sex == 1) ? 3:4)://约会条件
                 AlertAction.share.showbottomPicker(title: title, maxCount: 4, dataAry: FillCondition.share.appointmentConditionListModel, currentData: CurrentUserInfo?.data?.appointment_condition, backData: { (result) in
                    self.conditionAction(result: result)
                     
                 })
                 break
-            case 5://分享
+            case ((CurrentUserInfo?.data?.sex == 1) ? 4:5)://分享
+                UMengAcion.uMengShare()
                 break
-            case 6://用户协议
+            case ((CurrentUserInfo?.data?.sex == 1) ? 5:6)://用户协议
                 break
             default:
                 break
@@ -349,7 +352,7 @@ extension UserInfoViewController: UITableViewDataSource {
         case 0:
             return 1
         case 1:
-            return 7
+            return ((CurrentUserInfo?.data?.sex == 0) ? 7 : 6)
         case 2:
             return 3
         default:
@@ -373,36 +376,69 @@ extension UserInfoViewController: UITableViewDataSource {
             }
             cell?.accessoryView = nil
             cell?.accessoryType = .disclosureIndicator
-            if 1 == indexPath.section && 0 == indexPath.row {
-                cell?.textLabel?.text = "绑定手机"
-                cell?.detailTextLabel?.text = CurrentUserInfo?.data?.phone
+            if CurrentUserInfo?.data?.sex == 0
+            {
+                if 1 == indexPath.section && 0 == indexPath.row {
+                    cell?.textLabel?.text = "绑定手机"
+                    cell?.detailTextLabel?.text = CurrentUserInfo?.data?.phone
+                }
+                else if 1 == indexPath.section && 1 == indexPath.row {
+                    cell?.textLabel?.text = "会员"
+                    cell?.detailTextLabel?.text = ""
+                }
+                else if 1 == indexPath.section && 2 == indexPath.row {
+                    cell?.textLabel?.text = "查看权限"
+                    cell?.detailTextLabel?.text = CurrentUserInfo?.data?.permission
+                }
+                else if 1 == indexPath.section && 3 == indexPath.row {
+                    cell?.textLabel?.text = "个人介绍"
+                    cell?.detailTextLabel?.text = CurrentUserInfo?.data?.self_introduction
+                }
+                else if 1 == indexPath.section && 4 == indexPath.row {
+                    cell?.textLabel?.text = "约会条件"
+                    cell?.detailTextLabel?.text = CurrentUserInfo?.data?.appointment_condition?.joined(separator: " ")
+                    
+                }
+                else if 1 == indexPath.section && 5 == indexPath.row {
+                    cell?.textLabel?.text = "分享果冻花园"
+                    cell?.detailTextLabel?.text = ""
+                }
+                else if 1 == indexPath.section && 6 == indexPath.row {
+                    cell?.textLabel?.text = "用户使用协议"
+                    cell?.detailTextLabel?.text = ""
+                }
             }
-            else if 1 == indexPath.section && 1 == indexPath.row {
-                cell?.textLabel?.text = "会员"
-                cell?.detailTextLabel?.text = ""
+            else
+            {
+                if 1 == indexPath.section && 0 == indexPath.row {
+                    cell?.textLabel?.text = "绑定手机"
+                    cell?.detailTextLabel?.text = CurrentUserInfo?.data?.phone
+                }
+            
+                else if 1 == indexPath.section && 1 == indexPath.row {
+                    cell?.textLabel?.text = "查看权限"
+                    cell?.detailTextLabel?.text = CurrentUserInfo?.data?.permission
+                }
+                else if 1 == indexPath.section && 2 == indexPath.row {
+                    cell?.textLabel?.text = "个人介绍"
+                    cell?.detailTextLabel?.text = CurrentUserInfo?.data?.self_introduction
+                }
+                else if 1 == indexPath.section && 3 == indexPath.row {
+                    cell?.textLabel?.text = "约会条件"
+                    cell?.detailTextLabel?.text = CurrentUserInfo?.data?.appointment_condition?.joined(separator: " ")
+                    
+                }
+                else if 1 == indexPath.section && 4 == indexPath.row {
+                    cell?.textLabel?.text = "分享果冻花园"
+                    cell?.detailTextLabel?.text = ""
+                }
+                else if 1 == indexPath.section && 5 == indexPath.row {
+                    cell?.textLabel?.text = "用户使用协议"
+                    cell?.detailTextLabel?.text = ""
+                }
             }
-            else if 1 == indexPath.section && 2 == indexPath.row {
-                cell?.textLabel?.text = "查看权限"
-                cell?.detailTextLabel?.text = CurrentUserInfo?.data?.permission
-            }
-            else if 1 == indexPath.section && 3 == indexPath.row {
-                cell?.textLabel?.text = "个人介绍"
-                cell?.detailTextLabel?.text = CurrentUserInfo?.data?.self_introduction
-            }
-            else if 1 == indexPath.section && 4 == indexPath.row {
-                cell?.textLabel?.text = "约会条件"
-                cell?.detailTextLabel?.text = CurrentUserInfo?.data?.appointment_condition?.joined(separator: " ")
-                
-            }
-            else if 1 == indexPath.section && 5 == indexPath.row {
-                cell?.textLabel?.text = "分享果冻花园"
-                cell?.detailTextLabel?.text = ""
-            }
-            else if 1 == indexPath.section && 6 == indexPath.row {
-                cell?.textLabel?.text = "用户使用协议"
-                cell?.detailTextLabel?.text = ""
-            }
-            else if 2 == indexPath.section && 0 == indexPath.row {
+            
+            if 2 == indexPath.section && 0 == indexPath.row {
                 cell?.textLabel?.text = "黑名单"
                 cell?.detailTextLabel?.text = ""
             }
@@ -460,11 +496,11 @@ extension UserInfoViewController
         })
     }
     func uploadUserPhotoUrlToServer(urlStrs:[String]){
-//        let signe = DispatchSemaphore.init(value: 0)
+
         for i in 0 ..< urlStrs.count
         {
             let urlstr = urlStrs[i]
-//            DispatchGroup().enter()
+
             let params:[String:Any] = ["user_id":CurrentUserInfo?.data?.user_id ?? "","url":urlstr,"type":0]
             
             TargetManager.share.addUserPhotos(params: params, complection: { (success) in

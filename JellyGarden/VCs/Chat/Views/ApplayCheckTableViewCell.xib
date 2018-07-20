@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="180" id="KGk-i7-Jjw" customClass="ApplayCheckTableViewCell" customModule="JellyGarden" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="179.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginicon" translatesAutoresizingMaskIntoConstraints="NO" id="wQ0-2P-eRb">
+                        <rect key="frame" x="16" y="16" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="111-jm-ksm"/>
+                            <constraint firstAttribute="width" constant="50" id="nnp-MB-36V"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="小栗子" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EvU-LA-zmr">
+                        <rect key="frame" x="74" y="17" width="43" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请求查看你的详情页" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e3z-wV-pak">
+                        <rect key="frame" x="120" y="18.5" width="110.5" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gLX-IV-7O0">
+                        <rect key="frame" x="270" y="14" width="42" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="gqs-dF-xfO"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <state key="normal" title="Ta的首页">
+                            <color key="titleColor" red="0.32549019607843138" green="0.53725490196078429" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="clickMainBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Gjv-9a-3u3"/>
+                        </connections>
+                    </button>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="果冻花园-press" translatesAutoresizingMaskIntoConstraints="NO" id="MVe-Jl-nh0">
+                        <rect key="frame" x="74" y="42" width="55" height="55"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="55" id="MRX-vM-ITt"/>
+                            <constraint firstAttribute="height" constant="55" id="lgw-7v-4QB"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1小时前" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jre-2X-1gQ">
+                        <rect key="frame" x="74" y="107" width="42.5" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SIk-cf-Fei">
+                        <rect key="frame" x="74" y="135.5" width="80" height="36"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="36" id="FkU-b9-2hv"/>
+                            <constraint firstAttribute="width" constant="80" id="b1f-0T-zb2"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <state key="normal" title="拒绝">
+                            <color key="titleColor" red="0.32549019607843138" green="0.53725490196078429" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="clickRefuseBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="8EP-Ia-ELH"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="krU-Pm-L5W">
+                        <rect key="frame" x="184" y="135.5" width="110" height="36"/>
+                        <color key="backgroundColor" red="0.32549019607843138" green="0.53725490196078429" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="110" id="1h1-TI-P1i"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <state key="normal" title="允许(有效期15天)">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                        <connections>
+                            <action selector="clickDateBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="9rU-p5-vBL"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="gLX-IV-7O0" firstAttribute="centerY" secondItem="e3z-wV-pak" secondAttribute="centerY" id="41u-o8-7ea"/>
+                    <constraint firstItem="krU-Pm-L5W" firstAttribute="centerY" secondItem="SIk-cf-Fei" secondAttribute="centerY" id="4AF-8S-51I"/>
+                    <constraint firstAttribute="trailing" secondItem="gLX-IV-7O0" secondAttribute="trailing" constant="8" id="4fv-c3-IK1"/>
+                    <constraint firstItem="SIk-cf-Fei" firstAttribute="leading" secondItem="MVe-Jl-nh0" secondAttribute="leading" id="6PD-cB-Z21"/>
+                    <constraint firstItem="wQ0-2P-eRb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="BDh-E2-5jt"/>
+                    <constraint firstItem="e3z-wV-pak" firstAttribute="leading" secondItem="EvU-LA-zmr" secondAttribute="trailing" constant="3" id="BUl-dY-14O"/>
+                    <constraint firstAttribute="bottom" secondItem="SIk-cf-Fei" secondAttribute="bottom" constant="8" id="CLY-lN-1vn"/>
+                    <constraint firstItem="Jre-2X-1gQ" firstAttribute="leading" secondItem="MVe-Jl-nh0" secondAttribute="leading" id="QOK-Od-wwg"/>
+                    <constraint firstItem="EvU-LA-zmr" firstAttribute="leading" secondItem="wQ0-2P-eRb" secondAttribute="trailing" constant="8" id="YSo-z6-zaU"/>
+                    <constraint firstItem="MVe-Jl-nh0" firstAttribute="top" secondItem="EvU-LA-zmr" secondAttribute="bottom" constant="8" id="c6y-nz-drh"/>
+                    <constraint firstItem="krU-Pm-L5W" firstAttribute="leading" secondItem="SIk-cf-Fei" secondAttribute="trailing" constant="30" id="eJh-No-VnE"/>
+                    <constraint firstItem="MVe-Jl-nh0" firstAttribute="leading" secondItem="EvU-LA-zmr" secondAttribute="leading" id="hBN-Vz-9be"/>
+                    <constraint firstItem="wQ0-2P-eRb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="njU-q9-Jgo"/>
+                    <constraint firstItem="e3z-wV-pak" firstAttribute="centerY" secondItem="EvU-LA-zmr" secondAttribute="centerY" id="oce-Kg-TB7"/>
+                    <constraint firstItem="krU-Pm-L5W" firstAttribute="height" secondItem="SIk-cf-Fei" secondAttribute="height" id="s9w-Ei-7Bx"/>
+                    <constraint firstItem="EvU-LA-zmr" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="17" id="t6w-jY-q4F"/>
+                    <constraint firstItem="Jre-2X-1gQ" firstAttribute="top" secondItem="MVe-Jl-nh0" secondAttribute="bottom" constant="10" id="zPM-Dp-jas"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="commentImag" destination="MVe-Jl-nh0" id="UdG-04-coL"/>
+                <outlet property="headerImage" destination="wQ0-2P-eRb" id="QBS-oe-Js1"/>
+                <outlet property="limitDateBtn" destination="krU-Pm-L5W" id="9GJ-uk-mov"/>
+                <outlet property="mainBtn" destination="gLX-IV-7O0" id="Jee-Gy-XL9"/>
+                <outlet property="nickLab" destination="EvU-LA-zmr" id="PzD-T8-IC3"/>
+                <outlet property="refuseBtn" destination="SIk-cf-Fei" id="Te5-Rx-P61"/>
+                <outlet property="timeLab" destination="Jre-2X-1gQ" id="4er-db-G4n"/>
+            </connections>
+            <point key="canvasLocation" x="-124" y="85"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="loginicon" width="50" height="50"/>
+        <image name="果冻花园-press" width="26" height="26"/>
+    </resources>
+</document>

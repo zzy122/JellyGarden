@@ -43,6 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     @objc func networkDidReceiveMessage(notification:NSNotification){//自定义的消息
         DebugLog(message: "收到的通知:\(String(describing: notification.userInfo))")
+        
     }
     func setRootViewController(vc:UIViewController) {
         self.window?.rootViewController = vc
@@ -53,6 +54,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     //ios9之前
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+       if (RCIM.shared().openExtensionModuleUrl(url))
+       {
+            return true
+        }
+        
         if (Pingpp.handleOpen(url, withCompletion: nil)) {//收到支付结果通知
             return true;
         }
@@ -62,6 +68,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     //ios9之后
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        if (RCIM.shared().openExtensionModuleUrl(url))
+        {
+            return true
+        }
         if (Pingpp.handleOpen(url, withCompletion: nil)) {////要跳转支付宝或者微信的通知
             return true;
         }
@@ -81,6 +91,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
      */
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         DebugLog(message: "收到推送消息的内容:\(userInfo.description)")
+        JPUSHService.setBadge(0)
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        
         JPUSHService.handleRemoteNotification(userInfo)
         completionHandler(.newData)
     }

@@ -16,7 +16,10 @@ class MessageBroastViewController: BaseMainTableViewController {
         tableView.register(UINib.init(nibName: "MessageBroastTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "MessageBroastTableViewCell")
         // Do any additional setup after loading the view.
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
 
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -43,8 +46,10 @@ extension MessageBroastViewController
         return 10
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MessageBroastTableViewCell", for: indexPath)
+        let cell:MessageBroastTableViewCell = tableView.dequeueReusableCell(withIdentifier: "MessageBroastTableViewCell", for: indexPath) as! MessageBroastTableViewCell
         cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
+        cell.nickName.text = "zzy"
+        cell.desCriptionLab.text = "在北京发布了一条约会广播"
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

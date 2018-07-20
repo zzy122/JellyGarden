@@ -175,9 +175,15 @@ class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
                 
                 break
             case .chat://点击 私聊
-                let vc = ChatRoomViewController()
-                vc.targetId = userInfoModel?.data?.user_id
-                self.navigationController?.pushViewController(vc, animated: true)
+//                let vc = ChatRoomViewController()
+                let vc = ChatRoomViewController.init(conversationType: RCConversationType.ConversationType_PRIVATE, targetId: userInfoModel?.data?.user_id)
+                vc?.targetId = userInfoModel?.data?.user_id
+                RCIM.shared().userInfoDataSource.getUserInfo(withUserId: userInfoModel?.data?.user_id) { (info) in
+                    vc?.title = info?.name
+                    self.navigationController?.pushViewController(vc!, animated: true)
+                }
+//                let info = RCIM.shared().getUserInfoCache(userInfoModel?.data?.user_id)
+                
                 
                 break
             case .prase://点击评价

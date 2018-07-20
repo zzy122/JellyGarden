@@ -68,6 +68,20 @@ class EnlistAppiontViewController: BaseMainViewController,UICollectionViewDelega
         appiontLab.text = LocalCityName
         // Do any additional setup after loading the view.
     }
+    @IBAction func clickSelectBtn(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        if sender.isSelected
+        {
+            dingjinFiled.resignFirstResponder()
+            dingjinFiled.isUserInteractionEnabled = false
+            dingjinFiled.text = ""
+        }
+        else
+        {
+            dingjinFiled.isUserInteractionEnabled = true
+            dingjinFiled.text = ""
+        }
+    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         RootViewController?.hideTheTabbar()

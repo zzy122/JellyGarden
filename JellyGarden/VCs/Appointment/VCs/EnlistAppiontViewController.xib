@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -218,6 +218,10 @@
                                     <state key="normal" title="收取定金" image="选中">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <state key="selected" title="收取定金" image="照片-未选中"/>
+                                    <connections>
+                                        <action selector="clickSelectBtn:" destination="-1" eventType="touchUpInside" id="i52-p2-8Kb"/>
+                                    </connections>
                                 </button>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="收取定金" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kPj-OU-zVg" customClass="APPTextfiled" customModule="JellyGarden" customModuleProvider="target">
                                     <rect key="frame" x="315" y="16" width="100" height="17"/>
@@ -309,6 +313,7 @@
     </objects>
     <resources>
         <image name="提示" width="14" height="14"/>
+        <image name="照片-未选中" width="22" height="22"/>
         <image name="箭头" width="8" height="14"/>
         <image name="选中" width="22" height="22"/>
     </resources>

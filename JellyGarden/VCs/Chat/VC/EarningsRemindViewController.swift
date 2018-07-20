@@ -13,6 +13,7 @@ class EarningsRemindViewController: BaseMainTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "收益提醒"
+        tableView.register(UINib.init(nibName: "MessageBroastTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "MessageBroastTableViewCell")
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -35,4 +36,31 @@ class EarningsRemindViewController: BaseMainTableViewController {
     }
     */
 
+}
+extension EarningsRemindViewController
+{
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell:MessageBroastTableViewCell = tableView.dequeueReusableCell(withIdentifier: "MessageBroastTableViewCell", for: indexPath) as! MessageBroastTableViewCell
+        cell.nickName.text = "小栗子"
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
+        cell.desCriptionLab.text = "付费(6.0)查看了您的相册"
+        cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
+        
+        return cell
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        RootViewController?.selectedIndex = 1
+        self.navigationController?.popViewController(animated: false)
+    }
 }

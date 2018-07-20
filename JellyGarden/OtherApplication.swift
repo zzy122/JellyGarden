@@ -7,6 +7,7 @@
 //
 
 import UIKit
+
 import UserNotifications
 
 class OtherApplication: NSObject,WXApiDelegate,RCIMUserInfoDataSource,RCIMGroupMemberDataSource,RCIMConnectionStatusDelegate,RCIMReceiveMessageDelegate,JPUSHRegisterDelegate {
@@ -15,7 +16,10 @@ class OtherApplication: NSObject,WXApiDelegate,RCIMUserInfoDataSource,RCIMGroupM
     private override init() {
         
     }
-    
+    func setAppNotifyCation()
+    {
+        
+    }
     func setYumeng()
     {
         UMSocialManager.default().umSocialAppkey = UMengKey
@@ -23,8 +27,10 @@ class OtherApplication: NSObject,WXApiDelegate,RCIMUserInfoDataSource,RCIMGroupM
         UMSocialManager.default().setPlaform(.wechatSession, appKey: WeiChatShareKey, appSecret: WeiChatShareScrete, redirectURL: "")
         
         UMSocialManager.default().setPlaform(.QQ, appKey: QQShareKey, appSecret: QQShareSecrete, redirectURL: "http://www.qq.com/music.html")
+        UMCommonLogManager.setUp()
+        UMConfigure.setLogEnabled(true)
+        UMConfigure.initWithAppkey(UMengKey, channel: "App Store")
         
-//        UMSocialManager.default().setPlaform(.sina, appKey: WeiBoShareKey, appSecret: weiBoShareSecret, redirectURL: "http://open.weibo.com/apps/80911205/privilege/oauth")
     }
     func setRongIM () {
         //设置appkey
@@ -36,6 +42,7 @@ class OtherApplication: NSObject,WXApiDelegate,RCIMUserInfoDataSource,RCIMGroupM
         RCIM.shared().enableTypingStatus = true
         RCIM.shared().connectionStatusDelegate = self
         RCIM.shared().initWithAppKey(RongIMKey)
+        RCIM.shared().setScheme("JellyGarden", forExtensionModule: "JrmfPacketManager")
         RCIM.shared().registerMessageType(DepositMessage.self)
         RCIM.shared().registerMessageType(TagStatueMessage.self)
         RCIM.shared().registerMessageType(ReadDestroyMessage.self)

@@ -10,6 +10,7 @@ import UIKit
 
 class SystemMessageTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var titleTopDistance: NSLayoutConstraint!
     @IBOutlet weak var messageTime: UILabel!
     @IBOutlet weak var messageCount: UILabel!
     @IBOutlet weak var messageDetail: UILabel!
@@ -22,8 +23,15 @@ class SystemMessageTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         self.messageCount.backgroundColor = APPCustomRedColor
         self.messageCount.layer.cornerRadius = 10.0
+        
         self.messageCount.clipsToBounds = true
+        if messageDetail.text?.count == 0 || messageDetail.text?.count == nil
+        {
+            titleTopDistance.constant = (self.bounds.height - 20) / 2.0 
+        }
+        
     }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

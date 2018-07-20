@@ -22,8 +22,7 @@ class MessageBroastTableViewCell: UITableViewCell {
         headerView.layer.cornerRadius = 25
         headerView.clipsToBounds = true
         headerView.image = imageName(name: "loginicon")
-        nickName.text = "zzy"
-        desCriptionLab.text = "在北京发布了一条约会广播"
+       
         timeLab.text = distanceTime(time: 12635552)
     }
 

@@ -21,7 +21,9 @@ class BaseTableViewController: BaseViewController,UITableViewDelegate, UITableVi
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        
+         self.tableView.separatorColor = UIColor.gray
+
+//        tableView.separatorInset = UIEdgeInsets.zero
         self.tableView.tableFooterView = UIView()
         MM_WARNING//此处的意义
         if #available(iOS 11.0, *)
@@ -31,6 +33,11 @@ class BaseTableViewController: BaseViewController,UITableViewDelegate, UITableVi
         self.tableView.backgroundColor = customBackViewColor
         self.view.addSubview(self.tableView)
         // Do any additional setup after loading the view.
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()

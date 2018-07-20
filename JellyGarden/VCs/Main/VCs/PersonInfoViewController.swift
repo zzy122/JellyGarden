@@ -170,8 +170,11 @@ class PersonInfoViewController: BaseTableViewController,ResponderRouter {
     }
     func gotoChatVC() {
         let vc = ChatRoomViewController.init(conversationType: RCConversationType.ConversationType_PRIVATE, targetId: userInfoModel?.data?.user_id)
-//        vc?.targetId = "5b2f539af0fae056967dc6fb"
-        self.navigationController?.pushViewController(vc!, animated: true)
+        vc?.targetId = userInfoModel?.data?.user_id
+        RCIM.shared().userInfoDataSource.getUserInfo(withUserId: userInfoModel?.data?.user_id) { (info) in
+            vc?.title = info?.name
+            self.navigationController?.pushViewController(vc!, animated: true)
+        }
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

@@ -107,8 +107,8 @@ let UMengKey = "5b2347a2f43e4806580000c9"
 let WeiChatShareKey = "wxd2e1aa0feed6b934"
 let WeiChatShareScrete = "4b89be2b0c428ff608a18e98f5140b1e"
 //QQ分享
-let QQShareKey = "1106901221"
-let QQShareSecrete = "xzTU3KHfggSizZyA"
+let QQShareKey = "1106938724"
+let QQShareSecrete = "Bo3kPkPS8ICSMdgZ"
 //微博分享
 //let WeiBoShareKey = "80911205"
 //let weiBoShareSecret = "e51e50df15da143941ad1271a61ba156"
