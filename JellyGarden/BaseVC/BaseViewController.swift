@@ -15,6 +15,7 @@ class BaseViewController: UIViewController {
         btn.addTarget(self, action: #selector(clickLeftBtn), for: UIControlEvents.touchUpInside)
         let barbutton = UIBarButtonItem.init(customView: btn)
         self.navigationItem.leftBarButtonItem = barbutton
+        
         return btn
     }()
     
