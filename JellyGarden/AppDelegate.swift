@@ -27,9 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.sharedManager().shouldToolbarUsesTextFieldTintColor = true
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
         //
-        
-       
-        
+
         OtherApplication.share.setYumeng()
         OtherApplication.share.setRongIM()
         
@@ -43,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     @objc func networkDidReceiveMessage(notification:NSNotification){//自定义的消息
         DebugLog(message: "收到的通知:\(String(describing: notification.userInfo))")
-        
+        APPNotyfyDealwith.share.addNotifyInfo(info: notification.userInfo as? [String : Any])
     }
     func setRootViewController(vc:UIViewController) {
         self.window?.rootViewController = vc
@@ -90,7 +88,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
      @param completionHandler 完成回调
      */
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        DebugLog(message: "收到推送消息的内容:\(userInfo.description)")
+//        DebugLog(message: "收到推送消息的内容:\(userInfo.description)")
+        
+        
+        
+        
+        
         JPUSHService.setBadge(0)
         UIApplication.shared.applicationIconBadgeNumber = 0
         

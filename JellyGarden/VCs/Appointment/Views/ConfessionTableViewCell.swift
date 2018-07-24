@@ -210,6 +210,8 @@ class ConfessionTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDa
         self.bodyView?.setDatasource(model: model)
         self.bodyView?.tag = self.tag
         self.setTableViewFrame(view: self.tableView)
+        
+       
     
     }
     override func awakeFromNib() {

@@ -11,13 +11,14 @@ import UIKit
 class SystemMessageViewController: BaseMainTableViewController {
     let titleAry = ["电台广播","收益提醒","果冻花园","联系方式","查看申请","评价通知","订金通知"]
     let imageStr = ["电台广播","收益提醒","果冻花园","联系方式","查看申请","评价通知","订金通知"]
+    let dataDic:[String:Any]? = { 
+        let dic = APPNotyfyDealwith.share.getAllNotifyDic()
+        return dic
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.register(UINib.init(nibName: "SystemMessageTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "SystemMessageTableViewCell")
         
-//        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
-//        self.tableView.separatorColor = UIColor.groupTableViewBackground
-        // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -53,6 +54,30 @@ extension SystemMessageViewController
         let cell:SystemMessageTableViewCell = tableView.dequeueReusableCell(withIdentifier: "SystemMessageTableViewCell", for: indexPath) as! SystemMessageTableViewCell
         cell.messageImage.image = imageName(name: self.imageStr[indexPath.row])
         cell.messageTitle.text = titleAry[indexPath.row]
+    
+        switch indexPath.row {
+        case 0://广播
+            let ary = APPNotyfyDealwith.share.getNotifyData(key: Radio_APP_BroadcastNotify)
+            if let dicAry = ary, dicAry.count > 0
+            {
+                cell.messageCount.text = dicAry.first?["requirement"] as? String
+            }
+           
+            break
+        case 1://收益提醒
+            break
+        case 2://郭东花园
+            break
+        case 3://联系方式
+            break
+        case 4://查看申请
+            break
+        case 5://评价通知
+            break
+        default://定金通知
+            break
+        }
+        
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -87,8 +112,6 @@ extension SystemMessageViewController
             break
         case 6:
             alertHud(title: "没看到设计图")
-//            RootViewController?.hideTheTabbar()
-//            RootNav().pushViewController(CommentNoticeViewController(), animated: true)
             break
         default:
             break

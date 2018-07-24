@@ -45,7 +45,7 @@ class APPNotyfyDealwith: NSObject {
     let notifyPath = "\(UserPath)/notify.plist"
     func createNotifyFile()
     {
-//        let path:String = "\(UserPath)/notify.plist"
+
         if (!FileManager.default.fileExists(atPath: notifyPath))
         {
             if !FileManager.default.createFile(atPath: notifyPath, contents: nil, attributes: nil) {
@@ -56,28 +56,69 @@ class APPNotyfyDealwith: NSObject {
             
         }
     }
-    func addData(Key:String,objc:[String:Any])
+    private func addData(Key:String,objc:[String:Any]?)
     {
-      
+        guard let info = objc else {
+            return
+        }
         let dataDic = NSDictionary.init(contentsOfFile: notifyPath)
         guard var dataAry = dataDic?.object(forKey: Key) as? Array<Any>  else {
             alertHud(title: "元数据不对")
             return
         }
-        dataAry.insert(objc, at: 0)
+        dataAry.insert(info, at: 0)
         dataDic?.setValue(dataAry, forKey: Key)
         dataDic?.write(toFile: notifyPath, atomically: true)
     }
-    func getNotifyData<T:JSON>(key:String) -> [T]?
+    func addNotifyInfo(info:[String:Any]?)
+    {
+        guard let infos = info else {
+            return
+        }
+        let model = JSONDeserializer<NotifyModel>.deserializeFrom(dict: infos)
+        switch model!.type {
+        case 1://广播
+            self.addData(Key: Radio_APP_BroadcastNotify, objc: infos["data"] as? [String : Any])
+            break
+        case 2://评论内容
+     self.addData(Key: Evaluate_APP_Notify, objc: infos["data"] as? [String : Any])
+            break
+        case 3://申请查看资料
+             self.addData(Key: Check_APP_ApplyNotify, objc: infos["data"] as? [String : Any])
+            break
+        case 4://申请查看联系方式
+             self.addData(Key: Contact_APP_StyleNotify, objc:infos["data"] as? [String : Any])
+            break
+        default:
+            
+            break
+        }
+        
+    }
+    func getNotifyData(key:String) -> [[String:Any]]?
     {
         let dataDic = NSDictionary.init(contentsOfFile: notifyPath)
         
-        guard let dataAry = dataDic?.object(forKey: key) as? Array<Any>  else {
+        guard let dataAry = dataDic?.object(forKey: key) as? [[String:Any]]  else {
             alertHud(title: "元数据不对")
             return nil
         }
-        return JSONDeserializer<T>.deserializeModelArrayFrom(array: dataAry)  as? [T]
-
+        return dataAry
+    }
+//    func getNotifyData<T:JSON>(key:String) -> [T]?
+//    {
+//        let dataDic = NSDictionary.init(contentsOfFile: notifyPath)
+//
+//        guard let dataAry = dataDic?.object(forKey: key) as? Array<Any>  else {
+//            alertHud(title: "元数据不对")
+//            return nil
+//        }
+//        return JSONDeserializer<T>.deserializeModelArrayFrom(array: dataAry)  as? [T]
+//
+//    }
+    func getAllNotifyDic() -> [String:Any]?
+    {
+        return NSDictionary.init(contentsOfFile: notifyPath) as? [String:Any]
     }
     
 }

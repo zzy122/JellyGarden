@@ -325,6 +325,7 @@
 		C769122C21002BE900898B47 /* RCDCSInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = C769122B21002BE800898B47 /* RCDCSInputView.m */; };
 		C769122F21002BFB00898B47 /* RCDCSEvaluateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C769122E21002BFA00898B47 /* RCDCSEvaluateModel.m */; };
 		C769123221002C1A00898B47 /* RCDCSButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C769123121002C1A00898B47 /* RCDCSButton.m */; };
+		C7E7968B2105863400286E7B /* NotifyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E7968A2105863400286E7B /* NotifyModel.swift */; };
 		C7EEE74220FF3696005CA67F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7EEE74120FF3696005CA67F /* LaunchScreen.storyboard */; };
 		D7D95118EA173C975FF3B6E4 /* Pods_JellyGardenUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31D576D9311CB97643CD0783 /* Pods_JellyGardenUITests.framework */; };
 /* End PBXBuildFile section */
@@ -745,6 +746,7 @@
 		C769122E21002BFA00898B47 /* RCDCSEvaluateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCDCSEvaluateModel.m; path = "../../../../../../Downloads/sealtalk-ios-master/ios-rongimdemo/RCDCSEvaluateModel.m"; sourceTree = "<group>"; };
 		C769123021002C1A00898B47 /* RCDCSButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDCSButton.h; sourceTree = "<group>"; };
 		C769123121002C1A00898B47 /* RCDCSButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDCSButton.m; sourceTree = "<group>"; };
+		C7E7968A2105863400286E7B /* NotifyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifyModel.swift; sourceTree = "<group>"; };
 		C7EEE74120FF3696005CA67F /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E8BF34C3DC62E9271DBC4FA4 /* Pods-JellyGardenUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JellyGardenUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-JellyGardenUITests/Pods-JellyGardenUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1220,6 +1222,7 @@
 				5A196AD920C6C481002EC0EE /* PikerModel.swift */,
 				5AE9CC8020C7FE0F0057CFF3 /* UserModel.swift */,
 				5A459ADE20D218C200C0A6FA /* ConditionModel.swift */,
+				C7E7968A2105863400286E7B /* NotifyModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1929,6 +1932,7 @@
 				5A574BFB20CA204A00C59276 /* ReckonTimeView.swift in Sources */,
 				5A0455D720CD683E0041D309 /* ConfessionTableViewCellBody.swift in Sources */,
 				5A459ACF20D166A400C0A6FA /* ZZYLinkTextData.m in Sources */,
+				C7E7968B2105863400286E7B /* NotifyModel.swift in Sources */,
 				5A459AD520D166A400C0A6FA /* ZZYCoreTextData.m in Sources */,
 				5A6C939120F4EA4200E57223 /* TZPhotoPreviewController.m in Sources */,
 				5E6AE16120DF3BC400901D43 /* MineRedPhoneCell.swift in Sources */,

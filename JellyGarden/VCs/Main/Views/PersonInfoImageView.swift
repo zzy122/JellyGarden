@@ -80,6 +80,7 @@ class PersonInfoImageView: UIView,UICollectionViewDelegate,UICollectionViewDataS
     }()
     @objc func clickDeblockingBtn(){
         
+        
     }
     /*
     // Only override draw() if you perform custom drawing.

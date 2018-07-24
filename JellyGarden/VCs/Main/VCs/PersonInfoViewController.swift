@@ -166,6 +166,13 @@ class PersonInfoViewController: BaseTableViewController,ResponderRouter {
         if name == ClickPermissionBtn
         {
             DebugLog(message: "点击了申请查看")
+            
+            TargetManager.share.applayToDetail(params: ["user_id":CurrentUserInfo?.data?.user_id ?? "", "view_user_id":userInfoModel?.data?.user_id ?? ""]) { (success) in
+                if success
+                {
+                    
+                }
+            }
         }
     }
     func gotoChatVC() {
@@ -257,16 +264,33 @@ extension PersonInfoViewController
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let str = self.leftTitles[indexPath.row]
         var cell = tableView.dequeueReusableCell(withIdentifier: "PersonInfoViewController")
+        
         if cell == nil {
             cell = UITableViewCell.init(style: UITableViewCellStyle.value1, reuseIdentifier: "PersonInfoViewController")
             
         }
+        cell?.accessoryType = UITableViewCellAccessoryType.none
+        cell?.accessoryView = nil
         if indexPath.row == 0
         {
             cell?.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         }
+       
         cell?.textLabel?.text = str;
         cell?.detailTextLabel?.text = self.rightTitles[indexPath.row]
+        if 4 == indexPath.row
+        {
+            let btn = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: 80, height: 26))
+            btn.setTitle("点击查看", for: UIControlState.normal)
+            btn.setTitleColor(APPCustomBtnColor, for: UIControlState.normal)
+            btn.layer.cornerRadius = 13
+            btn.titleLabel?.font = kFont_system12
+            btn.layer.borderColor = APPCustomBtnColor.cgColor
+            btn.layer.borderWidth = 1.0
+            btn.addTarget(self, action: #selector(clickCheckContact(sender:)), for: UIControlEvents.touchUpInside)
+            cell?.accessoryView = btn
+            cell?.detailTextLabel?.text = nil
+        }
         return cell!
         
     }
@@ -305,7 +329,7 @@ extension PersonInfoViewController
         case 3:
             break
         case 4:
-            showContactAlert()
+           
             break
         case 5:
             break
@@ -314,6 +338,16 @@ extension PersonInfoViewController
         default:
             break
         }
+    }
+    @objc  func clickCheckContact(sender:UIButton)
+    {
+        TargetManager.share.checkContackType(params: ["user_id":CurrentUserInfo?.data?.user_id ?? "","view_user_id":userInfoModel?.data?.user_id ?? ""]) { (success) in
+            if success
+            {
+                 self.showContactAlert()
+            }
+        }
+        
     }
    
 }

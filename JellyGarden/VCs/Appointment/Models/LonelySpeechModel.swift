@@ -50,6 +50,8 @@ class lonelySpeechDetaileModel:JSON {
     var distance:Int?//距离
     var city:String?//城市
     var need_signup:Int?//1 报名约会
+    var deposit:Int?
+    
     required init() {
         
     }

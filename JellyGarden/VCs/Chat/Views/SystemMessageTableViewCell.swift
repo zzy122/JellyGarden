@@ -20,6 +20,7 @@ class SystemMessageTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+    
     override func layoutSubviews() {
         self.messageCount.backgroundColor = APPCustomRedColor
         self.messageCount.layer.cornerRadius = 10.0

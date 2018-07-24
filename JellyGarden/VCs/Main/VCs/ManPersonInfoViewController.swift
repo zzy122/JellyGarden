@@ -207,6 +207,12 @@ class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
         if name == ClickPermissionBtn
         {
             DebugLog(message: "点击了申请查看")
+            TargetManager.share.applayToDetail(params: ["user_id":CurrentUserInfo?.data?.user_id ?? "", "view_user_id":userInfoModel?.data?.user_id ?? ""]) { (success) in
+                if success
+                {
+                    
+                }
+            }
         }
         if name == ClickLikeChangeBtn  {//点赞
             guard let index = info as? Int else{

@@ -18,7 +18,6 @@ class BaseViewController: UIViewController {
         
         return btn
     }()
-    
     lazy var rightBtn:UIButton = {
         let btn = UIButton()
         btn.addTarget(self, action: #selector(clickRightBtn), for: UIControlEvents.touchUpInside)

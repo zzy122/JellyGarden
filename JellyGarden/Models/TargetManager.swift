@@ -629,6 +629,28 @@ class TargetManager: NSObject {
             complection(false)
         }
     }
+    //申请查看资料
+    func applayToDetail(params:[String:Any],complection:@escaping(Bool) -> Void)
+    {
+        NetCostom.shared.request(method: .post, wengen: "users/applyPermission", params: params, success: { (result) in
+            guard let dic = result as? [String:Any] else{
+                return
+            }
+            alertHud(title: dic["msg"] as! String)
+            complection(true)
+        }) { (error) in
+            complection(false)
+        }
+    }
+    //查看联系方式
+    func checkContackType(params:[String:Any],complection:@escaping(Bool) -> Void)
+    {
+        NetCostom.shared.request(method: .post, wengen: "users/applyContact", params: params, success: { (result) in
+            complection(true)
+        }) { (error) in
+            complection(false)
+        }
+    }
     
     
 }
