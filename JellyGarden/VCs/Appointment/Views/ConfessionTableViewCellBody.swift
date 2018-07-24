@@ -57,10 +57,28 @@ class ConfessionTableViewCellBody: UIView,UICollectionViewDelegate,UICollectionV
         self.timeLocalLab.text = titleStr
         self.describtionLab.text = model.requirement ?? ""
         self.imageNameAry = model.attachment ?? []
-
         self.collectonView.isHidden = false
         self.collectonView.frame = CGRect.init(x: 0, y: 0, width: self.frame.width, height: self.frame.height - describtionLab.frame.maxY)
         self.collectonView.reloadData()
+        guard let deposit = model.deposit,deposit > 0 else
+        {
+            self.dingJinBtn.isHidden = true
+            return
+        }
+        
+        self.dingJinBtn.isHidden = false
+        if model.poster?.sex == 0
+        {
+             self.dingJinBtn.setTitle("已支付定金\(String(deposit))", for: UIControlState.normal)
+            self.dingJinBtn.backgroundColor = k_CustomColor(red: 255, green: 153, blue: 51)
+        }
+        else
+        {
+            self.dingJinBtn.setTitle("收取定金\(String(deposit))", for: UIControlState.normal)
+            self.dingJinBtn.backgroundColor = APPCustomRedColor
+        }
+        
+        
         
     }
     

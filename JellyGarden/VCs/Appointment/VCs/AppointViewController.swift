@@ -375,6 +375,8 @@ extension AppointViewController
         if name == ClickDepositBtn
         {
             let model:lonelySpeechDetaileModel = appiontModels![index]
+            
+            AlertAction.share.sho
             alertHud(title: "后台没设置约会定金字段")
         }
         if name == ClickCommentCell//点击评论

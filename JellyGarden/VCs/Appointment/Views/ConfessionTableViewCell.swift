@@ -159,6 +159,8 @@ class ConfessionTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDa
                 self.headerView?.deleteBtn.isHidden = false
             }
             
+        
+            
         }
     }
     override func setNeedsLayout() {
@@ -210,6 +212,7 @@ class ConfessionTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDa
         self.bodyView?.setDatasource(model: model)
         self.bodyView?.tag = self.tag
         self.setTableViewFrame(view: self.tableView)
+        
         
        
     
