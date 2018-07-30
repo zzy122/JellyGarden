@@ -7,9 +7,13 @@
 //
 
 import UIKit
-
+import HandyJSON
 class CheckApplyforViewController: BaseMainTableViewController {
-
+    let models:[NotifyDataModel]? =
+    {
+        let ary = APPNotyfyDealwith.share.getNotifyData(key: Check_APP_ApplyNotify)
+        return (JSONDeserializer<NotifyDataModel>.deserializeModelArrayFrom(array: ary) as? [NotifyDataModel])
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "查看申请"
@@ -41,14 +45,15 @@ class CheckApplyforViewController: BaseMainTableViewController {
 extension CheckApplyforViewController
 {
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 5
+        return self.models?.count ?? 0
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ApplayCheckTableViewCell", for: indexPath)
+        let cell:ApplayCheckTableViewCell = tableView.dequeueReusableCell(withIdentifier: "ApplayCheckTableViewCell", for: indexPath) as! ApplayCheckTableViewCell
         cell.selectionStyle = UITableViewCellSelectionStyle.none
+        cell.model = self.models?[indexPath.section]
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

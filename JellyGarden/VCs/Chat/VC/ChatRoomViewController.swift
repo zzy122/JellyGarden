@@ -124,7 +124,7 @@ class ChatRoomViewController: RCConversationViewController,RCRealTimeLocationObs
             alertHud(title: "待定功能")
             break
         case PLUGIN_BOARD_DEPOSIT_FILE_TAG://收定金
-            AlertAction.share.showAlertView(type: UIKeyboardType.numberPad, title: "订金", placeHodel: "请输入订金金额", detailTitle: "收入将进入你的钱包中,可提现", detailImage: imageName(name: ""), click: { (suscces, backStr) in
+            AlertAction.share.showAlertView(type: UIKeyboardType.numberPad, title: "订金", placeHodel: "请输入订金金额",textStr:nil, detailTitle: "收入将进入你的钱包中,可提现", detailImage: imageName(name: ""), click: { (suscces, backStr) in
                 if suscces {
                     let mess = DepositMessage.init(content: "")
                     mess?.senderUserInfo = RCIM.shared().currentUserInfo

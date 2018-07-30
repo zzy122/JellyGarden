@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -129,6 +129,7 @@
                 <outlet property="detailLab" destination="Tey-Yp-T96" id="uhG-aG-W9a"/>
                 <outlet property="horizenView" destination="DMz-9y-hrg" id="nZO-X2-Vjn"/>
                 <outlet property="inputTextView" destination="dgy-u8-dtl" id="gS9-Th-kei"/>
+                <outlet property="textBackView" destination="7gs-ko-Gt5" id="INn-u7-mbR"/>
                 <outlet property="titleLab" destination="CUn-Bz-Lzw" id="zxS-06-8s6"/>
             </connections>
             <point key="canvasLocation" x="108.5" y="-131"/>

@@ -80,7 +80,7 @@ class ManFillInformationViewController: BaseViewController,UIImagePickerControll
     
     @IBAction func clickNickNameBtn(_ sender: UIButton) {
         contentTextView.resignFirstResponder()
-        AlertAction.share.showAlertView(type: nil,title: "昵称", placeHodel: "请输入昵称", detailTitle: nil, detailImage: nil, click: { (sure, result) in
+        AlertAction.share.showAlertView(type: nil,title: "昵称", placeHodel: "请输入昵称", textStr:nil,detailTitle: nil, detailImage: nil, click: { (sure, result) in
             if sure {
                 self.nickNameLab.text = result
             }
@@ -109,7 +109,7 @@ class ManFillInformationViewController: BaseViewController,UIImagePickerControll
     @IBAction func clickProfessionalBtn(_ sender: UIButton) {
         contentTextView.resignFirstResponder()
         
-        AlertAction.share.showAlertView(type: nil,title: "职业", placeHodel: "请输入职业", detailTitle: nil, detailImage: nil, click: { (sure, result) in
+        AlertAction.share.showAlertView(type: nil,title: "职业", placeHodel: "请输入职业", textStr:nil,detailTitle: nil, detailImage: nil, click: { (sure, result) in
             if sure {
                 self.professionalLab.text = result
             }

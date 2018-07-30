@@ -7,9 +7,13 @@
 //
 
 import UIKit
-
+import HandyJSON
 class ContactTableViewController: BaseMainTableViewController {
-
+    let models:[NotifyDataModel]? =
+    {
+        let ary = APPNotyfyDealwith.share.getNotifyData(key: Contact_APP_StyleNotify)
+        return (JSONDeserializer<NotifyDataModel>.deserializeModelArrayFrom(array: ary) as? [NotifyDataModel])
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "联系方式"
@@ -44,22 +48,54 @@ extension ContactTableViewController
         return 1
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return self.models?.count ?? 0
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:ContactTableViewCell = tableView.dequeueReusableCell(withIdentifier: "ContactTableViewCell", for: indexPath) as! ContactTableViewCell
-        cell.nickLab.text = "小栗子"
-        cell.descriptionLab.text = "向你发送了他的联系方式"
-        cell.timeLab.text = "1小时前"
-        cell.numLab.text = "5454665445"
-        cell.selectionStyle = UITableViewCellSelectionStyle.none
-//        cell.contentLab.text = testStr
-//        cell.timeLab.text = "1小时前"
+        let model = self.models![indexPath.row]
+        cell.model = model
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 110
+        return 80
     }
     
+}
+extension ContactTableViewController:ResponderRouter
+{
+    func interceptRoute(name: String, objc: UIResponder?, info: Any?) {
+        switch name {
+        case ClickComent_NotifyBtn:
+            let model:NotifyDataModel = info as! NotifyDataModel
+            if model.sex == 1
+            {
+                
+                let vc = PersonInfoViewController()
+                TargetManager.share.getDetailUserInfo(userid: model.user_id ?? "",isUpdateUser:false, complection: { (userinfo, error) in
+                    guard let user = userinfo else{
+                        return
+                    }
+                    user.data?.distance = model.distance
+                    vc.userInfoModel = user
+                    RootNav().pushViewController(vc, animated: true)
+                })
+            }
+            else
+            {
+                let vc = ManPersonInfoViewController()
+                TargetManager.share.getDetailUserInfo(userid: model.user_id ?? "",isUpdateUser:false, complection: { (userinfo, error) in
+                    guard let user = userinfo else{
+                        return
+                    }
+                    user.data?.distance = model.distance
+                    vc.userInfoModel = user
+                    RootNav().pushViewController(vc, animated: true)
+                })
+            }
+            break
+        default:
+            break
+        }
+    }
 }

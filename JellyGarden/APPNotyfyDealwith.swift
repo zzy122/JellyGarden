@@ -51,8 +51,8 @@ class APPNotyfyDealwith: NSObject {
             if !FileManager.default.createFile(atPath: notifyPath, contents: nil, attributes: nil) {
                 DebugLog(message: "创建用户文件失败")
             }
-            let dic:[String:Any] = [Radio_APP_BroadcastNotify:[[:]],Reminding_APP_IncomeNotify:[[:]],Official_APP_Notify:[[:]],Contact_APP_StyleNotify:[[:]],Check_APP_ApplyNotify:[[:]],Evaluate_APP_Notify:[[:]],Deposit_APP_Notify:[[:]]]
-            NSDictionary.init(dictionary: dic).write(toFile: notifyPath, atomically: true)
+//            let dic:[String:Any] = [Radio_APP_BroadcastNotify:[[:]],Reminding_APP_IncomeNotify:[[:]],Official_APP_Notify:[[:]],Contact_APP_StyleNotify:[[:]],Check_APP_ApplyNotify:[[:]],Evaluate_APP_Notify:[[:]],Deposit_APP_Notify:[[:]]]
+//            NSDictionary.init(dictionary: dic).write(toFile: notifyPath, atomically: true)
             
         }
     }

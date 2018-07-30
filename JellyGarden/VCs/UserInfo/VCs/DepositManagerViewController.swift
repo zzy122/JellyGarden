@@ -16,7 +16,7 @@ class DepositManagerViewController: BaseMainTableViewController {
         viewback.backgroundColor = UIColor.clear
         return viewback
     }()
-    var dataAry:[Any] = []
+    var dataAry:[Any] = [""]
     {
         didSet{
             if dataAry.count > 0
@@ -36,7 +36,7 @@ class DepositManagerViewController: BaseMainTableViewController {
         self.title = "订金管理"
         self.edgesForExtendedLayout = UIRectEdge.bottom
         tableView.register(UINib.init(nibName: "DepositManagerTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "DepositManagerTableViewCell")
-        tableView.register(UINib.init(nibName: "DepositRefundTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "DepositRefundTableViewCell")
+//        tableView.register(UINib.init(nibName: "WomanDepositManagerTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "WomanDepositManagerTableViewCell")
         // Do any additional setup after loading the view.
     }
 
@@ -66,9 +66,8 @@ extension DepositManagerViewController
         return 1
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell:DepositRefundTableViewCell = tableView.dequeueReusableCell(withIdentifier: "DepositRefundTableViewCell", for: indexPath) as! DepositRefundTableViewCell
-//        let cell:DepositManagerTableViewCell = tableView.dequeueReusableCell(withIdentifier: "DepositManagerTableViewCell", for: indexPath) as! DepositManagerTableViewCell
-        return cell
+        let cell1:DepositManagerTableViewCell = tableView.dequeueReusableCell(withIdentifier: "DepositManagerTableViewCell", for: indexPath) as! DepositManagerTableViewCell
+        return cell1
     }
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if dataAry.count > 0
@@ -76,6 +75,24 @@ extension DepositManagerViewController
            return 15
         }
         return 0
-        
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if CurrentUserInfo?.data?.sex == 0
+        {
+            return 185
+        }
+        return 140
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.navigationController?.pushViewController(DepositDetailViewController(), animated: true)
+    }
+}
+extension DepositManagerViewController:ResponderRouter
+{
+    func interceptRoute(name: String, objc: UIResponder?, info: Any?) {
+        if name == DepositManagerBottomBtn
+        {
+            DebugLog(message: "点击了按钮")
+        }
     }
 }

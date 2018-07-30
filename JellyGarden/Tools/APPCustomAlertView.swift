@@ -10,6 +10,7 @@ import UIKit
 
 class APPCustomAlertView: UIView {
     typealias clickSureEvent = (Bool,String?) -> Void
+    @IBOutlet weak var textBackView: UIView!
     @IBOutlet weak var detailImage: UIImageView!
     @IBOutlet weak var horizenView: UIView!
     @IBOutlet weak var detailLab: UILabel!
@@ -18,7 +19,7 @@ class APPCustomAlertView: UIView {
     var clickEvent:clickSureEvent?
     var tagFrame:CGRect?
     
-    class func createAlertView(title:String?,placeHodel:String,detailTitle:String?,detailImage:UIImage?,frame:CGRect,click:@escaping clickSureEvent) -> APPCustomAlertView? {
+    class func createAlertView(title:String?,placeHodel:String,textStr:String?,detailTitle:String?,detailImage:UIImage?,frame:CGRect,click:@escaping clickSureEvent) -> APPCustomAlertView? {
         let nibView = CustomCreateNib<APPCustomAlertView>().createXibView()
         guard let view = nibView else {
             return nil
@@ -45,6 +46,13 @@ class APPCustomAlertView: UIView {
         var frame = view.horizenView.frame
         frame.size = CGSize.init(width: frame.size.width, height: 1.0 / scale)
         view.horizenView.frame = frame
+        guard let str = textStr,str.count > 0 else {
+            return view
+        }
+        view.inputTextView.text = str;
+        view.inputTextView.font = UIFont.systemFont(ofSize: 30)
+        view.textBackView.backgroundColor = UIColor.white
+        view.inputTextView.isUserInteractionEnabled = false
         
         return view
 

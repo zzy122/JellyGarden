@@ -46,9 +46,9 @@ class AlertAction: NSObject {
     
     var alertView:APPCustomAlertView?
     
-    func showAlertView(type:UIKeyboardType?,title: String?, placeHodel: String, detailTitle: String?, detailImage: UIImage?, click:@escaping (Bool,String?) -> Void) {
+    func showAlertView(type:UIKeyboardType?,title: String?, placeHodel: String, textStr:String?,detailTitle: String?, detailImage: UIImage?, click:@escaping (Bool,String?) -> Void) {
         UIApplication.shared.keyWindow?.addSubview(self.backView)
-        alertView = APPCustomAlertView.createAlertView(title: title, placeHodel: placeHodel, detailTitle: detailTitle, detailImage: detailImage, frame: CGRect.init(x: 20, y: (ScreenHeight - 240) / 2.0, width: ScreenWidth - 40, height: 240)) { (sure,Str) in
+        alertView = APPCustomAlertView.createAlertView(title: title, placeHodel: placeHodel, textStr:textStr, detailTitle: detailTitle, detailImage: detailImage, frame: CGRect.init(x: 20, y: (ScreenHeight - 240) / 2.0, width: ScreenWidth - 40, height: 220)) { (sure,Str) in
             click(sure,Str)
             self.hiddenTheView(view: self.alertView)
         }

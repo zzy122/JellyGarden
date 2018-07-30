@@ -71,11 +71,13 @@ class ConfessionTableViewCellBody: UIView,UICollectionViewDelegate,UICollectionV
         {
              self.dingJinBtn.setTitle("已支付定金\(String(deposit))", for: UIControlState.normal)
             self.dingJinBtn.backgroundColor = k_CustomColor(red: 255, green: 153, blue: 51)
+            self.dingJinBtn.isUserInteractionEnabled = false
         }
         else
         {
             self.dingJinBtn.setTitle("收取定金\(String(deposit))", for: UIControlState.normal)
             self.dingJinBtn.backgroundColor = APPCustomRedColor
+            self.dingJinBtn.isUserInteractionEnabled = true
         }
         
         

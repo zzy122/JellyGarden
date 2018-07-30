@@ -62,6 +62,10 @@ class LookImageSettingViewController: BaseMainViewController {
             if success {
                 let model = CurrentUserInfo
                 model?.data?.custom_photos?.remove(at: self.tagIndex)
+                if self.tagIndex > 0
+                {
+                    self.tagIndex = self.tagIndex - 1
+                }
                 NSDictionary.init(dictionary: (model?.toJSON())!).write(toFile: UserPlist, atomically: true)
                 self.collectionView.reloadData()
                 self.resetStuts(tags: self.tagIndex)

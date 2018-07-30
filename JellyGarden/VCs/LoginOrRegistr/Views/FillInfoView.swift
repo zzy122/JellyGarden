@@ -114,7 +114,7 @@ class FillInfoView: UIView,UITableViewDataSource,UITableViewDelegate {
         switch indexPath.row {
         case 0:
            
-            AlertAction.share.showAlertView(type: nil,title: titleStr, placeHodel: "请输入昵称", detailTitle: nil, detailImage: nil, click: { (sure, result) in
+            AlertAction.share.showAlertView(type: nil,title: titleStr, placeHodel: "请输入昵称",textStr:nil, detailTitle: nil, detailImage: nil, click: { (sure, result) in
                 if sure {
                     self.replaceStr(str: result, index: indexPath.row)
                 }
@@ -151,7 +151,7 @@ class FillInfoView: UIView,UITableViewDataSource,UITableViewDelegate {
             })
             break
         case 4://身高
-            AlertAction.share.showAlertView(type: UIKeyboardType.numberPad,title: titleStr, placeHodel: "请输入身高CM", detailTitle: nil, detailImage: nil, click: { (sure, result) in
+            AlertAction.share.showAlertView(type: UIKeyboardType.numberPad,title: titleStr, placeHodel: "请输入身高CM", textStr:nil,detailTitle: nil, detailImage: nil, click: { (sure, result) in
                 if sure {
                     self.bodyHeight = result
                     let str = result?.appending("CM")
@@ -160,7 +160,7 @@ class FillInfoView: UIView,UITableViewDataSource,UITableViewDelegate {
             })
             break
         case 5://体重
-            AlertAction.share.showAlertView(type: UIKeyboardType.numberPad,title: titleStr, placeHodel: "请输入体重KG", detailTitle: nil, detailImage: nil, click: { (sure, result) in
+            AlertAction.share.showAlertView(type: UIKeyboardType.numberPad,title: titleStr, placeHodel: "请输入体重KG",textStr:nil, detailTitle: nil, detailImage: nil, click: { (sure, result) in
                 if sure {
                     self.bodyWeight = result
                     let str = result?.appending("KG")
@@ -169,7 +169,7 @@ class FillInfoView: UIView,UITableViewDataSource,UITableViewDelegate {
             })
             break
         case 6:
-            AlertAction.share.showAlertView(type: UIKeyboardType.numberPad,title: titleStr, placeHodel: "请输入胸围CM", detailTitle: nil, detailImage: nil, click: { (sure, result) in
+            AlertAction.share.showAlertView(type: UIKeyboardType.numberPad,title: titleStr, placeHodel: "请输入胸围CM",textStr:nil, detailTitle: nil, detailImage: nil, click: { (sure, result) in
                 if sure {
                     self.bodyChest = result
                     let str = result?.appending("CM")

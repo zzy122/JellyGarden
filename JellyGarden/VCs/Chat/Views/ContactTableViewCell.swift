@@ -8,8 +8,17 @@
 
 import UIKit
 
+let ClickComent_NotifyBtn = "ClickComent_NotifyBtn"
 class ContactTableViewCell: UITableViewCell {
-
+    var model:NotifyDataModel?  {
+        didSet{
+            self.nickLab.text = model?.nickname
+            self.descriptionLab.text = "查看了你的联系方式"
+            self.timeLab.text = "1小时前"
+            self.numLab.isHidden = true
+            self.selectionStyle = UITableViewCellSelectionStyle.none
+        }
+    }
     @IBOutlet weak var commentBtn: UIButton!
     @IBOutlet weak var numLab: UILabel!
     @IBOutlet weak var timeLab: UILabel!
@@ -25,10 +34,11 @@ class ContactTableViewCell: UITableViewCell {
         
         headerImage.layer.cornerRadius = 25
         headerImage.clipsToBounds = true
-        // Initialization code
     }
+    
 
     @IBAction func clickCommentBtn(_ sender: UIButton) {
+        zzy.router(name: ClickComent_NotifyBtn, object: nil, info: self.model)
         
     }
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -125,8 +125,6 @@ extension UserInfoViewController {
         vc?.csInfo = info
         vc?.title = "客服"
         self.navigationController?.pushViewController(vc!, animated: true)
-        
-        
     }
     
     func touchLogout() {
@@ -139,7 +137,6 @@ extension UserInfoViewController {
                 let delegate = UIApplication.shared.delegate as! AppDelegate
                 delegate.setRootViewController(vc: nav)
                 judgeGesterPassword()
-            
         })
     }
 }
@@ -174,7 +171,8 @@ extension UserInfoViewController: ResponderRouter {
             vc.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(vc, animated: true)
             break
-        case ClickSettingRedpacket:
+        case ClickSettingRedpacket://设置红包照片
+            
             
             break
         case ClickFirstPhoto:
@@ -185,14 +183,8 @@ extension UserInfoViewController: ResponderRouter {
             vc?.allowTakePicture = true
             vc?.didFinishPickingPhotosHandle = {(photos, assets, isSelectOriginalPhoto) in
                 self.uploadImage(sender: photos)
-                
             }
-            
             self.present(vc!, animated: true, completion: nil)
-            
-
-            
-            
             break
         case Click_Mine_Photo://点击了照片 此处做处理
             

@@ -41,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     @objc func networkDidReceiveMessage(notification:NSNotification){//自定义的消息
         DebugLog(message: "收到的通知:\(String(describing: notification.userInfo))")
-        APPNotyfyDealwith.share.addNotifyInfo(info: notification.userInfo as? [String : Any])
+        APPNotyfyDealwith.share.addNotifyInfo(info: notification.userInfo?["content"] as? [String : Any])
     }
     func setRootViewController(vc:UIViewController) {
         self.window?.rootViewController = vc

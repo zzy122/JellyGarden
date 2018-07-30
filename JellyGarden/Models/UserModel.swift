@@ -15,9 +15,9 @@ class PhotoModel:JSON
     var price:Int?
     var type:Int?
     var can_view_duration:Int?
-    
+    //此处应加红包图片状态
     required init() {
-        
+        MM_WARNING
     }
 }
 class UserInfo:JSON {

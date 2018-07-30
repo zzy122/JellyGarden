@@ -374,10 +374,21 @@ extension AppointViewController
         }
         if name == ClickDepositBtn
         {
-            let model:lonelySpeechDetaileModel = appiontModels![index]
-            
-            AlertAction.share.sho
-            alertHud(title: "后台没设置约会定金字段")
+//            let model:lonelySpeechDetaileModel = appiontModels![index]
+//
+//            AlertAction.share.showAlertView(type: UIKeyboardType.numberPad, title: "是否支付定金", placeHodel: "",textStr:"¥\(String(model.deposit!))", detailTitle: "自愿支付定金,支付金额暂存在平台上", detailImage: imageName(name: "提示")) { (success, backStr) in
+//                if success//调用支付接口
+//                {
+//                    let extraStr = getJSONStringFromObject(dictionary: ["appointment_id":model.appointment_id ?? ""])
+//                    let params:[String:Any] = ["type":0,"amount": model.deposit ?? 0,"user_id":CurrentUserInfo?.data?.user_id ?? "","recipient":model.poster?.user_id ?? "","extra":extraStr]
+//                    TargetManager.share.transfer(params: params, complection: { (successful, error) in
+//                        if successful//支付成功
+//                        {
+//
+//                        }
+//                    })
+//                }
+//            }
         }
         if name == ClickCommentCell//点击评论
         {

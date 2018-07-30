@@ -231,7 +231,7 @@ class PersonInfoViewController: BaseTableViewController,ResponderRouter {
         }
     }
     func showSubscriptionAlert() {//发送订金
-        AlertAction.share.showAlertView(type: UIKeyboardType.numberPad, title: "订金金额", placeHodel: "请输入金额", detailTitle: "订金暂存在平台上,在用户中心课题查看", detailImage: imageName(name: "提示")) { (clicksure, text) in
+        AlertAction.share.showAlertView(type: UIKeyboardType.numberPad, title: "订金金额", placeHodel: "请输入金额",textStr:nil, detailTitle: "订金暂存在平台上,在用户中心课题查看", detailImage: imageName(name: "提示")) { (clicksure, text) in
             if clicksure {//点击确定
                 
             }

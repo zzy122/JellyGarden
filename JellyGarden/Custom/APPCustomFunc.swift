@@ -218,7 +218,8 @@ func updateUserInfo(complection:@escaping (Bool) -> Void)
 
 func getImageName() -> String
 {
-    let time = getTimeStamp(date: Date())
+    let time = arc4random()
+    DebugLog(message: "时间:\(String(time))")
     return String.init(format: "%@%d.png", CurrentUserInfo?.data?.phone ?? "",time)
     
 }

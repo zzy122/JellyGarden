@@ -325,8 +325,14 @@
 		C769122C21002BE900898B47 /* RCDCSInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = C769122B21002BE800898B47 /* RCDCSInputView.m */; };
 		C769122F21002BFB00898B47 /* RCDCSEvaluateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C769122E21002BFA00898B47 /* RCDCSEvaluateModel.m */; };
 		C769123221002C1A00898B47 /* RCDCSButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C769123121002C1A00898B47 /* RCDCSButton.m */; };
+		C7AA5423210AB833003D4580 /* SetRedPacketPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AA5422210AB833003D4580 /* SetRedPacketPhotoViewController.swift */; };
+		C7AA5426210ABAF0003D4580 /* SetRedpacketCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AA5424210ABAF0003D4580 /* SetRedpacketCollectionViewCell.swift */; };
+		C7AA5427210ABAF0003D4580 /* SetRedpacketCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7AA5425210ABAF0003D4580 /* SetRedpacketCollectionViewCell.xib */; };
 		C7E7968B2105863400286E7B /* NotifyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E7968A2105863400286E7B /* NotifyModel.swift */; };
 		C7EEE74220FF3696005CA67F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7EEE74120FF3696005CA67F /* LaunchScreen.storyboard */; };
+		C7FC8E3C210EE27D00F9BAED /* WomanDepositManagerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FC8E3A210EE27D00F9BAED /* WomanDepositManagerTableViewCell.swift */; };
+		C7FC8E3D210EE27D00F9BAED /* WomanDepositManagerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7FC8E3B210EE27D00F9BAED /* WomanDepositManagerTableViewCell.xib */; };
+		C7FC8E3F210EE33F00F9BAED /* DepositDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FC8E3E210EE33F00F9BAED /* DepositDetailViewController.swift */; };
 		D7D95118EA173C975FF3B6E4 /* Pods_JellyGardenUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31D576D9311CB97643CD0783 /* Pods_JellyGardenUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -746,8 +752,14 @@
 		C769122E21002BFA00898B47 /* RCDCSEvaluateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCDCSEvaluateModel.m; path = "../../../../../../Downloads/sealtalk-ios-master/ios-rongimdemo/RCDCSEvaluateModel.m"; sourceTree = "<group>"; };
 		C769123021002C1A00898B47 /* RCDCSButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDCSButton.h; sourceTree = "<group>"; };
 		C769123121002C1A00898B47 /* RCDCSButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDCSButton.m; sourceTree = "<group>"; };
+		C7AA5422210AB833003D4580 /* SetRedPacketPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetRedPacketPhotoViewController.swift; sourceTree = "<group>"; };
+		C7AA5424210ABAF0003D4580 /* SetRedpacketCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetRedpacketCollectionViewCell.swift; sourceTree = "<group>"; };
+		C7AA5425210ABAF0003D4580 /* SetRedpacketCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetRedpacketCollectionViewCell.xib; sourceTree = "<group>"; };
 		C7E7968A2105863400286E7B /* NotifyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifyModel.swift; sourceTree = "<group>"; };
 		C7EEE74120FF3696005CA67F /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C7FC8E3A210EE27D00F9BAED /* WomanDepositManagerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WomanDepositManagerTableViewCell.swift; sourceTree = "<group>"; };
+		C7FC8E3B210EE27D00F9BAED /* WomanDepositManagerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WomanDepositManagerTableViewCell.xib; sourceTree = "<group>"; };
+		C7FC8E3E210EE33F00F9BAED /* DepositDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositDetailViewController.swift; sourceTree = "<group>"; };
 		E8BF34C3DC62E9271DBC4FA4 /* Pods-JellyGardenUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JellyGardenUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-JellyGardenUITests/Pods-JellyGardenUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1384,6 +1396,8 @@
 				5A7FC45420EE5D4B00D7E137 /* WalletTableViewCell.xib */,
 				5A7FC45D20EE70DB00D7E137 /* DepositManagerTableViewCell.swift */,
 				5A7FC45E20EE70DB00D7E137 /* DepositManagerTableViewCell.xib */,
+				C7FC8E3A210EE27D00F9BAED /* WomanDepositManagerTableViewCell.swift */,
+				C7FC8E3B210EE27D00F9BAED /* WomanDepositManagerTableViewCell.xib */,
 				5A7FC46120EE739C00D7E137 /* DepositRefundTableViewCell.swift */,
 				5A7FC46220EE739C00D7E137 /* DepositRefundTableViewCell.xib */,
 				5A7FC46520EE7C8A00D7E137 /* NoDepositRecord.swift */,
@@ -1395,6 +1409,8 @@
 				5A6C939B20F63C4C00E57223 /* AlipayBottomAlertView.swift */,
 				5A6C939D20F63C5C00E57223 /* AlipayBottomAlertView.xib */,
 				5A6C939F20F643C900E57223 /* AlipayAction.swift */,
+				C7AA5424210ABAF0003D4580 /* SetRedpacketCollectionViewCell.swift */,
+				C7AA5425210ABAF0003D4580 /* SetRedpacketCollectionViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1415,12 +1431,14 @@
 				5A7FC44B20EE4BA400D7E137 /* MyLikesViewController.swift */,
 				5A7FC45120EE5AB200D7E137 /* WalletViewController.swift */,
 				5A7FC45B20EE706600D7E137 /* DepositManagerViewController.swift */,
+				C7FC8E3E210EE33F00F9BAED /* DepositDetailViewController.swift */,
 				5A7FC43920EB5A2D00D7E137 /* SettingViewController.swift */,
 				5A7FC47D20F0559300D7E137 /* MessagePushSettingViewController.swift */,
 				5A7FC48320F0F91C00D7E137 /* DebangPhoneViewController.swift */,
 				5A7FC48420F0F91C00D7E137 /* DebangPhoneViewController.xib */,
 				5AE28C6320F1252C00EE2973 /* EditPersonalIntroduceViewController.swift */,
 				5AE28C6920F1F3F900EE2973 /* BlackListViewController.swift */,
+				C7AA5422210AB833003D4580 /* SetRedPacketPhotoViewController.swift */,
 				5A6C939520F59D0800E57223 /* LookImageSettingViewController.swift */,
 				5A6C939620F59D0800E57223 /* LookImageSettingViewController.xib */,
 			);
@@ -1700,9 +1718,11 @@
 				C7454D3720FDC7B500D9D6D7 /* JResource.bundle in Resources */,
 				5A7FC45A20EE657800D7E137 /* DepositRuleView.xib in Resources */,
 				5AEB824620D8EA20002A7E69 /* ConditionCollectionViewCell.xib in Resources */,
+				C7FC8E3D210EE27D00F9BAED /* WomanDepositManagerTableViewCell.xib in Resources */,
 				5A015EBE20C577F200EC8A96 /* RegisterViewController.xib in Resources */,
 				5A459AF320D3EA2D00C0A6FA /* ManpersonInfoHeader.xib in Resources */,
 				5A0455D520CD68310041D309 /* ConfessionTableViewCellBody.xib in Resources */,
+				C7AA5427210ABAF0003D4580 /* SetRedpacketCollectionViewCell.xib in Resources */,
 				5A27B38320E5272A0028D5FF /* ManUserInfoTabbar.xib in Resources */,
 				5A7FC48620F0F91C00D7E137 /* DebangPhoneViewController.xib in Resources */,
 				C7454D2220FD856A00D9D6D7 /* ContactTableViewCell.xib in Resources */,
@@ -2015,6 +2035,7 @@
 				5A7FC47B20EF9F3200D7E137 /* LLLockIndicator.m in Sources */,
 				5A7FC44020EB6D1D00D7E137 /* NOCastView.swift in Sources */,
 				5AEC51A920C9228300DD0099 /* MainBodyView.swift in Sources */,
+				C7AA5426210ABAF0003D4580 /* SetRedpacketCollectionViewCell.swift in Sources */,
 				5A015E9B20C5121000EC8A96 /* LoginVIewController.swift in Sources */,
 				5AE9CC9520C8DF0E0057CFF3 /* BaseMainTableViewController.swift in Sources */,
 				5A120C4120DB875E004A9DCF /* CommentView.swift in Sources */,
@@ -2040,6 +2061,7 @@
 				5A7FC43620EB181000D7E137 /* PermissionLookView.swift in Sources */,
 				5A27B37F20E5062E0028D5FF /* UserBroadcastListViewController.swift in Sources */,
 				5A1F3AA020DF35E600CB98CD /* TagStatueCell.m in Sources */,
+				C7FC8E3C210EE27D00F9BAED /* WomanDepositManagerTableViewCell.swift in Sources */,
 				5A015ECB20C5864700EC8A96 /* FillInformationViewController.swift in Sources */,
 				5A80C4EA20BFF6ED0033CAF8 /* OtherApplication.swift in Sources */,
 				5A4E325D20C7B6650051FE00 /* FillInfoView.swift in Sources */,
@@ -2077,9 +2099,11 @@
 				5A80C4DE20BFE5780033CAF8 /* BaseTableViewController.swift in Sources */,
 				5A6C939C20F63C4C00E57223 /* AlipayBottomAlertView.swift in Sources */,
 				5A459AD820D1721D00C0A6FA /* CommentTableViewCell.swift in Sources */,
+				C7FC8E3F210EE33F00F9BAED /* DepositDetailViewController.swift in Sources */,
 				5A1F3ABD20DF6CA700CB98CD /* RealTimeLocationEndCell.m in Sources */,
 				5AFA3B6D20D78AE40052FC42 /* WCLRecordProgressView.m in Sources */,
 				5A4E326820C7B6650051FE00 /* XIeyiWarmView.swift in Sources */,
+				C7AA5423210AB833003D4580 /* SetRedPacketPhotoViewController.swift in Sources */,
 				C7454D2A20FD999A00D9D6D7 /* CommentNotifyViewController.swift in Sources */,
 				C7454D2720FD8AEB00D9D6D7 /* CommentNotyfyTableViewCell.swift in Sources */,
 				5A574BF320C97FCD00C59276 /* UserInfoTabbar.swift in Sources */,

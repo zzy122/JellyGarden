@@ -202,6 +202,7 @@ extension MineInfoEditViewController: TZImagePickerControllerDelegate, UIImagePi
         AlertAction.share.showAlertView(type: nil,
                                         title: "昵称",
                                         placeHodel: "请输入昵称",
+                                        textStr:nil,
                                         detailTitle: nil,
                                         detailImage: nil) { (sure, result) in
                                             if sure {
@@ -250,6 +251,7 @@ extension MineInfoEditViewController: TZImagePickerControllerDelegate, UIImagePi
         AlertAction.share.showAlertView(type: UIKeyboardType.numberPad,
                                         title: "身高",
                                         placeHodel: "请填写您的身高(CM)",
+                                        textStr:nil,
                                         detailTitle: nil,
                                         detailImage: nil) { (sure, result) in
             
@@ -274,6 +276,7 @@ extension MineInfoEditViewController: TZImagePickerControllerDelegate, UIImagePi
         AlertAction.share.showAlertView(type: UIKeyboardType.numberPad,
                                         title: "体重",
                                         placeHodel: "请填写您的体重(KG)",
+                                        textStr:nil,
                                         detailTitle: nil,
                                         detailImage: nil) { (sure, result) in
                                             guard sure, let result = result, result.count > 0 else { return }
@@ -287,6 +290,7 @@ extension MineInfoEditViewController: TZImagePickerControllerDelegate, UIImagePi
         AlertAction.share.showAlertView(type: UIKeyboardType.numberPad,
                                         title: "胸围",
                                         placeHodel: "请填写您的胸围",
+                                        textStr:nil,
                                         detailTitle: nil,
                                         detailImage: nil) { (sure, result) in
                                             guard sure, let result = result, result.count > 0 else { return }
@@ -355,6 +359,7 @@ extension MineInfoEditViewController: TZImagePickerControllerDelegate, UIImagePi
         AlertAction.share.showAlertView(type: UIKeyboardType.numberPad,
                                         title: "QQ",
                                         placeHodel: "请填写您的QQ",
+                                        textStr:nil,
                                         detailTitle: nil,
                                         detailImage: nil) { (sure, result) in
                                             
@@ -370,6 +375,7 @@ extension MineInfoEditViewController: TZImagePickerControllerDelegate, UIImagePi
         AlertAction.share.showAlertView(type: UIKeyboardType.numberPad,
                                         title: "微信",
                                         placeHodel: "请填写您的微信",
+                                        textStr:nil,
                                         detailTitle: nil,
                                         detailImage: nil) { (sure, result) in
                                             

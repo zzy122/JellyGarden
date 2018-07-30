@@ -23,7 +23,22 @@ class AlipayAction: NSObject {
         return view1
     }()
 
-    var showType:ShowType = .center
+    var showType:ShowType {
+        didSet {
+            if self.showView != nil
+            {
+                if showType == .center
+                {
+                    self.showView?.frame = CGRect.init(x: self.showView?.frame.origin.x ?? 0, y: (ScreenHeight - (self.showView?.frame.height ?? 0)) / 2.0, width: self.showView?.frame.width ?? 0, height: self.showView?.frame.height ?? 0)
+                }
+                else
+                {
+                    self.showView?.frame = CGRect.init(x: 0, y: ScreenHeight, width: self.showView?.frame.width ?? 0.0, height: self.showView?.frame.height ?? 0.0)
+                    self.backView.alpha = 0.0
+                }
+            }
+        }
+    }
     private var showTagView:UIView?
     var showView:UIView? {
         
@@ -40,6 +55,7 @@ class AlipayAction: NSObject {
     var bottomView:UIView? = UIApplication.shared.keyWindow
     
     init(showType:ShowType,view:UIView,windowView:UIView?) {
+        self.showType = .center
         super.init()
         self.bottomView = windowView
         self.backView.isHidden = true

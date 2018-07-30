@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import HandyJSON
 class SystemMessageViewController: BaseMainTableViewController {
     let titleAry = ["电台广播","收益提醒","果冻花园","联系方式","查看申请","评价通知","订金通知"]
     let imageStr = ["电台广播","收益提醒","果冻花园","联系方式","查看申请","评价通知","订金通知"]
@@ -29,17 +29,7 @@ class SystemMessageViewController: BaseMainTableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 extension SystemMessageViewController
@@ -60,17 +50,30 @@ extension SystemMessageViewController
             let ary = APPNotyfyDealwith.share.getNotifyData(key: Radio_APP_BroadcastNotify)
             if let dicAry = ary, dicAry.count > 0
             {
-                cell.messageCount.text = dicAry.first?["requirement"] as? String
+                let model = JSONDeserializer<NotifyDataModel>.deserializeFrom(dict: dicAry.first)
+                cell.messageDetail.text = "\(model?.nickname ?? "")在\(model?.city ?? "")发了一条广播"
             }
-           
             break
         case 1://收益提醒
             break
         case 2://郭东花园
             break
         case 3://联系方式
+            let ary = APPNotyfyDealwith.share.getNotifyData(key: Contact_APP_StyleNotify)
+            if let dicAry = ary, dicAry.count > 0
+            {
+                let model = JSONDeserializer<NotifyDataModel>.deserializeFrom(dict: dicAry.first)
+                cell.messageDetail.text = "\(model?.nickname! ?? "")查看了你的联系方式"
+            }
             break
         case 4://查看申请
+            let ary = APPNotyfyDealwith.share.getNotifyData(key: Check_APP_ApplyNotify)
+            if let dicAry = ary, dicAry.count > 0
+            {
+                let model = JSONDeserializer<NotifyDataModel>.deserializeFrom(dict: dicAry.first)
+                cell.messageDetail.text = "\(model?.nickname! ?? "")请求查看你的资料"
+            }
+        
             break
         case 5://评价通知
             break

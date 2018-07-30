@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import HandyJSON
 class MessageBroastViewController: BaseMainTableViewController {
 
     override func viewDidLoad() {
@@ -16,6 +16,11 @@ class MessageBroastViewController: BaseMainTableViewController {
         tableView.register(UINib.init(nibName: "MessageBroastTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "MessageBroastTableViewCell")
         // Do any additional setup after loading the view.
     }
+    let models:[NotifyDataModel]? =
+    {
+        let ary = APPNotyfyDealwith.share.getNotifyData(key: Radio_APP_BroadcastNotify)
+        return (JSONDeserializer<NotifyDataModel>.deserializeModelArrayFrom(array: ary) as? [NotifyDataModel])
+    }()
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
@@ -43,13 +48,14 @@ extension MessageBroastViewController
         return 1
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return self.models?.count ?? 0
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:MessageBroastTableViewCell = tableView.dequeueReusableCell(withIdentifier: "MessageBroastTableViewCell", for: indexPath) as! MessageBroastTableViewCell
-        cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
-        cell.nickName.text = "zzy"
-        cell.desCriptionLab.text = "在北京发布了一条约会广播"
+//        cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
+//        cell.nickName.text = "zzy"
+//        cell.desCriptionLab.text = "在北京发布了一条约会广播"
+        cell.model = self.models?[indexPath.row]
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

@@ -178,9 +178,10 @@ class NormalAppointmentViewController: BaseMainViewController,UICollectionViewDe
             alertHud(title: "请输入约会时间")
             return
         }
+        
         let timeStamp = stringToTimeStamp(dateStr: dateStr,type: .day)
         let url = continueString(strAry: urlPaths,separetStr:",")
-        let params:[String:Any] = ["poster_id":CurrentUserInfo?.data?.user_id ?? "","time":timeStamp,"city":appiontCity.text ?? "","requirement":contentStr.text,"attachment":url,"deposit": Int(dingJinFiled.text ?? "0") ?? 0,"need_signup":0]
+        let params:[String:Any] = ["poster_id":CurrentUserInfo?.data?.user_id ?? "","time":timeStamp,"city":appiontCity.text ?? "","requirement":contentStr.text!,"attachment":url,"deposit": Int(dingJinFiled.text ?? "0") ?? 0,"need_signup":0]
         
         TargetManager.share.issueAppiont(params: params) { (success, error) in
             if success {
