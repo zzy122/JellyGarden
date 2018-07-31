@@ -316,6 +316,8 @@
 		C7454D3A20FDC7B500D9D6D7 /* JrmfWalletKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7454D3220FDC7B500D9D6D7 /* JrmfWalletKit.framework */; };
 		C7454D3B20FDC7B500D9D6D7 /* JYangToolKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7454D3320FDC7B500D9D6D7 /* JYangToolKit.framework */; };
 		C7454D3C20FDC7B500D9D6D7 /* WalletResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C7454D3420FDC7B500D9D6D7 /* WalletResource.bundle */; };
+		C7602285211057E50014442D /* ChatDepositAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7602284211057E50014442D /* ChatDepositAlertView.swift */; };
+		C7602287211057F50014442D /* ChatDepositAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7602286211057F50014442D /* ChatDepositAlertView.xib */; };
 		C7691216210028FF00898B47 /* RCDCSSolveView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7691215210028FE00898B47 /* RCDCSSolveView.m */; };
 		C7691219210029B800898B47 /* RCDCSAnnounceView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7691218210029B800898B47 /* RCDCSAnnounceView.m */; };
 		C769121C210029CF00898B47 /* RCDCSEvaluateView.m in Sources */ = {isa = PBXBuildFile; fileRef = C769121B210029CF00898B47 /* RCDCSEvaluateView.m */; };
@@ -733,6 +735,8 @@
 		C7454D3320FDC7B500D9D6D7 /* JYangToolKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JYangToolKit.framework; sourceTree = "<group>"; };
 		C7454D3420FDC7B500D9D6D7 /* WalletResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WalletResource.bundle; sourceTree = "<group>"; };
 		C7454D3520FDC7B500D9D6D7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/JrmfInfo.strings"; sourceTree = "<group>"; };
+		C7602284211057E50014442D /* ChatDepositAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDepositAlertView.swift; sourceTree = "<group>"; };
+		C7602286211057F50014442D /* ChatDepositAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatDepositAlertView.xib; sourceTree = "<group>"; };
 		C7691214210028FE00898B47 /* RCDCSSolveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDCSSolveView.h; sourceTree = "<group>"; };
 		C7691215210028FE00898B47 /* RCDCSSolveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDCSSolveView.m; sourceTree = "<group>"; };
 		C7691217210029B800898B47 /* RCDCSAnnounceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDCSAnnounceView.h; sourceTree = "<group>"; };
@@ -817,7 +821,6 @@
 				C7691210210028CD00898B47 /* 客服 */,
 				5A1F3ACB20E0E95E00CB98CD /* VC */,
 				5A1F3ACA20E0E94F00CB98CD /* Views */,
-				5A1F3AC920E0E8F600CB98CD /* Models */,
 				5A1F3AA420DF6CA600CB98CD /* RealTimeLocation */,
 				5A015E2220C2477E00EC8A96 /* DepositMessage.h */,
 				5A015E2320C2477E00EC8A96 /* DepositMessage.m */,
@@ -950,13 +953,6 @@
 			path = RCAnnotation;
 			sourceTree = "<group>";
 		};
-		5A1F3AC920E0E8F600CB98CD /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		5A1F3ACA20E0E94F00CB98CD /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -986,6 +982,8 @@
 				C7454D2020FD856A00D9D6D7 /* ContactTableViewCell.xib */,
 				C7454D2520FD8AEB00D9D6D7 /* CommentNotyfyTableViewCell.swift */,
 				C7454D2620FD8AEB00D9D6D7 /* CommentNotyfyTableViewCell.xib */,
+				C7602284211057E50014442D /* ChatDepositAlertView.swift */,
+				C7602286211057F50014442D /* ChatDepositAlertView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1768,6 +1766,7 @@
 				5A7FC48A20F1062300D7E137 /* WalletHeaderView.xib in Resources */,
 				5A7FC44220EB6D3200D7E137 /* NOCastView.xib in Resources */,
 				5A7FC44820ED097300D7E137 /* PayAccountTableViewCell.xib in Resources */,
+				C7602287211057F50014442D /* ChatDepositAlertView.xib in Resources */,
 				5AEC51A720C910EF00DD0099 /* MainUserListTableViewCell.xib in Resources */,
 				5A4E326420C7B6650051FE00 /* UserInfoHeaderView.xib in Resources */,
 				5AF4A75920D64E5E00CFDDD6 /* EnlistDetailTableViewCell.xib in Resources */,
@@ -1962,6 +1961,7 @@
 				5A574BEF20C961D400C59276 /* PersonInfoViewController.swift in Sources */,
 				5A459ADD20D2095B00C0A6FA /* UserLoginAction.swift in Sources */,
 				5A459AEB20D3640900C0A6FA /* AliyunUpload.m in Sources */,
+				C7602285211057E50014442D /* ChatDepositAlertView.swift in Sources */,
 				5A015E9720C50C1100EC8A96 /* UMengAcion.swift in Sources */,
 				5A015ED720C647BF00EC8A96 /* AlertAction.swift in Sources */,
 				5A120C3F20DB70EF004A9DCF /* AliyunManager.swift in Sources */,

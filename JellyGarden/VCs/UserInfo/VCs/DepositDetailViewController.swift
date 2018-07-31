@@ -10,19 +10,20 @@ import UIKit
 
 class DepositDetailViewController: BaseMainTableViewController {
     lazy var alertAction:AlipayAction = {
-        let action = AlipayAction.init(showType: .center, view: self.view, windowView: self.navigationController?.view)
+        let action = AlipayAction.init(showType: .center, view: self.alertBackView, windowView: self.navigationController?.view)
         return action
     }()
     var alertView:DisAgreeRefundView?
     lazy var alertBackView:UIView = {
-        let view1 = UIView.init(frame: CGRect.init(x: 15, y: 29, width: ScreenWidth - 30, height: 300 * SCALE))
+        let view1 = UIView.init(frame: CGRect.init(x: 15, y: 29, width: ScreenWidth - 30, height: 250 * SCALE))
         view1.backgroundColor = UIColor.white
         view1.clipsToBounds = true
         view1.layer.cornerRadius = 5.0
         self.alertView = DisAgreeRefundView.createDisAgreeRefundView()
-        self.alertView?.clickBtnBlock = { Bool in
+        self.alertView?.clickBtnBlock = { (isClick,photos,contentStr) in
             self.alertAction.hiddenTheView()
         }
+       
         self.alertView?.frame = view1.bounds
         view1.addSubview(self.alertView!)
         return view1
@@ -57,8 +58,8 @@ class DepositDetailViewController: BaseMainTableViewController {
     }
     func showDissAgreeeView()
     {
-        alertAction.showType = .center
         alertAction.showView = self.alertBackView
+        alertAction.showType = .center
         alertAction.backView.isUserInteractionEnabled = false
         alertAction.showTheView()
     }
@@ -88,9 +89,8 @@ extension DepositDetailViewController
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let view1 = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 80))
         view1.backgroundColor = UIColor.clear
-        bottomBtn.frame = CGRect.init(x: 10, y: view1.center.x - 20, width: ScreenWidth - 20, height: 40)
+        bottomBtn.frame = CGRect.init(x: 10, y: (view1.bounds.height - 40) / 2.0, width: ScreenWidth - 20, height: 40)
         view1.addSubview(bottomBtn)
-        
         return view1
     }
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -121,5 +121,34 @@ extension DepositDetailViewController:ResponderRouter,TZImagePickerControllerDel
         {
             
         }
+        if name == ClickFirstPhoto
+        {
+           
+        }
+    }
+    func uploadImage(sender:[Image]?)
+    {
+        guard let photos = sender ,photos.count > 0 else {
+            return
+        }
+        var models:[AliyunUploadModel] = []
+        for imageModel in photos
+        {
+            let model = AliyunUploadModel()
+            model.image = imageModel
+            model.fileName = getImageName()
+            models.append(model)
+            
+        }
+        AliyunManager.share.uploadImagesToAliyun(imageModels: models, complection: { (urls, succecCount, failCount, state) in
+            if state == UploadImageState.success
+            {
+                //                self.uploadUserPhotoUrlToServer(urlStrs: urls ?? [])
+            }
+            else
+            {
+                DebugLog(message: "上传失败")
+            }
+        })
     }
 }

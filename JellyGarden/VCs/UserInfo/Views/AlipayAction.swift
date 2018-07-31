@@ -41,7 +41,6 @@ class AlipayAction: NSObject {
     }
     private var showTagView:UIView?
     var showView:UIView? {
-        
         set {
             self.showTagView?.removeFromSuperview()
             self.showTagView = newValue

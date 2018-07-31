@@ -111,7 +111,7 @@ extension PersonInfoImageView
         }
         else//是本人资料 设置添加按钮可以添加照片
         {
-            cell?.setImage(imageStr: "添加照片-1", isImplement: LookImageType.clearness)
+            cell?.setImage(imageStr: "添加照片-1", isImplement: LookImageType.clearness,image:nil)
             cell?.imageV.image = imageName(name: "添加照片-1")
         }
         

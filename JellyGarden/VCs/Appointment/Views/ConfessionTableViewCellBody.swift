@@ -93,7 +93,7 @@ class ConfessionTableViewCellBody: UIView,UICollectionViewDelegate,UICollectionV
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BodyImageCollectionViewCell", for: indexPath) as? BodyImageCollectionViewCell
-        cell?.setImage(imageStr: imageNameAry?[indexPath.row] ?? "", isImplement: LookImageType.clearness)
+        cell?.setImage(imageStr: imageNameAry?[indexPath.row] ?? "", isImplement: LookImageType.clearness,image:nil)
       
         return cell!
         

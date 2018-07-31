@@ -40,15 +40,21 @@ class BodyImageCollectionViewCell: UICollectionViewCell {
                type = .lookAfter
             }
             
-            self.setImage(imageStr: model?.url ?? "", isImplement: type)
+            self.setImage(imageStr: model?.url ?? "", isImplement: type,image:nil)
         }
     }
     var type:LookImageType = .clearness
     
-    func setImage(imageStr:String,isImplement:LookImageType)
+    func setImage(imageStr:String?,isImplement:LookImageType,image:Image?)
     {
-        
-        self.imageV.sd_DownLoadImage(url: imageStr)
+        if let str = imageStr
+        {
+            self.imageV.sd_DownLoadImage(url: str)
+        }
+       if let ima = image
+       {
+        self.imageV.image = ima
+        }
         switch isImplement {
         case .clearness:
             self.implementView.isHidden = true

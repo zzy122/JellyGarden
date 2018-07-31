@@ -21,7 +21,23 @@ class ChatRoomViewController: RCConversationViewController,RCRealTimeLocationObs
         let view1 = LookDestoryImage.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight))
         return view1
     }()
-    
+    var depositView:ChatDepositAlertView?
+    lazy var depositAlertBackView:UIView = {
+        let view1 = UIView.init(frame: CGRect.init(x: 20, y: 0, width: ScreenWidth - 40 , height: 250))
+        self.depositView = ChatDepositAlertView.createChatDepositAlertView()
+        self.depositView?.clickBlock =  {(sure,amountStr,timeStr) in
+            self.alertAction.hiddenTheView()
+        }
+        self.depositView?.frame = view1.bounds
+        view1.layer.cornerRadius = 8.0
+        view1.clipsToBounds = true
+        view1.addSubview(self.depositView!)
+        return view1
+    }()
+    lazy var alertAction:AlipayAction = {
+        let action = AlipayAction.init(showType: .center, view: self.depositAlertBackView, windowView: self.navigationController?.view)
+        return action
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,16 +49,7 @@ class ChatRoomViewController: RCConversationViewController,RCRealTimeLocationObs
             let image4 = imageName(name: "收取定金")
             let image5 = imageName(name: "红包")
             let image6 = imageName(name: "视频通话")
-//
-//
             let plugin = self.chatSessionInputBarControl.pluginBoardView;
-//            plugin?.insertItem(with: image6, title: "视频通话", tag: PLUGIN_BOARD_VIDEO_FILE_TAG)
-//            plugin?.insertItem(with: image, title: "阅后即焚", tag: PLUGIN_BOARD_READ_FILE_TAG)
-//            plugin?.insertItem(with: image5, title: "红包", tag: PLUGIN_BOARD_REDBAG_FILE_TAG)
-//            plugin?.insertItem(with: image4, title: "收取定金", tag: PLUGIN_BOARD_DEPOSIT_FILE_TAG)
-//            plugin?.insertItem(with: image2, title: "打赏礼物", tag: PLUGIN_BOARD_GIFT_FILE_TAG)
-////            plugin?.updateItem(withTag: 1001, image: , title: <#T##String!#>)
-            
             plugin?.updateItem(at: 0, image: imageName(name: "相册"), title: "相册")
             plugin?.updateItem(at: 2, image: image3, title: "位置")
             plugin?.updateItem(at: 1, image: imageName(name: "拍摄"), title: "拍摄")
@@ -124,19 +131,24 @@ class ChatRoomViewController: RCConversationViewController,RCRealTimeLocationObs
             alertHud(title: "待定功能")
             break
         case PLUGIN_BOARD_DEPOSIT_FILE_TAG://收定金
-            AlertAction.share.showAlertView(type: UIKeyboardType.numberPad, title: "订金", placeHodel: "请输入订金金额",textStr:nil, detailTitle: "收入将进入你的钱包中,可提现", detailImage: imageName(name: ""), click: { (suscces, backStr) in
-                if suscces {
-                    let mess = DepositMessage.init(content: "")
-                    mess?.senderUserInfo = RCIM.shared().currentUserInfo
-                    mess?.amotStr = backStr
-                    mess?.isPay = NSNumber.init(value: 0)
-                    RCIM.shared().sendMessage(RCConversationType.ConversationType_PRIVATE, targetId: self.targetId, content: mess, pushContent: "测试", pushData: "yiha", success: { (resunt) in
-                        DebugLog(message: "发送成功\(resunt)")
-                    }, error: { (code, errcod) in
-                        DebugLog(message: "发送失败\(errcod)")
-                    })
-                }
-            })
+            alertAction.showView = self.depositAlertBackView
+            self.depositView?.depositAmountTextFiled.text = ""
+            alertAction.showType = .center
+            alertAction.backView.isUserInteractionEnabled = false
+            alertAction.showTheView()
+//            AlertAction.share.showAlertView(type: UIKeyboardType.numberPad, title: "订金", placeHodel: "请输入订金金额",textStr:nil, detailTitle: "收入将进入你的钱包中,可提现", detailImage: imageName(name: ""), click: { (suscces, backStr) in
+//                if suscces {
+//                    let mess = DepositMessage.init(content: "")
+//                    mess?.senderUserInfo = RCIM.shared().currentUserInfo
+//                    mess?.amotStr = backStr
+//                    mess?.isPay = NSNumber.init(value: 0)
+//                    RCIM.shared().sendMessage(RCConversationType.ConversationType_PRIVATE, targetId: self.targetId, content: mess, pushContent: "测试", pushData: "yiha", success: { (resunt) in
+//                        DebugLog(message: "发送成功\(resunt)")
+//                    }, error: { (code, errcod) in
+//                        DebugLog(message: "发送失败\(errcod)")
+//                    })
+//                }
+//            })
             
             
             
@@ -203,11 +215,7 @@ class ChatRoomViewController: RCConversationViewController,RCRealTimeLocationObs
         {//跳转支付宝或者微信发起支付
             let params:[String:Any] = ["type":0,"user_id":model.userInfo.userId,"amount":Int(content.amotStr) ?? 0,"recipient":content.senderUserInfo.userId]
             
-//            TargetManager.share.transfer(params: params, complection: { (result, error) in
-//                if result {
-//                    
-//                }
-//            })
+
             
             let mess = TagStatueMessage.init(content: "")
             mess?.senderUserInfo = RCIM.shared().currentUserInfo
