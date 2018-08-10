@@ -295,7 +295,6 @@
 		5E6AE16D20DF972C00901D43 /* AlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AE16A20DF972C00901D43 /* AlignedCollectionViewFlowLayout.swift */; };
 		5E6AE16E20DF972C00901D43 /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AE16B20DF972C00901D43 /* TagCell.swift */; };
 		5E6AE16F20DF972C00901D43 /* TagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AE16C20DF972C00901D43 /* TagsView.swift */; };
-		88FEDB44FBED3A54B24186CB /* Pods_JellyGarden.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BE12B8F4D85F2B12027DF1 /* Pods_JellyGarden.framework */; };
 		C710D5BA20FED9C2006B15FC /* APPNotyfyDealwith.swift in Sources */ = {isa = PBXBuildFile; fileRef = C710D5B920FED9C2006B15FC /* APPNotyfyDealwith.swift */; };
 		C710D5BF20FF1480006B15FC /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C710D5BE20FF147F006B15FC /* MobileCoreServices.framework */; };
 		C72FF99F20FCA05500D3983D /* APPNotifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72FF99E20FCA05500D3983D /* APPNotifyViewController.swift */; };
@@ -318,6 +317,7 @@
 		C7454D3C20FDC7B500D9D6D7 /* WalletResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C7454D3420FDC7B500D9D6D7 /* WalletResource.bundle */; };
 		C7602285211057E50014442D /* ChatDepositAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7602284211057E50014442D /* ChatDepositAlertView.swift */; };
 		C7602287211057F50014442D /* ChatDepositAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7602286211057F50014442D /* ChatDepositAlertView.xib */; };
+		C76544CC211C1D7000569EA0 /* Pods_JellyGarden.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BE12B8F4D85F2B12027DF1 /* Pods_JellyGarden.framework */; };
 		C7691216210028FF00898B47 /* RCDCSSolveView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7691215210028FE00898B47 /* RCDCSSolveView.m */; };
 		C7691219210029B800898B47 /* RCDCSAnnounceView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7691218210029B800898B47 /* RCDCSAnnounceView.m */; };
 		C769121C210029CF00898B47 /* RCDCSEvaluateView.m in Sources */ = {isa = PBXBuildFile; fileRef = C769121B210029CF00898B47 /* RCDCSEvaluateView.m */; };
@@ -772,6 +772,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C76544CC211C1D7000569EA0 /* Pods_JellyGarden.framework in Frameworks */,
 				C710D5BF20FF1480006B15FC /* MobileCoreServices.framework in Frameworks */,
 				5A80C4F820BFFA270033CAF8 /* libsqlite3.tbd in Frameworks */,
 				5A016B8E20C0DDA8001E62F1 /* UserNotifications.framework in Frameworks */,
@@ -792,7 +793,6 @@
 				C7454D3920FDC7B500D9D6D7 /* JrmfPacketKit.framework in Frameworks */,
 				5A80C4F220BFF9F80033CAF8 /* libiconv.tbd in Frameworks */,
 				5A80C4F020BFF9EA0033CAF8 /* Security.framework in Frameworks */,
-				88FEDB44FBED3A54B24186CB /* Pods_JellyGarden.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -27,11 +27,13 @@ class BaseViewController: UIViewController {
         return btn
     }()
     
-    var logoTopBackView:UIImageView = UIImageView()
+    var logoTopBackView:UIImageView = UIImageView()//titleImage
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.autoresizesSubviews = true
 //        self.edgesForExtendedLayout = UIRectEdge.init(rawValue: 0)
+        
+        
         self.edgesForExtendedLayout = UIRectEdge.all
         self.view.backgroundColor = customBackViewColor
         self.logoTopBackView = UIImageView.init(image: imageName(name: ""))
@@ -68,6 +70,8 @@ class BaseViewController: UIViewController {
         {
             self.navigationController?.navigationBar.addSubview(self.logoTopBackView)
         }
+      
+        
         
     }
     @objc public func clickLeftBtn()
