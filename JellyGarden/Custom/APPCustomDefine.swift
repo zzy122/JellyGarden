@@ -18,7 +18,8 @@ var NeedGesterPassword:Bool = false {
     }
 }
 
-let SERVER_HOST:String = "http://39.105.9.66/mask/app/api/"
+//let SERVER_HOST:String = "http://39.105.9.66/mask/app/api/"
+let SERVER_HOST:String = "http://mianju.sxyunshui.com/admin/user/"
 
 let UserPath:String = {
     let path:String = "\(documentPath)/User"

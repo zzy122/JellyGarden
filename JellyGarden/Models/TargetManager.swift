@@ -56,7 +56,7 @@ class TargetManager: NSObject {
         }
     }
     //登录
-    func loginAction(params:[String:Any],complection:@escaping (UserModel?,Error?) -> Void)  {
+    func loginAction(params:[String:Any],complection:@escaping (UserModel?,Error?) -> Void)  {//users/login
         NetCostom.shared.request(method:.post ,wengen: "users/login", params: params, success: { (result) in
             guard let user = result as? [String:Any] else {
                 return
@@ -85,7 +85,7 @@ class TargetManager: NSObject {
     }
     
     //注册
-    func registerUser(params:[String:Any]?,complection:@escaping ([String:Any]?,Error?) -> Void)
+    func registerUser(params:[String:Any]?,complection:@escaping ([String:Any]?,Error?) -> Void)//users/register
     {
         NetCostom.shared.request(method:.post ,wengen: "users/register", params: params, success: { (result) in
             complection(result as? [String:Any],nil)
