@@ -38,7 +38,7 @@ class ApplayCheckTableViewCell: UITableViewCell {
                 guard let user = userinfo else{
                     return
                 }
-                user.data?.distance = self.model?.distance
+                user.distance = self.model?.distance
                 vc.userInfoModel = user
                 RootNav().pushViewController(vc, animated: true)
             })
@@ -50,7 +50,7 @@ class ApplayCheckTableViewCell: UITableViewCell {
                 guard let user = userinfo else{
                     return
                 }
-                user.data?.distance = self.model?.distance
+                user.distance = self.model?.distance
                 vc.userInfoModel = user
                 RootNav().pushViewController(vc, animated: true)
             })

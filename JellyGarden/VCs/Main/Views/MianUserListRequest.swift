@@ -10,7 +10,7 @@ import UIKit
 
 func request(page:Int,type:SearchType?,page_size:Int,sex:sexType?,locaCity:String?,complection:@escaping ([MainListmodel]?,Error?) -> Void) {
     
-    var params:[String:Any] = ["page":page,"page_size":page_size,"user_id":CurrentUserInfo?.data?.user_id ?? ""]
+    var params:[String:Any] = ["page":page,"page_size":page_size,"user_id":CurrentUserInfo?.user_id ?? ""]
     if let city = locaCity
     {
         params["city"] = city

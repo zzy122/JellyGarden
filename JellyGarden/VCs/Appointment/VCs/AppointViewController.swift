@@ -132,7 +132,7 @@ class AppointViewController: BaseMainTableViewController,ResponderRouter,TZImage
     }
     func getAppiontData(param:[String:Any] ,complection:@escaping (Bool) -> Void) {
         var params = param
-        params["user_id"] = CurrentUserInfo?.data?.user_id ?? ""
+        params["user_id"] = CurrentUserInfo?.user_id ?? ""
         TargetManager.share.getLonelySpeechList(params: params) { (models, error) in
             guard error != nil else{
 
@@ -281,7 +281,7 @@ extension AppointViewController
             return
         }
         if name == ClickReportName {//点击产看报名
-            guard let model = appiontModels?[index],model.poster?.user_id == CurrentUserInfo?.data?.user_id else
+            guard let model = appiontModels?[index],model.poster?.user_id == CurrentUserInfo?.user_id else
             {
                 alertHud(title: "只有本人才能查看报名哦")
                 return
@@ -292,12 +292,12 @@ extension AppointViewController
             RootNav().pushViewController(vc, animated: true)
         }
         if ClickEnlistBtn == name {//我要报名
-            guard let model = appiontModels?[index],model.poster?.user_id != CurrentUserInfo?.data?.user_id else
+            guard let model = appiontModels?[index],model.poster?.user_id != CurrentUserInfo?.user_id else
             {
                 alertHud(title: "不能报名本人哦")
                 return
             }
-            guard model.poster?.sex != CurrentUserInfo?.data?.sex else
+            guard model.poster?.sex != CurrentUserInfo?.sex else
             {
                 alertHud(title: "不能报名同性别哦")
                 return
@@ -342,7 +342,7 @@ extension AppointViewController
         }
         if name == ClickCommentBtn {//评论
              let model:lonelySpeechDetaileModel = self.appiontModels![index]
-            if  model.poster?.sex == CurrentUserInfo?.data?.sex && model.poster?.user_id != CurrentUserInfo?.data?.user_id
+            if  model.poster?.sex == CurrentUserInfo?.sex && model.poster?.user_id != CurrentUserInfo?.user_id
             {
                 alertHud(title: "不能评论同性别哦")
                 return
@@ -355,7 +355,7 @@ extension AppointViewController
                 if type == .publish{
                    
                    
-                    let params = ["publisher_id":CurrentUserInfo?.data?.user_id ?? "","content":text]
+                    let params = ["publisher_id":CurrentUserInfo?.user_id ?? "","content":text]
                     TargetManager.share.issueComment(appointment_id: model.appointment_id ?? "", params: params, complection: { (commentmodel, error) in
                         guard let comment = commentmodel else{
                             return
@@ -380,7 +380,7 @@ extension AppointViewController
 //                if success//调用支付接口
 //                {
 //                    let extraStr = getJSONStringFromObject(dictionary: ["appointment_id":model.appointment_id ?? ""])
-//                    let params:[String:Any] = ["type":0,"amount": model.deposit ?? 0,"user_id":CurrentUserInfo?.data?.user_id ?? "","recipient":model.poster?.user_id ?? "","extra":extraStr]
+//                    let params:[String:Any] = ["type":0,"amount": model.deposit ?? 0,"user_id":CurrentUserInfo?.user_id ?? "","recipient":model.poster?.user_id ?? "","extra":extraStr]
 //                    TargetManager.share.transfer(params: params, complection: { (successful, error) in
 //                        if successful//支付成功
 //                        {
@@ -399,7 +399,7 @@ extension AppointViewController
     func checkUserinfoData(index:Int)
     {
         let model:lonelySpeechDetaileModel = appiontModels![index]
-        let userSex = CurrentUserInfo?.data?.sex
+        let userSex = CurrentUserInfo?.sex
         if userSex == 0,userSex == model.poster?.sex
         {
             alertHud(title: "男士不能查看男士列表哦~")
@@ -419,7 +419,7 @@ extension AppointViewController
                 guard let user = userinfo else{
                     return
                 }
-                //                    user.data?.distance = model.distance
+                //                    user.distance = model.distance
                 vc.userInfoModel = user
                 RootNav().pushViewController(vc, animated: true)
             })
@@ -431,7 +431,7 @@ extension AppointViewController
                 guard let user = userinfo else{
                     return
                 }
-                //                    user.data?.distance = model.distance
+                //                    user.distance = model.distance
                 vc.userInfoModel = user
                 RootNav().pushViewController(vc, animated: true)
             })
@@ -469,7 +469,7 @@ extension AppointViewController
         AliyunManager.share.uploadImagesToAliyun(imageModels: models, complection: { (urls, succecCount, failCount, state) in
             if state == UploadImageState.success
             {//报名
-                let params:[String:Any] = ["user_id":CurrentUserInfo?.data?.user_id ?? "","attachment":urls?.last ?? "","has_pay_deposit":0]
+                let params:[String:Any] = ["user_id":CurrentUserInfo?.user_id ?? "","attachment":urls?.last ?? "","has_pay_deposit":0]
                 let model:lonelySpeechDetaileModel = self.appiontModels![self.reportTag]
                 TargetManager.share.signUpAppiont(appointment_id: model.appointment_id ?? "", params: params, complection: { (success, error) in
                     if success

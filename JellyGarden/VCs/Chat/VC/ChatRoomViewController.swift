@@ -234,7 +234,7 @@ class ChatRoomViewController: RCConversationViewController,RCRealTimeLocationObs
         }
         if let mess = model.content as? ReadDestroyMessage {
             DebugLog(message: "地址:\(mess.imageUrl)");
-            TargetManager.share.readImageForUserid(params: ["user_id":CurrentUserInfo?.data?.user_id ?? "","url":mess.imageUrl ?? ""]) { (model, error) in
+            TargetManager.share.readImageForUserid(params: ["user_id":CurrentUserInfo?.user_id ?? "","url":mess.imageUrl ?? ""]) { (model, error) in
                 if model?.has_viewed == false
                 {
                     let vc = LookImageViewController()

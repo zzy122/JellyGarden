@@ -66,10 +66,10 @@ class ManFillInformationViewController: BaseViewController,UIImagePickerControll
         self.dataAry = FillCondition.share.conditionTag
         self.collectionView.isHidden = false
         self.itemBackView.addSubview(self.collectionView)
-        if let imageUrl = CurrentUserInfo?.data?.avatar,imageUrl.count > 0 {
+        if let imageUrl = CurrentUserInfo?.avatar,imageUrl.count > 0 {
             self.headerIMV.imageView?.sd_DownLoadImage(url: imageUrl)
         }
-        self.nickNameLab.text = CurrentUserInfo?.data?.nickname
+        self.nickNameLab.text = CurrentUserInfo?.nickname
         // Do any additional setup after loading the view.
     }
 
@@ -135,7 +135,7 @@ class ManFillInformationViewController: BaseViewController,UIImagePickerControll
         
         picker.dismiss(animated: true) {
             
-            let imageStr = "\(CurrentUserInfo?.data?.phone ?? "no").png"
+            let imageStr = "\(CurrentUserInfo?.phone ?? "no").png"
             HUD.flash(.labeledProgress(title: nil, subtitle: "请稍后..."))
             let model = AliyunUploadModel()
             model.image = image

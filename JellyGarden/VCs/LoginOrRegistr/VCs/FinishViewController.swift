@@ -18,9 +18,7 @@ class FinishViewController: BaseViewController {
         self.registerBtn.layer.borderWidth = 1.0
         registerBtn.layer.borderColor = APPCustomBtnColor.cgColor
         FillCondition.share.getConditions()
-//        clearUserInfo()
-        
-        
+        clearUserInfo()
         
         self.autoLogin()
        
@@ -29,8 +27,8 @@ class FinishViewController: BaseViewController {
     
     func autoLogin() {//自动登录
         if let user = CurrentUserInfo {
-            if let nickName = user.data?.nickname, nickName.count > 0  {
-                loginActionParams(params: ["phone":user.data?.phone ?? "","password":user.data?.password ?? ""], nav: self.navigationController)
+            if let nickName = user.nickname, nickName.count > 0  {
+                loginActionParams(params: ["phone":user.phone ?? "","password":user.password ?? ""], nav: self.navigationController)
             }
         }
         if currentCitys == nil {

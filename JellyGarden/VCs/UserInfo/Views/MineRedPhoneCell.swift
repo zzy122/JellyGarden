@@ -23,18 +23,18 @@ class MineRedPhoneCell: UITableViewCell {
     @IBOutlet weak var descriptionLab: UILabel!
     override func layoutSubviews() {
         
-        if let photos = CurrentUserInfo?.data?.custom_photos,photos.count > 0
+        if let photos = CurrentUserInfo?.custom_photos,photos.count > 0
         {
             imageBodyView.frame = self.bounds
             self.imageBodyView.isHidden = false
-            self.imageBodyView.userModel = CurrentUserInfo?.data
+            self.imageBodyView.userModel = CurrentUserInfo
         }
         else
         {
             self.imageBodyView.isHidden = true
         }
         
-        if CurrentUserInfo?.data?.sex == 0
+        if CurrentUserInfo?.sex == 0
         {
             descriptionLab.text = "有照片才能吸引女士哦"
         }

@@ -13,6 +13,7 @@ class RegisterViewController: BaseViewController {
     @IBOutlet weak var codeTextfiled: APPTextfiled!
     @IBOutlet weak var userPhone: APPTextfiled!
     @IBOutlet weak var passWordFiled: APPTextfiled!
+    var msg_id:String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +34,7 @@ class RegisterViewController: BaseViewController {
             alertHud(title: "请输入密码")
             return
         }
-        let params = ["phone":userPhone.text!,"password":self.passWordFiled.text!.zzy.md5() ,"verify_code":codeTextfiled.text!] as [String : Any]
+        let params = ["phone":userPhone.text!,"password":self.passWordFiled.text!.zzy.md5() ,"verify_code":codeTextfiled.text!,"msg_id":self.msg_id] as [String : Any]
         
         
         TargetManager.share.registerUser(params: params) { (resut, error) in
@@ -57,7 +58,8 @@ class RegisterViewController: BaseViewController {
         sender.starTime()
         
         TargetManager.share.getMSCode(params: params) { (result, eror) in
-            
+
+            self.msg_id = result!["msg_id"] as! String
         }
     }
     override func didReceiveMemoryWarning() {

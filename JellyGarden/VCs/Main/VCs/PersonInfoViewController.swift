@@ -20,17 +20,17 @@ class PersonInfoViewController: BaseTableViewController,ResponderRouter {
     var rightTitles:[String] = ["","","","","","","",""]
     
     var showType:LookUserInfotype? {
-        if self.userInfoModel?.data?.user_id == CurrentUserInfo?.data?.user_id
+        if self.userInfoModel?.user_id == CurrentUserInfo?.user_id
         {
             return LookUserInfotype.pubilic
         }
-        if self.userInfoModel?.data?.permission == permissionAry[3] {
+        if self.userInfoModel?.permission == permissionAry[3] {
             return LookUserInfotype.stealth
         }
-        else if self.userInfoModel?.data?.permission == permissionAry[2] {
+        else if self.userInfoModel?.permission == permissionAry[2] {
             return LookUserInfotype.validation
         }
-        else if self.userInfoModel?.data?.permission == permissionAry[1] {
+        else if self.userInfoModel?.permission == permissionAry[1] {
            return LookUserInfotype.payphoto
         }
         else  {
@@ -69,22 +69,22 @@ class PersonInfoViewController: BaseTableViewController,ResponderRouter {
     var userInfoModel:UserModel? {
         didSet{
             var contact:String?
-            if let str = userInfoModel?.data?.contact_wechat,str.count > 0 {
+            if let str = userInfoModel?.contact_wechat,str.count > 0 {
                 contact = str
                 self.leftTitles = ["她的广播","个人介绍","约会节目","约会条件","微信","风格","语言","感情"]
             }
             else
             {
-                contact = userInfoModel?.data?.contact_qq
+                contact = userInfoModel?.contact_qq
                 self.leftTitles = ["她的广播","个人介绍","约会节目","约会条件","QQ","风格","语言","感情"]
             }
             
-            self.rightTitles = ["",continueString(strAry: userInfoModel?.data?.tags,separetStr:"  "),continueString(strAry: userInfoModel?.data?.appointment_program,separetStr:"  "),continueString(strAry: userInfoModel?.data?.appointment_condition,separetStr:"  "),contact!,continueString(strAry: userInfoModel?.data?.dress_style,separetStr:"  "),continueString(strAry: userInfoModel?.data?.language,separetStr:"  "),userInfoModel?.data?.emotion_status ?? ""]
-            if let troduces = userInfoModel?.data?.tags,troduces.count > 0 {
+            self.rightTitles = ["",continueString(strAry: userInfoModel?.tags,separetStr:"  "),continueString(strAry: userInfoModel?.appointment_program,separetStr:"  "),continueString(strAry: userInfoModel?.appointment_condition,separetStr:"  "),contact!,continueString(strAry: userInfoModel?.dress_style,separetStr:"  "),continueString(strAry: userInfoModel?.language,separetStr:"  "),userInfoModel?.emotion_status ?? ""]
+            if let troduces = userInfoModel?.tags,troduces.count > 0 {
                 self.rightTitles.append(continueString(strAry: troduces,separetStr:"  "))
             }
             self.tableView.reloadData()
-            if userInfoModel?.data?.likes?.contains((CurrentUserInfo?.data?.user_id)!) == true
+            if userInfoModel?.likes?.contains((CurrentUserInfo?.user_id)!) == true
             {
                self.collectionImageStr = "赞-实"
             }
@@ -98,7 +98,7 @@ class PersonInfoViewController: BaseTableViewController,ResponderRouter {
 
     }
     lazy var headerView:PersonalInfoHeader = {
-        var intege = getLines(ary: self.userInfoModel?.data?.custom_photos, veryCount: 4)
+        var intege = getLines(ary: self.userInfoModel?.custom_photos, veryCount: 4)
         let view1 = PersonalInfoHeader.createPersonalInfoHeader()
         let backView = UIView()
         backView.backgroundColor = UIColor.clear
@@ -113,7 +113,7 @@ class PersonInfoViewController: BaseTableViewController,ResponderRouter {
         
         view1?.frame = backView.bounds
         backView.addSubview(view1!)
-        view1?.userModel = self.userInfoModel?.data
+        view1?.userModel = self.userInfoModel
         self.tableView.tableHeaderView = backView
         
         return view1!
@@ -142,7 +142,7 @@ class PersonInfoViewController: BaseTableViewController,ResponderRouter {
             else{return}
             switch btnTag {
             case .collection://点击收藏
-                let params = ["like_garden_user_id":self.userInfoModel?.data?.user_id ?? "", "user_id":CurrentUserInfo?.data?.user_id ?? ""]
+                let params = ["like_garden_user_id":self.userInfoModel?.user_id ?? "", "user_id":CurrentUserInfo?.user_id ?? ""]
                 TargetManager.share.gardensUserLikes(params: params, complection: { (success) in
                     if success {
                         self.collectionImageStr = (self.collectionImageStr == "赞-实") ? "收藏" : "赞-实"
@@ -152,7 +152,7 @@ class PersonInfoViewController: BaseTableViewController,ResponderRouter {
             case .chat://点击 私聊
                 self.gotoChatVC()
             case .prase://点击评价
-                AlertAction.share.showCommentStarView(imageUrl: userInfoModel?.data?.avatar, nikeStr: userInfoModel?.data?.nickname) { (poCount, playCount, tasteCount, cleanCount, agliCount, mothCount) in
+                AlertAction.share.showCommentStarView(imageUrl: userInfoModel?.avatar, nikeStr: userInfoModel?.nickname) { (poCount, playCount, tasteCount, cleanCount, agliCount, mothCount) in
                     DebugLog(message: "poCount:\(poCount)playCount:\(playCount)tasteCount:\(tasteCount)cleanCount:\(cleanCount)agliCount:\(agliCount)mothCount:\(mothCount)")
                 }
                 
@@ -167,7 +167,7 @@ class PersonInfoViewController: BaseTableViewController,ResponderRouter {
         {
             DebugLog(message: "点击了申请查看")
             
-            TargetManager.share.applayToDetail(params: ["user_id":CurrentUserInfo?.data?.user_id ?? "", "view_user_id":userInfoModel?.data?.user_id ?? ""]) { (success) in
+            TargetManager.share.applayToDetail(params: ["user_id":CurrentUserInfo?.user_id ?? "", "view_user_id":userInfoModel?.user_id ?? ""]) { (success) in
                 if success
                 {
                     
@@ -176,9 +176,9 @@ class PersonInfoViewController: BaseTableViewController,ResponderRouter {
         }
     }
     func gotoChatVC() {
-        let vc = ChatRoomViewController.init(conversationType: RCConversationType.ConversationType_PRIVATE, targetId: userInfoModel?.data?.user_id)
-        vc?.targetId = userInfoModel?.data?.user_id
-        RCIM.shared().userInfoDataSource.getUserInfo(withUserId: userInfoModel?.data?.user_id) { (info) in
+        let vc = ChatRoomViewController.init(conversationType: RCConversationType.ConversationType_PRIVATE, targetId: userInfoModel?.user_id)
+        vc?.targetId = userInfoModel?.user_id
+        RCIM.shared().userInfoDataSource.getUserInfo(withUserId: userInfoModel?.user_id) { (info) in
             vc?.title = info?.name
             self.navigationController?.pushViewController(vc!, animated: true)
         }
@@ -200,13 +200,13 @@ class PersonInfoViewController: BaseTableViewController,ResponderRouter {
             
             if index == 1//拉黑
             {
-                TargetManager.share.userReportRequest(params: ["user_id": CurrentUserInfo?.data?.user_id ?? "","report_user_id": self.userInfoModel?.data?.user_id ?? "","report_type":0], complection: { (success) in
+                TargetManager.share.userReportRequest(params: ["user_id": CurrentUserInfo?.user_id ?? "","report_user_id": self.userInfoModel?.user_id ?? "","report_type":0], complection: { (success) in
                     
                 })
             }
             else if index == 2//举报
             {
-                TargetManager.share.userReportRequest(params: ["user_id": CurrentUserInfo?.data?.user_id ?? "","report_user_id": self.userInfoModel?.data?.user_id ?? "","report_type":1], complection: { (success) in
+                TargetManager.share.userReportRequest(params: ["user_id": CurrentUserInfo?.user_id ?? "","report_user_id": self.userInfoModel?.user_id ?? "","report_type":1], complection: { (success) in
                     
                 })
             }
@@ -316,7 +316,7 @@ extension PersonInfoViewController
         switch indexPath.row {
         case 0:
             let vc = UserBroadcastListViewController()
-            vc.userid = userInfoModel?.data?.user_id ?? ""
+            vc.userid = userInfoModel?.user_id ?? ""
             
             RootNav().pushViewController(vc, animated: true)
             
@@ -341,7 +341,7 @@ extension PersonInfoViewController
     }
     @objc  func clickCheckContact(sender:UIButton)
     {
-        TargetManager.share.checkContackType(params: ["user_id":CurrentUserInfo?.data?.user_id ?? "","view_user_id":userInfoModel?.data?.user_id ?? ""]) { (success) in
+        TargetManager.share.checkContackType(params: ["user_id":CurrentUserInfo?.user_id ?? "","view_user_id":userInfoModel?.user_id ?? ""]) { (success) in
             if success
             {
                  self.showContactAlert()

@@ -89,7 +89,7 @@ class MineInfoEditViewController: BaseMainViewController, UITextViewDelegate {
 //            alertHud(title: "没有做出任何修改")
 //            return
 //        }
-        fillInfoRequest(jsonDic: userInfo.data?.toJSON() ?? [:]) { (success) in
+        fillInfoRequest(jsonDic: userInfo.toJSON() ?? [:]) { (success) in
             if success {
                 NSDictionary.init(dictionary: self.userInfo.toJSON() ?? [:]).write(toFile: UserPlist, atomically: true)
                 
@@ -102,7 +102,7 @@ class MineInfoEditViewController: BaseMainViewController, UITextViewDelegate {
     }
     
     func textViewDidChange(_ textView: UITextView) {
-        self.userInfo.data?.self_introduction = textView.text
+        self.userInfo.self_introduction = textView.text
     }
 }
 
@@ -112,26 +112,26 @@ extension MineInfoEditViewController: TagsViewDelegate {
         let tags = FillCondition.share.conditionTag
         let removeTag = tags[index]
         
-        var selectedTags = self.userInfo.data?.tags ?? []
+        var selectedTags = self.userInfo.tags ?? []
         if let index = selectedTags.index(of: removeTag) {
             selectedTags.remove(at: index)
         }
         
-        self.userInfo.data?.tags = selectedTags
+        self.userInfo.tags = selectedTags
     }
     
     func tagsView(didTouchTagAtIndex index: Int) {
         let tags = FillCondition.share.conditionTag
         let addTag = tags[index]
         
-        var selectedTags = self.userInfo.data?.tags ?? []
+        var selectedTags = self.userInfo.tags ?? []
         selectedTags.append(addTag)
         
-        self.userInfo.data?.tags = selectedTags
+        self.userInfo.tags = selectedTags
     }
     
     func reloadTag() {
-        for selfTag in userInfo.data?.tags ?? [] {
+        for selfTag in userInfo.tags ?? [] {
             for index in 0 ..< FillCondition.share.conditionTag.count {
                 let tag = FillCondition.share.conditionTag[index]
                 if tag == selfTag {
@@ -158,7 +158,7 @@ extension MineInfoEditViewController: TZImagePickerControllerDelegate, UIImagePi
             yunmodel.fileName = "\(getImageName()).png"
             AliyunManager.share.uploadImagesToAliyun(imageModels: [yunmodel]) { (urls, successCount, faileCount, state) in
                 if state == UploadImageState.success {
-                    self.userInfo.data?.avatar = urls?.last
+                    self.userInfo.avatar = urls?.last
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                     }
@@ -188,7 +188,7 @@ extension MineInfoEditViewController: TZImagePickerControllerDelegate, UIImagePi
         yunmodel.fileName = "\(getImageName()).png"
         AliyunManager.share.uploadImagesToAliyun(imageModels: [yunmodel]) { (urls, successCount, faileCount, state) in
             if state == UploadImageState.success {
-                self.userInfo.data?.avatar = urls?.last
+                self.userInfo.avatar = urls?.last
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
@@ -206,7 +206,7 @@ extension MineInfoEditViewController: TZImagePickerControllerDelegate, UIImagePi
                                         detailTitle: nil,
                                         detailImage: nil) { (sure, result) in
                                             if sure {
-                                                self.userInfo.data?.nickname = result
+                                                self.userInfo.nickname = result
                                                 self.tableView.reloadData()
                                             }
         }
@@ -214,8 +214,8 @@ extension MineInfoEditViewController: TZImagePickerControllerDelegate, UIImagePi
     
     /// 约会范围
     func appointFanwei() {
-        AlertAction.share.showbottomPicker(title: "约会范围", maxCount: 4, dataAry: currentCitys, currentData: userInfo.data?.appointment_place) { (fanwei) in
-            self.userInfo.data?.appointment_place = fanwei
+        AlertAction.share.showbottomPicker(title: "约会范围", maxCount: 4, dataAry: currentCitys, currentData: userInfo.appointment_place) { (fanwei) in
+            self.userInfo.appointment_place = fanwei
             self.tableView.reloadData()
         }
     }
@@ -233,14 +233,14 @@ extension MineInfoEditViewController: TZImagePickerControllerDelegate, UIImagePi
     func appointAge() {
         var currentData:[String] = []
         
-        let agestr = "\(userInfo.data?.age ?? 18)"
+        let agestr = "\(userInfo.age ?? 18)"
         if agestr.count > 0 {
             currentData = [agestr]
         }
 
         AlertAction.share.showbottomPicker(title: "选择年龄", maxCount: 1, dataAry: ageList, currentData: currentData) { (ages) in
             if let first = ages.first {
-                self.userInfo.data?.age = Int(first) ?? 18
+                self.userInfo.age = Int(first) ?? 18
                 self.tableView.reloadData()
             }
         }
@@ -256,7 +256,7 @@ extension MineInfoEditViewController: TZImagePickerControllerDelegate, UIImagePi
                                         detailImage: nil) { (sure, result) in
             
                                             if sure, let stature = result, stature.count > 0 {
-                                                self.userInfo.data?.stature = Int(stature) ?? 180
+                                                self.userInfo.stature = Int(stature) ?? 180
                                                 self.tableView.reloadData()
                                             }
         }
@@ -264,9 +264,9 @@ extension MineInfoEditViewController: TZImagePickerControllerDelegate, UIImagePi
     
     /// 身份
     func shenfen() {
-        AlertAction.share.showbottomPicker(title: "选择您的身份", maxCount: 1, dataAry: FillCondition.share.identityListModel, currentData: [userInfo.data?.identity ?? ""]) { (identify) in
+        AlertAction.share.showbottomPicker(title: "选择您的身份", maxCount: 1, dataAry: FillCondition.share.identityListModel, currentData: [userInfo.identity ?? ""]) { (identify) in
            
-            self.userInfo.data?.identity = identify.first
+            self.userInfo.identity = identify.first
             self.tableView.reloadData()
         }
     }
@@ -280,7 +280,7 @@ extension MineInfoEditViewController: TZImagePickerControllerDelegate, UIImagePi
                                         detailTitle: nil,
                                         detailImage: nil) { (sure, result) in
                                             guard sure, let result = result, result.count > 0 else { return }
-                                            self.userInfo.data?.weight = Int(result)
+                                            self.userInfo.weight = Int(result)
                                             self.tableView.reloadData()
         }
     }
@@ -294,7 +294,7 @@ extension MineInfoEditViewController: TZImagePickerControllerDelegate, UIImagePi
                                         detailTitle: nil,
                                         detailImage: nil) { (sure, result) in
                                             guard sure, let result = result, result.count > 0 else { return }
-                                            self.userInfo.data?.bust = Int(result)
+                                            self.userInfo.bust = Int(result)
                                             self.tableView.reloadData()
         }
     }
@@ -304,8 +304,8 @@ extension MineInfoEditViewController: TZImagePickerControllerDelegate, UIImagePi
         AlertAction.share.showbottomPicker(title: "请选择您的风格",
                                            maxCount: 4,
                                            dataAry: FillCondition.share.dressStyleListModel,
-                                           currentData: userInfo.data?.dress_style) { (styles) in
-                                            self.userInfo.data?.dress_style = styles
+                                           currentData: userInfo.dress_style) { (styles) in
+                                            self.userInfo.dress_style = styles
                                             self.tableView.reloadData()
         }
     }
@@ -315,8 +315,8 @@ extension MineInfoEditViewController: TZImagePickerControllerDelegate, UIImagePi
         AlertAction.share.showbottomPicker(title: "选择您的语言",
                                            maxCount: 4,
                                            dataAry: FillCondition.share.languageListModel,
-                                           currentData: userInfo.data?.language) { (languages) in
-                                            self.userInfo.data?.language = languages
+                                           currentData: userInfo.language) { (languages) in
+                                            self.userInfo.language = languages
                                             self.tableView.reloadData()
         }
     }
@@ -326,8 +326,8 @@ extension MineInfoEditViewController: TZImagePickerControllerDelegate, UIImagePi
         AlertAction.share.showbottomPicker(title: "请选择您的情感状态",
                                            maxCount: 1,
                                            dataAry: FillCondition.share.emotionStatusList,
-                                           currentData: [userInfo.data?.emotion_status ?? ""]) { (emotion) in
-                                            self.userInfo.data?.emotion_status = emotion.first
+                                           currentData: [userInfo.emotion_status ?? ""]) { (emotion) in
+                                            self.userInfo.emotion_status = emotion.first
                                             self.tableView.reloadData()
         }
     }
@@ -337,8 +337,8 @@ extension MineInfoEditViewController: TZImagePickerControllerDelegate, UIImagePi
         AlertAction.share.showbottomPicker(title: "请选择您的约会节目",
                                            maxCount: 4,
                                            dataAry: FillCondition.share.appointmentProgramListModel,
-                                           currentData: userInfo.data?.appointment_program) { (emotion) in
-                                            self.userInfo.data?.appointment_program = emotion
+                                           currentData: userInfo.appointment_program) { (emotion) in
+                                            self.userInfo.appointment_program = emotion
                                             self.tableView.reloadData()
         }
     }
@@ -348,8 +348,8 @@ extension MineInfoEditViewController: TZImagePickerControllerDelegate, UIImagePi
         AlertAction.share.showbottomPicker(title: "请选择您的约会条件",
                                            maxCount: 4,
                                            dataAry: FillCondition.share.appointmentConditionListModel,
-                                           currentData: userInfo.data?.appointment_condition) { (emotion) in
-                                            self.userInfo.data?.appointment_condition = emotion
+                                           currentData: userInfo.appointment_condition) { (emotion) in
+                                            self.userInfo.appointment_condition = emotion
                                             self.tableView.reloadData()
         }
     }
@@ -364,7 +364,7 @@ extension MineInfoEditViewController: TZImagePickerControllerDelegate, UIImagePi
                                         detailImage: nil) { (sure, result) in
                                             
                                             if sure, let stature = result, stature.count > 0 {
-                                                self.userInfo.data?.contact_qq = result
+                                                self.userInfo.contact_qq = result
                                                 self.tableView.reloadData()
                                             }
         }
@@ -380,7 +380,7 @@ extension MineInfoEditViewController: TZImagePickerControllerDelegate, UIImagePi
                                         detailImage: nil) { (sure, result) in
                                             
                                             if sure, let stature = result, stature.count > 0 {
-                                                self.userInfo.data?.contact_wechat = result
+                                                self.userInfo.contact_wechat = result
                                                 self.tableView.reloadData()
                                             }
         }
@@ -561,7 +561,7 @@ extension MineInfoEditViewController: UITableViewDataSource {
             cell?.textLabel?.text = "头像"
             cell?.detailTextLabel?.text = ""
             let imageView = UIImageView()
-            imageView.kf.setImage(with: URL(string: userInfo.data?.avatar ?? ""))
+            imageView.kf.setImage(with: URL(string: userInfo.avatar ?? ""))
             imageView.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
             imageView.layer.cornerRadius = 20
             imageView.clipsToBounds = true
@@ -569,66 +569,66 @@ extension MineInfoEditViewController: UITableViewDataSource {
         }
         else if 1 == indexPath.row && 0 == indexPath.section {
             cell?.textLabel?.text = "昵称"
-            cell?.detailTextLabel?.text = userInfo.data?.nickname
+            cell?.detailTextLabel?.text = userInfo.nickname
         }
         else if 2 == indexPath.row && 0 == indexPath.section {
             cell?.textLabel?.text = "约会范围"
-            cell?.detailTextLabel?.text = userInfo.data?.appointment_place?.joined(separator: " ")
+            cell?.detailTextLabel?.text = userInfo.appointment_place?.joined(separator: " ")
         }
         else if 3 == indexPath.row && 0 == indexPath.section {
             cell?.textLabel?.text = "年龄"
-            cell?.detailTextLabel?.text = "\(userInfo.data?.age ?? 18)岁"
+            cell?.detailTextLabel?.text = "\(userInfo.age ?? 18)岁"
         }
         else if 4 == indexPath.row && 0 == indexPath.section {
             cell?.textLabel?.text = "身份"
-            cell?.detailTextLabel?.text = userInfo.data?.identity
+            cell?.detailTextLabel?.text = userInfo.identity
         }
         else if 5 == indexPath.row && 0 == indexPath.section {
             cell?.textLabel?.text = "身高"
-            cell?.detailTextLabel?.text = "\(userInfo.data?.stature ?? 165)CM"
+            cell?.detailTextLabel?.text = "\(userInfo.stature ?? 165)CM"
         }
         else if 6 == indexPath.row && 0 == indexPath.section {
             cell?.textLabel?.text = "体重"
-            cell?.detailTextLabel?.text = "\(userInfo.data?.weight ?? 40)KG"
+            cell?.detailTextLabel?.text = "\(userInfo.weight ?? 40)KG"
         }
         else if 7 == indexPath.row && 0 == indexPath.section {
             cell?.textLabel?.text = "胸围"
-            cell?.detailTextLabel?.text = "\(userInfo.data?.bust ?? 36)CM"
+            cell?.detailTextLabel?.text = "\(userInfo.bust ?? 36)CM"
         }
         else if 0 == indexPath.row && 1 == indexPath.section {
             cell?.textLabel?.text = "打扮风格"
-            cell?.detailTextLabel?.text = userInfo.data?.dress_style?.joined(separator: " ")
+            cell?.detailTextLabel?.text = userInfo.dress_style?.joined(separator: " ")
         }
         else if 1 == indexPath.row && 1 == indexPath.section {
             cell?.textLabel?.text = "语言"
-            cell?.detailTextLabel?.text = userInfo.data?.language?.joined(separator: " ")
+            cell?.detailTextLabel?.text = userInfo.language?.joined(separator: " ")
         }
         else if 2 == indexPath.row && 1 == indexPath.section {
             cell?.textLabel?.text = "感情"
-            cell?.detailTextLabel?.text = userInfo.data?.emotion_status
+            cell?.detailTextLabel?.text = userInfo.emotion_status
         }
         else if 3 == indexPath.row && 1 == indexPath.section {
             cell?.textLabel?.text = "约会节目"
-            cell?.detailTextLabel?.text = userInfo.data?.appointment_program?.joined(separator: " ")
+            cell?.detailTextLabel?.text = userInfo.appointment_program?.joined(separator: " ")
         }
         else if 4 == indexPath.row && 1 == indexPath.section {
             cell?.textLabel?.text = "约会条件"
-            cell?.detailTextLabel?.text = userInfo.data?.appointment_condition?.joined(separator: " ")
+            cell?.detailTextLabel?.text = userInfo.appointment_condition?.joined(separator: " ")
         }
         else if 0 == indexPath.row && 2 == indexPath.section {
             cell?.textLabel?.text = "QQ"
-            cell?.detailTextLabel?.text = userInfo.data?.contact_qq
+            cell?.detailTextLabel?.text = userInfo.contact_qq
         }
         else if 1 == indexPath.row && 2 == indexPath.section {
             cell?.textLabel?.text = "微信"
-            cell?.detailTextLabel?.text = userInfo.data?.contact_wechat
+            cell?.detailTextLabel?.text = userInfo.contact_wechat
         }
         else if 3 == indexPath.section {
             var cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell3")
             if cell == nil {
                 cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "UITableViewCell3")
                 cell?.contentView.addSubview(textView)
-                textView.text = userInfo.data?.self_introduction
+                textView.text = userInfo.self_introduction
                 textView.frame = CGRect(x: 0, y: 0, width: ScreenWidth, height: 120)
             }
             return cell!

@@ -119,7 +119,7 @@ class SearchUserViewController: BaseMainTableViewController,UISearchBarDelegate,
         tableView.deselectRow(at: indexPath, animated: true)
         let model:MainListmodel = (userModels?[indexPath.row])!
             //男士无法查看男士
-            let userSex = CurrentUserInfo?.data?.sex
+            let userSex = CurrentUserInfo?.sex
             if userSex == 0,userSex == model.sex
             {
                 alertHud(title: "男士不能查看男士列表哦~")
@@ -154,7 +154,7 @@ class SearchUserViewController: BaseMainTableViewController,UISearchBarDelegate,
             guard let usermodel = userInfo else{
                 return
             }
-            let params = ["like_garden_user_id":usermodel.user_id ?? "", "user_id":CurrentUserInfo?.data?.user_id ?? ""]
+            let params = ["like_garden_user_id":usermodel.user_id ?? "", "user_id":CurrentUserInfo?.user_id ?? ""]
             TargetManager.share.gardensUserLikes(params: params, complection: { (success) in
                 if success {
                     

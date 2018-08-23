@@ -148,7 +148,7 @@ class ConfessionTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDa
                 
             }
            
-            if (detailModel?.poster?.user_id != CurrentUserInfo?.data?.user_id) || (isEnableDelete == false)  {
+            if (detailModel?.poster?.user_id != CurrentUserInfo?.user_id) || (isEnableDelete == false)  {
                 
                 self.headerView?.deleteBtn.isHidden = true
                 self.headerView?.leftMargin.constant = 10
@@ -164,7 +164,7 @@ class ConfessionTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDa
         }
     }
     override func setNeedsLayout() {
-        if (detailModel?.poster?.user_id != CurrentUserInfo?.data?.user_id) || (isEnableDelete == false)  {
+        if (detailModel?.poster?.user_id != CurrentUserInfo?.user_id) || (isEnableDelete == false)  {
             self.headerView?.deleteBtn.isHidden = true
             self.headerView?.leftMargin.constant = 10
         }

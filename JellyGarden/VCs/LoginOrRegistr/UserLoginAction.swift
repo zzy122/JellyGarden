@@ -32,7 +32,7 @@ func dealWithLoginUser(model:UserModel,nav:UINavigationController?)
 {
     
     
-    if let nickName = model.data?.appointment_place,nickName.count > 0//
+    if let nickName = model.appointment_place,nickName.count > 0//
     {
        
         judgeGotoMainVC()
@@ -56,7 +56,7 @@ func judgeGotoMainVC()
                 let delegate = UIApplication.shared.delegate as! AppDelegate
                 delegate.setRootViewController(vc: BaseTabBarViewController())
                //设置推送的alias
-                JPUSHService.setAlias(CurrentUserInfo?.data?.user_id ?? "testZZY", completion: { (code, alias, seq) in
+                JPUSHService.setAlias(CurrentUserInfo?.user_id ?? "testZZY", completion: { (code, alias, seq) in
                     DebugLog(message: "极光推送code:\(code),alias:\(alias ?? ""),seq:\(seq)")
                 }, seq: 1235)
                 judgeGesterPassword()
@@ -81,7 +81,7 @@ func judgeGesterPassword()
         })
         
         gesterVC.isLunch = true
-        gesterVC.gesturePasswordView.logoimgView.sd_DownLoadImage(url: CurrentUserInfo?.data?.avatar ?? "")
+        gesterVC.gesturePasswordView.logoimgView.sd_DownLoadImage(url: CurrentUserInfo?.avatar ?? "")
         RootViewController?.present(gesterVC, animated: true, completion: {
             
         })

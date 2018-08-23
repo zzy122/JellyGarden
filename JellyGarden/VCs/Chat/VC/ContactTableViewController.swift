@@ -76,7 +76,7 @@ extension ContactTableViewController:ResponderRouter
                     guard let user = userinfo else{
                         return
                     }
-                    user.data?.distance = model.distance
+                    user.distance = model.distance
                     vc.userInfoModel = user
                     RootNav().pushViewController(vc, animated: true)
                 })
@@ -88,7 +88,7 @@ extension ContactTableViewController:ResponderRouter
                     guard let user = userinfo else{
                         return
                     }
-                    user.data?.distance = model.distance
+                    user.distance = model.distance
                     vc.userInfoModel = user
                     RootNav().pushViewController(vc, animated: true)
                 })

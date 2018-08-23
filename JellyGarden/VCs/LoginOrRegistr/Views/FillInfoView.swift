@@ -37,7 +37,7 @@ class FillInfoView: UIView,UITableViewDataSource,UITableViewDelegate {
         self.zzy.router(name: ClickFillInfoViewHeader, object: nil, info: nil)
     }
     let titleAry:[String] = ["昵称","约会范围","年龄","身份","身高","体重","胸围"]
-    var subTitle:[String] = [CurrentUserInfo?.data?.nickname ?? "","","","","CM","KG","CM"];
+    var subTitle:[String] = [CurrentUserInfo?.nickname ?? "","","","","CM","KG","CM"];
     
     
     lazy var tableView:UITableView = {
@@ -68,7 +68,7 @@ class FillInfoView: UIView,UITableViewDataSource,UITableViewDelegate {
         view.headerImageBtn.clipsToBounds = true
         view.contentVIew.layer.cornerRadius = 5.0
         view.contentVIew.clipsToBounds = true
-        if let imageUrl = CurrentUserInfo?.data?.avatar,imageUrl.count > 0 {
+        if let imageUrl = CurrentUserInfo?.avatar,imageUrl.count > 0 {
             view.headerImageBtn.imageView?.sd_DownLoadImage(url: imageUrl)
         }
         

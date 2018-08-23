@@ -209,7 +209,7 @@ func getPikerModels(data:[Any]?) ->[PikerModel]?
 //更新用户信息
 func updateUserInfo(complection:@escaping (Bool) -> Void)
 {
-    TargetManager.share.getDetailUserInfo(userid: CurrentUserInfo?.data?.user_id ?? "", isUpdateUser: true) { (model, error) in
+    TargetManager.share.getDetailUserInfo(userid: CurrentUserInfo?.user_id ?? "", isUpdateUser: true) { (model, error) in
         if error == nil {
             complection(true)
         }
@@ -220,7 +220,7 @@ func getImageName() -> String
 {
     let time = arc4random()
     DebugLog(message: "时间:\(String(time))")
-    return String.init(format: "%@%d.png", CurrentUserInfo?.data?.phone ?? "",time)
+    return String.init(format: "%@%d.png", CurrentUserInfo?.phone ?? "",time)
     
 }
 //信息修改填写等

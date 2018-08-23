@@ -28,7 +28,7 @@ class BlackListViewController: BaseMainTableViewController,ResponderRouter {
     }
     func getListData()
     {
-        let param:[String:Any] = ["user_id":CurrentUserInfo?.data?.user_id ?? "","report_type":0]
+        let param:[String:Any] = ["user_id":CurrentUserInfo?.user_id ?? "","report_type":0]
         TargetManager.share.userReportList(params: param) { (models, error) in
             if error == nil{
                 self.blackModels = models

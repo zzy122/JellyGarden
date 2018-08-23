@@ -8,10 +8,10 @@
 
 import UIKit
 class EditPersonalIntroduceViewController: BaseViewController,UITextViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
-    var dataAry:[String] = CurrentUserInfo?.data?.tags ?? []
+    var dataAry:[String] = CurrentUserInfo?.tags ?? []
     var fillInfo:[String:Any] = [:]
     
-    var currentData:[String] = CurrentUserInfo?.data?.tags ?? [] {
+    var currentData:[String] = CurrentUserInfo?.tags ?? [] {
         didSet{
             self.textView.text = continueString(strAry: currentData,separetStr:"  ")
         }
@@ -60,7 +60,7 @@ class EditPersonalIntroduceViewController: BaseViewController,UITextViewDelegate
         textView.backgroundColor = UIColor.white
         textView.layer.cornerRadius = 8.0
         textView.font = kFont_system14
-        textView.text = CurrentUserInfo?.data?.self_introduction
+        textView.text = CurrentUserInfo?.self_introduction
         textView.textColor = UIColor.black
         scrollView.addSubview(textView)
         self.dataAry = FillCondition.share.conditionTag
@@ -78,16 +78,16 @@ class EditPersonalIntroduceViewController: BaseViewController,UITextViewDelegate
     }
     override func clickRightBtn() {
         let model = CurrentUserInfo
-        model?.data?.tags = []
-        model?.data?.self_introduction = ""
+        model?.tags = []
+        model?.self_introduction = ""
         
         
         if textView.text.count > 0 {
-            model?.data?.tags = currentData
-            model?.data?.self_introduction = textView.text
+            model?.tags = currentData
+            model?.self_introduction = textView.text
             
         }
-        fillInfo = model?.data?.toJSON() ?? [:]
+        fillInfo = model?.toJSON() ?? [:]
         
         fillInfoRequest(jsonDic: fillInfo) { (result) in
             if result {

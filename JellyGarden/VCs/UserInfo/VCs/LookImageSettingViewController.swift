@@ -13,7 +13,7 @@ class LookImageSettingViewController: BaseMainViewController {
     @IBOutlet weak var imageStatusBtn: UIButton!
     var imageDataSource:[PhotoModel]
     {
-        return CurrentUserInfo?.data?.custom_photos ?? []
+        return CurrentUserInfo?.custom_photos ?? []
     }
     var tagIndex:Int = 0
     {
@@ -61,7 +61,7 @@ class LookImageSettingViewController: BaseMainViewController {
         TargetManager.share.deletePhoto(imageUrl: curruntImage?.url ?? "") { (success) in
             if success {
                 let model = CurrentUserInfo
-                model?.data?.custom_photos?.remove(at: self.tagIndex)
+                model?.custom_photos?.remove(at: self.tagIndex)
                 if self.tagIndex > 0
                 {
                     self.tagIndex = self.tagIndex - 1
@@ -81,14 +81,14 @@ class LookImageSettingViewController: BaseMainViewController {
     @IBAction func clickImageStatusBtn(_ sender: UIButton) {
         
             let status = (sender.isSelected ? 0 : 1)
-            let params:[String:Any] = ["user_id":CurrentUserInfo?.data?.user_id ?? "","url":curruntImage?.url ?? "","type":status]
+            let params:[String:Any] = ["user_id":CurrentUserInfo?.user_id ?? "","url":curruntImage?.url ?? "","type":status]
         TargetManager.share.updateUserPhotos(params: params) { (success) in
             if success {
                 let model = self.curruntImage
                 model?.type = status
                 let user = CurrentUserInfo
-                user?.data?.custom_photos?.remove(at: self.tagIndex)
-                user?.data?.custom_photos?.insert(model!, at: self.tagIndex)
+                user?.custom_photos?.remove(at: self.tagIndex)
+                user?.custom_photos?.insert(model!, at: self.tagIndex)
                 NSDictionary.init(dictionary: (user?.toJSON())!).write(toFile: UserPlist, atomically: true)
                 sender.isSelected = !sender.isSelected
             

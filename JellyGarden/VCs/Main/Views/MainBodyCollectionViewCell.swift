@@ -138,7 +138,7 @@ class MainBodyCollectionViewCell: UICollectionViewCell,UITableViewDataSource,UIT
             }
             
             let userInfo = userInfoModels[indexTag]
-            let params = ["like_garden_user_id":userInfo.user_id ?? "", "user_id":CurrentUserInfo?.data?.user_id ?? ""]
+            let params = ["like_garden_user_id":userInfo.user_id ?? "", "user_id":CurrentUserInfo?.user_id ?? ""]
             TargetManager.share.gardensUserLikes(params: params, complection: { (success) in
                 if success {
                     userInfo.is_like = (userInfo.is_like == true) ? false : true

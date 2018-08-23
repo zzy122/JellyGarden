@@ -79,7 +79,7 @@ extension DepositDetailViewController
         
         //女士需要同意或者不同意
         let womainCell:WomanDepositManagerTableViewCell = tableView.dequeueReusableCell(withIdentifier: "WomanDepositManagerTableViewCell", for: indexPath) as! WomanDepositManagerTableViewCell
-//        if CurrentUserInfo?.data?.sex == 0
+//        if CurrentUserInfo?.sex == 0
 //        {
 //            return cell
 //        }
@@ -97,7 +97,7 @@ extension DepositDetailViewController
         return 80
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if CurrentUserInfo?.data?.sex == 0
+        if CurrentUserInfo?.sex == 0
         {
             return 185
         }

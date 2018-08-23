@@ -77,7 +77,7 @@ extension DepositManagerViewController
         return 0
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if CurrentUserInfo?.data?.sex == 0
+        if CurrentUserInfo?.sex == 0
         {
             return 185
         }

@@ -147,8 +147,8 @@ class IdentityAuthenticationViewController: BaseViewController ,UIImagePickerCon
         
     }
     func getMyStatus() {
-        let params1 = ["certification_type":"video","user_id":CurrentUserInfo?.data?.user_id ?? ""]
-        let params2 = ["certification_type":"image","user_id":CurrentUserInfo?.data?.user_id ?? ""]
+        let params1 = ["certification_type":"video","user_id":CurrentUserInfo?.user_id ?? ""]
+        let params2 = ["certification_type":"image","user_id":CurrentUserInfo?.user_id ?? ""]
         
         TargetManager.share.checkIdentyResult(params: params1) { (vedio, error) in
             if vedio != nil {
@@ -176,7 +176,7 @@ class IdentityAuthenticationViewController: BaseViewController ,UIImagePickerCon
             let filePath = self.getPathStr()
             try? FileManager.default.moveItem(atPath: vidioStr, toPath: filePath)
             HUD.flash(.labeledProgress(title: nil, subtitle: "视频上传中..."))
-            AliyunManager.share.uploadVedioToAliyun(vedioPath: filePath, vedioName: "\(CurrentUserInfo?.data?.user_id ?? "renzheng").mp4", complection: { (backStr, state) in
+            AliyunManager.share.uploadVedioToAliyun(vedioPath: filePath, vedioName: "\(CurrentUserInfo?.user_id ?? "renzheng").mp4", complection: { (backStr, state) in
                 if state == UploadImageState.success
                 {
                     HUD.hide(animated: true)
@@ -199,7 +199,7 @@ class IdentityAuthenticationViewController: BaseViewController ,UIImagePickerCon
     }
     func uploadDataToServer(urlStr:String,type:String)
     {
-        let params:[String:Any] = ["user_id":CurrentUserInfo?.data?.user_id ?? "","certification_type":type,"url": urlStr]
+        let params:[String:Any] = ["user_id":CurrentUserInfo?.user_id ?? "","certification_type":type,"url": urlStr]
         TargetManager.share.certificationUser(params: params, complection: { (success) in
             if success{
                 self.getMyStatus()
@@ -222,7 +222,7 @@ class IdentityAuthenticationViewController: BaseViewController ,UIImagePickerCon
             }
            
         }
-        let filePath = "\(path)/\(CurrentUserInfo?.data?.user_id ?? "renzheng").mp4"
+        let filePath = "\(path)/\(CurrentUserInfo?.user_id ?? "renzheng").mp4"
         if !FileManager.default.fileExists(atPath: path)
         {
             FileManager.default.createFile(atPath: filePath, contents: nil, attributes: nil)

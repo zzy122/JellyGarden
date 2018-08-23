@@ -14,7 +14,7 @@ let sendContact = "sendContact"
 let newCast = "newCast"
 let privateChat = "privateChat"
 let stateList:[String] = {
-    if CurrentUserInfo?.data?.sex == 0 {
+    if CurrentUserInfo?.sex == 0 {
         return [checkMaterial,checkPacket,newCast,privateChat]
     }
     return [checkMaterial,checkContact,checkPacket,sendContact,newCast,privateChat]
@@ -24,7 +24,7 @@ class MessagePushSettingViewController: BaseMainTableViewController {
     
     
     var leftSterings:[String] = {
-        if CurrentUserInfo?.data?.sex == 1 {
+        if CurrentUserInfo?.sex == 1 {
             return ["有男士申请查看我的资料页","有男士付款查看我的联系方式","有男士付费查看我的红包照片","有已付费查看约会的男士给我发送联系方式","有新的广播","私聊"]
         }
         else

@@ -23,10 +23,10 @@ class WalletHeaderView: UIView {
     }
     func reloadData()
     {
-        self.moneyLab.text = "\(CurrentUserInfo?.data?.balance ?? 0).00"
-        if (CurrentUserInfo?.data?.balance ?? 0) > (CurrentUserInfo?.data?.frozen_balance ?? 0)
+        self.moneyLab.text = "\(CurrentUserInfo?.balance ?? 0).00"
+        if (CurrentUserInfo?.balance ?? 0) > (CurrentUserInfo?.frozen_balance ?? 0)
         {
-            self.depositLab.text = "\((CurrentUserInfo?.data?.balance ?? 0) - (CurrentUserInfo?.data?.frozen_balance ?? 0)).00"
+            self.depositLab.text = "\((CurrentUserInfo?.balance ?? 0) - (CurrentUserInfo?.frozen_balance ?? 0)).00"
         }
         else{
             self.depositLab.text = "0.00"

@@ -35,7 +35,7 @@ class BodyImageCollectionViewCell: UICollectionViewCell {
                 break
             }
             
-            if let users = model?.view_users,users.contains((CurrentUserInfo?.data?.user_id)!)
+            if let users = model?.view_users,users.contains((CurrentUserInfo?.user_id)!)
             {
                type = .lookAfter
             }

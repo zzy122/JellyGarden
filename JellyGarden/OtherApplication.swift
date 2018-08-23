@@ -81,7 +81,7 @@ class OtherApplication: NSObject,WXApiDelegate,RCIMUserInfoDataSource,RCIMGroupM
             DispatchQueue.main.async {//回主线程操作
                 
                 RCIM.shared().userInfoDataSource = self
-                let model = RCUserInfo.init(userId: CurrentUserInfo?.data?.user_id ?? "", name: CurrentUserInfo?.data?.nickname, portrait: CurrentUserInfo?.data?.avatar);
+                let model = RCUserInfo.init(userId: CurrentUserInfo?.user_id ?? "", name: CurrentUserInfo?.nickname, portrait: CurrentUserInfo?.avatar);
                 RCIM.shared().currentUserInfo = model
                 
                 complectiom(true)
@@ -151,7 +151,7 @@ extension OtherApplication//RCIMConnectionStatusDelegate
                 completion(nil)
                 return
             }
-            let userInfo = RCUserInfo.init(userId: userModel.data?.user_id, name: userModel.data?.nickname , portrait: userModel.data?.avatar)
+            let userInfo = RCUserInfo.init(userId: userModel.user_id, name: userModel.nickname , portrait: userModel.avatar)
             completion(userInfo)
         }
     }

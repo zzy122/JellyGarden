@@ -29,7 +29,7 @@ class SetRedPacketPhotoViewController: BaseMainViewController {
     var dataAry:[PhotoModel]?
     {
         get {
-              return CurrentUserInfo?.data?.custom_photos
+              return CurrentUserInfo?.custom_photos
         }
       
     }

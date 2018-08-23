@@ -10,18 +10,18 @@ import UIKit
 
 class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
     var showType:LookUserInfotype? {
-        if self.userInfoModel?.data?.user_id == CurrentUserInfo?.data?.user_id
+        if self.userInfoModel?.user_id == CurrentUserInfo?.user_id
         {
             return LookUserInfotype.pubilic
         }
         
-        if self.userInfoModel?.data?.permission == permissionAry[3] {
+        if self.userInfoModel?.permission == permissionAry[3] {
             return LookUserInfotype.stealth
         }
-        else if self.userInfoModel?.data?.permission == permissionAry[2] {
+        else if self.userInfoModel?.permission == permissionAry[2] {
             return LookUserInfotype.validation
         }
-        else if self.userInfoModel?.data?.permission == permissionAry[1] {
+        else if self.userInfoModel?.permission == permissionAry[1] {
             return LookUserInfotype.payphoto
         }
         else  {
@@ -46,7 +46,7 @@ class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
     
     var userInfoModel:UserModel? {
         didSet{
-            if userInfoModel?.data?.likes?.contains(CurrentUserInfo?.data?.user_id ?? "") == true
+            if userInfoModel?.likes?.contains(CurrentUserInfo?.user_id ?? "") == true
             {
                 self.collectionImageStr = "赞-实"
             }
@@ -83,7 +83,7 @@ class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
     }
 
     lazy var headerView:ManpersonInfoHeader = {
-        var intege = getLines(ary: userInfoModel?.data?.custom_photos, veryCount: 4)
+        var intege = getLines(ary: userInfoModel?.custom_photos, veryCount: 4)
         let view1 = ManpersonInfoHeader.createManpersonInfoHeader()
         let backView = UIView()
         backView.backgroundColor = UIColor.clear
@@ -103,7 +103,7 @@ class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
         super.viewDidLoad()
         self.headerView.isHidden = false
         self.bottomView.isHidden = false
-        self.headerView.userModel = self.userInfoModel?.data
+        self.headerView.userModel = self.userInfoModel
         self.tableView.register(UINib.init(nibName: "ConfessionTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "ConfessionTableViewCell")
          tableView.frame = CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: ScreenHeight - self.bottomView.frame.height)
         self.tableView.estimatedSectionFooterHeight = 0
@@ -127,13 +127,13 @@ class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
             {
                 
                 
-                TargetManager.share.userReportRequest(params: ["user_id": CurrentUserInfo?.data?.user_id ?? "","report_user_id": self.userInfoModel?.data?.user_id ?? "","report_type":0], complection: { (success) in
+                TargetManager.share.userReportRequest(params: ["user_id": CurrentUserInfo?.user_id ?? "","report_user_id": self.userInfoModel?.user_id ?? "","report_type":0], complection: { (success) in
                     
                 })
             }
             else if index == 2//举报
             {
-                TargetManager.share.userReportRequest(params: ["user_id": CurrentUserInfo?.data?.user_id ?? "","report_user_id": self.userInfoModel?.data?.user_id ?? "","report_type":1], complection: { (success) in
+                TargetManager.share.userReportRequest(params: ["user_id": CurrentUserInfo?.user_id ?? "","report_user_id": self.userInfoModel?.user_id ?? "","report_type":1], complection: { (success) in
                     
                 })
             }
@@ -142,7 +142,7 @@ class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
     }
     func getBroastData()
     {
-        TargetManager.share.requestUserAllBroadcast(userid: userInfoModel?.data?.user_id ?? "") { (models, error) in
+        TargetManager.share.requestUserAllBroadcast(userid: userInfoModel?.user_id ?? "") { (models, error) in
             if error == nil {
                 self.broadcastAry = models ?? []
             }
@@ -166,7 +166,7 @@ class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
                 else{return}
             switch btnTag {
             case .collection://点击收藏
-                let params = ["like_garden_user_id":self.userInfoModel?.data?.user_id ?? "", "user_id":CurrentUserInfo?.data?.user_id ?? ""]
+                let params = ["like_garden_user_id":self.userInfoModel?.user_id ?? "", "user_id":CurrentUserInfo?.user_id ?? ""]
                 TargetManager.share.gardensUserLikes(params: params, complection: { (success) in
                     if success {
                         self.collectionImageStr = (self.collectionImageStr == "赞-实") ? "收藏" : "赞-实"
@@ -176,20 +176,20 @@ class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
                 break
             case .chat://点击 私聊
 //                let vc = ChatRoomViewController()
-                let vc = ChatRoomViewController.init(conversationType: RCConversationType.ConversationType_PRIVATE, targetId: userInfoModel?.data?.user_id)
-                vc?.targetId = userInfoModel?.data?.user_id
-                RCIM.shared().userInfoDataSource.getUserInfo(withUserId: userInfoModel?.data?.user_id) { (info) in
+                let vc = ChatRoomViewController.init(conversationType: RCConversationType.ConversationType_PRIVATE, targetId: userInfoModel?.user_id)
+                vc?.targetId = userInfoModel?.user_id
+                RCIM.shared().userInfoDataSource.getUserInfo(withUserId: userInfoModel?.user_id) { (info) in
                     vc?.title = info?.name
                     self.navigationController?.pushViewController(vc!, animated: true)
                 }
-//                let info = RCIM.shared().getUserInfoCache(userInfoModel?.data?.user_id)
+//                let info = RCIM.shared().getUserInfoCache(userInfoModel?.user_id)
                 
                 
                 break
             case .prase://点击评价
-                AlertAction.share.showCommentStarView(imageUrl: userInfoModel?.data?.avatar, nikeStr: userInfoModel?.data?.nickname) { (poCount, playCount, tasteCount, cleanCount, agliCount, mothCount) in
+                AlertAction.share.showCommentStarView(imageUrl: userInfoModel?.avatar, nikeStr: userInfoModel?.nickname) { (poCount, playCount, tasteCount, cleanCount, agliCount, mothCount) in
                     
-                    let param:[String:Any] = ["comment_user_id":self.userInfoModel?.data?.user_id ?? "","publisher_user_id":CurrentUserInfo?.data?.user_id ?? "","politeness":playCount,"funny":playCount,"generous":tasteCount,"tidy":cleanCount,"decisive":agliCount,"harassment":mothCount]
+                    let param:[String:Any] = ["comment_user_id":self.userInfoModel?.user_id ?? "","publisher_user_id":CurrentUserInfo?.user_id ?? "","politeness":playCount,"funny":playCount,"generous":tasteCount,"tidy":cleanCount,"decisive":agliCount,"harassment":mothCount]
                     TargetManager.share.commentUser(params: param, complection: { (success) in
 
                     })
@@ -207,7 +207,7 @@ class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
         if name == ClickPermissionBtn
         {
             DebugLog(message: "点击了申请查看")
-            TargetManager.share.applayToDetail(params: ["user_id":CurrentUserInfo?.data?.user_id ?? "", "view_user_id":userInfoModel?.data?.user_id ?? ""]) { (success) in
+            TargetManager.share.applayToDetail(params: ["user_id":CurrentUserInfo?.user_id ?? "", "view_user_id":userInfoModel?.user_id ?? ""]) { (success) in
                 if success
                 {
                     
@@ -255,7 +255,7 @@ class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
                 if type == .publish{
                     
                     let model:lonelySpeechDetaileModel = self.broadcastAry[index]
-                    let params = ["publisher_id":CurrentUserInfo?.data?.user_id ?? "","content":text]
+                    let params = ["publisher_id":CurrentUserInfo?.user_id ?? "","content":text]
                     TargetManager.share.issueComment(appointment_id: model.appointment_id ?? "", params: params, complection: { (commentmodel, error) in
                         guard let comment = commentmodel else{
                             return
@@ -272,12 +272,12 @@ class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
             guard let index = info as? Int else{
                 return
             }
-            guard broadcastAry[index].poster?.user_id != CurrentUserInfo?.data?.user_id else
+            guard broadcastAry[index].poster?.user_id != CurrentUserInfo?.user_id else
             {
                 alertHud(title: "不能报名本人哦")
                 return
             }
-            guard broadcastAry[index].poster?.sex != CurrentUserInfo?.data?.sex else
+            guard broadcastAry[index].poster?.sex != CurrentUserInfo?.sex else
             {
                 alertHud(title: "不能报名同性别哦")
                 return
@@ -396,7 +396,7 @@ extension ManPersonInfoViewController:TZImagePickerControllerDelegate
         AliyunManager.share.uploadImagesToAliyun(imageModels: models, complection: { (urls, succecCount, failCount, state) in
             if state == UploadImageState.success
             {//报名
-                let params:[String:Any] = ["user_id":CurrentUserInfo?.data?.user_id ?? "","attachment":urls?.last ?? "","has_pay_deposit":0]
+                let params:[String:Any] = ["user_id":CurrentUserInfo?.user_id ?? "","attachment":urls?.last ?? "","has_pay_deposit":0]
                 let model:lonelySpeechDetaileModel = self.broadcastAry[self.reportTag]
                 TargetManager.share.signUpAppiont(appointment_id: model.appointment_id ?? "", params: params, complection: { (success, error) in
                     if success

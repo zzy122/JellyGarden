@@ -29,7 +29,7 @@ class DepositManagerTableViewCell: UITableViewCell {
         headerImag.layer.cornerRadius = 25
         headerImag.clipsToBounds = true
         statusLab.addCorners(roundCorners: UIRectCorner(rawValue: UIRectCorner.RawValue(UInt8(UIRectCorner.bottomLeft.rawValue) | UInt8(UIRectCorner.topLeft.rawValue))), cornerSize: CGSize.init(width: 8, height: 8))
-        if CurrentUserInfo?.data?.sex == 1
+        if CurrentUserInfo?.sex == 1
         {
             self.sureAppiontBtn.isHidden = true
             self.lineView.isHidden = true

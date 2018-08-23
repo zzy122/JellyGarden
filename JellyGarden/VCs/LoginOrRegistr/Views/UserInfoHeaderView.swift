@@ -31,18 +31,18 @@ class UserInfoHeaderView: UIView {
 
         view.headerIMV.layer.cornerRadius = 35
         view.headerIMV.clipsToBounds = true
-        view.headerIMV.sd_DownLoadImage(url: CurrentUserInfo?.data?.avatar ?? "")
+        view.headerIMV.sd_DownLoadImage(url: CurrentUserInfo?.avatar ?? "")
         view.progressView.progressTintColor = k_CustomColor(red: 255, green: 130, blue: 37)
         view.VipLab.layer.cornerRadius = 3.0
         view.VipLab.clipsToBounds = true
-        view.nameLab.text = CurrentUserInfo?.data?.nickname ?? ""
+        view.nameLab.text = CurrentUserInfo?.nickname ?? ""
         view.dateLab.isHidden = true
         view.VipLab.isHidden = true
         view.progressBackView.isHidden = true
         view.nameTopConstent.constant = 15
-        if let count = CurrentUserInfo?.data?.vip_expire_time,count > 0
+        if let count = CurrentUserInfo?.vip_expire_time,count > 0
         {
-            if let vip = CurrentUserInfo?.data?.vip_level, vip > 0
+            if let vip = CurrentUserInfo?.vip_level, vip > 0
             {
                 view.nameTopConstent.constant = 0
                 view.VipLab.isHidden = false

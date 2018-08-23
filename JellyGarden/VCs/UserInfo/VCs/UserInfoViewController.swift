@@ -155,7 +155,7 @@ extension UserInfoViewController: ResponderRouter {
             break
         case Mine_Info_Guangbo: // 广播
             let vc = UserBroadcastListViewController()
-            vc.userid = CurrentUserInfo?.data?.user_id ?? ""
+            vc.userid = CurrentUserInfo?.user_id ?? ""
             RootNav().pushViewController(vc, animated: true)
             break
         case Mine_Info_Renzhen: // 认真
@@ -220,14 +220,14 @@ extension UserInfoViewController: UITableViewDelegate {
                 RootViewController?.hideTheTabbar()
                 RootNav().pushViewController(DebangPhoneViewController(), animated: true)
                 break
-            case ((CurrentUserInfo?.data?.sex == 1) ? 10:1)://会员
+            case ((CurrentUserInfo?.sex == 1) ? 10:1)://会员
                 RootViewController?.hideTheTabbar()
                 let vc = VipCenterViewController()
                 vc.isHaveUserHeader = true
                 self.navigationController?.pushViewController(vc, animated: true)
                
                 break
-            case ((CurrentUserInfo?.data?.sex == 1) ? 1:2)://查看权限
+            case ((CurrentUserInfo?.sex == 1) ? 1:2)://查看权限
                 AlertViewCoustom().showalertView(style: .actionSheet, title: "查看权限", message: nil, cancelBtnTitle: "取消", touchIndex: { (ind) in
                     
                     
@@ -240,20 +240,20 @@ extension UserInfoViewController: UITableViewDelegate {
                 }, otherButtonTitles: permissionAry[0], permissionAry[1],permissionAry[2],permissionAry[3])
                 
                 break
-            case ((CurrentUserInfo?.data?.sex == 1) ? 2:3)://个人介绍
+            case ((CurrentUserInfo?.sex == 1) ? 2:3)://个人介绍
                RootViewController?.hideTheTabbar()
                 RootNav().pushViewController(EditPersonalIntroduceViewController(), animated: true)
                 break
-            case ((CurrentUserInfo?.data?.sex == 1) ? 3:4)://约会条件
-                AlertAction.share.showbottomPicker(title: title, maxCount: 4, dataAry: FillCondition.share.appointmentConditionListModel, currentData: CurrentUserInfo?.data?.appointment_condition, backData: { (result) in
+            case ((CurrentUserInfo?.sex == 1) ? 3:4)://约会条件
+                AlertAction.share.showbottomPicker(title: title, maxCount: 4, dataAry: FillCondition.share.appointmentConditionListModel, currentData: CurrentUserInfo?.appointment_condition, backData: { (result) in
                    self.conditionAction(result: result)
                     
                 })
                 break
-            case ((CurrentUserInfo?.data?.sex == 1) ? 4:5)://分享
+            case ((CurrentUserInfo?.sex == 1) ? 4:5)://分享
                 UMengAcion.uMengShare()
                 break
-            case ((CurrentUserInfo?.data?.sex == 1) ? 5:6)://用户协议
+            case ((CurrentUserInfo?.sex == 1) ? 5:6)://用户协议
                 break
             default:
                 break
@@ -285,7 +285,7 @@ extension UserInfoViewController: UITableViewDelegate {
         TargetManager.share.updatePermission(params: parms) { (success) in
             if success{
                 let model = CurrentUserInfo
-                model?.data?.permission = str
+                model?.permission = str
                 NSDictionary.init(dictionary: model?.toJSON() ?? [:]).write(toFile: UserPlist, atomically: true)
                 self.tableView.reloadData()
             }
@@ -293,8 +293,8 @@ extension UserInfoViewController: UITableViewDelegate {
     }
     func conditionAction(result:[String]) {//更新约会条件
         let model = CurrentUserInfo
-        model?.data?.appointment_condition = result
-        fillInfoRequest(jsonDic: model?.data?.toJSON() ?? [:], complection: { (result) in
+        model?.appointment_condition = result
+        fillInfoRequest(jsonDic: model?.toJSON() ?? [:], complection: { (result) in
             if result
             {
                 NSDictionary.init(dictionary: (model?.toJSON())!).write(toFile: UserPlist, atomically: true)
@@ -304,7 +304,7 @@ extension UserInfoViewController: UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if 0 == indexPath.section {
-            guard var photoStrs = CurrentUserInfo?.data?.custom_photos,photoStrs.count > 0
+            guard var photoStrs = CurrentUserInfo?.custom_photos,photoStrs.count > 0
             else{
                 
                 return 220
@@ -344,7 +344,7 @@ extension UserInfoViewController: UITableViewDataSource {
         case 0:
             return 1
         case 1:
-            return ((CurrentUserInfo?.data?.sex == 0) ? 7 : 6)
+            return ((CurrentUserInfo?.sex == 0) ? 7 : 6)
         case 2:
             return 3
         default:
@@ -368,11 +368,11 @@ extension UserInfoViewController: UITableViewDataSource {
             }
             cell?.accessoryView = nil
             cell?.accessoryType = .disclosureIndicator
-            if CurrentUserInfo?.data?.sex == 0
+            if CurrentUserInfo?.sex == 0
             {
                 if 1 == indexPath.section && 0 == indexPath.row {
                     cell?.textLabel?.text = "绑定手机"
-                    cell?.detailTextLabel?.text = CurrentUserInfo?.data?.phone
+                    cell?.detailTextLabel?.text = CurrentUserInfo?.phone
                 }
                 else if 1 == indexPath.section && 1 == indexPath.row {
                     cell?.textLabel?.text = "会员"
@@ -380,15 +380,15 @@ extension UserInfoViewController: UITableViewDataSource {
                 }
                 else if 1 == indexPath.section && 2 == indexPath.row {
                     cell?.textLabel?.text = "查看权限"
-                    cell?.detailTextLabel?.text = CurrentUserInfo?.data?.permission
+                    cell?.detailTextLabel?.text = CurrentUserInfo?.permission
                 }
                 else if 1 == indexPath.section && 3 == indexPath.row {
                     cell?.textLabel?.text = "个人介绍"
-                    cell?.detailTextLabel?.text = CurrentUserInfo?.data?.self_introduction
+                    cell?.detailTextLabel?.text = CurrentUserInfo?.self_introduction
                 }
                 else if 1 == indexPath.section && 4 == indexPath.row {
                     cell?.textLabel?.text = "约会条件"
-                    cell?.detailTextLabel?.text = CurrentUserInfo?.data?.appointment_condition?.joined(separator: " ")
+                    cell?.detailTextLabel?.text = CurrentUserInfo?.appointment_condition?.joined(separator: " ")
                     
                 }
                 else if 1 == indexPath.section && 5 == indexPath.row {
@@ -404,20 +404,20 @@ extension UserInfoViewController: UITableViewDataSource {
             {
                 if 1 == indexPath.section && 0 == indexPath.row {
                     cell?.textLabel?.text = "绑定手机"
-                    cell?.detailTextLabel?.text = CurrentUserInfo?.data?.phone
+                    cell?.detailTextLabel?.text = CurrentUserInfo?.phone
                 }
             
                 else if 1 == indexPath.section && 1 == indexPath.row {
                     cell?.textLabel?.text = "查看权限"
-                    cell?.detailTextLabel?.text = CurrentUserInfo?.data?.permission
+                    cell?.detailTextLabel?.text = CurrentUserInfo?.permission
                 }
                 else if 1 == indexPath.section && 2 == indexPath.row {
                     cell?.textLabel?.text = "个人介绍"
-                    cell?.detailTextLabel?.text = CurrentUserInfo?.data?.self_introduction
+                    cell?.detailTextLabel?.text = CurrentUserInfo?.self_introduction
                 }
                 else if 1 == indexPath.section && 3 == indexPath.row {
                     cell?.textLabel?.text = "约会条件"
-                    cell?.detailTextLabel?.text = CurrentUserInfo?.data?.appointment_condition?.joined(separator: " ")
+                    cell?.detailTextLabel?.text = CurrentUserInfo?.appointment_condition?.joined(separator: " ")
                     
                 }
                 else if 1 == indexPath.section && 4 == indexPath.row {
@@ -493,7 +493,7 @@ extension UserInfoViewController
         {
             let urlstr = urlStrs[i]
 
-            let params:[String:Any] = ["user_id":CurrentUserInfo?.data?.user_id ?? "","url":urlstr,"type":0]
+            let params:[String:Any] = ["user_id":CurrentUserInfo?.user_id ?? "","url":urlstr,"type":0]
             
             TargetManager.share.addUserPhotos(params: params, complection: { (success) in
                 DebugLog(message: "上传成功")

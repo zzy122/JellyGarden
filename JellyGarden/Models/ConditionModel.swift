@@ -7,7 +7,7 @@
 //
 
 import UIKit
-struct ConditionListModel:JSON {
+struct ConditionModel:JSON {
     var appointment_condition_list:[String]?
     var identity_list:[String]?
     var language_list:[String]?
@@ -21,7 +21,7 @@ struct ConditionListModel:JSON {
 }
 
 
-struct ConditionModel:JSON {
-    var data:ConditionListModel?
-    
-}
+//struct ConditionModel:JSON {
+//    var data:ConditionListModel?
+//    
+//}

@@ -47,7 +47,7 @@ class DebangPhoneViewController: BaseMainViewController {
             if success
             {
                let model = CurrentUserInfo
-                model?.data?.phone = phoneStr
+                model?.phone = phoneStr
                 NSDictionary.init(dictionary: model?.toJSON() ?? [:]).write(toFile: UserPlist, atomically: true)
                 
                 self.navigationController?.popViewController(animated: true)

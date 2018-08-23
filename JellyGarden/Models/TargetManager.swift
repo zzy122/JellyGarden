@@ -19,7 +19,7 @@ class TargetManager: NSObject {
     //获取用户信息
     func getDetailUserInfo(userid:String,isUpdateUser:Bool, complection:@escaping (UserModel?,Error?) -> Void)  {
         
-            NetCostom.shared.request(method:.get ,wengen: "gardens/\(userid)?my_user_id=\(CurrentUserInfo?.data?.user_id ?? "")", params: nil, success: { (result) in
+            NetCostom.shared.request(method:.get ,wengen: "gardens/\(userid)?my_user_id=\(CurrentUserInfo?.user_id ?? "")", params: nil, success: { (result) in
                 if isUpdateUser
                 {
                     guard let user = result as? [String:Any] else {
@@ -48,7 +48,7 @@ class TargetManager: NSObject {
     //完善用户信息
     func fillUserInfo(params:[String:Any],complection:@escaping ([String:Any]?,Error?) -> Void)
     {
-        let userId = CurrentUserInfo?.data?.user_id ?? ""
+        let userId = CurrentUserInfo?.user_id ?? ""
         NetCostom.shared.request(method:.put ,wengen: "users/\(userId)", params: params, success: { (result) in
             complection(result as? [String:Any],nil)
         }) { (error) in
@@ -57,7 +57,7 @@ class TargetManager: NSObject {
     }
     //登录
     func loginAction(params:[String:Any],complection:@escaping (UserModel?,Error?) -> Void)  {//users/login
-        NetCostom.shared.request(method:.post ,wengen: "users/login", params: params, success: { (result) in
+        NetCostom.shared.request(method:.post ,wengen: "admin/user/login", params: params, success: { (result) in
             guard let user = result as? [String:Any] else {
                 return
             }
@@ -87,7 +87,7 @@ class TargetManager: NSObject {
     //注册
     func registerUser(params:[String:Any]?,complection:@escaping ([String:Any]?,Error?) -> Void)//users/register
     {
-        NetCostom.shared.request(method:.post ,wengen: "users/register", params: params, success: { (result) in
+        NetCostom.shared.request(method:.post ,wengen: "admin/user/register", params: params, success: { (result) in
             complection(result as? [String:Any],nil)
         }) { (error) in
             complection(nil,error)
@@ -173,7 +173,7 @@ class TargetManager: NSObject {
     }
     //点赞
     func likeAppiont(appointment_id:String?,complection:@escaping (Bool,Error?) -> Void) {
-        let params = ["user_id":CurrentUserInfo?.data?.user_id ?? ""] as [String:Any]
+        let params = ["user_id":CurrentUserInfo?.user_id ?? ""] as [String:Any]
         NetCostom.shared.request(method:.post ,wengen: "appointment/\(appointment_id ?? "")/likes", params: params, success: { (result) in
              complection(true,nil)
         }) { (error) in
@@ -183,7 +183,7 @@ class TargetManager: NSObject {
     //取消点赞/
     func cancelLikeAppiont(appointment_id:String?,complection:@escaping (Bool,Error?) -> Void) {
         
-        NetCostom.shared.request(method:.delete ,wengen: "appointment/\(appointment_id ?? "")/likes/\(CurrentUserInfo?.data?.user_id ?? "")", params: nil, success: { (result) in
+        NetCostom.shared.request(method:.delete ,wengen: "appointment/\(appointment_id ?? "")/likes/\(CurrentUserInfo?.user_id ?? "")", params: nil, success: { (result) in
             complection(true,nil)
         }) { (error) in
             complection(false,error)
@@ -202,17 +202,17 @@ class TargetManager: NSObject {
         }
     }
     //获取短信验证码
-    func getMSCode(params:[String:Any],complection:@escaping ([String:Any]?,Error?) -> Void)
+    func getMSCode(params:[String:Any],complection:@escaping ([String:Any]?,Error?) -> Void)//verify_code
     {
-        NetCostom.shared.request(method:.post ,wengen: "verify_code", params: params, success: { (result) in
-            if let dic = result as? [String:Any] {
-                let codeDic = dic["data"] as? [String:String]
-                let codeStr = codeDic?["verify_code"] ?? ""
-                let mesge = dic["msg"] as? String
-                AlertViewCoustom().showalertView(style: .alert, title: alertTitle, message: "验证码:\(codeStr)\(mesge ?? "")", cancelBtnTitle: alertConfirm, touchIndex: { (index) in
-                    
-                }, otherButtonTitles: nil)
-            }
+        NetCostom.shared.request(method:.post ,wengen: "admin/user/send_code", params: params, success: { (result) in
+//            if let dic = result as? [String:Any] {
+//                let codeDic = dic["data"] as? [String:String]
+//                let codeStr = codeDic?["verify_code"] ?? ""
+//                let mesge = dic["msg"] as? String
+//                AlertViewCoustom().showalertView(style: .alert, title: alertTitle, message: "验证码:\(codeStr)\(mesge ?? "")", cancelBtnTitle: alertConfirm, touchIndex: { (index) in
+//                    
+//                }, otherButtonTitles: nil)
+//            }
             complection(result as? [String:Any],nil)
         }) { (error) in
            complection(nil,error)
@@ -222,7 +222,7 @@ class TargetManager: NSObject {
    //跟新位置
     func uploadMyLocation(params:[String:Any],complection:@escaping (Bool,Error?) -> Void)
     {
-        let userid = CurrentUserInfo?.data?.user_id ?? ""
+        let userid = CurrentUserInfo?.user_id ?? ""
         NetCostom.shared.request(method: .put, wengen: "users/\(userid)/position", params: params, success: { (result) in
             complection(true,nil)
         }) { (error) in
@@ -318,8 +318,8 @@ class TargetManager: NSObject {
     }
     //请求融云token
     func rongcloudToken(isRefresh:Bool, complection:@escaping (RCTokenModel?) -> Void) {
-        DebugLog(message: "内存中的: \(CurrentUserInfo?.data?.user_id ?? "")")
-        let param = ["user_id":CurrentUserInfo?.data?.user_id ?? "","nickname":CurrentUserInfo?.data?.nickname ?? "","avatar":CurrentUserInfo?.data?.avatar ?? ""]
+        DebugLog(message: "内存中的: \(CurrentUserInfo?.user_id ?? "")")
+        let param = ["user_id":CurrentUserInfo?.user_id ?? "","nickname":CurrentUserInfo?.nickname ?? "","avatar":CurrentUserInfo?.avatar ?? ""]
         var wengen = "rongcloud/token"
         if isRefresh
         {
@@ -421,7 +421,7 @@ class TargetManager: NSObject {
     //删除某条约会
     func deleteUserBrocast(appointment_id:String,complection:@escaping (Bool) -> Void)
     {
-        NetCostom.shared.request(method: .delete, wengen: "users/\(CurrentUserInfo?.data?.user_id ?? "")/appointments/\(appointment_id)", params: nil, success: { (resulet) in
+        NetCostom.shared.request(method: .delete, wengen: "users/\(CurrentUserInfo?.user_id ?? "")/appointments/\(appointment_id)", params: nil, success: { (resulet) in
             complection(true)
         }) { (error) in
             complection(false)
@@ -460,7 +460,7 @@ class TargetManager: NSObject {
     {
         NetCostom.shared.request(method: .post, wengen: "users/modifyPassword", params: params, success: { (result) in
             let model = CurrentUserInfo
-            model?.data?.password = params["new_password"] as? String
+            model?.password = params["new_password"] as? String
             NSDictionary.init(dictionary: (model?.toJSON())!).write(toFile: UserPlist, atomically: true)
             complection(true)
         }) { (error) in
@@ -470,9 +470,9 @@ class TargetManager: NSObject {
     //绑定手机号
     func debangPhoneNumber(params:[String:Any],complection:@escaping(Bool) ->Void)
     {
-        NetCostom.shared.request(method: .post, wengen: "users/\(CurrentUserInfo?.data?.user_id ?? "")/bindPhone", params: params, success: {(result) in
+        NetCostom.shared.request(method: .post, wengen: "users/\(CurrentUserInfo?.user_id ?? "")/bindPhone", params: params, success: {(result) in
             let model = CurrentUserInfo
-            model?.data?.phone = params["phone"] as? String
+            model?.phone = params["phone"] as? String
             NSDictionary.init(dictionary: (model?.toJSON())!).write(toFile: UserPlist, atomically: true)
             complection(true)
         }) { (error) in
@@ -505,7 +505,7 @@ class TargetManager: NSObject {
     //取消拉黑
     func cancelUserReportRequest(report_user_id:String,complection:@escaping (Bool) ->Void)
     {
-        NetCostom.shared.request(method: .delete, wengen: "userReport/\(report_user_id)?user_id=\(CurrentUserInfo?.data?.user_id ?? "")", params: nil, success: {(result) in
+        NetCostom.shared.request(method: .delete, wengen: "userReport/\(report_user_id)?user_id=\(CurrentUserInfo?.user_id ?? "")", params: nil, success: {(result) in
             complection(true)
         }) { (error) in
             complection(false)
@@ -540,7 +540,7 @@ class TargetManager: NSObject {
     //更新权限
     func updatePermission(params:[String:Any]? ,complection:@escaping(Bool) ->Void)
     {
-        NetCostom.shared.request(method: .put, wengen: "users/\(CurrentUserInfo?.data?.user_id ?? "")/permission", params: params, success: { (result) in
+        NetCostom.shared.request(method: .put, wengen: "users/\(CurrentUserInfo?.user_id ?? "")/permission", params: params, success: { (result) in
             complection(true)
         }) { (error) in
             complection(false)
@@ -572,7 +572,7 @@ class TargetManager: NSObject {
     //个人中心删除图片@WeakObj();
     func deletePhoto(imageUrl:String,complection:@escaping(Bool) -> Void)
     {
-        NetCostom.shared.request(method: .delete, wengen: "custom_photos?user_id=\(CurrentUserInfo?.data?.user_id ?? "")&url=\(imageUrl)", params: nil, success: { (result) in
+        NetCostom.shared.request(method: .delete, wengen: "custom_photos?user_id=\(CurrentUserInfo?.user_id ?? "")&url=\(imageUrl)", params: nil, success: { (result) in
             
             
             complection(true)
@@ -585,7 +585,7 @@ class TargetManager: NSObject {
         //本地添加图片
         let model = JSONDeserializer<PhotoModel>.deserializeFrom(dict: params)
         let user = CurrentUserInfo
-        user?.data?.custom_photos?.append(model!)
+        user?.custom_photos?.append(model!)
         NSDictionary.init(dictionary: (user?.toJSON())!).write(toFile: UserPlist, atomically: true)
     }
     //更新个人中心图片状态

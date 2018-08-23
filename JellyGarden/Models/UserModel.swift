@@ -20,7 +20,7 @@ class PhotoModel:JSON
         MM_WARNING
     }
 }
-class UserInfo:JSON {
+class UserModel:JSON {
     var custom_photos:[PhotoModel]?
     var permission:String?
     var bust:Int?//胸围
@@ -60,14 +60,14 @@ class UserInfo:JSON {
     }
 }
 
-class UserModel:JSON {
-    var code: Int?
-    var data: UserInfo?
-    var msg: String?
-    required init() {
-        
-    }
-}
+//class UserModel:JSON {
+//    var code: Int?
+//    var data: UserInfo?
+//    var msg: String?
+//    required init() {
+//
+//    }
+//}
 //信息填写修改等需要的字段
 class UserFillModel:JSON
 {

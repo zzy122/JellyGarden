@@ -53,7 +53,7 @@ class MainViewController: BaseMainViewController,UISearchBarDelegate,ResponderRo
         let body = MainBodyView.init(frame: CGRect.init(x: 0, y: self.scrollItemView.frame.maxY, width: ScreenWidth, height: self.view.frame.height - self.scrollItemView.frame.maxY))
         body.typeAry = [SearchType.hot,SearchType.new,SearchType.attestation]
         body.tagLocalCity = LocalCityName
-        body.tagSex = (CurrentUserInfo?.data?.sex == 0) ? .woman : .man
+        body.tagSex = (CurrentUserInfo?.sex == 0) ? .woman : .man
         return body
     }()
     lazy var searchBarBtn:UIButton = {
@@ -132,7 +132,7 @@ class MainViewController: BaseMainViewController,UISearchBarDelegate,ResponderRo
         if name == ClickMainUserCell {
             let model:MainListmodel = info as! MainListmodel
             //男士无法查看男士
-            let userSex = CurrentUserInfo?.data?.sex
+            let userSex = CurrentUserInfo?.sex
             if userSex == 0,userSex == model.sex
             {
                 alertHud(title: "男士不能查看男士列表哦~")
@@ -153,7 +153,7 @@ class MainViewController: BaseMainViewController,UISearchBarDelegate,ResponderRo
                     guard let user = userinfo else{
                         return
                     }
-                    user.data?.distance = model.distance
+                    user.distance = model.distance
                     vc.userInfoModel = user
                     RootNav().pushViewController(vc, animated: true)
                 })
@@ -166,7 +166,7 @@ class MainViewController: BaseMainViewController,UISearchBarDelegate,ResponderRo
                     guard let user = userinfo else{
                         return
                     }
-                    user.data?.distance = model.distance
+                    user.distance = model.distance
                     vc.userInfoModel = user
                     RootNav().pushViewController(vc, animated: true)
                 })

@@ -60,7 +60,7 @@ class EnlistDetailTableViewCell: UITableViewCell {
         }
     }
     @IBAction func clickHeaderBtn(_ sender: UIButton) {//头像
-        if CurrentUserInfo?.data?.sex == 0
+        if CurrentUserInfo?.sex == 0
         {
             
             let vc = PersonInfoViewController()
@@ -69,7 +69,7 @@ class EnlistDetailTableViewCell: UITableViewCell {
                 guard let user = userinfo else{
                     return
                 }
-                //                    user.data?.distance = model.distance
+                //                    user.distance = model.distance
                 vc.userInfoModel = user
                 RootNav().pushViewController(vc, animated: true)
             })
@@ -81,7 +81,7 @@ class EnlistDetailTableViewCell: UITableViewCell {
                 guard let user = userinfo else{
                     return
                 }
-                //                    user.data?.distance = model.distance
+                //                    user.distance = model.distance
                 vc.userInfoModel = user
                 RootNav().pushViewController(vc, animated: true)
             })

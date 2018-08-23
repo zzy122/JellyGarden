@@ -51,7 +51,7 @@ class ADDPayCountViewController: BaseMainTableViewController {
             return
         }
         
-        TargetManager.share.addAlipayAccount(params: ["user_id":CurrentUserInfo?.data?.user_id ?? "","account":accountStr,"name":nameStr]) { (result) in
+        TargetManager.share.addAlipayAccount(params: ["user_id":CurrentUserInfo?.user_id ?? "","account":accountStr,"name":nameStr]) { (result) in
             if result == true {
                 self.navigationController?.popViewController(animated: true)
             }

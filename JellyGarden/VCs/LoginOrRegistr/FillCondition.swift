@@ -34,25 +34,25 @@ class FillCondition: NSObject {
         TargetManager.share.getConditions { (model, error) in
             if let result = model
             {
-                self.createModel(list: result.data?.appointment_condition_list, backModel: { (model) in
+                self.createModel(list: result.appointment_condition_list, backModel: { (model) in
                     self.appointmentConditionListModel = model
                 })
-                self.createModel(list: result.data?.appointment_program_list, backModel: { (model) in
+                self.createModel(list: result.appointment_program_list, backModel: { (model) in
                     self.appointmentProgramListModel = model
                 })
-                self.createModel(list: result.data?.language_list, backModel: { (model) in
+                self.createModel(list: result.language_list, backModel: { (model) in
                     self.languageListModel = model
                 })
-                self.createModel(list: result.data?.identity_list, backModel: { (model) in
+                self.createModel(list: result.identity_list, backModel: { (model) in
                     self.identityListModel = model
                 })
-                self.createModel(list: result.data?.dress_style_list, backModel: { (model) in
+                self.createModel(list: result.dress_style_list, backModel: { (model) in
                     self.dressStyleListModel = model
                 })
-                self.createModel(list: result.data?.emotion_status_list, backModel: { (model) in
+                self.createModel(list: result.emotion_status_list, backModel: { (model) in
                     self.emotionStatusList = model
                 })
-                self.conditionTag = result.data?.tag ?? []
+                self.conditionTag = result.tag ?? []
             }
         }
     }

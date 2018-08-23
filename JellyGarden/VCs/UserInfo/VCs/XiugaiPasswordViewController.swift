@@ -37,11 +37,11 @@ class XiugaiPasswordViewController: BaseMainViewController {
         }
         
         
-        let params:[String:Any] = ["user_id":CurrentUserInfo?.data?.user_id ?? "","old_password":originPassword.text?.zzy.md5() ?? "","new_password":newPassword.text?.zzy.md5() ?? ""]
+        let params:[String:Any] = ["user_id":CurrentUserInfo?.user_id ?? "","old_password":originPassword.text?.zzy.md5() ?? "","new_password":newPassword.text?.zzy.md5() ?? ""]
         TargetManager.share.xiugaiPassword(params: params) { (success) in
             if success {
                 let model = CurrentUserInfo
-                model?.data?.password = newpassword.zzy.md5()
+                model?.password = newpassword.zzy.md5()
                 NSDictionary.init(dictionary: model?.toJSON() ?? [:]).write(toFile: UserPlist, atomically: true)
                 self.navigationController?.popViewController(animated: true)
             }

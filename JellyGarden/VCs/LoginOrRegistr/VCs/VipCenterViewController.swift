@@ -99,17 +99,17 @@ class VipCenterViewController: BaseViewController,ResponderRouter {
         
         if isHaveUserHeader {//头像板块
 //            let model = CurrentUserInfo
-//            model?.data?.vip_level = 2
-//            model?.data?.vip_expire_time = 172637612731
+//            model?.vip_level = 2
+//            model?.vip_expire_time = 172637612731
 //            let user = model?.toJSON()
 //            NSDictionary.init(dictionary: user ?? [:]).write(toFile: UserPlist, atomically: true)
             
             let headerBackView = UIView()
             headerBackView.backgroundColor = UIColor.clear
             headerBackView.frame = CGRect.init(x: 0, y: 74, width: ScreenWidth, height: 100)
-            if let count = CurrentUserInfo?.data?.vip_expire_time,count > 0
+            if let count = CurrentUserInfo?.vip_expire_time,count > 0
             {
-                if let vip = CurrentUserInfo?.data?.vip_level, vip > 0
+                if let vip = CurrentUserInfo?.vip_level, vip > 0
                 {
                    headerBackView.frame = CGRect.init(x: 0, y: 74, width: ScreenWidth, height: 130)
                 }
@@ -175,7 +175,7 @@ class VipCenterViewController: BaseViewController,ResponderRouter {
     }
     @objc func clickOpenBtn(sender:UIButton)
     {
-        var param:[String:Any] = ["user_id":CurrentUserInfo?.data?.user_id ?? "","package_id":currentModel?.package_id ?? ""]
+        var param:[String:Any] = ["user_id":CurrentUserInfo?.user_id ?? "","package_id":currentModel?.package_id ?? ""]
         
         if selectedPayView.aliPayBtn.isSelected {
             param["channel"] = "alipay"

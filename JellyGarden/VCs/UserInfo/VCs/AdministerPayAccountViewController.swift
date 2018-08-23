@@ -27,7 +27,7 @@ class AdministerPayAccountViewController: BaseMainTableViewController {
     }
     func getAlipayModel()
     {
-        TargetManager.share.getAlipayAccount(params: ["user_id":CurrentUserInfo?.data?.user_id ?? ""]) { (models, error) in
+        TargetManager.share.getAlipayAccount(params: ["user_id":CurrentUserInfo?.user_id ?? ""]) { (models, error) in
             if (models?.count ?? 0) > 0
             {
                 self.alipayModels = models

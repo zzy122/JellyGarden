@@ -25,26 +25,26 @@ class MineInfoHeaderView: UIView {
     
     var userInfo: UserModel? {
         didSet {
-            headerButton.kf.setImage(with: URL(string: userInfo?.data?.avatar ?? ""),
+            headerButton.kf.setImage(with: URL(string: userInfo?.avatar ?? ""),
                                      for: UIControlState.normal,
                                      placeholder: UIImage(named: "照片缺省"),
                                      options: nil,
                                      progressBlock: nil,
                                      completionHandler: nil)
-            nameLabel.text = userInfo?.data?.nickname
+            nameLabel.text = userInfo?.nickname
             var info = ""
-            if let city = userInfo?.data?.city {
+            if let city = userInfo?.city {
                 info += city
             }
-            if let age = userInfo?.data?.age {
+            if let age = userInfo?.age {
                 info += " \(age)岁"
             }
-            if let identify = userInfo?.data?.identity {
+            if let identify = userInfo?.identity {
                 info += identify
             }
             nameInfoLabel.text = info
-            appointmentLabel.text = "约会范围：\(userInfo?.data?.appointment_place?.joined(separator: " ") ?? "")"
-            if userInfo?.data?.has_authentication == true {
+            appointmentLabel.text = "约会范围：\(userInfo?.appointment_place?.joined(separator: " ") ?? "")"
+            if userInfo?.has_authentication == true {
                 renzhenButton.setTitle("已认证", for: UIControlState.normal)
                 renzhenButton.backgroundColor = hexString(hex: "6388C5")
                 renzhenButton.isEnabled = false

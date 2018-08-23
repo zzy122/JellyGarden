@@ -78,7 +78,7 @@ class UserBroadcastListViewController: BaseMainTableViewController,TZImagePicker
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.isSelfBroadcast = (userid == CurrentUserInfo?.data?.user_id)
+        self.isSelfBroadcast = (userid == CurrentUserInfo?.user_id)
         self.edgesForExtendedLayout = UIRectEdge.bottom
         self.title = self.isSelfBroadcast ? "我的广播" : "她的广播"
         if appiontModels.count == 0 {
@@ -189,7 +189,7 @@ extension UserBroadcastListViewController
             return
         }
         if name == ClickReportName {//点击产看报名
-            guard appiontModels[index].poster?.user_id == CurrentUserInfo?.data?.user_id else
+            guard appiontModels[index].poster?.user_id == CurrentUserInfo?.user_id else
             {
                 alertHud(title: "只有本人才能查看报名哦")
                 return
@@ -200,7 +200,7 @@ extension UserBroadcastListViewController
             RootNav().pushViewController(vc, animated: true)
         }
         if ClickEnlistBtn == name {//我要报名
-            guard userid != CurrentUserInfo?.data?.user_id else
+            guard userid != CurrentUserInfo?.user_id else
             {
                 alertHud(title: "不能报名本人哦")
                 return
@@ -257,7 +257,7 @@ extension UserBroadcastListViewController
                         return
                     }
                     let model:lonelySpeechDetaileModel = self.appiontModels[index]
-                    let params = ["publisher_id":CurrentUserInfo?.data?.user_id ?? "","content":text]
+                    let params = ["publisher_id":CurrentUserInfo?.user_id ?? "","content":text]
                     TargetManager.share.issueComment(appointment_id: model.appointment_id ?? "", params: params, complection: { (commentmodel, error) in
                         guard let comment = commentmodel else{
                             return
@@ -322,7 +322,7 @@ extension UserBroadcastListViewController
         AliyunManager.share.uploadImagesToAliyun(imageModels: models, complection: { (urls, succecCount, failCount, state) in
             if state == UploadImageState.success
             {//报名
-                let params:[String:Any] = ["user_id":CurrentUserInfo?.data?.user_id ?? "","attachment":urls?.last ?? "","has_pay_deposit":0]
+                let params:[String:Any] = ["user_id":CurrentUserInfo?.user_id ?? "","attachment":urls?.last ?? "","has_pay_deposit":0]
                 let model:lonelySpeechDetaileModel = self.appiontModels[self.reportTag]
                 TargetManager.share.signUpAppiont(appointment_id: model.appointment_id ?? "", params: params, complection: { (success, error) in
                     if success

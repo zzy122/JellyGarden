@@ -106,7 +106,7 @@ class WalletViewController: BaseTableViewController,ResponderRouter {
         {
            return
         }
-        let params:[String:Any] = ["amount":Int(amount),"user_id": CurrentUserInfo?.data?.user_id ?? "","alipay_account":currentAliPayModel?.alipay_account_id ?? ""]
+        let params:[String:Any] = ["amount":Int(amount),"user_id": CurrentUserInfo?.user_id ?? "","alipay_account":currentAliPayModel?.alipay_account_id ?? ""]
         TargetManager.share.withdrawal(params: params) { (success, error) in
             if success {
                 //余额查询
@@ -126,7 +126,7 @@ class WalletViewController: BaseTableViewController,ResponderRouter {
     }
     func getAlipayModel()
     {
-        TargetManager.share.getAlipayAccount(params: ["user_id":CurrentUserInfo?.data?.user_id ?? ""]) { (models, error) in
+        TargetManager.share.getAlipayAccount(params: ["user_id":CurrentUserInfo?.user_id ?? ""]) { (models, error) in
             if (models?.count ?? 0) > 0
             {
                 self.aplayPayData = models

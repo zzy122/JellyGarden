@@ -138,7 +138,7 @@ class EnlistAppiontViewController: BaseMainViewController,UICollectionViewDelega
         
         let timeStamp = stringToTimeStamp(dateStr: dateStr,type: .day)
         let url = images.joined(separator: ",")
-        let params:[String:Any] = ["poster_id":CurrentUserInfo?.data?.user_id ?? "","time":timeStamp,"city":appiontLab.text ?? "","requirement":contentTextview.text,"attachment":url,"deposit": Int(dingjinFiled.text ?? "0") ?? 0,"need_signup":1]
+        let params:[String:Any] = ["poster_id":CurrentUserInfo?.user_id ?? "","time":timeStamp,"city":appiontLab.text ?? "","requirement":contentTextview.text,"attachment":url,"deposit": Int(dingjinFiled.text ?? "0") ?? 0,"need_signup":1]
         TargetManager.share.issueAppiont(params: params) { (success, error) in
             if success {
                 DebugLog(message: "发布成功")

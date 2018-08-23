@@ -139,12 +139,41 @@ extension NetCostom {
         return str
     }
     func dealWithRequestResult(value:Any,success:@escaping BackRequestSuccess,error:@escaping BackRequestError) -> Void {//处理服务器返回信息
+        guard let resultDic = value as? [String:Any]else {
+            alertHud(title: "返回值不是字典")
+            return
+        }
+        guard let code = resultDic["code"] as? String   else {
+            alertHud(title: "没有code字段")
+            return
+        }
         
-        
-        guard let resultDic = value as? [String:Any],resultDic["data"] != nil else {//不是字典 就是返回错误
-            
-            let errorMessage = NSError.init(domain: "NSApplicationErrorDomain", code: 1, userInfo: [Defult_errorReson:"请求地址错误"])
+        if code == "200"
+        {
+            guard let dataDic = resultDic["data"] else
+            {
+                alertHud(title: "没有data数据")
+                success(resultDic)
+                return
+            }
+            success(dataDic)
+        }
+       else
+        {
+            guard  let mesg:String = resultDic["msg"] as? String else
+            {
+                let errorMessage = NSError.init(domain: "NSApplicationErrorDomain", code: 1, userInfo: [Defult_errorReson:"没有msg错误信息"])
+                 self.showErrorMessg(error: errorMessage, backError: error)
+                return
+            }
+             let errorMessage = NSError.init(domain: "NSApplicationErrorDomain", code: 1, userInfo: [Defult_errorReson:mesg])
             self.showErrorMessg(error: errorMessage, backError: error)
+        }
+        
+        /*
+        guard let resultDic = value as? [String:Any],resultDic["data"] != nil else {//不是字典 就是返回错误
+            let errorMessage = NSError.init(domain: "NSApplicationErrorDomain", code: 1, userInfo: [Defult_errorReson:"请求地址错误"])
+           
                         
             return
         }
@@ -156,11 +185,7 @@ extension NetCostom {
             }
             return
         }
-//        if resultDic["errors"] != nil
-//        {
-//            alertHud(title: "\(String(describing: resultDic["errors"]))")
-//            return
-//        }
+
         if let errorStr = resultDic[Defult_jsonError] as? String {
             let errorMessage = NSError.init(domain: "NSApplicationErrorDomain", code: 1, userInfo: [Defult_errorReson:errorStr])
             self.showErrorMessg(error: errorMessage, backError: error)
@@ -172,7 +197,7 @@ extension NetCostom {
             self.showErrorMessg(error: errorMessage, backError: error)
             return
         }
-        
+        */
     }
     func showErrorMessg(error:Any, backError:@escaping BackRequestError) {
         var message:String?

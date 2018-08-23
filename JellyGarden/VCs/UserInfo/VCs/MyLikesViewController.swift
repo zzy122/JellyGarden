@@ -39,7 +39,7 @@ class MyLikesViewController: BaseMainTableViewController {
     }
     func getLikesData()
     {
-        TargetManager.share.myLikesList(params: ["user_id":CurrentUserInfo?.data?.user_id ?? ""]) { (models,error) in
+        TargetManager.share.myLikesList(params: ["user_id":CurrentUserInfo?.user_id ?? ""]) { (models,error) in
             if error == nil
             {
                 self.userModels = models

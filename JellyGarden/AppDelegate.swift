@@ -140,7 +140,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     }
                 })
                 
-                gesterVC?.gesturePasswordView.logoimgView.sd_DownLoadImage(url: CurrentUserInfo?.data?.avatar ?? "")
+                gesterVC?.gesturePasswordView.logoimgView.sd_DownLoadImage(url: CurrentUserInfo?.avatar ?? "")
                 RootViewController?.present(gesterVC!, animated: true, completion: nil)
                 
             }

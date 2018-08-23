@@ -37,14 +37,14 @@ class PersonInfoImageView: UIView,UICollectionViewDelegate,UICollectionViewDataS
         
     }()
     
-    var userModel:UserInfo? {
+    var userModel:UserModel? {
         didSet{
             self.collectonView.reloadData()
         }
     }
     var itemHeight = BodyImageHeight
     override func layoutSubviews() {
-        if userModel?.permission == permissionAry[1] && userModel?.user_id != CurrentUserInfo?.data?.user_id {
+        if userModel?.permission == permissionAry[1] && userModel?.user_id != CurrentUserInfo?.user_id {
             self.implementView.isHidden = false
             warmLab.text = "她设置了付费相册"
             self.deblockBtn.setTitle("解锁她的相册", for: UIControlState.normal)
@@ -99,7 +99,7 @@ extension PersonInfoImageView
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         let count = self.userModel?.custom_photos?.count ?? 0
-        return (userModel?.user_id == CurrentUserInfo?.data?.user_id) ? (count + 1) : count
+        return (userModel?.user_id == CurrentUserInfo?.user_id) ? (count + 1) : count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BodyImageCollectionViewCell", for: indexPath) as? BodyImageCollectionViewCell
@@ -122,7 +122,7 @@ extension PersonInfoImageView
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.row != self.userModel?.custom_photos?.count
         {
-            if self.userModel?.user_id == CurrentUserInfo?.data?.user_id
+            if self.userModel?.user_id == CurrentUserInfo?.user_id
             {
                 zzy.router(name: Click_Mine_Photo, object: nil, info: indexPath.row)
                 return
