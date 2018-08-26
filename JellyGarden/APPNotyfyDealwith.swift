@@ -76,7 +76,7 @@ class APPNotyfyDealwith: NSObject {
             return
         }
         let model = JSONDeserializer<NotifyModel>.deserializeFrom(dict: infos)
-        switch model!.type {
+        switch (model!.type)! {
         case 1://广播
             self.addData(Key: Radio_APP_BroadcastNotify, objc: infos["data"] as? [String : Any])
             break

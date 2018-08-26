@@ -178,6 +178,7 @@ class ManFillInformationViewController: BaseViewController,UIImagePickerControll
             alertHud(title: "请选择职业")
             return
         }
+        
         var fillInfo:[String:Any] = ["nickname":nikeStr,"avatar":url,"appointment_place":cityStr,"age":(ageStr as NSString).floatValue,"identity":professionStr,"sex":"0","language":[],"bust":0,"contact_wechat":"","contact_qq":"","dress_style":[],"appointment_program":[],"emotion_status":"","stature":0,"weight":0,"appointment_condition":[],"self_introduction":"",]
         
         fillInfo["tags"] = []
@@ -187,9 +188,9 @@ class ManFillInformationViewController: BaseViewController,UIImagePickerControll
             
         }
         
-        let param:[String:Any] = ["user_json":getJSONStringFromObject(dictionary: fillInfo)]
+//        let param:[String:Any] = ["user_json":getJSONStringFromObject(dictionary: fillInfo)]
         
-        TargetManager.share.fillUserInfo(params: param) { (result, error) in
+        TargetManager.share.fillUserInfo(params: fillInfo) { (result, error) in
             if error == nil {
                 updateUserInfo(complection: { (result) in
                     

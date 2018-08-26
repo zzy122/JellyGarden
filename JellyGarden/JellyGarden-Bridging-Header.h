@@ -5,7 +5,7 @@
 #import <UMShare/UMShare.h>
 #import <UShareUI/UShareUI.h>
 #import <UMCommon/UMCommon.h>
-#import <UMCommonLog/UMCommonLogManager.h>
+//#import <UMCommonLog/UMCommonLogManager.h>
 #import <JPUSHService.h>
 #import <WXApi.h>
 
