@@ -18,7 +18,7 @@ class FinishViewController: BaseViewController {
         self.registerBtn.layer.borderWidth = 1.0
         registerBtn.layer.borderColor = APPCustomBtnColor.cgColor
         FillCondition.share.getConditions()
-        clearUserInfo()
+//        clearUserInfo()
         
         self.autoLogin()
        
