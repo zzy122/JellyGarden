@@ -22,7 +22,8 @@ class OtherApplication: NSObject,WXApiDelegate,RCIMUserInfoDataSource,RCIMGroupM
     }
     func setYumeng()
     {
-        UMSocialManager.default().umSocialAppkey = UMengKey
+        UMConfigure.initWithAppkey(UMengKey, channel: nil)
+//        UMSocialManager.default().umSocialAppkey = UMengKey
         
         UMSocialManager.default().setPlaform(.wechatSession, appKey: WeiChatShareKey, appSecret: WeiChatShareScrete, redirectURL: "")
         
