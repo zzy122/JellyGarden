@@ -14,6 +14,7 @@ target 'JellyGarden' do
 	pod 'SnapKit', '~> 4.0.0'
 	
      pod 'Pingpp/Alipay'
+#    pod 'AlipaySDK_No_UTDID' #支付宝支付SDK
 
     #友盟
     pod 'UMCCommon'
@@ -28,9 +29,8 @@ target 'JellyGarden' do
     
     
     #注意 干掉友盟日至打印就要把Alipay的sdk换成有utdid的
-    pod 'UMCCommon'
-    pod 'UMCCommonLog'
-    pod 'UMCSecurityPlugins'
+#    pod 'UMCCommonLog'
+#    pod 'UMCSecurityPlugins'
 
 
     #极光

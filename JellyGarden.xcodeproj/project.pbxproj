@@ -160,6 +160,8 @@
 		5A6C939C20F63C4C00E57223 /* AlipayBottomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6C939B20F63C4C00E57223 /* AlipayBottomAlertView.swift */; };
 		5A6C939E20F63C5C00E57223 /* AlipayBottomAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A6C939D20F63C5C00E57223 /* AlipayBottomAlertView.xib */; };
 		5A6C93A020F643C900E57223 /* AlipayAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6C939F20F643C900E57223 /* AlipayAction.swift */; };
+		5A75733C2132922700FCD71F /* RCDCSEvaluateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A75733B2132922700FCD71F /* RCDCSEvaluateModel.m */; };
+		5A75733F2132925900FCD71F /* RCDCSEvaluateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A75733E2132925800FCD71F /* RCDCSEvaluateView.m */; };
 		5A7CEC8420D53EBB00B7A7C9 /* AddImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7CEC8220D53EBB00B7A7C9 /* AddImageCollectionViewCell.swift */; };
 		5A7CEC8520D53EBB00B7A7C9 /* AddImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A7CEC8320D53EBB00B7A7C9 /* AddImageCollectionViewCell.xib */; };
 		5A7FC43620EB181000D7E137 /* PermissionLookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7FC43520EB181000D7E137 /* PermissionLookView.swift */; };
@@ -320,12 +322,10 @@
 		C76544CC211C1D7000569EA0 /* Pods_JellyGarden.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BE12B8F4D85F2B12027DF1 /* Pods_JellyGarden.framework */; };
 		C7691216210028FF00898B47 /* RCDCSSolveView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7691215210028FE00898B47 /* RCDCSSolveView.m */; };
 		C7691219210029B800898B47 /* RCDCSAnnounceView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7691218210029B800898B47 /* RCDCSAnnounceView.m */; };
-		C769121C210029CF00898B47 /* RCDCSEvaluateView.m in Sources */ = {isa = PBXBuildFile; fileRef = C769121B210029CF00898B47 /* RCDCSEvaluateView.m */; };
 		C769122321002AEF00898B47 /* RCDCustomerServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C769122221002AEE00898B47 /* RCDCustomerServiceViewController.m */; };
 		C769122621002B2900898B47 /* RCDCSStarView.m in Sources */ = {isa = PBXBuildFile; fileRef = C769122521002B2900898B47 /* RCDCSStarView.m */; };
 		C769122921002BD600898B47 /* RCDCSTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = C769122821002BD500898B47 /* RCDCSTagView.m */; };
 		C769122C21002BE900898B47 /* RCDCSInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = C769122B21002BE800898B47 /* RCDCSInputView.m */; };
-		C769122F21002BFB00898B47 /* RCDCSEvaluateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C769122E21002BFA00898B47 /* RCDCSEvaluateModel.m */; };
 		C769123221002C1A00898B47 /* RCDCSButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C769123121002C1A00898B47 /* RCDCSButton.m */; };
 		C7AA5423210AB833003D4580 /* SetRedPacketPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AA5422210AB833003D4580 /* SetRedPacketPhotoViewController.swift */; };
 		C7AA5426210ABAF0003D4580 /* SetRedpacketCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AA5424210ABAF0003D4580 /* SetRedpacketCollectionViewCell.swift */; };
@@ -557,6 +557,10 @@
 		5A6C939B20F63C4C00E57223 /* AlipayBottomAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlipayBottomAlertView.swift; sourceTree = "<group>"; };
 		5A6C939D20F63C5C00E57223 /* AlipayBottomAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlipayBottomAlertView.xib; sourceTree = "<group>"; };
 		5A6C939F20F643C900E57223 /* AlipayAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlipayAction.swift; sourceTree = "<group>"; };
+		5A75733A2132922600FCD71F /* RCDCSEvaluateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDCSEvaluateModel.h; sourceTree = "<group>"; };
+		5A75733B2132922700FCD71F /* RCDCSEvaluateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDCSEvaluateModel.m; sourceTree = "<group>"; };
+		5A75733D2132925800FCD71F /* RCDCSEvaluateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDCSEvaluateView.h; sourceTree = "<group>"; };
+		5A75733E2132925800FCD71F /* RCDCSEvaluateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDCSEvaluateView.m; sourceTree = "<group>"; };
 		5A7CEC8220D53EBB00B7A7C9 /* AddImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		5A7CEC8320D53EBB00B7A7C9 /* AddImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddImageCollectionViewCell.xib; sourceTree = "<group>"; };
 		5A7FC43520EB181000D7E137 /* PermissionLookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionLookView.swift; sourceTree = "<group>"; };
@@ -741,8 +745,6 @@
 		C7691215210028FE00898B47 /* RCDCSSolveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDCSSolveView.m; sourceTree = "<group>"; };
 		C7691217210029B800898B47 /* RCDCSAnnounceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDCSAnnounceView.h; sourceTree = "<group>"; };
 		C7691218210029B800898B47 /* RCDCSAnnounceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDCSAnnounceView.m; sourceTree = "<group>"; };
-		C769121A210029CF00898B47 /* RCDCSEvaluateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCDCSEvaluateView.h; path = "../../../../../../Downloads/sealtalk-ios-master/ios-rongimdemo/RCDCSEvaluateView.h"; sourceTree = "<group>"; };
-		C769121B210029CF00898B47 /* RCDCSEvaluateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCDCSEvaluateView.m; path = "../../../../../../Downloads/sealtalk-ios-master/ios-rongimdemo/RCDCSEvaluateView.m"; sourceTree = "<group>"; };
 		C769122021002A6200898B47 /* RCDCommonDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDCommonDefine.h; sourceTree = "<group>"; };
 		C769122121002AEE00898B47 /* RCDCustomerServiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDCustomerServiceViewController.h; sourceTree = "<group>"; };
 		C769122221002AEE00898B47 /* RCDCustomerServiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDCustomerServiceViewController.m; sourceTree = "<group>"; };
@@ -752,8 +754,6 @@
 		C769122821002BD500898B47 /* RCDCSTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDCSTagView.m; sourceTree = "<group>"; };
 		C769122A21002BE800898B47 /* RCDCSInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDCSInputView.h; sourceTree = "<group>"; };
 		C769122B21002BE800898B47 /* RCDCSInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDCSInputView.m; sourceTree = "<group>"; };
-		C769122D21002BFA00898B47 /* RCDCSEvaluateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCDCSEvaluateModel.h; path = "../../../../../../Downloads/sealtalk-ios-master/ios-rongimdemo/RCDCSEvaluateModel.h"; sourceTree = "<group>"; };
-		C769122E21002BFA00898B47 /* RCDCSEvaluateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCDCSEvaluateModel.m; path = "../../../../../../Downloads/sealtalk-ios-master/ios-rongimdemo/RCDCSEvaluateModel.m"; sourceTree = "<group>"; };
 		C769123021002C1A00898B47 /* RCDCSButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDCSButton.h; sourceTree = "<group>"; };
 		C769123121002C1A00898B47 /* RCDCSButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDCSButton.m; sourceTree = "<group>"; };
 		C7AA5422210AB833003D4580 /* SetRedPacketPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetRedPacketPhotoViewController.swift; sourceTree = "<group>"; };
@@ -1568,8 +1568,8 @@
 			children = (
 				C769123021002C1A00898B47 /* RCDCSButton.h */,
 				C769123121002C1A00898B47 /* RCDCSButton.m */,
-				C769122D21002BFA00898B47 /* RCDCSEvaluateModel.h */,
-				C769122E21002BFA00898B47 /* RCDCSEvaluateModel.m */,
+				5A75733A2132922600FCD71F /* RCDCSEvaluateModel.h */,
+				5A75733B2132922700FCD71F /* RCDCSEvaluateModel.m */,
 				C769122A21002BE800898B47 /* RCDCSInputView.h */,
 				C769122B21002BE800898B47 /* RCDCSInputView.m */,
 				C769122721002BD500898B47 /* RCDCSTagView.h */,
@@ -1581,8 +1581,8 @@
 				C769122021002A6200898B47 /* RCDCommonDefine.h */,
 				C7691217210029B800898B47 /* RCDCSAnnounceView.h */,
 				C7691218210029B800898B47 /* RCDCSAnnounceView.m */,
-				C769121A210029CF00898B47 /* RCDCSEvaluateView.h */,
-				C769121B210029CF00898B47 /* RCDCSEvaluateView.m */,
+				5A75733D2132925800FCD71F /* RCDCSEvaluateView.h */,
+				5A75733E2132925800FCD71F /* RCDCSEvaluateView.m */,
 				C7691214210028FE00898B47 /* RCDCSSolveView.h */,
 				C7691215210028FE00898B47 /* RCDCSSolveView.m */,
 			);
@@ -1620,6 +1620,8 @@
 				5A80C49F20BFDB150033CAF8 /* Sources */,
 				5A80C4A020BFDB150033CAF8 /* Frameworks */,
 				5A80C4A120BFDB150033CAF8 /* Resources */,
+				9E9842AFBF195576F998FD32 /* [CP] Embed Pods Frameworks */,
+				79224956214CF10E17B7203E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1639,6 +1641,8 @@
 				5A80C4AA20BFDB150033CAF8 /* Sources */,
 				5A80C4AB20BFDB150033CAF8 /* Frameworks */,
 				5A80C4AC20BFDB150033CAF8 /* Resources */,
+				A21E47BCFAEB6725044625A9 /* [CP] Embed Pods Frameworks */,
+				F081C7DF940820696CDA1DE5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1823,7 +1827,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		53AA25C2AA958247A383079B /* [CP] Copy Pods Resources */ = {
@@ -1896,6 +1900,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JellyGarden/Pods-JellyGarden-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		79224956214CF10E17B7203E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JellyGardenTests/Pods-JellyGardenTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		8ED77E3B466DF954BFBB03FF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1911,7 +1930,52 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9E9842AFBF195576F998FD32 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JellyGardenTests/Pods-JellyGardenTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A21E47BCFAEB6725044625A9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JellyGardenUITests/Pods-JellyGardenUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F081C7DF940820696CDA1DE5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JellyGardenUITests/Pods-JellyGardenUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FA86ECE1BCFC7E04BDECFE71 /* [CP] Check Pods Manifest.lock */ = {
@@ -1929,7 +1993,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1983,7 +2047,6 @@
 				5A1F3ACE20E0EA2A00CB98CD /* ReadDestroryView.m in Sources */,
 				5A015ECD20C62BBC00EC8A96 /* FillInformationFirstViewController.swift in Sources */,
 				5A6C938B20F4EA4200E57223 /* TZImageManager.m in Sources */,
-				C769122F21002BFB00898B47 /* RCDCSEvaluateModel.m in Sources */,
 				5A459AEF20D3B60400C0A6FA /* ManPersonInfoViewController.swift in Sources */,
 				5A196ADE20C6C704002EC0EE /* BottomPickerCell.swift in Sources */,
 				5A7FC46C20EE7F7A00D7E137 /* DisAgreeRefundView.swift in Sources */,
@@ -2002,6 +2065,7 @@
 				5A80C4CE20BFE1050033CAF8 /* NetCostom.swift in Sources */,
 				5AE9CC8720C8C8D70057CFF3 /* LocationCitys.swift in Sources */,
 				5A27B38920E530510028D5FF /* CommentStarView.swift in Sources */,
+				5A75733C2132922700FCD71F /* RCDCSEvaluateModel.m in Sources */,
 				5A1F3ABC20DF6CA700CB98CD /* RCLocationView.m in Sources */,
 				5AE28C6A20F1F3F900EE2973 /* BlackListViewController.swift in Sources */,
 				5A80C4D520BFE1620033CAF8 /* APPCustomDefine.swift in Sources */,
@@ -2010,7 +2074,6 @@
 				5A015EBD20C577F200EC8A96 /* RegisterViewController.swift in Sources */,
 				5A7FC44420EB7FF300D7E137 /* ADDPayCountViewController.swift in Sources */,
 				5AB8F47F20E221FA00429108 /* SystemMessageTableViewCell.swift in Sources */,
-				C769121C210029CF00898B47 /* RCDCSEvaluateView.m in Sources */,
 				5A459ACD20D166A400C0A6FA /* ZZYFramParserConfig.m in Sources */,
 				5AEC51A620C910EF00DD0099 /* MainUserListTableViewCell.swift in Sources */,
 				5AEC519520C907A100DD0099 /* SearchUserViewController.swift in Sources */,
@@ -2135,6 +2198,7 @@
 				5AEB824020D8BFFA002A7E69 /* LonelySpeechModel.swift in Sources */,
 				5A80C4E320BFE7B90033CAF8 /* TargetManager.swift in Sources */,
 				5A459ADF20D218C200C0A6FA /* ConditionModel.swift in Sources */,
+				5A75733F2132925900FCD71F /* RCDCSEvaluateView.m in Sources */,
 				5A1F3ABE20DF6CA700CB98CD /* RealTimeLocationStartCell.m in Sources */,
 				5A7FC47C20EF9F3200D7E137 /* CSIIGesturePasswordView.m in Sources */,
 				5A4E326520C7B6650051FE00 /* VipBodyViewCell.swift in Sources */,

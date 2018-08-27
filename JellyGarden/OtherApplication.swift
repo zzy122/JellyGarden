@@ -27,7 +27,7 @@ class OtherApplication: NSObject,WXApiDelegate,RCIMUserInfoDataSource,RCIMGroupM
         UMSocialManager.default().setPlaform(.wechatSession, appKey: WeiChatShareKey, appSecret: WeiChatShareScrete, redirectURL: "")
         
         UMSocialManager.default().setPlaform(.QQ, appKey: QQShareKey, appSecret: QQShareSecrete, redirectURL: "http://www.qq.com/music.html")
-        UMCommonLogManager.setUp()
+//        UMCommonLogManager.setUp()
         UMConfigure.setLogEnabled(true)
         UMConfigure.initWithAppkey(UMengKey, channel: "App Store")
         

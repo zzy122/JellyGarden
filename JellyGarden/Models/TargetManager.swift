@@ -37,8 +37,8 @@ class TargetManager: NSObject {
             }
     }
     //获取用户config信息
-    func getConditions(complection:@escaping (ConditionModel?,Error?) -> Void)  {
-        NetCostom.shared.request(method:.get ,wengen: "config", params: nil, success: { (result) in
+    func getConditions(complection:@escaping (ConditionModel?,Error?) -> Void)  {//config
+        NetCostom.shared.request(method:.get ,wengen: "admin/user/get_config", params: nil, success: { (result) in
              let model = BaseModel<ConditionModel,ConditionModel>.init(resultData: result)
             complection(model.resultData,nil)
         }) { (error) in
@@ -47,9 +47,9 @@ class TargetManager: NSObject {
     }
     //完善用户信息
     func fillUserInfo(params:[String:Any],complection:@escaping ([String:Any]?,Error?) -> Void)
-    {
-        let userId = CurrentUserInfo?.user_id ?? ""
-        NetCostom.shared.request(method:.put ,wengen: "users/\(userId)", params: params, success: { (result) in
+    {//users/\(userId)
+//        let userId = CurrentUserInfo?.user_id ?? ""
+        NetCostom.shared.request(method:.put ,wengen: "admin/user/api_user_message", params: params, success: { (result) in
             complection(result as? [String:Any],nil)
         }) { (error) in
             complection(nil,error)
@@ -229,8 +229,9 @@ class TargetManager: NSObject {
             complection(false,error)
         }
     }
-    func getCitysModel(complection:@escaping ([PikerModel]?,Error?) -> Void) {
-        NetCostom.shared.request(method: .get, wengen: "config/city", params: nil, success: { (result) in
+    //获取位置信息
+    func getCitysModel(complection:@escaping ([PikerModel]?,Error?) -> Void) {//config/city
+        NetCostom.shared.request(method: .get, wengen: "admin/user/get_city", params: nil, success: { (result) in
             if let jsonStr = result as? [String:Any]
             {
                 let ary:[Any] = jsonStr["data"] as! [Any]
