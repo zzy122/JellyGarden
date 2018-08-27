@@ -8,6 +8,10 @@
 import UIKit
 import Alamofire
 import PKHUD
+
+
+
+
 var Defult_jsonError = "error"
 var Defult_exceptionMessage = "message"
 var Defult_errorReson = "errorReson"
@@ -162,11 +166,11 @@ extension NetCostom {
         {
             guard  let mesg:String = resultDic["msg"] as? String else
             {
-                let errorMessage = NSError.init(domain: "NSApplicationErrorDomain", code: 1, userInfo: [Defult_errorReson:"没有msg错误信息"])
+                let errorMessage = NSError.init(domain: "NSApplicationErrorDomain", code: Int(code)!, userInfo: [Defult_errorReson:"没有msg错误信息"])
                  self.showErrorMessg(error: errorMessage, backError: error)
                 return
             }
-             let errorMessage = NSError.init(domain: "NSApplicationErrorDomain", code: 1, userInfo: [Defult_errorReson:mesg])
+            let errorMessage = NSError.init(domain: "NSApplicationErrorDomain", code: Int(code)!, userInfo: [Defult_errorReson:mesg])
             self.showErrorMessg(error: errorMessage, backError: error)
         }
         
@@ -210,8 +214,6 @@ extension NetCostom {
         {
             message = err.localizedDescription
             backError(NSError.init(domain: "NSApplicationErrorDomain", code: 1, userInfo: ["_exceptionMessage":message ?? ""]))
-            
-           
         }
         alertHud(title: message!)
         
