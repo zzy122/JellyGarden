@@ -48,10 +48,7 @@ class TargetManager: NSObject {
     //完善用户信息
     func fillUserInfo(params:[String:Any],complection:@escaping ([String:Any]?,Error?) -> Void)
     {//users/\(userId)
-//        let userId = CurrentUserInfo?.user_id ?? ""
-//        let paramStr = getJSONStringFromObject(dictionary: params)
-        
-        NetCostom.shared.requestStr(method: .post, wengen: "admin/user/api_user_message", paramStr: params, success: { (result) in
+        NetCostom.shared.request(method: .post, wengen: "admin/user/api_user_message", params: params, success: { (result) in
             complection(result as? [String:Any],nil)
         }) { (error) in
              complection(nil,error)

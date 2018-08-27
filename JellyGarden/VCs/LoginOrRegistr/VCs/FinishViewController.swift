@@ -69,6 +69,7 @@ class FinishViewController: BaseViewController {
         self.navigationController?.pushViewController(RegisterViewController(), animated: true)
     }
     @IBAction func loginBtn(_ sender: UIButton) {
+
         self.navigationController?.pushViewController(LoginVIewController(), animated: true)
         
     }
