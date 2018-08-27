@@ -105,14 +105,19 @@ extension NetCostom {
     
     func requestStr(method:HTTPMethod, wengen:String ,paramStr:[String:Any], success: @escaping BackRequestSuccess, failture: @escaping BackRequestError) -> () {//get请求
         HUD.flash(.labeledProgress(title: nil, subtitle: "请稍后..."))
+        var coding = URLEncoding.httpBody
+        if method == .get {
+            coding = URLEncoding.queryString
+        }
 //        let coding = JSONEncoding.init()
-       
-        
-        
+//       let coding = JSONStringEncoding.init(paramStr: getJSONStringFromObject(dictionary: paramStr))
+//        let header: HTTPHeaders = [
+//            "Content-Type":"application/form-data",
+//            "Accept": "application/json"
+//        ]
         let urlStr:String = self.getUrl(wengen: wengen)
-//         coding.encode(URL.init(string: urlStr), with: Parameters?)
         DebugLogLine(message: "URLPath:\(urlStr)\n post:->->->\n\(paramStr)")
-        Alamofire.request(urlStr, method: method, parameters: paramStr, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+        Alamofire.request(urlStr, method: method, parameters: paramStr, encoding: coding, headers: headers).responseJSON { (response) in
             switch response.result{
             case .success(let value):
                 DispatchQueue.main.async {
@@ -223,20 +228,4 @@ extension NetCostom {
     
 }
 
-//自定义编码格式
-struct JSONStringEncoding: ParameterEncoding {
-    private let paramStr: String
-    
-    init(paramStr: String) {
-        self.paramStr = paramStr
-    }
-    
-    func encode(_ urlRequest: URLRequestConvertible, with parameters: Parameters?) throws -> URLRequest {
-        var urlRequest = urlRequest.urlRequest
-        let data = paramStr.data(using: String.Encoding.utf8)
-        urlRequest!.httpBody = data
-        
-        return urlRequest!
-    }
-}
 
