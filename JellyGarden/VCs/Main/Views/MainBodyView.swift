@@ -76,15 +76,16 @@ class MainBodyView: UIView,UICollectionViewDelegate,UICollectionViewDataSource ,
         cell?.tagSex = self.tagSex
         cell?.userType = self.typeAry[indexPath.row]
         return cell!
-        
-        
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize.init(width: self.frame.width, height: self.frame.height)
     }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         self.zzy.router(name: MainBodyViewScrollPage, object: nil, info: self.getCurrentPage(scrollView: scrollView))
     }
+    
     func getCurrentPage(scrollView:UIScrollView) -> Int {
         let x = scrollView.contentOffset.x
         
@@ -101,13 +102,4 @@ class MainBodyView: UIView,UICollectionViewDelegate,UICollectionViewDataSource ,
         self.collectionView.setContentOffset(CGPoint.init(x: CGFloat(index) * self.frame.width, y: 00), animated: true)
         
     }
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
-
 }

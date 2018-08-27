@@ -31,6 +31,7 @@
 #import <AliyunOSSiOS/OSSService.h>
 #import "AliyunUpload.h"
 #import "AliyunUploadModel.h"
+#import <AlipaySDK/AlipaySDK.h>
 #import <Pingpp/Pingpp.h>
 #import "WCLRecordVideoVC.h"
 #import <Kingfisher/Kingfisher.h>
