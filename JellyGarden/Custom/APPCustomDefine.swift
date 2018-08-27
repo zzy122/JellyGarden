@@ -43,9 +43,13 @@ let UserPlist:String = {
     
     if (!FileManager.default.fileExists(atPath: path))
     {
+    
         if !FileManager.default.createFile(atPath: path, contents: nil, attributes: nil) {
-            DebugLog(message: "创建用户文件失败")
+            print("创建用户文件失败")
+            return ""
+//            DebugLog(message: "")
         }
+        NSDictionary.init(dictionary: ["":""]).write(toFile: path, atomically: true)
     }
     return path
 }()
@@ -55,7 +59,7 @@ let LocalCitys:String = {
     if (!FileManager.default.fileExists(atPath: path))
     {
         if !FileManager.default.createFile(atPath: path, contents: nil, attributes: nil) {
-            DebugLog(message: "创建用户文件失败")
+            print("创建用户文件失败")
         }
     }
     return path

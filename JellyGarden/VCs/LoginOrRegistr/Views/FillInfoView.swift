@@ -12,7 +12,7 @@ let FillInfoViewClick = "FillInfoViewClick"
 let ClickFillInfoViewHeader = "ClickFillInfoViewHeader"
 
 class FillInfoView: UIView,UITableViewDataSource,UITableViewDelegate {
-    var oppintRange:[String]? = [""]//保存范围
+    var oppintRange:[String]? //保存范围
     var age:String?//年龄
     var identity:String?//身份
     var bodyHeight:String?//身高

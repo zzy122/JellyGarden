@@ -297,6 +297,7 @@
 		5E6AE16D20DF972C00901D43 /* AlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AE16A20DF972C00901D43 /* AlignedCollectionViewFlowLayout.swift */; };
 		5E6AE16E20DF972C00901D43 /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AE16B20DF972C00901D43 /* TagCell.swift */; };
 		5E6AE16F20DF972C00901D43 /* TagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6AE16C20DF972C00901D43 /* TagsView.swift */; };
+		C70A6BE321338DC700729653 /* RequestResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70A6BE221338DC700729653 /* RequestResultModel.swift */; };
 		C710D5BA20FED9C2006B15FC /* APPNotyfyDealwith.swift in Sources */ = {isa = PBXBuildFile; fileRef = C710D5B920FED9C2006B15FC /* APPNotyfyDealwith.swift */; };
 		C710D5BF20FF1480006B15FC /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C710D5BE20FF147F006B15FC /* MobileCoreServices.framework */; };
 		C72FF99F20FCA05500D3983D /* APPNotifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72FF99E20FCA05500D3983D /* APPNotifyViewController.swift */; };
@@ -718,6 +719,7 @@
 		7921C1A58403A96B2525A62E /* Pods-JellyGardenTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JellyGardenTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-JellyGardenTests/Pods-JellyGardenTests.release.xcconfig"; sourceTree = "<group>"; };
 		9965B976970D18B945196DA1 /* Pods-JellyGarden.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JellyGarden.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JellyGarden/Pods-JellyGarden.debug.xcconfig"; sourceTree = "<group>"; };
 		A8E661A584C435F1250DC814 /* Pods_JellyGardenTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JellyGardenTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C70A6BE221338DC700729653 /* RequestResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestResultModel.swift; sourceTree = "<group>"; };
 		C710D5B920FED9C2006B15FC /* APPNotyfyDealwith.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APPNotyfyDealwith.swift; sourceTree = "<group>"; };
 		C710D5BE20FF147F006B15FC /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		C72FF99E20FCA05500D3983D /* APPNotifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APPNotifyViewController.swift; sourceTree = "<group>"; };
@@ -1228,6 +1230,7 @@
 				5A27B37C20E4DCFA0028D5FF /* ReadImageModel.swift */,
 				5AF4A75A20D6655500CFDDD6 /* AliyunUploadModel.h */,
 				5AF4A75B20D6655500CFDDD6 /* AliyunUploadModel.m */,
+				C70A6BE221338DC700729653 /* RequestResultModel.swift */,
 				5A80C4E120BFE7B90033CAF8 /* TargetManager.swift */,
 				5A196AD920C6C481002EC0EE /* PikerModel.swift */,
 				5AE9CC8020C7FE0F0057CFF3 /* UserModel.swift */,
@@ -2131,6 +2134,7 @@
 				5A0455CE20CD67580041D309 /* ConfessionTableViewCell.swift in Sources */,
 				5AF4A75520D64D5500CFDDD6 /* EnlistDetailViewController.swift in Sources */,
 				5A015EB020C5413300EC8A96 /* VipCenterViewController.swift in Sources */,
+				C70A6BE321338DC700729653 /* RequestResultModel.swift in Sources */,
 				5AE9CC9720C8E3A10057CFF3 /* ITemScrollView.swift in Sources */,
 				5A459AD020D166A400C0A6FA /* ZZYDisplayView.m in Sources */,
 				5A196AD720C6C1ED002EC0EE /* PickerTableViewCell.swift in Sources */,
@@ -2419,7 +2423,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = cn.com.JellyGarden;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7c09b77d-7d26-41ae-b8fb-2e68837b1acd";
+				PROVISIONING_PROFILE = "69f8ac56-894c-4371-acd4-841c287fbdea";
 				PROVISIONING_PROFILE_SPECIFIER = JellyGardenDevelpmentProfile;
 				SWIFT_OBJC_BRIDGING_HEADER = "JellyGarden/JellyGarden-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";

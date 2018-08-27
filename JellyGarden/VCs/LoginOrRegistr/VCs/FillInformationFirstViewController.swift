@@ -106,9 +106,9 @@ class FillInformationFirstViewController: BaseViewController,ResponderRouter,UII
         {
             manStr = "0"
         }
-        
-        
-        let user_json = ["nickname":nicheng,"appointment_place":range,"age":(age as NSString).floatValue,"identity":identity,"weight":(bodyWeight as NSString).floatValue,"bust":(bodyChest as NSString).floatValue,"sex":manStr,"stature":(bodyHeight as NSString).floatValue,"avatar":imageStr] as [String : Any]
+        //getJSONStringFromObject(dictionary: range)
+//        let rangeStr = range.joined(separator: ",")
+        let user_json = ["nickname":nicheng,"appointment_place": range.joined(separator: ","),"age":(age as NSString).intValue,"identity":identity,"weight":bodyWeight,"bust":bodyChest,"sex":manStr,"stature":bodyHeight,"avatar":imageStr] as [String : Any]
         let infoVC = FillInformationViewController()
         infoVC.fillInfo = user_json
         self.navigationController?.pushViewController(infoVC, animated: true)

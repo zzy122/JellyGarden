@@ -87,10 +87,10 @@ class FillInformationViewController: BaseTableViewController {
 //        let appiontConditionJson = getJSONStringFromObject(dictionary: currentOppiontConditions)
         
         fillInfo["emotion_status"] = currentEmotion
-        fillInfo["appointment_condition"] = currentOppiontConditions
-        fillInfo["appointment_program"] = currentOppiontProgram
-        fillInfo["language"] = currentLualages
-        fillInfo["dress_style"] = currentDressStyle
+        fillInfo["appointment_condition"] = currentOppiontConditions.joined(separator: ",")//getJSONStringFromObject(dictionary: currentOppiontConditions)
+        fillInfo["appointment_program"] = currentOppiontProgram.joined(separator: ",")//getJSONStringFromObject(dictionary: currentOppiontProgram)
+        fillInfo["language"] = currentLualages.joined(separator: ",")//getJSONStringFromObject(dictionary: currentLualages)
+        fillInfo["dress_style"] = currentDressStyle.joined(separator: ",")//getJSONStringFromObject(dictionary: currentDressStyle)
         
         if let qqStr = textAry.first?.text,qqStr.count > 0 {
             fillInfo["contact_qq"] = qqStr

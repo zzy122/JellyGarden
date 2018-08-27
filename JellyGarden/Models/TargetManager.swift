@@ -49,10 +49,12 @@ class TargetManager: NSObject {
     func fillUserInfo(params:[String:Any],complection:@escaping ([String:Any]?,Error?) -> Void)
     {//users/\(userId)
 //        let userId = CurrentUserInfo?.user_id ?? ""
-        NetCostom.shared.request(method:.put ,wengen: "admin/user/api_user_message", params: params, success: { (result) in
+//        let paramStr = getJSONStringFromObject(dictionary: params)
+        
+        NetCostom.shared.requestStr(method: .post, wengen: "admin/user/api_user_message", paramStr: params, success: { (result) in
             complection(result as? [String:Any],nil)
         }) { (error) in
-            complection(nil,error)
+             complection(nil,error)
         }
     }
     //登录
@@ -61,9 +63,9 @@ class TargetManager: NSObject {
             guard let user = result as? [String:Any] else {
                 return
             }
-            NSDictionary.init(dictionary: user).write(toFile: UserPlist, atomically: true)
-            
             let model = BaseModel<UserModel,UserModel>.init(resultData: user)
+            let user1 = model.resultData?.toJSON()!
+            NSDictionary.init(dictionary: user1!).write(toFile: UserPlist, atomically: true)
             complection(model.resultData,nil)
         }) { (error) in
             complection(nil,error)
@@ -232,17 +234,10 @@ class TargetManager: NSObject {
     //获取位置信息
     func getCitysModel(complection:@escaping ([PikerModel]?,Error?) -> Void) {//config/city
         NetCostom.shared.request(method: .get, wengen: "admin/user/get_city", params: nil, success: { (result) in
-            if let jsonStr = result as? [String:Any]
-            {
-                let ary:[Any] = jsonStr["data"] as! [Any]
-                NSArray.init(array: ary).write(toFile: LocalCitys, atomically: true)
-                let model = BaseModel<PikerModel,[PikerModel]>.init(resultData: jsonStr["data"] ?? "")
-                complection(model.resultData,nil)
-            }
-            else
-            {
-                alertHud(title: "数据返回错误")
-            }
+             let ary:[Any] = result as! [Any]
+            NSArray.init(array: ary).write(toFile: LocalCitys, atomically: true)
+            let model = BaseModel<PikerModel,[PikerModel]>.init(resultData: ary)
+            complection(model.resultData,nil)
         }) { (error) in
             complection(nil,error)
         }

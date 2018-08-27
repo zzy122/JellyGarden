@@ -226,9 +226,11 @@ func getImageName() -> String
 //信息修改填写等
 func fillInfoRequest(jsonDic:[String:Any],complection:@escaping (Bool) -> Void)
 {
-    let paramJson:[String:Any] = JSONDeserializer<UserFillModel>.deserializeFrom(dict: jsonDic)?.toJSON() ?? [:]
-    let param:[String:Any] = ["user_json":getJSONStringFromObject(dictionary: paramJson)]
-    TargetManager.share.fillUserInfo(params: param) { (result, error) in
+//    let paramJson:[String:Any] = JSONDeserializer<UserFillModel>.deserializeFrom(dict: jsonDic)?.toJSON() ?? [:]
+//    
+//    var param:[String:Any] = ["Body":getJSONStringFromObject(dictionary: paramJson)]
+//    param["user_id"] = CurrentUserInfo?.user_id ?? ""
+    TargetManager.share.fillUserInfo(params: jsonDic) { (result, error) in
         if error == nil {
             complection(true)
         }

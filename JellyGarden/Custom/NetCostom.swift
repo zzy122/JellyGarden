@@ -45,8 +45,6 @@ extension NetCostom {
             let documentPath:URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
             let filePath = documentPath.appendingPathComponent(String.init(format: "%@/%@", UserPath,toFile))
             return (filePath, [.removePreviousFile, .createIntermediateDirectories])
-            
-            
         }
         Alamofire.download(urlStr, to: destination).downloadProgress(queue: DispatchQueue.main) { (progress) in
             progressPercent(CGFloat(progress.completedUnitCount / progress.totalUnitCount))
@@ -105,11 +103,16 @@ extension NetCostom {
         }
     }
     
-    func requestTest(method:HTTPMethod, wengen:String ,params:[String:Any]?, success: @escaping BackRequestSuccess, failture: @escaping BackRequestError) -> () {//get请求
+    func requestStr(method:HTTPMethod, wengen:String ,paramStr:[String:Any], success: @escaping BackRequestSuccess, failture: @escaping BackRequestError) -> () {//get请求
         HUD.flash(.labeledProgress(title: nil, subtitle: "请稍后..."))
+//        let coding = JSONEncoding.init()
+       
+        
+        
         let urlStr:String = self.getUrl(wengen: wengen)
-        DebugLogLine(message: "URLPath:\(urlStr)\n post:->->->\n\(String(describing: params))")
-        Alamofire.request(urlStr, method: method, parameters: params, encoding: URLEncoding.queryString, headers: headers).responseJSON { (response) in
+//         coding.encode(URL.init(string: urlStr), with: Parameters?)
+        DebugLogLine(message: "URLPath:\(urlStr)\n post:->->->\n\(paramStr)")
+        Alamofire.request(urlStr, method: method, parameters: paramStr, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
             switch response.result{
             case .success(let value):
                 DispatchQueue.main.async {
@@ -124,9 +127,8 @@ extension NetCostom {
                 DispatchQueue.main.async {
                     HUD.hide(animated: false)
                     DebugLogLine(message: "\nRequestResultError:<-<-<-\n\(error.localizedDescription)")
-                    alertHud(title: "网络连接失败")
-                    failture(error as NSError)
-
+                    let errorMessage = NSError.init(domain: "NSApplicationErrorDomain", code: 1, userInfo: [Defult_errorReson:error.localizedDescription])
+                    self.showErrorMessg(error: errorMessage, backError: failture)
                 }
                 
                 break
@@ -143,16 +145,19 @@ extension NetCostom {
         return str
     }
     func dealWithRequestResult(value:Any,success:@escaping BackRequestSuccess,error:@escaping BackRequestError) -> Void {//处理服务器返回信息
+        
         guard let resultDic = value as? [String:Any]else {
             alertHud(title: "返回值不是字典")
             return
         }
-        guard let code = resultDic["code"] as? String   else {
+        let model = BaseModel<RequestResultModel,RequestResultModel>.init(resultData:resultDic)
+        
+        guard let code = model.resultData?.code  else {
             alertHud(title: "没有code字段")
             return
         }
         
-        if code == "200"
+        if code == 200
         {
             guard let dataDic = resultDic["data"] else
             {
@@ -166,42 +171,13 @@ extension NetCostom {
         {
             guard  let mesg:String = resultDic["msg"] as? String else
             {
-                let errorMessage = NSError.init(domain: "NSApplicationErrorDomain", code: Int(code)!, userInfo: [Defult_errorReson:"没有msg错误信息"])
+                let errorMessage = NSError.init(domain: "NSApplicationErrorDomain", code: Int(code), userInfo: [Defult_errorReson:"没有msg错误信息"])
                  self.showErrorMessg(error: errorMessage, backError: error)
                 return
             }
-            let errorMessage = NSError.init(domain: "NSApplicationErrorDomain", code: Int(code)!, userInfo: [Defult_errorReson:mesg])
+            let errorMessage = NSError.init(domain: "NSApplicationErrorDomain", code: Int(code), userInfo: [Defult_errorReson:mesg])
             self.showErrorMessg(error: errorMessage, backError: error)
         }
-        
-        /*
-        guard let resultDic = value as? [String:Any],resultDic["data"] != nil else {//不是字典 就是返回错误
-            let errorMessage = NSError.init(domain: "NSApplicationErrorDomain", code: 1, userInfo: [Defult_errorReson:"请求地址错误"])
-           
-                        
-            return
-        }
-        if resultDic[Defult_jsonError] == nil && resultDic["errors"] == nil {
-            success(value)
-            if let message = resultDic[Defult_exceptionMessage] as? String
-            {
-                 alertHud(title: message)
-            }
-            return
-        }
-
-        if let errorStr = resultDic[Defult_jsonError] as? String {
-            let errorMessage = NSError.init(domain: "NSApplicationErrorDomain", code: 1, userInfo: [Defult_errorReson:errorStr])
-            self.showErrorMessg(error: errorMessage, backError: error)
-            return
-        }
-        if let errorStr = resultDic["errors"] as? [String:Any] {
-            let str:String = errorStr.description
-            let errorMessage = NSError.init(domain: "NSApplicationErrorDomain", code: 1, userInfo: [Defult_errorReson:str])
-            self.showErrorMessg(error: errorMessage, backError: error)
-            return
-        }
-        */
     }
     func showErrorMessg(error:Any, backError:@escaping BackRequestError) {
         var message:String?
@@ -247,5 +223,20 @@ extension NetCostom {
     
 }
 
-
+//自定义编码格式
+struct JSONStringEncoding: ParameterEncoding {
+    private let paramStr: String
+    
+    init(paramStr: String) {
+        self.paramStr = paramStr
+    }
+    
+    func encode(_ urlRequest: URLRequestConvertible, with parameters: Parameters?) throws -> URLRequest {
+        var urlRequest = urlRequest.urlRequest
+        let data = paramStr.data(using: String.Encoding.utf8)
+        urlRequest!.httpBody = data
+        
+        return urlRequest!
+    }
+}
 

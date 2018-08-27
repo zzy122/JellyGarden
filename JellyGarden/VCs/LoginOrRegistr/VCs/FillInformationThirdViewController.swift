@@ -87,10 +87,12 @@ class FillInformationThirdViewController: BaseViewController,UITextViewDelegate,
         
         fillInfo["tags"] = ""
         if textView.text.count > 0 {
-            fillInfo["tags"] = currentData
+            fillInfo["tags"] = currentData.joined(separator: ",")
             fillInfo["self_introduction"] = textView.text
             
         }
+        fillInfo["user_id"] = CurrentUserInfo?.user_id ?? ""
+        
         fillInfoRequest(jsonDic: fillInfo) { (result) in
             if result {
                 updateUserInfo(complection: { (result) in
