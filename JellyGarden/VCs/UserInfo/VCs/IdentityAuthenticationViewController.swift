@@ -182,8 +182,10 @@ class IdentityAuthenticationViewController: BaseViewController ,UIImagePickerCon
                     HUD.hide(animated: true)
                     self.vedioUrl = backStr ?? ""
                     try? FileManager.default.removeItem(atPath: filePath)
-                    
-                    self.uploadDataToServer(urlStr: self.vedioUrl, type: "video")
+                     let param = ["user_id":CurrentUserInfo?.user_id ?? "", "video_path":self.vedioUrl]
+                    TargetManager.share.certificationVideoUser(params: param, complection: { (success) in
+                         self.getMyStatus()
+                    })
                     DebugLog(message: "上传成功\(backStr ?? "没有")")
                 }
             })
@@ -193,17 +195,6 @@ class IdentityAuthenticationViewController: BaseViewController ,UIImagePickerCon
         
         RootNav().present(vc, animated: true, completion: {
             
-        })
-       
-        
-    }
-    func uploadDataToServer(urlStr:String,type:String)
-    {
-        let params:[String:Any] = ["user_id":CurrentUserInfo?.user_id ?? "","certification_type":type,"url": urlStr]
-        TargetManager.share.certificationUser(params: params, complection: { (success) in
-            if success{
-                self.getMyStatus()
-            }
         })
     }
     
@@ -282,7 +273,10 @@ extension IdentityAuthenticationViewController
             if state == UploadImageState.success
             {//认证
                 self.imagUrl = urls?.last ?? ""
-                self.uploadDataToServer(urlStr: self.imagUrl, type: "image")
+                let param = ["user_id":CurrentUserInfo?.user_id ?? "", "image_path":self.imagUrl]
+                TargetManager.share.certificationImageUser(params: param, complection: { (succcess) in
+                    self.getMyStatus()
+                })
             }
             else
             {
