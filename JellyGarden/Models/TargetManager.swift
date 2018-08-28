@@ -91,16 +91,16 @@ class TargetManager: NSObject {
     }
     //获取主页面列表
     func geiMainUserList(params:[String:Any],complection:@escaping ([MainListmodel]?,Error?) -> Void) {
-        NetCostom.shared.request(method:.post ,wengen: "gardens", params: params, success: { (result) in
-            if let jsonStr = result as? [String:Any]
-            {
-            let model = BaseModel<MainListmodel,[MainListmodel]>.init(resultData: jsonStr["data"] ?? "")
+        NetCostom.shared.request(method:.post ,wengen: "admin/user/user_list", params: params, success: { (result) in
+//            if let jsonStr = result
+//            {
+            let model = BaseModel<MainListmodel,[MainListmodel]>.init(resultData: result)
                 complection(model.resultData,nil)
-            }
-            else
-            {
-              alertHud(title: "数据返回错误")
-            }
+//            }
+//            else
+//            {
+//              alertHud(title: "数据返回错误")
+//            }
             
             }) { (error) in
            complection(nil, error)

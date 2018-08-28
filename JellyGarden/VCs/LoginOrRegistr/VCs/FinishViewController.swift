@@ -20,9 +20,7 @@ class FinishViewController: BaseViewController {
         FillCondition.share.getConditions()
 //        clearUserInfo()
         
-        self.autoLogin()
-       
-        
+        self.autoLogin()       
     }
     
     func autoLogin() {//自动登录

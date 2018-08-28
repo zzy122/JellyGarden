@@ -13,7 +13,7 @@ func request(page:Int,type:SearchType?,page_size:Int,sex:sexType?,locaCity:Strin
     var params:[String:Any] = ["page":page,"page_size":page_size,"user_id":CurrentUserInfo?.user_id ?? ""]
     if let city = locaCity
     {
-        params["city"] = city
+//        params["city"] = city
     }
     
     
@@ -28,17 +28,16 @@ func request(page:Int,type:SearchType?,page_size:Int,sex:sexType?,locaCity:Strin
     {
         switch tagType {
         case .hot:
-            params["query"] = "hot"
+            params["type"] = "1"
             break
         case .attestation:
-            params["query"] = "authorization"
+            params["type"] = "3"
             break
         case .new:
-            params["query"] = "latest"
+            params["type"] = "2"
             break
         }
     }
-    
     
     TargetManager.share.geiMainUserList(params: params) { (modelList, error) in
         complection(modelList,error)

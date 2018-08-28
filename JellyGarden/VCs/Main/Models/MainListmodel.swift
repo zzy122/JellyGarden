@@ -9,8 +9,21 @@
 import UIKit
 class MainListmodel:JSON {
     var nickname:String?
+    var appointment_place: [String] = []
     var a2:String?
+    var stature: String? /// 身高
+    var weight: String? /// 体重
     var avatar:String?
+    var bust: String? /// 胸围
+    var dress_style: [String] = []
+    var language: [String] = []
+    var emotion_status: String?
+    var appointment_program: [String] = []
+    var appointment_condition: [String] = []
+    var contact_qq: String?
+    var contact_wechat: String?
+    var self_introduce: String?
+    var tags: [String] = []
     var age:Int?
     var lat:Double?
     var city:String?
