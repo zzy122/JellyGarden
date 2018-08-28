@@ -69,6 +69,7 @@ class MainBodyView: UIView,UICollectionViewDelegate,UICollectionViewDataSource ,
         
         return typeAry.count
     }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MainBodyCollectionViewCell", for: indexPath) as? MainBodyCollectionViewCell

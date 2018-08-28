@@ -180,7 +180,7 @@ class NormalAppointmentViewController: BaseMainViewController,UICollectionViewDe
         }
         
         let timeStamp = stringToTimeStamp(dateStr: dateStr,type: .day)
-        let url = continueString(strAry: urlPaths,separetStr:",")
+        let url = urlPaths?.joined(separator: ",") ?? ""
         let params:[String:Any] = ["poster_id":CurrentUserInfo?.user_id ?? "","time":timeStamp,"city":appiontCity.text ?? "","requirement":contentStr.text!,"attachment":url,"deposit": Int(dingJinFiled.text ?? "0") ?? 0,"need_signup":0]
         
         TargetManager.share.issueAppiont(params: params) { (success, error) in

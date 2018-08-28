@@ -38,16 +38,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(networkDidReceiveMessage(notification:)), name: NSNotification.Name.jpfNetworkDidReceiveMessage, object: nil)
         // Override point for customization after application launch.
         
-        testAliPay()
         return true
     }
     
-    func testAliPay() {
-        AlipaySDK.defaultService().payOrder("alipay_sdk=alipay-sdk-php-20180705&app_id=2018060460264651&biz_content=%7B%22body%22%3A%22%E7%94%A8%E6%88%B7%E9%92%B1%E5%8C%85%E5%85%85%E5%80%BC%22%2C%22subject%22%3A+%22%E7%94%A8%E6%88%B7%E9%92%B1%E5%8C%85%E5%85%85%E5%80%BC%22%2C%22out_trade_no%22%3A+%221234gh56789%22%2C%22timeout_express%22%3A+%22300m%22%2C%22total_amount%22%3A+%220.01%22%2C%22product_code%22%3A%22QUICK_MSECURITY_PAY%22%7D&charset=UTF-8&format=json&method=alipay.trade.app.pay&notify_url=http%3A%2F%2Fwww.18huyu.com%2Fadmin%2Fvideo%2Fnotify&sign_type=RSA2&timestamp=2018-08-27+16%3A59%3A10&version=1.0&sign=2h1z1dga9K6i03EPhuWgOF7CjTewF%2FpNB1pAeUgMLrgb4Oc0XyG7qL2pWN6Cu%2Fy%2FCfig04bqgi%2FjD3lKYjPcf6FiAEMWa%2FKcLtWXffzxczcX4I6T5VvYl716V3uqdk7HC2PTjYMgaunPcXYmHqZjAIc%2BSFIrL%2BBoSctWh8QPDCRxN4gRGdvOj3AM7dOUiPIa5OBrKyNHMElq3uR%2B0EocpMf%2BeYw9E9nfWIkI4ntUiO%2Fu6P3bDOqSpdUwev%2BtU92iUaiT%2FFj18sgadRnC%2FiG%2BZJy6CRMtITHXrK8SaCZG6RF%2Fl1waj%2BwaW5Vk4YRmPQY3q60RFSWs%2BByjT06yOysuyg%3D%3D", fromScheme: "cn.com.JellyGarden", callback: { (result) in
-            print("\(result)")
-        })
-    }
-        
+    
     @objc func networkDidReceiveMessage(notification:NSNotification){//自定义的消息
         DebugLog(message: "收到的通知:\(String(describing: notification.userInfo))")
         APPNotyfyDealwith.share.addNotifyInfo(info: notification.userInfo?["content"] as? [String : Any])

@@ -1140,6 +1140,7 @@
 				C73C69A3ACE46A9A28EACF0D /* Frameworks */,
 			);
 			sourceTree = "<group>";
+			wrapsLines = 1;
 		};
 		5A80C49020BFDB150033CAF8 /* Products */ = {
 			isa = PBXGroup;
@@ -1668,6 +1669,9 @@
 						LastSwiftMigration = 0910;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Keychain = {
 								enabled = 1;
 							};
@@ -2347,7 +2351,7 @@
 					"$(PROJECT_DIR)/JellyGarden/Library/JrmfIMLib",
 				);
 				INFOPLIST_FILE = JellyGarden/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2366,6 +2370,11 @@
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "";
+				WARNING_CFLAGS = (
+					"-Wno-strict-prototypes",
+					"-Wno-deprecated-declarations",
+					"-Wno-documentation",
+				);
 			};
 			name = Debug;
 		};
@@ -2388,7 +2397,7 @@
 					"$(PROJECT_DIR)/JellyGarden/Library/JrmfIMLib",
 				);
 				INFOPLIST_FILE = JellyGarden/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2406,6 +2415,11 @@
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "";
+				WARNING_CFLAGS = (
+					"-Wno-strict-prototypes",
+					"-Wno-deprecated-declarations",
+					"-Wno-documentation",
+				);
 			};
 			name = Release;
 		};

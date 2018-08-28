@@ -330,7 +330,7 @@ extension AppointViewController
             }
             else//点赞
             {
-                TargetManager.share.likeAppiont(appointment_id: appointment_id, complection: { (complection, error) in
+                TargetManager.share.likeAppiont(appointment_id: appointment_id!, complection: { (complection, error) in
                     if complection//请求数据刷新
                     {
                         model.is_like = true
@@ -355,7 +355,7 @@ extension AppointViewController
                 if type == .publish{
                    
                    
-                    let params = ["publisher_id":CurrentUserInfo?.user_id ?? "","content":text]
+                    let params = ["publisher_id":CurrentUserInfo?.user_id ?? "","content":text, "appointment_id": model.appointment_id!]
                     TargetManager.share.issueComment(appointment_id: model.appointment_id ?? "", params: params, complection: { (commentmodel, error) in
                         guard let comment = commentmodel else{
                             return
@@ -469,8 +469,8 @@ extension AppointViewController
         AliyunManager.share.uploadImagesToAliyun(imageModels: models, complection: { (urls, succecCount, failCount, state) in
             if state == UploadImageState.success
             {//报名
-                let params:[String:Any] = ["user_id":CurrentUserInfo?.user_id ?? "","attachment":urls?.last ?? "","has_pay_deposit":0]
                 let model:lonelySpeechDetaileModel = self.appiontModels![self.reportTag]
+                let params:[String:Any] = ["user_id":CurrentUserInfo?.user_id ?? "","attachment":urls?.last ?? "","has_pay_deposit":0, "appointment_id": model.appointment_id!]
                 TargetManager.share.signUpAppiont(appointment_id: model.appointment_id ?? "", params: params, complection: { (success, error) in
                     if success
                     {

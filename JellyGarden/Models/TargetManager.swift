@@ -19,7 +19,7 @@ class TargetManager: NSObject {
     //获取用户信息
     func getDetailUserInfo(userid:String,isUpdateUser:Bool, complection:@escaping (UserModel?,Error?) -> Void)  {
         
-            NetCostom.shared.request(method:.get ,wengen: "gardens/\(userid)?my_user_id=\(CurrentUserInfo?.user_id ?? "")", params: nil, success: { (result) in
+            NetCostom.shared.request(method:.post ,wengen: "gardens/\(userid)?my_user_id=\(CurrentUserInfo?.user_id ?? "")", params: nil, success: { (result) in
                 if isUpdateUser
                 {
                     guard let user = result as? [String:Any] else {
@@ -38,7 +38,7 @@ class TargetManager: NSObject {
     }
     //获取用户config信息
     func getConditions(complection:@escaping (ConditionModel?,Error?) -> Void)  {//config
-        NetCostom.shared.request(method:.get ,wengen: "admin/user/get_config", params: nil, success: { (result) in
+        NetCostom.shared.request(method:.post ,wengen: "admin/user/get_config", params: nil, success: { (result) in
              let model = BaseModel<ConditionModel,ConditionModel>.init(resultData: result)
             complection(model.resultData,nil)
         }) { (error) in
@@ -94,7 +94,7 @@ class TargetManager: NSObject {
     }
     //获取主页面列表
     func geiMainUserList(params:[String:Any],complection:@escaping ([MainListmodel]?,Error?) -> Void) {
-        NetCostom.shared.request(method:.get ,wengen: "gardens", params: params, success: { (result) in
+        NetCostom.shared.request(method:.post ,wengen: "gardens", params: params, success: { (result) in
             if let jsonStr = result as? [String:Any]
             {
             let model = BaseModel<MainListmodel,[MainListmodel]>.init(resultData: jsonStr["data"] ?? "")
@@ -111,7 +111,7 @@ class TargetManager: NSObject {
     }
     //获取寂寞告白列表
     func getLonelySpeechList(params:[String:Any],complection:@escaping ([lonelySpeechDetaileModel]?,Error?) -> Void) {
-        NetCostom.shared.request(method: .get, wengen: "appointment", params: params, success: { (result) in
+        NetCostom.shared.request(method: .post, wengen: "admin/video/appointment_list", params: params, success: { (result) in
             if let jsonStr = result as? [String:Any]
             {
                 
@@ -128,7 +128,7 @@ class TargetManager: NSObject {
     }
     //发布约会
     func issueAppiont(params:[String:Any],complection:@escaping (Bool,Error?) -> Void){
-        NetCostom.shared.request(method:.post ,wengen: "appointment/", params: params, success: { (result) in
+        NetCostom.shared.request(method:.post ,wengen: "admin/video/appointment_add", params: params, success: { (result) in
             complection(true,nil)
         }) { (error) in
             complection(false,error)
@@ -139,7 +139,7 @@ class TargetManager: NSObject {
     //获取约会详情   仅限用户自己能调用
     func getAppiontDetail(appointment_id:String,complection:@escaping (lonelySpeechDetaileModel?,Error?) -> Void)
     {
-        NetCostom.shared.request(method: .get, wengen: "appointment/\(appointment_id)", params: nil, success: { (result) in
+        NetCostom.shared.request(method: .post, wengen: "admin/video/appointment_detail", params: ["appointment_id": appointment_id], success: { (result) in
             if let jsonStr = result as? [String:Any]
             {
                 let model = BaseModel<lonelySpeechDetaileModel,lonelySpeechDetaileModel>.init(resultData: jsonStr["data"] ?? "")
@@ -155,7 +155,7 @@ class TargetManager: NSObject {
     }
     //发布评论
     func issueComment(appointment_id:String, params:[String:Any],complection:@escaping (commentsModel?,Error?) -> Void) {
-        NetCostom.shared.request(method:.post ,wengen: "appointment/\(appointment_id)/comments", params: params, success: { (result) in
+        NetCostom.shared.request(method:.post ,wengen: "admin/video/appointment_comments", params: params, success: { (result) in
             if let jsonStr = result as? [String:Any]
             {
                 
@@ -171,9 +171,9 @@ class TargetManager: NSObject {
         }
     }
     //点赞
-    func likeAppiont(appointment_id:String?,complection:@escaping (Bool,Error?) -> Void) {
-        let params = ["user_id":CurrentUserInfo?.user_id ?? ""] as [String:Any]
-        NetCostom.shared.request(method:.post ,wengen: "appointment/\(appointment_id ?? "")/likes", params: params, success: { (result) in
+    func likeAppiont(appointment_id:String,complection:@escaping (Bool,Error?) -> Void) {
+        let params = ["user_id":CurrentUserInfo?.user_id ?? "", "appointment_id": appointment_id] as [String:Any]
+        NetCostom.shared.request(method:.post ,wengen: "admin/video/appointment_likes", params: params, success: { (result) in
              complection(true,nil)
         }) { (error) in
             complection(false,error)
@@ -190,7 +190,7 @@ class TargetManager: NSObject {
     }
     //报名 params [user_id,attachment:string//多张图片 用,隔开   content  has_pay_deposit:是否支付定金]
     func signUpAppiont(appointment_id:String?,params:[String:Any]?,complection:@escaping (Bool,Error?) -> Void){
-        NetCostom.shared.request(method:.post ,wengen: "appointment/\(appointment_id ?? "")/signup", params: params, success: { (result) in
+        NetCostom.shared.request(method:.post ,wengen: "admin/video/signup_appointment", params: params, success: { (result) in
             guard let dic = result as? [String:Any] else{
                 return
             }
@@ -230,7 +230,7 @@ class TargetManager: NSObject {
     }
     //获取位置信息
     func getCitysModel(complection:@escaping ([PikerModel]?,Error?) -> Void) {//config/city
-        NetCostom.shared.request(method: .get, wengen: "admin/user/get_city", params: nil, success: { (result) in
+        NetCostom.shared.request(method: .post, wengen: "admin/user/get_city", params: nil, success: { (result) in
              let ary:[Any] = result as! [Any]
             NSArray.init(array: ary).write(toFile: LocalCitys, atomically: true)
             let model = BaseModel<PikerModel,[PikerModel]>.init(resultData: ary)
@@ -268,7 +268,7 @@ class TargetManager: NSObject {
     //vip套餐
     func getVipPackages(complection:@escaping ([VipPageModel]?,Error?) -> Void)
     {
-        NetCostom.shared.request(method: .get, wengen: "vip/packages", params: nil, success: { (result) in
+        NetCostom.shared.request(method: .post, wengen: "vip/packages", params: nil, success: { (result) in
             if let jsonStr = result as? [String:Any]
             {
                 let model = BaseModel<VipPageModel,[VipPageModel]>.init(resultData: jsonStr["data"] ?? "")
@@ -346,7 +346,7 @@ class TargetManager: NSObject {
     //请求首页单独某个列表
     func getMainListUserInfo(userId:String,complection:@escaping (MainListmodel?,Error?) -> Void)
     {
-        NetCostom.shared.request(method:.get ,wengen: "gardens/\(userId)", params: nil, success: { (result) in
+        NetCostom.shared.request(method:.post ,wengen: "gardens/\(userId)", params: nil, success: { (result) in
             guard let resultDic = result as? [String:Any] else
             {
                 alertHud(title: "返回错误")
@@ -396,7 +396,7 @@ class TargetManager: NSObject {
     //获取用户所有广播
     func requestUserAllBroadcast(userid:String,complection:@escaping ([lonelySpeechDetaileModel]?,Error?) -> Void)
     {
-        NetCostom.shared.request(method: .get, wengen: "users/\(userid)/appointments", params: nil, success: { (result) in
+        NetCostom.shared.request(method: .post, wengen: "users/\(userid)/appointments", params: nil, success: { (result) in
             if let jsonStr = result as? [String:Any]
             {
 
@@ -423,7 +423,7 @@ class TargetManager: NSObject {
 
     func getAllComments(user_id:String,complection:@escaping([commentsModel]?,Error?) -> Void)
     {
-        NetCostom.shared.request(method: .get, wengen: "gardens/comments?user_id=\(user_id)", params: nil, success: { (result) in
+        NetCostom.shared.request(method: .post, wengen: "gardens/comments?user_id=\(user_id)", params: nil, success: { (result) in
             if let jsonStr = result as? [String:Any]
             {
                 let ary:[Any]? = jsonStr["data"] as? [Any]
@@ -507,7 +507,7 @@ class TargetManager: NSObject {
     // 获取拉黑列表
     func userReportList(params:[String:Any],complection:@escaping ([BlackModel]?,Error?) ->Void)
     {
-        NetCostom.shared.request(method: .get, wengen: "userReport", params: params, success: {(result) in
+        NetCostom.shared.request(method: .post, wengen: "userReport", params: params, success: {(result) in
             if let jsonStr = result as? [String:Any]
             {
                 let model = BaseModel<BlackModel,[BlackModel]>.init(resultData: jsonStr["data"] ?? "")
@@ -520,7 +520,7 @@ class TargetManager: NSObject {
     //获取我喜欢的列表
     func myLikesList(params:[String:Any]?,complection:@escaping ([MainListmodel]?,Error?) -> Void)
     {
-        NetCostom.shared.request(method: .get, wengen: "gardens/likes", params: params, success: { (result) in
+        NetCostom.shared.request(method: .post, wengen: "gardens/likes", params: params, success: { (result) in
             if let jsonStr = result as? [String:Any]
             {
                 let model = BaseModel<MainListmodel,[MainListmodel]>.init(resultData: jsonStr["data"] ?? "")
@@ -542,7 +542,7 @@ class TargetManager: NSObject {
     //检查认证状态
     func checkIdentyResult(params:[String:Any], complection:@escaping (IdentityModel?,Error?) -> Void )
     {
-        NetCostom.shared.request(method: .get, wengen: "certification/status", params: params, success: { (result) in
+        NetCostom.shared.request(method: .post, wengen: "certification/status", params: params, success: { (result) in
             if let jsonStr = result as? [String:Any]
             {
                 let model = BaseModel<IdentityModel,IdentityModel>.init(resultData: jsonStr["data"] ?? "")
@@ -593,7 +593,7 @@ class TargetManager: NSObject {
     //查看支付宝账号
     func getAlipayAccount(params:[String:Any],complection:@escaping([AlipayModel]?,Error?) -> Void)
     {
-        NetCostom.shared.request(method: .get, wengen: "alipay", params: params, success: { (result) in
+        NetCostom.shared.request(method: .post, wengen: "alipay", params: params, success: { (result) in
             guard let dic = result as? [String:Any] else{
                 return
             }
