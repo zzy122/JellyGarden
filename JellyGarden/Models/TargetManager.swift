@@ -17,24 +17,21 @@ class TargetManager: NSObject {
     
     
     //获取用户信息
-    func getDetailUserInfo(userid:String,isUpdateUser:Bool, complection:@escaping (UserModel?,Error?) -> Void)  {
-        
-            NetCostom.shared.request(method:.post ,wengen: "gardens/\(userid)?my_user_id=\(CurrentUserInfo?.user_id ?? "")", params: nil, success: { (result) in
-                if isUpdateUser
-                {
-                    guard let user = result as? [String:Any] else {
-                        return
-                    }
-                    NSDictionary.init(dictionary: user).write(toFile: UserPlist, atomically: true)
+    func getDetailUserInfo(userid:String,isUpdateUser:Bool, complection:@escaping (UserModel?,Error?) -> Void)  {//gardens/\(userid)?my_user_id=\(CurrentUserInfo?.user_id ?? "")
+        let param = ["user_id":userid]
+        NetCostom.shared.request(method:.get ,wengen: "admin/user/get_user_message", params: param, success: { (result) in
+            if isUpdateUser
+            {
+                guard let user = result as? [String:Any] else {
+                    return
                 }
-                
-                
-                let model = BaseModel<UserModel,UserModel>.init(resultData: result)
-                complection(model.resultData,nil)
-            }) { (error) in
-                complection(nil,error)
-                
+                NSDictionary.init(dictionary: user).write(toFile: UserPlist, atomically: true)
             }
+            let model = BaseModel<UserModel,UserModel>.init(resultData: result)
+            complection(model.resultData,nil)
+        }) { (error) in
+            complection(nil,error)
+        }
     }
     //获取用户config信息
     func getConditions(complection:@escaping (ConditionModel?,Error?) -> Void)  {//config
@@ -310,25 +307,18 @@ class TargetManager: NSObject {
         }
     }
     //请求融云token
-    func rongcloudToken(isRefresh:Bool, complection:@escaping (RCTokenModel?) -> Void) {
+    func rongcloudToken(isRefresh:Bool, complection:@escaping (RCTokenModel?) -> Void) {//rongcloud/token
         DebugLog(message: "内存中的: \(CurrentUserInfo?.user_id ?? "")")
         let param = ["user_id":CurrentUserInfo?.user_id ?? "","nickname":CurrentUserInfo?.nickname ?? "","avatar":CurrentUserInfo?.avatar ?? ""]
-        var wengen = "rongcloud/token"
+        var wengen = "admin/video/get_rongcloud_token"
         if isRefresh
         {
             wengen = "rongcloud/token/refresh"
         }
         NetCostom.shared.request(method: .post, wengen: wengen, params: param, success: { (result) in
-            if let jsonStr = result as? [String:Any]
-            {
-                let model = BaseModel<RCTokenModel,RCTokenModel>.init(resultData: jsonStr["data"] ?? "")
-                complection(model.resultData)
-            }
-            else
-            {
-                complection(nil)
-                alertHud(title: "数据返回错误")
-            }
+            
+            let model = BaseModel<RCTokenModel,RCTokenModel>.init(resultData: result)
+            complection(model.resultData)
         }) { (error) in
             complection(nil)
         }
@@ -472,16 +462,24 @@ class TargetManager: NSObject {
             complection(false)
         }
     }
-    //认证
-    func certificationUser(params:[String:Any],complection:@escaping(Bool) ->Void)
+    //视频认证
+    func certificationVideoUser(params:[String:Any],complection:@escaping(Bool) ->Void)//certification
     {
-        NetCostom.shared.request(method: .post, wengen: "certification", params: params, success: {(result) in
+        NetCostom.shared.request(method: .post, wengen: "admin/user/video_rz", params: params, success: {(result) in
             complection(true)
         }) { (error) in
             complection(false)
         }
     }
-    
+    //自拍认证
+    func certificationImageUser(params:[String:Any],complection:@escaping(Bool) ->Void)//certification
+    {
+        NetCostom.shared.request(method: .post, wengen: "admin/user/image_rz", params: params, success: {(result) in
+            complection(true)
+        }) { (error) in
+            complection(false)
+        }
+    }
     //举报 或者拉黑report_type:int 0拉黑 1举报
     func userReportRequest(params:[String:Any],complection:@escaping(Bool) ->Void)
     {
