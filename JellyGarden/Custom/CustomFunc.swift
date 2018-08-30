@@ -108,7 +108,7 @@ enum DateFormatterType{
     case second;
     case day;
 }
-func timeStampToDate(time:Int , backType:DateFormatterType) -> String{
+func timeStampToDate(time:Int64 , backType:DateFormatterType) -> String{
     //转换为时间
     let timeSecond = time / 1000
     let timeInterval:TimeInterval = TimeInterval.init(timeSecond)

@@ -21,7 +21,7 @@ class EnlistDetailViewController: BaseMainTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "报名详情"
-        self.detaileModel?.need_signup = 0//取消查看报名等按钮
+        self.detaileModel?.need_signup = false//取消查看报名等按钮
         self.tableView.register(UINib.init(nibName: "ConfessionTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "ConfessionTableViewCell")
         self.tableView.register(UINib.init(nibName: "EnlistDetailTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "EnlistDetailTableViewCell")
         self.getSinUpModel()
@@ -29,7 +29,7 @@ class EnlistDetailViewController: BaseMainTableViewController {
     }
     func getSinUpModel()
     {
-        TargetManager.share.getAppiontDetail(appointment_id: detaileModel?.appointment_id ?? "") { (model, error) in
+        TargetManager.share.getAppiontDetail(appointment_id: detaileModel?.id ?? "") { (model, error) in
             guard let model1 = model?.sign_up ,model1.count > 0 else
             {
                return

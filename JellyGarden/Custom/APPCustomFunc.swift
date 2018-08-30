@@ -154,7 +154,7 @@ func caculateCellHeight(model:lonelySpeechDetaileModel) -> CGFloat//计算高度
     let textHeight = str.zzy.caculateHeight(font: kFont_system15, width: ScreenWidth - 40, lineSpace: 8.0)
     var oringinTopX:CGFloat = textHeight + 108
     
-    if model.need_signup == 1 {
+    if model.need_signup == true {
         oringinTopX += 45
     }
     let inageAry:[String] = model.attachment ?? []//图片资源

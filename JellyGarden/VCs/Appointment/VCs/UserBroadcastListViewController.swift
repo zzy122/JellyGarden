@@ -189,7 +189,7 @@ extension UserBroadcastListViewController
             return
         }
         if name == ClickReportName {//点击产看报名
-            guard appiontModels[index].poster?.user_id == CurrentUserInfo?.user_id else
+            guard appiontModels[index].user_id == CurrentUserInfo?.user_id else
             {
                 alertHud(title: "只有本人才能查看报名哦")
                 return
@@ -222,7 +222,7 @@ extension UserBroadcastListViewController
                 return
             }
             let model:lonelySpeechDetaileModel = appiontModels[index]
-            let appointment_id = model.appointment_id
+            let appointment_id = model.id
             if let like = model.is_like,like//取消赞
             {
                 TargetManager.share.cancelLikeAppiont(appointment_id: appointment_id, complection: { (result, error) in
@@ -257,8 +257,8 @@ extension UserBroadcastListViewController
                         return
                     }
                     let model:lonelySpeechDetaileModel = self.appiontModels[index]
-                    let params = ["publisher_id":CurrentUserInfo?.user_id ?? "","content":text, "appointment_id": model.appointment_id!]
-                    TargetManager.share.issueComment(appointment_id: model.appointment_id ?? "", params: params, complection: { (commentmodel, error) in
+                    let params = ["publisher_id":CurrentUserInfo?.user_id ?? "","content":text, "appointment_id": model.id!]
+                    TargetManager.share.issueComment(appointment_id: model.id ?? "", params: params, complection: { (commentmodel, error) in
                         guard let comment = commentmodel else{
                             return
                         }
@@ -276,7 +276,7 @@ extension UserBroadcastListViewController
                 return
             }
             let model:lonelySpeechDetaileModel = appiontModels[index]
-            let appointment_id = model.appointment_id
+            let appointment_id = model.id
             AlertViewCoustom().showalertView(style: .alert, title: alertTitle, message: "确定删除这条约会吗", cancelBtnTitle: alertCancel, touchIndex: { (index) in
                 if index == 1
                 {
@@ -323,8 +323,8 @@ extension UserBroadcastListViewController
             if state == UploadImageState.success
             {//报名
                 let model:lonelySpeechDetaileModel = self.appiontModels[self.reportTag]
-                let params:[String:Any] = ["user_id":CurrentUserInfo?.user_id ?? "","attachment":urls?.last ?? "","has_pay_deposit":0, "appointment_id": model.appointment_id!]
-                TargetManager.share.signUpAppiont(appointment_id: model.appointment_id ?? "", params: params, complection: { (success, error) in
+                let params:[String:Any] = ["user_id":CurrentUserInfo?.user_id ?? "","attachment":urls?.last ?? "","has_pay_deposit":0, "appointment_id": model.id!]
+                TargetManager.share.signUpAppiont(appointment_id: model.id ?? "", params: params, complection: { (success, error) in
                     if success
                     {
                         model.sign_up_count  = (model.sign_up_count ?? 0) + 1

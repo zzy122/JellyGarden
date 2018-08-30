@@ -13,7 +13,7 @@ func request(page:Int,type:SearchType?,page_size:Int,sex:sexType?,locaCity:Strin
     var params:[String:Any] = ["page":page,"page_size":page_size,"user_id":CurrentUserInfo?.user_id ?? ""]
     if let city = locaCity
     {
-//        params["city"] = city
+        params["city"] = city
     }
     
     

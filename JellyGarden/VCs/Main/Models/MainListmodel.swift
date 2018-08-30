@@ -10,7 +10,6 @@ import UIKit
 class MainListmodel:JSON {
     var nickname:String?
     var appointment_place: [String] = []
-    var a2:String?
     var stature: String? /// 身高
     var weight: String? /// 体重
     var avatar:String?

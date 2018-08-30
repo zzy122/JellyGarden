@@ -52,11 +52,11 @@ class ConfessionTableViewCellBody: UIView,UICollectionViewDelegate,UICollectionV
         return view
     }
     func setDatasource(model:lonelySpeechDetaileModel) {
-        let titleStr = "\(timeStampToDate(time: model.create_at ?? 0,backType: .day))·\(model.city ?? "")"
+        let titleStr = "\(timeStampToDate(time: Int64(model.time ),backType: .day))·\(model.city ?? "")"
         
         self.timeLocalLab.text = titleStr
         self.describtionLab.text = model.requirement ?? ""
-        self.imageNameAry = model.attachment ?? []
+        self.imageNameAry = model.attachment
         self.collectonView.isHidden = false
         self.collectonView.frame = CGRect.init(x: 0, y: 0, width: self.frame.width, height: self.frame.height - describtionLab.frame.maxY)
         self.collectonView.reloadData()
@@ -67,7 +67,7 @@ class ConfessionTableViewCellBody: UIView,UICollectionViewDelegate,UICollectionV
         }
         
         self.dingJinBtn.isHidden = false
-        if model.poster?.sex == 0
+        if model.sex == 0
         {
              self.dingJinBtn.setTitle("已支付定金\(String(deposit))", for: UIControlState.normal)
             self.dingJinBtn.backgroundColor = k_CustomColor(red: 255, green: 153, blue: 51)

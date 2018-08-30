@@ -107,20 +107,21 @@ class TargetManager: NSObject {
         }
     }
     //获取寂寞告白列表
-    func getLonelySpeechList(params:[String:Any],complection:@escaping ([lonelySpeechDetaileModel]?,Error?) -> Void) {
+    func getLonelySpeechList(params:[String:Any],complection:@escaping ([lonelySpeechDetaileModel],Error?) -> Void) {
         NetCostom.shared.request(method: .post, wengen: "admin/video/appointment_list", params: params, success: { (result) in
-            if let jsonStr = result as? [String:Any]
+            if let jsonStr = result as? [String:Any], let datas = jsonStr["appointment"] as? [[String: Any]]
             {
                 
-                let model = BaseModel<lonelySpeechModel,lonelySpeechModel>.init(resultData: jsonStr)
-                complection(model.resultData?.data,nil)
+                let models = [lonelySpeechDetaileModel].deserialize(from: datas) ?? []
+//                    BaseModel<lonelySpeechModel, lonelySpeechModel>.init(resultData: jsonStr["appointment"] ?? [])
+                complection(models as! [lonelySpeechDetaileModel], nil)
             }
             else
             {
                 alertHud(title: "数据返回错误")
             }
         }) { (error) in
-            complection(nil,error)
+            complection([],error)
         }
     }
     //发布约会
