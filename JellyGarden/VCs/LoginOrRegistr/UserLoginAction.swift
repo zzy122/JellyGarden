@@ -30,6 +30,8 @@ func thirdLoginParams(params:[String:Any],nav:UINavigationController?)
 }
 func dealWithLoginUser(model:UserModel,nav:UINavigationController?)
 {
+//    nav?.pushViewController(SexViewController(), animated: true)
+//    return
     if let nickName = model.appointment_place,nickName.count > 0//
     {
        

@@ -37,7 +37,7 @@ class XiugaiPasswordViewController: BaseMainViewController {
         }
         
         
-        let params:[String:Any] = ["user_id":CurrentUserInfo?.user_id ?? "","old_password":originPassword.text?.zzy.md5() ?? "","new_password":newPassword.text?.zzy.md5() ?? ""]
+        let params:[String:Any] = ["user_id":CurrentUserInfo?.user_id ?? "","password":originPassword.text?.zzy.md5() ?? "","new_password":newPassword.text?.zzy.md5() ?? ""]
         TargetManager.share.xiugaiPassword(params: params) { (success) in
             if success {
                 let model = CurrentUserInfo

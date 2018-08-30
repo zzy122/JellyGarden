@@ -42,7 +42,7 @@ class InvitationCodeViewController: BaseViewController {
             alertHud(title: "请输入邀请码")
             return
         }
-        let params:[String:Any] = ["user_id":CurrentUserInfo?.user_id ?? "","code":codeStr]
+        let params:[String:Any] = ["userid":CurrentUserInfo?.user_id ?? "","invitecode":codeStr]
         
         TargetManager.share.inviteCodeBind(params: params) { (result, error) in
             if result{

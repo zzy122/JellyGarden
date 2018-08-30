@@ -289,18 +289,18 @@ class TargetManager: NSObject {
         }
     }
     //邀请码
-    func inviteCode(params:[String:Any]?,complection:@escaping (Bool,Error?) -> Void)
+    func inviteCode(params:[String:Any]?,complection:@escaping (Bool,Error?) -> Void)//inviteCode
     {
-        NetCostom.shared.request(method: .post, wengen: "inviteCode", params: params, success: { (result) in
+        NetCostom.shared.request(method: .post, wengen: "admin/user/get_invite_code", params: params, success: { (result) in
             complection(true,nil)
         }) { (error) in
             complection(false,error)
         }
     }
     //验证邀请码
-    func inviteCodeBind(params:[String:Any]?,complection:@escaping (Bool,Error?) -> Void)
+    func inviteCodeBind(params:[String:Any]?,complection:@escaping (Bool,Error?) -> Void)//inviteCode/bind
     {
-        NetCostom.shared.request(method: .post, wengen: "inviteCode/bind", params: params, success: { (result) in
+        NetCostom.shared.request(method: .post, wengen: "admin/user/code_vilidata", params: params, success: { (result) in
             complection(true,nil)
         }) { (error) in
             complection(false,error)
@@ -441,7 +441,7 @@ class TargetManager: NSObject {
     //修改密码
     func xiugaiPassword(params:[String:Any],complection:@escaping(Bool) ->Void)
     {
-        NetCostom.shared.request(method: .post, wengen: "users/modifyPassword", params: params, success: { (result) in
+        NetCostom.shared.request(method: .post, wengen: "admin/user/modifyPassword", params: params, success: { (result) in
             let model = CurrentUserInfo
             model?.password = params["new_password"] as? String
             NSDictionary.init(dictionary: (model?.toJSON())!).write(toFile: UserPlist, atomically: true)
