@@ -220,7 +220,7 @@ class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
             }
             
             let model:lonelySpeechDetaileModel = broadcastAry[index]
-            let appointment_id = model.appointment_id
+            let appointment_id = model.id
             if let like = model.is_like,like//取消赞
             {
                 TargetManager.share.cancelLikeAppiont(appointment_id: appointment_id, complection: { (result, error) in
@@ -234,7 +234,7 @@ class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
             }
             else//点赞
             {
-                TargetManager.share.likeAppiont(appointment_id: appointment_id, complection: { (complection, error) in
+                TargetManager.share.likeAppiont(appointment_id: appointment_id!, complection: { (complection, error) in
                     if complection//请求数据刷新
                     {
                         model.is_like = true
@@ -255,8 +255,8 @@ class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
                 if type == .publish{
                     
                     let model:lonelySpeechDetaileModel = self.broadcastAry[index]
-                    let params = ["publisher_id":CurrentUserInfo?.user_id ?? "","content":text]
-                    TargetManager.share.issueComment(appointment_id: model.appointment_id ?? "", params: params, complection: { (commentmodel, error) in
+                    let params = ["publisher_id":CurrentUserInfo?.user_id ?? "","content":text, "appointment_id": model.id!]
+                    TargetManager.share.issueComment(appointment_id: model.id ?? "", params: params, complection: { (commentmodel, error) in
                         guard let comment = commentmodel else{
                             return
                         }
@@ -272,12 +272,12 @@ class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
             guard let index = info as? Int else{
                 return
             }
-            guard broadcastAry[index].poster?.user_id != CurrentUserInfo?.user_id else
+            guard broadcastAry[index].user_id != CurrentUserInfo?.user_id else
             {
                 alertHud(title: "不能报名本人哦")
                 return
             }
-            guard broadcastAry[index].poster?.sex != CurrentUserInfo?.sex else
+            guard broadcastAry[index].sex != CurrentUserInfo?.sex else
             {
                 alertHud(title: "不能报名同性别哦")
                 return
@@ -396,9 +396,9 @@ extension ManPersonInfoViewController:TZImagePickerControllerDelegate
         AliyunManager.share.uploadImagesToAliyun(imageModels: models, complection: { (urls, succecCount, failCount, state) in
             if state == UploadImageState.success
             {//报名
-                let params:[String:Any] = ["user_id":CurrentUserInfo?.user_id ?? "","attachment":urls?.last ?? "","has_pay_deposit":0]
                 let model:lonelySpeechDetaileModel = self.broadcastAry[self.reportTag]
-                TargetManager.share.signUpAppiont(appointment_id: model.appointment_id ?? "", params: params, complection: { (success, error) in
+                let params:[String:Any] = ["user_id":CurrentUserInfo?.user_id ?? "","attachment":urls?.last ?? "","has_pay_deposit":0, "appointment_id": model.id!]
+                TargetManager.share.signUpAppiont(appointment_id: model.id ?? "", params: params, complection: { (success, error) in
                     if success
                     {
                         model.sign_up_count  = (model.sign_up_count ?? 0) + 1

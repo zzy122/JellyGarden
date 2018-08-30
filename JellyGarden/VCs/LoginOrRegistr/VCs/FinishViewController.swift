@@ -20,9 +20,7 @@ class FinishViewController: BaseViewController {
         FillCondition.share.getConditions()
 //        clearUserInfo()
         
-        self.autoLogin()
-       
-        
+        self.autoLogin()       
     }
     
     func autoLogin() {//自动登录
@@ -64,6 +62,7 @@ class FinishViewController: BaseViewController {
         let delegate = UIApplication.shared.delegate as! AppDelegate
         delegate.setRootViewController(vc: BaseTabBarViewController())
     }
+    
     @IBAction func registerBtn(_ sender: UIButton) {
         
         self.navigationController?.pushViewController(RegisterViewController(), animated: true)

@@ -46,6 +46,7 @@ class AppointViewController: BaseMainTableViewController,ResponderRouter,TZImage
         })
         return view1
     }()
+    
     var params:[String:Any]? {
         didSet{
             self.closeConditionView()
@@ -59,6 +60,7 @@ class AppointViewController: BaseMainTableViewController,ResponderRouter,TZImage
             }
         }
     }
+    
     var page:Int = 1
     {
         didSet{
@@ -66,11 +68,7 @@ class AppointViewController: BaseMainTableViewController,ResponderRouter,TZImage
         }
     }
     
-    
-    
     var appiontModels:[lonelySpeechDetaileModel]? = []
-    
-    
     
     lazy var addAppiont:UIButton = {
         let btn = UIButton.init(frame: CGRect.init(x: ScreenWidth - 80, y: self.view.frame.height - 80, width: 50, height: 50))
@@ -136,22 +134,21 @@ class AppointViewController: BaseMainTableViewController,ResponderRouter,TZImage
         TargetManager.share.getLonelySpeechList(params: params) { (models, error) in
             guard error != nil else{
 
-                guard let s = models,s.count > 0 else
+                guard models.count > 0 else
                 {
                     alertHud(title: "没有更多数据了")
                     complection(true)
                     return
                 }
                 
-                self.appiontModels = self.appiontModels! + models!
+                self.appiontModels = self.appiontModels! + models
                 complection(true)
                 return
             }
             complection(false)
-            
         }
-        
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
@@ -172,10 +169,6 @@ class AppointViewController: BaseMainTableViewController,ResponderRouter,TZImage
     }
 
     override func clickRightBtn() {
-        
-        
-        
-        
         guard self.conditionView.isselect else {
             self.showConditionView()
             self.conditionView.isselect = true
@@ -183,13 +176,14 @@ class AppointViewController: BaseMainTableViewController,ResponderRouter,TZImage
         }
 
     }
+    
     override func clickLeftBtn() {
         self.closeConditionView()
         AlertAction.share.showbottomPicker(title: self.cityStr, maxCount: 1, dataAry: currentCitys, currentData: [self.cityStr]) { (result) in
             self.cityStr = result.last ?? self.cityStr
-            
         }
     }
+    
     func closeConditionView() {
         UIView.animate(withDuration: 0.3, animations: {
             self.conditionView.frame = CGRect.init(x: 0, y: -250, width: ScreenWidth, height: 250)
@@ -197,6 +191,7 @@ class AppointViewController: BaseMainTableViewController,ResponderRouter,TZImage
             self.conditionView.isselect = false
         }
     }
+    
     func showConditionView() {
         UIView.animate(withDuration: 0.3, animations: {
             self.conditionView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 250)
@@ -281,7 +276,7 @@ extension AppointViewController
             return
         }
         if name == ClickReportName {//点击产看报名
-            guard let model = appiontModels?[index],model.poster?.user_id == CurrentUserInfo?.user_id else
+            guard let model = appiontModels?[index],model.user_id == CurrentUserInfo?.user_id else
             {
                 alertHud(title: "只有本人才能查看报名哦")
                 return
@@ -292,12 +287,12 @@ extension AppointViewController
             RootNav().pushViewController(vc, animated: true)
         }
         if ClickEnlistBtn == name {//我要报名
-            guard let model = appiontModels?[index],model.poster?.user_id != CurrentUserInfo?.user_id else
+            guard let model = appiontModels?[index],model.user_id != CurrentUserInfo?.user_id else
             {
                 alertHud(title: "不能报名本人哦")
                 return
             }
-            guard model.poster?.sex != CurrentUserInfo?.sex else
+            guard model.sex != CurrentUserInfo?.sex else
             {
                 alertHud(title: "不能报名同性别哦")
                 return
@@ -316,7 +311,7 @@ extension AppointViewController
         }
         if name == ClickLikeChangeBtn  {//点赞
             let model:lonelySpeechDetaileModel = appiontModels![index]
-            let appointment_id = model.appointment_id
+            let appointment_id = model.id
             if let like = model.is_like,like//取消赞
             {
                 TargetManager.share.cancelLikeAppiont(appointment_id: appointment_id, complection: { (result, error) in
@@ -330,7 +325,7 @@ extension AppointViewController
             }
             else//点赞
             {
-                TargetManager.share.likeAppiont(appointment_id: appointment_id, complection: { (complection, error) in
+                TargetManager.share.likeAppiont(appointment_id: appointment_id!, complection: { (complection, error) in
                     if complection//请求数据刷新
                     {
                         model.is_like = true
@@ -342,21 +337,20 @@ extension AppointViewController
         }
         if name == ClickCommentBtn {//评论
              let model:lonelySpeechDetaileModel = self.appiontModels![index]
-            if  model.poster?.sex == CurrentUserInfo?.sex && model.poster?.user_id != CurrentUserInfo?.user_id
+            if  model.sex == CurrentUserInfo?.sex && model.user_id != CurrentUserInfo?.user_id
             {
                 alertHud(title: "不能评论同性别哦")
                 return
             }
             
             AlertAction.share.showCommentView(clickType: { (type, str) in
-                guard let text = str,text.count > 0 else{
+                guard let text = str,text.count > 0 else {
                     return
                 }
                 if type == .publish{
                    
-                   
-                    let params = ["publisher_id":CurrentUserInfo?.user_id ?? "","content":text]
-                    TargetManager.share.issueComment(appointment_id: model.appointment_id ?? "", params: params, complection: { (commentmodel, error) in
+                    let params = ["publisher_id":CurrentUserInfo?.user_id ?? "","content":text, "appointment_id": model.id!]
+                    TargetManager.share.issueComment(appointment_id: model.id ?? "", params: params, complection: { (commentmodel, error) in
                         guard let comment = commentmodel else{
                             return
                         }
@@ -400,22 +394,22 @@ extension AppointViewController
     {
         let model:lonelySpeechDetaileModel = appiontModels![index]
         let userSex = CurrentUserInfo?.sex
-        if userSex == 0,userSex == model.poster?.sex
+        if userSex == 0,userSex == model.sex
         {
             alertHud(title: "男士不能查看男士列表哦~")
             return
         }
-        if userSex == 1,userSex == model.poster?.sex
+        if userSex == 1,userSex == model.sex
         {
             alertHud(title: "女士不能查看女士列表哦~")
             return
         }
         RootViewController?.hideTheTabbar()
-        if model.poster?.sex == 1
+        if model.sex == 1
         {
             
             let vc = PersonInfoViewController()
-            TargetManager.share.getDetailUserInfo(userid: model.poster?.user_id ?? "",isUpdateUser:false, complection: { (userinfo, error) in
+            TargetManager.share.getDetailUserInfo(userid: model.user_id ?? "",isUpdateUser:false, complection: { (userinfo, error) in
                 guard let user = userinfo else{
                     return
                 }
@@ -427,7 +421,7 @@ extension AppointViewController
         else
         {
             let vc = ManPersonInfoViewController()
-            TargetManager.share.getDetailUserInfo(userid: model.poster?.user_id ?? "",isUpdateUser:false, complection: { (userinfo, error) in
+            TargetManager.share.getDetailUserInfo(userid: model.user_id ?? "",isUpdateUser:false, complection: { (userinfo, error) in
                 guard let user = userinfo else{
                     return
                 }
@@ -464,14 +458,13 @@ extension AppointViewController
             model.image = imageModel
             model.fileName = getImageName()
             models.append(model)
-            
         }
         AliyunManager.share.uploadImagesToAliyun(imageModels: models, complection: { (urls, succecCount, failCount, state) in
             if state == UploadImageState.success
             {//报名
-                let params:[String:Any] = ["user_id":CurrentUserInfo?.user_id ?? "","attachment":urls?.last ?? "","has_pay_deposit":0]
                 let model:lonelySpeechDetaileModel = self.appiontModels![self.reportTag]
-                TargetManager.share.signUpAppiont(appointment_id: model.appointment_id ?? "", params: params, complection: { (success, error) in
+                let params:[String:Any] = ["user_id":CurrentUserInfo?.user_id ?? "","attachment":urls?.last ?? "","has_pay_deposit":0, "appointment_id": model.id!]
+                TargetManager.share.signUpAppiont(appointment_id: model.id ?? "", params: params, complection: { (success, error) in
                     if success
                     {
                         model.sign_up_count  = (model.sign_up_count ?? 0) + 1

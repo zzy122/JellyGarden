@@ -28,17 +28,16 @@ func request(page:Int,type:SearchType?,page_size:Int,sex:sexType?,locaCity:Strin
     {
         switch tagType {
         case .hot:
-            params["query"] = "hot"
+            params["type"] = "1"
             break
         case .attestation:
-            params["query"] = "authorization"
+            params["type"] = "3"
             break
         case .new:
-            params["query"] = "latest"
+            params["type"] = "2"
             break
         }
     }
-    
     
     TargetManager.share.geiMainUserList(params: params) { (modelList, error) in
         complection(modelList,error)

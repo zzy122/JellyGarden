@@ -29,10 +29,6 @@ class MainBodyCollectionViewCell: UICollectionViewCell,UITableViewDataSource,UIT
     private var currentLocalCity:String?//保存当前的筛选地址
     var tagLocalCity:String?//设置当前的筛选地址
     
-    
-    
-    
-    
 
     var userType:SearchType? {
         didSet{

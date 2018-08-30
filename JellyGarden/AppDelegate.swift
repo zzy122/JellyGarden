@@ -37,8 +37,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //jpush自定义消息
         NotificationCenter.default.addObserver(self, selector: #selector(networkDidReceiveMessage(notification:)), name: NSNotification.Name.jpfNetworkDidReceiveMessage, object: nil)
         // Override point for customization after application launch.
+        
         return true
     }
+    
+    
     @objc func networkDidReceiveMessage(notification:NSNotification){//自定义的消息
         DebugLog(message: "收到的通知:\(String(describing: notification.userInfo))")
         APPNotyfyDealwith.share.addNotifyInfo(info: notification.userInfo?["content"] as? [String : Any])
