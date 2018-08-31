@@ -492,9 +492,7 @@ extension UserInfoViewController
         for i in 0 ..< urlStrs.count
         {
             let urlstr = urlStrs[i]
-
-            let params:[String:Any] = ["user_id":CurrentUserInfo?.user_id ?? "","url":urlstr,"type":0]
-            
+            let params:[String:Any] = ["user_id":CurrentUserInfo?.user_id ?? "","url_list":urlstr,"type":0]
             TargetManager.share.addUserPhotos(params: params, complection: { (success) in
                 DebugLog(message: "上传成功")
                 if i == urlStrs.count - 1

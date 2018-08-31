@@ -194,6 +194,7 @@ extension NetCostom {
         else if let err = error as? Error
         {
             message = err.localizedDescription
+            
             backError(NSError.init(domain: "NSApplicationErrorDomain", code: 1, userInfo: ["_exceptionMessage":message ?? ""]))
         }
         alertHud(title: message!)

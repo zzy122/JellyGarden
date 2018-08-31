@@ -81,7 +81,7 @@ class LookImageSettingViewController: BaseMainViewController {
     @IBAction func clickImageStatusBtn(_ sender: UIButton) {
         
             let status = (sender.isSelected ? 0 : 1)
-            let params:[String:Any] = ["user_id":CurrentUserInfo?.user_id ?? "","url":curruntImage?.url ?? "","type":status]
+            let params:[String:Any] = ["user_id":CurrentUserInfo?.user_id ?? "","url_list":curruntImage?.url ?? "","type":status]
         TargetManager.share.updateUserPhotos(params: params) { (success) in
             if success {
                 let model = self.curruntImage

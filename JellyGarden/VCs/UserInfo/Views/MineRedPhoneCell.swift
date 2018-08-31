@@ -52,6 +52,12 @@ class MineRedPhoneCell: UITableViewCell {
     }
     
     @IBAction func touchRedPhoto() {
+        guard let photos = CurrentUserInfo?.custom_photos,photos.count > 0 else
+        {
+            alertHud(title: "请先上传图片")
+            return
+        }
+        
         zzy.router(name: ClickSettingRedpacket, object: nil, info: nil)
         
     }

@@ -96,6 +96,7 @@
         messageContentViewRect.origin.x =
         self.baseContentView.bounds.size.width - (self.view.tagRect.size.width + HeadAndContentSpacing +
                                                   [RCIM sharedRCIM].globalMessagePortraitSize.width + 10);
+        
         self.messageContentView.frame = messageContentViewRect;
     }
 }
