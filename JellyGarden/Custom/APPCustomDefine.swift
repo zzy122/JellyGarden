@@ -18,7 +18,7 @@ var NeedGesterPassword:Bool = false {
     }
 }
 
-let SERVER_HOST:String = "http://www.18huyu.com/"
+let SERVER_HOST:String = "http://mianju.sxyunshui.com/"
 //let SERVER_HOST:String = "http://mianju.sxyunshui.com/admin/user/"
 
 let UserPath:String = {

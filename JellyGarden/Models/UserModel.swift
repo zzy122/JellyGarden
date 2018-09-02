@@ -11,7 +11,7 @@ import UIKit
 class PhotoModel:JSON
 {
     var view_users:[String]?
-    var url:String?
+    var url_list:String?
     var price:Int?
     var type:Int?
     var can_view_duration:Int?

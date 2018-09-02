@@ -102,7 +102,7 @@ extension SetRedPacketPhotoViewController:UICollectionViewDelegate,UICollectionV
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell:SetRedpacketCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "SetRedpacketCollectionViewCell", for: indexPath) as! SetRedpacketCollectionViewCell
         let model:PhotoModel = self.dataAry![indexPath.row]
-        if model.url != self.selectModel?.url
+        if model.url_list != self.selectModel?.url_list
         {
             cell.model = model
         }

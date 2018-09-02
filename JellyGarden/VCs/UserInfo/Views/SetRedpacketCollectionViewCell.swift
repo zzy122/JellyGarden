@@ -19,7 +19,7 @@ class SetRedpacketCollectionViewCell: UICollectionViewCell {
     var model:PhotoModel?
     {
         didSet{
-            self.contentImageView.sd_DownLoadImage(url: model?.url ?? "")
+            self.contentImageView.sd_DownLoadImage(url: model?.url_list ?? "")
         }
     }
     @IBAction func clickSelectCellBtn(_ sender: UIButton) {

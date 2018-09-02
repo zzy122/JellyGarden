@@ -33,7 +33,7 @@ class LookImageViewController: BaseViewController,ResponderRouter {
     var model:PhotoModel?
     {
         didSet{
-            self.imageUrl = model?.url ?? ""
+            self.imageUrl = model?.url_list ?? ""
             var typeLook:LookImageType = .clearness
             switch model?.type {
             case 0?://普通

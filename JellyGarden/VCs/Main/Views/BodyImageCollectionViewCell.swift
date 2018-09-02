@@ -40,7 +40,7 @@ class BodyImageCollectionViewCell: UICollectionViewCell {
                type = .lookAfter
             }
             
-            self.setImage(imageStr: model?.url ?? "", isImplement: type,image:nil)
+            self.setImage(imageStr: model?.url_list ?? "", isImplement: type,image:nil)
         }
     }
     var type:LookImageType = .clearness

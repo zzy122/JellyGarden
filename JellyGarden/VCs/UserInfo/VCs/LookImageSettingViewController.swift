@@ -58,7 +58,7 @@ class LookImageSettingViewController: BaseMainViewController {
     }
     @IBAction func clickDeleteBtn(_ sender: UIButton) {//删除
         
-        TargetManager.share.deletePhoto(imageUrl: curruntImage?.url ?? "") { (success) in
+        TargetManager.share.deletePhoto(imageUrl: curruntImage?.url_list ?? "") { (success) in
             if success {
                 let model = CurrentUserInfo
                 model?.custom_photos?.remove(at: self.tagIndex)
@@ -81,7 +81,7 @@ class LookImageSettingViewController: BaseMainViewController {
     @IBAction func clickImageStatusBtn(_ sender: UIButton) {
         
             let status = (sender.isSelected ? 0 : 1)
-            let params:[String:Any] = ["user_id":CurrentUserInfo?.user_id ?? "","url_list":curruntImage?.url ?? "","type":status]
+            let params:[String:Any] = ["user_id":CurrentUserInfo?.user_id ?? "","url_list":curruntImage?.url_list ?? "","type":status]
         TargetManager.share.updateUserPhotos(params: params) { (success) in
             if success {
                 let model = self.curruntImage
@@ -125,7 +125,7 @@ extension LookImageSettingViewController:UICollectionViewDelegate,UICollectionVi
         let cell:BodyImageCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "BodyImageCollectionViewCell", for: indexPath) as! BodyImageCollectionViewCell
         let model = imageDataSource[indexPath.row]
         cell.type = LookImageType.clearness
-        cell.imageV.sd_DownLoadImage(url: model.url ?? "")
+        cell.imageV.sd_DownLoadImage(url: model.url_list ?? "")
         return cell
         
     }

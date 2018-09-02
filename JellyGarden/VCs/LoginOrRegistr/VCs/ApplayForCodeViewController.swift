@@ -34,10 +34,10 @@ class ApplayForCodeViewController: BaseViewController {
             return
         }
         
-        var params:[String:Any] = ["city":localStr,"info_channel":channal,"wx":wxStr]
+        var params:[String:Any] = ["city":localStr,"channel":channal,"wechat":wxStr,"user_id":CurrentUserInfo?.user_id ?? ""]
         
         if let sugesStr = suggestPersonFiled.text,sugesStr.count > 0 {
-            params["referrer"] = sugesStr
+            params["referee"] = sugesStr
         }
         TargetManager.share.inviteCode(params: params) { (result, error) in
             if (result)

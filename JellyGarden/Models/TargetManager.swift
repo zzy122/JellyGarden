@@ -489,7 +489,8 @@ class TargetManager: NSObject {
     //取消拉黑
     func cancelUserReportRequest(report_user_id:String,complection:@escaping (Bool) ->Void)
     {
-        NetCostom.shared.request(method: .delete, wengen: "userReport/\(report_user_id)?user_id=\(CurrentUserInfo?.user_id ?? "")", params: nil, success: {(result) in
+        let param:[String:Any] = ["user_id":CurrentUserInfo?.user_id ?? "","report_user_id":report_user_id]
+        NetCostom.shared.request(method: .post, wengen: "admin/user/remove_black", params: param, success: {(result) in
             complection(true)
         }) { (error) in
             complection(false)
@@ -519,7 +520,7 @@ class TargetManager: NSObject {
         }
     }
     //更新权限
-    func updatePermission(params:[String:Any]? ,complection:@escaping(Bool) ->Void)
+    func updatePermission(params:[String:Any]? ,complection:@escaping(Bool) ->Void)//users/\(CurrentUserInfo?.user_id ?? "")/permission
     {
         NetCostom.shared.request(method: .put, wengen: "users/\(CurrentUserInfo?.user_id ?? "")/permission", params: params, success: { (result) in
             complection(true)
@@ -589,9 +590,9 @@ class TargetManager: NSObject {
         }
     }
     //添加支付宝账号
-    func addAlipayAccount(params:[String:Any],complection:@escaping(Bool) -> Void)
+    func addAlipayAccount(params:[String:Any],complection:@escaping(Bool) -> Void)//
     {
-        NetCostom.shared.request(method: .post, wengen: "alipay", params: params, success: { (result) in
+        NetCostom.shared.request(method: .post, wengen: "admin/user/add_alipay", params: params, success: { (result) in
             complection(true)
         }) { (error) in
             complection(false)

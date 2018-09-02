@@ -23,8 +23,6 @@ var User_Path = "\(documentPath)/User"//用户信息路径
 
 let ScreenWidth:CGFloat = UIScreen.main.bounds.size.width
 let ScreenHeight:CGFloat = UIScreen.main.bounds.size.height
-
-
 let kFont_SmallNormal = kFont_system13
 let kFont_Normal = UIFont.systemFont(ofSize: 15)
 let kFont_system10 = UIFont.systemFont(ofSize: 10);
@@ -42,14 +40,7 @@ let kFont_system21 = UIFont.systemFont(ofSize: 21);
 let kFont_system22 = UIFont.systemFont(ofSize: 22);
 let kFont_system23 = UIFont.systemFont(ofSize: 23);
 
-
 let SCALE = ScreenWidth / 320.0
-
-
-
-
-
-
 
 let alertTitle = "提示"
 let alertWarmTitle = "温馨提示"
