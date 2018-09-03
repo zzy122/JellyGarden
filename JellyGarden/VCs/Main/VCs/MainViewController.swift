@@ -47,7 +47,6 @@ class MainViewController: BaseMainViewController,UISearchBarDelegate,ResponderRo
             self.bodyView.scrollToindex(index: index)
         })
         return itemScroll
-        
     }()
     lazy var bodyView:MainBodyView = {
         let body = MainBodyView.init(frame: CGRect.init(x: 0, y: self.scrollItemView.frame.maxY, width: ScreenWidth, height: self.view.frame.height - self.scrollItemView.frame.maxY))

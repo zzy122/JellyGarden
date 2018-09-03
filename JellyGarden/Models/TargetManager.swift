@@ -67,7 +67,7 @@ class TargetManager: NSObject {
     }
     func thirdLoginAction(params:[String:Any],complection:@escaping (UserModel?,Error?) -> Void)
     {
-        NetCostom.shared.request(method:.post ,wengen: "users/thirdlogin", params: params, success: { (result) in
+        NetCostom.shared.request(method:.post ,wengen: "admin/user/third_login", params: params, success: { (result) in
             guard let user = result as? [String:Any] else {
                 return
             }
@@ -258,16 +258,9 @@ class TargetManager: NSObject {
     //vip套餐
     func getVipPackages(complection:@escaping ([VipPageModel]?,Error?) -> Void)
     {
-        NetCostom.shared.request(method: .post, wengen: "vip/packages", params: nil, success: { (result) in
-            if let jsonStr = result as? [String:Any]
-            {
-                let model = BaseModel<VipPageModel,[VipPageModel]>.init(resultData: jsonStr["data"] ?? "")
-                complection(model.resultData,nil)
-            }
-            else
-            {
-                alertHud(title: "数据返回错误")
-            }
+        NetCostom.shared.request(method: .post, wengen: "admin/user/get_vip_package", params: nil, success: { (result) in
+            let model = BaseModel<VipPageModel,[VipPageModel]>.init(resultData: result)
+            complection(model.resultData,nil)
         }) { (error) in
             
         }
@@ -275,7 +268,7 @@ class TargetManager: NSObject {
     //购买套餐
     func vipBuy(params:[String:Any]?,complection:@escaping (Any?,Error?) -> Void)
     {
-        NetCostom.shared.request(method: .post, wengen: "vip/buy", params: params, success: { (result) in
+        NetCostom.shared.request(method: .post, wengen: "admin/order/vip_order", params: params, success: { (result) in
             complection(result,nil)
         }) { (error) in
             complection(nil,error)
@@ -520,9 +513,9 @@ class TargetManager: NSObject {
         }
     }
     //更新权限
-    func updatePermission(params:[String:Any]? ,complection:@escaping(Bool) ->Void)//users/\(CurrentUserInfo?.user_id ?? "")/permission
+    func updatePermission(params:[String:Any] ,complection:@escaping(Bool) ->Void)//users/\(CurrentUserInfo?.user_id ?? "")/permission
     {
-        NetCostom.shared.request(method: .put, wengen: "users/\(CurrentUserInfo?.user_id ?? "")/permission", params: params, success: { (result) in
+        NetCostom.shared.request(method: .post, wengen: "admin/user/edit_permission", params: params, success: { (result) in
             complection(true)
         }) { (error) in
             complection(false)
