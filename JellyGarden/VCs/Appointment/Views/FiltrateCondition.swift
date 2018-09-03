@@ -27,7 +27,7 @@ class FiltrateCondition: UIView,UICollectionViewDelegate,UICollectionViewDataSou
     var isselect:Bool = false
     private var backda:backParagram?
     
-    typealias backParagram = ([String:Any]?) -> Void
+    typealias backParagram = ([String:Any]) -> Void
     var textColor = k_CustomColor(red: 84, green: 132, blue: 202)
     
     var titleAry:[[String]] = [["男","女"],["离我最近","最新发布"],["全部","付费约会","免费约会"]]
@@ -44,7 +44,7 @@ class FiltrateCondition: UIView,UICollectionViewDelegate,UICollectionViewDataSou
         }
     }
     
-    var condition:conditionType? {
+    var condition: conditionType? {
         didSet{
             self.param["condition"] = condition?.rawValue
             if condition == .all {
@@ -101,7 +101,7 @@ class FiltrateCondition: UIView,UICollectionViewDelegate,UICollectionViewDataSou
        self.backda?(self.param)
     }
     
-    func backParam(backParam:@escaping backParagram) {
+    func backParam(backParam: @escaping backParagram) {
         self.backda = backParam
     }
 }

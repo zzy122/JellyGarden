@@ -16,9 +16,6 @@ class AppointViewController: BaseMainTableViewController,ResponderRouter,TZImage
     var cityStr:String = LocalCityName {
         didSet{
             LocalCityName = cityStr
-            MM_WARNING//此处设置请求params  self.params 发起请求
-//            self.params[]
-            
             self.leftBtn.isHidden = false
             self.leftBtn.setTitle(cityStr, for: UIControlState.normal)
             self.leftBtn.titleLabel?.font = kFont_system15
@@ -26,6 +23,16 @@ class AppointViewController: BaseMainTableViewController,ResponderRouter,TZImage
             self.leftBtn.setImage(imageName(name: "箭头-下"), for: UIControlState.normal)
             
             self.leftBtn.sizeToFit()
+            
+            if tableView.mj_header.isRefreshing {
+                tableView.mj_header.endRefreshing()
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.25) {
+                    self.tableView.mj_header.beginRefreshing()
+                }
+            }
+            else {
+                tableView.mj_header.beginRefreshing()
+            }
         }
     }
     
@@ -39,40 +46,35 @@ class AppointViewController: BaseMainTableViewController,ResponderRouter,TZImage
         let view1 = FiltrateCondition.init(frame: CGRect.init(x: 0, y: -250, width: ScreenWidth, height: 250))
         
         self.view.addSubview(view1)
-        view1.backParam(backParam: {[weak self] (param) in
+        view1.backParam(backParam: { [weak self] (param) in
             var tagParam = param
             self?.page = 0
-            tagParam!["page"] = 0
-            tagParam!["page_size"] = 5
+            tagParam["page"] = 0
+            tagParam["page_size"] = 5
             self?.params = param
         })
         return view1
     }()
     
-    var params:[String:Any]? {
+    var params: [String:Any] = [:] {
         didSet{
             self.closeConditionView()
-            self.getAppiontData(param: params!) { (result) in
-                if result
-                {
-                    self.tableView.reloadData()
+            if tableView.mj_header.isRefreshing {
+                tableView.mj_header.endRefreshing()
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.25) {
+                    self.tableView.mj_header.beginRefreshing()
                 }
-                self.headerFresh.endRefreshing()
-                self.footerFresh.endRefreshing()
+            }
+            else {
+                tableView.mj_header.beginRefreshing()
             }
         }
     }
     
-    var page:Int = 1
-    {
-        didSet{
-            self.params?["page"] = page
-        }
-    }
+    var page: Int = 1
+    var appiontModels: [lonelySpeechDetaileModel] = []
     
-    var appiontModels:[lonelySpeechDetaileModel]? = []
-    
-    lazy var addAppiont:UIButton = {
+    lazy var addAppiont: UIButton = {
         let btn = UIButton.init(frame: CGRect.init(x: ScreenWidth - 80, y: self.view.frame.height - 80, width: 50, height: 50))
         btn.setImage(imageName(name: "添加"), for: UIControlState.normal)
         btn.addTarget(self, action: #selector(clickAdd), for: UIControlEvents.touchUpInside)
@@ -80,19 +82,18 @@ class AppointViewController: BaseMainTableViewController,ResponderRouter,TZImage
         self.view.addSubview(btn)
         return btn
     }()
-    
    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.addAppiont.frame = CGRect.init(x: ScreenWidth - 80, y: self.view.frame.height - 80, width: 50, height: 50)
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "寂寞告白"
         self.cityStr = LocalCityName
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
         self.tableView.register(UINib.init(nibName: "ConfessionTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "ConfessionTableViewCell")
-        self.params = ["sort":"near","page": self.page,"page_size":5]
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
         headerFresh.setRefreshingTarget(self, refreshingAction: #selector(self.refresh))
         footerFresh.setRefreshingTarget(self, refreshingAction: #selector(footerRefreshAction))
@@ -102,48 +103,49 @@ class AppointViewController: BaseMainTableViewController,ResponderRouter,TZImage
         tableView.estimatedSectionHeaderHeight = 0
         self.tableView.mj_header = headerFresh
         self.tableView.mj_footer = footerFresh
-         self.edgesForExtendedLayout = UIRectEdge.init(rawValue: 0)
+        self.edgesForExtendedLayout = UIRectEdge.init(rawValue: 0)
+        self.params = ["sort":"near","page": self.page,"page_size":5]
     }
-    @objc func footerRefreshAction()
-    {
+    
+    @objc func footerRefreshAction() {
        self.page = self.page + 1
-//    self.getAppiontData(param: self.params!) { (result) in
-//            if result
-//            {
-//                self.tableView.reloadData()
-//            }
-//            self.headerFresh.endRefreshing()
-//            self.footerFresh.endRefreshing()
-//        }
+       self.getAppiontData(param: self.params) { (result) in
+            if result {
+                self.tableView.reloadData()
+            }
+            self.headerFresh.endRefreshing()
+            self.footerFresh.endRefreshing()
+        }
     }
-    @objc func refresh()
-    {
-        
-        self.appiontModels?.removeAll()
+    
+    @objc func refresh() {
+        self.appiontModels.removeAll()
         self.page = 1
-//        self.getAppiontData(param: self.params!) { (result) in
-//            if result
-//            {
-//                self.tableView.reloadData()
-//            }
-//            self.headerFresh.endRefreshing()
-//            self.footerFresh.endRefreshing()
-//        }
+        self.getAppiontData(param: self.params) { (result) in
+            if result {
+                self.tableView.reloadData()
+            }
+            self.headerFresh.endRefreshing()
+            self.footerFresh.endRefreshing()
+        }
     }
-    func getAppiontData(param:[String:Any] ,complection:@escaping (Bool) -> Void) {
+    
+    func getAppiontData(param: [String:Any], complection:@escaping (Bool) -> Void) {
         var params = param
         params["user_id"] = CurrentUserInfo?.user_id ?? ""
+        params["page"] = page
+        params["page_size"] = 10
+        params["city"] = cityStr
+        
         TargetManager.share.getLonelySpeechList(params: params) { (models, error) in
-            guard error != nil else{
-
-                guard models.count > 0 else
-                {
+            if error == nil {
+                guard models.count > 0 else {
                     alertHud(title: "没有更多数据了")
                     complection(true)
                     return
                 }
                 
-                self.appiontModels = self.appiontModels! + models
+                self.appiontModels = self.appiontModels + models
                 complection(true)
                 return
             }
@@ -176,7 +178,6 @@ class AppointViewController: BaseMainTableViewController,ResponderRouter,TZImage
             self.conditionView.isselect = true
             return
         }
-
     }
     
     override func clickLeftBtn() {
@@ -201,55 +202,51 @@ class AppointViewController: BaseMainTableViewController,ResponderRouter,TZImage
             
         }
     }
-    
-    
-    
-    
+
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return self.appiontModels?.count ?? 0
+        return self.appiontModels.count
     }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:ConfessionTableViewCell = tableView.dequeueReusableCell(withIdentifier: "ConfessionTableViewCell", for: indexPath) as! ConfessionTableViewCell
         cell.selectionStyle = UITableViewCellSelectionStyle.none
         cell.tag = indexPath.section
 
-        cell.setDatasource(model: appiontModels![indexPath.section])
+        cell.setDatasource(model: appiontModels[indexPath.section])
         return cell
     }
+    
     @objc func clickAdd(){
         AlertViewCoustom().showalertView(style: .actionSheet, title: "广播", message: nil, cancelBtnTitle: "取消", touchIndex: { (index) in
-            if index == 1
-            {
+            if index == 1 {
               RootNav().pushViewController(NormalAppointmentViewController(), animated: true)
             }
-            else if index == 2
-            {
+            else if index == 2 {
                 RootNav().pushViewController(EnlistAppiontViewController(), animated: true)
             }
-            DebugLog(message: "\(index)")
-            
         }, otherButtonTitles: "普通约会广播", "报名约会广播")
     }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let model = appiontModels?[indexPath.section]
-        
-        let height = caculateCellHeight(model: model!)
+        let model = appiontModels[indexPath.section]
+        let height = caculateCellHeight(model: model)
         return height
-
-        
     }
+    
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let view1 = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 20))
         view1.backgroundColor = UIColor.clear
         return view1
-        
     }
+    
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 20
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }
@@ -258,44 +255,34 @@ class AppointViewController: BaseMainTableViewController,ResponderRouter,TZImage
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
-extension AppointViewController
-{
+
+extension AppointViewController {
+    
     func interceptRoute(name: String, objc: UIResponder?, info: Any?) {
-        guard let index = info as? Int else{
+        
+        guard let index = info as? Int else {
             return
         }
+        
         if name == ClickReportName {//点击产看报名
-            guard let model = appiontModels?[index],model.user_id == CurrentUserInfo?.user_id else
-            {
+            guard appiontModels[index].user_id == CurrentUserInfo?.user_id else {
                 alertHud(title: "只有本人才能查看报名哦")
                 return
             }
             RootViewController?.hideTheTabbar()
             let vc = EnlistDetailViewController()
-            vc.detaileModel = model
+            vc.detaileModel = appiontModels[index]
             RootNav().pushViewController(vc, animated: true)
         }
+        
         if ClickEnlistBtn == name {//我要报名
-            guard let model = appiontModels?[index],model.user_id != CurrentUserInfo?.user_id else
-            {
+            guard appiontModels[index].user_id != CurrentUserInfo?.user_id else {
                 alertHud(title: "不能报名本人哦")
                 return
             }
-            guard model.sex != CurrentUserInfo?.sex else
-            {
+            
+            guard appiontModels[index].sex != CurrentUserInfo?.sex else {
                 alertHud(title: "不能报名同性别哦")
                 return
             }
@@ -305,31 +292,28 @@ extension AppointViewController
             vc?.allowPickingImage = true
             vc?.allowTakePicture = true
             vc?.didFinishPickingPhotosHandle = {(photos, assets, isSelectOriginalPhoto) in
-                self.uploadImage(sender: photos)
-                
+                self.uploadImage(sender: photos ?? [])
             }
             self.present(vc!, animated: true, completion: nil)
             self.reportTag = index
         }
+        
         if name == ClickLikeChangeBtn  {//点赞
-            let model:lonelySpeechDetaileModel = appiontModels![index]
+            let model:lonelySpeechDetaileModel = appiontModels[index]
             let appointment_id = model.id
-            if let like = model.is_like,like//取消赞
-            {
+            /// 取消赞
+            if let like = model.is_like, like {
                 TargetManager.share.cancelLikeAppiont(appointment_id: appointment_id, complection: { (result, error) in
-                    if result//请求数据刷新
-                    {
+                    if result { //请求数据刷新
                          model.likes_count  =  model.likes_count! - 1
                         model.is_like = false
                         self.reloadMyTableView(index: index, model: model)
                     }
                 })
             }
-            else//点赞
-            {
+            else { //点赞
                 TargetManager.share.likeAppiont(appointment_id: appointment_id!, complection: { (complection, error) in
-                    if complection//请求数据刷新
-                    {
+                    if complection { //请求数据刷新
                         model.is_like = true
                          model.likes_count  =  (model.likes_count ?? 0) + 1
                         self.reloadMyTableView(index: index, model: model)
@@ -338,9 +322,8 @@ extension AppointViewController
             }
         }
         if name == ClickCommentBtn {//评论
-             let model:lonelySpeechDetaileModel = self.appiontModels![index]
-            if  model.sex == CurrentUserInfo?.sex && model.user_id != CurrentUserInfo?.user_id
-            {
+             let model:lonelySpeechDetaileModel = self.appiontModels[index]
+            if  model.sex == CurrentUserInfo?.sex && model.user_id != CurrentUserInfo?.user_id {
                 alertHud(title: "不能评论同性别哦")
                 return
             }
@@ -350,7 +333,6 @@ extension AppointViewController
                     return
                 }
                 if type == .publish{
-                   
                     let params = ["publisher_id":CurrentUserInfo?.user_id ?? "","content":text, "appointment_id": model.id!]
                     TargetManager.share.issueComment(appointment_id: model.id ?? "", params: params, complection: { (commentmodel, error) in
                         guard let comment = commentmodel else{
@@ -359,17 +341,13 @@ extension AppointViewController
                         model.comments?.append(comment)
                         self.reloadMyTableView(index: index, model: model)
                     })
-                    
                 }
-                
             })
         }
-        if name == ClickUserInfoHeader//点击头像
-        {
+        if name == ClickUserInfoHeader { //点击头像
            self.checkUserinfoData(index: index)
         }
-        if name == ClickDepositBtn
-        {
+        if name == ClickDepositBtn {
 //            let model:lonelySpeechDetaileModel = appiontModels![index]
 //
 //            AlertAction.share.showAlertView(type: UIKeyboardType.numberPad, title: "是否支付定金", placeHodel: "",textStr:"¥\(String(model.deposit!))", detailTitle: "自愿支付定金,支付金额暂存在平台上", detailImage: imageName(name: "提示")) { (success, backStr) in
@@ -386,30 +364,25 @@ extension AppointViewController
 //                }
 //            }
         }
-        if name == ClickCommentCell//点击评论
-        {
+        if name == ClickCommentCell { //点击评论
             self.checkUserinfoData(index: index)
         }
-        
     }
-    func checkUserinfoData(index:Int)
-    {
-        let model:lonelySpeechDetaileModel = appiontModels![index]
+    
+    func checkUserinfoData(index:Int) {
+        let model:lonelySpeechDetaileModel = appiontModels[index]
         let userSex = CurrentUserInfo?.sex
-        if userSex == 0,userSex == model.sex
-        {
+        if userSex == 0,userSex == model.sex {
             alertHud(title: "男士不能查看男士列表哦~")
             return
         }
-        if userSex == 1,userSex == model.sex
-        {
+        
+        if userSex == 1,userSex == model.sex {
             alertHud(title: "女士不能查看女士列表哦~")
             return
         }
         RootViewController?.hideTheTabbar()
-        if model.sex == 1
-        {
-            
+        if model.sex == 1 {
             let vc = PersonInfoViewController()
             TargetManager.share.getDetailUserInfo(userid: model.user_id ?? "",isUpdateUser:false, complection: { (userinfo, error) in
                 guard let user = userinfo else{
@@ -420,8 +393,7 @@ extension AppointViewController
                 RootNav().pushViewController(vc, animated: true)
             })
         }
-        else
-        {
+        else {
             let vc = ManPersonInfoViewController()
             TargetManager.share.getDetailUserInfo(userid: model.user_id ?? "",isUpdateUser:false, complection: { (userinfo, error) in
                 guard let user = userinfo else{
@@ -433,49 +405,42 @@ extension AppointViewController
             })
         }
     }
-    func reloadMyTableView(index:Int, model:lonelySpeechDetaileModel)
-    {
-        self.appiontModels?.remove(at: index)
-        self.appiontModels?.insert(model, at: index)
+    
+    func reloadMyTableView(index:Int, model:lonelySpeechDetaileModel) {
+        self.appiontModels.remove(at: index)
+        self.appiontModels.insert(model, at: index)
         let indexPath = IndexPath.init(row: 0, section: index)
         self.tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
-        
     }
-   
-    
 }
-extension AppointViewController
-{
+
+extension AppointViewController {
     //添加照片的协议方法
   
-    func uploadImage(sender:[Image]?)
-    {
-        guard let photos = sender ,photos.count > 0 else {
+    func uploadImage(sender: [Image]) {
+        guard sender.count > 0 else {
             return
         }
-        var models:[AliyunUploadModel] = []
-        for imageModel in photos
-        {
+        
+        let models:[AliyunUploadModel] = sender.map({
             let model = AliyunUploadModel()
-            model.image = imageModel
+            model.image = $0
             model.fileName = getImageName()
-            models.append(model)
-        }
+            return model
+        })
+        
         AliyunManager.share.uploadImagesToAliyun(imageModels: models, complection: { (urls, succecCount, failCount, state) in
-            if state == UploadImageState.success
-            {//报名
-                let model:lonelySpeechDetaileModel = self.appiontModels![self.reportTag]
-                let params:[String:Any] = ["user_id":CurrentUserInfo?.user_id ?? "","attachment":urls?.last ?? "","has_pay_deposit":0, "appointment_id": model.id!]
+            if state == UploadImageState.success {//报名
+                let model:lonelySpeechDetaileModel = self.appiontModels[self.reportTag]
+                let params:[String:Any] = ["user_id": CurrentUserInfo?.user_id ?? "","attachment":urls?.last ?? "","has_pay_deposit":0, "appointment_id": model.id!]
                 TargetManager.share.signUpAppiont(appointment_id: model.id ?? "", params: params, complection: { (success, error) in
-                    if success
-                    {
+                    if success {
                         model.sign_up_count  = (model.sign_up_count ?? 0) + 1
                         self.reloadMyTableView(index: self.reportTag, model: model)
                     }
                 })
             }
-            else
-            {
+            else {
                 DebugLog(message: "上传失败")
             }
         })

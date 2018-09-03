@@ -104,13 +104,11 @@ class ConfessionTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDa
             self.headerView?.nikeName.text = detailModel?.user_name
             self.headerView?.sexImage.image = imageName(name: sexStr)
             self.headerView?.authTrueLab.backgroundColor = APPCustomRedColor
-            if let has_authentication = detailModel?.has_authentication ,has_authentication
-            {
+            if let has_authentication = detailModel?.has_authentication ,has_authentication {
                 //未认证
                 self.headerView?.authTrueLab.text = "真实"
             }
-            else
-            {
+            else {
                 //未认证
                 self.headerView?.authTrueLab.text = "未认证"
                 self.headerView?.authTrueLab.backgroundColor = UIColor.gray
@@ -121,46 +119,34 @@ class ConfessionTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDa
                 self.headerView?.LikeBtn.setImage(imageName(name: "赞-press"), for: UIControlState.normal)
             }
             
-           
-            
             let countStr = ((detailModel?.like.count ?? 0) > 0) ? String.init(format: "%d", detailModel?.like.count ?? 0) : ""
             self.headerView?.LikeBtn.setTitle("\(countStr)", for: UIControlState.normal)
             self.commentAry = detailModel?.comments ?? []
             self.applyView?.lookApplayBtn.setTitle(String.init(format: "查看报名(%d)", detailModel?.sign_up_count ?? 0), for: UIControlState.normal)
             
-            if let isend = detailModel?.is_overdue, isend == false
-            {
+            if let isend = detailModel?.is_overdue, isend == false {
                 self.applyView?.ApplyStatus.setTitle("我要报名", for: UIControlState.normal)
                 self.applyView?.ApplyStatus.setTitleColor(APPCustomRedColor, for: UIControlState.normal)
                 self.applyView?.ApplyStatus.isUserInteractionEnabled = true
             }
-            else
-            {
+            else {
                 self.applyView?.ApplyStatus.isUserInteractionEnabled = false
                 self.applyView?.ApplyStatus.setTitle("已结束", for: UIControlState.normal)
                 self.applyView?.ApplyStatus.setTitleColor(UIColor.gray, for: UIControlState.normal)
             }
-           
 
-            if detailModel?.need_signup == false
-            {
+            if detailModel?.need_signup == false {
                 self.applyBackView.isHidden = true
-                
             }
            
             if (detailModel?.user_id != CurrentUserInfo?.user_id) || (isEnableDelete == false)  {
-                
                 self.headerView?.deleteBtn.isHidden = true
                 self.headerView?.leftMargin.constant = 10
             }
-            else
-            {
+            else {
                 self.headerView?.leftMargin.constant = 60
                 self.headerView?.deleteBtn.isHidden = false
             }
-            
-        
-            
         }
     }
     override func setNeedsLayout() {
@@ -183,19 +169,15 @@ class ConfessionTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDa
         }
     }//评论的数据
     
-    
     func setTableViewFrame(view:UITableView) {
         var height:CGFloat = 0.0
-        for model in self.commentAry
-        {
+        for model in self.commentAry {
             height = height + CommentGetHeight.getHeightCell(title: model.publisher_name ?? "", commentStr: model.content ?? "") + 5
         }
-        if detailModel?.need_signup == true
-        {
+        if detailModel?.need_signup == true {
             view.frame = CGRect.init(x: 0, y: self.applyBackView.frame.maxY, width: ScreenWidth, height: height)
         }
-        else
-        {
+        else {
             view.frame = CGRect.init(x: 0, y: self.bodyBackView.frame.maxY, width: ScreenWidth, height: height)
         }
     }
@@ -212,8 +194,8 @@ class ConfessionTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDa
         self.bodyView?.setDatasource(model: model)
         self.bodyView?.tag = self.tag
         self.setTableViewFrame(view: self.tableView)
-    
     }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -224,16 +206,17 @@ class ConfessionTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDa
 
         // Configure the view for the selected state
     }
-    
 }
-extension ConfessionTableViewCell
-{
+
+extension ConfessionTableViewCell {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.commentAry.count
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:CommentTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CommentTableViewCell", for: indexPath) as! CommentTableViewCell
         let model:commentsModel = self.commentAry[indexPath.row]
@@ -243,14 +226,15 @@ extension ConfessionTableViewCell
         cell.commentLab.text = model.content ?? ""
         return cell
     }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let model:commentsModel = self.commentAry[indexPath.row]
         return CommentGetHeight.getHeightCell(title: model.publisher_name ?? "", commentStr: model.content ?? "") + 5
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         self.zzy.router(name: ClickCommentCell, object: nil, info: indexPath.row)
     }
-    
 }
 
