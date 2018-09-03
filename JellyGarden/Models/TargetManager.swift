@@ -89,15 +89,17 @@ class TargetManager: NSObject {
             complection(nil,error)
         }
     }
+    
     //获取主页面列表
-    func geiMainUserList(params:[String:Any],complection:@escaping ([MainListmodel]?,Error?) -> Void) {
+    func geiMainUserList(params:[String:Any],complection:@escaping ([MainListmodel],Error?) -> Void) {
         NetCostom.shared.request(method:.post ,wengen: "admin/user/user_list", params: params, success: { (result) in
             let model = BaseModel<MainListmodel,[MainListmodel]>.init(resultData: result)
-            complection(model.resultData,nil)
+            complection(model.resultData ?? [],nil)
             }) { (error) in
-           complection(nil, error)
+           complection([], error)
         }
     }
+    
     //获取寂寞告白列表
     func getLonelySpeechList(params:[String:Any],complection:@escaping ([lonelySpeechDetaileModel],Error?) -> Void) {
         NetCostom.shared.request(method: .post, wengen: "admin/video/appointment_list", params: params, success: { (result) in
@@ -116,6 +118,7 @@ class TargetManager: NSObject {
             complection([],error)
         }
     }
+    
     //发布约会
     func issueAppiont(params:[String:Any],complection:@escaping (Bool,Error?) -> Void){
         NetCostom.shared.request(method:.post ,wengen: "admin/video/appointment_add", params: params, success: { (result) in
@@ -130,19 +133,18 @@ class TargetManager: NSObject {
     func getAppiontDetail(appointment_id:String,complection:@escaping (lonelySpeechDetaileModel?,Error?) -> Void)
     {
         NetCostom.shared.request(method: .post, wengen: "admin/video/appointment_detail", params: ["appointment_id": appointment_id], success: { (result) in
-            if let jsonStr = result as? [String:Any]
-            {
+            if let jsonStr = result as? [String:Any] {
                 let model = BaseModel<lonelySpeechDetaileModel,lonelySpeechDetaileModel>.init(resultData: jsonStr["data"] ?? "")
                 complection(model.resultData,nil)
             }
-            else
-            {
+            else {
                 alertHud(title: "数据返回错误")
             }
         }) { (error) in
             complection(nil,error)
         }
     }
+    
     //发布评论
     func issueComment(appointment_id:String, params:[String:Any],complection:@escaping (commentsModel?,Error?) -> Void) {
         NetCostom.shared.request(method:.post ,wengen: "admin/video/appointment_comments", params: params, success: { (result) in
@@ -190,18 +192,10 @@ class TargetManager: NSObject {
             complection(false,error)
         }
     }
+    
     //获取短信验证码
-    func getMSCode(params:[String:Any],complection:@escaping ([String:Any]?,Error?) -> Void)//verify_code
-    {
+    func getMSCode(params:[String:Any],complection:@escaping ([String:Any]?,Error?) -> Void) {
         NetCostom.shared.request(method:.post ,wengen: "admin/user/send_code", params: params, success: { (result) in
-//            if let dic = result as? [String:Any] {
-//                let codeDic = dic["data"] as? [String:String]
-//                let codeStr = codeDic?["verify_code"] ?? ""
-//                let mesge = dic["msg"] as? String
-//                AlertViewCoustom().showalertView(style: .alert, title: alertTitle, message: "验证码:\(codeStr)\(mesge ?? "")", cancelBtnTitle: alertConfirm, touchIndex: { (index) in
-//                    
-//                }, otherButtonTitles: nil)
-//            }
             complection(result as? [String:Any],nil)
         }) { (error) in
            complection(nil,error)
@@ -209,15 +203,15 @@ class TargetManager: NSObject {
     }
     
    //跟新位置
-    func uploadMyLocation(params:[String:Any],complection:@escaping (Bool,Error?) -> Void)
-    {
+    func uploadMyLocation(params: [String:Any], complection: ((Bool,Error?) -> Void)?) {
         let userid = CurrentUserInfo?.user_id ?? ""
         NetCostom.shared.request(method: .put, wengen: "users/\(userid)/position", params: params, success: { (result) in
-            complection(true,nil)
+            complection?(true,nil)
         }) { (error) in
-            complection(false,error)
+            complection?(false,error)
         }
     }
+    
     //获取位置信息
     func getCitysModel(complection:@escaping ([PikerModel]?,Error?) -> Void) {//config/city
         NetCostom.shared.request(method: .post, wengen: "admin/user/get_city", params: nil, success: { (result) in

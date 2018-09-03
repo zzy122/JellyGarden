@@ -8,7 +8,7 @@
 
 import UIKit
 import Photos
-
+import TZImagePickerController
 
 let PLUGIN_BOARD_DEPOSIT_FILE_TAG = 2004//定金
 let PLUGIN_BOARD_GIFT_FILE_TAG = 2005//礼物
@@ -212,11 +212,7 @@ class ChatRoomViewController: RCConversationViewController,RCRealTimeLocationObs
         super.didTapMessageCell(model)
         
         if let content = model.content as? DepositMessage, model.messageDirection == RCMessageDirection.MessageDirection_RECEIVE
-        {//跳转支付宝或者微信发起支付
-            let params:[String:Any] = ["type":0,"user_id":model.userInfo.userId,"amount":Int(content.amotStr) ?? 0,"recipient":content.senderUserInfo.userId]
-            
-
-            
+        {
             let mess = TagStatueMessage.init(content: "")
             mess?.senderUserInfo = RCIM.shared().currentUserInfo
             RCIM.shared().sendMessage(RCConversationType.ConversationType_PRIVATE, targetId: self.targetId, content: mess, pushContent: "测试", pushData: "yiha", success: { (resunt) in
@@ -242,12 +238,7 @@ class ChatRoomViewController: RCConversationViewController,RCRealTimeLocationObs
                     vc.type = .effect
                     RootNav().pushViewController(vc, animated: true)
                 }
-                
             }
-            
-            
-            
-            
             self.hiddenDestroyImage()
         }
         if let mess = model.content as? RCImageMessage {

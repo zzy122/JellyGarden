@@ -49,13 +49,11 @@
     
     
 }
-- (void)timerAction
-{
-    
+- (void)timerAction{
     self.timeTotal--;
     self.userInteractionEnabled = NO;
-    self.titleLabel.text = [NSString stringWithFormat:@"(%zi)",self.timeTotal];
-    [self setTitle:[NSString stringWithFormat:@"(%zi)",self.timeTotal] forState:UIControlStateNormal];
+    self.titleLabel.text = [NSString stringWithFormat:@"(%li)",(long)self.timeTotal];
+    [self setTitle:[NSString stringWithFormat:@"(%li)",(long)self.timeTotal] forState:UIControlStateNormal];
     if (self.timeTotal == 0) {
         [self stopTime];
     }

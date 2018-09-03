@@ -8,8 +8,7 @@
 //
 
 import UIKit
-class PhotoModel:JSON
-{
+class PhotoModel:JSON {
     var view_users:[String]?
     var url_list:String?
     var price:Int?
@@ -47,7 +46,7 @@ class UserModel:JSON {
     var emotion_status:String?//情感状态
     var city:String?
     var weight:Int?
-    var sex:Int?// 0 男 1女
+    var sex: Int = 1// 0 男 1女
     var appointment_place:[String]?//约会范围
     var vip_expire_time:Int?
     var vip_level:Int?

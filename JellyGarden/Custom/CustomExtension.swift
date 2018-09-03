@@ -147,8 +147,7 @@ extension GeneralExt where DT == String
     }
     //md5加密
     func md5() ->String{
-        let str =
-            v.cString(using: String.Encoding.utf8)
+        let str = v.cString(using: String.Encoding.utf8)
   
         let strLen = CUnsignedInt(v.lengthOfBytes(using: String.Encoding.utf8))
         
@@ -159,17 +158,16 @@ extension GeneralExt where DT == String
         for i in 0 ..< digestLen {
             hash.appendFormat("%02x", result[i])
         }
+        
         result.deinitialize()
         return String(format: hash as String)
     }
-    
 }
 
 extension UIResponder: ExtPoint {
     
     var zzy: ExtBaseImpl<UIResponder> {
         return ExtBaseImpl.init(v: self)
-        
     }
 }
 

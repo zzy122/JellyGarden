@@ -10,27 +10,29 @@ import UIKit
 let ClickMainUserCell = "ClickMainUserCell"
 
 import MJRefresh
-enum SearchType {
-    case hot;//热门
-    case new;//最新
-    case attestation;//认证
+enum SearchType: Int {
+    case hot = 1//热门
+    case new = 2 //最新
+    case attestation = 3//认证
+    case vip = 4
 }
+
 class MainBodyCollectionViewCell: UICollectionViewCell,UITableViewDataSource,UITableViewDelegate,ResponderRouter {
     var userInfoModels:[MainListmodel] = []
-    private var currentType:SearchType?
+    private var currentType: SearchType?
     var currentPage:Int = 1
     
     // 底部刷新
     
     let footer = MJRefreshAutoNormalFooter()
-    private var currentSex:sexType?//保存当前的性别删选
-    var tagSex:sexType?//设置当前的性别
+    private var currentSex: sexType?//保存当前的性别删选
+    var tagSex: sexType?//设置当前的性别
     
     private var currentLocalCity:String?//保存当前的筛选地址
     var tagLocalCity:String?//设置当前的筛选地址
     
 
-    var userType:SearchType? {
+    var userType: SearchType? {
         didSet{
             if (currentType == userType) && (currentSex == tagSex) && (currentLocalCity == tagLocalCity) {//性别 类型 地址一致才不用刷新
                 return
@@ -41,17 +43,15 @@ class MainBodyCollectionViewCell: UICollectionViewCell,UITableViewDataSource,UIT
             self.refreshFooter()
             self.currentLocalCity = self.tagLocalCity
             self.currentSex = self.tagSex
-            
         }
-        
     }
-    
     
     @IBOutlet weak var tableView: UITableView!
 
     override func draw(_ rect: CGRect) {
         DebugLog(message: "draw")
     }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         tableView.register(UINib.init(nibName: "MainUserListTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "MainUserListTableViewCellidentifier")
@@ -66,43 +66,33 @@ class MainBodyCollectionViewCell: UICollectionViewCell,UITableViewDataSource,UIT
         // 底部刷新
         footer.setRefreshingTarget(self, refreshingAction: #selector(refreshFooter))
         self.tableView.mj_footer = footer
-        
-        
-        DebugLog(message: "layoutSubviews")
     }
     
-    @objc func refreshFooter()
-    {
-        DebugLog(message: "刷新")
-        
+    @objc func refreshFooter() {        
         request(page: self.currentPage, type: self.currentType ?? .hot, page_size: 10,sex:tagSex!,locaCity:tagLocalCity!, complection: { (mianModelList, error) in
             self.tableView.mj_footer.endRefreshing()
-            guard let countModels = mianModelList else
-            {
-                return
-            }
-            if countModels.count == 0{
+            if mianModelList.count == 0 {
                 self.tableView.mj_footer.state = MJRefreshState.noMoreData
                 alertHud(title: "没有更多数据了~")
             }
             self.currentPage += 1
-            for i in 0 ..< countModels.count {
-                self.userInfoModels.append(mianModelList![i])
+            for i in 0 ..< mianModelList.count {
+                self.userInfoModels.append(mianModelList[i])
             }
             self.tableView.reloadData()
         })
-        
     }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return userInfoModels.count
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = userInfoModels[indexPath.row]
-        
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "MainUserListTableViewCellidentifier", for: indexPath) as? MainUserListTableViewCell
         cell?.realityLab.layer.cornerRadius = 8.0
         
@@ -113,23 +103,22 @@ class MainBodyCollectionViewCell: UICollectionViewCell,UITableViewDataSource,UIT
         cell?.tag = indexPath.row
         
         return cell!
-        
     }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let model = userInfoModels[indexPath.row]
         self.zzy.router(name: ClickMainUserCell, object: nil, info: model)
     }
+    
     func interceptRoute(name: String, objc: UIResponder?, info: Any?) {
-        
-        
-        if name == ClickLikeHeart
-        {
-            guard let indexTag = info as? Int else
-            {
+
+        if name == ClickLikeHeart {
+            guard let indexTag = info as? Int else {
                 return
             }
             
@@ -143,11 +132,9 @@ class MainBodyCollectionViewCell: UICollectionViewCell,UITableViewDataSource,UIT
                     self.tableView.reloadData()
                 }
             })
-            
-            
-            
         }
     }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

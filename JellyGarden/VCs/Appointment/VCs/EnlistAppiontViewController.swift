@@ -8,6 +8,8 @@
 
 import UIKit
 import Photos
+import TZImagePickerController
+
 class EnlistAppiontViewController: BaseMainViewController,UICollectionViewDelegate,UICollectionViewDataSource,ResponderRouter,TZImagePickerControllerDelegate,UITextViewDelegate {
     var images:[String] = []
     @IBOutlet weak var collectionTagLab: UILabel!

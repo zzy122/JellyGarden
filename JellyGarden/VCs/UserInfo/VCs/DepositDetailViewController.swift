@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import protocol TZImagePickerController.TZImagePickerControllerDelegate
 
 class DepositDetailViewController: BaseMainTableViewController {
     lazy var alertAction:AlipayAction = {

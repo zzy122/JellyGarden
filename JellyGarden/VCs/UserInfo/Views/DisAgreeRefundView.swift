@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import TZImagePickerController
 //let Click_DepositDisAgree_CancelBtn = "Click_DepositDisAgree_CancelBtn"
 //let Click_DepositAcgree_CancelBtn = "Click_DepositAgree_CancelBtn"
 class DisAgreeRefundView: UIView {
@@ -14,8 +15,7 @@ class DisAgreeRefundView: UIView {
     typealias clickResult = (Bool,[UIImage]?,String?) -> Void
 //    var imageData:[Any]?
     var clickBtnBlock:clickResult?
-    var images:[Image] = []
-    {
+    var images:[Image] = [] {
         didSet{
             self.collectionView.reloadData()
         }

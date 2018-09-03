@@ -32,7 +32,7 @@ class MainListmodel:JSON {
     var photo_count:Int?
     var lon:Double?
     var sex:Int?
-    var is_like:Bool?
+    var is_like:Bool = false 
     var permission:String?
     var distance:String?
     

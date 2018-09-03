@@ -8,6 +8,8 @@
 
 import UIKit
 import Photos
+import TZImagePickerController
+
 class UserInfoViewController: BaseMainViewController,TZImagePickerControllerDelegate {
 
     

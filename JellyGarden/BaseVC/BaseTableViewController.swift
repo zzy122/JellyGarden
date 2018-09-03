@@ -26,8 +26,7 @@ class BaseTableViewController: BaseViewController,UITableViewDelegate, UITableVi
 //        tableView.separatorInset = UIEdgeInsets.zero
         self.tableView.tableFooterView = UIView()
         MM_WARNING//此处的意义
-        if #available(iOS 11.0, *)
-        {
+        if #available(iOS 11.0, *) {
             self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentBehavior.never
         }
         self.tableView.backgroundColor = customBackViewColor

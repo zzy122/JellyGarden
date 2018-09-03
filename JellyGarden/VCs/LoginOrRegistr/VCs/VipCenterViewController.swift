@@ -176,12 +176,10 @@ class VipCenterViewController: BaseViewController,ResponderRouter {
     @objc func clickOpenBtn(sender:UIButton)
     {
         var param:[String:Any] = ["user_id":CurrentUserInfo?.user_id ?? "","package_id":currentModel?.package_id ?? ""]
-        
         if selectedPayView.aliPayBtn.isSelected {
             param["channel"] = "alipay"
         }
-        else
-        {
+        else {
             param["channel"] = "wx"
         }
 //        if autoPayBtn.isSelected {
@@ -191,14 +189,13 @@ class VipCenterViewController: BaseViewController,ResponderRouter {
 //        {
 //            param["is_discount"] = false
 //        }
+
         TargetManager.share.vipBuy(params: param) { (result, error) in
             
             if let dic = result as? [String:Any] {
-                if let payDic = dic["data"] as? [String:Any]
-                {
+                if let payDic = dic["data"] as? String {
                     //发起支付
                     OtherApplication.share.pay(VC:self, charge: payDic, complection: { (result) in
-                        
                         alertHud(title: "购买成功")
                         self.gotoMainVC()
                     })

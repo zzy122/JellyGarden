@@ -14,7 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         //设置友盟
         let nav = CustomNavigationViewController.init(rootViewController: FinishViewController())
@@ -26,7 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.sharedManager().shouldResignOnTouchOutside = true
         IQKeyboardManager.sharedManager().shouldToolbarUsesTextFieldTintColor = true
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
-        //
 
         OtherApplication.share.setYumeng()
         OtherApplication.share.setRongIM()
@@ -37,6 +35,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //jpush自定义消息
         NotificationCenter.default.addObserver(self, selector: #selector(networkDidReceiveMessage(notification:)), name: NSNotification.Name.jpfNetworkDidReceiveMessage, object: nil)
         // Override point for customization after application launch.
+        
+        WXApi.registerApp(WeiChatShareKey)
         
         return true
     }
@@ -55,35 +55,60 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     //ios9之前
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-       if (RCIM.shared().openExtensionModuleUrl(url))
-       {
-            return true
+        var result = RCIM.shared().openExtensionModuleUrl(url)
+        if (!result) {
+            result = UMSocialManager.default().handleOpen(url)
         }
         
-        if (Pingpp.handleOpen(url, withCompletion: nil)) {//收到支付结果通知
-            return true;
+        if (!result) {
+            result = OtherApplication.share.handleUrl(url)
         }
-        let  result = UMSocialManager.default().handleOpen(url)
+        
+        if url.host == "safepay" {
+            AlipaySDK.defaultService().processOrder(withPaymentResult: url) { (result) in
+                print("支付宝钱包回调结果")
+            }
+        }
         return result
-      
     }
+    
     //ios9之后
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        if (RCIM.shared().openExtensionModuleUrl(url))
-        {
-            return true
-        }
-        if (Pingpp.handleOpen(url, withCompletion: nil)) {////要跳转支付宝或者微信的通知
-            return true;
+        var result = RCIM.shared().openExtensionModuleUrl(url)
+        if (!result) {
+            result = UMSocialManager.default().handleOpen(url)
         }
         
-        let  result = UMSocialManager.default().handleOpen(url)
+        if (!result) {
+            result = OtherApplication.share.handleUrl(url)
+        }
+        
+        if url.host == "safepay" {
+            AlipaySDK.defaultService().processOrder(withPaymentResult: url) { (result) in
+                print("支付宝钱包回调结果")
+            }
+        }
         return result
     }
+    
     func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
-        let result = UMSocialManager.default().handleOpen(url)
+        var result = RCIM.shared().openExtensionModuleUrl(url)
+        if (!result) {
+            result = UMSocialManager.default().handleOpen(url)
+        }
+        
+        if (!result) {
+            result = OtherApplication.share.handleUrl(url)
+        }
+        
+        if url.host == "safepay" {
+            AlipaySDK.defaultService().processOrder(withPaymentResult: url) { (result) in
+                print("支付宝钱包回调结果")
+            }
+        }
         return result
     }
+    
     /**
      收到推送的回调
      @param application  UIApplication 实例
@@ -91,18 +116,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
      @param completionHandler 完成回调
      */
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-//        DebugLog(message: "收到推送消息的内容:\(userInfo.description)")
-        
-        
-        
-        
-        
         JPUSHService.setBadge(0)
         UIApplication.shared.applicationIconBadgeNumber = 0
         
         JPUSHService.handleRemoteNotification(userInfo)
         completionHandler(.newData)
     }
+    
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
         JPUSHService.handleRemoteNotification(userInfo)
     }
@@ -126,14 +146,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        
-       
-        if let password =  UserDefaults.standard.object(forKey: "GesterPassword") as? String ,password.count > 0
-        {
-            if NeedGesterPassword
-            {
-                if (RootNav().topViewController?.isKind(of: CSIIGesturePasswordController.self))!
-                {
+        if let password =  UserDefaults.standard.object(forKey: "GesterPassword") as? String ,password.count > 0 {
+            if NeedGesterPassword {
+                if (RootNav().topViewController?.isKind(of: CSIIGesturePasswordController.self))! {
                     return
                 }
                 
@@ -145,7 +160,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
                 gesterVC?.gesturePasswordView.logoimgView.sd_DownLoadImage(url: CurrentUserInfo?.avatar ?? "")
                 RootViewController?.present(gesterVC!, animated: true, completion: nil)
-                
             }
         }
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
