@@ -85,12 +85,14 @@ func alertHud(title:String)
     }
 }
 func getJSONStringFromObject(dictionary:Any) -> String {
+    
     if (!JSONSerialization.isValidJSONObject(dictionary)) {
         print("无法解析出JSONString")
         return ""
     }
-    let data : NSData! = try? JSONSerialization.data(withJSONObject: dictionary, options: []) as NSData!
-    let JSONString: String = NSString(data:data as Data,encoding: String.Encoding.utf8.rawValue)! as String
+    
+    let data : Data = try! JSONSerialization.data(withJSONObject: dictionary, options: [])
+    let JSONString: String = String(data: data, encoding: String.Encoding.utf8)!
     
     let str1 = JSONString.replacingOccurrences(of: "\\", with: "")
     let str = str1.replacingOccurrences(of: "\n", with: "")
@@ -177,9 +179,6 @@ func locationEncode(cityName:String)  -> CLLocation? {
             return print("没有找到一个地址")
         }
         location = p.location
-        let longitude = p.location?.coordinate.longitude
-        let latitude = p.location?.coordinate.latitude
-        print("经度：\(longitude),维度：\(latitude)")
     }
     return location
 }

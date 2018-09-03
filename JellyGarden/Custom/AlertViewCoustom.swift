@@ -18,8 +18,7 @@ class AlertViewCoustom: NSObject, UIAlertViewDelegate, UIActionSheetDelegate {
     
     var touchIndex:ClickIndex?
     
-    
-    func showalertView(style:UIAlertControllerStyle, title:String?, message:String?, cancelBtnTitle:String?, touchIndex:@escaping ClickIndex, otherButtonTitles otherTitle:String?, _ moreButtonTitles: String...) {
+    func showalertView(style:UIAlertControllerStyle, title:String?, message:String?, cancelBtnTitle:String?, touchIndex: @escaping ClickIndex, otherButtonTitles otherTitle:String?, _ moreButtonTitles: String...) {
         
         self.touchIndex = touchIndex;
         
@@ -32,29 +31,23 @@ class AlertViewCoustom: NSObject, UIAlertViewDelegate, UIActionSheetDelegate {
                 count += 1
             }
             
-            if let other = otherTitle, other.count > 0
-            {
+            if let other = otherTitle, other.count > 0 {
                 self.addAction(index: count, alertVC: alertController, style: UIAlertActionStyle.default, title: other)
                 count += 1
             }
             if moreButtonTitles.count > 0 {
-                for otherIndex in 0 ..< moreButtonTitles.count
-                {
+                for otherIndex in 0 ..< moreButtonTitles.count {
                     self.addAction(index: count, alertVC: alertController, style: UIAlertActionStyle.default, title: moreButtonTitles[otherIndex])
                     count += 1
                 }
             }
             
-            self.currentViewController()?.present(alertController, animated: true, completion: {
-                
-            })
+            self.currentViewController()?.present(alertController, animated: true, completion: nil)
         }
-        else
-        {
+        else {
             
             let alertView = UIAlertView.init(title: title ?? "", message: message ?? "", delegate: self, cancelButtonTitle: cancelBtnTitle, otherButtonTitles:"")
-            for otherIndex in 0 ..< moreButtonTitles.count
-            {
+            for otherIndex in 0 ..< moreButtonTitles.count {
                 alertView.addButton(withTitle: moreButtonTitles[otherIndex])
             }
             
@@ -65,19 +58,15 @@ class AlertViewCoustom: NSObject, UIAlertViewDelegate, UIActionSheetDelegate {
             case .actionSheet:
                 
                 let alertSheet = UIActionSheet.init(title: title, delegate: self, cancelButtonTitle: cancelBtnTitle, destructiveButtonTitle: nil, otherButtonTitles: "")
-                for otherIndex in 0 ..< moreButtonTitles.count
-                {
+                for otherIndex in 0 ..< moreButtonTitles.count {
                     alertSheet.addButton(withTitle: moreButtonTitles[otherIndex])
                 }
                 alertSheet.actionSheetStyle = UIActionSheetStyle.default
                 alertSheet.show(in: (self.currentViewController()?.view)!)
 
                  break
-                
             }
-            
         }
-        
     }
     
     func currentViewController(base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
@@ -100,21 +89,20 @@ class AlertViewCoustom: NSObject, UIAlertViewDelegate, UIActionSheetDelegate {
         
         alertVC.addAction(alertCancel)
     }
-    func clickAlert(Index:Int, alertVC:UIAlertController)  {
+    
+    func clickAlert(Index: Int, alertVC: UIAlertController)  {
         self.touchIndex!(Index)
         alertVC.dismiss(animated: true) {
             
         }
     }
     
-    func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
-        self.touchIndex!(buttonIndex)
-    }
-    func actionSheet(_ actionSheet: UIActionSheet, clickedButtonAt buttonIndex: Int) {
-        self.touchIndex!(buttonIndex)
-    }
-    
-    
+//    func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
+//        self.touchIndex!(buttonIndex)
+//    }
+//    func actionSheet(_ actionSheet: UIActionSheet, clickedButtonAt buttonIndex: Int) {
+//        self.touchIndex!(buttonIndex)
+//    }
 }
 
 

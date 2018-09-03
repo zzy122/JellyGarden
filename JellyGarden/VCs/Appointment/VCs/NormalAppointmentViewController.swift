@@ -8,6 +8,8 @@
 
 import UIKit
 import Photos
+import TZImagePickerController
+
 let imageMargin:CGFloat = 10.0
 let cellWidth = (ScreenWidth - 3 * imageMargin - 20) / 5.0
 let appiontTimeAry:[PikerModel]? = {

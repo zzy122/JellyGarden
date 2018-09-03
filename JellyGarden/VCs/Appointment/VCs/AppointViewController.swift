@@ -9,6 +9,8 @@
 import UIKit
 import MJRefresh
 import Photos
+import TZImagePickerController
+
 class AppointViewController: BaseMainTableViewController,ResponderRouter,TZImagePickerControllerDelegate {
     
     var cityStr:String = LocalCityName {

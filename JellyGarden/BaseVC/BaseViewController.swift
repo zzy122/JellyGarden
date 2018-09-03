@@ -18,6 +18,7 @@ class BaseViewController: UIViewController {
         
         return btn
     }()
+    
     lazy var rightBtn:UIButton = {
         let btn = UIButton()
         btn.addTarget(self, action: #selector(clickRightBtn), for: UIControlEvents.touchUpInside)
@@ -28,11 +29,9 @@ class BaseViewController: UIViewController {
     }()
     
     var logoTopBackView:UIImageView = UIImageView()//titleImage
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.autoresizesSubviews = true
-//        self.edgesForExtendedLayout = UIRectEdge.init(rawValue: 0)
-        
         
         self.edgesForExtendedLayout = UIRectEdge.all
         self.view.backgroundColor = customBackViewColor
@@ -40,9 +39,9 @@ class BaseViewController: UIViewController {
         self.logoTopBackView.frame = CGRect.init(x: (ScreenWidth - 200) / 2.0, y: 8, width: 200, height: 30)
         self.logoTopBackView.tag = 600
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        self.navigationController?.navigationBar.barTintColor = k_CustomColor(red: 200, green: 200, blue: 200)
         
        //设置导航栏透明
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
@@ -56,34 +55,29 @@ class BaseViewController: UIViewController {
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black,NSAttributedStringKey.font:kFont_system20]
         self.leftBtn.frame = CGRect.init(x: 0, y: 0, width: 40, height: 40)
         self.rightBtn.isHidden = true
-        if self.navigationController?.viewControllers.count == 1
-        {
+        if self.navigationController?.viewControllers.count == 1 {
             self.leftBtn.isHidden = true
         }
         self.rightBtn.frame = CGRect.init(x: 0, y: 0, width: 40, height: 40)
         
-        if let view = self.navigationController?.navigationBar.viewWithTag(666)
-        {
+        if let view = self.navigationController?.navigationBar.viewWithTag(666) {
             view.isHidden = true
         }
-        else
-        {
+        else {
             self.navigationController?.navigationBar.addSubview(self.logoTopBackView)
         }
-      
-        
-        
     }
-    @objc public func clickLeftBtn()
-    {
+    
+    @objc public func clickLeftBtn() {
         self.view.endEditing(true)
         self.navigationController?.view.endEditing(true)
         self.navigationController?.popViewController(animated: true)
     }
-    @objc public func clickRightBtn()
-    {
+    
+    @objc public func clickRightBtn() {
         
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

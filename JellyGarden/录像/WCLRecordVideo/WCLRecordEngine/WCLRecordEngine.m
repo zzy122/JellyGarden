@@ -321,7 +321,7 @@
     changeAnimation.duration = 0.45;
     changeAnimation.type = @"oglFlip";
     changeAnimation.subtype = kCATransitionFromRight;
-    changeAnimation.timingFunction = UIViewAnimationCurveEaseInOut;
+    changeAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     [self.previewLayer addAnimation:changeAnimation forKey:@"changeAnimation"];
 }
 

@@ -7,7 +7,6 @@
 #import <UMCommon/UMCommon.h>
 //#import <UMCommonLog/UMCommonLogManager.h>
 #import <JPUSHService.h>
-#import <WXApi.h>
 
 #import <RongIMKit/RongIMKit.h>
 #import <RongIMLib/RongIMLib.h>
@@ -32,10 +31,10 @@
 #import "AliyunUpload.h"
 #import "AliyunUploadModel.h"
 #import <AlipaySDK/AlipaySDK.h>
-#import <Pingpp/Pingpp.h>
 #import "WCLRecordVideoVC.h"
 #import <Kingfisher/Kingfisher.h>
 #import <IQKeyboardManagerSwift/IQKeyboardManagerSwift-Swift.h>
+#import "WXApi.h"
 
 #import "DepositMessage.h"
 #import "DepositMessageCell.h"
@@ -52,7 +51,6 @@
 #import "UIResponder+Router.h"
 #import "CSIIGesturePasswordController.h"
 
-#import "TZImagePickerController.h"
 #import "RCDCustomerServiceViewController.h"
 
 

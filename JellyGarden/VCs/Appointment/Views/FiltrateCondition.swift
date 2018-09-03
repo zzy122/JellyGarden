@@ -7,19 +7,22 @@
 //
 
 import UIKit
-enum sexType {
-    case woman;
-    case man;
+enum sexType: Int {
+    case woman = 1
+    case man = 0
 }
-enum sortType {
-    case near;
-    case latest;
+
+enum sortType: String {
+    case near = "near"
+    case latest = "latest"
 }
-enum conditionType {
-    case all;
-    case free;
-    case pay;
+
+enum conditionType: String {
+    case all
+    case free = "free"
+    case pay = "pay"
 }
+
 class FiltrateCondition: UIView,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     var isselect:Bool = false
     private var backda:backParagram?
@@ -28,59 +31,29 @@ class FiltrateCondition: UIView,UICollectionViewDelegate,UICollectionViewDataSou
     var textColor = k_CustomColor(red: 84, green: 132, blue: 202)
     
     var titleAry:[[String]] = [["男","女"],["离我最近","最新发布"],["全部","付费约会","免费约会"]]
-    var sex:sexType? {
+    
+    var sex: sexType? {
         didSet{
-            switch sex {
-            case .man?:
-                self.param["sex"] = 0
-                break
-            case .woman?:
-                self.param["sex"] = 1
-                break
-            default:
-                self.param.removeValue(forKey: "sex")
-                break
-            }
+            self.param["sex"] = sex?.rawValue
         }
     }
-    var sort:sortType?
-    {
+    
+    var sort: sortType? {
         didSet{
-            switch sort {
-            case .near?:
-                self.param["sort"] = "near"
-                break
-            case .latest?:
-                self.param["sort"] = "latest"
-                break
-            default:
-                self.param.removeValue(forKey: "sort")
-                break
-            }
+            self.param["sort"] = sort?.rawValue
         }
     }
-    var condition:conditionType?
-    {
+    
+    var condition:conditionType? {
         didSet{
-            switch condition {
-            case .all?:
-                self.param.removeValue(forKey: "condition")
-                break
-            case .free?:
-                self.param["condition"] = "free"
-                break
-            case .pay?:
-                self.param["condition"] = "pay"
-                break
-            default:
-                self.param.removeValue(forKey: "condition")
-                break
+            self.param["condition"] = condition?.rawValue
+            if condition == .all {
+                self.param["condition"] = nil
             }
         }
     }
     
-    
-    var param:[String:Any] = ["sort":"near"]
+    var param: [String:Any] = ["sort":"near"]
     
     lazy var collectonView:UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -123,32 +96,26 @@ class FiltrateCondition: UIView,UICollectionViewDelegate,UICollectionViewDataSou
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     @objc func clickSure(){
        self.backda?(self.param)
     }
+    
     func backParam(backParam:@escaping backParagram) {
         self.backda = backParam
     }
-    
-    
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
-
 }
-extension FiltrateCondition
-{
+
+extension FiltrateCondition {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return self.titleAry.count
     }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let ary = self.titleAry[section]
         return ary.count
     }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectonView.dequeueReusableCell(withReuseIdentifier: "ConditionCollectionViewCell", for: indexPath) as! ConditionCollectionViewCell
         let ary = self.titleAry[indexPath.section]
@@ -160,14 +127,12 @@ extension FiltrateCondition
             }
             break
         case 1:
-            if (indexPath.row == 0 && sort == .near) || (indexPath.row == 1 && sort == .latest)
-            {
+            if (indexPath.row == 0 && sort == .near) || (indexPath.row == 1 && sort == .latest) {
                 cell.conditionLable.textColor = APPCustomRedColor
             }
             break
         case 2:
-            if (indexPath.row == 0 && condition == .all) || (indexPath.row == 1 && condition == .pay) || (indexPath.row == 2 && condition == .free)
-            {
+            if (indexPath.row == 0 && condition == .all) || (indexPath.row == 1 && condition == .pay) || (indexPath.row == 2 && condition == .free) {
                 cell.conditionLable.textColor = APPCustomRedColor
             }
             break
@@ -180,6 +145,7 @@ extension FiltrateCondition
         cell.clipsToBounds = true
         return cell
     }
+    
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let resumView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "UICollectionElementKindSectionHeader", for: indexPath)
         var height:CGFloat = 40
@@ -206,17 +172,16 @@ extension FiltrateCondition
                 break
             default:
                 break
-                
             }
-            for view in resumView.subviews
-            {
+            
+            for view in resumView.subviews {
                 view.removeFromSuperview()
             }
             resumView.addSubview(backView)
-            
         }
         return resumView
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         var height:CGFloat = 40
         
@@ -225,6 +190,7 @@ extension FiltrateCondition
         }
         return CGSize.init(width: collectionView.bounds.width, height: height)
     }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         switch indexPath.section {
@@ -235,11 +201,9 @@ extension FiltrateCondition
             else if indexPath.row == 1 && sex == .woman{
                 sex = nil
             }
-            else
-            {
+            else {
                 sex = (indexPath.row == 0) ? .man : .woman
             }
-            break;
         case 1:
             if indexPath.row == 0 && sort == .near {
                 sort = nil
@@ -247,16 +211,11 @@ extension FiltrateCondition
             }
             else if indexPath.row == 1 && sort == .latest {
                 sort = nil
-                
             }
-            else
-            {
+            else {
                 sort = (indexPath.row == 0) ? .near : .latest
             }
-            
-            break;
         case 2:
-            
             switch indexPath.row {
             case 0:
                 if condition == .all {
@@ -264,33 +223,25 @@ extension FiltrateCondition
                     return
                 }
                 condition = .all
-                break
             case 1:
                 if condition == .pay {
                     condition = nil
                     return
                 }
                 condition = .pay
-                break
             case 2:
                 if condition == .free {
                     condition = nil
                     return
                 }
                 condition = .free
-                break
-            default:
-                break
+            default: break
             }
-            
-            break;
-        
         default:
             break
         }
         
         collectionView.reloadData()
     }
-    
 }
 

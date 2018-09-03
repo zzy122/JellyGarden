@@ -10,29 +10,22 @@ import UIKit
 
 import UserNotifications
 
-class OtherApplication: NSObject,WXApiDelegate,RCIMUserInfoDataSource,RCIMGroupMemberDataSource,RCIMConnectionStatusDelegate,RCIMReceiveMessageDelegate,JPUSHRegisterDelegate {
+class OtherApplication: NSObject, WXApiDelegate, RCIMUserInfoDataSource, RCIMGroupMemberDataSource, RCIMConnectionStatusDelegate, RCIMReceiveMessageDelegate, JPUSHRegisterDelegate {
 
     static var share = OtherApplication()
-    private override init() {
-        
-    }
-    func setAppNotifyCation()
-    {
-        
-    }
-    func setYumeng()
-    {
+    
+    private override init() {}
+    
+    func setYumeng() {
         UMConfigure.initWithAppkey(UMengKey, channel: nil)
-//        UMSocialManager.default().umSocialAppkey = UMengKey
         
         UMSocialManager.default().setPlaform(.wechatSession, appKey: WeiChatShareKey, appSecret: WeiChatShareScrete, redirectURL: "")
         
         UMSocialManager.default().setPlaform(.QQ, appKey: QQShareKey, appSecret: QQShareSecrete, redirectURL: "http://www.qq.com/music.html")
-//        UMCommonLogManager.setUp()
         UMConfigure.setLogEnabled(true)
         UMConfigure.initWithAppkey(UMengKey, channel: "App Store")
-        
     }
+    
     func setRongIM () {
         //设置appkey
         RCIM.shared().enablePersistentUserInfoCache = true
@@ -43,7 +36,7 @@ class OtherApplication: NSObject,WXApiDelegate,RCIMUserInfoDataSource,RCIMGroupM
         RCIM.shared().enableTypingStatus = true
         RCIM.shared().connectionStatusDelegate = self
         RCIM.shared().initWithAppKey(RongIMKey)
-        RCIM.shared().setScheme("JellyGarden", forExtensionModule: "JrmfPacketManager")
+        RCIM.shared().setScheme("jg072423", forExtensionModule: "JrmfPacketManager")
         RCIM.shared().registerMessageType(DepositMessage.self)
         RCIM.shared().registerMessageType(TagStatueMessage.self)
         RCIM.shared().registerMessageType(ReadDestroyMessage.self)
@@ -62,36 +55,26 @@ class OtherApplication: NSObject,WXApiDelegate,RCIMUserInfoDataSource,RCIMGroupM
         RCIM.shared().enableMessageMentioned = true
         //开启消息撤回功能
         RCIM.shared().enableMessageRecall = true
-//        "http:ggdhah"
-//        let tocken = "HlMfHYJvmEo44W/F61LuabRpUvcyPvtcBAE1MtjZHcdpH5OG47jQeT0W+LiJ7xaXIo0E1Fqz0Ymon0nAvrYU9OIT31DubvNL"//这个值从后台获取/BXSBnDD+hltcIS814LpyrRpUvcyPvtcBAE1MtjZHcdpH5OG47jQef897cW8KqvRjWjSrSRDTIWon0nAvrYU9GXAL9HR+6f1  HlMfHYJvmEo44W/F61LuabRpUvcyPvtcBAE1MtjZHcdpH5OG47jQeT0W+LiJ7xaXIo0E1Fqz0Ymon0nAvrYU9OIT31DubvNL
-//        self.connectRongyun(token: tocken) { (success) in
-        
-//        }
     }
+    
     func setJPushSetting() {
         let entity = JPUSHRegisterEntity()
         entity.types = Int(UInt8(JPAuthorizationOptions.alert.rawValue) | UInt8(JPAuthorizationOptions.badge.rawValue) | UInt8(JPAuthorizationOptions.sound.rawValue))
-
         JPUSHService.register(forRemoteNotificationConfig: entity, delegate: self)
-
-
     }
+    
     func connectRongyun(token:String,complectiom:@escaping (Bool) -> Void) {
         RCIM.shared().connect(withToken: token, success: { (resultInfo) in
             DebugLog(message: "登录融云成功");
             DispatchQueue.main.async {//回主线程操作
-                
                 RCIM.shared().userInfoDataSource = self
                 let model = RCUserInfo.init(userId: CurrentUserInfo?.user_id ?? "", name: CurrentUserInfo?.nickname, portrait: CurrentUserInfo?.avatar);
                 RCIM.shared().currentUserInfo = model
                 
                 complectiom(true)
-                
             }
-            
         }, error: { (code) in
             complectiom(false)
-            
         }) {
             complectiom(false)
         }
@@ -104,14 +87,11 @@ class OtherApplication: NSObject,WXApiDelegate,RCIMUserInfoDataSource,RCIMGroupM
         let userinfo = response.notification.request.content.userInfo
         
         if (response.notification.request.trigger?.isKind(of: UNPushNotificationTrigger.self))! {//后台挂起收到推送消息 点击推送消息进去之后执行
-            
-            DebugLog(message: "收到推送消息\(userinfo)")
-            
-            
             JPUSHService.handleRemoteNotification(userinfo)
         }
         completionHandler()
     }
+    
     @available(iOS 10.0, *)
     func jpushNotificationCenter(_ center: UNUserNotificationCenter!, willPresent notification: UNNotification!, withCompletionHandler completionHandler: ((Int) -> Void)!) {
         let info = notification.request.content.userInfo
@@ -122,27 +102,67 @@ class OtherApplication: NSObject,WXApiDelegate,RCIMUserInfoDataSource,RCIMGroupM
     }
     
     
-    
     //支付  charge是后台请求的数据
-    func pay(VC:UIViewController, charge:[String:Any],complection:@escaping (Bool) ->Void) {
-        Pingpp.createPayment(charge as NSObject, viewController: VC, appURLScheme: "JellyGarden") { (result, error) in
-            guard error == nil else {
-                AlertViewCoustom().showalertView(style: .alert, title: alertTitle, message: "\(error.debugDescription)", cancelBtnTitle: alertConfirm, touchIndex: { (index) in
-                }, otherButtonTitles: nil)
-                complection(false)
-                return
+    func pay(VC: UIViewController, charge: String, complection: ((Bool) ->Void)?) {
+        AlipaySDK.defaultService().payOrder(charge, fromScheme: "jg072423") { (result) in
+            if result?["resultStatus"] as? Int == 9000 {
+                /// 支付成功
+                complection?(true)
             }
-            complection(true)
+            else {
+                complection?(false)
+            }
         }
     }
-
+    
+    var wxpayCompletion: ((Bool) -> Void)?
+    
+    func pay(wechat partnerId: String,
+             prepayId: String,
+             package: String = "Sign=WxPay",
+             nonceStr: String,
+             timeStamp: UInt32,
+             sign: String,
+             param: [String: Any],
+             completion: ((Bool) -> Void)?) {
+        
+        wxpayCompletion = completion
+        
+        let req = PayReq()
+        req.partnerId = partnerId
+        req.prepayId = prepayId
+        req.package = package
+        req.nonceStr = nonceStr
+        req.timeStamp = timeStamp
+        req.sign = sign
+        
+        WXApi.send(req)
+    }
+    
+    func handleUrl(_ url: URL) -> Bool {
+        return WXApi.handleOpen(url, delegate: self)
+    }
+    
+    func onResp(_ resp: BaseResp!) {
+        if let resp = resp as? PayResp {
+            if resp.errCode == WXSuccess.rawValue {
+                /// 支付成功
+                wxpayCompletion?(true)
+            }
+            else {
+                wxpayCompletion?(false)
+                /// 支付失败
+            }
+        }
+    }
 }
 
-extension OtherApplication//RCIMConnectionStatusDelegate
-{
+//RCIMConnectionStatusDelegate
+extension OtherApplication {
     func onRCIMConnectionStatusChanged(_ status: RCConnectionStatus) {
-        print("与融云连接状态发生改变")
+        print("与融云连接状态发生改变 status = \(status)")
     }
+    
     //RCIMUserInfoDataSource
     //获取用户信息
     func getUserInfo(withUserId userId: String!, completion: ((RCUserInfo?) -> Void)!) {
@@ -160,10 +180,6 @@ extension OtherApplication//RCIMConnectionStatusDelegate
     func onRCIMReceive(_ message: RCMessage!, left: Int32) {
         if message.content.isMember(of: RCInformationNotificationMessage.self) {
             let msg:RCInformationNotificationMessage =  RCInformationNotificationMessage.notification(withMessage: message.content.conversationDigest(), extra: message.extra)
-            print("appdelegate中接收到消息通知\(msg.message)")
         }
-        
-        //        RCInformationNotificationMessage *msg = (RCInformationNotificationMessage *)message.content;
-        
     }
 }

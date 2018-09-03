@@ -7,17 +7,24 @@
 //
 
 import UIKit
+import HTHorizontalSelectionList
 
 class MessgeCenterViewController: BaseMainViewController,UIScrollViewDelegate {
-    lazy var scrollItemView:ITemScrollView = {
-        
-        let itemScroll = ITemScrollView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 45), dataAry: ["聊天","系统消息"], back: { (index) in
-            self.bodyScrollView.setContentOffset(CGPoint.init(x: CGFloat(index) * ScreenWidth, y: 0), animated: true)
-        })
-        return itemScroll
-        
+    lazy var scrollItemView: HTHorizontalSelectionList = {
+        let list = HTHorizontalSelectionList()
+        list.frame = CGRect(x: 0, y: 0, width: ScreenWidth, height: 45)
+        list.delegate = self
+        list.dataSource = self
+        list.bottomTrimHidden = true
+        list.selectionIndicatorColor = APPCustomBtnColor
+        list.setTitleFont(UIFont.systemFont(ofSize: 14), for: UIControlState.normal)
+        list.setTitleColor(UIColor.black, for: UIControlState.normal)
+        list.setTitleColor(APPCustomBtnColor, for: UIControlState.selected)
+        list.selectionIndicatorHeight = 2
+        list.centerButtons = true
+        list.selectedButtonIndex = 0
+        return list
     }()
-    
     
     lazy var messageVC:ChatListViewController  = {
        let chatVC = ChatListViewController()
@@ -25,12 +32,14 @@ class MessgeCenterViewController: BaseMainViewController,UIScrollViewDelegate {
         self.bodyScrollView.addSubview(chatVC.view)
         return chatVC
     }()
+    
     lazy var sysTemVc:SystemMessageViewController = {
         let vc = SystemMessageViewController()
         self.addChildViewController(vc)
         self.bodyScrollView.addSubview(vc.view)
         return vc
     }()
+    
     lazy var bodyScrollView:UIScrollView = {
         let scrollView = UIScrollView.init()
         scrollView.frame = CGRect.init(x: 0, y: self.scrollItemView.frame.maxY, width: ScreenWidth, height: self.view.frame.height - self.scrollItemView.frame.maxY)
@@ -42,6 +51,7 @@ class MessgeCenterViewController: BaseMainViewController,UIScrollViewDelegate {
         scrollView.showsVerticalScrollIndicator = false
         return scrollView
     }()
+    
     override func viewWillLayoutSubviews() {
         self.bodyScrollView.frame = CGRect.init(x: 0, y: self.scrollItemView.frame.maxY, width: ScreenWidth, height: self.view.frame.height - self.scrollItemView.frame.maxY)
         self.bodyScrollView.contentSize = CGSize.init(width: bodyScrollView.frame.width * 2, height: bodyScrollView.frame.height)
@@ -64,41 +74,42 @@ class MessgeCenterViewController: BaseMainViewController,UIScrollViewDelegate {
         rightBtn.isHidden = false
         self.rightBtn.setTitleColor(APPCustomBtnColor, for: UIControlState.normal)
     }
-    override func viewDidAppear(_ animated: Bool) {
-        if UnreadCount > 0 {
-            self.scrollItemView.showrightTageView(tags: [0])
-        }
-    }
+    
     override func clickRightBtn() {
         RootViewController?.hideTheTabbar()
-        
         self.navigationController?.pushViewController(MessagePushSettingViewController(), animated: true)
-        
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let x:CGFloat = scrollView.contentOffset.x
-        if x > 10 {
-            self.scrollItemView.setItemtarget(index: 1)
-        }
-        else{
-             self.scrollItemView.setItemtarget(index: 0)
-        }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let index = Int(scrollView.contentOffset.x / scrollView.bounds.size.width + 0.5)
+        scrollItemView.setSelectedButtonIndex(index, animated: true)
+    }
+}
+
+extension MessgeCenterViewController: HTHorizontalSelectionListDelegate {
+    
+    func selectionList(_ selectionList: HTHorizontalSelectionList, didSelectButtonWith index: Int) {
+        bodyScrollView.setContentOffset(CGPoint(x: bodyScrollView.bounds.size.width * CGFloat(index), y: 0), animated: true)
+    }
+}
+
+extension MessgeCenterViewController: HTHorizontalSelectionListDataSource {
+    
+    func selectionList(_ selectionList: HTHorizontalSelectionList, badgeValueForItemWith index: Int) -> String? {
+        return nil
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func numberOfItems(in selectionList: HTHorizontalSelectionList) -> Int {
+        return 2
     }
-    */
-
+    
+    func selectionList(_ selectionList: HTHorizontalSelectionList, titleForItemWith index: Int) -> String? {
+        return 0 == index ? "聊天" : "系统消息"
+    }
 }
 

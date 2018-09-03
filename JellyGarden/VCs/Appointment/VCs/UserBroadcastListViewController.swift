@@ -9,6 +9,8 @@
 import UIKit
 import MJRefresh
 import Photos
+import TZImagePickerController
+
 class UserBroadcastListViewController: BaseMainTableViewController,TZImagePickerControllerDelegate,ResponderRouter {
     var userid:String = ""
     var reportTag:Int = 0

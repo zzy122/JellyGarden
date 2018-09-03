@@ -10,6 +10,7 @@ import UIKit
 import MobileCoreServices
 import Photos
 import HandyJSON
+import TZImagePickerController
 
 class MineInfoEditViewController: BaseMainViewController, UITextViewDelegate {
 

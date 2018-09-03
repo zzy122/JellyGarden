@@ -96,11 +96,7 @@ let APPCustomGrayColor = UIColor.init(red: 238.0 / 255.0, green: 238.0 / 255.0, 
 let APPCustomBtnColor = UIColor.init(red: 84.0 / 255.0, green: 131.0 / 255.0, blue: 204.0 / 255.0, alpha: 1.0)
 let customBackViewColor = k_CustomColor(red: 243, green: 245, blue: 249)
 let RongIMKey = "ik1qhw09ip0hp"//融云key
-
-
-
 let JPushNOtification = "JPushNOtification"//收到信鸽推送发送通知
-
 
 //极光
 let JPushChannel:String = "App Store"
@@ -114,9 +110,6 @@ let WeiChatShareScrete = "4b89be2b0c428ff608a18e98f5140b1e"
 //QQ分享
 let QQShareKey = "1106938724"
 let QQShareSecrete = "Bo3kPkPS8ICSMdgZ"
-//微博分享
-//let WeiBoShareKey = "80911205"
-//let weiBoShareSecret = "e51e50df15da143941ad1271a61ba156"
 let scale = UIScreen.main.scale
 let placeImage = imageName(name: "loginicon")
 

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import TZImagePickerController
 
 class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
     var showType:LookUserInfotype? {
