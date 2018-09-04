@@ -283,7 +283,8 @@ extension UserInfoViewController: UITableViewDelegate {
     func updatePermission(index:Int)
     {
         let str = permissionAry[index - 1]
-        let parms = ["permission":str]
+        let parms = ["permission":str,"user_id":CurrentUserInfo?.user_id ?? ""]
+        
         TargetManager.share.updatePermission(params: parms) { (success) in
             if success{
                 let model = CurrentUserInfo

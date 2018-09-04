@@ -55,7 +55,7 @@ class UMengAcion: NSObject {
             }
             DispatchQueue.main.async {
                  loginSuccess(true)
-                var params:[String:Any] = ["open_id":userResult.openid,"avatar":userResult.iconurl,"nickname":userResult.name]
+                var params:[String:Any] = ["open_id":userResult.openid!,"avatar":userResult.iconurl!,"nickname":userResult.name!]
                 switch type
                 {
                     

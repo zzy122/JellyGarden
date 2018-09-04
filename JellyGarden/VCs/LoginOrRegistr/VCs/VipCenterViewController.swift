@@ -182,13 +182,14 @@ class VipCenterViewController: BaseViewController,ResponderRouter {
         else {
             param["channel"] = "wx"
         }
-        if autoPayBtn.isSelected {
-            param["is_discount"] = true
-        }
-        else {
-            param["is_discount"] = false
-        }
-        
+//        if autoPayBtn.isSelected {
+//            param["is_discount"] = true
+//        }
+//        else
+//        {
+//            param["is_discount"] = false
+//        }
+
         TargetManager.share.vipBuy(params: param) { (result, error) in
             
             if let dic = result as? [String:Any] {
