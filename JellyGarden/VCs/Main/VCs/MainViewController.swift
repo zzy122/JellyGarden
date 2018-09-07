@@ -66,6 +66,7 @@ class MainViewController: BaseMainViewController,UISearchBarDelegate,ResponderRo
                                                         height: self.view.frame.height - self.scrollItemView.frame.maxY))
         body.tagLocalCity = LocalCityName
         body.tagSex = CurrentUserInfo?.sex == 0 ? .woman : .man //sexType.init(rawValue: CurrentUserInfo?.sex ?? 1)!
+
         return body
     }()
     

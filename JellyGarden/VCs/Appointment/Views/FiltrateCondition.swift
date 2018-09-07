@@ -10,6 +10,15 @@ import UIKit
 enum sexType: Int {
     case woman = 1
     case man = 0
+    
+    static prefix func !(value: sexType) -> sexType {
+        switch value {
+        case .woman:
+            return .man
+        case .man:
+            return .woman
+        }
+    }
 }
 
 enum sortType: String {
