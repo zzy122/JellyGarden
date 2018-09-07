@@ -154,7 +154,7 @@ class SearchUserViewController: BaseMainTableViewController,UISearchBarDelegate,
                 return
             }
             
-            let params = ["like_garden_user_id":usermodel.user_id ?? "", "user_id":CurrentUserInfo?.user_id ?? ""]
+            let params = ["like_userid":usermodel.user_id ?? "", "user_id":CurrentUserInfo?.user_id ?? ""]
             TargetManager.share.gardensUserLikes(params: params, complection: { (success) in
                 if success {
                     usermodel.is_like = !usermodel.is_like

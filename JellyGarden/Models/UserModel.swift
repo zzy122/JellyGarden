@@ -27,6 +27,7 @@ class UserModel:JSON {
     var lon:Double?//经度
     var lat:Double?//纬度
     var user_id:String?
+    var is_like:Bool?
     var contact_wechat:String?//微信号
     var self_introduction:String?//自我介绍
     var password:String?//密码

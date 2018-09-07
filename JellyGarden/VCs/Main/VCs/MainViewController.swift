@@ -39,7 +39,8 @@ class MainViewController: BaseMainViewController,UISearchBarDelegate,ResponderRo
         UserLocation = location!
         let param:[String:Any] = ["city": self.cityStr,
                                   "lat": UserLocation.coordinate.latitude,
-                                  "lon": UserLocation.coordinate.longitude]
+                                  "lon": UserLocation.coordinate.longitude,
+                                  "user_id":CurrentUserInfo?.user_id ?? ""]
         TargetManager.share.uploadMyLocation(params: param, complection: nil)
     }
     
@@ -64,7 +65,7 @@ class MainViewController: BaseMainViewController,UISearchBarDelegate,ResponderRo
                                                         width: ScreenWidth,
                                                         height: self.view.frame.height - self.scrollItemView.frame.maxY))
         body.tagLocalCity = LocalCityName
-        body.tagSex = sexType.init(rawValue: CurrentUserInfo?.sex ?? 1)!
+        body.tagSex = CurrentUserInfo?.sex == 0 ? .woman : .man //sexType.init(rawValue: CurrentUserInfo?.sex ?? 1)!
         return body
     }()
     
@@ -97,8 +98,17 @@ class MainViewController: BaseMainViewController,UISearchBarDelegate,ResponderRo
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
         self.setNavigationViewCustom()
+        self.bodyView.limitRefresh()
         RootViewController?.showTheTabbar()
     }
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        self.bodyView.limiteIsRefresh = false
+//    }
+//    override func viewDidDisappear(_ animated: Bool) {
+//        super.viewDidDisappear(animated)
+//        self.bodyView.limiteIsRefresh = false
+//    }
     
     func setNavigationViewCustom() {
         self.leftBtn.isHidden = false

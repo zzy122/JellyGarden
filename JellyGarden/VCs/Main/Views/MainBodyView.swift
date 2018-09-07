@@ -13,6 +13,8 @@ class MainBodyView: UIView,UICollectionViewDelegate,UICollectionViewDataSource ,
     
     var typeAry: [SearchType] = [.hot, .new, .attestation]
     
+
+    
     var tagLocalCity:String? {
         didSet{
             self.collectionView.reloadData()
@@ -51,7 +53,13 @@ class MainBodyView: UIView,UICollectionViewDelegate,UICollectionViewDataSource ,
         self.collectionView.frame = self.bounds
         self.collectionView.isHidden = false//解决由控制器的frame变化带来的frame.height偏高的问题
     }
-    
+    func limitRefresh()
+    {
+        let cell:MainBodyCollectionViewCell = self.collectionView.visibleCells.first as! MainBodyCollectionViewCell
+        cell.currentPage = 1
+        cell.userInfoModels.removeAll()
+        cell.refreshFooter()
+    }
     override init(frame: CGRect) {
         super.init(frame: frame)
     }

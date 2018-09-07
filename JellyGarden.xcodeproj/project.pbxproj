@@ -319,6 +319,8 @@
 		C7AA5423210AB833003D4580 /* SetRedPacketPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AA5422210AB833003D4580 /* SetRedPacketPhotoViewController.swift */; };
 		C7AA5426210ABAF0003D4580 /* SetRedpacketCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AA5424210ABAF0003D4580 /* SetRedpacketCollectionViewCell.swift */; };
 		C7AA5427210ABAF0003D4580 /* SetRedpacketCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7AA5425210ABAF0003D4580 /* SetRedpacketCollectionViewCell.xib */; };
+		C7D457662142657200BD1BC5 /* ImagepayMoneyAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D457652142657200BD1BC5 /* ImagepayMoneyAlertView.swift */; };
+		C7D457682142658400BD1BC5 /* ImagepayMoneyAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7D457672142658400BD1BC5 /* ImagepayMoneyAlertView.xib */; };
 		C7E7968B2105863400286E7B /* NotifyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E7968A2105863400286E7B /* NotifyModel.swift */; };
 		C7EEE74220FF3696005CA67F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7EEE74120FF3696005CA67F /* LaunchScreen.storyboard */; };
 		C7FC8E3C210EE27D00F9BAED /* WomanDepositManagerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FC8E3A210EE27D00F9BAED /* WomanDepositManagerTableViewCell.swift */; };
@@ -723,6 +725,8 @@
 		C7AA5422210AB833003D4580 /* SetRedPacketPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetRedPacketPhotoViewController.swift; sourceTree = "<group>"; };
 		C7AA5424210ABAF0003D4580 /* SetRedpacketCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetRedpacketCollectionViewCell.swift; sourceTree = "<group>"; };
 		C7AA5425210ABAF0003D4580 /* SetRedpacketCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetRedpacketCollectionViewCell.xib; sourceTree = "<group>"; };
+		C7D457652142657200BD1BC5 /* ImagepayMoneyAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagepayMoneyAlertView.swift; sourceTree = "<group>"; };
+		C7D457672142658400BD1BC5 /* ImagepayMoneyAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImagepayMoneyAlertView.xib; sourceTree = "<group>"; };
 		C7E7968A2105863400286E7B /* NotifyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifyModel.swift; sourceTree = "<group>"; };
 		C7EEE74120FF3696005CA67F /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C7FC8E3A210EE27D00F9BAED /* WomanDepositManagerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WomanDepositManagerTableViewCell.swift; sourceTree = "<group>"; };
@@ -1311,6 +1315,8 @@
 				5A6C939F20F643C900E57223 /* AlipayAction.swift */,
 				C7AA5424210ABAF0003D4580 /* SetRedpacketCollectionViewCell.swift */,
 				C7AA5425210ABAF0003D4580 /* SetRedpacketCollectionViewCell.xib */,
+				C7D457652142657200BD1BC5 /* ImagepayMoneyAlertView.swift */,
+				C7D457672142658400BD1BC5 /* ImagepayMoneyAlertView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1616,7 +1622,7 @@
 					5A80C48E20BFDB150033CAF8 = {
 						CreatedOnToolsVersion = 9.1;
 						LastSwiftMigration = 0910;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1685,6 +1691,7 @@
 				5A7FC46A20EE7F6700D7E137 /* DisAgreeRefundView.xib in Resources */,
 				5E50B852213D381D0053B2B3 /* README.txt in Resources */,
 				C7454D2820FD8AEC00D9D6D7 /* CommentNotyfyTableViewCell.xib in Resources */,
+				C7D457682142658400BD1BC5 /* ImagepayMoneyAlertView.xib in Resources */,
 				5A4E322B20C792540051FE00 /* ApplayForCodeViewController.xib in Resources */,
 				C7454D3C20FDC7B500D9D6D7 /* WalletResource.bundle in Resources */,
 				5AC3FCE320D9E8A400226946 /* StepView.xib in Resources */,
@@ -2009,6 +2016,7 @@
 				5A80C4DE20BFE5780033CAF8 /* BaseTableViewController.swift in Sources */,
 				5E50B83C213D2ED10053B2B3 /* ZZYCoreTextImageData.m in Sources */,
 				5A6C939C20F63C4C00E57223 /* AlipayBottomAlertView.swift in Sources */,
+				C7D457662142657200BD1BC5 /* ImagepayMoneyAlertView.swift in Sources */,
 				5A459AD820D1721D00C0A6FA /* CommentTableViewCell.swift in Sources */,
 				C7FC8E3F210EE33F00F9BAED /* DepositDetailViewController.swift in Sources */,
 				5A1F3ABD20DF6CA700CB98CD /* RealTimeLocationEndCell.m in Sources */,
@@ -2242,10 +2250,10 @@
 				CLANG_WARN_STRICT_PROTOTYPES = NO;
 				CODE_SIGN_ENTITLEMENTS = JellyGarden/JellyGarden.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				DEBUG_ACTIVITY_MODE = "";
 				"DEBUG_ACTIVITY_MODE[sdk=iphonesimulator*]" = default;
-				DEVELOPMENT_TEAM = 3W4VK75454;
+				DEVELOPMENT_TEAM = 8E8E88WEYJ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2264,10 +2272,10 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = cn.com.JellyGarden;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.com.JellyGarden1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "69f8ac56-894c-4371-acd4-841c287fbdea";
-				PROVISIONING_PROFILE_SPECIFIER = JellyGardenDevelpmentProfile;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "JellyGarden/JellyGarden-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2291,9 +2299,9 @@
 				CLANG_WARN_STRICT_PROTOTYPES = NO;
 				CODE_SIGN_ENTITLEMENTS = JellyGarden/JellyGarden.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				DEBUG_ACTIVITY_MODE = "";
-				DEVELOPMENT_TEAM = 3W4VK75454;
+				DEVELOPMENT_TEAM = 8E8E88WEYJ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2312,10 +2320,10 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = cn.com.JellyGarden;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.com.JellyGarden1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7c09b77d-7d26-41ae-b8fb-2e68837b1acd";
-				PROVISIONING_PROFILE_SPECIFIER = JellyGardenDevelpmentProfile;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "JellyGarden/JellyGarden-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
 				SWIFT_VERSION = 4.0;

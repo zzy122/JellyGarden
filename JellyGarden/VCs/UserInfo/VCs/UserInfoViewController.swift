@@ -12,7 +12,29 @@ import TZImagePickerController
 
 class UserInfoViewController: BaseMainViewController,TZImagePickerControllerDelegate {
 
-    
+    var imageAlert:ImagepayMoneyAlertView?
+    lazy var alertAction:AlipayAction = {
+        let backView = UIView.init(frame: CGRect.init(x: 40, y: 0, width: ScreenWidth - 80, height: 240))
+        backView.backgroundColor = UIColor.clear
+        self.imageAlert = ImagepayMoneyAlertView.createAlertView()
+        
+        imageAlert?.frame = backView.bounds
+        backView.addSubview(imageAlert!)
+        let action = AlipayAction.init(showType: .center, view: backView, windowView: RootViewController?.view)
+        imageAlert?.clickBtnAction(back: { (sure, text) in
+            action.hiddenTheView()
+            
+            if sure
+            {
+                let priceStr = text as! String
+                let parms = ["permission":permissionAry[1],"user_id":CurrentUserInfo?.user_id ?? "", "price":priceStr]
+                self.updatePermisssion(params: parms)
+            }
+        })
+        action.clickBackEnable = false
+        return action
+        
+    }()
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             let tableHeaderView: UIView = {
@@ -282,13 +304,31 @@ extension UserInfoViewController: UITableViewDelegate {
     }
     func updatePermission(index:Int)
     {
+        
+        
         let str = permissionAry[index - 1]
         let parms = ["permission":str,"user_id":CurrentUserInfo?.user_id ?? ""]
-        
-        TargetManager.share.updatePermission(params: parms) { (success) in
+        if index == 2
+        {
+            
+            AlertViewCoustom().showalertView(style: .alert, title: nil, message: "所有人必须付费才能查看你的相册,费用有你定价,这可能会降低你的访问量", cancelBtnTitle: alertCancel, touchIndex: { (index) in
+                if index == 1
+                {
+                    self.imageAlert?.moneyAccountFiled.text = ""
+                    self.alertAction.showType = .center
+                    self.alertAction.showTheView()
+                }
+            }, otherButtonTitles: "继续")
+            return
+        }
+        self.updatePermisssion(params: parms)
+    }
+    func updatePermisssion(params:[String:Any])
+    {
+        TargetManager.share.updatePermission(params: params) { (success) in
             if success{
                 let model = CurrentUserInfo
-                model?.permission = str
+                model?.permission = params["permission"] as? String
                 NSDictionary.init(dictionary: model?.toJSON() ?? [:]).write(toFile: UserPlist, atomically: true)
                 self.tableView.reloadData()
             }
@@ -505,10 +545,6 @@ extension UserInfoViewController
             })
             
         }
-       
-//        DispatchGroup().notify(queue: DispatchQueue.main) {
-//            self.tableView.reloadRows(at: [IndexPath.init(row: 0, section: 0)], with: UITableViewRowAnimation.automatic)
-//        }
         
         
     }

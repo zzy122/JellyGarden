@@ -119,7 +119,7 @@ class ConfessionTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDa
                 self.headerView?.LikeBtn.setImage(imageName(name: "赞-press"), for: UIControlState.normal)
             }
             
-            let countStr = ((detailModel?.like.count ?? 0) > 0) ? String.init(format: "%d", detailModel?.like.count ?? 0) : ""
+            let countStr = ((detailModel?.likes_count ?? 0) > 0) ? String.init(format: "%d", detailModel?.likes_count ?? 0) : ""
             self.headerView?.LikeBtn.setTitle("\(countStr)", for: UIControlState.normal)
             self.commentAry = detailModel?.comments ?? []
             self.applyView?.lookApplayBtn.setTitle(String.init(format: "查看报名(%d)", detailModel?.sign_up_count ?? 0), for: UIControlState.normal)

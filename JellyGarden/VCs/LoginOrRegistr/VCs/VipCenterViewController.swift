@@ -192,14 +192,13 @@ class VipCenterViewController: BaseViewController,ResponderRouter {
 
         TargetManager.share.vipBuy(params: param) { (result, error) in
             
-            if let dic = result as? [String:Any] {
-                if let payDic = dic["data"] as? String {
-                    //发起支付
-                    OtherApplication.share.pay(VC:self, charge: payDic, complection: { (result) in
-                        alertHud(title: "购买成功")
-                        self.gotoMainVC()
-                    })
-                }
+            
+            if let str = result as? String
+            {
+                OtherApplication.share.pay(VC:self, charge: str, complection: { (result) in
+                    alertHud(title: "购买成功")
+                    self.gotoMainVC()
+                })
             }
         }
     }

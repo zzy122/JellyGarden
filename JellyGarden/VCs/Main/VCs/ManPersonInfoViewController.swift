@@ -38,6 +38,10 @@ class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
             {
                 self.createfootView()
             }
+            else if broadcastAry.count !=  0 && showType == .pubilic
+            {
+                self.tableView.tableFooterView = UIView()
+            }
             else if showType == .validation//访问权限
             {
                 self.footerView.isHidden = false
@@ -47,10 +51,14 @@ class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
     
     var userInfoModel:UserModel? {
         didSet{
-            if userInfoModel?.likes?.contains(CurrentUserInfo?.user_id ?? "") == true
+            if userInfoModel?.is_like == true
             {
-                self.collectionImageStr = "赞-实"
+               self.collectionImageStr = "赞-实"
             }
+//            if userInfoModel?.likes?.contains(CurrentUserInfo?.user_id ?? "") == true
+//            {
+//
+//            }
         }
     }
     lazy var footerView:PermissionLookView = {
@@ -129,6 +137,10 @@ class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
                 
                 
                 TargetManager.share.userReportRequest(params: ["user_id": CurrentUserInfo?.user_id ?? "","report_user_id": self.userInfoModel?.user_id ?? "","report_type":0], complection: { (success) in
+                    if (success)
+                    {
+                        alertHud(title: "已加入黑名单")
+                    }
                     
                 })
             }
@@ -145,7 +157,7 @@ class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
     {
         TargetManager.share.requestUserAllBroadcast(userid: userInfoModel?.user_id ?? "") { (models, error) in
             if error == nil {
-                self.broadcastAry = models ?? []
+                self.broadcastAry = models?.appointment ?? []
             }
         }
     }
@@ -167,7 +179,7 @@ class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
                 else{return}
             switch btnTag {
             case .collection://点击收藏
-                let params = ["like_garden_user_id":self.userInfoModel?.user_id ?? "", "user_id":CurrentUserInfo?.user_id ?? ""]
+                let params = ["like_userid":self.userInfoModel?.user_id ?? "", "user_id":CurrentUserInfo?.user_id ?? ""]
                 TargetManager.share.gardensUserLikes(params: params, complection: { (success) in
                     if success {
                         self.collectionImageStr = (self.collectionImageStr == "赞-实") ? "收藏" : "赞-实"
@@ -222,28 +234,23 @@ class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
             
             let model:lonelySpeechDetaileModel = broadcastAry[index]
             let appointment_id = model.id
-            if let like = model.is_like,like//取消赞
-            {
-                TargetManager.share.cancelLikeAppiont(appointment_id: appointment_id, complection: { (result, error) in
-                    if result//请求数据刷新
+            /// 取消赞
+            
+            TargetManager.share.likeAppiont(appointment_id: appointment_id!, complection: { (complection, error) in
+                if complection { //请求数据刷新
+                    model.is_like = !(model.is_like ?? false)
+                    if model.is_like == true
                     {
-                        model.likes_count  =  model.likes_count! - 1
-                        model.is_like = false
-                        self.reloadMyTableView(index: index, model: model)
-                    }
-                })
-            }
-            else//点赞
-            {
-                TargetManager.share.likeAppiont(appointment_id: appointment_id!, complection: { (complection, error) in
-                    if complection//请求数据刷新
-                    {
-                        model.is_like = true
                         model.likes_count  =  (model.likes_count ?? 0) + 1
-                        self.reloadMyTableView(index: index, model: model)
                     }
-                })
-            }
+                    else
+                    {
+                        model.likes_count  =  (model.likes_count ?? 0) - 1
+                    }
+                    
+                    self.reloadMyTableView(index: index, model: model)
+                }
+            })
         }
         if name == ClickCommentBtn {//评论
             guard let index = info as? Int else{
@@ -398,7 +405,7 @@ extension ManPersonInfoViewController:TZImagePickerControllerDelegate
             if state == UploadImageState.success
             {//报名
                 let model:lonelySpeechDetaileModel = self.broadcastAry[self.reportTag]
-                let params:[String:Any] = ["user_id":CurrentUserInfo?.user_id ?? "","attachment":urls?.last ?? "","has_pay_deposit":0, "appointment_id": model.id!]
+                let params:[String:Any] = ["user_id":CurrentUserInfo?.user_id ?? "","attachment":urls?.last ?? "", "appointment_id": model.id!]
                 TargetManager.share.signUpAppiont(appointment_id: model.id ?? "", params: params, complection: { (success, error) in
                     if success
                     {

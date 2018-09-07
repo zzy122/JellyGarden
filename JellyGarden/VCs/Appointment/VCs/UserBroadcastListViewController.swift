@@ -99,7 +99,7 @@ class UserBroadcastListViewController: BaseMainTableViewController,TZImagePicker
     func getAppiontData(complection:@escaping (Bool) -> Void) {
         TargetManager.share.requestUserAllBroadcast(userid: userid) { (models, error) in
             guard error != nil else{
-                self.appiontModels = models ?? []
+                self.appiontModels = models?.appointment ?? []
                 complection(true)
                 return
             }
@@ -220,34 +220,31 @@ extension UserBroadcastListViewController
             
         }
         if name == ClickLikeChangeBtn  {//点赞
+            
+            
+            
             guard let index = info as? Int else{
                 return
             }
             let model:lonelySpeechDetaileModel = appiontModels[index]
             let appointment_id = model.id
-            if let like = model.is_like,like//取消赞
-            {
-                TargetManager.share.cancelLikeAppiont(appointment_id: appointment_id, complection: { (result, error) in
-                    if result//请求数据刷新
+            /// 取消赞
+            
+            TargetManager.share.likeAppiont(appointment_id: appointment_id!, complection: { (complection, error) in
+                if complection { //请求数据刷新
+                    model.is_like = !(model.is_like ?? false)
+                    if model.is_like == true
                     {
-                        model.is_like = false
-                        
-                        model.likes_count  =  model.likes_count! - 1
-                        self.reloadMyTableView(index: index, model: model)
+                        model.likes_count  =  (model.likes_count ?? 0) + 1
                     }
-                })
-            }
-            else//点赞
-            {
-                TargetManager.share.likeAppiont(appointment_id: appointment_id!, complection: { (complection, error) in
-                    if complection//请求数据刷新
+                    else
                     {
-                        model.likes_count  =  model.likes_count ?? 0 + 1
-                        model.is_like = true
-                        self.reloadMyTableView(index: index, model: model)
+                        model.likes_count  =  (model.likes_count ?? 0) + 1
                     }
-                })
-            }
+                    
+                    self.reloadMyTableView(index: index, model: model)
+                }
+            })
         }
         if name == ClickCommentBtn {//评论
             AlertAction.share.showCommentView(clickType: { (type, str) in
@@ -325,7 +322,7 @@ extension UserBroadcastListViewController
             if state == UploadImageState.success
             {//报名
                 let model:lonelySpeechDetaileModel = self.appiontModels[self.reportTag]
-                let params:[String:Any] = ["user_id":CurrentUserInfo?.user_id ?? "","attachment":urls?.last ?? "","has_pay_deposit":0, "appointment_id": model.id!]
+                let params:[String:Any] = ["user_id":CurrentUserInfo?.user_id ?? "","attachment":urls?.last ?? "", "appointment_id": model.id!]
                 TargetManager.share.signUpAppiont(appointment_id: model.id ?? "", params: params, complection: { (success, error) in
                     if success
                     {

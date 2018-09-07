@@ -56,13 +56,14 @@ class AppointViewController: BaseMainTableViewController,ResponderRouter,TZImage
         return view1
     }()
     
-    var params: [String:Any] = [:] {
+    var params: [String:Any] = ["sort":"near","page": 0,"page_size":5] {
         didSet{
             self.closeConditionView()
             if tableView.mj_header.isRefreshing {
                 tableView.mj_header.endRefreshing()
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.25) {
                     self.tableView.mj_header.beginRefreshing()
+
                 }
             }
             else {
@@ -91,7 +92,7 @@ class AppointViewController: BaseMainTableViewController,ResponderRouter,TZImage
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "寂寞告白"
-        self.cityStr = LocalCityName
+       
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
         self.tableView.register(UINib.init(nibName: "ConfessionTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "ConfessionTableViewCell")
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
@@ -104,7 +105,8 @@ class AppointViewController: BaseMainTableViewController,ResponderRouter,TZImage
         self.tableView.mj_header = headerFresh
         self.tableView.mj_footer = footerFresh
         self.edgesForExtendedLayout = UIRectEdge.init(rawValue: 0)
-        self.params = ["sort":"near","page": self.page,"page_size":5]
+//        self.params = ["sort":"near","page": self.page,"page_size":5]
+         self.cityStr = LocalCityName
     }
     
     @objc func footerRefreshAction() {
@@ -302,24 +304,23 @@ extension AppointViewController {
             let model:lonelySpeechDetaileModel = appiontModels[index]
             let appointment_id = model.id
             /// 取消赞
-            if let like = model.is_like, like {
-                TargetManager.share.cancelLikeAppiont(appointment_id: appointment_id, complection: { (result, error) in
-                    if result { //请求数据刷新
-                         model.likes_count  =  model.likes_count! - 1
-                        model.is_like = false
-                        self.reloadMyTableView(index: index, model: model)
+            
+            TargetManager.share.likeAppiont(appointment_id: appointment_id!, complection: { (complection, error) in
+                if complection { //请求数据刷新
+                    model.is_like = !(model.is_like ?? false)
+                    if model.is_like == true
+                    {
+                        model.likes_count  =  (model.likes_count ?? 0) + 1
                     }
-                })
-            }
-            else { //点赞
-                TargetManager.share.likeAppiont(appointment_id: appointment_id!, complection: { (complection, error) in
-                    if complection { //请求数据刷新
-                        model.is_like = true
-                         model.likes_count  =  (model.likes_count ?? 0) + 1
-                        self.reloadMyTableView(index: index, model: model)
+                    else
+                    {
+                        model.likes_count  =  (model.likes_count ?? 0) - 1
                     }
-                })
-            }
+                    
+                    self.reloadMyTableView(index: index, model: model)
+                }
+            })
+
         }
         if name == ClickCommentBtn {//评论
              let model:lonelySpeechDetaileModel = self.appiontModels[index]
@@ -432,7 +433,7 @@ extension AppointViewController {
         AliyunManager.share.uploadImagesToAliyun(imageModels: models, complection: { (urls, succecCount, failCount, state) in
             if state == UploadImageState.success {//报名
                 let model:lonelySpeechDetaileModel = self.appiontModels[self.reportTag]
-                let params:[String:Any] = ["user_id": CurrentUserInfo?.user_id ?? "","attachment":urls?.last ?? "","has_pay_deposit":0, "appointment_id": model.id!]
+                let params:[String:Any] = ["user_id": CurrentUserInfo?.user_id ?? "","attachment":urls?.last ?? "", "appointment_id": model.id!]
                 TargetManager.share.signUpAppiont(appointment_id: model.id ?? "", params: params, complection: { (success, error) in
                     if success {
                         model.sign_up_count  = (model.sign_up_count ?? 0) + 1

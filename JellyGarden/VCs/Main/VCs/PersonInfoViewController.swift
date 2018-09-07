@@ -142,7 +142,7 @@ class PersonInfoViewController: BaseTableViewController,ResponderRouter {
             else{return}
             switch btnTag {
             case .collection://点击收藏
-                let params = ["like_garden_user_id":self.userInfoModel?.user_id ?? "", "user_id":CurrentUserInfo?.user_id ?? ""]
+                let params = ["like_userid":self.userInfoModel?.user_id ?? "", "user_id":CurrentUserInfo?.user_id ?? ""]
                 TargetManager.share.gardensUserLikes(params: params, complection: { (success) in
                     if success {
                         self.collectionImageStr = (self.collectionImageStr == "赞-实") ? "收藏" : "赞-实"
@@ -201,7 +201,10 @@ class PersonInfoViewController: BaseTableViewController,ResponderRouter {
             if index == 1//拉黑
             {
                 TargetManager.share.userReportRequest(params: ["user_id": CurrentUserInfo?.user_id ?? "","report_user_id": self.userInfoModel?.user_id ?? "","report_type":0], complection: { (success) in
-                    
+                    if (success)
+                    {
+                        alertHud(title: "已加入黑名单")
+                    }
                 })
             }
             else if index == 2//举报

@@ -10,7 +10,6 @@ import UIKit
 struct posterModel:JSON {
     var avatar:String?//头像
     var user_id:String?
-    
     var has_authentication:Bool?//是否认证
     var nickname:String?
     var sex:Int?
@@ -83,8 +82,8 @@ class lonelySpeechDetaileModel:JSON {
 }
 
 struct lonelySpeechModel:JSON {
-    var data:[lonelySpeechDetaileModel]?
-    var msg:String?
+    var appointment:[lonelySpeechDetaileModel]?
+//    var msg:String?
     
 }
 

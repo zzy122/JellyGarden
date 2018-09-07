@@ -12,16 +12,30 @@ enum ShowType {
     case bottom;
 }
 class AlipayAction: NSObject {
+    
+    let gester:UITapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(clickBack))
     lazy var backView:UIView = {
         let view1 = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight))
         view1.alpha = 0.3
         view1.backgroundColor = UIColor.black
         view1.isHidden = true
-        let gester = UITapGestureRecognizer.init(target: self, action: #selector(clickBack))
         view1.addGestureRecognizer(gester)
         self.bottomView?.addSubview(view1)
         return view1
     }()
+    var clickBackEnable:Bool = true
+    {
+        didSet{
+            if clickBackEnable
+            {
+                gester.removeTarget(self, action: #selector(clickBack))
+            }
+            else
+            {
+                gester.addTarget(self, action: #selector(clickBack))
+            }
+        }
+    }
 
     var showType:ShowType {
         didSet {

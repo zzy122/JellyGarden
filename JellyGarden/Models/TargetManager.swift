@@ -18,8 +18,8 @@ class TargetManager: NSObject {
     
     //获取用户信息
     func getDetailUserInfo(userid:String,isUpdateUser:Bool, complection:@escaping (UserModel?,Error?) -> Void)  {//gardens/\(userid)?my_user_id=\(CurrentUserInfo?.user_id ?? "")
-        let param = ["user_id":userid]
-        NetCostom.shared.request(method:.get ,wengen: "admin/user/get_user_message", params: param, success: { (result) in
+        let param = ["view_userid":userid,"user_id":CurrentUserInfo?.user_id ?? ""]
+        NetCostom.shared.request(method:.post ,wengen: "admin/user/get_user_message", params: param, success: { (result) in
             if isUpdateUser
             {
                 guard let user = result as? [String:Any] else {
@@ -71,9 +71,9 @@ class TargetManager: NSObject {
             guard let user = result as? [String:Any] else {
                 return
             }
-            NSDictionary.init(dictionary: user).write(toFile: UserPlist, atomically: true)
-            
             let model = BaseModel<UserModel,UserModel>.init(resultData: user)
+            let user1 = model.resultData?.toJSON()!
+            NSDictionary.init(dictionary: user1!).write(toFile: UserPlist, atomically: true)
             complection(model.resultData,nil)
         }) { (error) in
             complection(nil,error)
@@ -106,11 +106,11 @@ class TargetManager: NSObject {
             if let jsonStr = result as? [String:Any], let datas = jsonStr["appointment"] as? [[String: Any]] {
                 
                 let models = [lonelySpeechDetaileModel].deserialize(from: datas) ?? []
-//                    BaseModel<lonelySpeechModel, lonelySpeechModel>.init(resultData: jsonStr["appointment"] ?? [])
+                
                 complection(models as! [lonelySpeechDetaileModel], nil)
             }
             else {
-                alertHud(title: "数据返回错误")
+                 complection([], nil)
             }
         }) { (error) in
             complection([],error)
@@ -146,16 +146,8 @@ class TargetManager: NSObject {
     //发布评论
     func issueComment(appointment_id:String, params:[String:Any],complection:@escaping (commentsModel?,Error?) -> Void) {
         NetCostom.shared.request(method:.post ,wengen: "admin/video/appointment_comments", params: params, success: { (result) in
-            if let jsonStr = result as? [String:Any]
-            {
-                
-                let model = BaseModel<commentsModel,commentsModel>.init(resultData: jsonStr["data"] ?? "")
-                complection(model.resultData,nil)
-            }
-            else
-            {
-                alertHud(title: "数据返回错误")
-            }
+            let model = BaseModel<commentsModel,commentsModel>.init(resultData: result)
+            complection(model.resultData,nil)
         }) { (error) in
             complection(nil,error)
         }
@@ -169,22 +161,10 @@ class TargetManager: NSObject {
             complection(false,error)
         }
     }
-    //取消点赞/
-    func cancelLikeAppiont(appointment_id:String?,complection:@escaping (Bool,Error?) -> Void) {
-        
-        NetCostom.shared.request(method:.delete ,wengen: "appointment/\(appointment_id ?? "")/likes/\(CurrentUserInfo?.user_id ?? "")", params: nil, success: { (result) in
-            complection(true,nil)
-        }) { (error) in
-            complection(false,error)
-        }
-    }
     //报名 params [user_id,attachment:string//多张图片 用,隔开   content  has_pay_deposit:是否支付定金]
     func signUpAppiont(appointment_id:String?,params:[String:Any]?,complection:@escaping (Bool,Error?) -> Void){
         NetCostom.shared.request(method:.post ,wengen: "admin/video/signup_appointment", params: params, success: { (result) in
-            guard let dic = result as? [String:Any] else{
-                return
-            }
-            alertHud(title: dic["msg"] as! String)
+//            alertHud(title: dic["msg"] as! String)
             complection(true,nil)
         }) { (error) in
             complection(false,error)
@@ -202,8 +182,7 @@ class TargetManager: NSObject {
     
    //跟新位置
     func uploadMyLocation(params: [String:Any], complection: ((Bool,Error?) -> Void)?) {
-        let userid = CurrentUserInfo?.user_id ?? ""
-        NetCostom.shared.request(method: .put, wengen: "users/\(userid)/position", params: params, success: { (result) in
+        NetCostom.shared.request(method: .post, wengen: "admin/user/update_position", params: params, success: { (result) in
             complection?(true,nil)
         }) { (error) in
             complection?(false,error)
@@ -305,7 +284,7 @@ class TargetManager: NSObject {
     //点赞用户
     func gardensUserLikes(params:[String:Any],complection:@escaping (Bool) -> Void)
     {
-        NetCostom.shared.request(method: .post, wengen: "gardens/likes", params: params, success: { (result) in
+        NetCostom.shared.request(method: .post, wengen: "admin/user/user_like", params: params, success: { (result) in
             complection(true)
         }) { (error) in
             complection(false)
@@ -362,19 +341,12 @@ class TargetManager: NSObject {
         }
     }
     //获取用户所有广播
-    func requestUserAllBroadcast(userid:String,complection:@escaping ([lonelySpeechDetaileModel]?,Error?) -> Void)
+    func requestUserAllBroadcast(userid:String,complection:@escaping (lonelySpeechModel?,Error?) -> Void)
     {
-        NetCostom.shared.request(method: .post, wengen: "users/\(userid)/appointments", params: nil, success: { (result) in
-            if let jsonStr = result as? [String:Any]
-            {
-
-                let model = BaseModel<lonelySpeechModel,lonelySpeechModel>.init(resultData: jsonStr)
-                complection(model.resultData?.data,nil)
-            }
-            else
-            {
-                alertHud(title: "数据返回错误")
-            }
+        let param:[String:String] = ["user_id":userid];
+        NetCostom.shared.request(method: .post, wengen: "admin/video/get_allappointment_byuserid", params: param, success: { (result) in
+            let model = BaseModel<lonelySpeechModel,lonelySpeechModel>.init(resultData: result)
+            complection(model.resultData,nil)
         }) { (error) in
             complection(nil,error)
         }
@@ -458,14 +430,10 @@ class TargetManager: NSObject {
             complection(false)
         }
     }
-    //举报 或者拉黑report_type:int 0拉黑 1举报
+    //拉黑
     func userReportRequest(params:[String:Any],complection:@escaping(Bool) ->Void)
     {
-        NetCostom.shared.request(method: .post, wengen: "userReport", params: params, success: {(result) in
-            guard let dic = result as? [String:Any]  else{
-                return
-            }
-            alertHud(title: "\((dic["msg"] as? String) ?? "")")
+        NetCostom.shared.request(method: .post, wengen: "admin/user/report", params: params, success: {(result) in
             complection(true)
         }) { (error) in
             complection(false)
@@ -494,12 +462,11 @@ class TargetManager: NSObject {
     //获取我喜欢的列表
     func myLikesList(params:[String:Any]?,complection:@escaping ([MainListmodel]?,Error?) -> Void)
     {
-        NetCostom.shared.request(method: .post, wengen: "gardens/likes", params: params, success: { (result) in
-            if let jsonStr = result as? [String:Any]
-            {
-                let model = BaseModel<MainListmodel,[MainListmodel]>.init(resultData: jsonStr["data"] ?? "")
-                complection(model.resultData,nil)
-            }
+        NetCostom.shared.request(method: .post, wengen: "admin/user/like_user_list", params: params, success: { (result) in
+           
+            let model = BaseModel<MainListmodel,[MainListmodel]>.init(resultData: result)
+            complection(model.resultData,nil)
+        
         }) { (error) in
            complection(nil,error)
         }
