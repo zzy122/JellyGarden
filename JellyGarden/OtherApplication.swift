@@ -88,6 +88,7 @@ class OtherApplication: NSObject, WXApiDelegate, RCIMUserInfoDataSource, RCIMGro
         
         if (response.notification.request.trigger?.isKind(of: UNPushNotificationTrigger.self))! {//后台挂起收到推送消息 点击推送消息进去之后执行
             JPUSHService.handleRemoteNotification(userinfo)
+            APPNotyfyDealwith.share.addNotifyInfo(info: userinfo as? [String : Any])
         }
         completionHandler()
     }
@@ -97,6 +98,7 @@ class OtherApplication: NSObject, WXApiDelegate, RCIMUserInfoDataSource, RCIMGro
         let info = notification.request.content.userInfo
         if (notification.request.trigger?.isKind(of: UNPushNotificationTrigger.self))! {
             JPUSHService.handleRemoteNotification(info)
+            APPNotyfyDealwith.share.addNotifyInfo(info: info as? [String : Any])
         }
         completionHandler(Int(UNNotificationPresentationOptions.alert.rawValue | UNNotificationPresentationOptions.sound.rawValue | UNNotificationPresentationOptions.badge.rawValue))
     }

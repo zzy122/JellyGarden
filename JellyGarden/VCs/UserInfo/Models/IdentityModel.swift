@@ -9,5 +9,6 @@
 import UIKit
 
 struct IdentityModel: JSON {
-    var status:Int?
+    var status:String?//failed   success checking  nodata
+    var type:Int = 3//1 照片  2视频  3其他
 }

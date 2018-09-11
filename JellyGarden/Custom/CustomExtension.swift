@@ -239,17 +239,6 @@ func hexString(hex: String) -> UIColor {
     }
     return UIColor(red: red, green: green, blue: blue, alpha: alpha)
 }
-extension UIView
-{
-    func addCorners(roundCorners:UIRectCorner,cornerSize:CGSize)
-    {
-        let path = UIBezierPath.init(roundedRect: bounds, byRoundingCorners: roundCorners, cornerRadii: cornerSize)
-        let corLayer = CAShapeLayer()
-        corLayer.path = path.cgPath
-        corLayer.frame = bounds
-        layer.mask = corLayer
-    }
-}
 
 
 

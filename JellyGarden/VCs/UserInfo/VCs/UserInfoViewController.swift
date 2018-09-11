@@ -13,6 +13,8 @@ import TZImagePickerController
 class UserInfoViewController: BaseMainViewController,TZImagePickerControllerDelegate {
 
     var imageAlert:ImagepayMoneyAlertView?
+    var viewModel:ViewCountModel?
+    
     lazy var alertAction:AlipayAction = {
         let backView = UIView.init(frame: CGRect.init(x: 40, y: 0, width: ScreenWidth - 80, height: 240))
         backView.backgroundColor = UIColor.clear
@@ -108,7 +110,15 @@ class UserInfoViewController: BaseMainViewController,TZImagePickerControllerDele
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: false)
         RootViewController?.showTheTabbar()
-        self.tableView.reloadData()
+       self.reloadMyViewAccount()
+        
+    }
+    func reloadMyViewAccount()
+    {
+        TargetManager.share.getCountWithView { (model, error) in
+            self.viewModel = model
+            self.tableView.reloadData()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -135,6 +145,12 @@ extension UserInfoViewController {
     }
     
     func touchRecover() {
+        TargetManager.share.recoverMyPicture { (result) in
+            if result
+            {
+                self.reloadMyViewAccount()
+            }
+        }
         
     }
     
@@ -479,11 +495,11 @@ extension UserInfoViewController: UITableViewDataSource {
             }
             else if 2 == indexPath.section && 1 == indexPath.row {
                 cell?.textLabel?.text = "历史访客"
-                cell?.detailTextLabel?.text = "有98个人看过你"
+                cell?.detailTextLabel?.text = "有\(self.viewModel?.view_num ?? 0)个人看过你"
             }
             else if 2 == indexPath.section && 2 == indexPath.row {
                 cell?.textLabel?.text = "阅后即焚"
-                cell?.detailTextLabel?.text = "已有2个人焚毁了你的照片"
+                cell?.detailTextLabel?.text = "已有\(self.viewModel?.destory_num ?? 0)个人焚毁了你的照片"
                 cell?.accessoryView = {
                     let _button = UIButton(type: UIButtonType.custom)
                     _button.setTitle("一键恢复", for: UIControlState.normal)

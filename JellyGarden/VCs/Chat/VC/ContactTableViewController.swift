@@ -9,11 +9,11 @@
 import UIKit
 import HandyJSON
 class ContactTableViewController: BaseMainTableViewController {
-    let models:[NotifyDataModel]? =
-    {
-        let ary = APPNotyfyDealwith.share.getNotifyData(key: Contact_APP_StyleNotify)
-        return (JSONDeserializer<NotifyDataModel>.deserializeModelArrayFrom(array: ary) as? [NotifyDataModel])
-    }()
+//    let models:[NotifyDataModel]? =
+//    {
+//        let ary = APPNotyfyDealwith.share.getNotifyData(key: Contact_APP_StyleNotify)
+//        return (JSONDeserializer<NotifyDataModel>.deserializeModelArrayFrom(array: ary) as? [NotifyDataModel])
+//    }()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "联系方式"
@@ -48,12 +48,12 @@ extension ContactTableViewController
         return 1
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.models?.count ?? 0
+        return  0
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:ContactTableViewCell = tableView.dequeueReusableCell(withIdentifier: "ContactTableViewCell", for: indexPath) as! ContactTableViewCell
-        let model = self.models![indexPath.row]
-        cell.model = model
+//        let model = self.models![indexPath.row]
+//        cell.model = model
         return cell
     }
     
@@ -67,32 +67,32 @@ extension ContactTableViewController:ResponderRouter
     func interceptRoute(name: String, objc: UIResponder?, info: Any?) {
         switch name {
         case ClickComent_NotifyBtn:
-            let model:NotifyDataModel = info as! NotifyDataModel
-            if model.sex == 1
-            {
-                
-                let vc = PersonInfoViewController()
-                TargetManager.share.getDetailUserInfo(userid: model.user_id ?? "",isUpdateUser:false, complection: { (userinfo, error) in
-                    guard let user = userinfo else{
-                        return
-                    }
-                    user.distance = model.distance
-                    vc.userInfoModel = user
-                    RootNav().pushViewController(vc, animated: true)
-                })
-            }
-            else
-            {
-                let vc = ManPersonInfoViewController()
-                TargetManager.share.getDetailUserInfo(userid: model.user_id ?? "",isUpdateUser:false, complection: { (userinfo, error) in
-                    guard let user = userinfo else{
-                        return
-                    }
-                    user.distance = model.distance
-                    vc.userInfoModel = user
-                    RootNav().pushViewController(vc, animated: true)
-                })
-            }
+//            let model:NotifyDataModel = info as! NotifyDataModel
+//            if model.sex == 1
+//            {
+//                
+//                let vc = PersonInfoViewController()
+//                TargetManager.share.getDetailUserInfo(userid: model.user_id ?? "",isUpdateUser:false, complection: { (userinfo, error) in
+//                    guard let user = userinfo else{
+//                        return
+//                    }
+//                    user.distance = model.distance
+//                    vc.userInfoModel = user
+//                    RootNav().pushViewController(vc, animated: true)
+//                })
+//            }
+//            else
+//            {
+//                let vc = ManPersonInfoViewController()
+//                TargetManager.share.getDetailUserInfo(userid: model.user_id ?? "",isUpdateUser:false, complection: { (userinfo, error) in
+//                    guard let user = userinfo else{
+//                        return
+//                    }
+//                    user.distance = model.distance
+//                    vc.userInfoModel = user
+//                    RootNav().pushViewController(vc, animated: true)
+//                })
+//            }
             break
         default:
             break

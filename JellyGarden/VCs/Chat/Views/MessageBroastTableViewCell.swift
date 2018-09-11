@@ -18,11 +18,11 @@ class MessageBroastTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-    var model:NotifyDataModel?  {
+    var model:BroastModel?  {
         didSet{
-            self.nickName.text = model?.nickname
+            self.nickName.text = model?.user_name
             self.desCriptionLab.text = "在\(model?.city ?? "")发布了一条约会广播"
-            self.timeLab.text = "1小时前"
+            self.timeLab.text = distanceTime(time: model?.time ?? 0)
             self.accessoryView = {
                 let lable = UILabel.init(frame: CGRect.init(x: 0, y: 0, width: 80, height: 30))
                 lable.textColor = UIColor.gray
@@ -32,6 +32,7 @@ class MessageBroastTableViewCell: UITableViewCell {
                 lable.backgroundColor = UIColor.clear
                 return lable
             }()
+            self.headerView.sd_DownLoadImage(url: model?.attachment ?? "")
         }
     }
     override func layoutSubviews() {
@@ -39,8 +40,6 @@ class MessageBroastTableViewCell: UITableViewCell {
         self.contentView.frame = self.bounds
         headerView.layer.cornerRadius = 25
         headerView.clipsToBounds = true
-        headerView.image = imageName(name: "loginicon")
-        timeLab.text = distanceTime(time: 12635552)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

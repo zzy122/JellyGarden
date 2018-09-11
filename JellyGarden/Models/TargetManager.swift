@@ -382,7 +382,7 @@ class TargetManager: NSObject {
     //对用户进行评价
     func commentUser(params:[String:Any],complection:@escaping(Bool) ->Void)
     {
-        NetCostom.shared.request(method: .post, wengen: "gardens/comments", params: params, success: { (result) in
+        NetCostom.shared.request(method: .post, wengen: "admin/user/user_assess", params: params, success: { (result) in
             complection(true)
         }) { (error) in
             complection(false)
@@ -481,14 +481,12 @@ class TargetManager: NSObject {
         }
     }
     //检查认证状态
-    func checkIdentyResult(params:[String:Any], complection:@escaping (IdentityModel?,Error?) -> Void )
+    func checkIdentyResult(complection:@escaping (IdentityModel?,Error?) -> Void )
     {
-        NetCostom.shared.request(method: .post, wengen: "certification/status", params: params, success: { (result) in
-            if let jsonStr = result as? [String:Any]
-            {
-                let model = BaseModel<IdentityModel,IdentityModel>.init(resultData: jsonStr["data"] ?? "")
-                complection(model.resultData,nil)
-            }
+        NetCostom.shared.request(method: .post, wengen: "admin/user/user_certificate_back", params: ["user_id":CurrentUserInfo?.user_id ?? ""], success: { (result) in
+            let model = BaseModel<IdentityModel,IdentityModel>.init(resultData: result)
+            
+          complection(model.resultData,nil)
         }) { (error) in
             complection(nil,error)
         }
@@ -581,6 +579,92 @@ class TargetManager: NSObject {
             complection(false)
         }
     }
+    //获取多少人看过和图片被焚毁多少次
+    func getCountWithView(complection:@escaping (ViewCountModel?,Error?) -> Void)
+    {
+        NetCostom.shared.request(method: .post, wengen: "admin/video/view_num_user", params: ["user_id":CurrentUserInfo?.user_id ?? ""], success: { (result) in
+            let model:BaseModel = BaseModel<ViewCountModel,ViewCountModel>.init(resultData: result)
+            complection(model.resultData,nil)
+        }) { (error) in
+            complection(nil,error)
+        }
+    }
+    //恢复已焚毁的照片
+    func recoverMyPicture(complection:@escaping(Bool) -> Void)
+    {
+        let params = ["user_id":CurrentUserInfo?.user_id ?? ""]
+        NetCostom.shared.request(method: .post, wengen: "admin/video/recover_distoryimg", params: params, success: { (result) in
+            complection(true)
+        }) { (error) in
+            complection(false)
+        }
+    }
+    //请求发的广播通知列表
+    func requestBroastModels(complection:@escaping([BroastModel]?, Error?) -> Void)
+    {
+        let params = ["user_id":CurrentUserInfo?.user_id ?? ""]
+        NetCostom.shared.request(method: .post, wengen: "admin/message/radio_broadcast", params: params, success: { (result) in
+            let model = BaseModel<BroastModel,[BroastModel]>.init(resultData: result)
+            complection(model.resultData,nil)
+        }) { (error) in
+            complection(nil,error)
+        }
+    }
+    //请求查看申请通知列表
+    func requestSeeApply(complection:@escaping([SeeApplyModel]?, Error?) -> Void)
+    {
+        let params = ["user_id":CurrentUserInfo?.user_id ?? ""]
+        NetCostom.shared.request(method: .post, wengen: "admin/message/see_apply", params: params, success: { (result) in
+            let model = BaseModel<SeeApplyModel,[SeeApplyModel]>.init(resultData: result)
+            complection(model.resultData,nil)
+        }) { (error) in
+            complection(nil,error)
+        }
+    }
+    //收益通知列表
+    func requestRemindNotice(complection:@escaping([RemindNoticeModel]?, Error?) -> Void)
+    {
+        let params = ["user_id":CurrentUserInfo?.user_id ?? ""]
+        NetCostom.shared.request(method: .post, wengen: "admin/message/profit_remind", params: params, success: { (result) in
+            let model = BaseModel<RemindNoticeModel,[RemindNoticeModel]>.init(resultData: result)
+            complection(model.resultData,nil)
+        }) { (error) in
+            complection(nil,error)
+        }
+    }
+    //评价通知列表
+    func requestEvaluateNotice(complection:@escaping([EvaluateNoticeModel]?, Error?) -> Void)
+    {
+        let params = ["user_id":CurrentUserInfo?.user_id ?? ""]
+        NetCostom.shared.request(method: .post, wengen: "admin/message/evaluate_notice", params: params, success: { (result) in
+            let model = BaseModel<EvaluateNoticeModel,[EvaluateNoticeModel]>.init(resultData: result)
+            complection(model.resultData,nil)
+        }) { (error) in
+            complection(nil,error)
+        }
+    }
+    //果冻花园官方通知列表
+    func requestJellyGardenNotice(complection:@escaping([GardenNoticeModel]?, Error?) -> Void)
+    {
+        let params = ["user_id":CurrentUserInfo?.user_id ?? ""]
+        NetCostom.shared.request(method: .post, wengen: "admin/message/jelly_garden", params: params, success: { (result) in
+            let model = BaseModel<GardenNoticeModel,[GardenNoticeModel]>.init(resultData: result)
+            complection(model.resultData,nil)
+        }) { (error) in
+            complection(nil,error)
+        }
+    }
+    
+    //约会定金支付
+    func requestDepositPay(param:[String:Any], complection:@escaping(Any?,Error?) -> Void)
+    {
+        NetCostom.shared.request(method: .post, wengen: "admin/order/deposit ", params: param, success: { (result) in
+             complection(result,nil)
+        }) { (error) in
+            complection(nil,error)
+        }
+    }
+
     
     
 }

@@ -18,79 +18,94 @@ class IdentityAuthenticationViewController: BaseViewController ,UIImagePickerCon
     @IBOutlet weak var detaileView: UIView!
     @IBOutlet weak var detailViewHeight: NSLayoutConstraint!
     var imagUrl:String = ""
-    var imageStatus:IdentityModel?
+    
+    var identifyStatus:IdentityModel?
     {
         didSet{
-            switch imageStatus?.status {
-            case 0?://未认证
-            self.imageBtn.backgroundColor = APPCustomBtnColor
-            self.imageBtn.setTitle("上传认证自拍", for: UIControlState.normal)
-            self.imageBtn.setImage(nil, for: UIControlState.normal)
-            self.imageBtn.isUserInteractionEnabled = true
-            break
-            case 1?://成功
-            self.imageBtn.backgroundColor = APPCustomRedColor
-            self.imageBtn.setTitle("已通过自拍认证", for: UIControlState.normal)
-            self.imageBtn.setImage(imageName(name: "勾"), for: UIControlState.normal)
-            self.imageBtn.isUserInteractionEnabled = false
-            break
-            case (-1)?://认证失败
-            self.imageBtn.backgroundColor = APPCustomBtnColor
-            self.imageBtn.setTitle("认证失败", for: UIControlState.normal)
-            self.imageBtn.setImage(nil, for: UIControlState.normal)
-            self.imageBtn.isUserInteractionEnabled = true
-            break
-            case 2?://认证中
-            self.imageBtn.backgroundColor = UIColor.gray
-            self.imageBtn.setTitle("已上传自拍认证", for: UIControlState.normal)
-            self.imageBtn.setImage(nil, for: UIControlState.normal)
-            self.imageBtn.isUserInteractionEnabled = false
-            break
-            
+            switch identifyStatus?.type {
+            case 1://照片
+                self.videoBtn.backgroundColor = APPCustomBtnColor
+                self.videoBtn.setTitle("视频认证", for: UIControlState.normal)
+                self.videoBtn.setImage(nil, for: UIControlState.normal)
+                self.videoBtn.isUserInteractionEnabled = true
+                switch identifyStatus?.status {
+                case "nodata"://未认证
+                    self.imageBtn.backgroundColor = APPCustomBtnColor
+                    self.imageBtn.setTitle("上传认证自拍", for: UIControlState.normal)
+                    self.imageBtn.setImage(nil, for: UIControlState.normal)
+                    self.imageBtn.isUserInteractionEnabled = true
+                    break
+                case "success"://成功
+                    self.imageBtn.backgroundColor = APPCustomRedColor
+                    self.imageBtn.setTitle("已通过自拍认证", for: UIControlState.normal)
+                    self.imageBtn.setImage(imageName(name: "勾"), for: UIControlState.normal)
+                    self.imageBtn.isUserInteractionEnabled = false
+                    break
+                case "failed"://认证失败
+                    self.imageBtn.backgroundColor = APPCustomBtnColor
+                    self.imageBtn.setTitle("认证失败", for: UIControlState.normal)
+                    self.imageBtn.setImage(nil, for: UIControlState.normal)
+                    self.imageBtn.isUserInteractionEnabled = true
+                    break
+                case "checking"://认证中
+                    self.imageBtn.backgroundColor = UIColor.gray
+                    self.imageBtn.setTitle("已上传自拍认证", for: UIControlState.normal)
+                    self.imageBtn.setImage(nil, for: UIControlState.normal)
+                    self.imageBtn.isUserInteractionEnabled = false
+                    break
+                    
+                default:
+                    break
+                }
+                
+                break
+            case 2://视屏
+                self.imageBtn.backgroundColor = APPCustomBtnColor
+                self.imageBtn.setTitle("上传认证自拍", for: UIControlState.normal)
+                self.imageBtn.setImage(nil, for: UIControlState.normal)
+                self.imageBtn.isUserInteractionEnabled = true
+                switch identifyStatus?.status {
+                case "nodata"://未认证
+                    self.videoBtn.backgroundColor = APPCustomBtnColor
+                    self.videoBtn.setTitle("视频认证", for: UIControlState.normal)
+                    self.videoBtn.setImage(nil, for: UIControlState.normal)
+                    self.videoBtn.isUserInteractionEnabled = true
+                    break
+                case "success"://成功
+                    self.videoBtn.backgroundColor = APPCustomRedColor
+                    self.videoBtn.setTitle("已通过视频认证", for: UIControlState.normal)
+                    self.videoBtn.setImage(imageName(name: "勾"), for: UIControlState.normal)
+                    self.videoBtn.isUserInteractionEnabled = false
+                    break
+                case "failed"://认证失败
+                    self.videoBtn.backgroundColor = APPCustomBtnColor
+                    self.videoBtn.setTitle("认证失败", for: UIControlState.normal)
+                    self.videoBtn.setImage(nil, for: UIControlState.normal)
+                    self.videoBtn.isUserInteractionEnabled = true
+                    break
+                case "checking"://认证中
+                    self.videoBtn.backgroundColor = UIColor.gray
+                    self.videoBtn.setTitle("已上传视频认证", for: UIControlState.normal)
+                    self.videoBtn.setImage(nil, for: UIControlState.normal)
+                    self.videoBtn.isUserInteractionEnabled = false
+                    break
+                    
+                default:
+                    break
+                }
+                
+                break
+            case 3://其他
+                break
             default:
-            break
+                break
             }
         }
         
     }
     
     var vedioUrl:String = ""
-    var videoStatus:IdentityModel?
-    {
-        didSet{
-            switch videoStatus?.status {
-            case 0?://未认证
-                self.videoBtn.backgroundColor = APPCustomBtnColor
-                self.videoBtn.setTitle("视频认证", for: UIControlState.normal)
-                self.videoBtn.setImage(nil, for: UIControlState.normal)
-                self.videoBtn.isUserInteractionEnabled = true
-                break
-            case 1?://成功
-                self.videoBtn.backgroundColor = APPCustomRedColor
-                self.videoBtn.setTitle("已通过视频认证", for: UIControlState.normal)
-                self.videoBtn.setImage(imageName(name: "勾"), for: UIControlState.normal)
-                self.videoBtn.isUserInteractionEnabled = false
-                break
-            case (-1)?://认证失败
-                self.videoBtn.backgroundColor = APPCustomBtnColor
-                self.videoBtn.setTitle("认证失败", for: UIControlState.normal)
-                self.videoBtn.setImage(nil, for: UIControlState.normal)
-                self.videoBtn.isUserInteractionEnabled = true
-                break
-            case 2?://认证中
-                self.videoBtn.backgroundColor = UIColor.gray
-                self.videoBtn.setTitle("已上传视频认证", for: UIControlState.normal)
-                self.videoBtn.setImage(nil, for: UIControlState.normal)
-                self.videoBtn.isUserInteractionEnabled = false
-                break
-                
-            default:
-                break
-            }
-        }
-    }
-    
-    
+
     var imageVC:UIImagePickerController = {
         let imagevc = UIImagePickerController()
         imagevc.sourceType = .camera
@@ -147,19 +162,15 @@ class IdentityAuthenticationViewController: BaseViewController ,UIImagePickerCon
         
     }
     func getMyStatus() {
-        let params1 = ["certification_type":"video","user_id":CurrentUserInfo?.user_id ?? ""]
-        let params2 = ["certification_type":"image","user_id":CurrentUserInfo?.user_id ?? ""]
         
-        TargetManager.share.checkIdentyResult(params: params1) { (vedio, error) in
-            if vedio != nil {
-                self.videoStatus = vedio
+        TargetManager.share.checkIdentyResult { (model, error) in
+            guard let model1 = model else
+            {
+                return
             }
-            TargetManager.share.checkIdentyResult(params: params2) { (imageModel, error) in
-                if imageModel != nil {
-                    self.imageStatus = imageModel
-                }
-            }
+            self.identifyStatus = model1
         }
+
     }
     
     override func viewWillLayoutSubviews() {

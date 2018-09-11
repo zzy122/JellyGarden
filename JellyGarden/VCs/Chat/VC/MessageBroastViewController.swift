@@ -16,14 +16,17 @@ class MessageBroastViewController: BaseMainTableViewController {
         tableView.register(UINib.init(nibName: "MessageBroastTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "MessageBroastTableViewCell")
         // Do any additional setup after loading the view.
     }
-    let models:[NotifyDataModel]? =
-    {
-        let ary = APPNotyfyDealwith.share.getNotifyData(key: Radio_APP_BroadcastNotify)
-        return (JSONDeserializer<NotifyDataModel>.deserializeModelArrayFrom(array: ary) as? [NotifyDataModel])
-    }()
+    var models:[BroastModel]?
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+    }
+    func requestBroastModel()
+    {
+        TargetManager.share.requestBroastModels { (models, error) in
+             self.models = models
+            self.tableView.reloadData()
+        }
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

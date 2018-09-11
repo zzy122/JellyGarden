@@ -288,6 +288,7 @@
 		C70A6BE321338DC700729653 /* RequestResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70A6BE221338DC700729653 /* RequestResultModel.swift */; };
 		C710D5BA20FED9C2006B15FC /* APPNotyfyDealwith.swift in Sources */ = {isa = PBXBuildFile; fileRef = C710D5B920FED9C2006B15FC /* APPNotyfyDealwith.swift */; };
 		C710D5BF20FF1480006B15FC /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C710D5BE20FF147F006B15FC /* MobileCoreServices.framework */; };
+		C72ABE3F2146069900D0FFEC /* ViewCountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72ABE3E2146069900D0FFEC /* ViewCountModel.swift */; };
 		C72FF99F20FCA05500D3983D /* APPNotifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72FF99E20FCA05500D3983D /* APPNotifyViewController.swift */; };
 		C72FF9A220FCA0F900D3983D /* AppNotifyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72FF9A020FCA0F900D3983D /* AppNotifyTableViewCell.swift */; };
 		C72FF9A320FCA0F900D3983D /* AppNotifyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C72FF9A120FCA0F900D3983D /* AppNotifyTableViewCell.xib */; };
@@ -306,6 +307,8 @@
 		C7454D3A20FDC7B500D9D6D7 /* JrmfWalletKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7454D3220FDC7B500D9D6D7 /* JrmfWalletKit.framework */; };
 		C7454D3B20FDC7B500D9D6D7 /* JYangToolKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7454D3320FDC7B500D9D6D7 /* JYangToolKit.framework */; };
 		C7454D3C20FDC7B500D9D6D7 /* WalletResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C7454D3420FDC7B500D9D6D7 /* WalletResource.bundle */; };
+		C7523FF1214799DE00591395 /* NotyfyListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7523FF0214799DE00591395 /* NotyfyListModels.swift */; };
+		C7523FF321479C7900591395 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7523FF221479C7900591395 /* ViewExtension.swift */; };
 		C7602285211057E50014442D /* ChatDepositAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7602284211057E50014442D /* ChatDepositAlertView.swift */; };
 		C7602287211057F50014442D /* ChatDepositAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7602286211057F50014442D /* ChatDepositAlertView.xib */; };
 		C76544CC211C1D7000569EA0 /* Pods_JellyGarden.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BE12B8F4D85F2B12027DF1 /* Pods_JellyGarden.framework */; };
@@ -686,6 +689,7 @@
 		C70A6BE221338DC700729653 /* RequestResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestResultModel.swift; sourceTree = "<group>"; };
 		C710D5B920FED9C2006B15FC /* APPNotyfyDealwith.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APPNotyfyDealwith.swift; sourceTree = "<group>"; };
 		C710D5BE20FF147F006B15FC /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		C72ABE3E2146069900D0FFEC /* ViewCountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCountModel.swift; sourceTree = "<group>"; };
 		C72FF99E20FCA05500D3983D /* APPNotifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APPNotifyViewController.swift; sourceTree = "<group>"; };
 		C72FF9A020FCA0F900D3983D /* AppNotifyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNotifyTableViewCell.swift; sourceTree = "<group>"; };
 		C72FF9A120FCA0F900D3983D /* AppNotifyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppNotifyTableViewCell.xib; sourceTree = "<group>"; };
@@ -705,6 +709,8 @@
 		C7454D3320FDC7B500D9D6D7 /* JYangToolKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JYangToolKit.framework; sourceTree = "<group>"; };
 		C7454D3420FDC7B500D9D6D7 /* WalletResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WalletResource.bundle; sourceTree = "<group>"; };
 		C7454D3520FDC7B500D9D6D7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/JrmfInfo.strings"; sourceTree = "<group>"; };
+		C7523FF0214799DE00591395 /* NotyfyListModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotyfyListModels.swift; sourceTree = "<group>"; };
+		C7523FF221479C7900591395 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		C7602284211057E50014442D /* ChatDepositAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDepositAlertView.swift; sourceTree = "<group>"; };
 		C7602286211057F50014442D /* ChatDepositAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatDepositAlertView.xib; sourceTree = "<group>"; };
 		C7691214210028FE00898B47 /* RCDCSSolveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDCSSolveView.h; sourceTree = "<group>"; };
@@ -785,6 +791,7 @@
 		5A015E1B20C2355D00EC8A96 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				C7523FEF2147998C00591395 /* Models */,
 				C7691210210028CD00898B47 /* 客服 */,
 				5A1F3ACB20E0E95E00CB98CD /* VC */,
 				5A1F3ACA20E0E94F00CB98CD /* Views */,
@@ -1110,6 +1117,7 @@
 				5A80C4D320BFE1610033CAF8 /* APPCustomDefine.swift */,
 				5A80C4D420BFE1620033CAF8 /* APPCustomFunc.swift */,
 				5A015E9620C50C1100EC8A96 /* UMengAcion.swift */,
+				C7523FF221479C7900591395 /* ViewExtension.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -1150,6 +1158,7 @@
 				5AE28C6C20F1F6C200EE2973 /* BlackModel.swift */,
 				5A0CC16020F240160056A30E /* IdentityModel.swift */,
 				5A6C939920F635B200E57223 /* AlipayModel.swift */,
+				C72ABE3E2146069900D0FFEC /* ViewCountModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1524,6 +1533,14 @@
 			path = JrmfIMLib;
 			sourceTree = "<group>";
 		};
+		C7523FEF2147998C00591395 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C7523FF0214799DE00591395 /* NotyfyListModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		C7691210210028CD00898B47 /* 客服 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1622,7 +1639,7 @@
 					5A80C48E20BFDB150033CAF8 = {
 						CreatedOnToolsVersion = 9.1;
 						LastSwiftMigration = 0910;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1954,6 +1971,7 @@
 				5A7FC47B20EF9F3200D7E137 /* LLLockIndicator.m in Sources */,
 				5A7FC44020EB6D1D00D7E137 /* NOCastView.swift in Sources */,
 				5AEC51A920C9228300DD0099 /* MainBodyView.swift in Sources */,
+				C7523FF321479C7900591395 /* ViewExtension.swift in Sources */,
 				C7AA5426210ABAF0003D4580 /* SetRedpacketCollectionViewCell.swift in Sources */,
 				5A015E9B20C5121000EC8A96 /* LoginVIewController.swift in Sources */,
 				5AE9CC9520C8DF0E0057CFF3 /* BaseMainTableViewController.swift in Sources */,
@@ -2029,6 +2047,7 @@
 				5A7FC46320EE739C00D7E137 /* DepositRefundTableViewCell.swift in Sources */,
 				5AB8F47620E1F45100429108 /* LookDestoryImage.swift in Sources */,
 				5AE9CC9320C8DEEF0057CFF3 /* BaseMainViewController.swift in Sources */,
+				C7523FF1214799DE00591395 /* NotyfyListModels.swift in Sources */,
 				C769122921002BD600898B47 /* RCDCSTagView.m in Sources */,
 				5A4E322D20C7A1FB0051FE00 /* FillInformationThirdViewController.swift in Sources */,
 				5AC3FCE520DA01DF00226946 /* LineView.swift in Sources */,
@@ -2051,6 +2070,7 @@
 				5A7CEC8420D53EBB00B7A7C9 /* AddImageCollectionViewCell.swift in Sources */,
 				C769122C21002BE900898B47 /* RCDCSInputView.m in Sources */,
 				C769122321002AEF00898B47 /* RCDCustomerServiceViewController.m in Sources */,
+				C72ABE3F2146069900D0FFEC /* ViewCountModel.swift in Sources */,
 				5AEB824020D8BFFA002A7E69 /* LonelySpeechModel.swift in Sources */,
 				5A80C4E320BFE7B90033CAF8 /* TargetManager.swift in Sources */,
 				5A459ADF20D218C200C0A6FA /* ConditionModel.swift in Sources */,
@@ -2250,10 +2270,10 @@
 				CLANG_WARN_STRICT_PROTOTYPES = NO;
 				CODE_SIGN_ENTITLEMENTS = JellyGarden/JellyGarden.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEBUG_ACTIVITY_MODE = "";
 				"DEBUG_ACTIVITY_MODE[sdk=iphonesimulator*]" = default;
-				DEVELOPMENT_TEAM = 8E8E88WEYJ;
+				DEVELOPMENT_TEAM = 3W4VK75454;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2272,10 +2292,10 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = cn.com.JellyGarden1;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.com.JellyGarden;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "42ddfa18-8d3b-4ef6-88b3-b12b26455f3f";
+				PROVISIONING_PROFILE_SPECIFIER = cn.com.JellyGardenDevelopment;
 				SWIFT_OBJC_BRIDGING_HEADER = "JellyGarden/JellyGarden-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2299,9 +2319,9 @@
 				CLANG_WARN_STRICT_PROTOTYPES = NO;
 				CODE_SIGN_ENTITLEMENTS = JellyGarden/JellyGarden.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEBUG_ACTIVITY_MODE = "";
-				DEVELOPMENT_TEAM = 8E8E88WEYJ;
+				DEVELOPMENT_TEAM = 3W4VK75454;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2320,10 +2340,10 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = cn.com.JellyGarden1;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.com.JellyGarden;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "42ddfa18-8d3b-4ef6-88b3-b12b26455f3f";
+				PROVISIONING_PROFILE_SPECIFIER = cn.com.JellyGardenDevelopment;
 				SWIFT_OBJC_BRIDGING_HEADER = "JellyGarden/JellyGarden-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
 				SWIFT_VERSION = 4.0;

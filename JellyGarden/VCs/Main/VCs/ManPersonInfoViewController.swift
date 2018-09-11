@@ -202,7 +202,7 @@ class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
             case .prase://点击评价
                 AlertAction.share.showCommentStarView(imageUrl: userInfoModel?.avatar, nikeStr: userInfoModel?.nickname) { (poCount, playCount, tasteCount, cleanCount, agliCount, mothCount) in
                     
-                    let param:[String:Any] = ["comment_user_id":self.userInfoModel?.user_id ?? "","publisher_user_id":CurrentUserInfo?.user_id ?? "","politeness":playCount,"funny":playCount,"generous":tasteCount,"tidy":cleanCount,"decisive":agliCount,"harassment":mothCount]
+                    let param:[String:Any] = ["asses_userid":self.userInfoModel?.user_id ?? "","userid":CurrentUserInfo?.user_id ?? "","type1":playCount,"type2":playCount,"type3":tasteCount,"type4":cleanCount,"type5":agliCount,"type6":mothCount]
                     TargetManager.share.commentUser(params: param, complection: { (success) in
 
                     })

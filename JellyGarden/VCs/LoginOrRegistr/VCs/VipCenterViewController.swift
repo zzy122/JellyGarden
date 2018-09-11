@@ -178,9 +178,27 @@ class VipCenterViewController: BaseViewController,ResponderRouter {
         var param:[String:Any] = ["user_id":CurrentUserInfo?.user_id ?? "","package_id":currentModel?.package_id ?? ""]
         if selectedPayView.aliPayBtn.isSelected {
             param["channel"] = "alipay"
+            TargetManager.share.vipBuy(params: param) { (result, error) in
+                if let str = result as? String
+                {
+                    OtherApplication.share.pay(VC:self, charge: str, complection: { (result) in
+                        alertHud(title: "购买成功")
+                        self.gotoMainVC()
+                    })
+                }
+            }
         }
         else {
             param["channel"] = "wx"
+            TargetManager.share.vipBuy(params: param) { (result, error) in
+                if let str = result as? String
+                {
+//                    OtherApplication.share.pay(VC:self, charge: str, complection: { (result) in
+//                        alertHud(title: "购买成功")
+//                        self.gotoMainVC()
+//                    })
+                }
+            }
         }
 //        if autoPayBtn.isSelected {
 //            param["is_discount"] = true
@@ -189,18 +207,7 @@ class VipCenterViewController: BaseViewController,ResponderRouter {
 //        {
 //            param["is_discount"] = false
 //        }
-
-        TargetManager.share.vipBuy(params: param) { (result, error) in
-            
-            
-            if let str = result as? String
-            {
-                OtherApplication.share.pay(VC:self, charge: str, complection: { (result) in
-                    alertHud(title: "购买成功")
-                    self.gotoMainVC()
-                })
-            }
-        }
+        
     }
     
     func gotoMainVC()
