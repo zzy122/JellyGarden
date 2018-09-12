@@ -23,6 +23,7 @@ class CommentNotyfyTableViewCell: UITableViewCell {
         appealBtn.clipsToBounds = true
         appealBtn.layer.borderColor = APPCustomBtnColor.cgColor
         appealBtn.layer.borderWidth = 1.0
+        appealBtn.isHidden = true
         
     }
     override func setSelected(_ selected: Bool, animated: Bool) {

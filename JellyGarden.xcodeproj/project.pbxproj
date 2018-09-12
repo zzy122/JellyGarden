@@ -262,8 +262,6 @@
 		5AFA3B6D20D78AE40052FC42 /* WCLRecordProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AFA3B6320D78AE30052FC42 /* WCLRecordProgressView.m */; };
 		5AFA3B6E20D78AE40052FC42 /* WCLRecordEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AFA3B6720D78AE30052FC42 /* WCLRecordEncoder.m */; };
 		5AFA3B6F20D78AE40052FC42 /* WCLRecordEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AFA3B6A20D78AE30052FC42 /* WCLRecordEngine.m */; };
-		5E50B823213D1B430053B2B3 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5E50B821213D1B430053B2B3 /* AlipaySDK.bundle */; };
-		5E50B824213D1B430053B2B3 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E50B822213D1B430053B2B3 /* AlipaySDK.framework */; };
 		5E50B83A213D2ED10053B2B3 /* ZZYCoreTextData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E50B826213D2ED10053B2B3 /* ZZYCoreTextData.m */; };
 		5E50B83B213D2ED10053B2B3 /* ImageStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E50B827213D2ED10053B2B3 /* ImageStyle.m */; };
 		5E50B83C213D2ED10053B2B3 /* ZZYCoreTextImageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E50B828213D2ED10053B2B3 /* ZZYCoreTextImageData.m */; };
@@ -294,6 +292,8 @@
 		C72FF9A320FCA0F900D3983D /* AppNotifyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C72FF9A120FCA0F900D3983D /* AppNotifyTableViewCell.xib */; };
 		C72FF9AA20FCAC8600D3983D /* ApplayCheckTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72FF9A820FCAC8600D3983D /* ApplayCheckTableViewCell.swift */; };
 		C72FF9AB20FCAC8600D3983D /* ApplayCheckTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C72FF9A920FCAC8600D3983D /* ApplayCheckTableViewCell.xib */; };
+		C743325A2148E6E4004895A8 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C74332582148E6E3004895A8 /* AlipaySDK.framework */; };
+		C743325B2148E6E4004895A8 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C74332592148E6E4004895A8 /* AlipaySDK.bundle */; };
 		C7454D2120FD856A00D9D6D7 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7454D1F20FD856A00D9D6D7 /* ContactTableViewCell.swift */; };
 		C7454D2220FD856A00D9D6D7 /* ContactTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7454D2020FD856A00D9D6D7 /* ContactTableViewCell.xib */; };
 		C7454D2420FD878900D9D6D7 /* ContactTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7454D2320FD878900D9D6D7 /* ContactTableViewController.swift */; };
@@ -647,8 +647,6 @@
 		5AFA3B6720D78AE30052FC42 /* WCLRecordEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCLRecordEncoder.m; sourceTree = "<group>"; };
 		5AFA3B6920D78AE30052FC42 /* WCLRecordEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCLRecordEngine.h; sourceTree = "<group>"; };
 		5AFA3B6A20D78AE30052FC42 /* WCLRecordEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCLRecordEngine.m; sourceTree = "<group>"; };
-		5E50B821213D1B430053B2B3 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
-		5E50B822213D1B430053B2B3 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
 		5E50B826213D2ED10053B2B3 /* ZZYCoreTextData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZYCoreTextData.m; sourceTree = "<group>"; };
 		5E50B827213D2ED10053B2B3 /* ImageStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageStyle.m; sourceTree = "<group>"; };
 		5E50B828213D2ED10053B2B3 /* ZZYCoreTextImageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZYCoreTextImageData.m; sourceTree = "<group>"; };
@@ -695,6 +693,8 @@
 		C72FF9A120FCA0F900D3983D /* AppNotifyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppNotifyTableViewCell.xib; sourceTree = "<group>"; };
 		C72FF9A820FCAC8600D3983D /* ApplayCheckTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplayCheckTableViewCell.swift; sourceTree = "<group>"; };
 		C72FF9A920FCAC8600D3983D /* ApplayCheckTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApplayCheckTableViewCell.xib; sourceTree = "<group>"; };
+		C74332582148E6E3004895A8 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
+		C74332592148E6E4004895A8 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
 		C7454D1F20FD856A00D9D6D7 /* ContactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
 		C7454D2020FD856A00D9D6D7 /* ContactTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactTableViewCell.xib; sourceTree = "<group>"; };
 		C7454D2320FD878900D9D6D7 /* ContactTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableViewController.swift; sourceTree = "<group>"; };
@@ -747,6 +747,7 @@
 			files = (
 				C76544CC211C1D7000569EA0 /* Pods_JellyGarden.framework in Frameworks */,
 				C710D5BF20FF1480006B15FC /* MobileCoreServices.framework in Frameworks */,
+				C743325A2148E6E4004895A8 /* AlipaySDK.framework in Frameworks */,
 				5A80C4F820BFFA270033CAF8 /* libsqlite3.tbd in Frameworks */,
 				5A016B8E20C0DDA8001E62F1 /* UserNotifications.framework in Frameworks */,
 				5A016B8C20C0DD99001E62F1 /* libsqlite3.0.tbd in Frameworks */,
@@ -763,7 +764,6 @@
 				C7454D3A20FDC7B500D9D6D7 /* JrmfWalletKit.framework in Frameworks */,
 				5A80C50020C018060033CAF8 /* libc++.tbd in Frameworks */,
 				5A80C4FE20BFFA4D0033CAF8 /* libz.tbd in Frameworks */,
-				5E50B824213D1B430053B2B3 /* AlipaySDK.framework in Frameworks */,
 				5A80C4FC20BFFA460033CAF8 /* libstdc++.tbd in Frameworks */,
 				C7454D3920FDC7B500D9D6D7 /* JrmfPacketKit.framework in Frameworks */,
 				5A80C4F220BFF9F80033CAF8 /* libiconv.tbd in Frameworks */,
@@ -1420,8 +1420,8 @@
 		5E50B820213D1B1E0053B2B3 /* AliPay */ = {
 			isa = PBXGroup;
 			children = (
-				5E50B821213D1B430053B2B3 /* AlipaySDK.bundle */,
-				5E50B822213D1B430053B2B3 /* AlipaySDK.framework */,
+				C74332592148E6E4004895A8 /* AlipaySDK.bundle */,
+				C74332582148E6E3004895A8 /* AlipaySDK.framework */,
 			);
 			path = AliPay;
 			sourceTree = "<group>";
@@ -1715,7 +1715,6 @@
 				5A015E9520C4FDBF00EC8A96 /* FinishViewController.xib in Resources */,
 				5A7FC46020EE70DB00D7E137 /* DepositManagerTableViewCell.xib in Resources */,
 				C7454D3820FDC7B500D9D6D7 /* jrmf.cer in Resources */,
-				5E50B823213D1B430053B2B3 /* AlipaySDK.bundle in Resources */,
 				5A7FC43820EB181D00D7E137 /* PermissionLookView.xib in Resources */,
 				5A4E322720C782E60051FE00 /* InvitationCodeViewController.xib in Resources */,
 				5A0455CF20CD67580041D309 /* ConfessionTableViewCell.xib in Resources */,
@@ -1727,6 +1726,7 @@
 				5A4E326220C7B6650051FE00 /* PackageView.xib in Resources */,
 				C7EEE74220FF3696005CA67F /* LaunchScreen.storyboard in Resources */,
 				5A574BED20C95FE300C59276 /* BodyImageCollectionViewCell.xib in Resources */,
+				C743325B2148E6E4004895A8 /* AlipaySDK.bundle in Resources */,
 				5E6AE15E20DF2E8700901D43 /* MineInfoHeaderView.xib in Resources */,
 				5AE9CC8F20C8D9100057CFF3 /* UserInfoViewController.xib in Resources */,
 				5A4E326620C7B6650051FE00 /* VipBodyViewCell.xib in Resources */,
@@ -1802,6 +1802,7 @@
 				"${PODS_ROOT}/RongCloudIM/RongCloudIM/Emoji.plist",
 				"${PODS_ROOT}/RongCloudIM/RongCloudIM/RCColor.plist",
 				"${PODS_ROOT}/RongCloudIM/RongCloudIM/RCConfig.plist",
+				"${PODS_ROOT}/UMCCommonLog/UMCommonLog/UMCommonLog.bundle",
 				"${PODS_ROOT}/UMCShare/UMShare/UMSocialUI/UMSocialSDKResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -1812,6 +1813,7 @@
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Emoji.plist",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RCColor.plist",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RCConfig.plist",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/UMCommonLog.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/UMSocialSDKResources.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

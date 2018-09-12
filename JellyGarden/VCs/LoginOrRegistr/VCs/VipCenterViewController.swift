@@ -182,8 +182,13 @@ class VipCenterViewController: BaseViewController,ResponderRouter {
                 if let str = result as? String
                 {
                     OtherApplication.share.pay(VC:self, charge: str, complection: { (result) in
-                        alertHud(title: "购买成功")
-                        self.gotoMainVC()
+                        if result
+                        {
+                            alertHud(title: "购买成功")
+                            self.gotoMainVC()
+                        }
+                        
+                        
                     })
                 }
             }
@@ -191,22 +196,30 @@ class VipCenterViewController: BaseViewController,ResponderRouter {
         else {
             param["channel"] = "wx"
             TargetManager.share.vipBuy(params: param) { (result, error) in
-                if let str = result as? String
-                {
-//                    OtherApplication.share.pay(VC:self, charge: str, complection: { (result) in
-//                        alertHud(title: "购买成功")
-//                        self.gotoMainVC()
-//                    })
+                if let dic = result as? [String:Any]
+                {//appid = wxd2e1aa0feed6b934;
+                    //"new_package" = "Sign=WXPay";
+                   // noncestr = eqvF8qhgCvfOjbn1u2dXXanL4HZDo9U3;
+                  //  partnerid = 1507283561;
+                   // "pay_time" = 1536736444;
+                  //  prepayid = wx121514049043156919f446322651349553;
+                   // sign = F760CF60E614E8F4AB541D3C7DFD47C7;
+                  //  timestamp = 1536736444;
+                    let wechat:String =  dic["appid"] as! String
+                    let prepayId:String = dic["prepayid"] as! String
+                    let nonceStr:String = dic["noncestr"] as! String
+                    let timeStamp:Int = dic["timestamp"] as! Int
+                    let new_package:String = dic["new_package"] as! String
+                    let sign:String = dic["sign"] as! String
+                    OtherApplication.share.pay(wechat: wechat, prepayId: prepayId, package: new_package, nonceStr: nonceStr, timeStamp: UInt32(timeStamp), sign: sign, completion: { (success) in
+                        if success
+                        {
+                            self.gotoMainVC()
+                        }
+                    })
                 }
             }
         }
-//        if autoPayBtn.isSelected {
-//            param["is_discount"] = true
-//        }
-//        else
-//        {
-//            param["is_discount"] = false
-//        }
         
     }
     

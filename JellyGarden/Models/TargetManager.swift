@@ -237,7 +237,7 @@ class TargetManager: NSObject {
         }
     }
     //购买套餐
-    func vipBuy(params:[String:Any]?,complection:@escaping (Any?,Error?) -> Void)
+    func vipBuy(params:[String:Any]?, complection:@escaping (Any?,Error?) -> Void)
     {
         NetCostom.shared.request(method: .post, wengen: "admin/order/vip_order", params: params, success: { (result) in
             complection(result,nil)
@@ -610,12 +610,34 @@ class TargetManager: NSObject {
             complection(nil,error)
         }
     }
+    //请求查看联系方式通知列表SeePhoneModel
+    func requestSeePhoneModels(complection:@escaping([SeePhoneModel]?, Error?) -> Void)
+    {
+        let params = ["user_id":CurrentUserInfo?.user_id ?? ""]
+        NetCostom.shared.request(method: .post, wengen: "admin/message/user_phone", params: params, success: { (result) in
+            let model = BaseModel<SeePhoneModel,[SeePhoneModel]>.init(resultData: result)
+            complection(model.resultData,nil)
+        }) { (error) in
+            complection(nil,error)
+        }
+    }
     //请求查看申请通知列表
     func requestSeeApply(complection:@escaping([SeeApplyModel]?, Error?) -> Void)
     {
         let params = ["user_id":CurrentUserInfo?.user_id ?? ""]
         NetCostom.shared.request(method: .post, wengen: "admin/message/see_apply", params: params, success: { (result) in
             let model = BaseModel<SeeApplyModel,[SeeApplyModel]>.init(resultData: result)
+            complection(model.resultData,nil)
+        }) { (error) in
+            complection(nil,error)
+        }
+    }
+    //定金通知列表DepositNoticeModel
+    func requestDepositNoticeModels(complection:@escaping([DepositNoticeModel]?, Error?) -> Void)
+    {
+        let params = ["user_id":CurrentUserInfo?.user_id ?? ""]
+        NetCostom.shared.request(method: .post, wengen: "admin/message/deposit", params: params, success: { (result) in
+            let model = BaseModel<DepositNoticeModel,[DepositNoticeModel]>.init(resultData: result)
             complection(model.resultData,nil)
         }) { (error) in
             complection(nil,error)

@@ -13,6 +13,7 @@ class EarningsRemindViewController: BaseMainTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "收益提醒"
+        self.requesEarningsRemindModel()
         tableView.register(UINib.init(nibName: "MessageBroastTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "MessageBroastTableViewCell")
         // Do any additional setup after loading the view.
     }
@@ -20,11 +21,18 @@ class EarningsRemindViewController: BaseMainTableViewController {
         super.viewWillAppear(animated)
         RootViewController?.hideTheTabbar()
     }
+    var models:[RemindNoticeModel]?
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    func requesEarningsRemindModel()
+    {
+        TargetManager.share.requestRemindNotice { (models, error) in
+            self.models = models
+            self.tableView.reloadData()
+        }
+    }
 
     /*
     // MARK: - Navigation
@@ -43,13 +51,11 @@ extension EarningsRemindViewController
         return 1
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return models?.count ?? 0
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:MessageBroastTableViewCell = tableView.dequeueReusableCell(withIdentifier: "MessageBroastTableViewCell", for: indexPath) as! MessageBroastTableViewCell
-        cell.nickName.text = "小栗子"
-        cell.selectionStyle = UITableViewCellSelectionStyle.none
-        cell.desCriptionLab.text = "付费(6.0)查看了您的相册"
+        cell.model1 = models?[indexPath.row]
         cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         
         return cell

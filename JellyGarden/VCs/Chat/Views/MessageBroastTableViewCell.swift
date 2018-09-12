@@ -18,6 +18,36 @@ class MessageBroastTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+    var model1:RemindNoticeModel?
+    {
+        didSet{
+            self.nickName.text = model1?.user_name
+            var str:String = ""
+            switch model1?.type {//1约会定价 //2查看照片 3//购买Vip 4解锁相册 5 查看联系方式 6 私聊
+            case 1:
+                str = "支付了定金"
+                break
+            case 2:
+                str = "查看了您的红包照片"
+                break
+            case 3:
+//                str = "支付了定金"
+                break
+            case 4:
+                str = "查看了您的相册"
+                break
+            case 5:
+                str = "查看了您的联系方式"
+                break
+            default:
+                break
+            }
+            
+            self.desCriptionLab.text = "付费\(model1?.moeny ?? 0)\(str)"
+            self.timeLab.text = distanceTime(time: model1?.time ?? 0)
+             self.headerView.sd_DownLoadImage(url: model1?.user_image ?? "")
+        }
+    }
     var model:BroastModel?  {
         didSet{
             self.nickName.text = model?.user_name

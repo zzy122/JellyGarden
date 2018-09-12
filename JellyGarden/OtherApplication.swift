@@ -19,7 +19,7 @@ class OtherApplication: NSObject, WXApiDelegate, RCIMUserInfoDataSource, RCIMGro
     func setYumeng() {
         UMConfigure.initWithAppkey(UMengKey, channel: nil)
         
-        UMSocialManager.default().setPlaform(.wechatSession, appKey: WeiChatShareKey, appSecret: WeiChatShareScrete, redirectURL: "")
+        UMSocialManager.default().setPlaform(.wechatSession, appKey: WeiChatShareKey, appSecret: WeiChatShareScrete, redirectURL: "http://www.yiqingdan.com")
         
         UMSocialManager.default().setPlaform(.QQ, appKey: QQShareKey, appSecret: QQShareSecrete, redirectURL: "http://www.qq.com/music.html")
         UMConfigure.setLogEnabled(true)
@@ -125,7 +125,6 @@ class OtherApplication: NSObject, WXApiDelegate, RCIMUserInfoDataSource, RCIMGro
              nonceStr: String,
              timeStamp: UInt32,
              sign: String,
-             param: [String: Any],
              completion: ((Bool) -> Void)?) {
         
         wxpayCompletion = completion

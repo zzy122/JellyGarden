@@ -202,12 +202,11 @@ class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
             case .prase://点击评价
                 AlertAction.share.showCommentStarView(imageUrl: userInfoModel?.avatar, nikeStr: userInfoModel?.nickname) { (poCount, playCount, tasteCount, cleanCount, agliCount, mothCount) in
                     
-                    let param:[String:Any] = ["asses_userid":self.userInfoModel?.user_id ?? "","userid":CurrentUserInfo?.user_id ?? "","type1":playCount,"type2":playCount,"type3":tasteCount,"type4":cleanCount,"type5":agliCount,"type6":mothCount]
+                    let str = "\(commentAry[0]):\(poCount);\(commentAry[1]):\(playCount);\(commentAry[2]):\(tasteCount);\(commentAry[3]):\(cleanCount);\(commentAry[4]):\(agliCount);\(commentAry[5]):\(mothCount);"
+                    let param:[String:Any] = ["asses_userid":self.userInfoModel?.user_id ?? "","userid":CurrentUserInfo?.user_id ?? "","user_assoss":str]
                     TargetManager.share.commentUser(params: param, complection: { (success) in
-
+                        
                     })
-                    
-                    
                 }
                 
                 break

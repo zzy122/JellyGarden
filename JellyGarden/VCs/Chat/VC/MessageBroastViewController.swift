@@ -13,6 +13,7 @@ class MessageBroastViewController: BaseMainTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "电台广播"
+        self.requestBroastModel()
         tableView.register(UINib.init(nibName: "MessageBroastTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "MessageBroastTableViewCell")
         // Do any additional setup after loading the view.
     }

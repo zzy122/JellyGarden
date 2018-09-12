@@ -8,7 +8,7 @@
 
 import UIKit
 let ClickStarFinish =  "ClickStarFinish"
-
+let commentAry:[String] = ["礼貌","好玩","大方","干净","不拖拉","口嗨"]
 class CommentStarView: UIView {
     typealias close = (Bool) -> Void
     var clickClose:close?

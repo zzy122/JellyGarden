@@ -9,17 +9,20 @@
 import UIKit
 import HandyJSON
 class CheckApplyforViewController: BaseMainTableViewController {
-//    let models:[NotifyDataModel]? =
-//    {
-//        let ary = APPNotyfyDealwith.share.getNotifyData(key: Check_APP_ApplyNotify)
-//        return (JSONDeserializer<NotifyDataModel>.deserializeModelArrayFrom(array: ary) as? [NotifyDataModel])
-//    }()
+    var models:[SeeApplyModel]?
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "查看申请"
         self.tableView.register(UINib.init(nibName: "ApplayCheckTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "ApplayCheckTableViewCell")
-        
+        self.requesCheckApplyModel()
         // Do any additional setup after loading the view.
+    }
+    func requesCheckApplyModel()
+    {
+        TargetManager.share.requestSeeApply { (models, error) in
+            self.models = models
+            self.tableView.reloadData()
+        }
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

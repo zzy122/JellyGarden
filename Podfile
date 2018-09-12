@@ -5,7 +5,7 @@ inhibit_all_warnings!
 target 'JellyGarden' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
-
+#    pod 'AlipaySDK_No_UTDID'
   # Pods for JellyGarden
 	pod 'Alamofire', '~> 4.6.0’#类似于afnetworking
 	pod 'HandyJSON', '~> 4.1.1'#json转model
@@ -25,6 +25,10 @@ target 'JellyGarden' do
     pod 'MJRefresh'
     pod 'RongCloudRTC/RongCallLib', '~> 2.9.0'
      pod 'RongCloudRTC/RongCallKit', '~> 2.9.0'
+     
+     pod 'UMCCommon'
+     pod 'UMCCommonLog'
+     pod 'UMCSecurityPlugins'
 
     post_install do |installer_representation|
         installer_representation.pods_project.build_configurations.each do |config|

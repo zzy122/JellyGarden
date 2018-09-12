@@ -153,7 +153,12 @@ class PersonInfoViewController: BaseTableViewController,ResponderRouter {
                 self.gotoChatVC()
             case .prase://点击评价
                 AlertAction.share.showCommentStarView(imageUrl: userInfoModel?.avatar, nikeStr: userInfoModel?.nickname) { (poCount, playCount, tasteCount, cleanCount, agliCount, mothCount) in
-                    DebugLog(message: "poCount:\(poCount)playCount:\(playCount)tasteCount:\(tasteCount)cleanCount:\(cleanCount)agliCount:\(agliCount)mothCount:\(mothCount)")
+                    let str = "\(commentAry[0]):\(poCount);\(commentAry[1]):\(playCount);\(commentAry[2]):\(tasteCount);\(commentAry[3]):\(cleanCount);\(commentAry[4]):\(agliCount);\(commentAry[5]):\(mothCount);"
+                    let param:[String:Any] = ["asses_userid":self.userInfoModel?.user_id ?? "","userid":CurrentUserInfo?.user_id ?? "","user_assoss":str]
+                    TargetManager.share.commentUser(params: param, complection: { (success) in
+                        
+                    })
+//                    DebugLog(message: "poCount:\(poCount)playCount:\(playCount)tasteCount:\(tasteCount)cleanCount:\(cleanCount)agliCount:\(agliCount)mothCount:\(mothCount)")
                 }
                 
                 break

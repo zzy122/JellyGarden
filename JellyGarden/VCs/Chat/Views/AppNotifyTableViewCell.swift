@@ -14,6 +14,14 @@ class AppNotifyTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+    var model:GardenNoticeModel?
+    {
+        didSet
+        {
+            self.contentLab.text = model?.content
+            self.timeLab.text = distanceTime(time: model?.send_time ?? 0)
+        }
+    }
     override func layoutSubviews() {
         self.appImageView.layer.cornerRadius = 25
         self.appImageView.clipsToBounds = true

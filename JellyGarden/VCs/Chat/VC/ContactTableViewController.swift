@@ -9,17 +9,23 @@
 import UIKit
 import HandyJSON
 class ContactTableViewController: BaseMainTableViewController {
-//    let models:[NotifyDataModel]? =
-//    {
-//        let ary = APPNotyfyDealwith.share.getNotifyData(key: Contact_APP_StyleNotify)
-//        return (JSONDeserializer<NotifyDataModel>.deserializeModelArrayFrom(array: ary) as? [NotifyDataModel])
-//    }()
+    var models:[SeePhoneModel]?
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "联系方式"
         self.tableView.register(UINib.init(nibName: "ContactTableViewCell"
             , bundle: Bundle.main), forCellReuseIdentifier: "ContactTableViewCell")
+        self.requesAPPNotifyModel()
         // Do any additional setup after loading the view.
+    }
+    func requesAPPNotifyModel()
+    {
+        TargetManager.share.requestSeePhoneModels{ (models, error) in
+            self.models = models
+            self.tableView.reloadData()
+        }
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

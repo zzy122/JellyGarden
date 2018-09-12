@@ -141,7 +141,7 @@ class FillInformationFirstViewController: BaseViewController,ResponderRouter,UII
         
         picker.dismiss(animated: true) {
             
-            let imageStr = "\(CurrentUserInfo?.phone ?? "no").png"
+            let imageStr = "\(CurrentUserInfo?.phone ?? "\(getTimeStamp(date: Date()))").png"
             HUD.flash(.labeledProgress(title: nil, subtitle: "请稍后..."))
             let model = AliyunUploadModel()
             model.image = image

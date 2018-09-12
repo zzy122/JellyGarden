@@ -21,40 +21,40 @@ class ApplayCheckTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-//    var model:NotifyDataModel?
-//    {
-//        didSet{
-//            self.nickLab.text = model?.nickname
-//            self.commentImag.sd_DownLoadImage(url: "")
-//        }
-//    }
+    var model:SeeApplyModel?
+    {
+        didSet{
+            self.nickLab.text = model?.user?.nickname
+            self.commentImag.sd_DownLoadImage(url: model?.user?.avatar ?? "")
+        }
+    }
     
     @IBAction func clickMainBtn(_ sender: UIButton) {//他的首页
-//        if model?.sex == 1
-//        {
-//
-//            let vc = PersonInfoViewController()
-//            TargetManager.share.getDetailUserInfo(userid: model?.user_id ?? "",isUpdateUser:false, complection: { (userinfo, error) in
-//                guard let user = userinfo else{
-//                    return
-//                }
-//                user.distance = self.model?.distance
-//                vc.userInfoModel = user
-//                RootNav().pushViewController(vc, animated: true)
-//            })
-//        }
-//        else
-//        {
-//            let vc = ManPersonInfoViewController()
-//            TargetManager.share.getDetailUserInfo(userid: model?.user_id ?? "",isUpdateUser:false, complection: { (userinfo, error) in
-//                guard let user = userinfo else{
-//                    return
-//                }
-//                user.distance = self.model?.distance
-//                vc.userInfoModel = user
-//                RootNav().pushViewController(vc, animated: true)
-//            })
-//        }
+        if model?.user?.sex == 1
+        {
+
+            let vc = PersonInfoViewController()
+            TargetManager.share.getDetailUserInfo(userid: model?.user?.user_id ?? "",isUpdateUser:false, complection: { (userinfo, error) in
+                guard let user = userinfo else{
+                    return
+                }
+                user.distance = self.model?.user?.distance
+                vc.userInfoModel = user
+                RootNav().pushViewController(vc, animated: true)
+            })
+        }
+        else
+        {
+            let vc = ManPersonInfoViewController()
+            TargetManager.share.getDetailUserInfo(userid: model?.user?.user_id ?? "",isUpdateUser:false, complection: { (userinfo, error) in
+                guard let user = userinfo else{
+                    return
+                }
+                user.distance = self.model?.user?.distance
+                vc.userInfoModel = user
+                RootNav().pushViewController(vc, animated: true)
+            })
+        }
         
     }
     @IBAction func clickDateBtn(_ sender: UIButton) {//允许

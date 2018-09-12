@@ -106,7 +106,7 @@ let JPushAppKey = "8cc1244924af16e493b9d08f"
 let UMengKey = "5b2347a2f43e4806580000c9"
 //微信分享
 let WeiChatShareKey = "wxd2e1aa0feed6b934"
-let WeiChatShareScrete = "4b89be2b0c428ff608a18e98f5140b1e"
+let WeiChatShareScrete = "4b89be2b0c428ff608a18e98f5140b1e"//4b89be2b0c428ff608a18e98f5140b1e   jXBXYm7rz6b7RVJNpa5mSy5L0Fy96sz3
 //QQ分享
 let QQShareKey = "1106938724"
 let QQShareSecrete = "Bo3kPkPS8ICSMdgZ"
