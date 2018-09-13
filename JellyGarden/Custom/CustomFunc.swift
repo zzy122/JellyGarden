@@ -184,7 +184,8 @@ func locationEncode(cityName:String)  -> CLLocation? {
 }
 func distanceTime(time:Int) -> String
 {
-    let date = Date.init(timeIntervalSince1970: TimeInterval(time))
+    let time1 = time / 1000//毫秒转换成秒
+    let date = Date.init(timeIntervalSince1970: TimeInterval(time1))
     let zone = NSTimeZone.system
     let interval = zone.secondsFromGMT(for: date)
     let myDate = date.addingTimeInterval(TimeInterval(interval))

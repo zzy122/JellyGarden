@@ -83,17 +83,69 @@ class MineInfoEditViewController: BaseMainViewController, UITextViewDelegate {
     }
     
     override func clickRightBtn() {
-        /// 保存
+//        dress_style
+//        let userDic:[String:Any]? = userInfo.toJSON()
+       guard let nickname = userInfo.nickname,nickname.count > 0 else
+       {
+            alertHud(title: "请输入昵称")
+            return
+        }
+        guard let appointment_place = userInfo.appointment_place,appointment_place.count > 0 else
+        {
+            alertHud(title: "请选择范围")
+            return
+        }
+        guard let identity = userInfo.identity,identity.count > 0 else
+        {
+            alertHud(title: "请选择职业")
+            return
+        }
+        guard let dress_style = userInfo.dress_style,dress_style.count > 0 else
+        {
+            alertHud(title: "请选择打扮风格")
+            return
+        }
+        guard let language = userInfo.language,language.count > 0 else
+        {
+            alertHud(title: "请选择语言")
+            return
+        }
+        guard let emotion_status = userInfo.emotion_status,emotion_status.count > 0 else
+        {
+            alertHud(title: "请选择情感状态")
+            return
+        }
+        guard let appointment_program = userInfo.appointment_program,appointment_program.count > 0 else
+        {
+            alertHud(title: "请选择约会项目")
+            return
+        }
+        guard let appointment_condition = userInfo.appointment_condition,appointment_condition.count > 0 else
+        {
+            alertHud(title: "请选择约会条件")
+            return
+        }
+        let contact_wechat = userInfo.contact_wechat ?? ""
+        let contact_qq = userInfo.contact_qq ?? ""
         
-//        if self.newUserInfo == nil
-//        {
-//            alertHud(title: "没有做出任何修改")
-//            return
+        guard (contact_wechat.count > 0) || (contact_qq.count > 0)  else
+        {
+            alertHud(title: "请输入qq或者微信")
+            return
+        }
+//        let model = userInfo
+//        let fillInfo:[String:Any] = model?.toJSON() ?? [:]
+//        fillInfoRequest(jsonDic: fillInfo) { (result) in
+//            if result {
+//                NSDictionary.init(dictionary: (model?.toJSON())!).write(toFile: UserPlist, atomically: true)
+//                self.navigationController?.popViewController(animated: true)
+//            }
 //        }
-        fillInfoRequest(jsonDic: userInfo.toJSON() ?? [:]) { (success) in
+        let params:[String:Any] = ["stature": userInfo.stature ?? 0, "dress_style": dress_style.joined(separator: ","), "nickname": nickname, "age": userInfo.age ?? 0, "identity": identity, "language": language.joined(separator: ","), "appointment_place":appointment_place.joined(separator: ","), "contact_qq": contact_qq, "tags": userInfo.tags?.joined(separator: ",") ?? "", "self_introduction": textView.text!, "emotion_status": emotion_status, "appointment_condition": appointment_condition.joined(separator: ","), "avatar": userInfo.avatar!, "contact_wechat": contact_wechat, "weight": userInfo.weight ?? 0, "appointment_program": appointment_program.joined(separator: ","), "user_id": userInfo.user_id!, "sex": userInfo.sex, "bust": userInfo.bust ?? 0]
+        fillInfoRequest(jsonDic: params ) { (success) in
             if success {
-                NSDictionary.init(dictionary: self.userInfo.toJSON() ?? [:]).write(toFile: UserPlist, atomically: true)
-                
+//                NSDictionary.init(dictionary: self.userInfo.toJSON() ?? [:]).write(toFile: UserPlist, atomically: true)
+
                 alertHud(title: "保存成功")
                 self.navigationController?.popViewController(animated: true)
             }
@@ -117,19 +169,18 @@ extension MineInfoEditViewController: TagsViewDelegate {
         if let index = selectedTags.index(of: removeTag) {
             selectedTags.remove(at: index)
         }
-        
+        textView.text = selectedTags.joined(separator: " ")
         self.userInfo.tags = selectedTags
     }
-    
     func tagsView(didTouchTagAtIndex index: Int) {
         let tags = FillCondition.share.conditionTag
         let addTag = tags[index]
-        
         var selectedTags = self.userInfo.tags ?? []
-        selectedTags.append(addTag)
-        
+         selectedTags.append(addTag)
+        textView.text = selectedTags.joined(separator: " ")
         self.userInfo.tags = selectedTags
     }
+//    func tagsView
     
     func reloadTag() {
         for selfTag in userInfo.tags ?? [] {

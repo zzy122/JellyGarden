@@ -191,7 +191,10 @@ extension UserInfoViewController: ResponderRouter {
             RootNav().pushViewController(MyLikesViewController(), animated: true)
             break
         case Mine_Info_Wallet: // 钱包
-            RootNav().pushViewController(WalletViewController(), animated: true)
+            SelectPayAction.shared.showAlipaiView(amountStr: "12") { (reslut) in
+                
+            }
+//            RootNav().pushViewController(WalletViewController(), animated: true)
             break
         case Mine_Info_Guangbo: // 广播
             let vc = UserBroadcastListViewController()
@@ -207,13 +210,16 @@ extension UserInfoViewController: ResponderRouter {
             RootNav().pushViewController(vc, animated: true)
             break
         case Mine_Info_HeaderInfo: // 个人信息
-            let vc = MineInfoEditViewController()
-            vc.hidesBottomBarWhenPushed = true
-            navigationController?.pushViewController(vc, animated: true)
+            
+            if CurrentUserInfo?.sex == 1
+            {
+                RootNav().pushViewController(ManFillInformationViewController(), animated: true)
+            }
+            else{
+                RootNav().pushViewController(MineInfoEditViewController(), animated: true)
+            }
             break
         case ClickSettingRedpacket://设置红包照片
-            
-            
             break
         case ClickFirstPhoto:
             
@@ -281,19 +287,26 @@ extension UserInfoViewController: UITableViewDelegate {
                 
                 break
             case ((CurrentUserInfo?.sex == 1) ? 2:3)://个人介绍
-               RootViewController?.hideTheTabbar()
-                RootNav().pushViewController(EditPersonalIntroduceViewController(), animated: true)
+                RootViewController?.hideTheTabbar()
+                if CurrentUserInfo?.sex == 1
+                {
+                    RootNav().pushViewController(ManFillInformationViewController(), animated: true)
+                }
+                else{
+                    RootNav().pushViewController(EditPersonalIntroduceViewController(), animated: true)
+                }
+               
                 break
-            case ((CurrentUserInfo?.sex == 1) ? 3:4)://约会条件
+            case ((CurrentUserInfo?.sex == 1) ? 3:10)://约会条件
                 AlertAction.share.showbottomPicker(title: title, maxCount: 4, dataAry: FillCondition.share.appointmentConditionListModel, currentData: CurrentUserInfo?.appointment_condition, backData: { (result) in
                    self.conditionAction(result: result)
                     
                 })
                 break
-            case ((CurrentUserInfo?.sex == 1) ? 4:5)://分享
+            case 4://分享 ((CurrentUserInfo?.sex == 1) ? 4:5)
                 UMengAcion.uMengShare()
                 break
-            case ((CurrentUserInfo?.sex == 1) ? 5:6)://用户协议
+            case 5://用户协议 ((CurrentUserInfo?.sex == 1) ? 5:6)
                 break
             default:
                 break
@@ -356,7 +369,7 @@ extension UserInfoViewController: UITableViewDelegate {
         fillInfoRequest(jsonDic: model?.toJSON() ?? [:], complection: { (result) in
             if result
             {
-                NSDictionary.init(dictionary: (model?.toJSON())!).write(toFile: UserPlist, atomically: true)
+//                NSDictionary.init(dictionary: (model?.toJSON())!).write(toFile: UserPlist, atomically: true)
                 self.tableView.reloadData()
             }
         })
@@ -403,7 +416,7 @@ extension UserInfoViewController: UITableViewDataSource {
         case 0:
             return 1
         case 1:
-            return ((CurrentUserInfo?.sex == 0) ? 7 : 6)
+            return 6//((CurrentUserInfo?.sex == 0) ? 7 : 6)
         case 2:
             return 3
         default:
@@ -445,16 +458,16 @@ extension UserInfoViewController: UITableViewDataSource {
                     cell?.textLabel?.text = "个人介绍"
                     cell?.detailTextLabel?.text = CurrentUserInfo?.self_introduction
                 }
+//                else if 1 == indexPath.section && 4 == indexPath.row {
+//                    cell?.textLabel?.text = "约会条件"
+//                    cell?.detailTextLabel?.text = CurrentUserInfo?.appointment_condition?.joined(separator: " ")
+//
+//                }
                 else if 1 == indexPath.section && 4 == indexPath.row {
-                    cell?.textLabel?.text = "约会条件"
-                    cell?.detailTextLabel?.text = CurrentUserInfo?.appointment_condition?.joined(separator: " ")
-                    
-                }
-                else if 1 == indexPath.section && 5 == indexPath.row {
                     cell?.textLabel?.text = "分享果冻花园"
                     cell?.detailTextLabel?.text = ""
                 }
-                else if 1 == indexPath.section && 6 == indexPath.row {
+                else if 1 == indexPath.section && 5 == indexPath.row {
                     cell?.textLabel?.text = "用户使用协议"
                     cell?.detailTextLabel?.text = ""
                 }

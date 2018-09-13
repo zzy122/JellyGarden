@@ -232,7 +232,10 @@ func fillInfoRequest(jsonDic:[String:Any],complection:@escaping (Bool) -> Void)
 //    param["user_id"] = CurrentUserInfo?.user_id ?? ""
     TargetManager.share.fillUserInfo(params: jsonDic) { (result, error) in
         if error == nil {
-            complection(true)
+            updateUserInfo(complection: { (result) in
+                complection(true)
+            })
+            
         }
         else
         {

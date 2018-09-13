@@ -72,7 +72,14 @@ class ManFillInformationViewController: BaseViewController,UIImagePickerControll
         self.nickNameLab.text = CurrentUserInfo?.nickname
         // Do any additional setup after loading the view.
     }
-
+    override func viewWillLayoutSubviews() {
+        self.headerIMV.imageView?.sd_DownLoadImage(url: CurrentUserInfo?.avatar ?? "")
+        nickNameLab.text = CurrentUserInfo?.nickname
+        contentTextView.text = CurrentUserInfo?.self_introduction
+        localLab.text = CurrentUserInfo?.appointment_place?.joined(separator: " ")
+        ageLab.text = "\(CurrentUserInfo?.age ?? 18)"
+        professionalLab.text = CurrentUserInfo?.identity
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -179,8 +186,8 @@ class ManFillInformationViewController: BaseViewController,UIImagePickerControll
             return
         }
         
-        var fillInfo:[String:Any] = ["nickname":nikeStr,"avatar":url,"appointment_place":cityStr,"age":(ageStr as NSString).floatValue,"identity":professionStr,"sex":"0","language":[],"bust":0,"contact_wechat":"","contact_qq":"","dress_style":[],"appointment_program":[],"emotion_status":"","stature":0,"weight":0,"appointment_condition":[],"self_introduction":"",]
-        
+//        var fillInfo:[String:Any] = ["nickname":nikeStr,"avatar":url,"appointment_place":cityStr,"age":(ageStr as NSString).floatValue,"identity":professionStr,"sex":"0","language":[],"bust":0,"contact_wechat":"","contact_qq":"","dress_style":[],"appointment_program":[],"emotion_status":"","stature":0,"weight":0,"appointment_condition":[],"self_introduction":"",]
+        var fillInfo:[String:Any] = ["stature": 0, "dress_style": "", "nickname": nikeStr, "age": (ageStr as NSString).intValue, "identity": professionStr, "language": "", "appointment_place":cityStr.joined(separator: ","), "contact_qq": "",  "emotion_status": "", "appointment_condition": "", "avatar": url, "contact_wechat": "", "weight": 0, "appointment_program": "", "user_id": CurrentUserInfo?.user_id ?? "", "sex": 0, "bust": 0]
         fillInfo["tags"] = []
         if contentTextView.text.count > 0 {
             fillInfo["tags"] = currentData

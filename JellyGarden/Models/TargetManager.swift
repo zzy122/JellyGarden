@@ -20,14 +20,16 @@ class TargetManager: NSObject {
     func getDetailUserInfo(userid:String,isUpdateUser:Bool, complection:@escaping (UserModel?,Error?) -> Void)  {//gardens/\(userid)?my_user_id=\(CurrentUserInfo?.user_id ?? "")
         let param = ["view_userid":userid,"user_id":CurrentUserInfo?.user_id ?? ""]
         NetCostom.shared.request(method:.post ,wengen: "admin/user/get_user_message", params: param, success: { (result) in
+            guard let user = result as? [String:Any] else {
+                return
+            }
+            let model = BaseModel<UserModel,UserModel>.init(resultData: user)
             if isUpdateUser
             {
-                guard let user = result as? [String:Any] else {
-                    return
-                }
-                NSDictionary.init(dictionary: user).write(toFile: UserPlist, atomically: true)
+                
+                let user1 = model.resultData?.toJSON()!
+                NSDictionary.init(dictionary: user1!).write(toFile: UserPlist, atomically: true)
             }
-            let model = BaseModel<UserModel,UserModel>.init(resultData: result)
             complection(model.resultData,nil)
         }) { (error) in
             complection(nil,error)

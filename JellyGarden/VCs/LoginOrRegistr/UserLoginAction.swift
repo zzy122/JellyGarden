@@ -32,7 +32,7 @@ func dealWithLoginUser(model:UserModel,nav:UINavigationController?)
 {
 //    nav?.pushViewController(SexViewController(), animated: true)
 //    return
-    if let nickName = model.appointment_place,nickName.count > 0//
+    if let nickName = model.identity,nickName.count > 0//
     {
        
         judgeGotoMainVC()
@@ -50,7 +50,7 @@ func judgeGotoMainVC()
         guard let tokenModel = model else{
             return
         }
-        OtherApplication.share.connectRongyun(token: tokenModel.token ?? "", complectiom: { (success) in
+        OtherApplication.share.connectRongyun(token: tokenModel.token!, complectiom: { (success) in
             if success
             {
                 let delegate = UIApplication.shared.delegate as! AppDelegate

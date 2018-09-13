@@ -116,6 +116,9 @@ extension TagsView: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         tagDelegate?.tagsView(didTouchTagAtIndex: indexPath.item)
     }
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        tagDelegate?.tagsView(didDeselectTagAtIndex: indexPath.item)
+    }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
