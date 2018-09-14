@@ -45,7 +45,9 @@ class MessageBroastTableViewCell: UITableViewCell {
             
             self.desCriptionLab.text = "付费\(model1?.moeny ?? 0)\(str)"
             self.timeLab.text = distanceTime(time: model1?.time ?? 0)
-             self.headerView.sd_DownLoadImage(url: model1?.user_image ?? "")
+            self.headerView.sd_DownLoadImage(url: model1?.user_image ?? "", complection: { (image) in
+                
+            })
         }
     }
     var model:BroastModel?  {
@@ -62,7 +64,9 @@ class MessageBroastTableViewCell: UITableViewCell {
                 lable.backgroundColor = UIColor.clear
                 return lable
             }()
-            self.headerView.sd_DownLoadImage(url: model?.attachment ?? "")
+            self.headerView.sd_DownLoadImage(url: model?.attachment ?? "", complection: { (image) in
+                
+            })
         }
     }
     override func layoutSubviews() {

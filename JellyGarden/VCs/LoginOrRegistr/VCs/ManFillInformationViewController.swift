@@ -17,16 +17,17 @@ class ManFillInformationViewController: BaseViewController,UIImagePickerControll
     @IBOutlet weak var ageLab: UILabel!
     @IBOutlet weak var professionalLab: UILabel!
     @IBOutlet weak var headerIMV: UIButton!
-    var imagePath:String?
-    var dataAry:[String] = []
-    var currentData:[String] = [] {
+    var isEditMessage:Bool = false
+    var imagePath:String? = CurrentUserInfo?.avatar
+    var dataAry:[String] = CurrentUserInfo?.tags ?? []
+    var currentData:[String] = CurrentUserInfo?.tags ?? [] {
         didSet{
             self.contentTextView.text = continueString(strAry: currentData,separetStr:"  ")
         }
     }
-    var oppintRange:[String]? {
+    var oppintRange:[String]? = CurrentUserInfo?.appointment_place {
         didSet{
-            self.localLab.text = continueString(strAry: oppintRange, separetStr: "  ")
+            self.localLab.text = oppintRange?.joined(separator: " ")
         }
     }
     let ageList:[PikerModel] = {
@@ -66,19 +67,38 @@ class ManFillInformationViewController: BaseViewController,UIImagePickerControll
         self.dataAry = FillCondition.share.conditionTag
         self.collectionView.isHidden = false
         self.itemBackView.addSubview(self.collectionView)
-        if let imageUrl = CurrentUserInfo?.avatar,imageUrl.count > 0 {
-            self.headerIMV.imageView?.sd_DownLoadImage(url: imageUrl)
-        }
         self.nickNameLab.text = CurrentUserInfo?.nickname
         // Do any additional setup after loading the view.
     }
-    override func viewWillLayoutSubviews() {
-        self.headerIMV.imageView?.sd_DownLoadImage(url: CurrentUserInfo?.avatar ?? "")
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let imageUrl = CurrentUserInfo?.avatar,imageUrl.count > 0 {
+            UIImageView().sd_DownLoadImage(url: imageUrl) { (image) in
+                self.headerIMV.setImage(image, for: UIControlState.normal)
+            }
+        }
         nickNameLab.text = CurrentUserInfo?.nickname
         contentTextView.text = CurrentUserInfo?.self_introduction
         localLab.text = CurrentUserInfo?.appointment_place?.joined(separator: " ")
         ageLab.text = "\(CurrentUserInfo?.age ?? 18)"
         professionalLab.text = CurrentUserInfo?.identity
+        if isEditMessage
+        {
+            self.title = "编辑资料"
+            self.bottomBtn.isHidden = true
+            self.rightBtn.isHidden = false
+            self.rightBtn.setTitle("保存", for: UIControlState.normal)
+        }
+    }
+    override func clickRightBtn() {
+        self.saveMessage { (success) in
+            if success{
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
+    }
+    override func viewWillLayoutSubviews() {
+       
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -164,7 +184,15 @@ class ManFillInformationViewController: BaseViewController,UIImagePickerControll
         }
     }
     @IBAction func gotoMainView(_ sender: UIButton) {
-        
+        self.saveMessage { (success) in
+            if success{
+                let delegate = UIApplication.shared.delegate as! AppDelegate
+                delegate.setRootViewController(vc: BaseTabBarViewController())
+            }
+        }
+    }
+    func saveMessage(success:@escaping (Bool) -> Void)
+    {
         guard let url = self.imagePath,url.count > 0 else {
             alertHud(title: "请选择头像")
             return
@@ -186,30 +214,31 @@ class ManFillInformationViewController: BaseViewController,UIImagePickerControll
             return
         }
         
-//        var fillInfo:[String:Any] = ["nickname":nikeStr,"avatar":url,"appointment_place":cityStr,"age":(ageStr as NSString).floatValue,"identity":professionStr,"sex":"0","language":[],"bust":0,"contact_wechat":"","contact_qq":"","dress_style":[],"appointment_program":[],"emotion_status":"","stature":0,"weight":0,"appointment_condition":[],"self_introduction":"",]
+        
+        //        var fillInfo:[String:Any] = ["nickname":nikeStr,"avatar":url,"appointment_place":cityStr,"age":(ageStr as NSString).floatValue,"identity":professionStr,"sex":"0","language":[],"bust":0,"contact_wechat":"","contact_qq":"","dress_style":[],"appointment_program":[],"emotion_status":"","stature":0,"weight":0,"appointment_condition":[],"self_introduction":"",]
         var fillInfo:[String:Any] = ["stature": 0, "dress_style": "", "nickname": nikeStr, "age": (ageStr as NSString).intValue, "identity": professionStr, "language": "", "appointment_place":cityStr.joined(separator: ","), "contact_qq": "",  "emotion_status": "", "appointment_condition": "", "avatar": url, "contact_wechat": "", "weight": 0, "appointment_program": "", "user_id": CurrentUserInfo?.user_id ?? "", "sex": 0, "bust": 0]
-        fillInfo["tags"] = []
+//        fillInfo["tags"] = []
         if contentTextView.text.count > 0 {
-            fillInfo["tags"] = currentData
+            fillInfo["tags"] = currentData.joined(separator: ",")
             fillInfo["self_introduction"] = contentTextView.text
             
         }
         
-//        let param:[String:Any] = ["user_json":getJSONStringFromObject(dictionary: fillInfo)]
+        //        let param:[String:Any] = ["user_json":getJSONStringFromObject(dictionary: fillInfo)]
         
         TargetManager.share.fillUserInfo(params: fillInfo) { (result, error) in
             if error == nil {
                 updateUserInfo(complection: { (result) in
-                    
+                    success(result)
                 })
-                
-                let delegate = UIApplication.shared.delegate as! AppDelegate
-                delegate.setRootViewController(vc: BaseTabBarViewController())
+            }
+            else
+            {
+                success(false)
             }
         }
     }
-
-
+    
 }
 extension ManFillInformationViewController
 {

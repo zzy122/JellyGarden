@@ -23,8 +23,12 @@ class EnlistDetailTableViewCell: UITableViewCell {
     }
     var model:sign_up? {
         didSet{
-            self.headerIMageView.sd_DownLoadImage(url: (model?.avatar)!)
-            self.contentImageView.sd_DownLoadImage(url: model?.attachment?.last ?? "")
+            self.headerIMageView.sd_DownLoadImage(url: (model?.avatar)!, complection: { (image) in
+                
+            })
+            self.contentImageView.sd_DownLoadImage(url: model?.attachment?.last ?? "", complection: { (image) in
+                
+            })
             self.commentTimeLab.text = timeStampToDate(time: Int64(model?.create_at ?? 0), backType: DateFormatterType.second)
             desCriptionLab.text = "报名了您的约会广播"
             self.nikeNameLab.text = model?.nickname

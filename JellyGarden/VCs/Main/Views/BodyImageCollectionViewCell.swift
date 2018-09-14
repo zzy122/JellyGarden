@@ -49,7 +49,9 @@ class BodyImageCollectionViewCell: UICollectionViewCell {
     {
         if let str = imageStr
         {
-            self.imageV.sd_DownLoadImage(url: str)
+            self.imageV.sd_DownLoadImage(url: str, complection: { (image) in
+                
+            })
         }
        if let ima = image
        {

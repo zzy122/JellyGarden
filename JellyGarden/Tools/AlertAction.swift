@@ -172,7 +172,9 @@ class AlertAction: NSObject {
         self.commentView.cleanView.reloadData()
         self.commentView.agileView.reloadData()
         self.commentView.mouthView.reloadData()
-        self.commentView.headerImage.sd_DownLoadImage(url: imageUrl ?? "")
+        self.commentView.headerImage.sd_DownLoadImage(url: imageUrl ?? "", complection: { (image) in
+            
+        })
         self.commentView.nikeNameLable.text = nikeStr
         self.commentView.clickClose = {[weak self] sure in
             UIView.animate(withDuration: 0.3, animations: {

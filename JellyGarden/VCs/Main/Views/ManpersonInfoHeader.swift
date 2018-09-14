@@ -29,7 +29,9 @@ class ManpersonInfoHeader: UIView {
 
     var userModel:UserModel?{
         didSet{
-            self.headerImage.sd_DownLoadImage(url: userModel?.avatar ?? "")
+            self.headerImage.sd_DownLoadImage(url: userModel?.avatar ?? "", complection: { (image) in
+                
+            })
             self.nikeNameLab.text = userModel?.nickname
             if let has_authentication =
                 userModel?.has_authentication ,has_authentication {

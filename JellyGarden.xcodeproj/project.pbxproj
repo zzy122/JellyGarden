@@ -292,6 +292,8 @@
 		C72FF9A320FCA0F900D3983D /* AppNotifyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C72FF9A120FCA0F900D3983D /* AppNotifyTableViewCell.xib */; };
 		C72FF9AA20FCAC8600D3983D /* ApplayCheckTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72FF9A820FCAC8600D3983D /* ApplayCheckTableViewCell.swift */; };
 		C72FF9AB20FCAC8600D3983D /* ApplayCheckTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C72FF9A920FCAC8600D3983D /* ApplayCheckTableViewCell.xib */; };
+		C737C22A214BB10B00F62846 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C737C228214BB10B00F62846 /* ReportViewController.swift */; };
+		C737C22B214BB10B00F62846 /* ReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C737C229214BB10B00F62846 /* ReportViewController.xib */; };
 		C743325A2148E6E4004895A8 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C74332582148E6E3004895A8 /* AlipaySDK.framework */; };
 		C743325B2148E6E4004895A8 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C74332592148E6E4004895A8 /* AlipaySDK.bundle */; };
 		C7454D2120FD856A00D9D6D7 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7454D1F20FD856A00D9D6D7 /* ContactTableViewCell.swift */; };
@@ -696,6 +698,8 @@
 		C72FF9A120FCA0F900D3983D /* AppNotifyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppNotifyTableViewCell.xib; sourceTree = "<group>"; };
 		C72FF9A820FCAC8600D3983D /* ApplayCheckTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplayCheckTableViewCell.swift; sourceTree = "<group>"; };
 		C72FF9A920FCAC8600D3983D /* ApplayCheckTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApplayCheckTableViewCell.xib; sourceTree = "<group>"; };
+		C737C228214BB10B00F62846 /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
+		C737C229214BB10B00F62846 /* ReportViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportViewController.xib; sourceTree = "<group>"; };
 		C74332582148E6E3004895A8 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
 		C74332592148E6E4004895A8 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
 		C7454D1F20FD856A00D9D6D7 /* ContactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
@@ -1365,6 +1369,8 @@
 				C7AA5422210AB833003D4580 /* SetRedPacketPhotoViewController.swift */,
 				5A6C939520F59D0800E57223 /* LookImageSettingViewController.swift */,
 				5A6C939620F59D0800E57223 /* LookImageSettingViewController.xib */,
+				C737C228214BB10B00F62846 /* ReportViewController.swift */,
+				C737C229214BB10B00F62846 /* ReportViewController.xib */,
 			);
 			path = VCs;
 			sourceTree = "<group>";
@@ -1770,6 +1776,7 @@
 				5A015E9C20C5121000EC8A96 /* LoginVIewController.xib in Resources */,
 				5E6AE16620DF962900901D43 /* MineInfoEditViewController.xib in Resources */,
 				5AF4A75320D6260100CFDDD6 /* EnlistAppiontViewController.xib in Resources */,
+				C737C22B214BB10B00F62846 /* ReportViewController.xib in Resources */,
 				5A574C0B20CA397A00C59276 /* LookImageBodyView.xib in Resources */,
 				5A6C939E20F63C5C00E57223 /* AlipayBottomAlertView.xib in Resources */,
 				5A80C49A20BFDB150033CAF8 /* Assets.xcassets in Resources */,
@@ -1944,6 +1951,7 @@
 				5A45D9DA20E33AA600D2B4CE /* ManFillInformationViewController.swift in Sources */,
 				5A27B38C20E9D52D0028D5FF /* IdentityAuthenticationViewController.swift in Sources */,
 				5A7FC45220EE5AB200D7E137 /* WalletViewController.swift in Sources */,
+				C737C22A214BB10B00F62846 /* ReportViewController.swift in Sources */,
 				5E6AE16F20DF972C00901D43 /* TagsView.swift in Sources */,
 				5A80C4D120BFE1050033CAF8 /* ShowShadow.swift in Sources */,
 				5ADD1A3020C952FB004504B3 /* PersonalInfoHeader.swift in Sources */,

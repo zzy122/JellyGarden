@@ -284,7 +284,9 @@ class ChatRoomViewController: RCConversationViewController,RCRealTimeLocationObs
                 }
                 return;
             }
-        self.lookDestoryView.imageView.imageBack.sd_DownLoadImage(url: destroy.imageUrl ?? "")
+            self.lookDestoryView.imageView.imageBack.sd_DownLoadImage(url: destroy.imageUrl ?? "", complection: { (image) in
+                
+            })
             self.showDestroyImage()
         }
     

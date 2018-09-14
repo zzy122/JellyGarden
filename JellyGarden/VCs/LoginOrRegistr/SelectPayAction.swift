@@ -51,8 +51,6 @@ class SelectPayAction: NSObject {
 extension SelectPayAction:SelectPayViewDelegate
 {
     func clickAlipai() {
-        
-        
         self.showAction.hiddenTheView()
     }
     

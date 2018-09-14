@@ -125,7 +125,9 @@ extension LookImageSettingViewController:UICollectionViewDelegate,UICollectionVi
         let cell:BodyImageCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "BodyImageCollectionViewCell", for: indexPath) as! BodyImageCollectionViewCell
         let model = imageDataSource[indexPath.row]
         cell.type = LookImageType.clearness
-        cell.imageV.sd_DownLoadImage(url: model.url_list ?? "")
+        cell.imageV.sd_DownLoadImage(url: model.url_list ?? "", complection: { (image) in
+            
+        })
         return cell
         
     }

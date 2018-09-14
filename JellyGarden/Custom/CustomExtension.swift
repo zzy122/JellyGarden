@@ -185,16 +185,16 @@ extension GeneralExt where DT == UIResponder
 
 extension UIImageView
 {
-    func sd_DownLoadImage(url:String){
+    func sd_DownLoadImage(url:String,complection:@escaping (UIImage) -> Void){
        self.backgroundColor = UIColor.white
         self.kf.setImage(with: URL.init(string: url) ?? URL.init(fileURLWithPath: "loginicon"), placeholder: placeImage, options: [KingfisherOptionsInfoItem.transition(ImageTransition.fade(1)),KingfisherOptionsInfoItem.fromMemoryCacheOrRefresh], progressBlock: nil) { (image, error, type, urlStr) in
             DispatchQueue.main.async {
                guard let imageTag = image
                else{
                 DebugLog(message: "失败\(String(describing: error))")
-//                    self.image = placeImage
                 return
                 }
+                complection(imageTag)
                 self.image = imageTag
             }
         }

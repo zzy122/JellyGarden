@@ -106,10 +106,10 @@ class VipCenterViewController: BaseViewController,ResponderRouter {
             
             let headerBackView = UIView()
             headerBackView.backgroundColor = UIColor.clear
-            headerBackView.frame = CGRect.init(x: 0, y: 74, width: ScreenWidth, height: 100)
-            if let count = CurrentUserInfo?.vip_expire_time,count > 0
+            headerBackView.frame = CGRect.init(x: 0, y: 74, width: ScreenWidth, height: 70)
+            if let count = CurrentUserInfo?.member_time,count > 0
             {
-                if let vip = CurrentUserInfo?.vip_level, vip > 0
+                if CurrentUserInfo?.is_member == true
                 {
                    headerBackView.frame = CGRect.init(x: 0, y: 74, width: ScreenWidth, height: 130)
                 }

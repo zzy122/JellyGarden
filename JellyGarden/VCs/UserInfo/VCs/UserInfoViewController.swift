@@ -111,6 +111,10 @@ class UserInfoViewController: BaseMainViewController,TZImagePickerControllerDele
         navigationController?.setNavigationBarHidden(true, animated: false)
         RootViewController?.showTheTabbar()
        self.reloadMyViewAccount()
+        if CurrentUserInfo?.sex == 0
+        {
+            self.headerView.renzhenButton.isHidden = true
+        }
         
     }
     func reloadMyViewAccount()
@@ -191,9 +195,12 @@ extension UserInfoViewController: ResponderRouter {
             RootNav().pushViewController(MyLikesViewController(), animated: true)
             break
         case Mine_Info_Wallet: // 钱包
-            SelectPayAction.shared.showAlipaiView(amountStr: "12") { (reslut) in
-                
-            }
+//            SelectPayAction.shared.showAlipaiView(amountStr: "12") { (reslut) in
+//
+//            }
+            
+            
+             RootNav().pushViewController(ReportViewController(), animated: true)
 //            RootNav().pushViewController(WalletViewController(), animated: true)
             break
         case Mine_Info_Guangbo: // 广播
@@ -213,10 +220,13 @@ extension UserInfoViewController: ResponderRouter {
             
             if CurrentUserInfo?.sex == 1
             {
-                RootNav().pushViewController(ManFillInformationViewController(), animated: true)
+                RootNav().pushViewController(MineInfoEditViewController(), animated: true)
             }
             else{
-                RootNav().pushViewController(MineInfoEditViewController(), animated: true)
+                let vc = ManFillInformationViewController()
+                vc.isEditMessage = true
+                 RootNav().pushViewController(vc, animated: true)
+               
             }
             break
         case ClickSettingRedpacket://设置红包照片
@@ -290,10 +300,13 @@ extension UserInfoViewController: UITableViewDelegate {
                 RootViewController?.hideTheTabbar()
                 if CurrentUserInfo?.sex == 1
                 {
-                    RootNav().pushViewController(ManFillInformationViewController(), animated: true)
+                    RootNav().pushViewController(EditPersonalIntroduceViewController(), animated: true)
                 }
                 else{
-                    RootNav().pushViewController(EditPersonalIntroduceViewController(), animated: true)
+                    let vc = ManFillInformationViewController()
+                    vc.isEditMessage = true
+                    RootNav().pushViewController(vc, animated: true)
+                    
                 }
                
                 break

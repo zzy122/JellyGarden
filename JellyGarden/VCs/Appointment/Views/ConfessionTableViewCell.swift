@@ -98,7 +98,9 @@ class ConfessionTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDa
             let imageUrl = detailModel?.avatar ?? ""
             DebugLog(message: "头像地址:\(imageUrl)")
 
-            self.headerView?.headerImage.sd_DownLoadImage(url: imageUrl)
+            self.headerView?.headerImage.sd_DownLoadImage(url: imageUrl, complection: { (image) in
+                
+            })
             self.headerView?.headerImage.image = imageName(name: detailModel?.avatar ?? "")
             let sexStr = (detailModel?.sex == 0) ? "男1" : "女1"
             self.headerView?.nikeName.text = detailModel?.user_name

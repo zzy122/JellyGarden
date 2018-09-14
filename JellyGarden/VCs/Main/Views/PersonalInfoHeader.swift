@@ -31,7 +31,9 @@ class PersonalInfoHeader: UIView {
 
     var userModel:UserModel?{
         didSet{
-            self.headerImage.sd_DownLoadImage(url: userModel?.avatar ?? "")
+            self.headerImage.sd_DownLoadImage(url: userModel?.avatar ?? "", complection: { (image) in
+                
+            })
            self.nikeNameLab.text = userModel?.nickname
             if let has_authentication =
                 userModel?.has_authentication ,has_authentication {
@@ -57,8 +59,8 @@ class PersonalInfoHeader: UIView {
             hostLab.text = "\(hostStr)CM"
             bodyWeightLab.text = "\(bodyWeightStr)KG"
             bodyHeightLab.text = "\(bodyHeightStr)CM"
-            if let vip = userModel?.vip_level,vip > 0 {
-                if let time = userModel?.vip_expire_time, time > 0
+            if userModel?.is_member == true {
+                if let time = userModel?.member_time, time > 0
                 {
                     self.VipLabl.isHidden = false
                 }
