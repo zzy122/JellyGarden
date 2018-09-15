@@ -26,7 +26,9 @@ class AddImageCollectionViewCell: UICollectionViewCell {
     }
     var imageStr:String = "" {
         didSet{
-            self.imageV.sd_DownLoadImage(url: imageStr)
+            self.imageV.sd_DownLoadImage(url: imageStr, complection: { (image) in
+                
+            })
             self.imageV.contentMode = UIViewContentMode.scaleToFill
         }
     }

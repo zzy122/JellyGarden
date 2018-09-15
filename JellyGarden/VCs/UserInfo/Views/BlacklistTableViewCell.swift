@@ -19,7 +19,9 @@ class BlacklistTableViewCell: UITableViewCell {
     }
     var model:BlackModel? {
         didSet{
-            headerImag.sd_DownLoadImage(url: model?.avatar ?? "")
+            headerImag.sd_DownLoadImage(url: model?.avatar ?? "", complection: { (image) in
+                
+            })
             nickLable.text = model?.nickname
         }
     }

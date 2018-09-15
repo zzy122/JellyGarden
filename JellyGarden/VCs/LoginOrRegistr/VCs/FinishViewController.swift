@@ -26,7 +26,8 @@ class FinishViewController: BaseViewController {
     func autoLogin() {//自动登录
         if let user = CurrentUserInfo {
             if let nickName = user.nickname, nickName.count > 0  {
-                loginActionParams(params: ["phone":user.phone ?? "","password":user.password ?? ""], nav: self.navigationController)
+                dealWithLoginUser(model: user, nav: self.navigationController)
+//                loginActionParams(params: ["phone":user.phone ?? "","password":user.password ?? ""], nav: self.navigationController)
             }
         }
         if currentCitys == nil {

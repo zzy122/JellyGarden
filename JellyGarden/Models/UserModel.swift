@@ -49,8 +49,8 @@ class UserModel:JSON {
     var weight:Int?
     var sex: Int = 1// 0 男 1女
     var appointment_place:[String]?//约会范围
-    var vip_expire_time:Int?
-    var vip_level:Int?
+    var member_time:Int?
+    var  is_member:Bool?//是否是会员
     var balance:Int?//用户余额
     var likes:[String]?
     var distance:String?

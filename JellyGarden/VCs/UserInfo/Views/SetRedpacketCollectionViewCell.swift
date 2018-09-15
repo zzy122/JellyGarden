@@ -19,7 +19,9 @@ class SetRedpacketCollectionViewCell: UICollectionViewCell {
     var model:PhotoModel?
     {
         didSet{
-            self.contentImageView.sd_DownLoadImage(url: model?.url_list ?? "")
+            self.contentImageView.sd_DownLoadImage(url: model?.url_list ?? "", complection: { (image) in
+                
+            })
         }
     }
     @IBAction func clickSelectCellBtn(_ sender: UIButton) {

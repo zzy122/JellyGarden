@@ -69,7 +69,9 @@ class FillInfoView: UIView,UITableViewDataSource,UITableViewDelegate {
         view.contentVIew.layer.cornerRadius = 5.0
         view.contentVIew.clipsToBounds = true
         if let imageUrl = CurrentUserInfo?.avatar,imageUrl.count > 0 {
-            view.headerImageBtn.imageView?.sd_DownLoadImage(url: imageUrl)
+            view.headerImageBtn.imageView?.sd_DownLoadImage(url: imageUrl, complection: { (image) in
+                
+            })
         }
         
         return view

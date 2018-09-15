@@ -30,7 +30,9 @@ class MainUserListTableViewCell: UITableViewCell {
     var model:MainListmodel? {
         didSet{
             let distance = Float.init(model?.distance ?? "0.0")
-            self.userHeaderImage.sd_DownLoadImage(url: model?.avatar ?? "")
+            self.userHeaderImage.sd_DownLoadImage(url: model?.avatar ?? "", complection: { (image) in
+                
+            })
             self.userNameLab.text = model?.nickname
             self.siteLab.text = model?.city
             self.ageLab.text = "\(model?.age ?? 0)岁"

@@ -25,7 +25,9 @@ class ApplayCheckTableViewCell: UITableViewCell {
     {
         didSet{
             self.nickLab.text = model?.user?.nickname
-            self.commentImag.sd_DownLoadImage(url: model?.user?.avatar ?? "")
+            self.commentImag.sd_DownLoadImage(url: model?.user?.avatar ?? "", complection: { (image) in
+                
+            })
         }
     }
     

@@ -106,7 +106,7 @@ class WalletViewController: BaseTableViewController,ResponderRouter {
         {
            return
         }
-        let params:[String:Any] = ["amount":Int(amount),"user_id": CurrentUserInfo?.user_id ?? "","alipay_account":currentAliPayModel?.alipay_account_id ?? ""]
+        let params:[String:Any] = ["amount":Int(amount),"user_id": CurrentUserInfo?.user_id ?? "","alipay_account":currentAliPayModel?.account ?? ""]
         TargetManager.share.withdrawal(params: params) { (success, error) in
             if success {
                 //余额查询

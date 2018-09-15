@@ -292,6 +292,8 @@
 		C72FF9A320FCA0F900D3983D /* AppNotifyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C72FF9A120FCA0F900D3983D /* AppNotifyTableViewCell.xib */; };
 		C72FF9AA20FCAC8600D3983D /* ApplayCheckTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72FF9A820FCAC8600D3983D /* ApplayCheckTableViewCell.swift */; };
 		C72FF9AB20FCAC8600D3983D /* ApplayCheckTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C72FF9A920FCAC8600D3983D /* ApplayCheckTableViewCell.xib */; };
+		C737C22A214BB10B00F62846 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C737C228214BB10B00F62846 /* ReportViewController.swift */; };
+		C737C22B214BB10B00F62846 /* ReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C737C229214BB10B00F62846 /* ReportViewController.xib */; };
 		C743325A2148E6E4004895A8 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C74332582148E6E3004895A8 /* AlipaySDK.framework */; };
 		C743325B2148E6E4004895A8 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C74332592148E6E4004895A8 /* AlipaySDK.bundle */; };
 		C7454D2120FD856A00D9D6D7 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7454D1F20FD856A00D9D6D7 /* ContactTableViewCell.swift */; };
@@ -319,6 +321,9 @@
 		C769122921002BD600898B47 /* RCDCSTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = C769122821002BD500898B47 /* RCDCSTagView.m */; };
 		C769122C21002BE900898B47 /* RCDCSInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = C769122B21002BE800898B47 /* RCDCSInputView.m */; };
 		C769123221002C1A00898B47 /* RCDCSButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C769123121002C1A00898B47 /* RCDCSButton.m */; };
+		C7A1FF442149FC7B00A95C76 /* SelectPayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A1FF432149FC7B00A95C76 /* SelectPayView.swift */; };
+		C7A1FF46214A5F1200A95C76 /* SelectPayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7A1FF45214A5F1200A95C76 /* SelectPayView.xib */; };
+		C7A1FF48214A62C300A95C76 /* SelectPayAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A1FF47214A62C300A95C76 /* SelectPayAction.swift */; };
 		C7AA5423210AB833003D4580 /* SetRedPacketPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AA5422210AB833003D4580 /* SetRedPacketPhotoViewController.swift */; };
 		C7AA5426210ABAF0003D4580 /* SetRedpacketCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AA5424210ABAF0003D4580 /* SetRedpacketCollectionViewCell.swift */; };
 		C7AA5427210ABAF0003D4580 /* SetRedpacketCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7AA5425210ABAF0003D4580 /* SetRedpacketCollectionViewCell.xib */; };
@@ -693,6 +698,8 @@
 		C72FF9A120FCA0F900D3983D /* AppNotifyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppNotifyTableViewCell.xib; sourceTree = "<group>"; };
 		C72FF9A820FCAC8600D3983D /* ApplayCheckTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplayCheckTableViewCell.swift; sourceTree = "<group>"; };
 		C72FF9A920FCAC8600D3983D /* ApplayCheckTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApplayCheckTableViewCell.xib; sourceTree = "<group>"; };
+		C737C228214BB10B00F62846 /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
+		C737C229214BB10B00F62846 /* ReportViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportViewController.xib; sourceTree = "<group>"; };
 		C74332582148E6E3004895A8 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
 		C74332592148E6E4004895A8 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
 		C7454D1F20FD856A00D9D6D7 /* ContactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
@@ -728,6 +735,9 @@
 		C769122B21002BE800898B47 /* RCDCSInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDCSInputView.m; sourceTree = "<group>"; };
 		C769123021002C1A00898B47 /* RCDCSButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDCSButton.h; sourceTree = "<group>"; };
 		C769123121002C1A00898B47 /* RCDCSButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDCSButton.m; sourceTree = "<group>"; };
+		C7A1FF432149FC7B00A95C76 /* SelectPayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPayView.swift; sourceTree = "<group>"; };
+		C7A1FF45214A5F1200A95C76 /* SelectPayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectPayView.xib; sourceTree = "<group>"; };
+		C7A1FF47214A62C300A95C76 /* SelectPayAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPayAction.swift; sourceTree = "<group>"; };
 		C7AA5422210AB833003D4580 /* SetRedPacketPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetRedPacketPhotoViewController.swift; sourceTree = "<group>"; };
 		C7AA5424210ABAF0003D4580 /* SetRedpacketCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetRedpacketCollectionViewCell.swift; sourceTree = "<group>"; };
 		C7AA5425210ABAF0003D4580 /* SetRedpacketCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetRedpacketCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -827,6 +837,7 @@
 				5A015E9D20C5173E00EC8A96 /* VCs */,
 				5A459ADC20D2095B00C0A6FA /* UserLoginAction.swift */,
 				5A459AE020D2202900C0A6FA /* FillCondition.swift */,
+				C7A1FF47214A62C300A95C76 /* SelectPayAction.swift */,
 			);
 			path = LoginOrRegistr;
 			sourceTree = "<group>";
@@ -1017,6 +1028,8 @@
 				5A4E325B20C7B6640051FE00 /* XIeyiWarmView.swift */,
 				5A4E325C20C7B6640051FE00 /* XIeyiWarmView.xib */,
 				5AC3FCE420DA01DF00226946 /* LineView.swift */,
+				C7A1FF432149FC7B00A95C76 /* SelectPayView.swift */,
+				C7A1FF45214A5F1200A95C76 /* SelectPayView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1356,6 +1369,8 @@
 				C7AA5422210AB833003D4580 /* SetRedPacketPhotoViewController.swift */,
 				5A6C939520F59D0800E57223 /* LookImageSettingViewController.swift */,
 				5A6C939620F59D0800E57223 /* LookImageSettingViewController.xib */,
+				C737C228214BB10B00F62846 /* ReportViewController.swift */,
+				C737C229214BB10B00F62846 /* ReportViewController.xib */,
 			);
 			path = VCs;
 			sourceTree = "<group>";
@@ -1729,6 +1744,7 @@
 				C743325B2148E6E4004895A8 /* AlipaySDK.bundle in Resources */,
 				5E6AE15E20DF2E8700901D43 /* MineInfoHeaderView.xib in Resources */,
 				5AE9CC8F20C8D9100057CFF3 /* UserInfoViewController.xib in Resources */,
+				C7A1FF46214A5F1200A95C76 /* SelectPayView.xib in Resources */,
 				5A4E326620C7B6650051FE00 /* VipBodyViewCell.xib in Resources */,
 				C72FF9A320FCA0F900D3983D /* AppNotifyTableViewCell.xib in Resources */,
 				5A4E326920C7B6650051FE00 /* XIeyiWarmView.xib in Resources */,
@@ -1760,6 +1776,7 @@
 				5A015E9C20C5121000EC8A96 /* LoginVIewController.xib in Resources */,
 				5E6AE16620DF962900901D43 /* MineInfoEditViewController.xib in Resources */,
 				5AF4A75320D6260100CFDDD6 /* EnlistAppiontViewController.xib in Resources */,
+				C737C22B214BB10B00F62846 /* ReportViewController.xib in Resources */,
 				5A574C0B20CA397A00C59276 /* LookImageBodyView.xib in Resources */,
 				5A6C939E20F63C5C00E57223 /* AlipayBottomAlertView.xib in Resources */,
 				5A80C49A20BFDB150033CAF8 /* Assets.xcassets in Resources */,
@@ -1891,6 +1908,7 @@
 				5AE9CC8E20C8D9100057CFF3 /* UserInfoViewController.swift in Sources */,
 				5A99B66920D7C67100371B6F /* WCLRecordVideoVC.m in Sources */,
 				5A7FC47E20F0559300D7E137 /* MessagePushSettingViewController.swift in Sources */,
+				C7A1FF48214A62C300A95C76 /* SelectPayAction.swift in Sources */,
 				5A574C0920CA396800C59276 /* LookImageBodyView.swift in Sources */,
 				5AF4A75C20D6655500CFDDD6 /* AliyunUploadModel.m in Sources */,
 				5AEB824520D8EA20002A7E69 /* ConditionCollectionViewCell.swift in Sources */,
@@ -1933,6 +1951,7 @@
 				5A45D9DA20E33AA600D2B4CE /* ManFillInformationViewController.swift in Sources */,
 				5A27B38C20E9D52D0028D5FF /* IdentityAuthenticationViewController.swift in Sources */,
 				5A7FC45220EE5AB200D7E137 /* WalletViewController.swift in Sources */,
+				C737C22A214BB10B00F62846 /* ReportViewController.swift in Sources */,
 				5E6AE16F20DF972C00901D43 /* TagsView.swift in Sources */,
 				5A80C4D120BFE1050033CAF8 /* ShowShadow.swift in Sources */,
 				5ADD1A3020C952FB004504B3 /* PersonalInfoHeader.swift in Sources */,
@@ -2059,6 +2078,7 @@
 				5A196AD220C6B5B6002EC0EE /* APPTextfiled.swift in Sources */,
 				5A80C4DF20BFE5780033CAF8 /* BaseViewController.swift in Sources */,
 				5A7FC44720ED097300D7E137 /* PayAccountTableViewCell.swift in Sources */,
+				C7A1FF442149FC7B00A95C76 /* SelectPayView.swift in Sources */,
 				5A459AE120D2202900C0A6FA /* FillCondition.swift in Sources */,
 				5A7FC47820EF9F3200D7E137 /* CSIIGesturePasswordController.m in Sources */,
 				5A015ED520C6392A00EC8A96 /* APPCustomAlertView.swift in Sources */,

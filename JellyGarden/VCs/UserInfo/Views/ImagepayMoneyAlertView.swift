@@ -41,7 +41,9 @@ class ImagepayMoneyAlertView: UIView {
         headerImage.layer.masksToBounds = true
         backView.layer.cornerRadius = 8.0
         backView.layer.masksToBounds = true
-        headerImage.sd_DownLoadImage(url: CurrentUserInfo?.avatar ?? "")
+        headerImage.sd_DownLoadImage(url: CurrentUserInfo?.avatar ?? "", complection: { (image) in
+            
+        })
         nickNameLab.text = CurrentUserInfo?.nickname
     }
     /*

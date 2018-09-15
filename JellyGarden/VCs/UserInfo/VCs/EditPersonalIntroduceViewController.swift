@@ -88,35 +88,14 @@ class EditPersonalIntroduceViewController: BaseViewController,UITextViewDelegate
             
         }
         fillInfo = model?.toJSON() ?? [:]
-        
+                
         fillInfoRequest(jsonDic: fillInfo) { (result) in
             if result {
-                NSDictionary.init(dictionary: (model?.toJSON())!).write(toFile: UserPlist, atomically: true)
+//                NSDictionary.init(dictionary: (model?.toJSON())!).write(toFile: UserPlist, atomically: true)
                 self.navigationController?.popViewController(animated: true)
             }
         }
         
-    }
-    @objc func clickBtn()
-    {
-        
-        fillInfo["tags"] = []
-        if textView.text.count > 0 {
-            fillInfo["tags"] = currentData
-            fillInfo["self_introduction"] = textView.text
-            
-        }
-        
-        let param:[String:Any] = ["user_json":getJSONStringFromObject(dictionary: fillInfo)]
-        TargetManager.share.fillUserInfo(params: param) { (result, error) in
-            if error == nil {
-                updateUserInfo(complection: { (result) in
-                    
-                })
-                let delegate = UIApplication.shared.delegate as! AppDelegate
-                delegate.setRootViewController(vc: BaseTabBarViewController())
-            }
-        }
     }
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1

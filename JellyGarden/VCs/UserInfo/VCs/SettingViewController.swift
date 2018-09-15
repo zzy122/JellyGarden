@@ -84,7 +84,9 @@ extension SettingViewController
                 }
             })
             vc.isLunch = true
-            vc.gesturePasswordView.logoimgView.sd_DownLoadImage(url: CurrentUserInfo?.avatar ?? "")
+            vc.gesturePasswordView.logoimgView.sd_DownLoadImage(url: CurrentUserInfo?.avatar ?? "", complection: { (image) in
+                
+            })
             self.navigationController?.pushViewController(vc, animated: true)
         }
         else if indexPath.row == 0 {

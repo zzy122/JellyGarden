@@ -77,7 +77,9 @@ class LookImageViewController: BaseViewController,ResponderRouter {
         super.viewDidLoad()
         self.createView()
         self.imageView.isHidden = false
-        self.imageView.imageBack.sd_DownLoadImage(url: self.imageUrl)
+        self.imageView.imageBack.sd_DownLoadImage(url: self.imageUrl, complection: { (image) in
+            
+        })
         // Do any additional setup after loading the view.
     }
     func createView() {

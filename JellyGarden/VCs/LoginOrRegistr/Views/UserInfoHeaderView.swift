@@ -31,7 +31,9 @@ class UserInfoHeaderView: UIView {
 
         view.headerIMV.layer.cornerRadius = 35
         view.headerIMV.clipsToBounds = true
-        view.headerIMV.sd_DownLoadImage(url: CurrentUserInfo?.avatar ?? "")
+        view.headerIMV.sd_DownLoadImage(url: CurrentUserInfo?.avatar ?? "", complection: { (image) in
+            
+        })
         view.progressView.progressTintColor = k_CustomColor(red: 255, green: 130, blue: 37)
         view.VipLab.layer.cornerRadius = 3.0
         view.VipLab.clipsToBounds = true
@@ -40,20 +42,20 @@ class UserInfoHeaderView: UIView {
         view.VipLab.isHidden = true
         view.progressBackView.isHidden = true
         view.nameTopConstent.constant = 15
-        if let count = CurrentUserInfo?.vip_expire_time,count > 0
+        if let count = CurrentUserInfo?.member_time,count > 0
         {
-            if let vip = CurrentUserInfo?.vip_level, vip > 0
+            if CurrentUserInfo?.is_member == true
             {
                 view.nameTopConstent.constant = 0
                 view.VipLab.isHidden = false
-                view.VipLab.text = "VIP\(vip)"
-                view.dateLab.isHidden = false
+                view.VipLab.text = "VIP"
+//                view.dateLab.isHidden = false
                 
                 let dateStr = timeStampToDate(time: Int64(count), backType: DateFormatterType.day)
                 view.dateLab.text = "有效期至:\(dateStr)"
-                view.progressBackView.isHidden = false
-                view.presentDegreeLab.text = "LV\(vip)"
-                view.lastDegreeLab.text = "LV\(vip+1)"
+//                view.progressBackView.isHidden = false
+//                view.presentDegreeLab.text = "LV\(vip)"
+//                view.lastDegreeLab.text = "LV\(vip+1)"
             }
             
             
@@ -63,7 +65,7 @@ class UserInfoHeaderView: UIView {
         return view
     }
     override func layoutSubviews() {
-        
+        self.progressBackView.isHidden = true//不要
     }
 //    override func draw(_ rect: CGRect) {
 //        
