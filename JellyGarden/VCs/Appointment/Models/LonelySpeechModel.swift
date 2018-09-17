@@ -35,7 +35,7 @@ struct sign_up:JSON {
 
 
 class lonelySpeechDetaileModel:JSON {
-    var add_time: Int64 = 0
+    var add_time: Int = 0
     var time:Int64 = 0
     var user_id: String?
     var sex: Int = 0

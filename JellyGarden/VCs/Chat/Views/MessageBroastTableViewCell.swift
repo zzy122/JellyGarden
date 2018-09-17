@@ -18,6 +18,20 @@ class MessageBroastTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+    var model2:DepositNoticeModel?
+    {
+        didSet
+        {
+            self.nickName.text = model2?.user_name
+            self.desCriptionLab.text = "支付了\(model2?.pay_money ?? 0)元定金"
+            self.headerView.sd_DownLoadImage(url: model2?.user_image ?? "") { (image) in
+                
+            }
+             self.timeLab.text = "没字段"
+        }
+    }
+    
+    
     var model1:RemindNoticeModel?
     {
         didSet{

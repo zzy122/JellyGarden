@@ -46,8 +46,6 @@ class ChatDepositAlertView: UIView {
     @IBAction func clickSelectTimeBtn(_ sender: UIButton) {
         self.depositAmountTextFiled.resignFirstResponder()
         self.picker.showPickerView()
-      
-        
     }
     override func layoutSubviews() {
         

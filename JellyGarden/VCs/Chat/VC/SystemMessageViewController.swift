@@ -108,8 +108,10 @@ extension SystemMessageViewController
             RootNav().pushViewController(CommentNotifyViewController(), animated: true)
             break
         case 6:
-             APPNotyfyDealwith.share.setReadedNotify(notiStr: Deposit_APP_Notify)
-            alertHud(title: "没看到设计图")
+            APPNotyfyDealwith.share.setReadedNotify(notiStr: Deposit_APP_Notify)
+            RootViewController?.hideTheTabbar()
+            RootNav().pushViewController(DepositNotifyListViewController(), animated: true)
+//            alertHud(title: "没看到设计图")
             break
         default:
             break

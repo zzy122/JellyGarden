@@ -43,6 +43,13 @@ class LookImageBodyView: UIView {
 //    override func draw(_ rect: CGRect) {
 //        self.frame = tagFrame
 //    }
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+    }
+    
+    
+    
     func starLookEffect(type:LookImageType) {
         if type == .clearness {
             self.imageShow.isHidden = true

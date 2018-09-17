@@ -20,6 +20,8 @@ class MineRedPhoneCell: UITableViewCell {
         self.addSubview(view)
         return view
     }()
+    
+    @IBOutlet weak var setRedPackedBtn: UIButton!
     @IBOutlet weak var descriptionLab: UILabel!
     override func layoutSubviews() {
         
@@ -37,6 +39,7 @@ class MineRedPhoneCell: UITableViewCell {
         if CurrentUserInfo?.sex == 0
         {
             descriptionLab.text = "有照片才能吸引女士哦"
+            self.setRedPackedBtn.isHidden = true
         }
     }
     

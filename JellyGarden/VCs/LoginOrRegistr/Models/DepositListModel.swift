@@ -8,7 +8,8 @@
 
 import UIKit
 struct DepositStatus {
-    let pay_NoSure = "已支付,待确认"
+    //差一个正常完成
+    let pay_NoSure = "已支付,待确认" //确认按钮
     let sured = "已确认"
     let askFor = "索回中"
     let hasAskFor = "索回成功，已完成"
@@ -21,6 +22,8 @@ struct DepositStatus {
     let womanReview = "已提交审核"
     let reviewSuccess = "审核成功,已完成"
     let reviewFailed = "审核失败，已完成"
+    
+    //要求缩回  男士 已确认
 }
 
 
@@ -34,7 +37,7 @@ struct DepositListModel: JSON {
     }
     var pay_money:String?
     var yue_time:Int?
-    var pay_time:String?
+    var pay_time:Int?
     var user_name:String?
     var user_image:String?
     var status:String = DepositStatus().pay_NoSure

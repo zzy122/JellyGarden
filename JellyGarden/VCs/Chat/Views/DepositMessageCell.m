@@ -68,10 +68,7 @@
   
     //拉伸图片
     if (MessageDirection_RECEIVE == self.messageDirection) {//接收方 不用改变frame
-        if ([testMessage.isPay isEqualToNumber:@(0)]) {
-            [self.posView addGestureRecognizer:self.pictureTap];
-        }
-        
+        [self.posView addGestureRecognizer:self.pictureTap];
         
     } else {
         [self.posView removeGestureRecognizer:self.pictureTap];

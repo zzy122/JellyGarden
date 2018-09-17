@@ -51,7 +51,7 @@ class UserInfoHeaderView: UIView {
                 view.VipLab.text = "VIP"
 //                view.dateLab.isHidden = false
                 
-                let dateStr = timeStampToDate(time: Int64(count), backType: DateFormatterType.day)
+                let dateStr = timeStampToDate(time: count, backType: DateFormatterType.day)
                 view.dateLab.text = "有效期至:\(dateStr)"
 //                view.progressBackView.isHidden = false
 //                view.presentDegreeLab.text = "LV\(vip)"

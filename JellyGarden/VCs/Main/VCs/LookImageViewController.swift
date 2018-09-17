@@ -15,18 +15,8 @@ enum LookImageType
 }
 class LookImageViewController: BaseViewController,ResponderRouter {
 
-    var type = LookImageType.clearness{
+    var type = LookImageType.clearness {
         didSet {
-            switch type {
-            case .effect:
-                
-                break
-            case .clearness:
-                break
-            case .lookAfter:
-                break
-
-            }
             self.imageView.starLookEffect(type: type)
         }
     }
@@ -60,6 +50,7 @@ class LookImageViewController: BaseViewController,ResponderRouter {
         self.view.addSubview(view1)
         return view1
     }()
+    
     lazy var imageView:LookImageBodyView = {
         let view1 = LookImageBodyView.createLookImageView()
         view1?.frame = CGRect.init(x: 0, y: 64, width: ScreenWidth, height: ScreenHeight - 140)
@@ -75,15 +66,11 @@ class LookImageViewController: BaseViewController,ResponderRouter {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.createView()
         self.imageView.isHidden = false
         self.imageView.imageBack.sd_DownLoadImage(url: self.imageUrl, complection: { (image) in
-            
+            self.imageView.imageBack.image = image
         })
         // Do any additional setup after loading the view.
-    }
-    func createView() {
-        self.type = LookImageType.clearness
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -91,6 +78,10 @@ class LookImageViewController: BaseViewController,ResponderRouter {
         self.leftBtn.setImage(imageName(name: "navi_back"), for: UIControlState.normal)
         self.imageView.isHidden = false
         self.view.backgroundColor = UIColor.black
+        self.imageView.starLookEffect(type: type)
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

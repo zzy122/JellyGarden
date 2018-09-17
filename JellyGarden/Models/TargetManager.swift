@@ -698,8 +698,35 @@ class TargetManager: NSObject {
             complection(nil,error)
         }
     }
+    //男士点击确认约会/要求索回 同意索回 //拒绝索回
+    func requestSureDeposit(param:[String:Any], complection:@escaping(Bool) -> Void)
+    {
+        NetCostom.shared.request(method: .post, wengen: "admin/message/updata_order_status", params: param, success: { (result) in
+            complection(true)
+        }) { (error) in
+            complection(false)
+        }
+    }
+    //男士要求索回
+    func requestOrderBack(param:[String:Any], complection:@escaping(Bool) -> Void)
+    {
+        NetCostom.shared.request(method: .post, wengen: "admin/message/updata_order_status", params: param, success: { (result) in
+            complection(true)
+        }) { (error) in
+            complection(false)
+        }
+    }
+    //女士发起收取定金
+    func requestReceiveDeposit(param:[String:Any],complection:@escaping (DepositModel?,Error?) -> Void)
+    {
+        NetCostom.shared.request(method: .post, wengen: "admin/order/apply_deposit", params: param, success: { (result) in
+            let model = BaseModel<DepositModel,DepositModel>.init(resultData: result)
+            complection(model.resultData,nil)
+        }) { (error) in
+            complection(nil,error)
+        }
+    }
 
-    
     
 }
 

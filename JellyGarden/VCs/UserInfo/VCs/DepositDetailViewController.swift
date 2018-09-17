@@ -14,6 +14,8 @@ class DepositDetailViewController: BaseMainTableViewController {
         let action = AlipayAction.init(showType: .center, view: self.alertBackView, windowView: self.navigationController?.view)
         return action
     }()
+    var model: DepositListModel?
+    var alertContentStr:String?
     var alertView:DisAgreeRefundView?
     lazy var alertBackView:UIView = {
         let view1 = UIView.init(frame: CGRect.init(x: 15, y: 29, width: ScreenWidth - 30, height: 250 * SCALE))
@@ -23,6 +25,10 @@ class DepositDetailViewController: BaseMainTableViewController {
         self.alertView = DisAgreeRefundView.createDisAgreeRefundView()
         self.alertView?.clickBtnBlock = { (isClick,photos,contentStr) in
             self.alertAction.hiddenTheView()
+            if isClick
+            {
+                self.uploadImage(sender: photos)
+            }
         }
        
         self.alertView?.frame = view1.bounds
@@ -44,7 +50,7 @@ class DepositDetailViewController: BaseMainTableViewController {
         super.viewDidLoad()
         self.title = "订金管理详情"
         tableView.register(UINib.init(nibName: "DepositManagerTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "DepositManagerTableViewCell")
-        
+        tableView.register(UINib.init(nibName: "NormalDepositManagerTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "NormalDepositManagerTableViewCell")
         tableView.register(UINib.init(nibName: "WomanDepositManagerTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "WomanDepositManagerTableViewCell")
         // Do any additional setup after loading the view.
     }
@@ -77,14 +83,25 @@ extension DepositDetailViewController
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 //        let cell:DepositManagerTableViewCell = tableView.dequeueReusableCell(withIdentifier: "DepositManagerTableViewCell", for: indexPath) as! DepositManagerTableViewCell
-        
-        //女士需要同意或者不同意
-        let womainCell:WomanDepositManagerTableViewCell = tableView.dequeueReusableCell(withIdentifier: "WomanDepositManagerTableViewCell", for: indexPath) as! WomanDepositManagerTableViewCell
-//        if CurrentUserInfo?.sex == 0
-//        {
-//            return cell
-//        }
-        return womainCell
+        if model?.status == DepositStatus().pay_NoSure//要求缩回
+        {
+            let cell:DepositManagerTableViewCell = tableView.dequeueReusableCell(withIdentifier: "DepositManagerTableViewCell", for: indexPath) as! DepositManagerTableViewCell
+            cell.model = model
+            cell.sureAppiontBtn.setTitle("要求索回", for: UIControlState.normal)
+            return cell
+        }
+        else if model?.status == DepositStatus().askFor && CurrentUserInfo?.sex == 1
+        {
+             let cell:WomanDepositManagerTableViewCell = tableView.dequeueReusableCell(withIdentifier: "WomanDepositManagerTableViewCell", for: indexPath) as! WomanDepositManagerTableViewCell
+            cell.model = model
+            return cell
+        }
+        else
+        {
+            let cell:NormalDepositManagerTableViewCell = tableView.dequeueReusableCell(withIdentifier: "NormalDepositManagerTableViewCell", for: indexPath) as! NormalDepositManagerTableViewCell
+            cell.model = model
+            return cell
+        }
         
     }
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -98,8 +115,7 @@ extension DepositDetailViewController
         return 80
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if CurrentUserInfo?.sex == 0
-        {
+        if model?.status == DepositStatus().pay_NoSure  || (model?.status == DepositStatus().askFor && CurrentUserInfo?.sex == 1)        {
             return 185
         }
         return 140
@@ -111,17 +127,33 @@ extension DepositDetailViewController:ResponderRouter,TZImagePickerControllerDel
     func interceptRoute(name: String, objc: UIResponder?, info: Any?) {
         if name == DepositManagerBottomBtn
         {
-            DebugLog(message: "点击了按钮")
+            DebugLog(message: "点击了要求索回按钮")
+            TargetManager.share.requestSureDeposit(param: ["order_sn":model?.order_num ?? "" , "is_refund":1]) { (success) in
+                if success
+                {
+                    self.model?.status = DepositStatus().askFor
+                    self.tableView.reloadData()
+                }
+            }
+            
         }
         if name == ClickDepositDissAgreeBtn//点击了不同意
         {
             self.showDissAgreeeView()
             
+            
         }
         if name == ClickDepositAgreeBtn//点击了同意
         {
-            
+            TargetManager.share.requestSureDeposit(param: ["order_sn":model?.order_num ?? "" , "is_refund":2]) { (success) in
+                if success
+                {
+                    self.model?.status = DepositStatus().hasAskFor
+                    self.tableView.reloadData()
+                }
+            }
         }
+        
         if name == ClickFirstPhoto
         {
            
@@ -144,7 +176,13 @@ extension DepositDetailViewController:ResponderRouter,TZImagePickerControllerDel
         AliyunManager.share.uploadImagesToAliyun(imageModels: models, complection: { (urls, succecCount, failCount, state) in
             if state == UploadImageState.success
             {
-                //                self.uploadUserPhotoUrlToServer(urlStrs: urls ?? [])
+                TargetManager.share.requestSureDeposit(param: ["imgurl":urls?.last ?? "","desc":self.alertContentStr ?? "","order_sn":self.model?.order_num ?? "" , "is_refund":3]) { (success) in
+                    if success
+                    {
+                        self.model?.status = DepositStatus().hasAskFor
+                        self.tableView.reloadData()
+                    }
+                }                
             }
             else
             {

@@ -24,8 +24,8 @@
  测试消息的内容
  */
 @property(nonatomic, strong) NSString *amotStr;
-
-@property(nonatomic,strong) NSNumber* isPay;
+//订单号
+@property(nonatomic,strong) NSString* out_trade_no;
 
 
 /*!

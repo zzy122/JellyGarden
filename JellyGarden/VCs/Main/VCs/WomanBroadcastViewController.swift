@@ -44,7 +44,9 @@ extension WomanBroadcastViewController
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
+        CurrentUserInfo?.user_id
     }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ConfessionTableViewCell", for: indexPath)
         return cell

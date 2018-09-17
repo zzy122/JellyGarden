@@ -325,6 +325,10 @@
 		C7A1FF442149FC7B00A95C76 /* SelectPayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A1FF432149FC7B00A95C76 /* SelectPayView.swift */; };
 		C7A1FF46214A5F1200A95C76 /* SelectPayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7A1FF45214A5F1200A95C76 /* SelectPayView.xib */; };
 		C7A1FF48214A62C300A95C76 /* SelectPayAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A1FF47214A62C300A95C76 /* SelectPayAction.swift */; };
+		C7A296A9214F3F79000EE072 /* DepositNotifyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A296A8214F3F79000EE072 /* DepositNotifyListViewController.swift */; };
+		C7A296AC214F4A90000EE072 /* NormalDepositManagerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A296AA214F4A90000EE072 /* NormalDepositManagerTableViewCell.swift */; };
+		C7A296AD214F4A90000EE072 /* NormalDepositManagerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7A296AB214F4A90000EE072 /* NormalDepositManagerTableViewCell.xib */; };
+		C7A296AF214FA433000EE072 /* DepositModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A296AE214FA433000EE072 /* DepositModel.swift */; };
 		C7AA5423210AB833003D4580 /* SetRedPacketPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AA5422210AB833003D4580 /* SetRedPacketPhotoViewController.swift */; };
 		C7AA5426210ABAF0003D4580 /* SetRedpacketCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AA5424210ABAF0003D4580 /* SetRedpacketCollectionViewCell.swift */; };
 		C7AA5427210ABAF0003D4580 /* SetRedpacketCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7AA5425210ABAF0003D4580 /* SetRedpacketCollectionViewCell.xib */; };
@@ -740,6 +744,10 @@
 		C7A1FF432149FC7B00A95C76 /* SelectPayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPayView.swift; sourceTree = "<group>"; };
 		C7A1FF45214A5F1200A95C76 /* SelectPayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectPayView.xib; sourceTree = "<group>"; };
 		C7A1FF47214A62C300A95C76 /* SelectPayAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPayAction.swift; sourceTree = "<group>"; };
+		C7A296A8214F3F79000EE072 /* DepositNotifyListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositNotifyListViewController.swift; sourceTree = "<group>"; };
+		C7A296AA214F4A90000EE072 /* NormalDepositManagerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalDepositManagerTableViewCell.swift; sourceTree = "<group>"; };
+		C7A296AB214F4A90000EE072 /* NormalDepositManagerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NormalDepositManagerTableViewCell.xib; sourceTree = "<group>"; };
+		C7A296AE214FA433000EE072 /* DepositModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositModel.swift; sourceTree = "<group>"; };
 		C7AA5422210AB833003D4580 /* SetRedPacketPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetRedPacketPhotoViewController.swift; sourceTree = "<group>"; };
 		C7AA5424210ABAF0003D4580 /* SetRedpacketCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetRedpacketCollectionViewCell.swift; sourceTree = "<group>"; };
 		C7AA5425210ABAF0003D4580 /* SetRedpacketCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetRedpacketCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -988,6 +996,7 @@
 				C72FF99E20FCA05500D3983D /* APPNotifyViewController.swift */,
 				C7454D2320FD878900D9D6D7 /* ContactTableViewController.swift */,
 				C7454D2920FD999A00D9D6D7 /* CommentNotifyViewController.swift */,
+				C7A296A8214F3F79000EE072 /* DepositNotifyListViewController.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -1325,6 +1334,8 @@
 				5A7FC45420EE5D4B00D7E137 /* WalletTableViewCell.xib */,
 				5A7FC45D20EE70DB00D7E137 /* DepositManagerTableViewCell.swift */,
 				5A7FC45E20EE70DB00D7E137 /* DepositManagerTableViewCell.xib */,
+				C7A296AA214F4A90000EE072 /* NormalDepositManagerTableViewCell.swift */,
+				C7A296AB214F4A90000EE072 /* NormalDepositManagerTableViewCell.xib */,
 				C7FC8E3A210EE27D00F9BAED /* WomanDepositManagerTableViewCell.swift */,
 				C7FC8E3B210EE27D00F9BAED /* WomanDepositManagerTableViewCell.xib */,
 				5A7FC46120EE739C00D7E137 /* DepositRefundTableViewCell.swift */,
@@ -1555,6 +1566,7 @@
 			isa = PBXGroup;
 			children = (
 				C7523FF0214799DE00591395 /* NotyfyListModels.swift */,
+				C7A296AE214FA433000EE072 /* DepositModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1657,7 +1669,7 @@
 					5A80C48E20BFDB150033CAF8 = {
 						CreatedOnToolsVersion = 9.1;
 						LastSwiftMigration = 0910;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1725,6 +1737,7 @@
 				5A4E326F20C7BEAE0051FE00 /* PaySelectView.xib in Resources */,
 				5A7FC46A20EE7F6700D7E137 /* DisAgreeRefundView.xib in Resources */,
 				5E50B852213D381D0053B2B3 /* README.txt in Resources */,
+				C7A296AD214F4A90000EE072 /* NormalDepositManagerTableViewCell.xib in Resources */,
 				C7454D2820FD8AEC00D9D6D7 /* CommentNotyfyTableViewCell.xib in Resources */,
 				C7D457682142658400BD1BC5 /* ImagepayMoneyAlertView.xib in Resources */,
 				5A4E322B20C792540051FE00 /* ApplayForCodeViewController.xib in Resources */,
@@ -1940,6 +1953,7 @@
 				C710D5BA20FED9C2006B15FC /* APPNotyfyDealwith.swift in Sources */,
 				5A7FC48820F105DE00D7E137 /* WalletHeaderView.swift in Sources */,
 				5A120C5420DE869A004A9DCF /* DepositMessageCell.m in Sources */,
+				C7A296A9214F3F79000EE072 /* DepositNotifyListViewController.swift in Sources */,
 				5A1F3AA320DF374800CB98CD /* TagStatueMessage.m in Sources */,
 				5A1F3AB820DF6CA700CB98CD /* HeadCollectionView.m in Sources */,
 				5A7FC47920EF9F3200D7E137 /* CSIIGesturePasswordButton.m in Sources */,
@@ -2023,6 +2037,7 @@
 				5A7FC43620EB181000D7E137 /* PermissionLookView.swift in Sources */,
 				5A27B37F20E5062E0028D5FF /* UserBroadcastListViewController.swift in Sources */,
 				5A1F3AA020DF35E600CB98CD /* TagStatueCell.m in Sources */,
+				C7A296AF214FA433000EE072 /* DepositModel.swift in Sources */,
 				5E50B840213D2ED10053B2B3 /* ZZYFrameParser.m in Sources */,
 				C7FC8E3C210EE27D00F9BAED /* WomanDepositManagerTableViewCell.swift in Sources */,
 				5A015ECB20C5864700EC8A96 /* FillInformationViewController.swift in Sources */,
@@ -2092,6 +2107,7 @@
 				5A4E326720C7B6650051FE00 /* VipCenterView.swift in Sources */,
 				5A7FC43A20EB5A2D00D7E137 /* SettingViewController.swift in Sources */,
 				5A1F3AC020DF6CA700CB98CD /* RealTimeLocationViewController.m in Sources */,
+				C7A296AC214F4A90000EE072 /* NormalDepositManagerTableViewCell.swift in Sources */,
 				5A7CEC8420D53EBB00B7A7C9 /* AddImageCollectionViewCell.swift in Sources */,
 				C769122C21002BE900898B47 /* RCDCSInputView.m in Sources */,
 				C769122321002AEF00898B47 /* RCDCustomerServiceViewController.m in Sources */,
@@ -2296,10 +2312,10 @@
 				CLANG_WARN_STRICT_PROTOTYPES = NO;
 				CODE_SIGN_ENTITLEMENTS = JellyGarden/JellyGarden.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEBUG_ACTIVITY_MODE = "";
 				"DEBUG_ACTIVITY_MODE[sdk=iphonesimulator*]" = default;
-				DEVELOPMENT_TEAM = 8E8E88WEYJ;
+				DEVELOPMENT_TEAM = 3W4VK75454;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2318,10 +2334,10 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = cn.com.JellyGarden1;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.com.JellyGarden;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "42ddfa18-8d3b-4ef6-88b3-b12b26455f3f";
+				PROVISIONING_PROFILE_SPECIFIER = cn.com.JellyGardenDevelopment;
 				SWIFT_OBJC_BRIDGING_HEADER = "JellyGarden/JellyGarden-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2345,9 +2361,9 @@
 				CLANG_WARN_STRICT_PROTOTYPES = NO;
 				CODE_SIGN_ENTITLEMENTS = JellyGarden/JellyGarden.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEBUG_ACTIVITY_MODE = "";
-				DEVELOPMENT_TEAM = 8E8E88WEYJ;
+				DEVELOPMENT_TEAM = 3W4VK75454;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2366,10 +2382,10 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = cn.com.JellyGarden1;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.com.JellyGarden;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "42ddfa18-8d3b-4ef6-88b3-b12b26455f3f";
+				PROVISIONING_PROFILE_SPECIFIER = cn.com.JellyGardenDevelopment;
 				SWIFT_OBJC_BRIDGING_HEADER = "JellyGarden/JellyGarden-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
 				SWIFT_VERSION = 4.0;

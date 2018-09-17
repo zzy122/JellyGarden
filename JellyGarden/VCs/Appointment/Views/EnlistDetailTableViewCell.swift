@@ -29,7 +29,7 @@ class EnlistDetailTableViewCell: UITableViewCell {
             self.contentImageView.sd_DownLoadImage(url: model?.attachment?.last ?? "", complection: { (image) in
                 
             })
-            self.commentTimeLab.text = timeStampToDate(time: Int64(model?.create_at ?? 0), backType: DateFormatterType.second)
+            self.commentTimeLab.text = timeStampToDate(time: model?.create_at ?? 0, backType: DateFormatterType.second)
             desCriptionLab.text = "报名了您的约会广播"
             self.nikeNameLab.text = model?.nickname
 

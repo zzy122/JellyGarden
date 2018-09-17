@@ -31,7 +31,7 @@
     self = [super init];
     if (self) {
         self.amotStr = [aDecoder decodeObjectForKey:@"amotStr"];
-        self.isPay = [aDecoder decodeObjectForKey:@"isPay"];
+        self.out_trade_no = [aDecoder decodeObjectForKey:@"out_trade_no"];
         
     }
     return self;
@@ -40,14 +40,14 @@
 /// NSCoding
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [aCoder encodeObject:self.amotStr forKey:@"amotStr"];
-    [aCoder encodeObject:self.isPay forKey:@"isPay"];
+    [aCoder encodeObject:self.out_trade_no forKey:@"out_trade_no"];
 }
 
 ///将消息内容编码成json
 - (NSData *)encode {
     NSMutableDictionary *dataDict = [NSMutableDictionary dictionary];
     [dataDict setObject:self.amotStr forKey:@"amotStr"];
-    [dataDict setObject:self.isPay forKey:@"isPay"];
+    [dataDict setObject:self.out_trade_no forKey:@"out_trade_no"];
     
 
     if (self.senderUserInfo) {
@@ -76,7 +76,7 @@
 
         if (dictionary) {
             self.amotStr = dictionary[@"amotStr"];
-            self.isPay = dictionary[@"isPay"];
+            self.out_trade_no = dictionary[@"out_trade_no"];
             NSDictionary *userinfoDic = dictionary[@"user"];
             [self decodeUserInfo:userinfoDic];
         }

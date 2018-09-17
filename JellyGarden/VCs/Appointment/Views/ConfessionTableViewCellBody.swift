@@ -52,7 +52,7 @@ class ConfessionTableViewCellBody: UIView,UICollectionViewDelegate,UICollectionV
         return view
     }
     func setDatasource(model:lonelySpeechDetaileModel) {
-        let titleStr = "\(timeStampToDate(time: Int64(model.time ),backType: .day))·\(model.city ?? "")"
+        let titleStr = "\(timeStampToDate(time: Int(model.time),backType: .day))·\(model.city ?? "")"
         
         self.timeLocalLab.text = titleStr
         self.describtionLab.text = model.requirement ?? ""

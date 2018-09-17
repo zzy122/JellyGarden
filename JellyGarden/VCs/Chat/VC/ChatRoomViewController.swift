@@ -25,9 +25,6 @@ class ChatRoomViewController: RCConversationViewController,RCRealTimeLocationObs
     lazy var depositAlertBackView:UIView = {
         let view1 = UIView.init(frame: CGRect.init(x: 20, y: 0, width: ScreenWidth - 40 , height: 250))
         self.depositView = ChatDepositAlertView.createChatDepositAlertView()
-        self.depositView?.clickBlock =  {(sure,amountStr,timeStr) in
-            self.alertAction.hiddenTheView()
-        }
         self.depositView?.frame = view1.bounds
         view1.layer.cornerRadius = 8.0
         view1.clipsToBounds = true
@@ -59,6 +56,11 @@ class ChatRoomViewController: RCConversationViewController,RCRealTimeLocationObs
             plugin?.insertItem(with: image, title: "阅后即焚", at: 5, tag: PLUGIN_BOARD_READ_FILE_TAG)
             plugin?.insertItem(with: image4, title: "收取定金", tag: PLUGIN_BOARD_DEPOSIT_FILE_TAG)
             plugin?.insertItem(with: image2, title: "打赏礼物", tag: PLUGIN_BOARD_GIFT_FILE_TAG)
+            if CurrentUserInfo?.sex == 0
+            {
+                plugin?.removeItem(withTag: PLUGIN_BOARD_DEPOSIT_FILE_TAG)
+            }
+            
         }
         /*******************实时地理位置共享***************/
 
@@ -93,7 +95,7 @@ class ChatRoomViewController: RCConversationViewController,RCRealTimeLocationObs
             vc?.didFinishPickingPhotosHandle = {(photos, assets, isSelectOriginalPhoto) in
                 let yunmodel:AliyunUploadModel = AliyunUploadModel()
                 yunmodel.image = photos?.last
-                yunmodel.fileName = "\(getImageName()).png"
+                yunmodel.fileName = "\(getImageName())"
                 AliyunManager.share.uploadImagesToAliyun(imageModels: [yunmodel], complection: { (urls, failCount, successCount, state) in
                     if state == UploadImageState.success
                     {
@@ -136,19 +138,28 @@ class ChatRoomViewController: RCConversationViewController,RCRealTimeLocationObs
             alertAction.showType = .center
             alertAction.backView.isUserInteractionEnabled = false
             alertAction.showTheView()
-//            AlertAction.share.showAlertView(type: UIKeyboardType.numberPad, title: "订金", placeHodel: "请输入订金金额",textStr:nil, detailTitle: "收入将进入你的钱包中,可提现", detailImage: imageName(name: ""), click: { (suscces, backStr) in
-//                if suscces {
-//                    let mess = DepositMessage.init(content: "")
-//                    mess?.senderUserInfo = RCIM.shared().currentUserInfo
-//                    mess?.amotStr = backStr
-//                    mess?.isPay = NSNumber.init(value: 0)
-//                    RCIM.shared().sendMessage(RCConversationType.ConversationType_PRIVATE, targetId: self.targetId, content: mess, pushContent: "测试", pushData: "yiha", success: { (resunt) in
-//                        DebugLog(message: "发送成功\(resunt)")
-//                    }, error: { (code, errcod) in
-//                        DebugLog(message: "发送失败\(errcod)")
-//                    })
-//                }
-//            })
+            self.depositView?.clickBlock =  {(sure,amountStr,timeStr) in
+                self.alertAction.hiddenTheView()
+                if sure == false
+                {
+                    return
+                }
+                TargetManager.share.requestReceiveDeposit(param: ["user_id":CurrentUserInfo?.user_id ?? "" ,"amount":amountStr ?? "","last_time":"\(stringToTimeStamp(dateStr: timeStr, type: DateFormatterType.day))"], complection: { (model, error) in
+                    if let model1 = model
+                    {
+                        let mess = DepositMessage.init(content: "")
+                        mess?.senderUserInfo = RCIM.shared().currentUserInfo
+                        mess?.amotStr = model1.amount
+                        mess?.out_trade_no = model1.out_trade_no
+                        RCIM.shared().sendMessage(RCConversationType.ConversationType_PRIVATE, targetId: self.targetId, content: mess, pushContent: "测试", pushData: "yiha", success: { (resunt) in
+                            DebugLog(message: "发送成功\(resunt)")
+                        }, error: { (code, errcod) in
+                            DebugLog(message: "发送失败\(errcod)")
+                        })
+                    }
+                })
+            }
+            
             
             
             
@@ -211,85 +222,89 @@ class ChatRoomViewController: RCConversationViewController,RCRealTimeLocationObs
     override func didTapMessageCell(_ model: RCMessageModel!) {
         super.didTapMessageCell(model)
         
-        if let content = model.content as? DepositMessage, model.messageDirection == RCMessageDirection.MessageDirection_RECEIVE
+        if let message = model.content as? DepositMessage, model.messageDirection == RCMessageDirection.MessageDirection_RECEIVE
         {
-            let mess = TagStatueMessage.init(content: "")
-            mess?.senderUserInfo = RCIM.shared().currentUserInfo
-            RCIM.shared().sendMessage(RCConversationType.ConversationType_PRIVATE, targetId: self.targetId, content: mess, pushContent: "测试", pushData: "yiha", success: { (resunt) in
-                DebugLog(message: "发送成功\(resunt)")
-            }, error: { (code, errcod) in
-                DebugLog(message: "发送失败\(errcod)")
-            }) 
-            
-            self.reloadDataIsPay(message: content)
-
-            DebugLog(message: "点击了红包 怎么刷新")
-        }
-        if (model.content as? RCRealTimeLocationStartMessage) != nil  {
-            self.showRealTimeLocationViewController()
-        }
-        if let mess = model.content as? ReadDestroyMessage {
-            DebugLog(message: "地址:\(mess.imageUrl)");
-            TargetManager.share.readImageForUserid(params: ["user_id":CurrentUserInfo?.user_id ?? "","url":mess.imageUrl ?? ""]) { (model, error) in
-                if model?.has_viewed == false
+            if model.receivedStatus == RCReceivedStatus.ReceivedStatus_READ //已读 已支付
+            {
+                return
+            }
+            SelectPayAction.shared.showAlipaiView(param: ["user_id":CurrentUserInfo?.user_id ?? "","amount":message.amotStr,"out_trade_no":message.out_trade_no], vc: self) { (success) in
+                if success
                 {
-                    let vc = LookImageViewController()
-                    vc.imageUrl = mess.imageUrl
-                    vc.type = .effect
-                    RootNav().pushViewController(vc, animated: true)
+                     RCIMClient.shared().setMessageReceivedStatus(model.messageId, receivedStatus: RCReceivedStatus.ReceivedStatus_READ)
+                    let mess = TagStatueMessage.init(content: "")
+                    mess?.senderUserInfo = RCIM.shared().currentUserInfo
+                    RCIM.shared().sendMessage(RCConversationType.ConversationType_PRIVATE, targetId: self.targetId, content: mess, pushContent: "测试", pushData: "yiha", success: { (resunt) in
+                        DebugLog(message: "发送成功\(resunt)")
+                    }, error: { (code, errcod) in
+                        DebugLog(message: "发送失败\(errcod)")
+                    })
                 }
             }
-            self.hiddenDestroyImage()
+
+            RCIMClient.shared().setMessageReceivedStatus(model.messageId, receivedStatus: RCReceivedStatus.ReceivedStatus_READ)
+            DebugLog(message: "点击了红包 怎么刷新")
+        }
+        if (model.content as? RCRealTimeLocationStartMessage) != nil  {//地理位置
+            self.showRealTimeLocationViewController()
+        }
+        if let mess = model.content as? ReadDestroyMessage {//阅后即焚
+            DebugLog(message: "地址:\(mess.imageUrl)");
+            if model.receivedStatus == RCReceivedStatus.ReceivedStatus_READ && model.messageDirection == RCMessageDirection.MessageDirection_RECEIVE //已读
+            {
+                let vc = LookImageViewController()
+                vc.imageUrl = mess.imageUrl
+                vc.type = .lookAfter
+                RootNav().pushViewController(vc, animated: true)
+                return
+            }
+            
+            let vc = LookImageViewController()
+            vc.imageUrl = mess.imageUrl
+            vc.type = .clearness
+            RootNav().pushViewController(vc, animated: true)
+            if model.messageDirection == RCMessageDirection.MessageDirection_RECEIVE
+            {
+                 RCIMClient.shared().setMessageReceivedStatus(model.messageId, receivedStatus: RCReceivedStatus.ReceivedStatus_READ)
+            }
         }
         if let mess = model.content as? RCImageMessage {
             DebugLog(message: "地址:\(mess.imageUrl)");
-            
         }
         
     }
-    func reloadDataIsPay(message:DepositMessage)  {
-        DispatchQueue.main.async {
-            for i:Int in 0 ..< self.conversationDataRepository.count
-            {
-                let mess:RCMessageModel = self.conversationDataRepository.object(at: i) as! RCMessageModel
-                if mess.content == message
-                {
-                    message.isPay = NSNumber.init(value: 1)
-                    mess.content = message
-                }
-            }
-            let ary = self.conversationMessageCollectionView.indexPathsForVisibleItems
-            for i:Int in 0 ..< ary.count
-            {
-                let index = ary[i]
-                let model:RCMessageModel = self.conversationDataRepository.object(at: index.row) as! RCMessageModel
-                if model.content == message
-                {
-                    self.conversationMessageCollectionView.reloadItems(at: [index])
-                }
-            }
-        }
-    }
+//    func reloadDataIsPay(message:DepositMessage)  {
+//        DispatchQueue.main.async {
+//            for i:Int in 0 ..< self.conversationDataRepository.count
+//            {
+//                let mess:RCMessageModel = self.conversationDataRepository.object(at: i) as! RCMessageModel
+//                if mess.content == message
+//                {
+//                    message.isPay = NSNumber.init(value: 1)
+//                    mess.content = message
+//                }
+//            }
+//            let ary = self.conversationMessageCollectionView.indexPathsForVisibleItems
+//            for i:Int in 0 ..< ary.count
+//            {
+//                let index = ary[i]
+//                let model:RCMessageModel = self.conversationDataRepository.object(at: index.row) as! RCMessageModel
+//                if model.content == message
+//                {
+//                    self.conversationMessageCollectionView.reloadItems(at: [index])
+//                }
+//            }
+//        }
+//    }
     override func didLongTouchMessageCell(_ model: RCMessageModel!, in view: UIView!) {//长按
         guard let destroy = model.content as? ReadDestroyMessage else {
             super.didLongTouchMessageCell(model, in: view)
             return
         }
-        let param:[String:Any] = ["user_id":RCIM.shared().currentUserInfo.userId,"url":destroy.imageUrl]
-        TargetManager.share.readImageForUserid(params: param) { (readModel, error) in
-            guard let tagsuc = readModel?.has_viewed,tagsuc == false else {
-                if error == nil
-                {
-                   alertHud(title: "照片已焚毁")
-                }
-                return;
-            }
-            self.lookDestoryView.imageView.imageBack.sd_DownLoadImage(url: destroy.imageUrl ?? "", complection: { (image) in
-                
-            })
-            self.showDestroyImage()
-        }
-    
+        self.lookDestoryView.imageView.imageBack.sd_DownLoadImage(url: destroy.imageUrl ?? "", complection: { (image) in
+            
+        })
+        self.showDestroyImage()
     }
     func hiddenDestroyImage() {
         self.lookDestoryView.removeFromSuperview()

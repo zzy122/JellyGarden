@@ -105,6 +105,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="descriptionLab" destination="Fag-yd-lre" id="FPu-R1-3fu"/>
+                <outlet property="setRedPackedBtn" destination="63w-wa-ApC" id="UJ5-cz-d5Z"/>
             </connections>
             <point key="canvasLocation" x="34" y="28"/>
         </tableViewCell>

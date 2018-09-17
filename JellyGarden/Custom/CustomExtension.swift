@@ -159,7 +159,7 @@ extension GeneralExt where DT == String
             hash.appendFormat("%02x", result[i])
         }
         
-        result.deinitialize()
+//        result.deinitialize()
         return String(format: hash as String)
     }
 }
@@ -194,8 +194,9 @@ extension UIImageView
                 DebugLog(message: "失败\(String(describing: error))")
                 return
                 }
-                complection(imageTag)
                 self.image = imageTag
+                complection(imageTag)
+                
             }
         }
     }

@@ -187,7 +187,7 @@ class IdentityAuthenticationViewController: BaseViewController ,UIImagePickerCon
             let filePath = self.getPathStr()
             try? FileManager.default.moveItem(atPath: vidioStr, toPath: filePath)
             HUD.flash(.labeledProgress(title: nil, subtitle: "视频上传中..."))
-            AliyunManager.share.uploadVedioToAliyun(vedioPath: filePath, vedioName: "\(CurrentUserInfo?.user_id ?? "renzheng").mp4", complection: { (backStr, state) in
+            AliyunManager.share.uploadVedioToAliyun(vedioPath: filePath, vedioName: "\(CurrentUserInfo?.user_id ?? "renzheng")\(getTimeStamp(date: Date())).mp4", complection: { (backStr, state) in
                 if state == UploadImageState.success
                 {
                     HUD.hide(animated: true)
