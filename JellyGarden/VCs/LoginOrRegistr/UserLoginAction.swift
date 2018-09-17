@@ -34,9 +34,9 @@ func dealWithLoginUser(model:UserModel,nav:UINavigationController?)
 //    return
     if let nickName = model.identity,nickName.count > 0//
     {
-       
-        judgeGotoMainVC()
-        
+        updateUserInfo(complection: { (result) in
+            judgeGotoMainVC()
+        })
     }
     else
     {
@@ -45,7 +45,7 @@ func dealWithLoginUser(model:UserModel,nav:UINavigationController?)
 }
 func judgeGotoMainVC()
 {
-
+    
     TargetManager.share.rongcloudToken(isRefresh:false) { (model) in
         guard let tokenModel = model else{
             return

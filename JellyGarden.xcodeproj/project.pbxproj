@@ -67,6 +67,7 @@
 		5A1F3AC820E0DDC900CB98CD /* ReadDestroyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F3AC720E0DDC900CB98CD /* ReadDestroyCell.m */; };
 		5A1F3ACE20E0EA2A00CB98CD /* ReadDestroryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F3ACD20E0EA2A00CB98CD /* ReadDestroryView.m */; };
 		5A1F3AD020E0EA3C00CB98CD /* ReadDestroryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A1F3ACF20E0EA3C00CB98CD /* ReadDestroryView.xib */; };
+		5A229C5F214CFBFF00A38BA9 /* DepositListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A229C5E214CFBFF00A38BA9 /* DepositListModel.swift */; };
 		5A24A7AC20E3E964007B9C76 /* RCTokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A24A7AB20E3E964007B9C76 /* RCTokenModel.swift */; };
 		5A27B37D20E4DCFA0028D5FF /* ReadImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A27B37C20E4DCFA0028D5FF /* ReadImageModel.swift */; };
 		5A27B37F20E5062E0028D5FF /* UserBroadcastListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A27B37E20E5062E0028D5FF /* UserBroadcastListViewController.swift */; };
@@ -433,6 +434,7 @@
 		5A1F3ACC20E0EA2A00CB98CD /* ReadDestroryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReadDestroryView.h; sourceTree = "<group>"; };
 		5A1F3ACD20E0EA2A00CB98CD /* ReadDestroryView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReadDestroryView.m; sourceTree = "<group>"; };
 		5A1F3ACF20E0EA3C00CB98CD /* ReadDestroryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReadDestroryView.xib; sourceTree = "<group>"; };
+		5A229C5E214CFBFF00A38BA9 /* DepositListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositListModel.swift; sourceTree = "<group>"; };
 		5A24A7AB20E3E964007B9C76 /* RCTokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCTokenModel.swift; sourceTree = "<group>"; };
 		5A27B37C20E4DCFA0028D5FF /* ReadImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadImageModel.swift; sourceTree = "<group>"; };
 		5A27B37E20E5062E0028D5FF /* UserBroadcastListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBroadcastListViewController.swift; sourceTree = "<group>"; };
@@ -1003,6 +1005,7 @@
 			children = (
 				5A45D9D620E27A0800D2B4CE /* VipPageModel.swift */,
 				5A24A7AB20E3E964007B9C76 /* RCTokenModel.swift */,
+				5A229C5E214CFBFF00A38BA9 /* DepositListModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2098,6 +2101,7 @@
 				5A459ADF20D218C200C0A6FA /* ConditionModel.swift in Sources */,
 				5A75733F2132925900FCD71F /* RCDCSEvaluateView.m in Sources */,
 				5A1F3ABE20DF6CA700CB98CD /* RealTimeLocationStartCell.m in Sources */,
+				5A229C5F214CFBFF00A38BA9 /* DepositListModel.swift in Sources */,
 				5A7FC47C20EF9F3200D7E137 /* CSIIGesturePasswordView.m in Sources */,
 				5A4E326520C7B6650051FE00 /* VipBodyViewCell.swift in Sources */,
 				5A459AED20D3B1D400C0A6FA /* WomanBroadcastViewController.swift in Sources */,

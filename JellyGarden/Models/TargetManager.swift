@@ -682,8 +682,18 @@ class TargetManager: NSObject {
     //约会定金支付
     func requestDepositPay(param:[String:Any], complection:@escaping(Any?,Error?) -> Void)
     {
-        NetCostom.shared.request(method: .post, wengen: "admin/order/deposit ", params: param, success: { (result) in
+        NetCostom.shared.request(method: .post, wengen: "admin/order/deposit", params: param, success: { (result) in
              complection(result,nil)
+        }) { (error) in
+            complection(nil,error)
+        }
+    }
+    //定金管理列表
+    func requestDepositList(complection:@escaping([DepositListModel]?,Error?) -> Void)
+    {
+        NetCostom.shared.request(method: .post, wengen: "admin/message/notice_list", params: ["user_id":CurrentUserInfo?.user_id ?? ""], success: { (result) in
+            let model = BaseModel<DepositListModel,[DepositListModel]>.init(resultData: result)
+            complection(model.resultData,nil)
         }) { (error) in
             complection(nil,error)
         }
