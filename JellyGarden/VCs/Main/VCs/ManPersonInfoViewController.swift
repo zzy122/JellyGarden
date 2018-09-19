@@ -188,17 +188,23 @@ class ManPersonInfoViewController: BaseTableViewController,ResponderRouter {
                 
                 break
             case .chat://点击 私聊
-                TargetManager.share.requestPrivateChat(param: ["user_id":CurrentUserInfo?.user_id ?? "","chat_userid":self.userInfoModel?.user_id ?? ""]) { (success) in
-                    if success
+                CountAction().checkLimit(seekUserId: self.userInfoModel?.user_id, type: LimitType.privatChat) { (successEnable) in
+                    if successEnable
                     {
-                        let vc = ChatRoomViewController.init(conversationType: RCConversationType.ConversationType_PRIVATE, targetId: self.userInfoModel?.user_id)
-                        vc?.targetId = self.userInfoModel?.user_id
-                        RCIM.shared().userInfoDataSource.getUserInfo(withUserId: self.userInfoModel?.user_id) { (info) in
-                            vc?.title = info?.name
-                            self.navigationController?.pushViewController(vc!, animated: true)
+                        TargetManager.share.requestPrivateChat(param: ["user_id":CurrentUserInfo?.user_id ?? "","chat_userid":self.userInfoModel?.user_id ?? ""]) { (success) in
+                            if success
+                            {
+                                let vc = ChatRoomViewController.init(conversationType: RCConversationType.ConversationType_PRIVATE, targetId: self.userInfoModel?.user_id)
+                                vc?.targetId = self.userInfoModel?.user_id
+                                RCIM.shared().userInfoDataSource.getUserInfo(withUserId: self.userInfoModel?.user_id) { (info) in
+                                    vc?.title = info?.name
+                                    self.navigationController?.pushViewController(vc!, animated: true)
+                                }
+                            }
                         }
                     }
                 }
+                
                 break
             case .prase://点击评价
                 AlertAction.share.showCommentStarView(imageUrl: userInfoModel?.avatar, nikeStr: userInfoModel?.nickname) { (poCount, playCount, tasteCount, cleanCount, agliCount, mothCount) in

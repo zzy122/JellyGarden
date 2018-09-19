@@ -56,17 +56,23 @@ class EnlistDetailTableViewCell: UITableViewCell {
         RootNav().pushViewController(vc, animated: true)
     }
     @IBAction func clickPrivateChateBtn(_ sender: UIButton) {//私聊
-        TargetManager.share.requestPrivateChat(param: ["user_id":CurrentUserInfo?.user_id ?? "","chat_userid":model?.user_id ?? ""]) { (success) in
-            if success
+        CountAction().checkLimit(seekUserId: model?.user_id, type: LimitType.privatChat) { (successEnable) in
+            if successEnable
             {
-                let vc = ChatRoomViewController.init(conversationType: RCConversationType.ConversationType_PRIVATE, targetId: self.model?.user_id ?? "")
-                vc?.targetId = self.model?.user_id ?? ""
-                RCIM.shared().userInfoDataSource.getUserInfo(withUserId: self.model?.user_id) { (info) in
-                    vc?.title = info?.name
-                    RootNav().pushViewController(vc!, animated: true)
+                TargetManager.share.requestPrivateChat(param: ["user_id":CurrentUserInfo?.user_id ?? "","chat_userid":self.model?.user_id ?? ""]) { (success) in
+                    if success
+                    {
+                        let vc = ChatRoomViewController.init(conversationType: RCConversationType.ConversationType_PRIVATE, targetId: self.model?.user_id ?? "")
+                        vc?.targetId = self.model?.user_id ?? ""
+                        RCIM.shared().userInfoDataSource.getUserInfo(withUserId: self.model?.user_id) { (info) in
+                            vc?.title = info?.name
+                            RootNav().pushViewController(vc!, animated: true)
+                        }
+                    }
                 }
             }
         }
+
     }
     @IBAction func clickHeaderBtn(_ sender: UIButton) {//头像
         if CurrentUserInfo?.sex == 0

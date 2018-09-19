@@ -52,6 +52,12 @@ class PersonInfoImageView: UIView,UICollectionViewDelegate,UICollectionViewDataS
         self.collectonView.frame = self.bounds
         
     }
+    func celearPhotos()
+    {
+        self.warmLab.isHidden = true
+        self.implementView.isHidden = true
+        self.deblockBtn.isHidden = true
+    }
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -79,7 +85,12 @@ class PersonInfoImageView: UIView,UICollectionViewDelegate,UICollectionViewDataS
         return view
     }()
     @objc func clickDeblockingBtn(){
-        
+        CountAction().checkLimit(seekUserId: userModel?.user_id, type: LimitType.photos) { (success) in
+            if success {
+                self.celearPhotos()
+            }
+        }
+       
         
     }
     /*

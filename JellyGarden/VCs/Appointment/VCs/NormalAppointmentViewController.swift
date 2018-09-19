@@ -180,19 +180,23 @@ class NormalAppointmentViewController: BaseMainViewController,UICollectionViewDe
             alertHud(title: "请输入约会时间")
             return
         }
-        
-        let timeStamp = stringToTimeStamp(dateStr: dateStr,type: .day)
-        let url = urlPaths?.joined(separator: ",") ?? ""
-        let params:[String:Any] = ["poster_id":CurrentUserInfo?.user_id ?? "","time":timeStamp,"city":appiontCity.text ?? "","requirement":contentStr.text!,"attachment":url,"deposit": Int(dingJinFiled.text ?? "0") ?? 0,"need_signup":0]
-        
-        TargetManager.share.issueAppiont(params: params) { (success, error) in
-            if success {
-                DebugLog(message: "发布成功")
-                self.clickLeftBtn()
+        CountAction().checkLimit(seekUserId: nil, type: LimitType.appiontAction) { (success) in
+            if success
+            {
+                let timeStamp = stringToTimeStamp(dateStr: self.dateStr,type: .day)
+                let url = self.self.urlPaths?.joined(separator: ",") ?? ""
+                let params:[String:Any] = ["poster_id":CurrentUserInfo?.user_id ?? "","time":timeStamp,"city":self.appiontCity.text ?? "","requirement":self.contentStr.text!,"attachment":url,"deposit": Int(self.dingJinFiled.text ?? "0") ?? 0,"need_signup":0]
+                
+                TargetManager.share.issueAppiont(params: params) { (success, error) in
+                    if success {
+                        DebugLog(message: "发布成功")
+                        self.clickLeftBtn()
+                    }
+                    
+                }
             }
-            
         }
-        
+
     }
     
 

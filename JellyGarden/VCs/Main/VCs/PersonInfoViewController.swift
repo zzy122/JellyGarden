@@ -16,6 +16,7 @@ enum LookUserInfotype {
 var permissionAry:[String] = [ "公开","查看相册付费","查看前需要通过我的验证","隐身"]
 
 class PersonInfoViewController: BaseTableViewController,ResponderRouter {
+    var isWeichat:Bool = true
     var leftTitles:[String] = ["她的广播","个人介绍","约会节目","约会条件","微信","风格","语言","感情"]
     var rightTitles:[String] = ["","","","","","","",""]
     
@@ -77,6 +78,7 @@ class PersonInfoViewController: BaseTableViewController,ResponderRouter {
             {
                 contact = userInfoModel?.contact_qq
                 self.leftTitles = ["她的广播","个人介绍","约会节目","约会条件","QQ","风格","语言","感情"]
+                isWeichat = false
             }
             
             self.rightTitles = ["",continueString(strAry: userInfoModel?.tags,separetStr:"  "),continueString(strAry: userInfoModel?.appointment_program,separetStr:"  "),continueString(strAry: userInfoModel?.appointment_condition,separetStr:"  "),contact!,continueString(strAry: userInfoModel?.dress_style,separetStr:"  "),continueString(strAry: userInfoModel?.language,separetStr:"  "),userInfoModel?.emotion_status ?? ""]
@@ -186,6 +188,9 @@ class PersonInfoViewController: BaseTableViewController,ResponderRouter {
         }
     }
     func gotoChatVC() {
+        
+        
+        
         let vc = ChatRoomViewController.init(conversationType: RCConversationType.ConversationType_PRIVATE, targetId: userInfoModel?.user_id)
         vc?.targetId = userInfoModel?.user_id
         RCIM.shared().userInfoDataSource.getUserInfo(withUserId: userInfoModel?.user_id) { (info) in
@@ -354,13 +359,9 @@ extension PersonInfoViewController
     }
     @objc  func clickCheckContact(sender:UIButton)
     {
-        TargetManager.share.checkContackType(params: ["user_id":CurrentUserInfo?.user_id ?? "","view_user_id":userInfoModel?.user_id ?? ""]) { (success) in
-            if success
-            {
-                 self.showContactAlert()
-            }
+        CountAction().checkLimit(seekUserId: self.userInfoModel?.user_id, type: isWeichat ? LimitType.checkWeichat : LimitType.checkQQ) { (success) in
+            self.showContactAlert()
         }
-        
     }
    
 }
