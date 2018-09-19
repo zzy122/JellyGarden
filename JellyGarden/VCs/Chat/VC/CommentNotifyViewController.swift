@@ -77,6 +77,7 @@ extension CommentNotifyViewController
         let model:EvaluateNoticeModel = (models?[indexPath.row])!
         let textData = ZZYFrameParser.parseContent(dicAry![indexPath.row] as! [Any], config: config)
         cell.commentView.data = textData
+        
         cell.contentHeight.constant = textData?.height ?? 0
         cell.timeLab.text = distanceTime(time: model.time)
         cell.selectionStyle = UITableViewCellSelectionStyle.none

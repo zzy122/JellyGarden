@@ -56,9 +56,9 @@ func judgeGotoMainVC()
                 let delegate = UIApplication.shared.delegate as! AppDelegate
                 delegate.setRootViewController(vc: BaseTabBarViewController())
                //设置推送的alias
-                JPUSHService.setAlias(CurrentUserInfo?.user_id ?? "testZZY", completion: { (code, alias, seq) in
-                    DebugLog(message: "极光推送code:\(code),alias:\(alias ?? ""),seq:\(seq)")
-                }, seq: 1235)
+//                JPUSHService.setAlias(CurrentUserInfo?.user_id ?? "testZZY", completion: { (code, alias, seq) in
+//                    DebugLog(message: "极光推送code:\(code),alias:\(alias ?? ""),seq:\(seq)")
+//                }, seq: 1235)
                 judgeGesterPassword()
             }
             else

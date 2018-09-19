@@ -62,6 +62,10 @@ class TargetManager: NSObject {
             let model = BaseModel<UserModel,UserModel>.init(resultData: user)
             let user1 = model.resultData?.toJSON()!
             NSDictionary.init(dictionary: user1!).write(toFile: UserPlist, atomically: true)
+              //设置推送的alias
+            JPUSHService.setAlias(CurrentUserInfo?.user_id ?? "testZZY", completion: { (code, alias, seq) in
+                DebugLog(message: "极光推送code:\(code),alias:\(alias ?? ""),seq:\(seq)")
+            }, seq: 1235)
             complection(model.resultData,nil)
         }) { (error) in
             complection(nil,error)
@@ -724,6 +728,15 @@ class TargetManager: NSObject {
             complection(model.resultData,nil)
         }) { (error) in
             complection(nil,error)
+        }
+    }
+    //私聊
+    func requestPrivateChat(param:[String:Any],complection:@escaping (Bool) -> Void)
+    {
+        NetCostom.shared.request(method: .post, wengen: "admin/user/private_chat", params: param, success: { (result) in
+            complection(true)
+        }) { (error) in
+            complection(false)
         }
     }
 

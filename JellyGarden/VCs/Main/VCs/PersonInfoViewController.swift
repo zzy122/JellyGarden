@@ -150,7 +150,12 @@ class PersonInfoViewController: BaseTableViewController,ResponderRouter {
                 })
                 break
             case .chat://点击 私聊
-                self.gotoChatVC()
+                TargetManager.share.requestPrivateChat(param: ["user_id":CurrentUserInfo?.user_id ?? "","chat_userid":self.userInfoModel?.user_id ?? ""]) { (success) in
+                    if success
+                    {
+                         self.gotoChatVC()
+                    }
+                }
             case .prase://点击评价
                 AlertAction.share.showCommentStarView(imageUrl: userInfoModel?.avatar, nikeStr: userInfoModel?.nickname) { (poCount, playCount, tasteCount, cleanCount, agliCount, mothCount) in
                     let str = "\(commentAry[0]):\(poCount);\(commentAry[1]):\(playCount);\(commentAry[2]):\(tasteCount);\(commentAry[3]):\(cleanCount);\(commentAry[4]):\(agliCount);\(commentAry[5]):\(mothCount);"

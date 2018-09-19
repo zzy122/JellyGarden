@@ -37,6 +37,9 @@ class InvitationCodeViewController: BaseViewController {
         self.navigationController?.pushViewController(ApplayForCodeViewController(), animated: true)
     }
     @IBAction func clickSure(_ sender: UIButton) {
+        self.navigationController?.pushViewController(ManFillInformationViewController(), animated: true)
+        return
+        
         guard let codeStr = self.codeTextFiled.text,codeStr.count > 0 else{
             
             alertHud(title: "请输入邀请码")
