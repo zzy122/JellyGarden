@@ -68,6 +68,8 @@
 		5A1F3ACE20E0EA2A00CB98CD /* ReadDestroryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F3ACD20E0EA2A00CB98CD /* ReadDestroryView.m */; };
 		5A1F3AD020E0EA3C00CB98CD /* ReadDestroryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A1F3ACF20E0EA3C00CB98CD /* ReadDestroryView.xib */; };
 		5A229C5F214CFBFF00A38BA9 /* DepositListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A229C5E214CFBFF00A38BA9 /* DepositListModel.swift */; };
+		5A229C612152445600A38BA9 /* CountLimitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A229C602152445600A38BA9 /* CountLimitModel.swift */; };
+		5A229C6321524D3700A38BA9 /* CountAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A229C6221524D3700A38BA9 /* CountAction.swift */; };
 		5A24A7AC20E3E964007B9C76 /* RCTokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A24A7AB20E3E964007B9C76 /* RCTokenModel.swift */; };
 		5A27B37D20E4DCFA0028D5FF /* ReadImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A27B37C20E4DCFA0028D5FF /* ReadImageModel.swift */; };
 		5A27B37F20E5062E0028D5FF /* UserBroadcastListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A27B37E20E5062E0028D5FF /* UserBroadcastListViewController.swift */; };
@@ -439,6 +441,8 @@
 		5A1F3ACD20E0EA2A00CB98CD /* ReadDestroryView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReadDestroryView.m; sourceTree = "<group>"; };
 		5A1F3ACF20E0EA3C00CB98CD /* ReadDestroryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReadDestroryView.xib; sourceTree = "<group>"; };
 		5A229C5E214CFBFF00A38BA9 /* DepositListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositListModel.swift; sourceTree = "<group>"; };
+		5A229C602152445600A38BA9 /* CountLimitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountLimitModel.swift; sourceTree = "<group>"; };
+		5A229C6221524D3700A38BA9 /* CountAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountAction.swift; sourceTree = "<group>"; };
 		5A24A7AB20E3E964007B9C76 /* RCTokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCTokenModel.swift; sourceTree = "<group>"; };
 		5A27B37C20E4DCFA0028D5FF /* ReadImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadImageModel.swift; sourceTree = "<group>"; };
 		5A27B37E20E5062E0028D5FF /* UserBroadcastListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBroadcastListViewController.swift; sourceTree = "<group>"; };
@@ -848,6 +852,7 @@
 				5A459ADC20D2095B00C0A6FA /* UserLoginAction.swift */,
 				5A459AE020D2202900C0A6FA /* FillCondition.swift */,
 				C7A1FF47214A62C300A95C76 /* SelectPayAction.swift */,
+				5A229C6221524D3700A38BA9 /* CountAction.swift */,
 			);
 			path = LoginOrRegistr;
 			sourceTree = "<group>";
@@ -1184,6 +1189,7 @@
 				5A0CC16020F240160056A30E /* IdentityModel.swift */,
 				5A6C939920F635B200E57223 /* AlipayModel.swift */,
 				C72ABE3E2146069900D0FFEC /* ViewCountModel.swift */,
+				5A229C602152445600A38BA9 /* CountLimitModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1942,6 +1948,7 @@
 				C7602285211057E50014442D /* ChatDepositAlertView.swift in Sources */,
 				5A015E9720C50C1100EC8A96 /* UMengAcion.swift in Sources */,
 				5A015ED720C647BF00EC8A96 /* AlertAction.swift in Sources */,
+				5A229C6321524D3700A38BA9 /* CountAction.swift in Sources */,
 				5A120C3F20DB70EF004A9DCF /* AliyunManager.swift in Sources */,
 				5A459ADB20D1753900C0A6FA /* CommentGetHeight.swift in Sources */,
 				5E50B83D213D2ED10053B2B3 /* ZZYLinkTextData.m in Sources */,
@@ -1980,6 +1987,7 @@
 				5AE9CC8720C8C8D70057CFF3 /* LocationCitys.swift in Sources */,
 				5A27B38920E530510028D5FF /* CommentStarView.swift in Sources */,
 				5A75733C2132922700FCD71F /* RCDCSEvaluateModel.m in Sources */,
+				5A229C612152445600A38BA9 /* CountLimitModel.swift in Sources */,
 				5A1F3ABC20DF6CA700CB98CD /* RCLocationView.m in Sources */,
 				5AE28C6A20F1F3F900EE2973 /* BlackListViewController.swift in Sources */,
 				5A80C4D520BFE1620033CAF8 /* APPCustomDefine.swift in Sources */,

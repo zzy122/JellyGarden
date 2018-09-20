@@ -580,15 +580,15 @@ class TargetManager: NSObject {
             complection(false)
         }
     }
-    //查看联系方式
-    func checkContackType(params:[String:Any],complection:@escaping(Bool) -> Void)
-    {
-        NetCostom.shared.request(method: .post, wengen: "users/applyContact", params: params, success: { (result) in
-            complection(true)
-        }) { (error) in
-            complection(false)
-        }
-    }
+//    //查看联系方式
+//    func checkContackType(params:[String:Any],complection:@escaping(Bool) -> Void)
+//    {
+//        NetCostom.shared.request(method: .post, wengen: "users/applyContact", params: params, success: { (result) in
+//            complection(true)
+//        }) { (error) in
+//            complection(false)
+//        }
+//    }
     //获取多少人看过和图片被焚毁多少次
     func getCountWithView(complection:@escaping (ViewCountModel?,Error?) -> Void)
     {
@@ -741,6 +741,16 @@ class TargetManager: NSObject {
             complection(true)
         }) { (error) in
             complection(false)
+        }
+    }
+    //次数限制 1发布约会消息    2 查看手机号  3查看QQ   4查看微信    5发起私聊   6 解锁相册
+    func requestCountLimit(param:[String:Any],complection:@escaping (CountLimitModel?,Error?) -> Void)
+    {
+        NetCostom.shared.request(method: .post, wengen: "admin/user/user_permission", params: param, success: { (result) in
+            let model = BaseModel<CountLimitModel,CountLimitModel>.init(resultData: result)
+            complection(model.resultData,nil)
+        }) { (error) in
+            complection(nil,error)
         }
     }
 

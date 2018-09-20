@@ -21,7 +21,7 @@
 @interface DepositMessage : RCMessageContent <NSCoding>
 
 /*!
- 测试消息的内容
+ 价格
  */
 @property(nonatomic, strong) NSString *amotStr;
 //订单号
