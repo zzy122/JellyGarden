@@ -57,15 +57,16 @@
     [super setDataModel:model];
     ReadDestroyMessage* mes = (ReadDestroyMessage*)model.content;
     self.view.mess = mes;
+    [self.view removeGestureRecognizer:self.gester];
     
-    if ([mes.isRead isEqualToNumber:@(0)]) {
-        [self.view addGestureRecognizer:self.gester];
-    }
-    else
-    {
-        [self.view removeGestureRecognizer:self.gester];
-       
-    }
+//    if ([mes.isRead isEqualToNumber:@(0)]) {
+//        [self.view addGestureRecognizer:self.gester];
+//    }
+//    else
+//    {
+//        [self.view removeGestureRecognizer:self.gester];
+//
+//    }
     self.nicknameLabel.hidden = YES;
     [self setAutoLayout];
     

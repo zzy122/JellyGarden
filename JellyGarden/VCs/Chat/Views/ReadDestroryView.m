@@ -33,19 +33,22 @@
 - (void)setMess:(ReadDestroyMessage *)mess
 {
     _mess = mess;
-    if (mess.isRead != nil) {
-        if ([mess.isRead isEqualToNumber:@(0)]) {
-            self.TapLab.hidden = NO;
-            self.titleLable.text = @"阅后即焚";
-            self.tagImagV.image = [UIImage imageNamed:@""];
-        }
-        else
-        {
-            self.TapLab.hidden = YES;
-            self.titleLable.text = @"已焚毁";
-            self.tagImagV.image = [UIImage imageNamed:@""];
-        }
-    }
+    self.TapLab.hidden = NO;
+    self.titleLable.text = @"阅后即焚";
+    self.tagImagV.image = [UIImage imageNamed:@""];
+//    if (mess.isRead != nil) {
+//        if ([mess.isRead isEqualToNumber:@(0)]) {
+//            self.TapLab.hidden = NO;
+//            self.titleLable.text = @"阅后即焚";
+//            self.tagImagV.image = [UIImage imageNamed:@""];
+//        }
+//        else
+//        {
+//            self.TapLab.hidden = YES;
+//            self.titleLable.text = @"已焚毁";
+//            self.tagImagV.image = [UIImage imageNamed:@""];
+//        }
+//    }
    
 }
 

@@ -331,7 +331,7 @@ extension ChatRoomViewController
     {
         let mes:ReadDestroyMessage  = ReadDestroyMessage.init()
         mes.imageUrl = url
-        mes.isRead = NSNumber.init(value: 0)
+//        mes.isRead = NSNumber.init(value: 0)
         mes.senderUserInfo = RCIM.shared().currentUserInfo
         
         RCIM.shared().sendMessage(RCConversationType.ConversationType_PRIVATE, targetId: self.targetId, content: mes, pushContent: "阅后即焚", pushData: "图片", success: { (resunt) in

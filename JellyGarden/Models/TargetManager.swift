@@ -329,7 +329,7 @@ class TargetManager: NSObject {
     //查看照片，阅后即焚
     func readImageForUserid(params:[String:Any], complection:@escaping (ReadImageModel?,Error?) -> Void)
     {
-        NetCostom.shared.request(method: .post, wengen: "custom_photos/view", params: params, success: { (result) in
+        NetCostom.shared.request(method: .post, wengen: "admin/video/view_user_image", params: params, success: { (result) in
             guard let resultDic = result as? [String:Any] else
             {
                 alertHud(title: "返回错误")

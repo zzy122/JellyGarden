@@ -24,6 +24,7 @@ class LookImageBodyView: UIView {
     lazy var implementView:UIView = {
         let beffe = UIBlurEffect.init(style: UIBlurEffectStyle.light)
         let view = UIVisualEffectView.init(effect: beffe)
+        
         self.insertSubview(view, aboveSubview: imageBack)
         view.alpha = 0.0
         view.addGestureRecognizer(self.gester)
@@ -45,7 +46,7 @@ class LookImageBodyView: UIView {
 //    }
     override func layoutSubviews() {
         super.layoutSubviews()
-        
+        implementView.frame = self.bounds
     }
     
     
@@ -65,6 +66,7 @@ class LookImageBodyView: UIView {
             self.warmTitleLab.isHidden = false
             self.subWarmLab.isHidden = true
             self.implementView.alpha = 1.0
+            self.implementView.removeGestureRecognizer(self.gester)
         }
         else
         {

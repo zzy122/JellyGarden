@@ -33,7 +33,8 @@ class LookImageViewController: BaseViewController,ResponderRouter {
                 break
             case 2?://红包
                 break
-            case 3?:
+            case 3?://已焚毁
+                self.type = .lookAfter
                 break
             default:
                 break
@@ -62,6 +63,9 @@ class LookImageViewController: BaseViewController,ResponderRouter {
     {
         self.type = LookImageType.lookAfter
         self.buttomView.isHidden = true
+        
+        此处待定参数
+        TargetManager.share.readImageForUserid(params: ["user_id":CurrentUserInfo?.user_id ?? "",""], complection: <#T##(ReadImageModel?, Error?) -> Void#>)
     }
     
     override func viewDidLoad() {
