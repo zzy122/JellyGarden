@@ -459,8 +459,12 @@ class TargetManager: NSObject {
     func userReportList(params:[String:Any],complection:@escaping ([BlackModel]?,Error?) ->Void)//userReport
     {
         NetCostom.shared.request(method: .post, wengen: "admin/user/get_report_list", params: params, success: {(result) in
-            let model = BaseModel<BlackModel,[BlackModel]>.init(resultData: result)
+            guard let list:[String:Any] = result as? [String:Any] else{
+                return
+            }
+            let model = BaseModel<BlackModel,[BlackModel]>.init(resultData: list["report_list"] ?? "")
             complection(model.resultData,nil)
+           
         }) { (error) in
             complection(nil,error)
         }

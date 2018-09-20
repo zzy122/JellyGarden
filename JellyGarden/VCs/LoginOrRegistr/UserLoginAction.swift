@@ -52,7 +52,7 @@ func judgeGotoMainVC()
         }
         OtherApplication.share.connectRongyun(token: tokenModel.token!, complectiom: { (success) in
             if success
-            {
+            {   
                 let delegate = UIApplication.shared.delegate as! AppDelegate
                 delegate.setRootViewController(vc: BaseTabBarViewController())
                //设置推送的alias

@@ -228,7 +228,7 @@ class ChatRoomViewController: RCConversationViewController,RCRealTimeLocationObs
             {
                 return
             }
-            SelectPayAction.shared.showAlipaiView(param: ["user_id":CurrentUserInfo?.user_id ?? "","amount":message.amotStr,"out_trade_no":message.out_trade_no], vc: self) { (success) in
+            SelectPayAction.shared.showAlipaiView(param: ["user_id":CurrentUserInfo?.user_id ?? "","amount":message.amotStr!,"out_trade_no":message.out_trade_no!], vc: self) { (success) in
                 if success
                 {
                      RCIMClient.shared().setMessageReceivedStatus(model.messageId, receivedStatus: RCReceivedStatus.ReceivedStatus_READ)
